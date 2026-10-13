@@ -1,5 +1,10 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 3 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.apache.tika.utils.ProcessUtils;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
@@ -33,12 +38,16 @@ public class ProcessUtils_escapeCommandLine_2_2_Test {
 
     @Test
     public void testEscapeCommandLine_WithSpaces_Windows() {
+
+        assumeTrue(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
         String result = ProcessUtils.escapeCommandLine("test arg");
         assertEquals("\"test arg\"", result);
     }
 
     @Test
     public void testEscapeCommandLine_WithSpaces_NoQuotes_Windows() {
+
+        assumeTrue(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
         String result = ProcessUtils.escapeCommandLine("test arg");
         assertEquals("\"test arg\"", result);
     }
@@ -51,6 +60,8 @@ public class ProcessUtils_escapeCommandLine_2_2_Test {
 
     @Test
     public void testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows() {
+
+        assumeFalse(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
         String result = ProcessUtils.escapeCommandLine("test arg");
         assertEquals("test arg", result);
     }

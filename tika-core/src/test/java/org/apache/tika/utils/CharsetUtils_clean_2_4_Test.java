@@ -1,3 +1,6 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 7 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
 import org.apache.tika.utils.CharsetUtils;
@@ -59,12 +62,16 @@ public class CharsetUtils_clean_2_4_Test {
         assertEquals("UTF-8", result);
     }
 
+    @Disabled("IFT3913 : oracle faux : une virgule en tete n'est pas acceptee par CHARSET_NAME_PATTERN -> clean renvoie null")
+
     @Test
     public void testCleanWithLeadingComma() throws Exception {
         String charsetName = ",UTF-8";
         String result = charsetUtils.clean(charsetName);
         assertEquals("UTF-8", result);
     }
+
+    @Disabled("IFT3913 : oracle faux : 'iso 8859-1' contient un espace, la regex ne garde que 'iso' -> clean renvoie null")
 
     @Test
     public void testCleanWithISO8859Pattern() throws Exception {
@@ -73,12 +80,16 @@ public class CharsetUtils_clean_2_4_Test {
         assertEquals("ISO-8859-1", result);
     }
 
+    @Disabled("IFT3913 : oracle faux : attend un nom non canonique (CP1252 / WINDOWS-1252) alors que forName renvoie le nom canonique JDK windows-1252")
+
     @Test
     public void testCleanWithCPNamePattern() throws Exception {
         String charsetName = "cp-1252";
         String result = charsetUtils.clean(charsetName);
         assertEquals("CP1252", result);
     }
+
+    @Disabled("IFT3913 : oracle faux : attend un nom non canonique (CP1252 / WINDOWS-1252) alors que forName renvoie le nom canonique JDK windows-1252")
 
     @Test
     public void testCleanWithWinNamePattern() throws Exception {
@@ -136,6 +147,8 @@ public class CharsetUtils_clean_2_4_Test {
         assertEquals("UTF-8", result);
     }
 
+    @Disabled("IFT3913 : oracle faux : une virgule en tete n'est pas acceptee par CHARSET_NAME_PATTERN -> clean renvoie null")
+
     @Test
     public void testCleanWithLeadingCommaAndWhitespace() throws Exception {
         String charsetName = ",  UTF-8";
@@ -143,12 +156,16 @@ public class CharsetUtils_clean_2_4_Test {
         assertEquals("UTF-8", result);
     }
 
+    @Disabled("IFT3913 : oracle faux : 'iso 8859-1' contient un espace, la regex ne garde que 'iso' -> clean renvoie null")
+
     @Test
     public void testCleanWithISO8859PatternAndWhitespace() throws Exception {
         String charsetName = "  iso 8859-1  ";
         String result = charsetUtils.clean(charsetName);
         assertEquals("ISO-8859-1", result);
     }
+
+    @Disabled("IFT3913 : oracle faux : attend un nom non canonique (CP1252 / WINDOWS-1252) alors que forName renvoie le nom canonique JDK windows-1252")
 
     @Test
     public void testCleanWithCPNamePatternAndWhitespace() throws Exception {

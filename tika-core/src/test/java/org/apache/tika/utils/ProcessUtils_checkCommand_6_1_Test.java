@@ -1,3 +1,6 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 7 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
 import org.apache.tika.utils.ProcessUtils;
@@ -31,6 +34,8 @@ public class ProcessUtils_checkCommand_6_1_Test {
         MockitoAnnotations.openMocks(this);
     }
 
+    @Disabled("IFT3913 : le mock de Process n'est jamais utilise par checkCommand (Runtime.exec reel) -> verify echoue (WantedButNotInvoked)")
+
     @Test
     public void testCheckCommandWithNoErrorValue() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "echo", "test" };
@@ -41,6 +46,8 @@ public class ProcessUtils_checkCommand_6_1_Test {
         verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
         verify(mockProcess, times(1)).exitValue();
     }
+
+    @Disabled("IFT3913 : le mock de Process n'est jamais utilise par checkCommand (Runtime.exec reel) -> verify echoue (WantedButNotInvoked)")
 
     @Test
     public void testCheckCommandWithErrorValue() throws IOException, InterruptedException, TimeoutException {
@@ -54,6 +61,8 @@ public class ProcessUtils_checkCommand_6_1_Test {
         verify(mockProcess, times(1)).exitValue();
     }
 
+    @Disabled("IFT3913 : oracle faux : le mock de Process n'est jamais injecte dans la methode statique ; 'echo test' s'execute reellement et renvoie true")
+
     @Test
     public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "echo", "test" };
@@ -62,6 +71,8 @@ public class ProcessUtils_checkCommand_6_1_Test {
         assertFalse(result);
         verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
     }
+
+    @Disabled("IFT3913 : Mockito : IOException (checked) n'est pas declaree par Process.waitFor -> MockitoException")
 
     @Test
     public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
@@ -72,6 +83,8 @@ public class ProcessUtils_checkCommand_6_1_Test {
         verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
     }
 
+    @Disabled("IFT3913 : oracle faux : le mock de Process n'est jamais injecte dans la methode statique ; 'echo test' s'execute reellement et renvoie true")
+
     @Test
     public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "echo", "test" };
@@ -81,12 +94,16 @@ public class ProcessUtils_checkCommand_6_1_Test {
         verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
     }
 
+    @Disabled("IFT3913 : oracle faux : le mock de Process n'est jamais injecte dans la methode statique ; 'echo test' s'execute reellement et renvoie true")
+
     @Test
     public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "echo", "test" };
         doThrow(new SecurityException()).when(mockProcess).waitFor(60000, TimeUnit.MILLISECONDS);
         assertThrows(SecurityException.class, () -> processUtils.checkCommand(checkCmd));
     }
+
+    @Disabled("IFT3913 : le mock de Process n'est jamais utilise par checkCommand (Runtime.exec reel) -> verify echoue (WantedButNotInvoked)")
 
     @Test
     public void testCheckCommandWithError() throws IOException, InterruptedException, TimeoutException {

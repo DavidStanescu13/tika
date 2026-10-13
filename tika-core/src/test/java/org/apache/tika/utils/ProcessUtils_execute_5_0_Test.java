@@ -1,3 +1,6 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 4 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
 import java.io.ByteArrayInputStream;
@@ -45,6 +48,8 @@ public class ProcessUtils_execute_5_0_Test {
         stdoutRedirect = Files.createTempFile("test", ".txt");
     }
 
+    @Disabled("IFT3913 : oracle faux : suppose processTimeMillis == timeout (1000 ms) et des codes de sortie arbitraires ; les mocks de Process/ProcessBuilder/StreamGobbler ne sont pas ceux que la methode statique utilise")
+
     @Test
     public void testExecute() throws IOException, InterruptedException {
         when(processBuilder.start()).thenReturn(process);
@@ -64,6 +69,8 @@ public class ProcessUtils_execute_5_0_Test {
         assertFalse(result.stdoutTruncated);
         assertFalse(result.stderrTruncated);
     }
+
+    @Disabled("IFT3913 : oracle faux : suppose processTimeMillis == timeout (1000 ms) et des codes de sortie arbitraires ; les mocks de Process/ProcessBuilder/StreamGobbler ne sont pas ceux que la methode statique utilise")
 
     @Test
     public void testExecuteTimeout() throws IOException, InterruptedException {
@@ -85,6 +92,8 @@ public class ProcessUtils_execute_5_0_Test {
         assertFalse(result.stderrTruncated);
     }
 
+    @Disabled("IFT3913 : oracle faux : suppose processTimeMillis == timeout (1000 ms) et des codes de sortie arbitraires ; les mocks de Process/ProcessBuilder/StreamGobbler ne sont pas ceux que la methode statique utilise")
+
     @Test
     public void testExecuteException() throws IOException, InterruptedException {
         when(processBuilder.start()).thenReturn(process);
@@ -104,6 +113,8 @@ public class ProcessUtils_execute_5_0_Test {
         assertFalse(result.stdoutTruncated);
         assertFalse(result.stderrTruncated);
     }
+
+    @Disabled("IFT3913 : oracle faux : suppose processTimeMillis == timeout (1000 ms) et des codes de sortie arbitraires ; les mocks de Process/ProcessBuilder/StreamGobbler ne sont pas ceux que la methode statique utilise")
 
     @Test
     public void testExecuteError() throws IOException, InterruptedException {

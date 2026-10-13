@@ -1,3 +1,6 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 8 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
 import org.apache.tika.utils.ProcessUtils;
@@ -29,6 +32,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
     @Mock
     private StreamGobbler mockErrGobbler;
 
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
+
     @Test
     public void testCheckCommandWithValidCommand() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "ls", "-l" };
@@ -40,6 +45,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         assertTrue(result);
         verify(mockProcess, times(1)).destroyForcibly();
     }
+
+    @Disabled("IFT3913 : oracle faux : attend une IOException alors que checkCommand l'attrape et renvoie false")
 
     @Test
     public void testCheckCommandWithInvalidCommand() throws IOException, InterruptedException, TimeoutException {
@@ -53,6 +60,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         verify(mockProcess, times(1)).destroyForcibly();
     }
 
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
+
     @Test
     public void testCheckCommandWithTimeout() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "sleep", "60" };
@@ -64,6 +73,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         verify(mockProcess, times(1)).destroyForcibly();
     }
 
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
+
     @Test
     public void testCheckCommandWithIOException() throws IOException {
         String[] checkCmd = { "ls", "-l" };
@@ -73,6 +84,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         assertFalse(result);
         verify(mockProcess, never()).destroyForcibly();
     }
+
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
 
     @Test
     public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException {
@@ -85,6 +98,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         verify(mockProcess, times(1)).destroyForcibly();
     }
 
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
+
     @Test
     public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
         String[] checkCmd = { "sleep", "60" };
@@ -95,6 +110,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         assertFalse(result);
         verify(mockProcess, times(1)).destroyForcibly();
     }
+
+    @Disabled("IFT3913 : Mockito : when() sur un appel qui n'est pas celui d'un mock (Runtime/Process reels) -> MissingMethodInvocationException")
 
     @Test
     public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
@@ -108,6 +125,8 @@ public class ProcessUtils_checkCommand_6_4_Test {
         assertTrue(result);
         verify(mockProcess, times(1)).destroyForcibly();
     }
+
+    @Disabled("IFT3913 : Mockito strict : stubbings inutiles (le mock n'est jamais appele) -> UnnecessaryStubbingException")
 
     @Test
     public void testCheckCommandWithError() throws IOException, InterruptedException, TimeoutException {

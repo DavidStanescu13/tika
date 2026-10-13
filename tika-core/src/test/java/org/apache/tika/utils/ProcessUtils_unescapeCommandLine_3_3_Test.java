@@ -1,3 +1,6 @@
+// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
+// Seules modifications : 1 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
+// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
 package org.apache.tika.utils;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +21,8 @@ import org.slf4j.LoggerFactory;
 
 @ExtendWith(MockitoExtension.class)
 public class ProcessUtils_unescapeCommandLine_3_3_Test {
+
+    @Disabled("IFT3913 : oracle faux : suppose que unescapeCommandLine retire les guillemets sur toute plateforme et meme sans espace (le code n'agit que sous Windows ET en presence d'un espace)")
 
     @Test
     public void testUnescapeCommandLine() {
