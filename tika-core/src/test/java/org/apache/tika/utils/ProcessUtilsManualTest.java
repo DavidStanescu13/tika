@@ -236,8 +236,10 @@ public class ProcessUtilsManualTest {
         FileProcessResult r = ProcessUtils.execute(helper("flood", Integer.toString(n)), 60000, redirect, 10_000_000);
 
         assertEquals(0, r.getExitValue());
-        assertEquals(101L * n, Files.size(redirect), "stdout complet dans le fichier (avec les \\n)");
-        assertEquals(101L * n, r.getStdoutLength());
+        // println ecrit le separateur de ligne de la plateforme (\n ou \r\n sous Windows)
+        long expectedFileSize = (100L + System.lineSeparator().length()) * n;
+        assertEquals(expectedFileSize, Files.size(redirect), "stdout complet dans le fichier (avec les fins de ligne)");
+        assertEquals(expectedFileSize, r.getStdoutLength());
         assertEquals(100L * n, r.getStderrLength());
         assertEquals(101 * n - 1, r.getStderr().length());
     }
