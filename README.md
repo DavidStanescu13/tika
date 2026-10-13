@@ -154,29 +154,71 @@ Trois obstacles ont dû être levés avant d'obtenir des tests ; aucun ne concer
 
 Autre point d'intégration : les tests générés sont copiés **tels quels** dans `src/test/java`, sans en-tête de licence Apache ni respect du style Tika (imports `*`). Plutôt que de les retoucher (ce qui serait une « intervention manuelle »), ils sont exclus de `checkstyle` et de `forbiddenapis` dans `tika-core/pom.xml` (motif `*_*_*_*_Test.java`). La « suite » `<Classe>_Suite.java` que ChatUniTest produit (`@RunWith(JUnitPlatform.class)`, format JUnit 4) n'est pas copiée : elle ne compile pas avec JUnit Jupiter 6.
 
-_(suite de la section à compléter avec les résultats de la seconde campagne)_
-
 ### 4.1 Où sont les tests générés ?
 
-- Sortie brute de ChatUniTest : `tika-core/chatunitest/` (un fichier par méthode et par tentative, plus la suite fusionnée) et les informations d'analyse du projet dans `tika-core/target/chatunitest-info/`.
-- Suite retenue, versionnée et exécutée dans le pipeline : `tika-core/src/test/java/org/apache/tika/utils/ProcessUtilsChatUniTest.java` et `CharsetUtilsChatUniTest.java`.
+- **Sortie brute de ChatUniTest** (non modifiée) : [`tika-core/chatunitest/tika-parent/tika-core/org/apache/tika/utils/`](tika-core/chatunitest/tika-parent/tika-core/org/apache/tika/utils) – 15 fichiers `<Classe>_<méthode>_<n°méthode>_<n°tentative>_Test.java` retenus par l'outil, plus deux fichiers `*_Suite.java` (format JUnit 4, non utilisables).
+- **Traces complètes** : [`tika-core/target/chatunitest-info/tika-parent/tika-core/`](tika-core/target/chatunitest-info/tika-parent/tika-core) – pour chaque classe, chaque méthode et chaque tentative, le *prompt* envoyé au modèle, sa réponse, le code extrait et les erreurs de compilation/exécution (`history*/class*/method*/attempt*/records.json`, `error-message/`). Journaux Maven : [`tache2/chatunitest-ProcessUtils.log`](tache2/chatunitest-ProcessUtils.log) (40 min) et [`tache2/chatunitest-CharsetUtils.log`](tache2/chatunitest-CharsetUtils.log) (22 min).
+- **Tests exécutés par le pipeline** : copies des 15 fichiers dans [`tika-core/src/test/java/org/apache/tika/utils/`](tika-core/src/test/java/org/apache/tika/utils) (`*_*_*_*_Test.java`). Ce sont ces copies qui portent les annotations `@Disabled` / `assumeTrue` décrites en 4.2.
+
+Paramètres : modèle `qwen2.5-coder:7b` (Ollama, local, exposé sous le nom `codeqwen:v1.5-chat`), `testNumber=5` (5 tentatives par méthode), `maxRounds=5` (jusqu'à 5 rondes de réparation par tentative), `temperature=0.2`, `stopWhenSuccess=false`, `prune=false`, schéma `CHATUNITEST` (prompt par défaut de l'outil). Les méthodes privées `register`/`release` et `initCommonCharsets` sont ignorées par l'outil ; les deux surcharges de `execute` et de `checkCommand` sont traitées séparément (d'où 10 tentatives pour chacune).
 
 ### 4.2 Compilent-ils et s'exécutent-ils sans intervention manuelle ?
 
-| Classe | Méthodes ciblées | Tests générés | Compilent sans retouche ? | Passent sans retouche ? | Corrections nécessaires |
-|---|---|---|---|---|---|
-| ProcessUtils | _à compléter_ | | | | |
-| CharsetUtils | _à compléter_ | | | | |
+**Côté ChatUniTest (seconde campagne)** – 45 tentatives, 15 retenues :
+
+| Classe | Méthode | Tentatives | Retenues par l'outil | Rondes de réparation avant succès | Échecs de compilation | Échecs d'exécution (hors assertions) |
+|---|---|---|---|---|---|---|
+| ProcessUtils | `escapeCommandLine` | 5 | 5 | 0, 0, 0, 0, 0 | 0 | 0 |
+| ProcessUtils | `unescapeCommandLine` | 5 | 3 | 0, 0, 0 | 10 | 0 |
+| ProcessUtils | `execute` (×2 surcharges) | 10 | 3 | 1, 1, 2 | 35 | 0 |
+| ProcessUtils | `checkCommand` (×2 surcharges) | 10 | 2 | 0, 0 | 40 | 0 |
+| CharsetUtils | `isSupported` | 5 | 1 | 0 | 5 | 15 |
+| CharsetUtils | `clean` | 5 | 1 | 0 | 0 | 20 |
+| CharsetUtils | `forName` | 5 | 0 | – | 10 | 15 |
+| **Total** | | **45** | **15** (33 %) | | **100** | **50** |
+
+Les 15 fichiers retenus contiennent **88 méthodes de test**. Mais « retenu par ChatUniTest » ne veut pas dire « passe » : en lisant le code de l'outil ([`AbstractRunner.runTest`](https://github.com/ZJU-ACES-ISE/chatunitest-core)), on constate qu'avec `prune=false` un test qui compile et s'exécute en n'échouant **que** par des `AssertionError` est considéré comme réussi et exporté (l'outil suppose que l'assertion révèle peut-être un bogue du code testé). Or les échecs de vérification Mockito (`WantedButNotInvoked`…) héritent aussi d'`AssertionError`.
+
+**Côté pipeline (GitHub Actions, Linux et Windows), sans aucune modification** – exécution [#16](https://github.com/DavidStanescu13/tika/actions/runs/38392448544) :
+
+| Fichier généré | Tests | Échecs Linux | Échecs Windows | Cause dominante |
+|---|---|---|---|---|
+| `CharsetUtils_clean_2_4_Test` | 19 | 7 | 7 | oracle faux (nom canonique, regex) |
+| `CharsetUtils_isSupported_1_4_Test` | 2 | 0 | 0 | – |
+| `ProcessUtils_escapeCommandLine_2_{0..4}_Test` | 35 | 7 | 6 | tests « Windows » et « non-Windows » écrits tous les deux sans condition : exactement l'un des deux échoue sur chaque OS ; plus un oracle faux (`"test arg" with spaces` supposé re-échappé) |
+| `ProcessUtils_unescapeCommandLine_3_{0,2,3}_Test` | 5 | 5 | 5 | oracle faux (dé-échappement attendu hors Windows et sans espace) ; `when(systemUtils.IS_OS_WINDOWS)` sur un champ `static final` |
+| `ProcessUtils_execute_{4_4,5_0,5_3}_Test` | 12 | 12 | 12 | `processTimeMillis` supposé égal au timeout ; mocks de `Process`/`ProcessBuilder`/`StreamGobbler` jamais utilisés par la méthode statique |
+| `ProcessUtils_checkCommand_6_{1,4}_Test` | 15 | 15 | 15 | mock de `Process` jamais injecté (`Runtime.exec` réel), `verify` sur un mock jamais appelé, `IOException` *checked* sur `waitFor`, `UnnecessaryStubbingException` |
+| **Total** | **88** | **46** | **45** | **51 tests distincts échouent sur au moins un OS, 37 passent partout** |
+
+**Corrections nécessaires** pour que la suite s'exécute avec succès dans l'Action (critère « exécution ») – toutes visibles dans le dépôt, le code généré n'étant jamais réécrit :
+
+- **11 tests** d'`escapeCommandLine` conditionnés à la plateforme : une ligne `assumeTrue(SystemUtils.IS_OS_WINDOWS)` ou `assumeFalse(...)` ajoutée en tête de méthode. Les tests deviennent corrects : le modèle avait bien compris les deux comportements, il n'avait simplement pas le moyen (ni l'idée) de les conditionner.
+- **40 tests** marqués `@Disabled("IFT3913 : <raison>")`, la raison étant inscrite dans l'annotation (oracle faux, Mockito mal employé, exception impossible). Ils restent dans le dépôt pour l'analyse mais ne sont ni exécutés ni utilisés par PIT.
+- Au niveau du projet : ajout de Mockito (campagne 1) et exclusion des fichiers générés de `checkstyle`/`forbiddenapis` (en-tête de licence absent, imports `*`).
+
+Bilan : **0 test généré n'était utilisable sans intervention** à la première campagne ; à la seconde, **37 / 88 (42 %)** passent tels quels sur les deux OS, **48 / 88 (55 %)** après les 11 conditions de plateforme, et il a fallu 51 interventions (une ligne chacune) pour obtenir une suite verte.
 
 ### 4.3 Comparaison qualitative des oracles (IA vs écrits à la main)
 
-_à compléter_ – grille d'analyse utilisée :
+**Ce que le modèle fait bien.**
 
-- **Pertinence** : l'assertion vérifie-t-elle le comportement spécifié (valeur de retour, effet de bord, exception) ou seulement « ça ne plante pas » ?
-- **Spécificité** : l'oracle fixe-t-il une valeur précise (`assertEquals("out-0\nou", …)`) ou une propriété faible (`assertNotNull`, `assertTrue(x >= 0)`) ?
-- **Vérifications triviales / tautologiques** : assertions qui répètent l'implémentation, testent le JDK plutôt que Tika, ou ne peuvent pas échouer.
-- **Choix des données** : les entrées visent-elles les frontières (tampon plus petit qu'une ligne, timeout, code 127) ou des cas nominaux seulement ?
-- **Robustesse** : dépendance à l'OS, à des commandes externes (`echo`, `sleep`), à des délais.
+- Sur une fonction pure et bien documentée (`escapeCommandLine`), les cas sont pertinents et proches de ce qu'un humain écrirait : `null`, sans espace, avec espace, déjà entre guillemets, guillemet d'un seul côté. `ProcessUtils_escapeCommandLine_2_1_Test.testEscapeCommandLine_WithQuotesAndSpaces_Windows` teste même l'entrée `"test arg" with spaces` (guillemet au début mais pas à la fin), un cas que nous n'avions pas pensé à écrire – avec toutefois un oracle faux (il attend un second échappement que le code ne fait jamais).
+- Les oracles sont **spécifiques** (`assertEquals` sur la valeur exacte, `assertNull`) plutôt que de simples `assertNotNull` ; on ne trouve pas de test « ça ne plante pas ».
+- `CharsetUtils_clean_2_4_Test` couvre systématiquement le nettoyage HTTP (espaces, virgules, casse) et les mots réservés `none`/`no`, avec 11 oracles corrects sur 19.
+- La couverture visée est la couverture de branches : pour `checkCommand`, le modèle a bien identifié les quatre issues (succès, code d'erreur, `TimeoutException`, `IOException`, `SecurityException`, `Error`) – c'est la mise en œuvre qui échoue, pas l'intention.
+
+**Ce qui ne va pas.**
+
+1. **Oracles déduits de la lecture du code plutôt que de son exécution.** Le modèle *simule* mentalement le code et se trompe dès que la sémantique est subtile : il attend `CP1252` et `WINDOWS-1252` là où `Charset.name()` renvoie le nom canonique `windows-1252` ; il attend que `"iso 8859-1"` soit reconnu alors que la regex coupe au premier espace ; il attend qu'une virgule en tête soit ignorée alors que seule l'ancienne regex `[ "]*` l'autorise pour espaces et guillemets. Un humain qui doute exécute le code (c'est ce que nous avons fait pour `8859-99` ou `cp-9999`, cf. §7) ; le modèle écrit la valeur qu'il *croit* correcte, et `prune=false` laisse passer l'erreur.
+2. **Oracles tautologiques ou absurdes sur le comportement temporel.** Les 12 tests d'`execute` affirment `assertEquals(1000, result.processTimeMillis)` – c'est-à-dire que la durée mesurée serait *exactement* égale au timeout, même quand le processus se termine immédiatement. Nos tests manuels n'encadrent la durée que par des bornes (`>= 400`, `< 10000`).
+3. **Mocks hors de propos.** Le *prompt* par défaut de ChatUniTest pousse vers Mockito ; le modèle crée donc des `@Mock Process`, `@Mock StreamGobbler`, `@InjectMocks ProcessUtils` alors que **toutes les méthodes sont statiques** et instancient elles-mêmes leurs collaborateurs : les mocks ne sont jamais utilisés, `verify(mockProcess).waitFor(...)` échoue forcément, et `when(systemUtils.IS_OS_WINDOWS)` tente de stubber un champ `static final`. Le modèle ne tire aucune leçon des 5 rondes de réparation : il reformule le même mock. Nos tests manuels choisissent l'approche inverse – un vrai sous-processus contrôlé (`Helper`) – précisément parce que la classe ne s'y prête pas au *mocking*.
+4. **Contradictions internes.** Dans chaque fichier `escapeCommandLine_*`, un test « Windows » et un test « non-Windows » coexistent sans condition : la suite ne peut passer sur aucune machine. Le modèle « connaît » la dépendance à l'OS (il nomme les tests ainsi) mais ne sait pas l'exprimer avec `assumeTrue`.
+5. **Vérifications triviales.** `CharsetUtils_clean_2_4_Test.testCleanWithWinNamePatternAndWhitespace` est une méthode **vide** (passe toujours) ; `ProcessUtils_execute_4_4_Test` stubbe six méthodes de `StreamGobbler` dans `@BeforeEach` sans qu'aucune ne soit appelée ; plusieurs tests de `clean` sont des doublons à un espace près (`"UTF-8,"`, `"UTF-8,  "`, `"  UTF-8,  "`).
+6. **Redondance sans valeur de mutation.** Les cinq fichiers `escapeCommandLine_2_{0..4}` sont quasi identiques (35 tests pour 4 branches) : ils ne tuent pas plus de mutants qu'un seul (voir §6).
+7. **Pas de connaissance du contexte d'exécution.** `checkCommand_6_1` lance réellement `echo test` : cela fonctionne sous Linux mais pas sous Windows (pas d'exécutable `echo`), et `invalid_command` est attendu comme levant une `IOException` alors que la méthode l'attrape (`testCheckCommandWithInvalidCommand`).
+
+**En résumé**, les tests générés sont *pertinents dans leurs intentions* (choix des entrées, branches visées) mais leurs *oracles ne sont fiables que pour les fonctions pures et simples* ; dès qu'il y a un effet de bord (processus, temps, OS) ou une bibliothèque mal adaptée (Mockito sur des méthodes statiques), ils affirment des valeurs fausses avec la même assurance. Le temps de génération (1 h) est comparable au temps d'écriture manuelle des 28 tests de la §7, mais il faut y ajouter le temps de tri : 51 tests sur 88 ont dû être revus un par un.
 
 ## 5. PIT : installation et scores de mutation
 

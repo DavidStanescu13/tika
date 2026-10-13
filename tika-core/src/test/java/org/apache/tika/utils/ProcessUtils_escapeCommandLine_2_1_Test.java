@@ -53,10 +53,10 @@ public class ProcessUtils_escapeCommandLine_2_1_Test {
         assertEquals("\"test arg\"", result);
     }
 
+    @Disabled("IFT3913 : oracle faux : un argument qui commence par un guillemet n'est jamais re-echappe (condition !startsWith && !endsWith), sur aucune plateforme")
+
     @Test
     public void testEscapeCommandLine_WithQuotesAndSpaces_Windows() {
-
-        assumeTrue(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
         String result = processUtils.escapeCommandLine("\"test arg\" with spaces");
         assertEquals("\"\"test arg\" with spaces\"", result);
     }
