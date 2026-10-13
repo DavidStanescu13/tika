@@ -229,18 +229,38 @@ Bilan : **0 test généré n'était utilisable sans intervention** à la premiè
 | Scénario | Tests utilisés | ProcessUtils (Linux) | ProcessUtils (Windows) | CharsetUtils |
 |---|---|---|---|---|
 | **A – tests originaux** | `FileCommandDetectorTest`, `CharsetUtilsTest` | **4,9 %** (3/61) | 4,9 % (3/61) | **60,0 %** (15/25) |
-| **B – originaux + générés (ChatUniTest)** | A + `*ChatUniTest` | _à compléter_ | _à compléter_ | _à compléter_ |
-| **C – originaux + générés + manuels** | B + `*ManualTest` | **45,9 %** (28/61 : 26 tués + 2 timeouts) | **60,7 %** (37/61) | **64,0 %** (16/25) |
+| **B – originaux + générés (ChatUniTest)** | A + `*_*_*_*_Test` (48 tests actifs) | **8,2 %** (5/61) | 8,2 % (5/61) | **60,0 %** (15/25) |
+| **C₁ – originaux + manuels** (contrôle) | A + `*ManualTest` | **47,5 %** (29/61 : 27 tués + 2 timeouts) | 60,7 % (37/61, exécution #6) | **64,0 %** (16/25) |
+| **C₂ – originaux + générés + manuels** | B + `*ManualTest` | 65,6 % (40/61) | 80,3 % (49/61) | **64,0 %** (16/25) |
 
-`ProcessUtils` contient du code spécifique à Windows (`escapeCommandLine` / `unescapeCommandLine` ne font quelque chose que si `SystemUtils.IS_OS_WINDOWS`) ; le workflow exécute donc PIT sur un runner Linux **et** sur un runner Windows (job `tache2-windows`). Sous Windows, les 9 mutants propres à ces deux méthodes sont tués en plus par `testEscapeCommandLineOnWindows`, d'où 37/61.
+Source : exécution [#20](https://github.com/DavidStanescu13/tika/actions/runs/38395274095) du workflow (branches `tache2-reports` et `tache2-reports-windows`). Les scénarios A, B, C₁ et C₂ sont recalculés à chaque exécution.
 
-Couverture JaCoCo obtenue avec les **nouveaux tests seuls** (exécution #4, ChatUniTest exclu) : ProcessUtils 86,5 % des instructions / 59,3 % des branches / 90,9 % des méthodes (contre 49,7 / 22,2 / 54,5 avec toute la suite originale de `tika-core`) ; CharsetUtils 82,8 % / 78,1 % / 83,3 %.
+**Pourquoi deux lignes C.** Le score C₂ (toute la suite) est supérieur de 11 mutants à C₁ (sans les tests générés) alors que, d'après le scénario B, les tests générés ne tuent que 2 mutants de plus que les tests originaux. Les 11 mutants supplémentaires de C₂ sont tous attribués par PIT à des tests **manuels** (`testProcessIsUnregisteredAfterExecute`, `testExecuteRedirectStderrTruncation`, `testExecuteRedirectTimeout`) qui, seuls, ne les tuent pas (C₁, reproduit sur les exécutions #4, #6 et #20), et ce sont précisément les mutants que nous avions classés *équivalents* ou *de course* en §8 (suppression de `join`/`interrupt`, `if (p != null)` dans un `finally`, valeur de retour de `release` inutilisée). Un test ne peut pas distinguer un mutant équivalent : ces « kills » sont donc des artefacts d'interaction entre classes de test dans la JVM de PIT (très probablement un effet de charge/ordonnancement sur les conditions de course de `ProcessUtils`, les tests générés chargeant Mockito et son agent d'instrumentation), pas des détections. **Nous retenons C₁ comme score défendable** (47,5 % Linux / 60,7 % Windows pour `ProcessUtils`, 64 % pour `CharsetUtils`) et nous signalons C₂ par honnêteté, puisque c'est le chiffre que le rapport PIT complet affiche.
+
+Couverture JaCoCo obtenue avec les **nouveaux tests seuls** (générés actifs + manuels, exécution #20) : ProcessUtils 87,0 % des instructions / 59,3 % des branches / 100 % des méthodes (contre 50,7 / 22,2 / 63,6 avec toute la suite originale de `tika-core`) ; CharsetUtils 83,4 % / 78,1 % / 100 %.
 
 Les scénarios A et C sont calculés automatiquement à chaque exécution du workflow (étapes « PIT - tests originaux » et « PIT - tests originaux + generes + manuels »). Le scénario B a été mesuré en lançant PIT avec `-DtargetTests='…,org.apache.tika.utils.ProcessUtilsChatUniTest,org.apache.tika.utils.CharsetUtilsChatUniTest'`.
 
 ## 6. Mutants détectés par les tests générés
 
-_à compléter après la génération_
+Scénario B (tests originaux + les 48 tests générés actifs, c'est-à-dire non `@Disabled`) : PIT passe de 3 à **5 mutants tués sur 61** pour `ProcessUtils` et reste à **15 / 25** pour `CharsetUtils`. Les tests générés **ne détectent donc pas tous les mutants** – loin de là. Détail :
+
+| Mutant (ligne, PIT) | Statut en A | Statut en B | Tué par | Pourquoi |
+|---|---|---|---|---|
+| PU 62 : `if (arg == null)` supprimé | survivant | **tué** | `ProcessUtils_escapeCommandLine_2_0_Test.testEscapeCommandLine_NullInput` (et les 4 autres fichiers `escapeCommandLine_2_x`) | sans la garde, `arg.contains(" ")` lève `NullPointerException` ; le test appelle `escapeCommandLine(null)` et attend `null` |
+| PU 63 : `return null` → `return ""` | sans couverture | **tué** | idem | `assertNull(result)` échoue avec `""` |
+| PU 71 : `return arg` → `return ""` (escape) | tué (test original) | tué | `testEscapeCommandLine_WithSpaces_NonWindows_Quoted` passe avant le test original dans l'ordre de PIT | `assertEquals("\"example with spaces\"", result)` |
+| PU 107, 149 | tués (test original) | tués | `FileCommandDetectorTest.testBasic` | inchangé |
+| CU 110–195 (15 mutants) | tués (test original) | tués | `CharsetUtilsTest` | les tests générés de `clean`/`isSupported` recouvrent exactement les mêmes cas que le test original (chemin rapide `utf-8`, `none`/`no`, chaîne vide, `null`) : PIT les liste parfois comme premier test tueur, mais ils n'apportent aucun mutant |
+
+Pourquoi si peu ?
+
+1. **Tout ce qui touchait aux parties non couvertes a été désactivé.** Les 27 tests générés pour `execute` et `checkCommand` – les deux méthodes qui portent 42 des 61 mutants et toutes les branches non couvertes (timeout, redirection, codes d'erreur) – échouent tous (§4.2) : ils n'exercent donc aucun mutant. Les mutants de ces méthodes restent `NO_COVERAGE` ou `SURVIVED` exactement comme en A.
+2. **Sur `escapeCommandLine`, le modèle teste les mêmes 4 branches 35 fois.** Les cinq fichiers sont des variantes du même test ; PIT n'a besoin que d'un seul. Les deux mutants gagnés (62, 63) le sont par le cas `null`, que le test original ne couvrait pas. Sous Windows, les tests `_Windows` conditionnés tuent bien les mutants 67/68 en C₂, mais PIT les rapporte survivants en B (ordre d'exécution : les 25 premiers tests de la file passent) – la détection dépend de l'ordre de PIT, ce qui confirme que ces tests sont redondants entre eux.
+3. **Sur `CharsetUtils`, les oracles justes sont ceux du chemin déjà testé.** Les 12 tests de `clean` qui passent reprennent les entrées « faciles » (`UTF-8`, `utf-8`, espaces, virgule finale, `none`, `no`, `null`, `""`) : les mutants correspondants étaient déjà tués par `CharsetUtilsTest.testCleaningCharsetName`/`testFunkyNames`. Les tests qui visaient les regex (`cp-1252`, `win-1252`, `iso 8859-1`) avaient un oracle faux et sont désactivés ; `forName` n'a produit aucun test retenu (10 échecs de compilation + 15 d'exécution, le modèle s'obstinant à invoquer `forName` par réflexion comme si elle était privée).
+4. **Aucun test généré n'observe l'état interne** (`PROCESS_MAP`) ni ne borne une durée : les mutants 46, 115, 154, 194, 220 ne peuvent pas être atteints par ce style d'oracle.
+
+Comparaison avec les tests manuels (C₁) : 28 à 37 mutants tués selon l'OS, parce qu'ils (a) exercent les deux surcharges d'`execute` et `checkCommand` avec un vrai sous-processus contrôlé, (b) bornent `processTimeMillis`, (c) vérifient le registre interne par réflexion, et (d) choisissent des entrées là où le code *diffère* de l'intuition (`8859-99`, `cp-9999`, `"NO"` vs `"nonexistent"`), ce que le modèle ne fait que par accident.
 
 ## 7. Tests supplémentaires écrits à la main
 
@@ -286,9 +306,9 @@ Les tests manuels sont dans `ProcessUtilsManualTest` (18 tests) et `CharsetUtils
 
 ## 8. Mutants restants et pourquoi
 
-### 8.1 Mutants tués par les tests manuels (scénario A → C)
+### 8.1 Mutants tués par les tests manuels (scénario A → C₁)
 
-`ProcessUtils` passe de 3 à 28 mutants détectés, `CharsetUtils` de 15 à 16. Détail (numéros de ligne de [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java)) :
+`ProcessUtils` passe de 3 à 28–29 mutants détectés sous Linux (37 sous Windows), `CharsetUtils` de 15 à 16. Le 29ᵉ (ligne 116, `if (complete)`) n'est tué que dans certaines exécutions (#20 oui, #4 et #6 non) : c'est un mutant de course, voir 8.2. Détail (numéros de ligne de [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java)) :
 
 | Ligne | Mutant (PIT) | Tué par | Pourquoi le test le détecte |
 |---|---|---|---|
@@ -310,9 +330,11 @@ Les tests manuels sont dans `ProcessUtilsManualTest` (18 tests) et `CharsetUtils
 | PU 272, 273, 276, 279 | comparaison `result == err` forcée ; `return false`/`true` inversés | `testCheckCommandStringOverloadSuccess`, `testCheckCommandMissingExecutableReturnsFalse` | les tests attendent explicitement `false` pour un code listé et `true` sinon, et `false` quand `exec` échoue |
 | CU 159 | `"no".equals(lower)` forcé à faux | `testForNameNoneAndNoAreRejected` | `forName("NO")` lève alors `UnsupportedCharsetException` (du JDK) au lieu de `IllegalCharsetNameException` ; le test original ne voyait pas la différence car `clean()` renvoie `null` dans les deux cas |
 
-### 8.2 Mutants non détectés après les tests manuels (scénario C, Linux)
+### 8.2 Mutants non détectés après les tests manuels (scénario C₁, Linux)
 
-**ProcessUtils – 33 mutants sous Linux (23 survivants + 10 sans couverture), 24 sous Windows**
+**ProcessUtils – 32 à 33 mutants sous Linux (22–23 survivants + 10 sans couverture), 24 sous Windows**
+
+> Dans le scénario C₂ (avec les tests générés dans la même exécution PIT), 11 de ces mutants – 50, 118, 119, 122, 123, 136, 137, 151, 197, 200, 217 – apparaissent « tués » par des tests manuels qui ne les tuent pas lorsqu'ils s'exécutent sans les tests générés (C₁). Ce sont exactement les mutants équivalents ou de course ci-dessous ; nous ne les comptons pas comme détectés (voir §5).
 
 | Catégorie | Lignes | Explication |
 |---|---|---|
@@ -320,7 +342,7 @@ Les tests manuels sont dans `ProcessUtilsManualTest` (18 tests) et `CharsetUtils
 | Branche `catch (Error err)` de `checkCommand` | 283 (×2), 284, 286 (×2) | n'est atteinte que si `Runtime.exec` lève une `Error` dont le message contient `posix_spawn` ou `UNIXProcess` (bug JDK historique TIKA-1526) ; impossible à provoquer avec un JDK moderne sans mocker `Runtime`. |
 | Mutants équivalents par construction | 273 (`return false` → `false`), 276 (`return true` → `true`), 279 (`return false` → `false`) | PIT remplace une valeur de retour par la même valeur : aucun test ne peut les distinguer. |
 | `if (p != null) p.destroyForcibly()` dans les blocs `finally` | 151, 217, 290 | quand on arrive au `finally` le processus est soit terminé soit déjà détruit ; supprimer ce second `destroyForcibly` n'a pas d'effet observable (équivalent). |
-| `if (complete)` de la 1re surcharge | 116 | la branche `else` (prévue pour le timeout) fait `destroyForcibly` (sans effet sur un processus terminé), `waitFor(500)` puis relit `exitValue` : résultat identique → équivalent. Le même mutant dans la surcharge `Path` (ligne 195) **est** tué, parce que là la branche `else` ne relit pas le code de sortie. |
+| `if (complete)` de la 1re surcharge | 116 | la branche `else` (prévue pour le timeout) fait `destroyForcibly` (sans effet sur un processus terminé), `waitFor(500)` puis relit `exitValue` : résultat identique *sauf* si le processus n'a pas encore été moissonné dans les 500 ms, auquel cas `exitValue` reste -1 → quasi équivalent, tué de façon intermittente (`FileCommandDetectorTest.testBasic` à l'exécution #20). Le même mutant dans la surcharge `Path` (ligne 195) **est** tué de façon stable, parce que là la branche `else` ne relit pas le code de sortie. |
 | Valeur de retour de `release` | 50 | `release(id)` est appelé sans utiliser la valeur renvoyée → équivalent. |
 | Suppression des `join(1000)` sur les lecteurs de flux | 118, 119, 122, 123, 197, 200, 267, 268 | mutants « de course » : sans `join`, le résultat est construit avant que le lecteur ait fini. Avec 2 Mo de sortie (`flood`), le processus se termine après avoir tout écrit et le lecteur ne met que quelques millisecondes à vider le reste du pipe, donc la course est presque toujours gagnée et un test qui échouerait seulement « parfois » serait un test instable. Pour `checkCommand` (267, 268) la sortie n'est de toute façon pas utilisée. Nous avons préféré ne pas écrire de test non déterministe. |
 | Suppression des `interrupt()` dans le `finally` | 136, 137 | les lecteurs sont bloqués sur un flux dont l'autre extrémité est fermée (processus détruit) et se terminent d'eux-mêmes : l'interruption est une sécurité sans effet observable. |
