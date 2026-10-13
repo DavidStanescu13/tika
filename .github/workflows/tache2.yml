@@ -4,7 +4,7 @@
 #    2. nouveaux tests (ChatUniTest + manuels) : doivent passer
 #    3. PIT (mutation) avec les tests originaux seulement
 #    4. PIT (mutation) avec tests originaux + generes + manuels
-#  Les rapports sont publies sur la branche `tache2-reports` et resumes
+#  Les rapports sont archives comme artefacts de l'execution et resumes
 #  dans la page "Summary" de l'execution.
 name: IFT3913 Tache 2
 
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: tache2-${{ github.ref }}
@@ -135,32 +135,11 @@ jobs:
           name: tache2-reports
           path: reports/
 
-      # ------------------------------------------------------------------
-      # Publication des rapports sur la branche `tache2-reports`
-      # ------------------------------------------------------------------
-      - name: Publier les rapports sur la branche tache2-reports
-        if: always() && github.event_name != 'pull_request'
-        run: |
-          set -e
-          SRC_SHA=$(git rev-parse --short HEAD)
-          TMP=$(mktemp -d)
-          cp -r reports/. "$TMP"/
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan tache2-reports
-          git rm -rfq . || true
-          git clean -fdxq
-          cp -r "$TMP"/. .
-          echo "Rapports generes par le workflow 'IFT3913 Tache 2' pour le commit $SRC_SHA (run ${{ github.run_number }})" > README.md
-          git add -A
-          git commit -qm "Rapports tache 2 pour $SRC_SHA (run ${{ github.run_number }})"
-          git push -f origin tache2-reports
 
   # --------------------------------------------------------------------
   # Job complementaire sous Windows : ProcessUtils a des branches propres a
   # Windows (escapeCommandLine / unescapeCommandLine). On y execute seulement
-  # les nouveaux tests et PIT (pas la suite complete), et on publie les
-  # rapports sur la branche `tache2-reports-windows`.
+  # les nouveaux tests et PIT (pas la suite complete) ; rapports en artefact.
   # --------------------------------------------------------------------
   tache2-windows:
     runs-on: windows-latest
@@ -236,21 +215,3 @@ jobs:
         with:
           name: tache2-reports-windows
           path: reports/
-
-      - name: Publier les rapports sur la branche tache2-reports-windows
-        if: always() && github.event_name != 'pull_request'
-        run: |
-          set -e
-          SRC_SHA=$(git rev-parse --short HEAD)
-          TMP=$(mktemp -d)
-          cp -r reports/. "$TMP"/
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan tache2-reports-windows
-          git rm -rfq . || true
-          git clean -fdxq
-          cp -r "$TMP"/. .
-          echo "Rapports Windows generes par le workflow 'IFT3913 Tache 2' pour le commit $SRC_SHA (run ${{ github.run_number }})" > README.md
-          git add -A
-          git commit -qm "Rapports Windows tache 2 pour $SRC_SHA (run ${{ github.run_number }})"
-          git push -f origin tache2-reports-windows
