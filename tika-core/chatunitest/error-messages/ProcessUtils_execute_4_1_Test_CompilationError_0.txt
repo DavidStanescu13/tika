@@ -1,0 +1,156 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_4_1_Test {
+
+    @Mock
+    private StreamGobbler outGobbler;
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException {
+        // Arrange
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        long timeoutMillis = 1000;
+        int maxStdoutBuffer = 1024;
+        int maxStdErrBuffer = 1024;
+        when(outGobbler.getStreamLength()).thenReturn(100L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(outGobbler.getLines()).thenReturn(List.of("line1", "line2"));
+        when(errGobbler.getStreamLength()).thenReturn(50L);
+        when(errGobbler.getIsTruncated()).thenReturn(true);
+        when(errGobbler.getLines()).thenReturn(List.of("error1"));
+        Thread outThread = mock(Thread.class);
+        Thread errThread = mock(Thread.class);
+        when(outThread.join(1000)).thenReturn(null);
+        when(errThread.join(1000)).thenReturn(null);
+        when(outThread.interrupt()).thenReturn(null);
+        when(errThread.interrupt()).thenReturn(null);
+        // Act
+        FileProcessResult result = processUtils.execute(pb, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
+        // Assert
+        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(100L, result.stderrLength);
+        assertEquals(50L, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("line1\nline2", result.stdout);
+        assertEquals("error1", result.stderr);
+        assertTrue(result.stdoutTruncated);
+        assertTrue(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException {
+        // Arrange
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        long timeoutMillis = 100;
+        int maxStdoutBuffer = 1024;
+        int maxStdErrBuffer = 1024;
+        when(outGobbler.getStreamLength()).thenReturn(100L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(outGobbler.getLines()).thenReturn(List.of("line1", "line2"));
+        when(errGobbler.getStreamLength()).thenReturn(50L);
+        when(errGobbler.getIsTruncated()).thenReturn(true);
+        when(errGobbler.getLines()).thenReturn(List.of("error1"));
+        Thread outThread = mock(Thread.class);
+        Thread errThread = mock(Thread.class);
+        when(outThread.join(1000)).thenReturn(null);
+        when(errThread.join(1000)).thenReturn(null);
+        when(outThread.interrupt()).thenReturn(null);
+        when(errThread.interrupt()).thenReturn(null);
+        when(p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(false);
+        // Act
+        FileProcessResult result = processUtils.execute(pb, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
+        // Assert
+        assertNotNull(result);
+        assertEquals(100, result.processTimeMillis);
+        assertEquals(100L, result.stderrLength);
+        assertEquals(50L, result.stdoutLength);
+        assertTrue(result.isTimeout);
+        assertEquals(-1, result.exitValue);
+        assertEquals("line1\nline2", result.stdout);
+        assertEquals("error1", result.stderr);
+        assertTrue(result.stdoutTruncated);
+        assertTrue(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException {
+        // Arrange
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        long timeoutMillis = 1000;
+        int maxStdoutBuffer = 1024;
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_4_1_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_execute_4_1_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_execute_4_1_Test: line 54 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_1_Test
+Error in ProcessUtils_execute_4_1_Test: line 57 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_1_Test
+Error in ProcessUtils_execute_4_1_Test: line 60 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 61 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 62 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 63 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 89 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_1_Test
+Error in ProcessUtils_execute_4_1_Test: line 92 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_1_Test
+Error in ProcessUtils_execute_4_1_Test: line 95 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 96 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 97 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 98 : 'void' type not allowed here
+Error in ProcessUtils_execute_4_1_Test: line 99 : cannot find symbol
+  symbol:   variable p
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_1_Test

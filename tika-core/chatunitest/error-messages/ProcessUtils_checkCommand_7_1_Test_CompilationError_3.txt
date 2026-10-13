@@ -1,0 +1,121 @@
+package org.apache.tika.utils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_7_1_Test {
+
+    @Mock
+    private Process mockProcess;
+
+    @Mock
+    private StreamGobbler mockOutGobbler;
+
+    @Mock
+    private StreamGobbler mockErrGobbler;
+
+    @BeforeEach
+    public void setUp() {
+        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
+        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
+    }
+
+    @Test
+    public void testCheckCommandWithValidExitValue() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertTrue(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithInvalidExitValue() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(127);
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeout() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new IOException());
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new TimeoutException());
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 0);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new SecurityException());
+        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand(new String[] { "command" }, 0));
+    }
+
+    @Test
+    public void testCheckCommandWithError() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(127);
+        boolean result = ProcessUtils.checkCommand(new String[] { "command" }, 127);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_checkCommand_7_1_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_checkCommand_7_1_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_checkCommand_7_1_Test: line 33 : no suitable method found for thenReturn(org.apache.tika.utils.StreamGobbler)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.InputStream) is not applicable
+      (argument mismatch; org.apache.tika.utils.StreamGobbler cannot be converted to java.io.InputStream)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.InputStream,java.io.InputStream...) is not applicable
+      (argument mismatch; org.apache.tika.utils.StreamGobbler cannot be converted to java.io.InputStream)
+Error in ProcessUtils_checkCommand_7_1_Test: line 34 : no suitable method found for thenReturn(org.apache.tika.utils.StreamGobbler)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.InputStream) is not applicable
+      (argument mismatch; org.apache.tika.utils.StreamGobbler cannot be converted to java.io.InputStream)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.InputStream,java.io.InputStream...) is not applicable
+      (argument mismatch; org.apache.tika.utils.StreamGobbler cannot be converted to java.io.InputStream)
