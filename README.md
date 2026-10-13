@@ -172,11 +172,13 @@ _à compléter_ – grille d'analyse utilisée :
 
 ### Scores
 
-| Scénario | Tests utilisés | ProcessUtils | CharsetUtils |
-|---|---|---|---|
-| **A – tests originaux** | `FileCommandDetectorTest`, `CharsetUtilsTest` | **4,9 %** (3/61) | **60,0 %** (15/25) |
-| **B – originaux + générés (ChatUniTest)** | A + `*ChatUniTest` | _à compléter_ | _à compléter_ |
-| **C – originaux + générés + manuels** | B + `*ManualTest` | **45,9 %** (28/61 : 26 tués + 2 timeouts) | **64,0 %** (16/25) |
+| Scénario | Tests utilisés | ProcessUtils (Linux) | ProcessUtils (Windows) | CharsetUtils |
+|---|---|---|---|---|
+| **A – tests originaux** | `FileCommandDetectorTest`, `CharsetUtilsTest` | **4,9 %** (3/61) | 4,9 % (3/61) | **60,0 %** (15/25) |
+| **B – originaux + générés (ChatUniTest)** | A + `*ChatUniTest` | _à compléter_ | _à compléter_ | _à compléter_ |
+| **C – originaux + générés + manuels** | B + `*ManualTest` | **45,9 %** (28/61 : 26 tués + 2 timeouts) | **60,7 %** (37/61) | **64,0 %** (16/25) |
+
+`ProcessUtils` contient du code spécifique à Windows (`escapeCommandLine` / `unescapeCommandLine` ne font quelque chose que si `SystemUtils.IS_OS_WINDOWS`) ; le workflow exécute donc PIT sur un runner Linux **et** sur un runner Windows (job `tache2-windows`). Sous Windows, les 9 mutants propres à ces deux méthodes sont tués en plus par `testEscapeCommandLineOnWindows`, d'où 37/61.
 
 Couverture JaCoCo obtenue avec les **nouveaux tests seuls** (exécution #4, ChatUniTest exclu) : ProcessUtils 86,5 % des instructions / 59,3 % des branches / 90,9 % des méthodes (contre 49,7 / 22,2 / 54,5 avec toute la suite originale de `tika-core`) ; CharsetUtils 82,8 % / 78,1 % / 83,3 %.
 
@@ -256,11 +258,11 @@ Les tests manuels sont dans `ProcessUtilsManualTest` (18 tests) et `CharsetUtils
 
 ### 8.2 Mutants non détectés après les tests manuels (scénario C, Linux)
 
-**ProcessUtils – 33 mutants (23 survivants + 10 sans couverture)**
+**ProcessUtils – 33 mutants sous Linux (23 survivants + 10 sans couverture), 24 sous Windows**
 
 | Catégorie | Lignes | Explication |
 |---|---|---|
-| Propres à Windows | 67 (×2), 68 (×2), 75 (×2), 76 (×2), 77 | `arg.contains(" ") && SystemUtils.IS_OS_WINDOWS && …` : sous Linux `IS_OS_WINDOWS` est faux, les sous-conditions suivantes ne sont jamais évaluées (`NO_COVERAGE`) et forcer les deux premières à faux ne change rien (équivalents **sur Linux**). Le job `tache2-windows` du workflow exécute les mêmes tests sous Windows pour les couvrir (rapports sur la branche `tache2-reports-windows`). |
+| Propres à Windows | 67 (×2), 68 (×2), 75 (×2), 76 (×2), 77 | `arg.contains(" ") && SystemUtils.IS_OS_WINDOWS && …` : sous Linux `IS_OS_WINDOWS` est faux, les sous-conditions suivantes ne sont jamais évaluées (`NO_COVERAGE`) et forcer les deux premières à faux ne change rien (équivalents **sur Linux**). **Tous les 9 sont tués sous Windows** par `testEscapeCommandLineOnWindows` (job `tache2-windows`, rapports sur la branche [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows)). |
 | Branche `catch (Error err)` de `checkCommand` | 283 (×2), 284, 286 (×2) | n'est atteinte que si `Runtime.exec` lève une `Error` dont le message contient `posix_spawn` ou `UNIXProcess` (bug JDK historique TIKA-1526) ; impossible à provoquer avec un JDK moderne sans mocker `Runtime`. |
 | Mutants équivalents par construction | 273 (`return false` → `false`), 276 (`return true` → `true`), 279 (`return false` → `false`) | PIT remplace une valeur de retour par la même valeur : aucun test ne peut les distinguer. |
 | `if (p != null) p.destroyForcibly()` dans les blocs `finally` | 151, 217, 290 | quand on arrive au `finally` le processus est soit terminé soit déjà détruit ; supprimer ce second `destroyForcibly` n'a pas d'effet observable (équivalent). |
