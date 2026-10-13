@@ -142,7 +142,19 @@ Le script [`tache2/run-chatunitest.sh`](tache2/run-chatunitest.sh) enchaîne : v
 
 ## 4. Tests générés : résultats et critique
 
-_(section à compléter avec les résultats de la génération – `tache2/chatunitest-*.log`)_
+### 4.0 Journal des exécutions et obstacles rencontrés
+
+Trois obstacles ont dû être levés avant d'obtenir des tests ; aucun ne concerne le contenu des tests eux-mêmes, mais ils font partie du « coût d'intégration » de l'outil et sont donc documentés.
+
+| # | Symptôme | Cause | Correctif (tous dans le dépôt) |
+|---|---|---|---|
+| 1 | `Invalid Java version format: 26` dès le lancement du plugin | ChatUniTest 2.1.1 analyse `java.version` avec un format `17.0.x` et ne reconnaît pas les JDK récents | le script `tache2/run-chatunitest.sh` détecte un JDK > 21 et bascule sur un JDK 17/21 installé (`JAVA_HOME`) |
+| 2 | `No Model with name qwen2.5-coder:7b. Support models: gpt-3.5-turbo, …, code-llama, codeqwen:v1.5-chat` | le plugin n'accepte qu'une liste fermée de noms de modèles (pour choisir le *tokenizer* et la taille de contexte) | le modèle local `qwen2.5-coder:7b` est exposé par Ollama sous le nom `codeqwen:v1.5-chat` (`ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat`) ; c'est bien qwen2.5-coder qui s'exécute |
+| 3 | **Première campagne (12 oct., 1 h 05 de génération) : 0 test compilable sur 224 tentatives** (ProcessUtils 149, CharsetUtils 75) – journaux dans [`tache2/chatunitest-ProcessUtils.log`](tache2/chatunitest-ProcessUtils.log), [`tache2/chatunitest-CharsetUtils.log`](tache2/chatunitest-CharsetUtils.log) et les 224 fichiers `tika-core/target/chatunitest-info/…/error-message/*_CompilationError_*.txt` | analyse automatique des 224 rapports d'erreur : **100 % des erreurs** sont `package org.mockito does not exist`, `package org.mockito.junit.jupiter does not exist` ou des `cannot find symbol` sur des lignes `@Mock`, `@ExtendWith(MockitoExtension.class)`, `when(…)`. Le *prompt* de ChatUniTest impose Mockito au modèle, mais `tika-core` n'a pas Mockito dans ses dépendances de test ; les 5 rondes de « réparation » renvoient l'erreur au modèle, qui ne peut pas l'éliminer puisqu'elle ne dépend pas du code | ajout de `mockito-core` et `mockito-junit-jupiter` (versions gérées par `tika-parent`) en dépendances `test` de `tika-core/pom.xml` ; seconde campagne ci-dessous |
+
+Autre point d'intégration : les tests générés sont copiés **tels quels** dans `src/test/java`, sans en-tête de licence Apache ni respect du style Tika (imports `*`). Plutôt que de les retoucher (ce qui serait une « intervention manuelle »), ils sont exclus de `checkstyle` et de `forbiddenapis` dans `tika-core/pom.xml` (motif `*_*_*_*_Test.java`). La « suite » `<Classe>_Suite.java` que ChatUniTest produit (`@RunWith(JUnitPlatform.class)`, format JUnit 4) n'est pas copiée : elle ne compile pas avec JUnit Jupiter 6.
+
+_(suite de la section à compléter avec les résultats de la seconde campagne)_
 
 ### 4.1 Où sont les tests générés ?
 

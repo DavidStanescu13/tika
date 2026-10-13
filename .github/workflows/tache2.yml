@@ -48,7 +48,7 @@ jobs:
       - name: Tests originaux de tika-core + couverture JaCoCo
         run: |
           mvn $MAVEN_ARGS -pl tika-core test \
-            -Dtest='!ProcessUtils*Test,!CharsetUtilsChatUniTest*,!CharsetUtilsManualTest' \
+            -Dtest='!ProcessUtils*Test,!CharsetUtils_*Test,!CharsetUtilsManualTest' \
             -Dsurefire.failIfNoSpecifiedTests=false
           mkdir -p reports/jacoco-original
           cp -r tika-core/target/site/jacoco/* reports/jacoco-original/
@@ -61,7 +61,7 @@ jobs:
         run: |
           set +e
           mvn $MAVEN_ARGS -pl tika-core test \
-            -Dtest='ProcessUtils*Test,CharsetUtilsChatUniTest*,CharsetUtilsManualTest' \
+            -Dtest='ProcessUtils*Test,CharsetUtils_*Test,CharsetUtilsManualTest' \
             -Dsurefire.failIfNoSpecifiedTests=false
           STATUS=$?
           set -e
@@ -159,7 +159,7 @@ jobs:
         run: |
           set +e
           mvn $MAVEN_ARGS -pl tika-core test \
-            -Dtest='ProcessUtils*Test,CharsetUtilsChatUniTest*,CharsetUtilsManualTest' \
+            -Dtest='ProcessUtils*Test,CharsetUtils_*Test,CharsetUtilsManualTest' \
             -Dsurefire.failIfNoSpecifiedTests=false
           STATUS=$?
           set -e

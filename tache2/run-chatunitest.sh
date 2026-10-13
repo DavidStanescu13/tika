@@ -12,9 +12,9 @@
 #   bash tache2/run-chatunitest.sh ProcessUtils          # une seule classe
 #   MODEL=code-llama bash tache2/run-chatunitest.sh     (autre nom accepte par ChatUniTest)
 #
-# Resultat : les tests generes sont dans tika-core/chatunitest/ (bruts) ; la suite fusionnee
-# de chaque classe est copiee dans tika-core/src/test/java/org/apache/tika/utils/<Classe>ChatUniTest.java
-# (c'est ce fichier que le workflow GitHub execute et que PIT utilise).
+# Resultat : les tests generes sont dans tika-core/chatunitest/ (bruts) ; les tests valides
+# (<Classe>_<methode>_<i>_<j>_Test.java) sont copies tels quels dans
+# tika-core/src/test/java/org/apache/tika/utils/ (c'est ce que le workflow GitHub execute et que PIT utilise).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -88,20 +88,26 @@ for CLASS in "${CLASSES[@]}"; do
       -DselectClass="org.apache.tika.utils.$CLASS" \
       2>&1 | tee "$ROOT/tache2/chatunitest-$CLASS.log"
 
-  # Suite fusionnee produite par le plugin (merge=true) -> fichier suivi par git
-  OUT_DIR="$ROOT/tika-core/chatunitest"
-  MERGED=$(find "$OUT_DIR" -name "${CLASS}_*Test.java" -o -name "${CLASS}Test.java" 2>/dev/null | head -1 || true)
-  if [ -z "$MERGED" ]; then
-    echo "!! Aucune suite fusionnee trouvee dans $OUT_DIR pour $CLASS ; voir tache2/chatunitest-$CLASS.log"
-    continue
+  # ChatUniTest ecrit chaque test valide dans tika-core/chatunitest/org/apache/tika/utils/
+  # sous la forme <Classe>_<methode>_<i>_<j>_Test.java, plus une "suite" <Classe>_Suite.java
+  # (format JUnit4 @RunWith, inutilisable ici). On copie les tests individuels, tels quels,
+  # dans le dossier de test du module : c'est ce que Surefire et PIT executent.
+  OUT_DIR="$ROOT/tika-core/chatunitest/org/apache/tika/utils"
+  DEST="$ROOT/tika-core/src/test/java/org/apache/tika/utils"
+  N=0
+  for f in "$OUT_DIR"/${CLASS}_*_Test.java; do
+    [ -e "$f" ] || continue
+    cp "$f" "$DEST/"
+    N=$((N+1))
+  done
+  if [ "$N" -eq 0 ]; then
+    echo "!! Aucun test valide genere pour $CLASS (tous les essais ont echoue) ; voir tache2/chatunitest-$CLASS.log"
+  else
+    echo ">> $N fichier(s) de test generes copies dans $DEST"
   fi
-  TARGET="$ROOT/tika-core/src/test/java/org/apache/tika/utils/${CLASS}ChatUniTest.java"
-  ORIG_NAME=$(basename "$MERGED" .java)
-  sed "s/\b${ORIG_NAME}\b/${CLASS}ChatUniTest/g" "$MERGED" > "$TARGET"
-  echo ">> Suite copiee : $TARGET (classe renommee ${ORIG_NAME} -> ${CLASS}ChatUniTest)"
 done
 
 echo ">> Termine. Etapes suivantes :"
-echo "   1. $MVN -B -f tika-core/pom.xml test -Dtest='*ChatUniTest' -Drat.skip=true   # verifier compilation/execution"
-echo "   2. git add tika-core/src/test/java/org/apache/tika/utils/*ChatUniTest.java tika-core/chatunitest tache2/*.log"
+echo "   1. $MVN -B -f tika-core/pom.xml test -Dtest='*_Test' -Drat.skip=true   # verifier compilation/execution"
+echo "   2. git add -A && git add -f tika-core/target/chatunitest-info"
 echo "   3. git commit && git push   # le workflow GitHub relance JaCoCo + PIT"

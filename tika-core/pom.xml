@@ -119,6 +119,20 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- IFT3913 tache 2 : ChatUniTest genere systematiquement des tests qui importent Mockito
+         (org.mockito.*, MockitoExtension). Sans ces dependances, 100 % des tests generes
+         echouaient a la compilation (voir README). Versions gerees par tika-parent. -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito-junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -146,12 +160,27 @@
               <testSourceDirectories>${project.basedir}/src/test/java</testSourceDirectories>
               <violationSeverity>error</violationSeverity>
               <failOnViolation>true</failOnViolation>
+              <!-- IFT3913 tache 2 : les tests generes par ChatUniTest (<Classe>_<methode>_<i>_<j>_Test.java)
+                   sont conserves tels quels, sans intervention manuelle ; ils ne respectent pas le style
+                   Tika (pas d'en-tete de licence, imports *), on les exclut donc de la verification. -->
+              <excludes>**/*_*_*_*_Test.java</excludes>
             </configuration>
             <goals>
               <goal>check</goal>
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <!-- IFT3913 tache 2 : meme exclusion pour forbiddenapis (classes compilees des tests generes) -->
+        <groupId>de.thetaphi</groupId>
+        <artifactId>forbiddenapis</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>test-documents/*.class</exclude>
+            <exclude>**/*_*_*_*_Test*.class</exclude>
+          </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
