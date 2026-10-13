@@ -3,14 +3,15 @@
 
 Usage: tache2_summary.py <dossier reports>
 Lit :  reports/jacoco-original/jacoco.csv, reports/jacoco-new/jacoco.csv,
-       reports/pit-original/mutations.csv, reports/pit-new/mutations.csv
+       reports/pit-original/mutations.csv, reports/pit-generated/mutations.csv,
+       reports/pit-new/mutations.csv
 """
 import csv
 import os
 import sys
 from collections import Counter, defaultdict
 
-CLASSES = ["ProcessUtils", "CharsetUtils"]
+CLASSES = ["ProcessUtils"]
 PKG = "org.apache.tika.utils"
 
 
@@ -101,6 +102,7 @@ def main():
     out += jacoco_table("Couverture JaCoCo - tests originaux", os.path.join(base, "jacoco-original", "jacoco.csv"))
     out += jacoco_table("Couverture JaCoCo - nouveaux tests seuls (ChatUniTest + manuels)", os.path.join(base, "jacoco-new", "jacoco.csv"))
     out += pit_table("PIT - tests originaux", os.path.join(base, "pit-original", "mutations.csv"))
+    out += pit_table("PIT - tests originaux + generes (ChatUniTest)", os.path.join(base, "pit-generated", "mutations.csv"))
     out += pit_table("PIT - tests originaux + generes + manuels", os.path.join(base, "pit-new", "mutations.csv"))
     print("\n".join(out))
 
