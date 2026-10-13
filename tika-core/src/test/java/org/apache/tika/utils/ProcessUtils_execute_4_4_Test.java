@@ -1,0 +1,121 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_4_4_Test {
+
+    @Mock
+    private StreamGobbler outGobbler;
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @BeforeEach
+    public void setUp() {
+        when(outGobbler.getLines()).thenReturn(new ArrayList<>());
+        when(outGobbler.getStreamLength()).thenReturn(0L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(new ArrayList<>());
+        when(errGobbler.getStreamLength()).thenReturn(0L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+    }
+
+    @Test
+    public void testExecute_Success() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecute_Timeout() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        when(process.exitValue()).thenReturn(1);
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertTrue(result.isTimeout);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertEquals(1, result.exitValue);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecute_InterruptedException() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(-1000, result.exitValue);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+    }
+
+    @Test
+    public void testExecute_StreamGobbler() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        InputStream inputStream = new ByteArrayInputStream("stdout".getBytes(StandardCharsets.UTF_8));
+        InputStream errorStream = new ByteArrayInputStream("stderr".getBytes(StandardCharsets.UTF_8));
+        when(process.getInputStream()).thenReturn(inputStream);
+        when(process.getErrorStream()).thenReturn(errorStream);
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(0, result.processTimeMillis);
+        assertEquals(5, result.stderrLength);
+        assertEquals(6, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("stdout", result.stdout);
+        assertEquals("stderr", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+}

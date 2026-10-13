@@ -92,7 +92,9 @@ for CLASS in "${CLASSES[@]}"; do
   # sous la forme <Classe>_<methode>_<i>_<j>_Test.java, plus une "suite" <Classe>_Suite.java
   # (format JUnit4 @RunWith, inutilisable ici). On copie les tests individuels, tels quels,
   # dans le dossier de test du module : c'est ce que Surefire et PIT executent.
-  OUT_DIR="$ROOT/tika-core/chatunitest/org/apache/tika/utils"
+  # (le plugin ajoute le chemin du module sous testOutput : chatunitest/tika-parent/tika-core/...)
+  OUT_DIR=$(find "$ROOT/tika-core/chatunitest" -type d -path "*/org/apache/tika/utils" | head -1)
+  OUT_DIR="${OUT_DIR:-$ROOT/tika-core/chatunitest/org/apache/tika/utils}"
   DEST="$ROOT/tika-core/src/test/java/org/apache/tika/utils"
   N=0
   for f in "$OUT_DIR"/${CLASS}_*_Test.java; do
