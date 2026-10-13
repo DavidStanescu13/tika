@@ -52,7 +52,7 @@ jobs:
             -Dsurefire.failIfNoSpecifiedTests=false
           mkdir -p reports/jacoco-original
           cp -r tika-core/target/site/jacoco/* reports/jacoco-original/
-          rm -rf tika-core/target/jacoco.exec tika-core/target/site/jacoco
+          rm -rf tika-core/target/jacoco.exec tika-core/target/site/jacoco tika-core/target/surefire-reports
 
       # ------------------------------------------------------------------
       # 2. NOUVEAUX tests (ChatUniTest + manuels) : doivent compiler et passer

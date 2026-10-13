@@ -190,7 +190,9 @@ public class ProcessUtilsManualTest {
 
         assertTrue(r.isTimeout());
         assertTrue(wall < 10000, "le processus doit avoir ete tue (" + wall + " ms)");
-        assertNotEquals(-1, r.getExitValue(), "le processus tue doit avoir rendu un code de sortie");
+        // Asymetrie documentee (voir README) : contrairement a execute(..., int, int), cette surcharge
+        // ne refait pas de waitFor(500 ms) apres destroyForcibly(), le code de sortie reste donc -1.
+        assertEquals(-1, r.getExitValue(), "le code de sortie n'est pas relu apres le timeout dans cette surcharge");
         assertTrue(r.getProcessTimeMillis() >= 400 && r.getProcessTimeMillis() < 10000);
         assertEquals("sleeping", r.getStderr());
         assertEquals("", r.getStdout());
