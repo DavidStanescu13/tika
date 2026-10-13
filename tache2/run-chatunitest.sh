@@ -3,13 +3,14 @@
 #
 # Prerequis :
 #   - Java 17+ (Maven est optionnel : le wrapper ./mvnw de Tika est utilise sinon)
-#   - Ollama installe et lance (https://ollama.com), avec un modele telecharge :
+#   - Ollama installe et lance (https://ollama.com), avec un modele telecharge et renomme :
 #         ollama pull qwen2.5-coder:7b        (ou qwen2.5-coder:1.5b sur une machine modeste)
+#         ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat   (nom exige par ChatUniTest, voir plus bas)
 #
 # Usage (depuis la racine du depot) :
 #   bash tache2/run-chatunitest.sh                       # ProcessUtils et CharsetUtils
 #   bash tache2/run-chatunitest.sh ProcessUtils          # une seule classe
-#   MODEL=qwen2.5-coder:1.5b bash tache2/run-chatunitest.sh
+#   MODEL=code-llama bash tache2/run-chatunitest.sh     (autre nom accepte par ChatUniTest)
 #
 # Resultat : les tests generes sont dans tika-core/chatunitest/ (bruts) ; la suite fusionnee
 # de chaque classe est copiee dans tika-core/src/test/java/org/apache/tika/utils/<Classe>ChatUniTest.java
@@ -50,7 +51,10 @@ if [ -n "$JAVA_MAJOR" ] && [ "$JAVA_MAJOR" -gt 21 ]; then
 fi
 java -version 2>&1 | head -1
 
-MODEL="${MODEL:-qwen2.5-coder:7b}"
+# ChatUniTest 2.1.1 n'accepte qu'une liste fermee de noms de modeles (gpt-*, code-llama,
+# codeqwen:v1.5-chat). On expose donc le modele local sous le nom "codeqwen:v1.5-chat" :
+#     ollama pull qwen2.5-coder:7b && ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat
+MODEL="${MODEL:-codeqwen:v1.5-chat}"
 URL="${URL:-http://localhost:11434/v1/chat/completions}"
 CLASSES=("$@")
 if [ ${#CLASSES[@]} -eq 0 ]; then

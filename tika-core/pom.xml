@@ -402,7 +402,9 @@
       <properties>
         <!-- Point de terminaison OpenAI-compatible d'Ollama (local) -->
         <chatunitest.url>http://localhost:11434/v1/chat/completions</chatunitest.url>
-        <chatunitest.model>qwen2.5-coder:7b</chatunitest.model>
+        <!-- ChatUniTest n'accepte qu'une liste fermee de noms ; le modele local qwen2.5-coder:7b
+             est expose par Ollama sous ce nom : ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat -->
+        <chatunitest.model>codeqwen:v1.5-chat</chatunitest.model>
       </properties>
       <build>
         <plugins>
