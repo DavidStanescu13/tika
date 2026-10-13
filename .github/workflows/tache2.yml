@@ -59,12 +59,18 @@ jobs:
       # ------------------------------------------------------------------
       - name: Nouveaux tests (ChatUniTest + manuels)
         run: |
+          set +e
           mvn $MAVEN_ARGS -pl tika-core test \
             -Dtest='ProcessUtils*Test,CharsetUtilsChatUniTest*,CharsetUtilsManualTest' \
             -Dsurefire.failIfNoSpecifiedTests=false
+          STATUS=$?
+          set -e
           mkdir -p reports/jacoco-new reports/surefire-new
           cp -r tika-core/target/site/jacoco/* reports/jacoco-new/ || true
           cp tika-core/target/surefire-reports/*.txt reports/surefire-new/ || true
+          # en cas d'echec, les details (stack traces) sont conserves dans les rapports
+          cp tika-core/target/surefire-reports/*.xml reports/surefire-new/ || true
+          exit $STATUS
 
       # ------------------------------------------------------------------
       # 3. PIT avec les tests ORIGINAUX seulement
