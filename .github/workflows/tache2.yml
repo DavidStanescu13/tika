@@ -1,0 +1,126 @@
+#  IFT3913 - Tache 2 (AZZOUZ / STANESCU)
+#  Pipeline d'evaluation sur le module tika-core :
+#    1. tests originaux de tika-core + couverture JaCoCo (classes choisies)
+#    2. nouveaux tests (ChatUniTest + manuels) : doivent passer
+#    3. PIT (mutation) avec les tests originaux seulement
+#    4. PIT (mutation) avec tests originaux + generes + manuels
+#  Les rapports sont publies sur la branche `tache2-reports` et resumes
+#  dans la page "Summary" de l'execution.
+name: IFT3913 Tache 2
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tache2-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAVEN_ARGS: -B -ntp -Drat.skip=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+  NEW_TESTS: org.apache.tika.utils.ProcessUtils*Test,org.apache.tika.utils.CharsetUtils*Test
+  ORIGINAL_TESTS: org.apache.tika.detect.FileCommandDetectorTest,org.apache.tika.utils.CharsetUtilsTest
+
+jobs:
+  tache2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Build tika-parent + tika-core (sans tests)
+        run: mvn $MAVEN_ARGS -q -pl tika-core -am install -DskipTests
+
+      # ------------------------------------------------------------------
+      # 1. Suite de tests ORIGINALE de tika-core -> couverture de reference
+      #    (les nouveaux tests sont exclus pour mesurer l'etat initial)
+      # ------------------------------------------------------------------
+      - name: Tests originaux de tika-core + couverture JaCoCo
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core test \
+            -Dtest='!ProcessUtils*Test,!CharsetUtilsChatUniTest*,!CharsetUtilsManualTest' \
+            -Dsurefire.failIfNoSpecifiedTests=false
+          mkdir -p reports/jacoco-original
+          cp -r tika-core/target/site/jacoco/* reports/jacoco-original/
+          rm -f tika-core/target/jacoco.exec
+
+      # ------------------------------------------------------------------
+      # 2. NOUVEAUX tests (ChatUniTest + manuels) : doivent compiler et passer
+      # ------------------------------------------------------------------
+      - name: Nouveaux tests (ChatUniTest + manuels)
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core test \
+            -Dtest='ProcessUtils*Test,CharsetUtilsChatUniTest*,CharsetUtilsManualTest' \
+            -Dsurefire.failIfNoSpecifiedTests=false
+          mkdir -p reports/jacoco-new reports/surefire-new
+          cp -r tika-core/target/site/jacoco/* reports/jacoco-new/ || true
+          cp tika-core/target/surefire-reports/*.txt reports/surefire-new/ || true
+
+      # ------------------------------------------------------------------
+      # 3. PIT avec les tests ORIGINAUX seulement
+      # ------------------------------------------------------------------
+      - name: PIT - tests originaux
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
+            -DtargetTests="$ORIGINAL_TESTS" \
+            -DreportsDirectory=target/pit-original
+          mkdir -p reports/pit-original
+          cp -r tika-core/target/pit-original/* reports/pit-original/
+
+      # ------------------------------------------------------------------
+      # 4. PIT avec tests ORIGINAUX + GENERES + MANUELS
+      # ------------------------------------------------------------------
+      - name: PIT - tests originaux + generes + manuels
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
+            -DtargetTests="$ORIGINAL_TESTS,$NEW_TESTS" \
+            -DreportsDirectory=target/pit-new
+          mkdir -p reports/pit-new
+          cp -r tika-core/target/pit-new/* reports/pit-new/
+
+      # ------------------------------------------------------------------
+      # Resume lisible dans l'onglet "Summary" de l'execution
+      # ------------------------------------------------------------------
+      - name: Resume
+        if: always()
+        run: |
+          python3 .github/scripts/tache2_summary.py reports > reports/SUMMARY.md || true
+          cat reports/SUMMARY.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Archiver les rapports (artefact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tache2-reports
+          path: reports/
+
+      # ------------------------------------------------------------------
+      # Publication des rapports sur la branche `tache2-reports`
+      # ------------------------------------------------------------------
+      - name: Publier les rapports sur la branche tache2-reports
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          set -e
+          SRC_SHA=$(git rev-parse --short HEAD)
+          TMP=$(mktemp -d)
+          cp -r reports/. "$TMP"/
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan tache2-reports
+          git rm -rfq . || true
+          git clean -fdxq
+          cp -r "$TMP"/. .
+          echo "Rapports generes par le workflow 'IFT3913 Tache 2' pour le commit $SRC_SHA (run ${{ github.run_number }})" > README.md
+          git add -A
+          git commit -qm "Rapports tache 2 pour $SRC_SHA (run ${{ github.run_number }})"
+          git push -f origin tache2-reports

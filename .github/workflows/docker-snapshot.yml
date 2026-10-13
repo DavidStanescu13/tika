@@ -17,12 +17,10 @@
 
 name: Docker snapshot - tika-server and tika-grpc
 
+# IFT3913 tache 2 : workflow amont desactive sur ce fork (declenchement manuel uniquement)
+# afin de ne pas lancer la compilation complete de Tika a chaque push.
 on:
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
+  workflow_dispatch:
 
 jobs:
   # Gate: publish snapshot images ONLY for -SNAPSHOT versions. The
