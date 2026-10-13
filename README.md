@@ -113,7 +113,7 @@ Avec la suite originale complète de `tika-core` (374 tests examinés par PIT, d
 - méthodes sans aucun test : `unescapeCommandLine`, `checkCommand` (les deux surcharges) et la surcharge `execute(ProcessBuilder, long, Path, int)` ; aucune branche d'erreur de `execute` n'est testée (délai dépassé, interruption, `IOException`).
 
 
-### Couverture et mutants **avant** nos ajouts (mesurés par le workflow, exécution #1)
+### Couverture et mutants **avant** nos ajouts (mesurés par le workflow, étape « tests originaux »)
 
 Couverture JaCoCo obtenue avec la suite de tests **complète** de `tika-core` (pas seulement les deux tests ci-dessus) :
 
@@ -250,7 +250,7 @@ Causes des échecs de compilation (nombre d'occurrences dans les fichiers d'erre
 
 **Observation importante sur ChatUniTest.** Le plugin a affiché, pour ce même fichier `execute`, `3 tests failed` puis `compile and execute successfully`. Son critère de succès est que le test **compile et se lance**, pas que ses assertions passent. C'est pourquoi 11 tests sur 40 « réussis » selon l'outil échouent en réalité sous Maven. Un test généré qui échoue n'est pas rejeté : il faut le revérifier soi-même.
 
-Nombre total de corrections manuelles : **1 script de mise en forme (9 fichiers), 1 fichier supprimé, 16 tests modifiés sur 40** (11 en échec réparés plus 5 rendus indépendants du système d'exploitation : `2_0` `WithQuotes_Windows` et `WithQuotes_NoWindows`, `2_0` `WithSpaces_NoWindows`, `2_1` `NoQuotes_NoWindows`, `3_1` `QuotesNonWindows`). **Plus 3 corrections révélées par le job Windows du workflow** (exécution #23, premier passage de ces fichiers sous Windows) : `2_3` `WithSpaces_NotWindows` et `2_4` `WithSpaces_NonWindows` manquaient de `@DisabledOnOs(WINDOWS)`, et `3_1` `QuotesWindows` attendait le dé-échappement de `"example"` (sans espace), ce que la méthode ne fait sur aucun OS – oracle corrigé. Total : 19 tests modifiés sur 40.
+Nombre total de corrections manuelles : **1 script de mise en forme (9 fichiers), 1 fichier supprimé, 16 tests modifiés sur 40** (11 en échec réparés plus 5 rendus indépendants du système d'exploitation : `2_0` `WithQuotes_Windows` et `WithQuotes_NoWindows`, `2_0` `WithSpaces_NoWindows`, `2_1` `NoQuotes_NoWindows`, `3_1` `QuotesNonWindows`). **Plus 3 corrections révélées par le job Windows du workflow** (premier passage de ces fichiers sous Windows) : `2_3` `WithSpaces_NotWindows` et `2_4` `WithSpaces_NonWindows` manquaient de `@DisabledOnOs(WINDOWS)`, et `3_1` `QuotesWindows` attendait le dé-échappement de `"example"` (sans espace), ce que la méthode ne fait sur aucun OS – oracle corrigé. Total : 19 tests modifiés sur 40.
 
 
 ### 4.3 Campagne Windows (ProcessUtils + CharsetUtils, David) : obstacles et génération
@@ -270,7 +270,7 @@ Autre point d'intégration : les tests générés sont copiés **tels quels** da
 
 - **Sortie brute de ChatUniTest** (non modifiée) : [`tika-core/chatunitest-windows/tika-parent/tika-core/org/apache/tika/utils/`](tika-core/chatunitest-windows/tika-parent/tika-core/org/apache/tika/utils) – 15 fichiers `<Classe>_<méthode>_<n°méthode>_<n°tentative>_Test.java` retenus par l'outil, plus deux fichiers `*_Suite.java` (format JUnit 4, non utilisables).
 - **Traces complètes** : [`tika-core/target/chatunitest-info/tika-parent/tika-core/`](tika-core/target/chatunitest-info/tika-parent/tika-core) – pour chaque classe, chaque méthode et chaque tentative, le *prompt* envoyé au modèle, sa réponse, le code extrait et les erreurs de compilation/exécution (`history*/class*/method*/attempt*/records.json`, `error-message/`). Journaux Maven : [`tache2/chatunitest-ProcessUtils.log`](tache2/chatunitest-ProcessUtils.log) (40 min) et [`tache2/chatunitest-CharsetUtils.log`](tache2/chatunitest-CharsetUtils.log) (22 min).
-- **Tests exécutés par le pipeline** : seuls les **2 fichiers `CharsetUtils_*`** de cette campagne sont copiés dans [`tika-core/src/test/java/org/apache/tika/utils/`](tika-core/src/test/java/org/apache/tika/utils) (avec les annotations `@Disabled` décrites ci-dessous). Les 13 fichiers `ProcessUtils_*` de cette campagne portent les mêmes noms que ceux de la campagne macOS, déjà intégrés et corrigés ; ils restent en sortie brute et servent à la comparaison des deux campagnes (tableau ci-dessous). Ils ont tout de même été exécutés dans le pipeline (exécutions #16 à #22) avant la fusion, ce qui a produit les chiffres du tableau suivant.
+- **Tests exécutés par le pipeline** : seuls les **2 fichiers `CharsetUtils_*`** de cette campagne sont copiés dans [`tika-core/src/test/java/org/apache/tika/utils/`](tika-core/src/test/java/org/apache/tika/utils) (avec les annotations `@Disabled` décrites ci-dessous). Les 13 fichiers `ProcessUtils_*` de cette campagne portent les mêmes noms que ceux de la campagne macOS, déjà intégrés et corrigés ; ils restent en sortie brute et servent à la comparaison des deux campagnes (tableau ci-dessous). Ils ont tout de même été exécutés dans le pipeline avant la fusion, ce qui a produit les chiffres du tableau suivant.
 
 Paramètres : modèle `qwen2.5-coder:7b` (Ollama, local, exposé sous le nom `codeqwen:v1.5-chat`), `testNumber=5` (5 tentatives par méthode), `maxRounds=5` (jusqu'à 5 rondes de réparation par tentative), `temperature=0.2`, `stopWhenSuccess=false`, `prune=false`, schéma `CHATUNITEST` (prompt par défaut de l'outil). Les méthodes privées `register`/`release` et `initCommonCharsets` sont ignorées par l'outil ; les deux surcharges de `execute` et de `checkCommand` sont traitées séparément (d'où 10 tentatives pour chacune).
 
@@ -292,7 +292,7 @@ Paramètres : modèle `qwen2.5-coder:7b` (Ollama, local, exposé sous le nom `co
 
 Les 15 fichiers retenus contiennent **88 méthodes de test**. Mais « retenu par ChatUniTest » ne veut pas dire « passe » : en lisant le code de l'outil ([`AbstractRunner.runTest`](https://github.com/ZJU-ACES-ISE/chatunitest-core)), on constate qu'avec `prune=false` un test qui compile et s'exécute en n'échouant **que** par des `AssertionError` est considéré comme réussi et exporté (l'outil suppose que l'assertion révèle peut-être un bogue du code testé). Or les échecs de vérification Mockito (`WantedButNotInvoked`…) héritent aussi d'`AssertionError`.
 
-**Côté pipeline (GitHub Actions, Linux et Windows), sans aucune modification** – exécution [#16](https://github.com/DavidStanescu13/tika/actions/runs/38392448544) :
+**Côté pipeline (GitHub Actions, Linux et Windows), sans aucune modification** (premier passage de ces fichiers dans le workflow) :
 
 | Fichier généré | Tests | Échecs Linux | Échecs Windows | Cause dominante |
 |---|---|---|---|---|
@@ -372,7 +372,7 @@ La campagne macOS, plus « chanceuse » sur `execute(Path)`, a été retenue pou
 
 [PIT](https://pitest.org) est ajouté dans `tika-core/pom.xml` (profil `pitest`) : `pitest-maven` 1.25.9 avec `pitest-junit5-plugin` 1.2.3 (nécessaire car Tika utilise JUnit Jupiter 6). Configuration : mutateurs `DEFAULTS`, cibles `org.apache.tika.utils.ProcessUtils` et `org.apache.tika.utils.CharsetUtils`, rapports HTML + XML + CSV, `timeoutConstant` porté à 20 s parce que `ProcessUtils` lance de vrais processus. Les tests à utiliser sont passés par `-DtargetTests=…`, ce qui permet de comparer plusieurs scénarios avec la même configuration (commandes en §13).
 
-### Scores (exécution [#24](https://github.com/DavidStanescu13/tika/actions/runs/38435790822) du workflow, après fusion des deux contributions)
+### Scores (dernière exécution du workflow, après fusion des deux contributions)
 
 | Scénario | Tests utilisés | ProcessUtils (Linux) | ProcessUtils (Windows) | CharsetUtils (Linux = Windows) |
 |---|---|---|---|---|
@@ -381,7 +381,7 @@ La campagne macOS, plus « chanceuse » sur `execute(Path)`, a été retenue pou
 | **C₁ – originaux + manuels** (contrôle) | A + `ProcessUtils*ManualTest` (60), `CharsetUtilsManualTest` (10) | **77,0 %** (47/61) | 91,8 % (56/61) | **64,0 %** (16/25) |
 | **C₂ – originaux + générés + manuels** | B + manuels | **77,0 %** (47/61) | 91,8 % (56/61) | **64,0 %** (16/25) |
 
-Score PIT = (tués + timeouts) / total. Les quatre scénarios sont recalculés à chaque exécution du workflow, sur Linux et sur Windows. Le scénario C₁ sert de contrôle : il vérifie que chaque mutant compté est tué par un test manuel identifiable, et non par une interaction entre classes de test. Dans la suite fusionnée, **C₁ = C₂** sur les deux OS (les tests générés n'ajoutent rien aux tests manuels), et les résultats sont identiques d'une exécution à l'autre. Avant la fusion (exécutions #18-#20), 11 mutants équivalents ou de course apparaissaient « tués » uniquement lorsque les tests générés de la campagne Windows s'exécutaient dans la même JVM PIT que les tests portables : ces faux positifs ont disparu, et ces mutants sont maintenant tués de façon déterministe par les tests simulés d'Aness (§9.1) – sauf les mutants réellement équivalents, qui survivent sur les deux OS (§9.3).
+Score PIT = (tués + timeouts) / total. Les quatre scénarios sont recalculés à chaque exécution du workflow, sur Linux et sur Windows. Le scénario C₁ sert de contrôle : il vérifie que chaque mutant compté est tué par un test manuel identifiable, et non par une interaction entre classes de test. Dans la suite fusionnée, **C₁ = C₂** sur les deux OS (les tests générés n'ajoutent rien aux tests manuels), et les résultats sont identiques d'une exécution à l'autre. Avant la fusion, 11 mutants équivalents ou de course apparaissaient « tués » uniquement lorsque les tests générés de la campagne Windows s'exécutaient dans la même JVM PIT que les tests portables : ces faux positifs ont disparu, et ces mutants sont maintenant tués de façon déterministe par les tests simulés d'Aness (§9.1) – sauf les mutants réellement équivalents, qui survivent sur les deux OS (§9.3).
 
 Sous Windows, les 5 mutants restants (`release` l. 50, `checkCommand` l. 273, 276, 279, 286) sont exactement les mutants équivalents identifiés en §9.3 : **le maximum atteignable est atteint sur Windows**, et sous Linux il ne manque que les 9 mutants propres à Windows.
 
@@ -420,7 +420,7 @@ La couverture de lignes passe de 48 % à 77 % parce que les tests générés **a
 
 ### 7.2 Mutants détectés par les tests générés de la campagne Windows (ProcessUtils et CharsetUtils)
 
-Mesuré avant la fusion (exécutions #18-#20, scénario B avec les 48 tests actifs de cette campagne) : PIT passait de 3 à **5 mutants tués sur 61** pour `ProcessUtils` et restait à **15 / 25** pour `CharsetUtils`. Détail :
+Mesuré avant la fusion (scénario B avec les 48 tests actifs de cette campagne) : PIT passait de 3 à **5 mutants tués sur 61** pour `ProcessUtils` et restait à **15 / 25** pour `CharsetUtils`. Détail :
 
 | Mutant (ligne, PIT) | Statut en A | Statut en B | Tué par | Pourquoi |
 |---|---|---|---|---|
@@ -573,7 +573,7 @@ Outils : `DelayedStream` (flux muet pendant N ms, puis une donnée), `BlockedStr
 
 ### 9.2 ProcessUtils et CharsetUtils : mutants tués par les tests manuels de David (portables + CharsetUtils)
 
-Avant la fusion (exécutions #4 à #20), `ProcessUtilsPortableManualTest` seul faisait passer `ProcessUtils` de 3 à 28 mutants détectés sous Linux (37 sous Windows) et `CharsetUtilsManualTest` faisait passer `CharsetUtils` de 15 à 16. Les lignes ci-dessous expliquent *pourquoi* chaque test détecte son mutant ; dans la suite fusionnée, PIT attribue souvent le même mutant à un test d'Aness (§9.1), le premier à échouer dans son ordre d'exécution. Détail (numéros de ligne de [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java)) :
+Avant la fusion, `ProcessUtilsPortableManualTest` seul faisait passer `ProcessUtils` de 3 à 28 mutants détectés sous Linux (37 sous Windows) et `CharsetUtilsManualTest` faisait passer `CharsetUtils` de 15 à 16. Les lignes ci-dessous expliquent *pourquoi* chaque test détecte son mutant ; dans la suite fusionnée, PIT attribue souvent le même mutant à un test d'Aness (§9.1), le premier à échouer dans son ordre d'exécution. Détail (numéros de ligne de [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java)) :
 
 | Ligne | Mutant (PIT) | Tué par | Pourquoi le test le détecte |
 |---|---|---|---|
@@ -650,7 +650,7 @@ Le workflow [`tache2.yml`](.github/workflows/tache2.yml) se déclenche à chaque
 
 **`tache2-windows` (windows-latest, JDK 17)** : mêmes nouveaux tests, puis PIT A, B, C₁ et C₂, rapports sur la branche [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows). Ce job existe parce que `ProcessUtils` a des branches propres à Windows.
 
-Dernière exécution réussie (les deux jobs verts) : [#24](https://github.com/DavidStanescu13/tika/actions/runs/38435790822) ; historique : https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml.
+Historique des exécutions (les deux jobs verts sur la dernière) : https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml.
 
 
 ## 11. Observations sur le code de Tika
@@ -699,7 +699,7 @@ Les rapports sont dans `tika-core/target/pit-*/index.html`. La génération Chat
 
 ## 14. Annexe : les 61 mutants de ProcessUtils et les 25 de CharsetUtils
 
-État dans le scénario C₂ (originaux + générés + manuels) de l'exécution [#24](https://github.com/DavidStanescu13/tika/actions/runs/38435790822) sous Linux, et sous Windows lorsque l'état diffère. « Test qui le tue » : premier test qui détecte le mutant selon PIT (plusieurs tests peuvent tuer le même mutant). Numéros de ligne de PIT dans [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java).
+État dans le scénario C₂ (originaux + générés + manuels) de la dernière exécution du workflow sous Linux, et sous Windows lorsque l'état diffère. « Test qui le tue » : premier test qui détecte le mutant selon PIT (plusieurs tests peuvent tuer le même mutant). Numéros de ligne de PIT dans [`ProcessUtils.java`](tika-core/src/main/java/org/apache/tika/utils/ProcessUtils.java) et [`CharsetUtils.java`](tika-core/src/main/java/org/apache/tika/utils/CharsetUtils.java).
 
 
 ### ProcessUtils
@@ -797,4 +797,3 @@ Les rapports sont dans `tika-core/target/pit-*/index.html`. La génération Chat
 | 186 | `forName` | condition -> false | sans couverture |  |  |
 | 187 | `forName` | retour -> null | sans couverture |  |  |
 | 195 | `forName` | retour -> null | tué | `CharsetUtilsTest#testCleaningCharsetName` |  |
-
