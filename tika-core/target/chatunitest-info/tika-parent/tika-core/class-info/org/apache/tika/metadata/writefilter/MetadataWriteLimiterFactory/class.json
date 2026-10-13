@@ -1,0 +1,33 @@
+{
+  "fullClassName": "org.apache.tika.metadata.writefilter.MetadataWriteLimiterFactory",
+  "className": "MetadataWriteLimiterFactory",
+  "index": 187,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.writefilter",
+  "packageDeclaration": "package org.apache.tika.metadata.writefilter;",
+  "classSignature": "public interface MetadataWriteLimiterFactory",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "newInstance()": "0"
+  },
+  "methodsBrief": [
+    "MetadataWriteLimiter newInstance();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.writefilter;\n\n/**\n * Factory interface for creating {@link MetadataWriteLimiter} instances.\n * <p>\n * Implementations of this interface are placed in ParseContext and used\n * by {@code Metadata.newInstance(ParseContext)} to create Metadata objects with\n * limits applied at creation time.\n *\n * @since Apache Tika 4.0\n */\npublic interface MetadataWriteLimiterFactory {\n\n    /**\n     * Creates a new limiter instance.\n     * Each call should return a fresh instance since limiters are stateful.\n     *\n     * @return a new MetadataWriteLimiter instance\n     */\n    MetadataWriteLimiter newInstance();\n}\n",
+  "classDeclarationCode": "/**\n * Factory interface for creating {@link MetadataWriteLimiter} instances.\n * <p>\n * Implementations of this interface are placed in ParseContext and used\n * by {@code Metadata.newInstance(ParseContext)} to create Metadata objects with\n * limits applied at creation time.\n *\n * @since Apache Tika 4.0\n */\npublic interface MetadataWriteLimiterFactory {\n\n    /**\n     * Creates a new limiter instance.\n     * Each call should return a fresh instance since limiters are stateful.\n     *\n     * @return a new MetadataWriteLimiter instance\n     */\n    MetadataWriteLimiter newInstance();\n}",
+  "subClasses": []
+}

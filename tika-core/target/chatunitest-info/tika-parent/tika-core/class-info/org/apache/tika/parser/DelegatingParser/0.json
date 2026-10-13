@@ -1,0 +1,24 @@
+{
+  "className": "DelegatingParser",
+  "methodName": "getDelegateParser",
+  "brief": "protected Parser getDelegateParser(ParseContext context){}",
+  "methodSignature": "getDelegateParser(ParseContext)",
+  "sourceCode": "protected Parser getDelegateParser(ParseContext context) {\n        return context.get(Parser.class, EmptyParser.INSTANCE);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>, T)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the parser instance to which parsing tasks should be delegated.\n * The default implementation looks up the delegate parser from the given\n * parse context, and uses an {@link EmptyParser} instance as a fallback.\n * Subclasses can override this method to implement alternative delegation\n * strategies.\n *\n * @param context parse context\n * @return delegate parser\n * @since Apache Tika 0.7\n */\nprotected Parser getDelegateParser(ParseContext context) {\n    return context.get(Parser.class, EmptyParser.INSTANCE);\n}",
+  "method_comment": "\n     * Returns the parser instance to which parsing tasks should be delegated.\n     * The default implementation looks up the delegate parser from the given\n     * parse context, and uses an {@link EmptyParser} instance as a fallback.\n     * Subclasses can override this method to implement alternative delegation\n     * strategies.\n     *\n     * @param context parse context\n     * @return delegate parser\n     * @since Apache Tika 0.7\n     ",
+  "method_annotation": ""
+}

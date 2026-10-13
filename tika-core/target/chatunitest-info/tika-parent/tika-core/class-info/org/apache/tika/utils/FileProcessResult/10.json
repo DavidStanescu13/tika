@@ -1,0 +1,22 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "setStdout",
+  "brief": "public void setStdout(String stdout){}",
+  "methodSignature": "setStdout(String)",
+  "sourceCode": "public void setStdout(String stdout) {\n        this.stdout = stdout;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void setStdout(String stdout) {\n    this.stdout = stdout;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

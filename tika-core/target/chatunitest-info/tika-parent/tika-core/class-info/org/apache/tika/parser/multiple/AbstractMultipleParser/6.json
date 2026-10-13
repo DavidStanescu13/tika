@@ -1,0 +1,26 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "parserPrepare",
+  "brief": "protected void parserPrepare(Parser parser, Metadata metadata, ParseContext context){}",
+  "methodSignature": "parserPrepare(Parser, Metadata, ParseContext)",
+  "sourceCode": "protected void parserPrepare(Parser parser, Metadata metadata, ParseContext context) {\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Used to allow implementations to prepare or change things\n * before parsing occurs\n */\nprotected void parserPrepare(Parser parser, Metadata metadata, ParseContext context) {\n}",
+  "method_comment": "\n     * Used to allow implementations to prepare or change things\n     * before parsing occurs\n     ",
+  "method_annotation": ""
+}

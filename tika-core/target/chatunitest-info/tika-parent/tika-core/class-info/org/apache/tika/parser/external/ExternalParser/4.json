@@ -1,0 +1,18 @@
+{
+  "className": "ExternalParser",
+  "methodName": "getConfig",
+  "brief": "public ExternalParserConfig getConfig(){}",
+  "methodSignature": "getConfig()",
+  "sourceCode": "public ExternalParserConfig getConfig() {\n        return config;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the configuration for this parser.\n */\npublic ExternalParserConfig getConfig() {\n    return config;\n}",
+  "method_comment": "\n     * Returns the configuration for this parser.\n     ",
+  "method_annotation": ""
+}

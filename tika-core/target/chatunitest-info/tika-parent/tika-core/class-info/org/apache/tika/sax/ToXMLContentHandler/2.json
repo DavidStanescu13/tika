@@ -1,0 +1,39 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes atts)\n            throws SAXException {\n        lazyCloseStartElement();\n\n        currentElement = new ElementInfo(currentElement, namespaces);\n\n        write('<');\n        write(currentElement.getQName(uri, localName));\n\n        for (int i = 0; i < atts.getLength(); i++) {\n            write(' ');\n            write(currentElement.getQName(atts.getURI(i), atts.getLocalName(i)));\n            write('=');\n            write('\"');\n            char[] ch = atts.getValue(i).toCharArray();\n            writeEscaped(ch, 0, ch.length, true);\n            write('\"');\n        }\n\n        for (Map.Entry<String, String> entry : namespaces.entrySet()) {\n            write(' ');\n            write(\"xmlns\");\n            String prefix = entry.getValue();\n            if (prefix.length() > 0) {\n                write(':');\n                write(prefix);\n            }\n            write('=');\n            write('\"');\n            char[] ch = entry.getKey().toCharArray();\n            writeEscaped(ch, 0, ch.length, true);\n            write('\"');\n        }\n        namespaces.clear();\n\n        inStartElement = true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()",
+      "length()"
+    ],
+    "org.apache.tika.sax.ToXMLContentHandler.ElementInfo": [
+      "getQName(String, String)"
+    ],
+    "java.util.Map": [
+      "entrySet()",
+      "clear()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n    lazyCloseStartElement();\n    currentElement = new ElementInfo(currentElement, namespaces);\n    write('<');\n    write(currentElement.getQName(uri, localName));\n    for (int i = 0; i < atts.getLength(); i++) {\n        write(' ');\n        write(currentElement.getQName(atts.getURI(i), atts.getLocalName(i)));\n        write('=');\n        write('\"');\n        char[] ch = atts.getValue(i).toCharArray();\n        writeEscaped(ch, 0, ch.length, true);\n        write('\"');\n    }\n    for (Map.Entry<String, String> entry : namespaces.entrySet()) {\n        write(' ');\n        write(\"xmlns\");\n        String prefix = entry.getValue();\n        if (prefix.length() > 0) {\n            write(':');\n            write(prefix);\n        }\n        write('=');\n        write('\"');\n        char[] ch = entry.getKey().toCharArray();\n        writeEscaped(ch, 0, ch.length, true);\n        write('\"');\n    }\n    namespaces.clear();\n    inStartElement = true;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

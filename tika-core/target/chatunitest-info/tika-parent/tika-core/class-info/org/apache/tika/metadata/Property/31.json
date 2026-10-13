@@ -1,0 +1,18 @@
+{
+  "className": "Property",
+  "methodName": "getValueType",
+  "brief": "public ValueType getValueType(){}",
+  "methodSignature": "getValueType()",
+  "sourceCode": "public ValueType getValueType() {\n        return valueType;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public ValueType getValueType() {\n    return valueType;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

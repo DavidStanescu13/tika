@@ -1,0 +1,28 @@
+{
+  "className": "LanguageResult",
+  "methodName": "isLanguage",
+  "brief": "public boolean isLanguage(String language){}",
+  "methodSignature": "isLanguage(String)",
+  "sourceCode": "public boolean isLanguage(String language) {\n        String[] targetLanguage = language.split(\"\\\\-\");\n        String[] resultLanguage = this.language.split(\"\\\\-\");\n\n        int minLength = Math.min(targetLanguage.length, resultLanguage.length);\n        for (int i = 0; i < minLength; i++) {\n            if (!targetLanguage[i].equalsIgnoreCase(resultLanguage[i])) {\n                return false;\n            }\n        }\n\n        return true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "split(String)",
+      "equalsIgnoreCase(String)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Return true if the target language matches the detected language. We consider\n * it a match if, for the precision requested or detected, it matches. This means:\n * <p>\n * target | detected | match?\n * zh | en | false\n * zh | zh | true\n * zh | zh-CN | true\n * zh-CN | zh | true\n * zh-CN | zh-TW | false\n * zh-CN | zh-cn | true (case-insensitive)\n *\n * @param language\n * @return\n */\npublic boolean isLanguage(String language) {\n    String[] targetLanguage = language.split(\"\\\\-\");\n    String[] resultLanguage = this.language.split(\"\\\\-\");\n    int minLength = Math.min(targetLanguage.length, resultLanguage.length);\n    for (int i = 0; i < minLength; i++) {\n        if (!targetLanguage[i].equalsIgnoreCase(resultLanguage[i])) {\n            return false;\n        }\n    }\n    return true;\n}",
+  "method_comment": "\n     * Return true if the target language matches the detected language. We consider\n     * it a match if, for the precision requested or detected, it matches. This means:\n     * <p>\n     * target | detected | match?\n     * zh | en | false\n     * zh | zh | true\n     * zh | zh-CN | true\n     * zh-CN | zh | true\n     * zh-CN | zh-TW | false\n     * zh-CN | zh-cn | true (case-insensitive)\n     *\n     * @param language\n     * @return\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "getZipBombRatio",
+  "brief": "public long getZipBombRatio(){}",
+  "methodSignature": "getZipBombRatio()",
+  "sourceCode": "public long getZipBombRatio() {\n        return zipBombRatio;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the zip bomb ratio (maximum output:input ratio).\n *\n * @return zip bomb ratio\n */\npublic long getZipBombRatio() {\n    return zipBombRatio;\n}",
+  "method_comment": "\n     * Gets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @return zip bomb ratio\n     ",
+  "method_annotation": ""
+}

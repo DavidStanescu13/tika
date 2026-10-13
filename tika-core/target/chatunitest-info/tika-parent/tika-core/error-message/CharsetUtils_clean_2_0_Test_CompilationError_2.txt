@@ -1,0 +1,159 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import static java.util.Locale.ENGLISH;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+public class CharsetUtils_clean_2_0_Test {
+
+    private CharsetUtils charsetUtils;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+    }
+
+    @Test
+    public void testClean_validCharset() throws Exception {
+        String charsetName = "UTF-8";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(charsetName, result);
+    }
+
+    @Test
+    public void testClean_invalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withWhitespace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withTrailingComma() throws Exception {
+        String charsetName = "UTF-8,";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withLeadingComma() throws Exception {
+        String charsetName = ",UTF-8";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withTrailingSpace() throws Exception {
+        String charsetName = "UTF-8 ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withLeadingSpace() throws Exception {
+        String charsetName = " UTF-8";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withISO8859() throws Exception {
+        String charsetName = "ISO 8859-1";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("ISO-8859-1", result);
+    }
+
+    @Test
+    public void testClean_withCP() throws Exception {
+        String charsetName = "CP1252";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("cp1252", result);
+    }
+
+    @Test
+    public void testClean_withWin() throws Exception {
+        String charsetName = "WIN1252";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("windows-1252", result);
+    }
+
+    @Test
+    public void testClean_withWinDash() throws Exception {
+        String charsetName = "WIN-1252";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("windows-1252", result);
+    }
+
+    @Test
+    public void testClean_withNone() throws Exception {
+        String charsetName = "none";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withNo() throws Exception {
+        String charsetName = "no";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withNull() throws Exception {
+        String charsetName = null;
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withEmptyString() throws Exception {
+        String charsetName = "";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withWhitespaceAndTrailingComma() throws Exception {
+        String charsetName = "  UTF-8,  ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withWhitespaceAndLeadingComma() throws Exception {
+        String charsetName = ",  UTF-8  ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withWhitespaceAndTrailingSpace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_clean_2_0_Test: line 15 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_0_Test: line 18 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_clean_2_0_Test: line 13 : package org.mockito does not exist

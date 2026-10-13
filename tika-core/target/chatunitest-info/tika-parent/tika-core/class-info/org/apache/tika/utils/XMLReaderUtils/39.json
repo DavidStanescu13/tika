@@ -1,0 +1,27 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getXMLInputFactory",
+  "brief": "public static XMLInputFactory getXMLInputFactory(ParseContext context){}",
+  "methodSignature": "getXMLInputFactory(ParseContext)",
+  "sourceCode": "public static XMLInputFactory getXMLInputFactory(ParseContext context) {\n        XMLInputFactory factory = context.get(XMLInputFactory.class);\n        if (factory != null) {\n            return factory;\n        }\n        return XMLReaderUtils.getXMLInputFactory();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getXMLInputFactory()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the StAX input factory specified in this parsing context.\n * If a factory is not explicitly specified, then a default factory\n * instance is created and returned. The default factory instance is\n * configured to be namespace-aware and to apply reasonable security\n * precautions.\n *\n * @return StAX input factory\n */\npublic static XMLInputFactory getXMLInputFactory(ParseContext context) {\n    XMLInputFactory factory = context.get(XMLInputFactory.class);\n    if (factory != null) {\n        return factory;\n    }\n    return XMLReaderUtils.getXMLInputFactory();\n}",
+  "method_comment": "\n     * Returns the StAX input factory specified in this parsing context.\n     * If a factory is not explicitly specified, then a default factory\n     * instance is created and returned. The default factory instance is\n     * configured to be namespace-aware and to apply reasonable security\n     * precautions.\n     *\n     * @return StAX input factory\n     ",
+  "method_annotation": ""
+}

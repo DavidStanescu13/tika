@@ -1,0 +1,26 @@
+{
+  "className": "Metadata",
+  "methodName": "setTrusted",
+  "brief": "public void setTrusted(String name, String value){}",
+  "methodSignature": "setTrusted(String, String)",
+  "sourceCode": "public void setTrusted(String name, String value) {\n        writeLimiter.set(name, value, metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.writefilter.MetadataWriteLimiter": [
+      "set(String, String, String[]>)"
+    ]
+  },
+  "full_method_info": "/**\n * Trusted set, bypassing the reserved-key guard: writes reach reserved Tika-native\n * ({@code tk:}) keys directly. See {@link #addTrusted}.\n */\npublic void setTrusted(String name, String value) {\n    writeLimiter.set(name, value, metadata);\n}",
+  "method_comment": "\n     * Trusted set, bypassing the reserved-key guard: writes reach reserved Tika-native\n     * ({@code tk:}) keys directly. See {@link #addTrusted}.\n     ",
+  "method_annotation": ""
+}

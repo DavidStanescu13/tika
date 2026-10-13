@@ -1,0 +1,28 @@
+{
+  "className": "CharsetUtils",
+  "methodName": "clean",
+  "brief": "public static String clean(String charsetName){}",
+  "methodSignature": "clean(String)",
+  "sourceCode": "public static String clean(String charsetName) {\n        try {\n            return forName(charsetName).name();\n        } catch (IllegalArgumentException e) {\n            return null;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.nio.charset.Charset": [
+      "name()"
+    ],
+    "org.apache.tika.utils.CharsetUtils": [
+      "forName(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handle various common charset name errors, and return something\n * that will be considered valid (and is normalized)\n *\n * @param charsetName name of charset to process\n * @return potentially remapped/cleaned up version of charset name\n */\npublic static String clean(String charsetName) {\n    try {\n        return forName(charsetName).name();\n    } catch (IllegalArgumentException e) {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Handle various common charset name errors, and return something\n     * that will be considered valid (and is normalized)\n     *\n     * @param charsetName name of charset to process\n     * @return potentially remapped/cleaned up version of charset name\n     ",
+  "method_annotation": ""
+}

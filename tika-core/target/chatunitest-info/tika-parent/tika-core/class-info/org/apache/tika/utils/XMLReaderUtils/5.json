@@ -1,0 +1,28 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getDocumentBuilder",
+  "brief": "public static DocumentBuilder getDocumentBuilder() throws TikaException{}",
+  "methodSignature": "getDocumentBuilder()",
+  "sourceCode": "public static DocumentBuilder getDocumentBuilder() throws TikaException {\n        try {\n            DocumentBuilderFactory documentBuilderFactory = getDocumentBuilderFactory();\n            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();\n            documentBuilder.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n            documentBuilder.setErrorHandler(null);\n            return documentBuilder;\n        } catch (ParserConfigurationException e) {\n            throw new TikaException(\"XML parser not available\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilderFactory()"
+    ],
+    "javax.xml.parsers.DocumentBuilderFactory": [
+      "newDocumentBuilder()"
+    ],
+    "javax.xml.parsers.DocumentBuilder": [
+      "setErrorHandler(ErrorHandler)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the DOM builder specified in this parsing context.\n * If a builder is not explicitly specified, then a builder\n * instance is created and returned. The builder instance is\n * configured to apply an {@link #IGNORING_SAX_ENTITY_RESOLVER},\n * and it sets the ErrorHandler to <code>null</code>.\n *\n * @return DOM Builder\n * @since Apache Tika 1.13\n */\npublic static DocumentBuilder getDocumentBuilder() throws TikaException {\n    try {\n        DocumentBuilderFactory documentBuilderFactory = getDocumentBuilderFactory();\n        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();\n        documentBuilder.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n        documentBuilder.setErrorHandler(null);\n        return documentBuilder;\n    } catch (ParserConfigurationException e) {\n        throw new TikaException(\"XML parser not available\", e);\n    }\n}",
+  "method_comment": "\n     * Returns the DOM builder specified in this parsing context.\n     * If a builder is not explicitly specified, then a builder\n     * instance is created and returned. The builder instance is\n     * configured to apply an {@link #IGNORING_SAX_ENTITY_RESOLVER},\n     * and it sets the ErrorHandler to <code>null</code>.\n     *\n     * @return DOM Builder\n     * @since Apache Tika 1.13\n     ",
+  "method_annotation": ""
+}

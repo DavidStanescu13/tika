@@ -1,0 +1,25 @@
+{
+  "className": "MimeType",
+  "methodName": "isValid",
+  "brief": "public static boolean isValid(String name){}",
+  "methodSignature": "isValid(String)",
+  "sourceCode": "public static boolean isValid(String name) {\n        if (name == null) {\n            throw new IllegalArgumentException(\"Name is missing\");\n        }\n\n        boolean slash = false;\n        for (int i = 0; i < name.length(); i++) {\n            char ch = name.charAt(i);\n            if (ch <= ' ' || ch >= 127 || ch == '(' || ch == ')' || ch == '<' || ch == '>' ||\n                    ch == '@' || ch == ',' || ch == ';' || ch == ':' || ch == '\\\\' || ch == '\"' ||\n                    ch == '[' || ch == ']' || ch == '?' || ch == '=') {\n                return false;\n            } else if (ch == '/') {\n                if (slash || i == 0 || i + 1 == name.length()) {\n                    return false;\n                }\n                slash = true;\n            }\n        }\n        return slash;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()",
+      "charAt(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks that the given string is a valid Internet media type name\n * based on rules from RFC 2054 section 5.3. For validation purposes the\n * rules can be simplified to the following:\n * <pre>\n * name := token \"/\" token\n * token := 1*&lt;any (US-ASCII) CHAR except SPACE, CTLs, or tspecials&gt;\n * tspecials :=  \"(\" / \")\" / \"&lt;\" / \"&gt;\" / \"@\" / \",\" / \";\" / \":\" /\n *               \"\\\" / <\"> / \"/\" / \"[\" / \"]\" / \"?\" / \"=\"\n * </pre>\n *\n * @param name name string\n * @return <code>true</code> if the string is a valid media type name,\n * <code>false</code> otherwise\n */\npublic static boolean isValid(String name) {\n    if (name == null) {\n        throw new IllegalArgumentException(\"Name is missing\");\n    }\n    boolean slash = false;\n    for (int i = 0; i < name.length(); i++) {\n        char ch = name.charAt(i);\n        if (ch <= ' ' || ch >= 127 || ch == '(' || ch == ')' || ch == '<' || ch == '>' || ch == '@' || ch == ',' || ch == ';' || ch == ':' || ch == '\\\\' || ch == '\"' || ch == '[' || ch == ']' || ch == '?' || ch == '=') {\n            return false;\n        } else if (ch == '/') {\n            if (slash || i == 0 || i + 1 == name.length()) {\n                return false;\n            }\n            slash = true;\n        }\n    }\n    return slash;\n}",
+  "method_comment": "\n     * Checks that the given string is a valid Internet media type name\n     * based on rules from RFC 2054 section 5.3. For validation purposes the\n     * rules can be simplified to the following:\n     * <pre>\n     * name := token \"/\" token\n     * token := 1*&lt;any (US-ASCII) CHAR except SPACE, CTLs, or tspecials&gt;\n     * tspecials :=  \"(\" / \")\" / \"&lt;\" / \"&gt;\" / \"@\" / \",\" / \";\" / \":\" /\n     *               \"\\\" / <\"> / \"/\" / \"[\" / \"]\" / \"?\" / \"=\"\n     * </pre>\n     *\n     * @param name name string\n     * @return <code>true</code> if the string is a valid media type name,\n     * <code>false</code> otherwise\n     ",
+  "method_annotation": ""
+}

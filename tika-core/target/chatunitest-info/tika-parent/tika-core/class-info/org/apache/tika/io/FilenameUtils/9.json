@@ -1,0 +1,27 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getEmbeddedName",
+  "brief": "private static String getEmbeddedName(Metadata metadata){}",
+  "methodSignature": "getEmbeddedName(Metadata)",
+  "sourceCode": "private static String getEmbeddedName(Metadata metadata) {\n        String path = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.INTERNAL_PATH);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_PATH);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        return metadata.get(TikaCoreProperties.ORIGINAL_RESOURCE_NAME);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ]
+  },
+  "full_method_info": "// this tries for resource name first, and then backs off to path\nprivate static String getEmbeddedName(Metadata metadata) {\n    String path = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.INTERNAL_PATH);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_PATH);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    return metadata.get(TikaCoreProperties.ORIGINAL_RESOURCE_NAME);\n}",
+  "method_comment": "this tries for resource name first, and then backs off to path",
+  "method_annotation": ""
+}

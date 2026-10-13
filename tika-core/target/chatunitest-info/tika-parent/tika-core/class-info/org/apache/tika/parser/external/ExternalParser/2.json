@@ -1,0 +1,38 @@
+{
+  "className": "ExternalParser",
+  "methodName": "handleStream",
+  "brief": "private void handleStream(String content, Parser handler, boolean isContentSource,\r\n                              XHTMLContentHandler xhtml, Metadata metadata,\r\n                              ParseContext context)\r\n            throws IOException, SAXException, TikaException{}",
+  "methodSignature": "handleStream(String, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)",
+  "sourceCode": "private void handleStream(String content, Parser handler, boolean isContentSource,\n                              XHTMLContentHandler xhtml, Metadata metadata,\n                              ParseContext context)\n            throws IOException, SAXException, TikaException {\n        if (content == null || content.isEmpty()) {\n            return;\n        }\n        if (handler != null) {\n            ContentHandler target = isContentSource ?\n                    new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(\n                    content.getBytes(StandardCharsets.UTF_8))) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw content as XHTML text\n            String[] lines = content.split(\"\\n\", -1);\n            for (int i = 0; i < lines.length; i++) {\n                xhtml.characters(lines[i]);\n                if (i < lines.length - 1) {\n                    xhtml.newline();\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Parser",
+    "boolean",
+    "XHTMLContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()",
+      "split(String, int)",
+      "getBytes(Charset)"
+    ],
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.sax.XHTMLContentHandler": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(byte[])"
+    ]
+  },
+  "full_method_info": "private void handleStream(String content, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    if (content == null || content.isEmpty()) {\n        return;\n    }\n    if (handler != null) {\n        ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n        try (TikaInputStream tis = TikaInputStream.get(content.getBytes(StandardCharsets.UTF_8))) {\n            handler.parse(tis, target, metadata, context);\n        }\n    } else if (isContentSource) {\n        // No handler — write raw content as XHTML text\n        String[] lines = content.split(\"\\n\", -1);\n        for (int i = 0; i < lines.length; i++) {\n            xhtml.characters(lines[i]);\n            if (i < lines.length - 1) {\n                xhtml.newline();\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

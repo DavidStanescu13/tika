@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "isMultiValued",
+  "brief": "public boolean isMultiValued(final Property property){}",
+  "methodSignature": "isMultiValued(Property)",
+  "sourceCode": "public boolean isMultiValued(final Property property) {\n        return metadata.get(property.getName()) != null &&\n                metadata.get(property.getName()).length > 1;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns true if named value is multivalued.\n *\n * @param property metadata property\n * @return true is named value is multivalued, false if single value or null\n */\npublic boolean isMultiValued(final Property property) {\n    return metadata.get(property.getName()) != null && metadata.get(property.getName()).length > 1;\n}",
+  "method_comment": "\n     * Returns true if named value is multivalued.\n     *\n     * @param property metadata property\n     * @return true is named value is multivalued, false if single value or null\n     ",
+  "method_annotation": ""
+}

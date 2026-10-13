@@ -1,0 +1,28 @@
+{
+  "className": "DateNormalizingMetadataFilter",
+  "methodName": "setDefaultTimeZone",
+  "brief": "public void setDefaultTimeZone(String timeZoneId){}",
+  "methodSignature": "setDefaultTimeZone(String)",
+  "sourceCode": "public void setDefaultTimeZone(String timeZoneId) {\n        this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(timeZoneId));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.TimeZone": [
+      "getTimeZone(ZoneId)"
+    ],
+    "java.time.ZoneId": [
+      "of(String)"
+    ]
+  },
+  "full_method_info": "public void setDefaultTimeZone(String timeZoneId) {\n    this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(timeZoneId));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

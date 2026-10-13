@@ -1,0 +1,39 @@
+{
+  "className": "CompositeRenderer",
+  "methodName": "render",
+  "brief": "@Override\r\n    public RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext,\r\n                                RenderRequest... requests) throws IOException, TikaException{}",
+  "methodSignature": "render(TikaInputStream, Metadata, ParseContext, RenderRequest[])",
+  "sourceCode": "@Override\n    public RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext,\n                                RenderRequest... requests) throws IOException, TikaException {\n\n        String mediaTypeString = metadata.get(TikaCoreProperties.TYPE);\n        if (mediaTypeString == null) {\n            throw new TikaException(\"need to specify file type in metadata\");\n        }\n        MediaType mt = MediaType.parse(mediaTypeString);\n        if (mt == null) {\n            throw new TikaException(\"can't parse mediaType: \" + mediaTypeString);\n        }\n        Renderer renderer = rendererMap.get(mt);\n        if (renderer == null) {\n            throw new TikaException(\"I regret I can't find a renderer for \" + mt);\n        }\n        return renderer.render(tis, metadata, parseContext, requests);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext",
+    "RenderRequest"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.renderer.RenderRequest...": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "org.apache.tika.renderer.Renderer": [
+      "render(TikaInputStream, Metadata, ParseContext, RenderRequest[])"
+    ]
+  },
+  "full_method_info": "@Override\npublic RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext, RenderRequest... requests) throws IOException, TikaException {\n    String mediaTypeString = metadata.get(TikaCoreProperties.TYPE);\n    if (mediaTypeString == null) {\n        throw new TikaException(\"need to specify file type in metadata\");\n    }\n    MediaType mt = MediaType.parse(mediaTypeString);\n    if (mt == null) {\n        throw new TikaException(\"can't parse mediaType: \" + mediaTypeString);\n    }\n    Renderer renderer = rendererMap.get(mt);\n    if (renderer == null) {\n        throw new TikaException(\"I regret I can't find a renderer for \" + mt);\n    }\n    return renderer.render(tis, metadata, parseContext, requests);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

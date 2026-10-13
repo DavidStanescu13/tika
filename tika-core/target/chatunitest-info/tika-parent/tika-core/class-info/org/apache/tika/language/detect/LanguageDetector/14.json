@@ -1,0 +1,36 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "addText",
+  "brief": "public void addText(CharSequence text){}",
+  "methodSignature": "addText(CharSequence)",
+  "sourceCode": "public void addText(CharSequence text) {\n        int len = text.length();\n        if (len < BUFFER_LENGTH) {\n            char[] chars = text.toString().toCharArray();\n            addText(chars, 0, chars.length);\n            return;\n        }\n        int start = 0;\n        while (! hasEnoughText() && start < len) {\n            int end = Math.min(start + BUFFER_LENGTH, len);\n            char[] chars = text.subSequence(start, end).toString().toCharArray();\n            addText(chars, 0, chars.length);\n            start += BUFFER_LENGTH;\n        }\n\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "subSequence(int, int)",
+      "toString()",
+      "length()"
+    ],
+    "java.lang.String": [
+      "toCharArray()"
+    ],
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "hasEnoughText()",
+      "addText(char[], int, int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Add <text> to the statistics being accumulated for the current\n * document. Note that this is a default implementation for adding\n * a string (not optimized)\n *\n * @param text Characters to add to current statistics.\n */\npublic void addText(CharSequence text) {\n    int len = text.length();\n    if (len < BUFFER_LENGTH) {\n        char[] chars = text.toString().toCharArray();\n        addText(chars, 0, chars.length);\n        return;\n    }\n    int start = 0;\n    while (!hasEnoughText() && start < len) {\n        int end = Math.min(start + BUFFER_LENGTH, len);\n        char[] chars = text.subSequence(start, end).toString().toCharArray();\n        addText(chars, 0, chars.length);\n        start += BUFFER_LENGTH;\n    }\n}",
+  "method_comment": "\n     * Add <text> to the statistics being accumulated for the current\n     * document. Note that this is a default implementation for adding\n     * a string (not optimized)\n     *\n     * @param text Characters to add to current statistics.\n     ",
+  "method_annotation": ""
+}

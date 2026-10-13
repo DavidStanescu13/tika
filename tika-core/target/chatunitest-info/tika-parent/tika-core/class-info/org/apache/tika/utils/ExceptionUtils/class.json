@@ -1,0 +1,47 @@
+{
+  "fullClassName": "org.apache.tika.utils.ExceptionUtils",
+  "className": "ExceptionUtils",
+  "index": 345,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class ExceptionUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.PrintWriter;",
+    "import java.io.StringWriter;",
+    "import java.io.Writer;",
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;",
+    "import org.apache.tika.exception.TikaException;"
+  ],
+  "fields": [
+    "private final static Pattern MSG_PATTERN = Pattern.compile(\":[^\\r\\n]+\");"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getFilteredStackTrace(Throwable)": "0",
+    "getStackTrace(Throwable)": "1",
+    "trimMessage(String)": "2"
+  },
+  "methodsBrief": [
+    "public static String getFilteredStackTrace(Throwable t){}",
+    "public static String getStackTrace(Throwable t){}",
+    "public static String trimMessage(String trace){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport java.io.IOException;\nimport java.io.PrintWriter;\nimport java.io.StringWriter;\nimport java.io.Writer;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport org.apache.tika.exception.TikaException;\n\npublic class ExceptionUtils {\n\n    private final static Pattern MSG_PATTERN = Pattern.compile(\":[^\\r\\n]+\");\n\n    /**\n     * Simple util to get stack trace.\n     * <p>\n     * This will unwrap a TikaException and return the cause if not null\n     * <p>\n     * NOTE: If your stacktraces are truncated, make sure to start your jvm\n     * with: -XX:-OmitStackTraceInFastThrow\n     *\n     * @param t throwable\n     * @return\n     * @throws IOException\n     */\n    public static String getFilteredStackTrace(Throwable t) {\n        Throwable cause = t;\n        if ((t.getClass().equals(TikaException.class)) && t.getCause() != null) {\n            cause = t.getCause();\n        }\n        return getStackTrace(cause);\n    }\n\n    /**\n     * Get the full stacktrace as a string\n     *\n     * @param t\n     * @return\n     */\n    public static String getStackTrace(Throwable t) {\n        Writer result = new StringWriter();\n        PrintWriter writer = new PrintWriter(result);\n        t.printStackTrace(writer);\n        try {\n            writer.flush();\n            result.flush();\n            writer.close();\n            result.close();\n        } catch (IOException e) {\n            // swallow\n        }\n        return result.toString();\n    }\n\n    /**\n     * Utility method to trim the message from a stack trace\n     * string.\n     * <p>\n     * E.g. <code>java.lang.IllegalStateException: Potential loop detected </code>\n     * will be trimmed to <code>java.lang.IllegalStateException</code>\n     *\n     * @param trace string view of stack trace\n     * @return trimmed stack trace\n     */\n    public static String trimMessage(String trace) {\n        Matcher msgMatcher = MSG_PATTERN.matcher(trace);\n        if (msgMatcher.find()) {\n            return msgMatcher.replaceFirst(\"\");\n        }\n        return trace;\n    }\n}\n",
+  "classDeclarationCode": "public class ExceptionUtils {\n\n    private final static Pattern MSG_PATTERN = Pattern.compile(\":[^\\r\\n]+\");\n\n    /**\n     * Simple util to get stack trace.\n     * <p>\n     * This will unwrap a TikaException and return the cause if not null\n     * <p>\n     * NOTE: If your stacktraces are truncated, make sure to start your jvm\n     * with: -XX:-OmitStackTraceInFastThrow\n     *\n     * @param t throwable\n     * @return\n     * @throws IOException\n     */\n    public static String getFilteredStackTrace(Throwable t) {\n        Throwable cause = t;\n        if ((t.getClass().equals(TikaException.class)) && t.getCause() != null) {\n            cause = t.getCause();\n        }\n        return getStackTrace(cause);\n    }\n\n    /**\n     * Get the full stacktrace as a string\n     *\n     * @param t\n     * @return\n     */\n    public static String getStackTrace(Throwable t) {\n        Writer result = new StringWriter();\n        PrintWriter writer = new PrintWriter(result);\n        t.printStackTrace(writer);\n        try {\n            writer.flush();\n            result.flush();\n            writer.close();\n            result.close();\n        } catch (IOException e) {\n            // swallow\n        }\n        return result.toString();\n    }\n\n    /**\n     * Utility method to trim the message from a stack trace\n     * string.\n     * <p>\n     * E.g. <code>java.lang.IllegalStateException: Potential loop detected </code>\n     * will be trimmed to <code>java.lang.IllegalStateException</code>\n     *\n     * @param trace string view of stack trace\n     * @return trimmed stack trace\n     */\n    public static String trimMessage(String trace) {\n        Matcher msgMatcher = MSG_PATTERN.matcher(trace);\n        if (msgMatcher.find()) {\n            return msgMatcher.replaceFirst(\"\");\n        }\n        return trace;\n    }\n}",
+  "subClasses": []
+}

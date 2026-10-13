@@ -1,0 +1,22 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getDefaultMimeTypes",
+  "brief": "public static synchronized MimeTypes getDefaultMimeTypes(){}",
+  "methodSignature": "getDefaultMimeTypes()",
+  "sourceCode": "public static synchronized MimeTypes getDefaultMimeTypes() {\n        return getDefaultMimeTypes(null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypes": [
+      "getDefaultMimeTypes(ClassLoader)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the default MimeTypes. This includes all the build in\n * media types, and any custom override ones present.\n *\n * @return MimeTypes default type registry\n */\npublic static synchronized MimeTypes getDefaultMimeTypes() {\n    return getDefaultMimeTypes(null);\n}",
+  "method_comment": "\n     * Get the default MimeTypes. This includes all the build in\n     * media types, and any custom override ones present.\n     *\n     * @return MimeTypes default type registry\n     ",
+  "method_annotation": ""
+}

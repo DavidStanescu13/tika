@@ -1,0 +1,31 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "removeProtocol",
+  "brief": "private static String removeProtocol(String path){}",
+  "methodSignature": "removeProtocol(String)",
+  "sourceCode": "private static String removeProtocol(String path) {\n        Matcher m = PROTOCOL_PATTERN.matcher(path);\n        int last = -1;\n        while (m.find()) {\n            last = m.end();\n        }\n        if (last > -1) {\n            return path.substring(last);\n        }\n        return path;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "end()"
+    ]
+  },
+  "full_method_info": "private static String removeProtocol(String path) {\n    Matcher m = PROTOCOL_PATTERN.matcher(path);\n    int last = -1;\n    while (m.find()) {\n        last = m.end();\n    }\n    if (last > -1) {\n        return path.substring(last);\n    }\n    return path;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "ensureInlineContainer",
+  "brief": "private void ensureInlineContainer(){}",
+  "methodSignature": "ensureInlineContainer()",
+  "sourceCode": "private void ensureInlineContainer() {\n        Node top = stack.peek();\n        if (canHostBlocks(top)) {\n            Paragraph p = new Paragraph();\n            top.appendChild(p);\n            stack.push(p);\n            implicitParagraph = p;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Deque": [
+      "peek()",
+      "push(E)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "canHostBlocks(Node)"
+    ],
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ]
+  },
+  "full_method_info": "/**\n * If the current insertion point is a block container that cannot hold\n * inline content directly, open an implicit {@link Paragraph} to hold it.\n */\nprivate void ensureInlineContainer() {\n    Node top = stack.peek();\n    if (canHostBlocks(top)) {\n        Paragraph p = new Paragraph();\n        top.appendChild(p);\n        stack.push(p);\n        implicitParagraph = p;\n    }\n}",
+  "method_comment": "\n     * If the current insertion point is a block container that cannot hold\n     * inline content directly, open an implicit {@link Paragraph} to hold it.\n     ",
+  "method_annotation": ""
+}

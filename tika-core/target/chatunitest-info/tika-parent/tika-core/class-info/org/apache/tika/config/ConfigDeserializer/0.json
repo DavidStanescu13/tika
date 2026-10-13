@@ -1,0 +1,35 @@
+{
+  "className": "ConfigDeserializer",
+  "methodName": "buildConfig",
+  "brief": "public static <T> T buildConfig(JsonConfig jsonConfig, Class<T> configClass){}",
+  "methodSignature": "buildConfig(JsonConfig, Class)",
+  "sourceCode": "public static <T> T buildConfig(JsonConfig jsonConfig, Class<T> configClass) {\n        if (OBJECT_MAPPER_CLASS == null) {\n            throw new RuntimeException(\n                \"Cannot parse JSON configuration for \" + configClass.getSimpleName() +\n                \": Jackson is not on the classpath. \" +\n                \"Add com.fasterxml.jackson.core:jackson-databind as a dependency.\");\n        }\n\n        try {\n            @SuppressWarnings(\"unchecked\")\n            T config = (T) READ_VALUE_METHOD.invoke(OBJECT_MAPPER_INSTANCE, jsonConfig.json(), configClass);\n            return config;\n        } catch (Exception e) {\n            Throwable cause = e.getCause() != null ? e.getCause() : e;\n            throw new RuntimeException(\"Failed to parse \" + configClass.getSimpleName() +\n                \" configuration: \" + cause.getMessage(), cause);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonConfig",
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.JsonConfig": [
+      "json()"
+    ],
+    "java.lang.Class": [
+      "getSimpleName()"
+    ],
+    "java.lang.reflect.Method": [
+      "invoke(Object, Object[])"
+    ],
+    "java.lang.Throwable": [
+      "getCause()",
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * Deserializes a JSON configuration to a configuration object.\n * Requires Jackson on the classpath.\n *\n * @param jsonConfig the JSON configuration\n * @param configClass the configuration class\n * @param <T> the configuration type\n * @return the deserialized configuration object\n * @throws RuntimeException if Jackson is not on the classpath or deserialization fails\n */\npublic static <T> T buildConfig(JsonConfig jsonConfig, Class<T> configClass) {\n    if (OBJECT_MAPPER_CLASS == null) {\n        throw new RuntimeException(\"Cannot parse JSON configuration for \" + configClass.getSimpleName() + \": Jackson is not on the classpath. \" + \"Add com.fasterxml.jackson.core:jackson-databind as a dependency.\");\n    }\n    try {\n        @SuppressWarnings(\"unchecked\")\n        T config = (T) READ_VALUE_METHOD.invoke(OBJECT_MAPPER_INSTANCE, jsonConfig.json(), configClass);\n        return config;\n    } catch (Exception e) {\n        Throwable cause = e.getCause() != null ? e.getCause() : e;\n        throw new RuntimeException(\"Failed to parse \" + configClass.getSimpleName() + \" configuration: \" + cause.getMessage(), cause);\n    }\n}",
+  "method_comment": "\n     * Deserializes a JSON configuration to a configuration object.\n     * Requires Jackson on the classpath.\n     *\n     * @param jsonConfig the JSON configuration\n     * @param configClass the configuration class\n     * @param <T> the configuration type\n     * @return the deserialized configuration object\n     * @throws RuntimeException if Jackson is not on the classpath or deserialization fails\n     ",
+  "method_annotation": ""
+}

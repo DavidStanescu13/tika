@@ -1,0 +1,34 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "loadDynamicServiceProviders",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public <T> List<T> loadDynamicServiceProviders(Class<T> iface){}",
+  "methodSignature": "loadDynamicServiceProviders(Class)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> List<T> loadDynamicServiceProviders(Class<T> iface) {\n        if (dynamic) {\n            synchronized (SERVICES) {\n                List<RankedService> list = new ArrayList<>(SERVICES.values());\n                Collections.sort(list);\n\n                List<T> providers = new ArrayList<>(list.size());\n                for (RankedService service : list) {\n                    if (service.isInstanceOf(iface)) {\n                        providers.add((T) service.service);\n                    }\n                }\n                return providers;\n            }\n        } else {\n            return Collections.EMPTY_LIST;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>)"
+    ],
+    "java.util.List": [
+      "add(E)",
+      "size()"
+    ],
+    "org.apache.tika.config.ServiceLoader.RankedService": [
+      "isInstanceOf(Class<?>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the available dynamic service providers of the given type.\n * The returned list is newly allocated and may be freely modified\n * by the caller.\n *\n * @param iface service provider interface\n * @return dynamic service providers\n * @since Apache Tika 1.2\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> List<T> loadDynamicServiceProviders(Class<T> iface) {\n    if (dynamic) {\n        synchronized (SERVICES) {\n            List<RankedService> list = new ArrayList<>(SERVICES.values());\n            Collections.sort(list);\n            List<T> providers = new ArrayList<>(list.size());\n            for (RankedService service : list) {\n                if (service.isInstanceOf(iface)) {\n                    providers.add((T) service.service);\n                }\n            }\n            return providers;\n        }\n    } else {\n        return Collections.EMPTY_LIST;\n    }\n}",
+  "method_comment": "\n     * Returns the available dynamic service providers of the given type.\n     * The returned list is newly allocated and may be freely modified\n     * by the caller.\n     *\n     * @param iface service provider interface\n     * @return dynamic service providers\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

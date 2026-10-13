@@ -1,0 +1,20 @@
+{
+  "className": "StandardsExtractingContentHandler",
+  "methodName": "setMaxBufferLength",
+  "brief": "public void setMaxBufferLength(int maxBufferLength){}",
+  "methodSignature": "setMaxBufferLength(int)",
+  "sourceCode": "public void setMaxBufferLength(int maxBufferLength) {\n        this.maxBufferLength = maxBufferLength;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The number of characters to store in memory for checking for standards.\n *\n * If this is unbounded, the complex regular expressions can take a long time\n * to process some types of data.  Only increase this limit with great caution.\n */\npublic void setMaxBufferLength(int maxBufferLength) {\n    this.maxBufferLength = maxBufferLength;\n}",
+  "method_comment": "\n     * The number of characters to store in memory for checking for standards.\n     *\n     * If this is unbounded, the complex regular expressions can take a long time\n     * to process some types of data.  Only increase this limit with great caution.\n     ",
+  "method_annotation": ""
+}

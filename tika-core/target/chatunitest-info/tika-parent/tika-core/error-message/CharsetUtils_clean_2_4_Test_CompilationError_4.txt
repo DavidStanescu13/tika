@@ -1,0 +1,125 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_clean_2_4_Test {
+
+    private CharsetUtils charsetUtils;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+    }
+
+    @Test
+    public void testCleanWithValidCharset() throws Exception {
+        String charsetName = "UTF-8";
+        String expected = "UTF-8";
+        when(Charset.forName(charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithInvalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        String expected = null;
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNullCharset() throws Exception {
+        String charsetName = null;
+        String expected = null;
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithWhitespace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String expected = "UTF-8";
+        when(Charset.forName(charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithISOName() throws Exception {
+        String charsetName = "ISO 8859-1";
+        String expected = "ISO-8859-1";
+        when(Charset.forName(charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithCPName() throws Exception {
+        String charsetName = "CP-1252";
+        String expected = "CP1252";
+        when(Charset.forName(charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithWinName() throws Exception {
+        String charsetName = "WIN-1252";
+        String expected = "Windows-1252";
+        when(Charset.forName(charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNone() throws Exception {
+        String charsetName = "none";
+        String expected = null;
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNo() throws Exception {
+        String charsetName = "no";
+        String expected = null;
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithException() throws Exception {
+        String charsetName = "INVALID";
+        String expected = null;
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        String result = charsetUtils.clean(charsetName);
+        assertEquals(expected, result);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_clean_2_4_Test: line 9 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_clean_2_4_Test: line 17 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_4_Test: line 15 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_4_Test: line 20 : cannot find symbol
+  symbol: class MockitoExtension

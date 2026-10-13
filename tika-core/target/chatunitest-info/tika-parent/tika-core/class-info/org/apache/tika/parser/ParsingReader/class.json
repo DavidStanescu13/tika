@@ -1,0 +1,136 @@
+{
+  "fullClassName": "org.apache.tika.parser.ParsingReader",
+  "className": "ParsingReader",
+  "index": 250,
+  "modifier": "[public ]",
+  "extend": "[Reader]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class ParsingReader",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.BufferedReader;",
+    "import java.io.File;",
+    "import java.io.FileInputStream;",
+    "import java.io.FileNotFoundException;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.PipedReader;",
+    "import java.io.PipedWriter;",
+    "import java.io.Reader;",
+    "import java.io.Writer;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import java.util.concurrent.Executor;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.apache.tika.exception.ZeroByteFileException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.sax.BodyContentHandler;"
+  ],
+  "fields": [
+    "private final Parser parser;",
+    "private final Reader reader;",
+    "private final Writer writer;",
+    "private final InputStream stream;",
+    "private final Metadata metadata;",
+    "private final ParseContext context;",
+    "private transient Throwable throwable;"
+  ],
+  "superClasses": [
+    "Reader"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getMetadata(String, ParseContext)": "0",
+    "read(char[], int, int)": "1",
+    "close()": "2",
+    "ParsingReader(InputStream)": "3",
+    "ParsingReader(InputStream, String)": "4",
+    "ParsingReader(Parser, InputStream, ParseContext)": "5",
+    "ParsingReader(Parser, InputStream, String, ParseContext)": "6",
+    "ParsingReader(Path)": "7",
+    "ParsingReader(File)": "8",
+    "ParsingReader(Parser, InputStream, Metadata, ParseContext)": "9",
+    "ParsingReader(Parser, InputStream, Metadata, ParseContext, Executor)": "10"
+  },
+  "methodsBrief": [
+    "private static Metadata getMetadata(String name, ParseContext context){}",
+    "@Override\r\n    public int read(char[] cbuf, int off, int len) throws IOException{}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "public ParsingReader(InputStream stream) throws IOException{}",
+    "public ParsingReader(InputStream stream, String name) throws IOException{}",
+    "private ParsingReader(Parser parser, InputStream stream, ParseContext context)\r\n            throws IOException{}",
+    "private ParsingReader(Parser parser, InputStream stream, String name, ParseContext context)\r\n            throws IOException{}",
+    "public ParsingReader(Path path) throws IOException{}",
+    "public ParsingReader(File file) throws FileNotFoundException, IOException{}",
+    "public ParsingReader(Parser parser, InputStream stream, final Metadata metadata,\r\n                         ParseContext context) throws IOException{}",
+    "public ParsingReader(Parser parser, InputStream stream, Metadata metadata, ParseContext context,\r\n                         Executor executor) throws IOException{}"
+  ],
+  "constructorSigs": [
+    "ParsingReader(InputStream)",
+    "ParsingReader(InputStream, String)",
+    "ParsingReader(Parser, InputStream, ParseContext)",
+    "ParsingReader(Parser, InputStream, String, ParseContext)",
+    "ParsingReader(Path)",
+    "ParsingReader(File)",
+    "ParsingReader(Parser, InputStream, Metadata, ParseContext)",
+    "ParsingReader(Parser, InputStream, Metadata, ParseContext, Executor)"
+  ],
+  "constructorBrief": [
+    "public ParsingReader(InputStream stream) throws IOException{}",
+    "public ParsingReader(InputStream stream, String name) throws IOException{}",
+    "private ParsingReader(Parser parser, InputStream stream, ParseContext context)\r\n            throws IOException{}",
+    "private ParsingReader(Parser parser, InputStream stream, String name, ParseContext context)\r\n            throws IOException{}",
+    "public ParsingReader(Path path) throws IOException{}",
+    "public ParsingReader(File file) throws FileNotFoundException, IOException{}",
+    "public ParsingReader(Parser parser, InputStream stream, final Metadata metadata,\r\n                         ParseContext context) throws IOException{}",
+    "public ParsingReader(Parser parser, InputStream stream, Metadata metadata, ParseContext context,\r\n                         Executor executor) throws IOException{}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.InputStream": [],
+    "java.lang.String": [],
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.parser.ParsingReader": [
+      "getMetadata(String, ParseContext)"
+    ],
+    "java.nio.file.Path": [
+      "getFileName()",
+      "toString()"
+    ],
+    "java.nio.file.Files": [
+      "newInputStream(Path, OpenOption[])"
+    ],
+    "java.io.File": [
+      "getName()"
+    ],
+    "java.lang.Thread": [
+      "setDaemon(boolean)",
+      "start()"
+    ],
+    "java.util.concurrent.Executor": [
+      "execute(Runnable)"
+    ],
+    "java.io.Reader": [
+      "mark(int)",
+      "read()",
+      "reset()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.BufferedReader;\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.PipedReader;\nimport java.io.PipedWriter;\nimport java.io.Reader;\nimport java.io.Writer;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.util.concurrent.Executor;\nimport org.xml.sax.ContentHandler;\nimport org.apache.tika.exception.ZeroByteFileException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.sax.BodyContentHandler;\n\n/**\n * Reader for the text content from a given binary stream. This class\n * uses a background parsing task with a {@link Parser}\n * ({@link AutoDetectParser} by default) to parse the text content from\n * a given input stream. The {@link BodyContentHandler} class and a pipe\n * is used to convert the push-based SAX event stream to the pull-based\n * character stream defined by the {@link Reader} interface.\n *\n * @since Apache Tika 0.2\n */\npublic class ParsingReader extends Reader {\n\n    /**\n     * Parser instance used for parsing the given binary stream.\n     */\n    private final Parser parser;\n\n    /**\n     * Buffered read end of the pipe.\n     */\n    private final Reader reader;\n\n    /**\n     * Write end of the pipe.\n     */\n    private final Writer writer;\n\n    /**\n     * The binary stream being parsed.\n     */\n    private final InputStream stream;\n\n    /**\n     * Metadata associated with the document being parsed.\n     */\n    private final Metadata metadata;\n\n    /**\n     * The parse context.\n     */\n    private final ParseContext context;\n\n    /**\n     * An exception (if any) thrown by the parsing thread.\n     */\n    private transient Throwable throwable;\n\n    public ParsingReader(InputStream stream) throws IOException {\n        this(new AutoDetectParser(), stream, new ParseContext());\n    }\n\n    public ParsingReader(InputStream stream, String name) throws IOException {\n        this(new AutoDetectParser(), stream, name, new ParseContext());\n    }\n\n    private ParsingReader(Parser parser, InputStream stream, ParseContext context) throws IOException {\n        this(parser, stream, Metadata.newInstance(context), context);\n        context.set(Parser.class, parser);\n    }\n\n    private ParsingReader(Parser parser, InputStream stream, String name, ParseContext context) throws IOException {\n        this(parser, stream, getMetadata(name, context), context);\n        context.set(Parser.class, parser);\n    }\n\n    public ParsingReader(Path path) throws IOException {\n        this(Files.newInputStream(path), path.getFileName().toString());\n    }\n\n    public ParsingReader(File file) throws FileNotFoundException, IOException {\n        this(new FileInputStream(file), file.getName());\n    }\n\n    public ParsingReader(Parser parser, InputStream stream, final Metadata metadata, ParseContext context) throws IOException {\n        this(parser, stream, metadata, context, command -> {\n            String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n            if (name != null) {\n                name = \"Apache Tika: \" + name;\n            } else {\n                name = \"Apache Tika\";\n            }\n            Thread thread = new Thread(command, name);\n            thread.setDaemon(true);\n            thread.start();\n        });\n    }\n\n    public ParsingReader(Parser parser, InputStream stream, Metadata metadata, ParseContext context, Executor executor) throws IOException {\n        this.parser = parser;\n        PipedReader pipedReader = new PipedReader();\n        this.reader = new BufferedReader(pipedReader);\n        try {\n            this.writer = new PipedWriter(pipedReader);\n        } catch (IOException e) {\n            // Should never happen\n            throw new IllegalStateException(e);\n        }\n        this.stream = stream;\n        this.metadata = metadata;\n        this.context = context;\n        executor.execute(new ParsingTask());\n        // TIKA-203: Buffer first character to force metadata extraction\n        reader.mark(1);\n        reader.read();\n        reader.reset();\n    }\n\n    /**\n     * Utility method that returns a {@link Metadata} instance\n     * for a document with the given name.\n     *\n     * @param name resource name (or <code>null</code>)\n     * @param context parse context to create metadata from\n     * @return metadata instance\n     */\n    private static Metadata getMetadata(String name, ParseContext context) {\n        Metadata metadata = Metadata.newInstance(context);\n        if (name != null && name.length() > 0) {\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n        }\n        return metadata;\n    }\n\n    /**\n     * Reads parsed text from the pipe connected to the parsing thread.\n     * Fails if the parsing thread has thrown an exception.\n     *\n     * @param cbuf character buffer\n     * @param off  start offset within the buffer\n     * @param len  maximum number of characters to read\n     * @throws IOException if the parsing thread has failed or\n     *                     if for some reason the pipe does not work properly\n     */\n    @Override\n    public int read(char[] cbuf, int off, int len) throws IOException {\n        if (throwable instanceof ZeroByteFileException) {\n            return -1;\n        } else if (throwable instanceof IOException) {\n            throw (IOException) throwable;\n        } else if (throwable != null) {\n            throw new IOException(\"\", throwable);\n        }\n        return reader.read(cbuf, off, len);\n    }\n\n    /**\n     * Closes the read end of the pipe. If the parsing thread is still\n     * running, next write to the pipe will fail and cause the thread\n     * to stop. Thus there is no need to explicitly terminate the thread.\n     *\n     * @throws IOException if the pipe can not be closed\n     */\n    @Override\n    public void close() throws IOException {\n        reader.close();\n    }\n\n    /**\n     * The background parsing task.\n     */\n    private class ParsingTask implements Runnable {\n\n        /**\n         * Parses the given binary stream and writes the text content\n         * to the write end of the pipe. Potential exceptions (including\n         * the one caused if the read end is closed unexpectedly) are\n         * stored before the input stream is closed and processing is stopped.\n         */\n        public void run() {\n            try (TikaInputStream tis = TikaInputStream.get(stream)) {\n                ContentHandler handler = new BodyContentHandler(writer);\n                parser.parse(tis, handler, metadata, context);\n            } catch (Throwable t) {\n                throwable = t;\n            }\n            try {\n                writer.close();\n            } catch (Throwable t) {\n                if (throwable == null) {\n                    throwable = t;\n                }\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Reader for the text content from a given binary stream. This class\n * uses a background parsing task with a {@link Parser}\n * ({@link AutoDetectParser} by default) to parse the text content from\n * a given input stream. The {@link BodyContentHandler} class and a pipe\n * is used to convert the push-based SAX event stream to the pull-based\n * character stream defined by the {@link Reader} interface.\n *\n * @since Apache Tika 0.2\n */\npublic class ParsingReader extends Reader {\n\n    /**\n     * Parser instance used for parsing the given binary stream.\n     */\n    private final Parser parser;\n\n    /**\n     * Buffered read end of the pipe.\n     */\n    private final Reader reader;\n\n    /**\n     * Write end of the pipe.\n     */\n    private final Writer writer;\n\n    /**\n     * The binary stream being parsed.\n     */\n    private final InputStream stream;\n\n    /**\n     * Metadata associated with the document being parsed.\n     */\n    private final Metadata metadata;\n\n    /**\n     * The parse context.\n     */\n    private final ParseContext context;\n\n    /**\n     * An exception (if any) thrown by the parsing thread.\n     */\n    private transient Throwable throwable;\n\n    public ParsingReader(InputStream stream) throws IOException {\n        this(new AutoDetectParser(), stream, new ParseContext());\n    }\n\n    public ParsingReader(InputStream stream, String name) throws IOException {\n        this(new AutoDetectParser(), stream, name, new ParseContext());\n    }\n\n    private ParsingReader(Parser parser, InputStream stream, ParseContext context) throws IOException {\n        this(parser, stream, Metadata.newInstance(context), context);\n        context.set(Parser.class, parser);\n    }\n\n    private ParsingReader(Parser parser, InputStream stream, String name, ParseContext context) throws IOException {\n        this(parser, stream, getMetadata(name, context), context);\n        context.set(Parser.class, parser);\n    }\n\n    public ParsingReader(Path path) throws IOException {\n        this(Files.newInputStream(path), path.getFileName().toString());\n    }\n\n    public ParsingReader(File file) throws FileNotFoundException, IOException {\n        this(new FileInputStream(file), file.getName());\n    }\n\n    public ParsingReader(Parser parser, InputStream stream, final Metadata metadata, ParseContext context) throws IOException {\n        this(parser, stream, metadata, context, command -> {\n            String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n            if (name != null) {\n                name = \"Apache Tika: \" + name;\n            } else {\n                name = \"Apache Tika\";\n            }\n            Thread thread = new Thread(command, name);\n            thread.setDaemon(true);\n            thread.start();\n        });\n    }\n\n    public ParsingReader(Parser parser, InputStream stream, Metadata metadata, ParseContext context, Executor executor) throws IOException {\n        this.parser = parser;\n        PipedReader pipedReader = new PipedReader();\n        this.reader = new BufferedReader(pipedReader);\n        try {\n            this.writer = new PipedWriter(pipedReader);\n        } catch (IOException e) {\n            // Should never happen\n            throw new IllegalStateException(e);\n        }\n        this.stream = stream;\n        this.metadata = metadata;\n        this.context = context;\n        executor.execute(new ParsingTask());\n        // TIKA-203: Buffer first character to force metadata extraction\n        reader.mark(1);\n        reader.read();\n        reader.reset();\n    }\n\n    /**\n     * Utility method that returns a {@link Metadata} instance\n     * for a document with the given name.\n     *\n     * @param name resource name (or <code>null</code>)\n     * @param context parse context to create metadata from\n     * @return metadata instance\n     */\n    private static Metadata getMetadata(String name, ParseContext context) {\n        Metadata metadata = Metadata.newInstance(context);\n        if (name != null && name.length() > 0) {\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n        }\n        return metadata;\n    }\n\n    /**\n     * Reads parsed text from the pipe connected to the parsing thread.\n     * Fails if the parsing thread has thrown an exception.\n     *\n     * @param cbuf character buffer\n     * @param off  start offset within the buffer\n     * @param len  maximum number of characters to read\n     * @throws IOException if the parsing thread has failed or\n     *                     if for some reason the pipe does not work properly\n     */\n    @Override\n    public int read(char[] cbuf, int off, int len) throws IOException {\n        if (throwable instanceof ZeroByteFileException) {\n            return -1;\n        } else if (throwable instanceof IOException) {\n            throw (IOException) throwable;\n        } else if (throwable != null) {\n            throw new IOException(\"\", throwable);\n        }\n        return reader.read(cbuf, off, len);\n    }\n\n    /**\n     * Closes the read end of the pipe. If the parsing thread is still\n     * running, next write to the pipe will fail and cause the thread\n     * to stop. Thus there is no need to explicitly terminate the thread.\n     *\n     * @throws IOException if the pipe can not be closed\n     */\n    @Override\n    public void close() throws IOException {\n        reader.close();\n    }\n\n    /**\n     * The background parsing task.\n     */\n    private class ParsingTask implements Runnable {\n\n        /**\n         * Parses the given binary stream and writes the text content\n         * to the write end of the pipe. Potential exceptions (including\n         * the one caused if the read end is closed unexpectedly) are\n         * stored before the input stream is closed and processing is stopped.\n         */\n        public void run() {\n            try (TikaInputStream tis = TikaInputStream.get(stream)) {\n                ContentHandler handler = new BodyContentHandler(writer);\n                parser.parse(tis, handler, metadata, context);\n            } catch (Throwable t) {\n                throwable = t;\n            }\n            try {\n                writer.close();\n            } catch (Throwable t) {\n                if (throwable == null) {\n                    throwable = t;\n                }\n            }\n        }\n    }\n}",
+  "subClasses": []
+}

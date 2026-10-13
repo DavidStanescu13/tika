@@ -1,0 +1,28 @@
+{
+  "className": "LookaheadInputStream",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(long n) throws IOException{}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(long n) throws IOException {\n        fill();\n        n = Math.min(n, available());\n        position += n;\n        return n;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.LookaheadInputStream": [
+      "available()",
+      "fill()"
+    ],
+    "java.lang.Math": [
+      "min(long, long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic long skip(long n) throws IOException {\n    fill();\n    n = Math.min(n, available());\n    position += n;\n    return n;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

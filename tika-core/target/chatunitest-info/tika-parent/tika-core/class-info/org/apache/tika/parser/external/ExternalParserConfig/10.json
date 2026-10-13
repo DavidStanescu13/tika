@@ -1,0 +1,18 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "getContentSource",
+  "brief": "public String getContentSource(){}",
+  "methodSignature": "getContentSource()",
+  "sourceCode": "public String getContentSource() {\n        return contentSource;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Which stream provides the XHTML content output.\n * <p>\n * Valid values: {@code \"stdout\"}, {@code \"stderr\"}, {@code \"outputFile\"}, {@code \"none\"}.\n * <p>\n * If {@code null}, defaults to {@code \"stdout\"} when no {@code ${OUTPUT_FILE}} token\n * is in the command, or {@code \"outputFile\"} when it is.\n */\npublic String getContentSource() {\n    return contentSource;\n}",
+  "method_comment": "\n     * Which stream provides the XHTML content output.\n     * <p>\n     * Valid values: {@code \"stdout\"}, {@code \"stderr\"}, {@code \"outputFile\"}, {@code \"none\"}.\n     * <p>\n     * If {@code null}, defaults to {@code \"stdout\"} when no {@code ${OUTPUT_FILE}} token\n     * is in the command, or {@code \"outputFile\"} when it is.\n     ",
+  "method_annotation": ""
+}

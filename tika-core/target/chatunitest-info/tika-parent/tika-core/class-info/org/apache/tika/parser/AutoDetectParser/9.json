@@ -1,0 +1,28 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\r\n            throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\n            throws IOException, SAXException, TikaException {\n        ParseContext context = new ParseContext();\n        context.set(Parser.class, this);\n        parse(tis, handler, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ]
+  },
+  "full_method_info": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n    ParseContext context = new ParseContext();\n    context.set(Parser.class, this);\n    parse(tis, handler, metadata, context);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

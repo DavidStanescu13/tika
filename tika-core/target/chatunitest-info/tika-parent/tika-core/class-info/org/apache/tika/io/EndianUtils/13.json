@@ -1,0 +1,26 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getShortLE",
+  "brief": "public static short getShortLE(byte[] data, int offset){}",
+  "methodSignature": "getShortLE(byte[], int)",
+  "sourceCode": "public static short getShortLE(byte[] data, int offset) {\n        return (short) getUShortLE(data, offset);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.EndianUtils": [
+      "getUShortLE(byte[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a LE short value from a byte array\n *\n * @param data   the byte array\n * @param offset a starting offset into the byte array\n * @return the short (16-bit) value\n */\npublic static short getShortLE(byte[] data, int offset) {\n    return (short) getUShortLE(data, offset);\n}",
+  "method_comment": "\n     * Get a LE short value from a byte array\n     *\n     * @param data   the byte array\n     * @param offset a starting offset into the byte array\n     * @return the short (16-bit) value\n     ",
+  "method_annotation": ""
+}

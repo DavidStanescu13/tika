@@ -1,0 +1,18 @@
+{
+  "className": "TextContentHandler",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument() throws SAXException{}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() throws SAXException {\n        delegate.startDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void startDocument() throws SAXException {\n    delegate.startDocument();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "hasFile",
+  "brief": "public boolean hasFile(){}",
+  "methodSignature": "hasFile()",
+  "sourceCode": "public boolean hasFile() {\n        TikaInputSource source = inputSource();\n        return source != null && source.hasPath();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "inputSource()"
+    ],
+    "org.apache.tika.io.TikaInputSource": [
+      "hasPath()"
+    ]
+  },
+  "full_method_info": "public boolean hasFile() {\n    TikaInputSource source = inputSource();\n    return source != null && source.hasPath();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

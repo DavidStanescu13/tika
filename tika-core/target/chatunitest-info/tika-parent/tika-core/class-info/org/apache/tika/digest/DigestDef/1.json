@@ -1,0 +1,22 @@
+{
+  "className": "DigestDef",
+  "methodName": "setAlgorithm",
+  "brief": "public void setAlgorithm(Algorithm algorithm){}",
+  "methodSignature": "setAlgorithm(Algorithm)",
+  "sourceCode": "public void setAlgorithm(Algorithm algorithm) {\n        this.algorithm = algorithm;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Algorithm"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.digest.DigestDef.Algorithm": []
+  },
+  "full_method_info": "public void setAlgorithm(Algorithm algorithm) {\n    this.algorithm = algorithm;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

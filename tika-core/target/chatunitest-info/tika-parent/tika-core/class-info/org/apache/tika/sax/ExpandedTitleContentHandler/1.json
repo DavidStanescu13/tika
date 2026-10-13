@@ -1,0 +1,28 @@
+{
+  "className": "ExpandedTitleContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes atts)\n            throws SAXException {\n        super.startElement(uri, localName, qName, atts);\n        if (TITLE_TAG.equalsIgnoreCase(localName) && XHTMLContentHandler.XHTML.equals(uri)) {\n            isTitleTagOpen = true;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "equalsIgnoreCase(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n    super.startElement(uri, localName, qName, atts);\n    if (TITLE_TAG.equalsIgnoreCase(localName) && XHTMLContentHandler.XHTML.equals(uri)) {\n        isTitleTagOpen = true;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

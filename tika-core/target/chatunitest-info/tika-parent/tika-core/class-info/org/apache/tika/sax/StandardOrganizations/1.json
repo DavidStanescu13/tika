@@ -1,0 +1,25 @@
+{
+  "className": "StandardOrganizations",
+  "methodName": "getOrganzationsRegex",
+  "brief": "public static String getOrganzationsRegex(){}",
+  "methodSignature": "getOrganzationsRegex()",
+  "sourceCode": "public static String getOrganzationsRegex() {\n\n        return \"(\" + String.join(\"|\", organizations.keySet()) + \")\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "join(CharSequence, CharSequence>)"
+    ],
+    "java.util.Map": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the regular expression containing the most important technical standard\n * organizations.\n *\n * @return the regular expression containing the most important technical standard\n * organizations.\n */\npublic static String getOrganzationsRegex() {\n    return \"(\" + String.join(\"|\", organizations.keySet()) + \")\";\n}",
+  "method_comment": "\n     * Returns the regular expression containing the most important technical standard\n     * organizations.\n     *\n     * @return the regular expression containing the most important technical standard\n     * organizations.\n     ",
+  "method_annotation": ""
+}

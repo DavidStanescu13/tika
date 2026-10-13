@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getCommand",
+  "brief": "public String[] getCommand(){}",
+  "methodSignature": "getCommand()",
+  "sourceCode": "public String[] getCommand() {\n        return command;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the command to be run. This can include either of\n * {@link ExternalParser#INPUT_FILE_TOKEN} or\n * {@link ExternalParser#OUTPUT_FILE_TOKEN} if the command\n * needs filenames.\n *\n * @return\n */\npublic String[] getCommand() {\n    return command;\n}",
+  "method_comment": "\n     * Gets the command to be run. This can include either of\n     * {@link ExternalParser#INPUT_FILE_TOKEN} or\n     * {@link ExternalParser#OUTPUT_FILE_TOKEN} if the command\n     * needs filenames.\n     *\n     * @return\n     ",
+  "method_annotation": ""
+}

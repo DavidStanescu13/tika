@@ -1,0 +1,34 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "decorateHandler",
+  "brief": "private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata,\r\n                                           ParseContext context,\r\n                                           AutoDetectParserConfig autoDetectParserConfig){}",
+  "methodSignature": "decorateHandler(ContentHandler, Metadata, ParseContext, AutoDetectParserConfig)",
+  "sourceCode": "private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata,\n                                           ParseContext context,\n                                           AutoDetectParserConfig autoDetectParserConfig) {\n        if (context.get(RecursiveParserWrapper.RecursivelySecureContentHandler.class) != null) {\n            //using the recursiveparserwrapper. we should decorate this handler\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory()\n                    .decorate(handler, metadata, context);\n        }\n        ParseRecord parseRecord = context.get(ParseRecord.class);\n        if (parseRecord == null || parseRecord.getDepth() == 0) {\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory()\n                    .decorate(handler, metadata, context);\n        }\n        //else do not decorate\n        return handler;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata",
+    "ParseContext",
+    "AutoDetectParserConfig"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.AutoDetectParserConfig": [
+      "getContentHandlerDecoratorFactory()"
+    ],
+    "org.apache.tika.parser.ParseRecord": [
+      "getDepth()"
+    ]
+  },
+  "full_method_info": "private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata, ParseContext context, AutoDetectParserConfig autoDetectParserConfig) {\n    if (context.get(RecursiveParserWrapper.RecursivelySecureContentHandler.class) != null) {\n        // using the recursiveparserwrapper. we should decorate this handler\n        return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n    }\n    ParseRecord parseRecord = context.get(ParseRecord.class);\n    if (parseRecord == null || parseRecord.getDepth() == 0) {\n        return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n    }\n    // else do not decorate\n    return handler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

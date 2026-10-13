@@ -1,0 +1,24 @@
+{
+  "className": "Output",
+  "methodName": "write",
+  "brief": "void write(char[] ch, int start, int length) throws SAXException;",
+  "methodSignature": "write(char[], int, int)",
+  "sourceCode": "void write(char[] ch, int start, int length) throws SAXException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "void write(char[] ch, int start, int length) throws SAXException;",
+  "method_comment": "",
+  "method_annotation": ""
+}

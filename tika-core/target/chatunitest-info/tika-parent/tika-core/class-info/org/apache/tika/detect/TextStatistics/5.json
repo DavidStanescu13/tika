@@ -1,0 +1,23 @@
+{
+  "className": "TextStatistics",
+  "methodName": "countControl",
+  "brief": "public int countControl(){}",
+  "methodSignature": "countControl()",
+  "sourceCode": "public int countControl() {\n        return count(0, 0x20) - countSafeControl();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TextStatistics": [
+      "count(int, int)",
+      "countSafeControl()"
+    ]
+  },
+  "full_method_info": "/**\n * Counts control characters (i.e. < 0x20, excluding tab, CR, LF,\n * page feed and escape).\n * <p>\n * This definition of control characters is based on section 4 of the\n * \"Content-Type Processing Model\" Internet-draft\n * (<a href=\"http://webblaze.cs.berkeley.edu/2009/mime-sniff/mime-sniff.txt\"\n * >draft-abarth-mime-sniff-01</a>).\n * <pre>\n * +-------------------------+\n * | Binary data byte ranges |\n * +-------------------------+\n * | 0x00 -- 0x08            |\n * | 0x0B                    |\n * | 0x0E -- 0x1A            |\n * | 0x1C -- 0x1F            |\n * +-------------------------+\n * </pre>\n *\n * @return count of control characters\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-154\">TIKA-154</a>\n */\npublic int countControl() {\n    return count(0, 0x20) - countSafeControl();\n}",
+  "method_comment": "\n     * Counts control characters (i.e. < 0x20, excluding tab, CR, LF,\n     * page feed and escape).\n     * <p>\n     * This definition of control characters is based on section 4 of the\n     * \"Content-Type Processing Model\" Internet-draft\n     * (<a href=\"http://webblaze.cs.berkeley.edu/2009/mime-sniff/mime-sniff.txt\"\n     * >draft-abarth-mime-sniff-01</a>).\n     * <pre>\n     * +-------------------------+\n     * | Binary data byte ranges |\n     * +-------------------------+\n     * | 0x00 -- 0x08            |\n     * | 0x0B                    |\n     * | 0x0E -- 0x1A            |\n     * | 0x1C -- 0x1F            |\n     * +-------------------------+\n     * </pre>\n     *\n     * @return count of control characters\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-154\">TIKA-154</a>\n     ",
+  "method_annotation": ""
+}

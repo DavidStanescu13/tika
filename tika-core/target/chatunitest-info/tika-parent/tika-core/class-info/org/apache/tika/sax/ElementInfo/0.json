@@ -1,0 +1,30 @@
+{
+  "className": "ElementInfo",
+  "methodName": "getPrefix",
+  "brief": "public String getPrefix(String uri) throws SAXException{}",
+  "methodSignature": "getPrefix(String)",
+  "sourceCode": "public String getPrefix(String uri) throws SAXException {\n            String prefix = namespaces.get(uri);\n            if (prefix != null) {\n                return prefix;\n            } else if (parent != null) {\n                return parent.getPrefix(uri);\n            } else if (uri == null || uri.isEmpty()) {\n                return \"\";\n            } else {\n                throw new SAXException(\"Namespace \" + uri + \" not declared\");\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "org.apache.tika.sax.ToXMLContentHandler.ElementInfo": [
+      "getPrefix(String)"
+    ]
+  },
+  "full_method_info": "public String getPrefix(String uri) throws SAXException {\n    String prefix = namespaces.get(uri);\n    if (prefix != null) {\n        return prefix;\n    } else if (parent != null) {\n        return parent.getPrefix(uri);\n    } else if (uri == null || uri.isEmpty()) {\n        return \"\";\n    } else {\n        throw new SAXException(\"Namespace \" + uri + \" not declared\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

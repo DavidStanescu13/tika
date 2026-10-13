@@ -1,0 +1,26 @@
+{
+  "className": "TaggedContentHandler",
+  "methodName": "throwIfCauseOf",
+  "brief": "public void throwIfCauseOf(Exception exception) throws SAXException{}",
+  "methodSignature": "throwIfCauseOf(Exception)",
+  "sourceCode": "public void throwIfCauseOf(Exception exception) throws SAXException {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            if (this == tagged.getTag()) {\n                throw tagged.getCause();\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Exception"
+  ],
+  "dependentMethods": {
+    "java.lang.Exception": [],
+    "org.apache.tika.sax.TaggedSAXException": [
+      "getCause()",
+      "getTag()"
+    ]
+  },
+  "full_method_info": "/**\n * Re-throws the original exception thrown by this handler. This method\n * first checks whether the given exception is a {@link TaggedSAXException}\n * wrapper created by this decorator, and then unwraps and throws the\n * original wrapped exception. Returns normally if the exception was\n * not thrown by this handler.\n *\n * @param exception an exception\n * @throws SAXException original exception, if any, thrown by this handler\n */\npublic void throwIfCauseOf(Exception exception) throws SAXException {\n    if (exception instanceof TaggedSAXException) {\n        TaggedSAXException tagged = (TaggedSAXException) exception;\n        if (this == tagged.getTag()) {\n            throw tagged.getCause();\n        }\n    }\n}",
+  "method_comment": "\n     * Re-throws the original exception thrown by this handler. This method\n     * first checks whether the given exception is a {@link TaggedSAXException}\n     * wrapper created by this decorator, and then unwraps and throws the\n     * original wrapped exception. Returns normally if the exception was\n     * not thrown by this handler.\n     *\n     * @param exception an exception\n     * @throws SAXException original exception, if any, thrown by this handler\n     ",
+  "method_annotation": ""
+}

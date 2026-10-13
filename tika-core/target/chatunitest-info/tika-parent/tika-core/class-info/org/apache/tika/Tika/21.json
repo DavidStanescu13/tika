@@ -1,0 +1,32 @@
+{
+  "className": "Tika",
+  "methodName": "parseToString",
+  "brief": "private String parseToString(InputStream stream, Metadata metadata, int maxLength,\r\n                                 ParseContext context) throws IOException, TikaException{}",
+  "methodSignature": "parseToString(InputStream, Metadata, int, ParseContext)",
+  "sourceCode": "private String parseToString(InputStream stream, Metadata metadata, int maxLength,\n                                 ParseContext context) throws IOException, TikaException {\n        WriteOutContentHandler handler = new WriteOutContentHandler(maxLength);\n        context.set(Parser.class, parser);\n        try (TikaInputStream tis = TikaInputStream.get(stream)) {\n            parser.parse(tis, new BodyContentHandler(handler), metadata, context);\n        } catch (SAXException e) {\n            if (!WriteLimitReachedException.isWriteLimitReached(e)) {\n                // This should never happen with BodyContentHandler...\n                throw new TikaException(\"Unexpected SAX processing failure\", e);\n            }\n        }\n        return handler.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "Metadata",
+    "int",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream)"
+    ]
+  },
+  "full_method_info": "private String parseToString(InputStream stream, Metadata metadata, int maxLength, ParseContext context) throws IOException, TikaException {\n    WriteOutContentHandler handler = new WriteOutContentHandler(maxLength);\n    context.set(Parser.class, parser);\n    try (TikaInputStream tis = TikaInputStream.get(stream)) {\n        parser.parse(tis, new BodyContentHandler(handler), metadata, context);\n    } catch (SAXException e) {\n        if (!WriteLimitReachedException.isWriteLimitReached(e)) {\n            // This should never happen with BodyContentHandler...\n            throw new TikaException(\"Unexpected SAX processing failure\", e);\n        }\n    }\n    return handler.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

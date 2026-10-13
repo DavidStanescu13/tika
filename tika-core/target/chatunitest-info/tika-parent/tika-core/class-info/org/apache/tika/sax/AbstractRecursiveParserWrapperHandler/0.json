@@ -1,0 +1,22 @@
+{
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "methodName": "createHandler",
+  "brief": "public ContentHandler createHandler(){}",
+  "methodSignature": "createHandler()",
+  "sourceCode": "public ContentHandler createHandler() {\n        return contentHandlerFactory.createHandler();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerFactory": [
+      "createHandler()"
+    ]
+  },
+  "full_method_info": "public ContentHandler createHandler() {\n    return contentHandlerFactory.createHandler();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

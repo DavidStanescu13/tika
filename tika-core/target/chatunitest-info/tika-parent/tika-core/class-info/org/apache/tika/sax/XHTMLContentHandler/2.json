@@ -1,0 +1,22 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "lazyStartHead",
+  "brief": "private void lazyStartHead() throws SAXException{}",
+  "methodSignature": "lazyStartHead()",
+  "sourceCode": "private void lazyStartHead() throws SAXException {\n        if (!headStarted) {\n            headStarted = true;\n\n            // Call directly, so we don't go through our startElement(), which will\n            // ignore these elements.\n            AttributesImpl htmlAttrs = new AttributesImpl();\n            String lang = metadata.get(Metadata.CONTENT_LANGUAGE);\n            if (lang != null) {\n                htmlAttrs.addAttribute(\"\", \"lang\", \"lang\", \"CDATA\", lang);\n            }\n            super.startElement(XHTML, \"html\", \"html\", htmlAttrs);\n            newline();\n            super.startElement(XHTML, \"head\", \"head\", EMPTY_ATTRIBUTES);\n            newline();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ]
+  },
+  "full_method_info": "/**\n * Generates the following XHTML prefix when called for the first time:\n * <pre>\n * &lt;html&gt;\n *   &lt;head&gt;\n *     &lt;title&gt;...&lt;/title&gt;\n *   &lt;/head&gt;\n *   &lt;body&gt;\n * </pre>\n */\nprivate void lazyStartHead() throws SAXException {\n    if (!headStarted) {\n        headStarted = true;\n        // Call directly, so we don't go through our startElement(), which will\n        // ignore these elements.\n        AttributesImpl htmlAttrs = new AttributesImpl();\n        String lang = metadata.get(Metadata.CONTENT_LANGUAGE);\n        if (lang != null) {\n            htmlAttrs.addAttribute(\"\", \"lang\", \"lang\", \"CDATA\", lang);\n        }\n        super.startElement(XHTML, \"html\", \"html\", htmlAttrs);\n        newline();\n        super.startElement(XHTML, \"head\", \"head\", EMPTY_ATTRIBUTES);\n        newline();\n    }\n}",
+  "method_comment": "\n     * Generates the following XHTML prefix when called for the first time:\n     * <pre>\n     * &lt;html&gt;\n     *   &lt;head&gt;\n     *     &lt;title&gt;...&lt;/title&gt;\n     *   &lt;/head&gt;\n     *   &lt;body&gt;\n     * </pre>\n     ",
+  "method_annotation": ""
+}

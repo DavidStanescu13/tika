@@ -1,0 +1,107 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.CaptureGroupMetadataFilter",
+  "className": "CaptureGroupMetadataFilter",
+  "index": 129,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[Initializable]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class CaptureGroupMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;",
+    "import java.util.regex.PatternSyntaxException;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.Initializable;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.exception.TikaConfigException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.utils.StringUtils;"
+  ],
+  "fields": [
+    "private String regexString;",
+    "private Pattern regex;",
+    "private String sourceField;",
+    "private String targetField;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [
+    "Initializable"
+  ],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "setRegex(String)": "1",
+    "setSourceField(String)": "2",
+    "setTargetField(String)": "3",
+    "getRegex()": "4",
+    "getSourceField()": "5",
+    "getTargetField()": "6",
+    "initialize()": "7",
+    "CaptureGroupMetadataFilter()": "8",
+    "CaptureGroupMetadataFilter(Config)": "9",
+    "CaptureGroupMetadataFilter(JsonConfig)": "10"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void filter(Metadata metadata){}",
+    "public void setRegex(String regex){}",
+    "public void setSourceField(String sourceField){}",
+    "public void setTargetField(String targetField){}",
+    "public String getRegex(){}",
+    "public String getSourceField(){}",
+    "public String getTargetField(){}",
+    "@Override\r\n    public void initialize() throws TikaConfigException{}",
+    "public CaptureGroupMetadataFilter(){}",
+    "public CaptureGroupMetadataFilter(Config config) throws TikaConfigException{}",
+    "public CaptureGroupMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException{}"
+  ],
+  "constructorSigs": [
+    "CaptureGroupMetadataFilter()",
+    "CaptureGroupMetadataFilter(Config)",
+    "CaptureGroupMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public CaptureGroupMetadataFilter(){}",
+    "public CaptureGroupMetadataFilter(Config config) throws TikaConfigException{}",
+    "public CaptureGroupMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException{}"
+  ],
+  "getterSetterSigs": [
+    "setRegex(String)",
+    "setSourceField(String)",
+    "setTargetField(String)",
+    "getRegex()",
+    "getSourceField()",
+    "getTargetField()"
+  ],
+  "getterSetterBrief": [
+    "public void setRegex(String regex){}",
+    "public void setSourceField(String sourceField){}",
+    "public void setTargetField(String targetField){}",
+    "public String getRegex(){}",
+    "public String getSourceField(){}",
+    "public String getTargetField(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.CaptureGroupMetadataFilter.Config": [],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "compile(String)"
+    ],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport java.util.regex.PatternSyntaxException;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.Initializable;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.exception.TikaConfigException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.utils.StringUtils;\n\n/**\n * This filter runs a regex against the first value in the \"sourceField\".\n * If the pattern matches, it extracts the first group of the first match and\n * set's the \"targetField\"'s value to that first group.\n * <p/>\n * If there is a match, this will overwrite whatever value is in the\n * \"targetField\".\n * <p/>\n * If there is not a match, this filter will be a no-op.\n * <p/>\n * If there are multiple matches, this filter will capture only the first.\n * Open a ticket if you need different behavior.\n * <p/>\n * If the source field has multiple values, this will run the regex\n * against only the first value.\n * <p/>\n * If the source field does not exist, this filter will be a no-op.\n * <p/>\n * If the target field is the same value as the source field, this filter\n * will overwrite the value in that field. Again, if there are multiple\n * values in that field, those will all be overwritten.\n */\n@TikaComponent\npublic class CaptureGroupMetadataFilter extends MetadataFilterBase implements Initializable {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String regex;\n\n        public String sourceField;\n\n        public String targetField;\n    }\n\n    private String regexString;\n\n    private Pattern regex;\n\n    private String sourceField;\n\n    private String targetField;\n\n    public CaptureGroupMetadataFilter() {\n    }\n\n    public CaptureGroupMetadataFilter(Config config) throws TikaConfigException {\n        this.regexString = config.regex;\n        this.sourceField = config.sourceField;\n        this.targetField = config.targetField;\n        // Validate and initialize\n        if (StringUtils.isBlank(sourceField)) {\n            throw new TikaConfigException(\"Must specify a 'sourceField'\");\n        }\n        if (StringUtils.isBlank(targetField)) {\n            throw new TikaConfigException(\"Must specify a 'targetField'\");\n        }\n        try {\n            this.regex = Pattern.compile(regexString);\n        } catch (PatternSyntaxException e) {\n            throw new TikaConfigException(\"Couldn't parse regex\", e);\n        }\n    }\n\n    public CaptureGroupMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        String val = metadata.get(sourceField);\n        if (StringUtils.isBlank(val)) {\n            return;\n        }\n        Matcher m = regex.matcher(val);\n        if (m.find()) {\n            // target field name is operator-configured; may legitimately be a reserved key\n            metadata.setTrusted(targetField, m.group(1));\n        }\n    }\n\n    public void setRegex(String regex) {\n        this.regexString = regex;\n    }\n\n    public void setSourceField(String sourceField) {\n        this.sourceField = sourceField;\n    }\n\n    public void setTargetField(String targetField) {\n        this.targetField = targetField;\n    }\n\n    public String getRegex() {\n        return regexString;\n    }\n\n    public String getSourceField() {\n        return sourceField;\n    }\n\n    public String getTargetField() {\n        return targetField;\n    }\n\n    @Override\n    public void initialize() throws TikaConfigException {\n        try {\n            regex = Pattern.compile(regexString);\n        } catch (PatternSyntaxException e) {\n            throw new TikaConfigException(\"Couldn't parse regex\", e);\n        }\n        if (StringUtils.isBlank(sourceField)) {\n            throw new TikaConfigException(\"Must specify a 'sourceField'\");\n        }\n        if (StringUtils.isBlank(targetField)) {\n            throw new TikaConfigException(\"Must specify a 'targetField'\");\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This filter runs a regex against the first value in the \"sourceField\".\n * If the pattern matches, it extracts the first group of the first match and\n * set's the \"targetField\"'s value to that first group.\n * <p/>\n * If there is a match, this will overwrite whatever value is in the\n * \"targetField\".\n * <p/>\n * If there is not a match, this filter will be a no-op.\n * <p/>\n * If there are multiple matches, this filter will capture only the first.\n * Open a ticket if you need different behavior.\n * <p/>\n * If the source field has multiple values, this will run the regex\n * against only the first value.\n * <p/>\n * If the source field does not exist, this filter will be a no-op.\n * <p/>\n * If the target field is the same value as the source field, this filter\n * will overwrite the value in that field. Again, if there are multiple\n * values in that field, those will all be overwritten.\n */\n@TikaComponent\npublic class CaptureGroupMetadataFilter extends MetadataFilterBase implements Initializable {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String regex;\n\n        public String sourceField;\n\n        public String targetField;\n    }\n\n    private String regexString;\n\n    private Pattern regex;\n\n    private String sourceField;\n\n    private String targetField;\n\n    public CaptureGroupMetadataFilter() {\n    }\n\n    public CaptureGroupMetadataFilter(Config config) throws TikaConfigException {\n        this.regexString = config.regex;\n        this.sourceField = config.sourceField;\n        this.targetField = config.targetField;\n        // Validate and initialize\n        if (StringUtils.isBlank(sourceField)) {\n            throw new TikaConfigException(\"Must specify a 'sourceField'\");\n        }\n        if (StringUtils.isBlank(targetField)) {\n            throw new TikaConfigException(\"Must specify a 'targetField'\");\n        }\n        try {\n            this.regex = Pattern.compile(regexString);\n        } catch (PatternSyntaxException e) {\n            throw new TikaConfigException(\"Couldn't parse regex\", e);\n        }\n    }\n\n    public CaptureGroupMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        String val = metadata.get(sourceField);\n        if (StringUtils.isBlank(val)) {\n            return;\n        }\n        Matcher m = regex.matcher(val);\n        if (m.find()) {\n            // target field name is operator-configured; may legitimately be a reserved key\n            metadata.setTrusted(targetField, m.group(1));\n        }\n    }\n\n    public void setRegex(String regex) {\n        this.regexString = regex;\n    }\n\n    public void setSourceField(String sourceField) {\n        this.sourceField = sourceField;\n    }\n\n    public void setTargetField(String targetField) {\n        this.targetField = targetField;\n    }\n\n    public String getRegex() {\n        return regexString;\n    }\n\n    public String getSourceField() {\n        return sourceField;\n    }\n\n    public String getTargetField() {\n        return targetField;\n    }\n\n    @Override\n    public void initialize() throws TikaConfigException {\n        try {\n            regex = Pattern.compile(regexString);\n        } catch (PatternSyntaxException e) {\n            throw new TikaConfigException(\"Couldn't parse regex\", e);\n        }\n        if (StringUtils.isBlank(sourceField)) {\n            throw new TikaConfigException(\"Must specify a 'sourceField'\");\n        }\n        if (StringUtils.isBlank(targetField)) {\n            throw new TikaConfigException(\"Must specify a 'targetField'\");\n        }\n    }\n}",
+  "subClasses": []
+}

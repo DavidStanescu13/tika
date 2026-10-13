@@ -1,0 +1,47 @@
+{
+  "fullClassName": "org.apache.tika.digest.DigestHelper",
+  "className": "DigestHelper",
+  "index": 57,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.digest",
+  "packageDeclaration": "package org.apache.tika.digest;",
+  "classSignature": "public class DigestHelper",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.OutputStream;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import org.apache.tika.extractor.DefaultEmbeddedStreamTranslator;",
+    "import org.apache.tika.extractor.EmbeddedStreamTranslator;",
+    "import org.apache.tika.io.TemporaryResources;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final EmbeddedStreamTranslator EMBEDDED_STREAM_TRANSLATOR =\n            new DefaultEmbeddedStreamTranslator();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "maybeDigest(TikaInputStream, Metadata, ParseContext)": "0"
+  },
+  "methodsBrief": [
+    "public static void maybeDigest(TikaInputStream tis,\r\n                                   Metadata metadata,\r\n                                   ParseContext context) throws IOException{}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.digest;\n\nimport java.io.IOException;\nimport java.io.OutputStream;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport org.apache.tika.extractor.DefaultEmbeddedStreamTranslator;\nimport org.apache.tika.extractor.EmbeddedStreamTranslator;\nimport org.apache.tika.io.TemporaryResources;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Utility class for computing digests on streams.\n * <p>\n * The DigesterFactory is retrieved from ParseContext. Configure it via\n * the \"parse-context\" section in tika-config.json:\n * <pre>\n * \"parse-context\": {\n *   \"commons-digester-factory\": {\n *     \"digests\": [{ \"algorithm\": \"SHA256\" }],\n *     \"skipContainerDocumentDigest\": true\n *   }\n * }\n * </pre>\n */\npublic class DigestHelper {\n\n    private static final EmbeddedStreamTranslator EMBEDDED_STREAM_TRANSLATOR = new DefaultEmbeddedStreamTranslator();\n\n    /**\n     * Computes digests on the stream if a DigesterFactory is configured in ParseContext.\n     * <p>\n     * This is called directly from AutoDetectParser.parse() before type detection.\n     *\n     * @param tis      the TikaInputStream to digest\n     * @param metadata metadata to read depth from and write digests to\n     * @param context  parse context (should contain DigesterFactory, may contain SkipContainerDocumentDigest marker)\n     * @throws IOException if an I/O error occurs\n     */\n    public static void maybeDigest(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n        DigesterFactory digesterFactory = context.get(DigesterFactory.class);\n        if (digesterFactory == null) {\n            return;\n        }\n        // Get skip setting from factory or ParseContext marker\n        boolean skipContainer = digesterFactory.isSkipContainerDocumentDigest() || SkipContainerDocumentDigest.shouldSkip(context);\n        if (skipContainer) {\n            Integer depth = metadata.getInt(TikaCoreProperties.EMBEDDED_DEPTH);\n            if (depth == null || depth == 0) {\n                return;\n            }\n        }\n        Digester digester = digesterFactory.build();\n        // Handle embedded stream translation if needed (e.g., for OLE2 objects in TikaInputStream's\n        // open container). The translator consumes `tis` to produce the translated bytes that get\n        // digested, so we enableRewind() before and rewind() after — otherwise the caller (typically\n        // AutoDetectParser) would see an exhausted stream and fail its zero-byte probe (TIKA-XXXX).\n        if (EMBEDDED_STREAM_TRANSLATOR.shouldTranslate(tis, metadata)) {\n            tis.enableRewind();\n            try (TemporaryResources tmp = new TemporaryResources()) {\n                Path tmpBytes = tmp.createTempFile();\n                try (OutputStream os = Files.newOutputStream(tmpBytes)) {\n                    EMBEDDED_STREAM_TRANSLATOR.translate(tis, metadata, os);\n                }\n                try (TikaInputStream translated = TikaInputStream.get(tmpBytes)) {\n                    digester.digest(translated, metadata, context);\n                }\n            } finally {\n                tis.rewind();\n            }\n        } else {\n            digester.digest(tis, metadata, context);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Utility class for computing digests on streams.\n * <p>\n * The DigesterFactory is retrieved from ParseContext. Configure it via\n * the \"parse-context\" section in tika-config.json:\n * <pre>\n * \"parse-context\": {\n *   \"commons-digester-factory\": {\n *     \"digests\": [{ \"algorithm\": \"SHA256\" }],\n *     \"skipContainerDocumentDigest\": true\n *   }\n * }\n * </pre>\n */\npublic class DigestHelper {\n\n    private static final EmbeddedStreamTranslator EMBEDDED_STREAM_TRANSLATOR = new DefaultEmbeddedStreamTranslator();\n\n    /**\n     * Computes digests on the stream if a DigesterFactory is configured in ParseContext.\n     * <p>\n     * This is called directly from AutoDetectParser.parse() before type detection.\n     *\n     * @param tis      the TikaInputStream to digest\n     * @param metadata metadata to read depth from and write digests to\n     * @param context  parse context (should contain DigesterFactory, may contain SkipContainerDocumentDigest marker)\n     * @throws IOException if an I/O error occurs\n     */\n    public static void maybeDigest(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n        DigesterFactory digesterFactory = context.get(DigesterFactory.class);\n        if (digesterFactory == null) {\n            return;\n        }\n        // Get skip setting from factory or ParseContext marker\n        boolean skipContainer = digesterFactory.isSkipContainerDocumentDigest() || SkipContainerDocumentDigest.shouldSkip(context);\n        if (skipContainer) {\n            Integer depth = metadata.getInt(TikaCoreProperties.EMBEDDED_DEPTH);\n            if (depth == null || depth == 0) {\n                return;\n            }\n        }\n        Digester digester = digesterFactory.build();\n        // Handle embedded stream translation if needed (e.g., for OLE2 objects in TikaInputStream's\n        // open container). The translator consumes `tis` to produce the translated bytes that get\n        // digested, so we enableRewind() before and rewind() after — otherwise the caller (typically\n        // AutoDetectParser) would see an exhausted stream and fail its zero-byte probe (TIKA-XXXX).\n        if (EMBEDDED_STREAM_TRANSLATOR.shouldTranslate(tis, metadata)) {\n            tis.enableRewind();\n            try (TemporaryResources tmp = new TemporaryResources()) {\n                Path tmpBytes = tmp.createTempFile();\n                try (OutputStream os = Files.newOutputStream(tmpBytes)) {\n                    EMBEDDED_STREAM_TRANSLATOR.translate(tis, metadata, os);\n                }\n                try (TikaInputStream translated = TikaInputStream.get(tmpBytes)) {\n                    digester.digest(translated, metadata, context);\n                }\n            } finally {\n                tis.rewind();\n            }\n        } else {\n            digester.digest(tis, metadata, context);\n        }\n    }\n}",
+  "subClasses": []
+}

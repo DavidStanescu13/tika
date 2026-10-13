@@ -1,0 +1,20 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "setThrowOnWriteLimitReached",
+  "brief": "public void setThrowOnWriteLimitReached(boolean throwOnWriteLimitReached){}",
+  "methodSignature": "setThrowOnWriteLimitReached(boolean)",
+  "sourceCode": "public void setThrowOnWriteLimitReached(boolean throwOnWriteLimitReached) {\n        this.throwOnWriteLimitReached = throwOnWriteLimitReached;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether to throw an exception when write limit is reached.\n * @param throwOnWriteLimitReached true to throw, false to silently stop\n */\npublic void setThrowOnWriteLimitReached(boolean throwOnWriteLimitReached) {\n    this.throwOnWriteLimitReached = throwOnWriteLimitReached;\n}",
+  "method_comment": "\n     * Sets whether to throw an exception when write limit is reached.\n     * @param throwOnWriteLimitReached true to throw, false to silently stop\n     ",
+  "method_annotation": ""
+}

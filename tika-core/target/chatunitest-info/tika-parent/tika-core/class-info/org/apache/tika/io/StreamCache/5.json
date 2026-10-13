@@ -1,0 +1,41 @@
+{
+  "className": "StreamCache",
+  "methodName": "readAt",
+  "brief": "int readAt(long position, byte[] b, int off, int len) throws IOException{}",
+  "methodSignature": "readAt(long, byte[], int, int)",
+  "sourceCode": "int readAt(long position, byte[] b, int off, int len) throws IOException {\n        if (position < 0 || position >= totalSize) {\n            return -1;\n        }\n\n        int available = (int) Math.min(len, totalSize - position);\n\n        if (memoryBuffer != null) {\n            System.arraycopy(memoryBuffer, (int) position, b, off, available);\n            return available;\n        } else {\n            flushSpillStream();\n            try (RandomAccessFile raf = new RandomAccessFile(spillFile.toFile(), \"r\")) {\n                raf.seek(position);\n                return raf.read(b, off, available);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ],
+    "org.apache.tika.io.StreamCache": [
+      "flushSpillStream()"
+    ],
+    "java.nio.file.Path": [
+      "toFile()"
+    ],
+    "java.io.RandomAccessFile": [
+      "read(byte[], int, int)",
+      "seek(long)"
+    ]
+  },
+  "full_method_info": "/**\n * Read multiple bytes starting at the given position.\n */\nint readAt(long position, byte[] b, int off, int len) throws IOException {\n    if (position < 0 || position >= totalSize) {\n        return -1;\n    }\n    int available = (int) Math.min(len, totalSize - position);\n    if (memoryBuffer != null) {\n        System.arraycopy(memoryBuffer, (int) position, b, off, available);\n        return available;\n    } else {\n        flushSpillStream();\n        try (RandomAccessFile raf = new RandomAccessFile(spillFile.toFile(), \"r\")) {\n            raf.seek(position);\n            return raf.read(b, off, available);\n        }\n    }\n}",
+  "method_comment": "\n     * Read multiple bytes starting at the given position.\n     ",
+  "method_annotation": ""
+}

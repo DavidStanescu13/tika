@@ -1,0 +1,38 @@
+{
+  "className": "MagicDetector",
+  "methodName": "detect",
+  "brief": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n\n        tis.mark(offsetRangeEnd + length);\n        try {\n            int offset = 0;\n\n            // Skip bytes at the beginning, using skip() or read()\n            while (offset < offsetRangeBegin) {\n                long n = tis.skip(offsetRangeBegin - offset);\n                if (n > 0) {\n                    offset += n;\n                } else if (tis.read() != -1) {\n                    offset += 1;\n                } else {\n                    return MediaType.OCTET_STREAM;\n                }\n            }\n\n            // Fill in the comparison window\n            byte[] buffer = new byte[length + (offsetRangeEnd - offsetRangeBegin)];\n            int n = tis.read(buffer);\n            if (n > 0) {\n                offset += n;\n            }\n            while (n != -1 && offset < offsetRangeEnd + length) {\n                int bufferOffset = offset - offsetRangeBegin;\n                n = tis.read(buffer, bufferOffset, buffer.length - bufferOffset);\n                // increment offset - in case not all read (see testDetectStreamReadProblems)\n                if (n > 0) {\n                    offset += n;\n                }\n            }\n\n            // For non-regex, verify we have enough data\n            if (!isRegex && offset < offsetRangeBegin + length) {\n                return MediaType.OCTET_STREAM;\n            }\n\n            // Buffer starts at offsetRangeBegin, so search from 0 to (offsetRangeEnd - offsetRangeBegin)\n            if (matchesBuffer(buffer, 0, offsetRangeEnd - offsetRangeBegin)) {\n                return type;\n            }\n\n            return MediaType.OCTET_STREAM;\n        } finally {\n            tis.reset();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "skip(long)",
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "read()",
+      "read(byte[], int, int)",
+      "read(byte[])"
+    ],
+    "org.apache.tika.detect.MagicDetector": [
+      "matchesBuffer(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * @param tis      document input stream, or <code>null</code>\n * @param metadata ignored\n * @param parseContext the parse context\n */\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    if (tis == null) {\n        return MediaType.OCTET_STREAM;\n    }\n    tis.mark(offsetRangeEnd + length);\n    try {\n        int offset = 0;\n        // Skip bytes at the beginning, using skip() or read()\n        while (offset < offsetRangeBegin) {\n            long n = tis.skip(offsetRangeBegin - offset);\n            if (n > 0) {\n                offset += n;\n            } else if (tis.read() != -1) {\n                offset += 1;\n            } else {\n                return MediaType.OCTET_STREAM;\n            }\n        }\n        // Fill in the comparison window\n        byte[] buffer = new byte[length + (offsetRangeEnd - offsetRangeBegin)];\n        int n = tis.read(buffer);\n        if (n > 0) {\n            offset += n;\n        }\n        while (n != -1 && offset < offsetRangeEnd + length) {\n            int bufferOffset = offset - offsetRangeBegin;\n            n = tis.read(buffer, bufferOffset, buffer.length - bufferOffset);\n            // increment offset - in case not all read (see testDetectStreamReadProblems)\n            if (n > 0) {\n                offset += n;\n            }\n        }\n        // For non-regex, verify we have enough data\n        if (!isRegex && offset < offsetRangeBegin + length) {\n            return MediaType.OCTET_STREAM;\n        }\n        // Buffer starts at offsetRangeBegin, so search from 0 to (offsetRangeEnd - offsetRangeBegin)\n        if (matchesBuffer(buffer, 0, offsetRangeEnd - offsetRangeBegin)) {\n            return type;\n        }\n        return MediaType.OCTET_STREAM;\n    } finally {\n        tis.reset();\n    }\n}",
+  "method_comment": "\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata ignored\n     * @param parseContext the parse context\n     ",
+  "method_annotation": ""
+}

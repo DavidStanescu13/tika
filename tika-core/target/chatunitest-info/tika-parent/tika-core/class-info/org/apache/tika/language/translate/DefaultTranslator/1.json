@@ -1,0 +1,28 @@
+{
+  "className": "DefaultTranslator",
+  "methodName": "getFirstAvailable",
+  "brief": "private static Translator getFirstAvailable(ServiceLoader loader){}",
+  "methodSignature": "getFirstAvailable(ServiceLoader)",
+  "sourceCode": "private static Translator getFirstAvailable(ServiceLoader loader) {\n        for (Translator t : getDefaultTranslators(loader)) {\n            // Skip DefaultTranslator to avoid infinite recursion\n            if (t instanceof DefaultTranslator) {\n                continue;\n            }\n            if (t.isAvailable()) {\n                return t;\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.language.translate.DefaultTranslator": [
+      "getDefaultTranslators(ServiceLoader)"
+    ],
+    "org.apache.tika.language.translate.Translator": [
+      "isAvailable()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the first available translator, or null if none are\n */\nprivate static Translator getFirstAvailable(ServiceLoader loader) {\n    for (Translator t : getDefaultTranslators(loader)) {\n        // Skip DefaultTranslator to avoid infinite recursion\n        if (t instanceof DefaultTranslator) {\n            continue;\n        }\n        if (t.isAvailable()) {\n            return t;\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * Returns the first available translator, or null if none are\n     ",
+  "method_annotation": ""
+}

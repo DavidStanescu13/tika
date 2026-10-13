@@ -1,0 +1,22 @@
+{
+  "className": "GeoPointMetadataFilter",
+  "methodName": "setGeoPointFieldName",
+  "brief": "public void setGeoPointFieldName(String geoPointFieldName){}",
+  "methodSignature": "setGeoPointFieldName(String)",
+  "sourceCode": "public void setGeoPointFieldName(String geoPointFieldName) {\n        this.geoPointFieldName = geoPointFieldName;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Set the field for the concatenated LATITUDE,LONGITUDE string.\n * The default if &dquot;location&dquot;\n *\n * @param geoPointFieldName field name to use for the geopoint field\n */\npublic void setGeoPointFieldName(String geoPointFieldName) {\n    this.geoPointFieldName = geoPointFieldName;\n}",
+  "method_comment": "\n     * Set the field for the concatenated LATITUDE,LONGITUDE string.\n     * The default if &dquot;location&dquot;\n     *\n     * @param geoPointFieldName field name to use for the geopoint field\n     ",
+  "method_annotation": ""
+}

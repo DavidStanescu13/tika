@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "getType",
+  "brief": "public MediaType getType(){}",
+  "methodSignature": "getType()",
+  "sourceCode": "public MediaType getType() {\n        return type;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the normalized media type name.\n *\n * @return media type\n */\npublic MediaType getType() {\n    return type;\n}",
+  "method_comment": "\n     * Returns the normalized media type name.\n     *\n     * @return media type\n     ",
+  "method_annotation": ""
+}

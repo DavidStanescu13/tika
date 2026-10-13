@@ -1,0 +1,25 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(InputStream... inputStreams)\r\n            throws IOException, MimeTypeException{}",
+  "methodSignature": "create(InputStream[])",
+  "sourceCode": "public static MimeTypes create(InputStream... inputStreams)\n            throws IOException, MimeTypeException {\n        MimeTypes mimeTypes = new MimeTypes();\n        MimeTypesReader reader = new MimeTypesReader(mimeTypes);\n        for (InputStream inputStream : inputStreams) {\n            reader.read(inputStream);\n        }\n        mimeTypes.init();\n        return mimeTypes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream...": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "init()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates and returns a MimeTypes instance from the specified input stream.\n * Does not close the input stream(s).\n *\n * @throws IOException       if the stream can not be read\n * @throws MimeTypeException if the type configuration is invalid\n */\npublic static MimeTypes create(InputStream... inputStreams) throws IOException, MimeTypeException {\n    MimeTypes mimeTypes = new MimeTypes();\n    MimeTypesReader reader = new MimeTypesReader(mimeTypes);\n    for (InputStream inputStream : inputStreams) {\n        reader.read(inputStream);\n    }\n    mimeTypes.init();\n    return mimeTypes;\n}",
+  "method_comment": "\n     * Creates and returns a MimeTypes instance from the specified input stream.\n     * Does not close the input stream(s).\n     *\n     * @throws IOException       if the stream can not be read\n     * @throws MimeTypeException if the type configuration is invalid\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "Matcher",
+  "methodName": "matchesText",
+  "brief": "public boolean matchesText(){}",
+  "methodSignature": "matchesText()",
+  "sourceCode": "public boolean matchesText() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns <code>true</code> if the XPath expression matches all text\n * nodes whose parent is the element associated with this evaluation\n * state.\n *\n * @return XPath evaluation state for text children of this element\n */\npublic boolean matchesText() {\n    return false;\n}",
+  "method_comment": "\n     * Returns <code>true</code> if the XPath expression matches all text\n     * nodes whose parent is the element associated with this evaluation\n     * state.\n     *\n     * @return XPath evaluation state for text children of this element\n     ",
+  "method_annotation": ""
+}

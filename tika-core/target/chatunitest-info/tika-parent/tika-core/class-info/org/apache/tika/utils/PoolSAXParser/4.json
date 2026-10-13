@@ -1,0 +1,23 @@
+{
+  "className": "PoolSAXParser",
+  "methodName": "PoolSAXParser",
+  "brief": "PoolSAXParser(int poolGeneration, SAXParser saxParser){}",
+  "methodSignature": "PoolSAXParser(int, SAXParser)",
+  "sourceCode": "PoolSAXParser(int poolGeneration, SAXParser saxParser) {\n            this.poolGeneration = poolGeneration;\n            this.saxParser = saxParser;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "SAXParser"
+  ],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParser": []
+  },
+  "full_method_info": "PoolSAXParser(int poolGeneration, SAXParser saxParser) {\n    this.poolGeneration = poolGeneration;\n    this.saxParser = saxParser;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

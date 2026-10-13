@@ -1,0 +1,24 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "mark",
+  "brief": "@Override\r\n    public void mark(int readLimit){}",
+  "methodSignature": "mark(int)",
+  "sourceCode": "@Override\n    public void mark(int readLimit) {\n        in.mark(readLimit);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "mark(int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void mark(int readLimit) {\n    in.mark(readLimit);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

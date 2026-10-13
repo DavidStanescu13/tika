@@ -1,0 +1,18 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "getType",
+  "brief": "public HANDLER_TYPE getType(){}",
+  "methodSignature": "getType()",
+  "sourceCode": "public HANDLER_TYPE getType() {\n        return type;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return handler type used by this factory\n */\npublic HANDLER_TYPE getType() {\n    return type;\n}",
+  "method_comment": "\n     * @return handler type used by this factory\n     ",
+  "method_annotation": ""
+}

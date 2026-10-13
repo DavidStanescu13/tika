@@ -1,0 +1,26 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "normalizeMediaType",
+  "brief": "public static String normalizeMediaType(String mediaType){}",
+  "methodSignature": "normalizeMediaType(String)",
+  "sourceCode": "public static String normalizeMediaType(String mediaType) {\n        if (mediaType != null && mediaType.startsWith(\"image/ocr-\")) {\n            return \"image/\" + mediaType.substring(\"image/ocr-\".length());\n        }\n        return mediaType;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Normalizes internal OCR routing media types (e.g., {@code image/ocr-png})\n * back to standard media types (e.g., {@code image/png}).\n * Returns the input unchanged if it is not an OCR routing type.\n *\n * @param mediaType the media type string\n * @return the normalized media type string, or the original if no normalization needed\n */\npublic static String normalizeMediaType(String mediaType) {\n    if (mediaType != null && mediaType.startsWith(\"image/ocr-\")) {\n        return \"image/\" + mediaType.substring(\"image/ocr-\".length());\n    }\n    return mediaType;\n}",
+  "method_comment": "\n     * Normalizes internal OCR routing media types (e.g., {@code image/ocr-png})\n     * back to standard media types (e.g., {@code image/png}).\n     * Returns the input unchanged if it is not an OCR routing type.\n     *\n     * @param mediaType the media type string\n     * @return the normalized media type string, or the original if no normalization needed\n     ",
+  "method_annotation": ""
+}

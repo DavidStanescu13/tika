@@ -1,0 +1,28 @@
+{
+  "className": "NamedAttributeMatcher",
+  "methodName": "matchesAttribute",
+  "brief": "public boolean matchesAttribute(String namespace, String name){}",
+  "methodSignature": "matchesAttribute(String, String)",
+  "sourceCode": "public boolean matchesAttribute(String namespace, String name) {\n        return Objects.equals(namespace, this.namespace) && name.equals(this.name);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Objects": [
+      "equals(Object, Object)"
+    ]
+  },
+  "full_method_info": "public boolean matchesAttribute(String namespace, String name) {\n    return Objects.equals(namespace, this.namespace) && name.equals(this.name);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

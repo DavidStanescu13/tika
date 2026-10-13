@@ -1,0 +1,30 @@
+{
+  "className": "StringUtils",
+  "methodName": "joinWith",
+  "brief": "public static String joinWith(String delimiter, List<String> lines){}",
+  "methodSignature": "joinWith(String, List)",
+  "sourceCode": "public static String joinWith(String delimiter, List<String> lines) {\n        if (lines.size() == 0) {\n            return EMPTY;\n        }\n        int i = 0;\n        StringBuilder sb = new StringBuilder();\n        for (String line : lines) {\n            if (i++ > 0) {\n                sb.append(delimiter);\n            }\n            sb.append(line);\n        }\n        return sb.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "size()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "public static String joinWith(String delimiter, List<String> lines) {\n    if (lines.size() == 0) {\n        return EMPTY;\n    }\n    int i = 0;\n    StringBuilder sb = new StringBuilder();\n    for (String line : lines) {\n        if (i++ > 0) {\n            sb.append(delimiter);\n        }\n        sb.append(line);\n    }\n    return sb.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

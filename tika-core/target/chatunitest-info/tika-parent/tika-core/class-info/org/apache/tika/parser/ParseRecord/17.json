@@ -1,0 +1,20 @@
+{
+  "className": "ParseRecord",
+  "methodName": "setEmbeddedCountLimitReached",
+  "brief": "public void setEmbeddedCountLimitReached(boolean embeddedCountLimitReached){}",
+  "methodSignature": "setEmbeddedCountLimitReached(boolean)",
+  "sourceCode": "public void setEmbeddedCountLimitReached(boolean embeddedCountLimitReached) {\n        this.embeddedCountLimitReached = embeddedCountLimitReached;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the flag indicating the embedded count limit was reached.\n *\n * @param embeddedCountLimitReached true if count limit was reached\n */\npublic void setEmbeddedCountLimitReached(boolean embeddedCountLimitReached) {\n    this.embeddedCountLimitReached = embeddedCountLimitReached;\n}",
+  "method_comment": "\n     * Sets the flag indicating the embedded count limit was reached.\n     *\n     * @param embeddedCountLimitReached true if count limit was reached\n     ",
+  "method_annotation": ""
+}

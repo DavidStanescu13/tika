@@ -1,0 +1,102 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_forName_3_0_Test {
+
+    private static Method forNameMethod;
+
+    private static Method getCharsetICUMethod;
+
+    private static Method isSupportedICUMethod;
+
+    @BeforeAll
+    public static void setUp() throws NoSuchMethodException {
+        forNameMethod = CharsetUtils.class.getDeclaredMethod("forName", String.class);
+        getCharsetICUMethod = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        isSupportedICUMethod = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+    }
+
+    @Test
+    public void testForNameWithNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            forNameMethod.invoke(null, null);
+        });
+    }
+
+    @Test
+    public void testForNameWithInvalidName() {
+        assertThrows(IllegalCharsetNameException.class, () -> {
+            forNameMethod.invoke(null, "invalid");
+        });
+    }
+
+    @Test
+    public void testForNameWithValidName() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("utf-8", Charset.forName("UTF-8"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        Charset charset = (Charset) forNameMethod.invoke(null, "utf-8");
+        assertEquals(Charset.forName("UTF-8"), charset);
+    }
+
+    @Test
+    public void testForNameWithISOName() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("iso-8859-1", Charset.forName("ISO-8859-1"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        Charset charset = (Charset) forNameMethod.invoke(null, "iso 8859-1");
+        assertEquals(Charset.forName("ISO-8859-1"), charset);
+    }
+
+    @Test
+    public void testForNameWithCPName() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("cp1252", Charset.forName("CP1252"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        Charset charset = (Charset) forNameMethod.invoke(null, "cp-1252");
+        assertEquals(Charset.forName("CP1252"), charset);
+    }
+
+    @Test
+    public void testForNameWithWinName() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("windows-1252", Charset.forName("Windows-1252"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        Charset charset = (Charset) forNameMethod.invoke(null, "win-1252");
+        assertEquals(Charset.forName("Windows-1252"), charset);
+    }
+
+    @Test
+    public void testForNameWithICU() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("utf-8", Charset.forName("UTF-8"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        when(getCharsetICUMethod.invoke(null)).thenReturn(null);
+        Charset charset = (Charset) forNameMethod.invoke(null, "utf-8");
+        assertEquals(Charset.forName("UTF-8"), charset);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_forName_3_0_Test: line 8 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_forName_3_0_Test: line 17 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_0_Test: line 15 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_0_Test: line 20 : cannot find symbol
+  symbol: class MockitoExtension

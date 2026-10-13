@@ -1,0 +1,24 @@
+{
+  "className": "TailStream",
+  "methodName": "mark",
+  "brief": "@Override\r\n    public void mark(int limit){}",
+  "methodSignature": "mark(int)",
+  "sourceCode": "@Override\n    public void mark(int limit) {\n        markBuffer = new byte[tailSize];\n        System.arraycopy(tailBuffer, 0, markBuffer, 0, tailSize);\n        markIndex = currentIndex;\n        markBytesRead = bytesRead;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * {@inheritDoc} This implementation saves the internal state including the\n * content of the tail buffer so that it can be restored when ''reset()'' is\n * called later.\n */\n@Override\npublic void mark(int limit) {\n    markBuffer = new byte[tailSize];\n    System.arraycopy(tailBuffer, 0, markBuffer, 0, tailSize);\n    markIndex = currentIndex;\n    markBytesRead = bytesRead;\n}",
+  "method_comment": "\n     * {@inheritDoc} This implementation saves the internal state including the\n     * content of the tail buffer so that it can be restored when ''reset()'' is\n     * called later.\n     ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,32 @@
+{
+  "className": "MimeFilteringDecorator",
+  "methodName": "getSupportedTypes",
+  "brief": "@Override\r\n        public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "@Override\n        public Set<MediaType> getSupportedTypes(ParseContext context) {\n            // If includeTypes is specified, result is deterministic - use cache\n            if (!includeTypes.isEmpty()) {\n                if (cachedTypes == null) {\n                    Set<MediaType> types = new HashSet<>(includeTypes);\n                    types.removeAll(excludeTypes);\n                    cachedTypes = Collections.unmodifiableSet(types);\n                }\n                return cachedTypes;\n            }\n\n            // Otherwise compute from wrapped parser (may vary by context)\n            Set<MediaType> types = new HashSet<>(super.getSupportedTypes(context));\n            types.removeAll(excludeTypes);\n            return types;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.Set": [
+      "isEmpty()",
+      "removeAll(Object>)"
+    ],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getSupportedTypes(ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<MediaType> getSupportedTypes(ParseContext context) {\n    // If includeTypes is specified, result is deterministic - use cache\n    if (!includeTypes.isEmpty()) {\n        if (cachedTypes == null) {\n            Set<MediaType> types = new HashSet<>(includeTypes);\n            types.removeAll(excludeTypes);\n            cachedTypes = Collections.unmodifiableSet(types);\n        }\n        return cachedTypes;\n    }\n    // Otherwise compute from wrapped parser (may vary by context)\n    Set<MediaType> types = new HashSet<>(super.getSupportedTypes(context));\n    types.removeAll(excludeTypes);\n    return types;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

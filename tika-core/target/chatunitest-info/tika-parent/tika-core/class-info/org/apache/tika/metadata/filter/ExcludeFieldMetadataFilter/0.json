@@ -1,0 +1,24 @@
+{
+  "className": "ExcludeFieldMetadataFilter",
+  "methodName": "filter",
+  "brief": "@Override\r\n    protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "@Override\n    protected void filter(Metadata metadata) {\n        for (String field : excludeSet) {\n            metadata.remove(field);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "remove(String)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void filter(Metadata metadata) {\n    for (String field : excludeSet) {\n        metadata.remove(field);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

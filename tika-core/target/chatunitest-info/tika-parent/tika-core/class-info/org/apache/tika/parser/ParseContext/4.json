@@ -1,0 +1,23 @@
+{
+  "className": "ParseContext",
+  "methodName": "setJsonConfig",
+  "brief": "public void setJsonConfig(String name, String json){}",
+  "methodSignature": "setJsonConfig(String, String)",
+  "sourceCode": "public void setJsonConfig(String name, String json) {\n        setJsonConfig(name, json != null ? new StringJsonConfig(json) : null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets a JSON configuration by component name using a raw JSON string.\n * <p>\n * Convenience method that wraps the string in a JsonConfig.\n *\n * @param name the component name (e.g., \"pdf-parser\", \"handler-config\")\n * @param json the JSON configuration string\n * @since Apache Tika 4.0\n */\npublic void setJsonConfig(String name, String json) {\n    setJsonConfig(name, json != null ? new StringJsonConfig(json) : null);\n}",
+  "method_comment": "\n     * Sets a JSON configuration by component name using a raw JSON string.\n     * <p>\n     * Convenience method that wraps the string in a JsonConfig.\n     *\n     * @param name the component name (e.g., \"pdf-parser\", \"handler-config\")\n     * @param json the JSON configuration string\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

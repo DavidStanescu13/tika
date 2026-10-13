@@ -1,0 +1,101 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_4_4_Test {
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException, TimeoutException {
+        // Arrange
+        long timeoutMillis = 1000;
+        int maxStdoutBuffer = 1024;
+        int maxStdErrBuffer = 1024;
+        ProcessBuilder processBuilder = mock(ProcessBuilder.class);
+        Process process = mock(Process.class);
+        StreamGobbler outGobbler = mock(StreamGobbler.class);
+        StreamGobbler errGobbler = mock(StreamGobbler.class);
+        Thread outThread = mock(Thread.class);
+        Thread errThread = mock(Thread.class);
+        when(processBuilder.start()).thenReturn(process);
+        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        when(process.getInputStream()).thenReturn(mock(InputStream.class));
+        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
+        when(outGobbler.getStreamLength()).thenReturn(100L);
+        when(errGobbler.getStreamLength()).thenReturn(50L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        // Act
+        FileProcessResult result = ProcessUtils.execute(processBuilder, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
+        // Assert
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(50L, result.stderrLength);
+        assertEquals(100L, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException, TimeoutException {
+        // Arrange
+        long timeoutMillis = 1000;
+        int maxStdoutBuffer = 1024;
+        int maxStdErrBuffer = 1024;
+        ProcessBuilder processBuilder = mock(ProcessBuilder.class);
+        Process process = mock(Process.class);
+        StreamGobbler outGobbler = mock(StreamGobbler.class);
+        StreamGobbler errGobbler = mock(StreamGobbler.class);
+        Thread outThread = mock(Thread.class);
+        Thread errThread = mock(Thread.class);
+        when(processBuilder.start()).thenReturn(process);
+        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(false);
+        when(process.destroyForcibly()).thenReturn(null);
+        when(process.exitValue()).thenReturn(1);
+        when(process.getInputStream()).thenReturn(mock(InputStream.class));
+        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
+        when(outGobbler.getStreamLength()).thenReturn(100L);
+        when(errGobbler.getStreamLength()).thenReturn(50L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        // Act
+        FileProcessResult result = ProcessUtils.execute(processBuilder, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
+        // Assert
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(50L, result.stderrLength);
+        assertEquals(100L, result.stdoutLength);
+        assertTrue(result.isTimeout);
+        assertEquals(1, result.exitValue);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_4_4_Test: line 15 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_execute_4_4_Test: line 22 : package org.mockito does not exist
+Error in ProcessUtils_execute_4_4_Test: line 20 : package org.mockito does not exist
+Error in ProcessUtils_execute_4_4_Test: line 25 : cannot find symbol
+  symbol: class MockitoExtension

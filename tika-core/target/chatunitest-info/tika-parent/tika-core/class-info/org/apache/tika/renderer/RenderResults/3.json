@@ -1,0 +1,22 @@
+{
+  "className": "RenderResults",
+  "methodName": "RenderResults",
+  "brief": "public RenderResults(TemporaryResources tmp){}",
+  "methodSignature": "RenderResults(TemporaryResources)",
+  "sourceCode": "public RenderResults(TemporaryResources tmp) {\n        this.tmp = tmp;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TemporaryResources"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": []
+  },
+  "full_method_info": "public RenderResults(TemporaryResources tmp) {\n    this.tmp = tmp;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

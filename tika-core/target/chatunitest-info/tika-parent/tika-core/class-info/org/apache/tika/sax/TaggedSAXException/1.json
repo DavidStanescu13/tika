@@ -1,0 +1,18 @@
+{
+  "className": "TaggedSAXException",
+  "methodName": "getCause",
+  "brief": "@Override\r\n    public SAXException getCause(){}",
+  "methodSignature": "getCause()",
+  "sourceCode": "@Override\n    public SAXException getCause() {\n        return (SAXException) super.getCause();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the wrapped exception. The only difference to the overridden\n * {@link Throwable#getCause()} method is the narrower return type.\n *\n * @return wrapped exception\n */\n@Override\npublic SAXException getCause() {\n    return (SAXException) super.getCause();\n}",
+  "method_comment": "\n     * Returns the wrapped exception. The only difference to the overridden\n     * {@link Throwable#getCause()} method is the narrower return type.\n     *\n     * @return wrapped exception\n     ",
+  "method_annotation": "@Override\n"
+}

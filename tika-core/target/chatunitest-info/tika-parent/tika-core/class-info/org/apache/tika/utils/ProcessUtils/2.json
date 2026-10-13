@@ -1,0 +1,26 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "escapeCommandLine",
+  "brief": "public static String escapeCommandLine(String arg){}",
+  "methodSignature": "escapeCommandLine(String)",
+  "sourceCode": "public static String escapeCommandLine(String arg) {\n        if (arg == null) {\n            return arg;\n        }\n        //need to test for \" \" on windows, can't just add double quotes\n        //across platforms.\n        if (arg.contains(\" \") && SystemUtils.IS_OS_WINDOWS &&\n                (!arg.startsWith(\"\\\"\") && !arg.endsWith(\"\\\"\"))) {\n            arg = \"\\\"\" + arg + \"\\\"\";\n        }\n        return arg;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "contains(CharSequence)",
+      "endsWith(String)"
+    ]
+  },
+  "full_method_info": "/**\n * This should correctly put double-quotes around an argument if\n * ProcessBuilder doesn't seem to work (as it doesn't\n * on paths with spaces on Windows)\n *\n * @param arg\n * @return\n */\npublic static String escapeCommandLine(String arg) {\n    if (arg == null) {\n        return arg;\n    }\n    // need to test for \" \" on windows, can't just add double quotes\n    // across platforms.\n    if (arg.contains(\" \") && SystemUtils.IS_OS_WINDOWS && (!arg.startsWith(\"\\\"\") && !arg.endsWith(\"\\\"\"))) {\n        arg = \"\\\"\" + arg + \"\\\"\";\n    }\n    return arg;\n}",
+  "method_comment": "\n     * This should correctly put double-quotes around an argument if\n     * ProcessBuilder doesn't seem to work (as it doesn't\n     * on paths with spaces on Windows)\n     *\n     * @param arg\n     * @return\n     ",
+  "method_annotation": ""
+}

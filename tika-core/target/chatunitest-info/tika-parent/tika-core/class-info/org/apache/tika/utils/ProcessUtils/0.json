@@ -1,0 +1,29 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "register",
+  "brief": "private static String register(Process p){}",
+  "methodSignature": "register(Process)",
+  "sourceCode": "private static String register(Process p) {\n        String id = UUID.randomUUID().toString();\n        PROCESS_MAP.put(id, p);\n        return id;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Process"
+  ],
+  "dependentMethods": {
+    "java.lang.Process": [],
+    "java.util.UUID": [
+      "toString()",
+      "randomUUID()"
+    ],
+    "java.util.concurrent.ConcurrentHashMap": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "private static String register(Process p) {\n    String id = UUID.randomUUID().toString();\n    PROCESS_MAP.put(id, p);\n    return id;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

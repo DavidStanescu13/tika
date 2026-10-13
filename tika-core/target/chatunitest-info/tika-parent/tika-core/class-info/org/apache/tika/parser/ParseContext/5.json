@@ -1,0 +1,25 @@
+{
+  "className": "ParseContext",
+  "methodName": "getJsonConfig",
+  "brief": "public JsonConfig getJsonConfig(String name){}",
+  "methodSignature": "getJsonConfig(String)",
+  "sourceCode": "public JsonConfig getJsonConfig(String name) {\n        return jsonConfigs.get(name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a JSON configuration by component name.\n *\n * @param name the component name\n * @return the JsonConfig, or null if not found\n * @since Apache Tika 4.0\n */\npublic JsonConfig getJsonConfig(String name) {\n    return jsonConfigs.get(name);\n}",
+  "method_comment": "\n     * Gets a JSON configuration by component name.\n     *\n     * @param name the component name\n     * @return the JsonConfig, or null if not found\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

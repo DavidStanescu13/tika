@@ -1,0 +1,39 @@
+{
+  "className": "RecursiveParserWrapperHandler",
+  "methodName": "writeFinalEmbeddedPaths",
+  "brief": "private void writeFinalEmbeddedPaths(){}",
+  "methodSignature": "writeFinalEmbeddedPaths()",
+  "sourceCode": "private void writeFinalEmbeddedPaths() {\n        //for some file types, the file's \"name\" is not known before\n        //their attachments are parsed. This goes through the id paths\n        //and regenerates the path for the \"final embedded resource path\"\n        Map<String, String> idToName = new HashMap<>();\n        AtomicInteger unknownCount = new AtomicInteger(0);\n        for (Metadata metadata : metadataList) {\n            String id = metadata.get(TikaCoreProperties.EMBEDDED_ID);\n            if (id == null) {\n                continue;\n            }\n            String name = RecursiveParserWrapper.getResourceName(metadata, unknownCount);\n            idToName.put(id, name);\n        }\n        for (Metadata metadata : metadataList) {\n            String idPath = metadata.get(TikaCoreProperties.EMBEDDED_ID_PATH);\n            if (idPath == null) {\n                continue;\n            }\n            if (idPath.startsWith(\"/\")) {\n                idPath = idPath.substring(1);\n            }\n            String[] ids = idPath.split(\"/\");\n            StringBuilder sb = new StringBuilder();\n            for (String id : ids) {\n                sb.append(\"/\").append(idToName.get(id));\n            }\n            metadata.set(TikaCoreProperties.FINAL_EMBEDDED_RESOURCE_PATH, sb.toString());\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.RecursiveParserWrapper": [
+      "getResourceName(Metadata, AtomicInteger)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)"
+    ],
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "split(String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "private void writeFinalEmbeddedPaths() {\n    // for some file types, the file's \"name\" is not known before\n    // their attachments are parsed. This goes through the id paths\n    // and regenerates the path for the \"final embedded resource path\"\n    Map<String, String> idToName = new HashMap<>();\n    AtomicInteger unknownCount = new AtomicInteger(0);\n    for (Metadata metadata : metadataList) {\n        String id = metadata.get(TikaCoreProperties.EMBEDDED_ID);\n        if (id == null) {\n            continue;\n        }\n        String name = RecursiveParserWrapper.getResourceName(metadata, unknownCount);\n        idToName.put(id, name);\n    }\n    for (Metadata metadata : metadataList) {\n        String idPath = metadata.get(TikaCoreProperties.EMBEDDED_ID_PATH);\n        if (idPath == null) {\n            continue;\n        }\n        if (idPath.startsWith(\"/\")) {\n            idPath = idPath.substring(1);\n        }\n        String[] ids = idPath.split(\"/\");\n        StringBuilder sb = new StringBuilder();\n        for (String id : ids) {\n            sb.append(\"/\").append(idToName.get(id));\n        }\n        metadata.set(TikaCoreProperties.FINAL_EMBEDDED_RESOURCE_PATH, sb.toString());\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Tika",
+  "methodName": "Tika",
+  "brief": "public Tika(Detector detector){}",
+  "methodSignature": "Tika(Detector)",
+  "sourceCode": "public Tika(Detector detector) {\n        this(detector, new AutoDetectParser(detector));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Detector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.detect.Detector": []
+  },
+  "full_method_info": "public Tika(Detector detector) {\n    this(detector, new AutoDetectParser(detector));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "Endian",
+  "methodName": "getMSB",
+  "brief": "@SuppressWarnings(\"unused\")\r\n        public String getMSB(){}",
+  "methodSignature": "getMSB()",
+  "sourceCode": "@SuppressWarnings(\"unused\")\n        public String getMSB() {\n            if (msb) {\n                return \"MSB\";\n            } else {\n                return \"LSB\";\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@SuppressWarnings(\"unused\")\npublic String getMSB() {\n    if (msb) {\n        return \"MSB\";\n    } else {\n        return \"LSB\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@SuppressWarnings(\"unused\")\n"
+}

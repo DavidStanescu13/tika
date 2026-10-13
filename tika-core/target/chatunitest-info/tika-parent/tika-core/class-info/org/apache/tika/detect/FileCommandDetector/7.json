@@ -1,0 +1,20 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "setMaxBytes",
+  "brief": "public void setMaxBytes(int maxBytes){}",
+  "methodSignature": "setMaxBytes(int)",
+  "sourceCode": "public void setMaxBytes(int maxBytes) {\n        this.maxBytes = maxBytes;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * If this is not called on a TikaInputStream, this detector\n * will spool up to this many bytes to a file to be detected\n * by the 'file' command.\n *\n * @param maxBytes\n */\npublic void setMaxBytes(int maxBytes) {\n    this.maxBytes = maxBytes;\n}",
+  "method_comment": "\n     * If this is not called on a TikaInputStream, this detector\n     * will spool up to this many bytes to a file to be detected\n     * by the 'file' command.\n     *\n     * @param maxBytes\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "QName",
+  "methodName": "qOrLocal",
+  "brief": "String qOrLocal(){}",
+  "methodSignature": "qOrLocal()",
+  "sourceCode": "String qOrLocal() {\n            return qName.isEmpty() ? localName : qName;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "String qOrLocal() {\n    return qName.isEmpty() ? localName : qName;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

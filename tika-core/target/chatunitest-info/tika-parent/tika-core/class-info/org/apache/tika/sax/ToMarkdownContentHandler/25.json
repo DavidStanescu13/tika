@@ -1,0 +1,26 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "withTrailingNewline",
+  "brief": "private static String withTrailingNewline(String s){}",
+  "methodSignature": "withTrailingNewline(String)",
+  "sourceCode": "private static String withTrailingNewline(String s) {\n        if (s.isEmpty() || s.charAt(s.length() - 1) == '\\n') {\n            return s;\n        }\n        return s + \"\\n\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()",
+      "length()",
+      "charAt(int)"
+    ]
+  },
+  "full_method_info": "private static String withTrailingNewline(String s) {\n    if (s.isEmpty() || s.charAt(s.length() - 1) == '\\n') {\n        return s;\n    }\n    return s + \"\\n\";\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

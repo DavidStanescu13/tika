@@ -1,0 +1,27 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getTransformer",
+  "brief": "public static Transformer getTransformer(ParseContext context) throws TikaException{}",
+  "methodSignature": "getTransformer(ParseContext)",
+  "sourceCode": "public static Transformer getTransformer(ParseContext context) throws TikaException {\n\n        Transformer transformer = context.get(Transformer.class);\n        if (transformer != null) {\n            return transformer;\n        }\n\n        return XMLReaderUtils.getTransformer();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getTransformer()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the transformer specified in this parsing context.\n * <p>\n * If a transformer is not explicitly specified, then a default transformer\n * instance is created and returned. The default transformer instance is\n * configured to to use\n * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n *\n * @return Transformer\n * @throws TikaException when the transformer can not be created\n */\npublic static Transformer getTransformer(ParseContext context) throws TikaException {\n    Transformer transformer = context.get(Transformer.class);\n    if (transformer != null) {\n        return transformer;\n    }\n    return XMLReaderUtils.getTransformer();\n}",
+  "method_comment": "\n     * Returns the transformer specified in this parsing context.\n     * <p>\n     * If a transformer is not explicitly specified, then a default transformer\n     * instance is created and returned. The default transformer instance is\n     * configured to to use\n     * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n     *\n     * @return Transformer\n     * @throws TikaException when the transformer can not be created\n     ",
+  "method_annotation": ""
+}

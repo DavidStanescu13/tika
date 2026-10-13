@@ -1,0 +1,22 @@
+{
+  "className": "ZeroByteFileException",
+  "methodName": "ZeroByteFileException",
+  "brief": "public ZeroByteFileException(String msg){}",
+  "methodSignature": "ZeroByteFileException(String)",
+  "sourceCode": "public ZeroByteFileException(String msg) {\n        super(msg);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "// If this is in the parse context, the AutoDetectParser and the\n// RecursiveParserWrapper should ignore zero byte files\npublic ZeroByteFileException(String msg) {\n    super(msg);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

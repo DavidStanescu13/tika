@@ -1,0 +1,123 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_7_2_Test {
+
+    @Mock
+    private Process mockProcess;
+
+    @Mock
+    private StreamGobbler mockOutGobbler;
+
+    @Mock
+    private StreamGobbler mockErrGobbler;
+
+    @BeforeEach
+    public void setUp() {
+        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
+        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+    }
+
+    @Test
+    public void testCheckCommand_Success() throws Exception {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertTrue(result);
+    }
+
+    @Test
+    public void testCheckCommand_Failure() throws Exception {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 0 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommand_Timeout() throws Exception {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommand_IOException() throws Exception {
+        when(mockProcess.getInputStream()).thenThrow(new IOException());
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommand_InterruptedException() throws Exception {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommand_TimeoutException() throws Exception {
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new TimeoutException());
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommand_SecurityException() throws Exception {
+        when(mockProcess.getInputStream()).thenThrow(new SecurityException());
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand(checkCmd, errorValue));
+    }
+
+    @Test
+    public void testCheckCommand_Error() throws Exception {
+        when(mockProcess.getInputStream()).thenThrow(new Error("posix_spawn"));
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_checkCommand_7_2_Test: line 4 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_checkCommand_7_2_Test: line 11 : package org.mockito does not exist
+Error in ProcessUtils_checkCommand_7_2_Test: line 9 : package org.mockito does not exist
+Error in ProcessUtils_checkCommand_7_2_Test: line 19 : cannot find symbol
+  symbol: class MockitoExtension
+Error in ProcessUtils_checkCommand_7_2_Test: line 22 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_2_Test
+Error in ProcessUtils_checkCommand_7_2_Test: line 25 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_2_Test
+Error in ProcessUtils_checkCommand_7_2_Test: line 28 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_2_Test

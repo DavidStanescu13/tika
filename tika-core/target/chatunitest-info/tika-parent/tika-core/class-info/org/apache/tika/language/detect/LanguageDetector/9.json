@@ -1,0 +1,22 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "hasModel",
+  "brief": "public abstract boolean hasModel(String language);",
+  "methodSignature": "hasModel(String)",
+  "sourceCode": "public abstract boolean hasModel(String language);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Provide information about whether a model exists for a specific\n * language.\n *\n * @param language ISO 639-1 name for language\n * @return true if a model for this language exists.\n */\npublic abstract boolean hasModel(String language);",
+  "method_comment": "\n     * Provide information about whether a model exists for a specific\n     * language.\n     *\n     * @param language ISO 639-1 name for language\n     * @return true if a model for this language exists.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "ToXMLContentHandler",
+  "brief": "public ToXMLContentHandler(){}",
+  "methodSignature": "ToXMLContentHandler()",
+  "sourceCode": "public ToXMLContentHandler() {\n        super();\n        this.encoding = null;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public ToXMLContentHandler() {\n    super();\n    this.encoding = null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

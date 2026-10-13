@@ -1,0 +1,18 @@
+{
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "methodName": "decrementEmbeddedDepth",
+  "brief": "protected void decrementEmbeddedDepth(){}",
+  "methodSignature": "decrementEmbeddedDepth()",
+  "sourceCode": "protected void decrementEmbeddedDepth() {\n        embeddedDepth--;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * This is called by {@link #endEmbeddedDocument(ContentHandler, Metadata)}. Users\n * overriding {@link #endEmbeddedDocument(ContentHandler, Metadata)} need to call this\n * unless they are triggering it via <code>super.endEmbeddedDocument(contentHandler, metadata);</code>\n */\nprotected void decrementEmbeddedDepth() {\n    embeddedDepth--;\n}",
+  "method_comment": "\n     * This is called by {@link #endEmbeddedDocument(ContentHandler, Metadata)}. Users\n     * overriding {@link #endEmbeddedDocument(ContentHandler, Metadata)} need to call this\n     * unless they are triggering it via <code>super.endEmbeddedDocument(contentHandler, metadata);</code>\n     ",
+  "method_annotation": ""
+}

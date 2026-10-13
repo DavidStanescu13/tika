@@ -1,0 +1,33 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "createTempFile",
+  "brief": "public Path createTempFile(Metadata metadata) throws IOException{}",
+  "methodSignature": "createTempFile(Metadata)",
+  "sourceCode": "public Path createTempFile(Metadata metadata) throws IOException {\n        String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (StringUtils.isBlank(resourceName)) {\n            return createTempFile(StringUtils.EMPTY);\n        }\n        return createTempFile(FilenameUtils.getSuffixFromPath(resourceName));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile(String)"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "getSuffixFromPath(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a temporary file that will automatically be deleted when\n * the {@link #close()} method is called, returning its path.\n *\n * @return Path to created temporary file that will be deleted after closing\n * @throws IOException\n */\npublic Path createTempFile(Metadata metadata) throws IOException {\n    String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    if (StringUtils.isBlank(resourceName)) {\n        return createTempFile(StringUtils.EMPTY);\n    }\n    return createTempFile(FilenameUtils.getSuffixFromPath(resourceName));\n}",
+  "method_comment": "\n     * Creates a temporary file that will automatically be deleted when\n     * the {@link #close()} method is called, returning its path.\n     *\n     * @return Path to created temporary file that will be deleted after closing\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "_getValues",
+  "brief": "private String[] _getValues(final String name){}",
+  "methodSignature": "_getValues(String)",
+  "sourceCode": "private String[] _getValues(final String name) {\n        String[] values = metadata.get(name);\n        if (values == null) {\n            values = new String[0];\n        }\n        return values;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "private String[] _getValues(final String name) {\n    String[] values = metadata.get(name);\n    if (values == null) {\n        values = new String[0];\n    }\n    return values;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

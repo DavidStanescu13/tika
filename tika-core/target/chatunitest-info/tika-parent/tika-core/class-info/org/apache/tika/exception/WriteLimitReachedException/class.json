@@ -1,0 +1,58 @@
+{
+  "fullClassName": "org.apache.tika.exception.WriteLimitReachedException",
+  "className": "WriteLimitReachedException",
+  "index": 74,
+  "modifier": "[public ]",
+  "extend": "[SAXException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class WriteLimitReachedException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [
+    "private final static int MAX_DEPTH = 100;",
+    "private final int writeLimit;"
+  ],
+  "superClasses": [
+    "SAXException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getMessage()": "0",
+    "isWriteLimitReached(Throwable)": "1",
+    "isWriteLimitReached(Throwable, int)": "2",
+    "throwIfWriteLimitReached(Exception)": "3",
+    "throwIfWriteLimitReached(Throwable, int)": "4",
+    "WriteLimitReachedException(int)": "5"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public String getMessage(){}",
+    "public static boolean isWriteLimitReached(Throwable t){}",
+    "private static boolean isWriteLimitReached(Throwable t, int depth){}",
+    "public static void throwIfWriteLimitReached(Exception ex) throws SAXException{}",
+    "private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException{}",
+    "public WriteLimitReachedException(int writeLimit){}"
+  ],
+  "constructorSigs": [
+    "WriteLimitReachedException(int)"
+  ],
+  "constructorBrief": [
+    "public WriteLimitReachedException(int writeLimit){}"
+  ],
+  "getterSetterSigs": [
+    "getMessage()"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public String getMessage(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\nimport org.xml.sax.SAXException;\n\npublic class WriteLimitReachedException extends SAXException {\n\n    // in case of (hopefully impossible) cyclic exception\n    private final static int MAX_DEPTH = 100;\n\n    private final int writeLimit;\n\n    public WriteLimitReachedException(int writeLimit) {\n        this.writeLimit = writeLimit;\n    }\n\n    @Override\n    public String getMessage() {\n        return \"Your document contained more than \" + writeLimit + \" characters, and so your requested limit has been\" + \" reached. To receive the full text of the document,\" + \" increase your limit. (Text up to the limit is\" + \" however available).\";\n    }\n\n    /**\n     * Checks whether the given exception (or any of it's root causes) was\n     * thrown by this handler as a signal of reaching the write limit.\n     *\n     * @param t throwable\n     * @return <code>true</code> if the write limit was reached,\n     * <code>false</code> otherwise\n     * @since Apache Tika 2.0\n     */\n    public static boolean isWriteLimitReached(Throwable t) {\n        return isWriteLimitReached(t, 0);\n    }\n\n    private static boolean isWriteLimitReached(Throwable t, int depth) {\n        if (t == null) {\n            return false;\n        }\n        if (depth > MAX_DEPTH) {\n            return false;\n        }\n        if (t instanceof WriteLimitReachedException) {\n            return true;\n        } else {\n            return isWriteLimitReached(t.getCause(), depth + 1);\n        }\n    }\n\n    public static void throwIfWriteLimitReached(Exception ex) throws SAXException {\n        throwIfWriteLimitReached(ex, 0);\n    }\n\n    private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException {\n        if (ex == null) {\n            return;\n        }\n        if (depth > MAX_DEPTH) {\n            return;\n        }\n        if (ex instanceof WriteLimitReachedException) {\n            throw (SAXException) ex;\n        } else {\n            throwIfWriteLimitReached(ex.getCause(), depth + 1);\n        }\n    }\n}\n",
+  "classDeclarationCode": "public class WriteLimitReachedException extends SAXException {\n\n    // in case of (hopefully impossible) cyclic exception\n    private final static int MAX_DEPTH = 100;\n\n    private final int writeLimit;\n\n    public WriteLimitReachedException(int writeLimit) {\n        this.writeLimit = writeLimit;\n    }\n\n    @Override\n    public String getMessage() {\n        return \"Your document contained more than \" + writeLimit + \" characters, and so your requested limit has been\" + \" reached. To receive the full text of the document,\" + \" increase your limit. (Text up to the limit is\" + \" however available).\";\n    }\n\n    /**\n     * Checks whether the given exception (or any of it's root causes) was\n     * thrown by this handler as a signal of reaching the write limit.\n     *\n     * @param t throwable\n     * @return <code>true</code> if the write limit was reached,\n     * <code>false</code> otherwise\n     * @since Apache Tika 2.0\n     */\n    public static boolean isWriteLimitReached(Throwable t) {\n        return isWriteLimitReached(t, 0);\n    }\n\n    private static boolean isWriteLimitReached(Throwable t, int depth) {\n        if (t == null) {\n            return false;\n        }\n        if (depth > MAX_DEPTH) {\n            return false;\n        }\n        if (t instanceof WriteLimitReachedException) {\n            return true;\n        } else {\n            return isWriteLimitReached(t.getCause(), depth + 1);\n        }\n    }\n\n    public static void throwIfWriteLimitReached(Exception ex) throws SAXException {\n        throwIfWriteLimitReached(ex, 0);\n    }\n\n    private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException {\n        if (ex == null) {\n            return;\n        }\n        if (depth > MAX_DEPTH) {\n            return;\n        }\n        if (ex instanceof WriteLimitReachedException) {\n            throw (SAXException) ex;\n        } else {\n            throwIfWriteLimitReached(ex.getCause(), depth + 1);\n        }\n    }\n}",
+  "subClasses": []
+}

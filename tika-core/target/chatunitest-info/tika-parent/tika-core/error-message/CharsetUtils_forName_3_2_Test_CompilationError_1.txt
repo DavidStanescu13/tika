@@ -1,0 +1,101 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+public class CharsetUtils_forName_3_2_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Map<String, Charset> commonCharsets;
+
+    private Method getCharsetICU;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        commonCharsets = new HashMap<>();
+        commonCharsets.put("utf-8", Charset.forName("UTF-8"));
+        commonCharsets.put("iso-8859-1", Charset.forName("ISO-8859-1"));
+        commonCharsets.put("cp1252", Charset.forName("CP1252"));
+        commonCharsets.put("windows-1252", Charset.forName("Windows-1252"));
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testForNameWithNullName() {
+        assertThrows(IllegalArgumentException.class, () -> charsetUtils.forName(null));
+    }
+
+    @Test
+    public void testForNameWithInvalidName() {
+        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("invalid"));
+    }
+
+    @Test
+    public void testForNameWithValidName() {
+        assertEquals(Charset.forName("UTF-8"), charsetUtils.forName("utf-8"));
+        assertEquals(Charset.forName("ISO-8859-1"), charsetUtils.forName("iso-8859-1"));
+        assertEquals(Charset.forName("CP1252"), charsetUtils.forName("cp1252"));
+        assertEquals(Charset.forName("Windows-1252"), charsetUtils.forName("windows-1252"));
+    }
+
+    @Test
+    public void testForNameWithISO8859Pattern() {
+        assertEquals(Charset.forName("ISO-8859-1"), charsetUtils.forName("iso 8859-1"));
+        assertEquals(Charset.forName("ISO-8859-2"), charsetUtils.forName("iso 8859-2"));
+    }
+
+    @Test
+    public void testForNameWithCPNamePattern() {
+        assertEquals(Charset.forName("CP1252"), charsetUtils.forName("cp-1252"));
+        assertEquals(Charset.forName("CP1251"), charsetUtils.forName("cp-1251"));
+    }
+
+    @Test
+    public void testForNameWithWINNamePattern() {
+        assertEquals(Charset.forName("Windows-1252"), charsetUtils.forName("win1252"));
+        assertEquals(Charset.forName("Windows-1251"), charsetUtils.forName("win-1251"));
+    }
+
+    @Test
+    public void testForNameWithNone() {
+        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("none"));
+        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("no"));
+    }
+
+    @Test
+    public void testForNameWithICU() throws Exception {
+        Method getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        getCharsetICU.setAccessible(true);
+        Method isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        isSupportedICU.setAccessible(true);
+        when(getCharsetICU.invoke(null, "utf-8")).thenReturn(Charset.forName("UTF-8"));
+        when(isSupportedICU.invoke(null)).thenReturn(true);
+        assertEquals(Charset.forName("UTF-8"), charsetUtils.forName("utf-8"));
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_forName_3_2_Test: line 15 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_2_Test: line 18 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_forName_3_2_Test: line 13 : package org.mockito does not exist

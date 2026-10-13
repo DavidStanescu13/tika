@@ -1,0 +1,36 @@
+{
+  "className": "StandardsExtractingContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            if (maxBufferLength > -1) {\n                int remaining = maxBufferLength - stringBuilder.length();\n                length = remaining > length ? length : remaining;\n            }\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.util.Arrays": [
+      "copyOfRange(char[], int, int)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(String)"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * The characters method is called whenever a Parser wants to pass raw\n * characters to the ContentHandler. However, standard references are often\n * split across different calls to characters, depending on the specific\n * Parser used. Therefore, we simply add all characters to a StringBuilder\n * and analyze it once the document is finished.\n */\n@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    try {\n        if (maxBufferLength > -1) {\n            int remaining = maxBufferLength - stringBuilder.length();\n            length = remaining > length ? length : remaining;\n        }\n        String text = new String(Arrays.copyOfRange(ch, start, start + length));\n        stringBuilder.append(text);\n        super.characters(ch, start, length);\n    } catch (SAXException e) {\n        handleException(e);\n    }\n}",
+  "method_comment": "\n     * The characters method is called whenever a Parser wants to pass raw\n     * characters to the ContentHandler. However, standard references are often\n     * split across different calls to characters, depending on the specific\n     * Parser used. Therefore, we simply add all characters to a StringBuilder\n     * and analyze it once the document is finished.\n     ",
+  "method_annotation": "@Override\n"
+}

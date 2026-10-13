@@ -1,0 +1,37 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        ensureNotEnded(\"endElement </\" + display(qName, localName) + \">\");\n        if (openElements.isEmpty()) {\n            throw new SAXException(\n                    \"StrictXHTMLValidator: endElement </\" + display(qName, localName)\n                            + \"> with no matching startElement\");\n        }\n        QName top = openElements.pop();\n        if (!top.matches(uri, localName, qName)) {\n            throw new SAXException(\n                    \"StrictXHTMLValidator: endElement </\" + display(qName, localName)\n                            + \"> does not match topmost open element <\"\n                            + top.qOrLocal() + \">\");\n        }\n        super.endElement(uri, localName, qName);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.util.Deque": [
+      "pop()"
+    ],
+    "org.apache.tika.sax.StrictXHTMLValidator.QName": [
+      "qOrLocal()",
+      "matches(String, String, String)"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endElement(String, String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) throws SAXException {\n    ensureNotEnded(\"endElement </\" + display(qName, localName) + \">\");\n    if (openElements.isEmpty()) {\n        throw new SAXException(\"StrictXHTMLValidator: endElement </\" + display(qName, localName) + \"> with no matching startElement\");\n    }\n    QName top = openElements.pop();\n    if (!top.matches(uri, localName, qName)) {\n        throw new SAXException(\"StrictXHTMLValidator: endElement </\" + display(qName, localName) + \"> does not match topmost open element <\" + top.qOrLocal() + \">\");\n    }\n    super.endElement(uri, localName, qName);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

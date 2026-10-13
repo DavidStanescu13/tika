@@ -1,0 +1,44 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getSanitizedEmbeddedFilePath",
+  "brief": "public static String getSanitizedEmbeddedFilePath(Metadata metadata,\r\n                                                      String defaultExtension, int maxLength){}",
+  "methodSignature": "getSanitizedEmbeddedFilePath(Metadata, String, int)",
+  "sourceCode": "public static String getSanitizedEmbeddedFilePath(Metadata metadata,\n                                                      String defaultExtension, int maxLength) {\n        String path = getEmbeddedPath(metadata);\n        //fName could be a full path or null\n        if (StringUtils.isBlank(path)) {\n            return null;\n        }\n        path = path.replaceAll(\"\\u0000\", \" \");\n        int prefixLength = getPrefixLength(path);\n        if (prefixLength > 0) {\n            path = path.substring(prefixLength);\n        }\n        path = path.replaceAll(\"\\\\\\\\\", \"/\");\n        path = removeProtocol(path);\n        path = path.replaceAll(\":+\", \"/\");\n        path = path.replaceAll(\"/+\", \"/\");\n        path = normalize(path);\n        path = path.replaceAll(\"\\\\.{2,}\", \".\");\n        path = path.replaceAll(\"\\\\./\", \"/\");\n        if (path.isBlank()) {\n            return null;\n        }\n        path = path.replaceAll(\"\\\\A/+\", \"\");\n        path = path.replaceAll(\"/+\\\\Z\", \"\");\n        String fName = getName(path);\n        if (StringUtils.isBlank(fName)) {\n            return null;\n        }\n        String relPath = \"\";\n        if (path.length() > fName.length()) {\n            relPath = path.substring(0, path.length() - fName.length() - 1);\n        }\n        String extension = FilenameUtils.getSuffixFromPath(fName);\n        if (extension.equals(path)) {\n            return extension;\n        }\n        String namePart = null;\n        if (StringUtils.isBlank(extension)) {\n            namePart = path;\n            extension = calculateExtension(metadata, defaultExtension);\n        } else {\n            namePart = fName.substring(0, fName.length() - extension.length());\n        }\n        if (StringUtils.isBlank(namePart)) {\n            return null;\n        }\n        //remove all initial .\n        namePart = namePart.replaceAll(\"\\\\A\\\\.+\", \"_\");\n        //defense in depth. We shouldn't need this\n        namePart = namePart.replaceAll(\"\\\\.{2,}\", \".\");\n        namePart = namePart.replaceAll(\"[/\\\\\\\\]+\", \"_\");\n\n        if (StringUtils.isBlank(namePart)) {\n            return null;\n        }\n        String retPath = StringUtils.isBlank(relPath) ? namePart + extension : relPath + \"/\" + namePart + extension;\n\n        //if path is > max length, return only the name part\n        if (retPath.length() > maxLength) {\n            if (namePart.length() > maxLength) {\n                return namePart.substring(0, maxLength - extension.length() - 3) + \"...\" + extension;\n            }\n            return namePart + extension;\n        }\n        return retPath;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "String",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "java.lang.String": [
+      "isBlank()",
+      "equals(Object)",
+      "substring(int)",
+      "substring(int, int)",
+      "replaceAll(String, String)",
+      "length()"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "getSuffixFromPath(String)",
+      "getName(String)",
+      "getEmbeddedPath(Metadata)",
+      "getPrefixLength(String)",
+      "calculateExtension(Metadata, String)",
+      "removeProtocol(String)",
+      "normalize(String)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ]
+  },
+  "full_method_info": "/**\n * This tries to sanitize dangerous user generated embedded file paths.\n * If trusting these paths for writing files, users should run checks to make\n * sure that the generated file path does not zipslip out of the target directory.\n *\n * @param metadata\n * @param defaultExtension\n * @param maxLength\n * @return\n */\npublic static String getSanitizedEmbeddedFilePath(Metadata metadata, String defaultExtension, int maxLength) {\n    String path = getEmbeddedPath(metadata);\n    // fName could be a full path or null\n    if (StringUtils.isBlank(path)) {\n        return null;\n    }\n    path = path.replaceAll(\"\\u0000\", \" \");\n    int prefixLength = getPrefixLength(path);\n    if (prefixLength > 0) {\n        path = path.substring(prefixLength);\n    }\n    path = path.replaceAll(\"\\\\\\\\\", \"/\");\n    path = removeProtocol(path);\n    path = path.replaceAll(\":+\", \"/\");\n    path = path.replaceAll(\"/+\", \"/\");\n    path = normalize(path);\n    path = path.replaceAll(\"\\\\.{2,}\", \".\");\n    path = path.replaceAll(\"\\\\./\", \"/\");\n    if (path.isBlank()) {\n        return null;\n    }\n    path = path.replaceAll(\"\\\\A/+\", \"\");\n    path = path.replaceAll(\"/+\\\\Z\", \"\");\n    String fName = getName(path);\n    if (StringUtils.isBlank(fName)) {\n        return null;\n    }\n    String relPath = \"\";\n    if (path.length() > fName.length()) {\n        relPath = path.substring(0, path.length() - fName.length() - 1);\n    }\n    String extension = FilenameUtils.getSuffixFromPath(fName);\n    if (extension.equals(path)) {\n        return extension;\n    }\n    String namePart = null;\n    if (StringUtils.isBlank(extension)) {\n        namePart = path;\n        extension = calculateExtension(metadata, defaultExtension);\n    } else {\n        namePart = fName.substring(0, fName.length() - extension.length());\n    }\n    if (StringUtils.isBlank(namePart)) {\n        return null;\n    }\n    // remove all initial .\n    namePart = namePart.replaceAll(\"\\\\A\\\\.+\", \"_\");\n    // defense in depth. We shouldn't need this\n    namePart = namePart.replaceAll(\"\\\\.{2,}\", \".\");\n    namePart = namePart.replaceAll(\"[/\\\\\\\\]+\", \"_\");\n    if (StringUtils.isBlank(namePart)) {\n        return null;\n    }\n    String retPath = StringUtils.isBlank(relPath) ? namePart + extension : relPath + \"/\" + namePart + extension;\n    // if path is > max length, return only the name part\n    if (retPath.length() > maxLength) {\n        if (namePart.length() > maxLength) {\n            return namePart.substring(0, maxLength - extension.length() - 3) + \"...\" + extension;\n        }\n        return namePart + extension;\n    }\n    return retPath;\n}",
+  "method_comment": "\n     * This tries to sanitize dangerous user generated embedded file paths.\n     * If trusting these paths for writing files, users should run checks to make\n     * sure that the generated file path does not zipslip out of the target directory.\n     *\n     * @param metadata\n     * @param defaultExtension\n     * @param maxLength\n     * @return\n     ",
+  "method_annotation": ""
+}

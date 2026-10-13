@@ -1,0 +1,28 @@
+{
+  "className": "RecursiveParserWrapperHandler",
+  "methodName": "addContent",
+  "brief": "void addContent(ContentHandler handler, Metadata metadata){}",
+  "methodSignature": "addContent(ContentHandler, Metadata)",
+  "sourceCode": "void addContent(ContentHandler handler, Metadata metadata) {\n        // BasicContentHandlerFactory's \"ignore\" handler's toString() returns \"\" (not\n        // Object's default identity string), so a plain blank check is enough here --\n        // no need to special-case its class, which would break under decoration (e.g.\n        // StrictXHTMLValidator when validateXHTML is set): ContentHandlerDecorator\n        // delegates toString() to the wrapped handler, so \"\" still propagates through.\n        String content = handler.toString();\n        if (content != null && !content.isBlank()) {\n            metadata.add(TikaCoreProperties.TIKA_CONTENT, content);\n            metadata.add(TikaCoreProperties.TIKA_CONTENT_HANDLER,\n                    handler.getClass().getSimpleName());\n            metadata.set(TikaCoreProperties.TIKA_CONTENT_HANDLER_TYPE,\n                    getContentHandlerFactory().handlerTypeName());\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)"
+    ],
+    "java.lang.String": [
+      "isBlank()"
+    ]
+  },
+  "full_method_info": "void addContent(ContentHandler handler, Metadata metadata) {\n    // BasicContentHandlerFactory's \"ignore\" handler's toString() returns \"\" (not\n    // Object's default identity string), so a plain blank check is enough here --\n    // no need to special-case its class, which would break under decoration (e.g.\n    // StrictXHTMLValidator when validateXHTML is set): ContentHandlerDecorator\n    // delegates toString() to the wrapped handler, so \"\" still propagates through.\n    String content = handler.toString();\n    if (content != null && !content.isBlank()) {\n        metadata.add(TikaCoreProperties.TIKA_CONTENT, content);\n        metadata.add(TikaCoreProperties.TIKA_CONTENT_HANDLER, handler.getClass().getSimpleName());\n        metadata.set(TikaCoreProperties.TIKA_CONTENT_HANDLER_TYPE, getContentHandlerFactory().handlerTypeName());\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

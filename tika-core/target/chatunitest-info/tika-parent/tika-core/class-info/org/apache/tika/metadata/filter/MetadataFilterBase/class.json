@@ -1,0 +1,51 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.MetadataFilterBase",
+  "className": "MetadataFilterBase",
+  "index": 148,
+  "modifier": "[public , abstract ]",
+  "extend": "[MetadataFilter]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "public abstract class MetadataFilterBase",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.util.List;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "MetadataFilter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "doFilter(List, ParseContext)": "0",
+    "filter(Metadata)": "1"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException{}",
+    "protected abstract void filter(Metadata metadata);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.List;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Base class for iterating a call to {@link #filter(Metadata)} on a list\n * of metadata objects. This should be used on context-free metadata filters that\n * do not require knowledge of more than a single metadata object at a time\n */\npublic abstract class MetadataFilterBase extends MetadataFilter {\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        for (Metadata m : metadataList) {\n            filter(m);\n        }\n    }\n\n    protected abstract void filter(Metadata metadata);\n}\n",
+  "classDeclarationCode": "/**\n * Base class for iterating a call to {@link #filter(Metadata)} on a list\n * of metadata objects. This should be used on context-free metadata filters that\n * do not require knowledge of more than a single metadata object at a time\n */\npublic abstract class MetadataFilterBase extends MetadataFilter {\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        for (Metadata m : metadataList) {\n            filter(m);\n        }\n    }\n\n    protected abstract void filter(Metadata metadata);\n}",
+  "subClasses": [
+    "org.apache.tika.metadata.filter.CaptureGroupMetadataFilter",
+    "org.apache.tika.metadata.filter.ClearByAttachmentTypeMetadataFilter",
+    "org.apache.tika.metadata.filter.DateNormalizingMetadataFilter",
+    "org.apache.tika.metadata.filter.ExcludeFieldMetadataFilter",
+    "org.apache.tika.metadata.filter.FieldNameMappingFilter",
+    "org.apache.tika.metadata.filter.GeoPointMetadataFilter",
+    "org.apache.tika.metadata.filter.IncludeFieldMetadataFilter",
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter"
+  ]
+}

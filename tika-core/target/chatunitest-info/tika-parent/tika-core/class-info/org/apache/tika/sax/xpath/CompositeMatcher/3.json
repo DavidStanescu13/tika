@@ -1,0 +1,22 @@
+{
+  "className": "CompositeMatcher",
+  "methodName": "matchesText",
+  "brief": "public boolean matchesText(){}",
+  "methodSignature": "matchesText()",
+  "sourceCode": "public boolean matchesText() {\n        return a.matchesText() || b.matchesText();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesText()"
+    ]
+  },
+  "full_method_info": "public boolean matchesText() {\n    return a.matchesText() || b.matchesText();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

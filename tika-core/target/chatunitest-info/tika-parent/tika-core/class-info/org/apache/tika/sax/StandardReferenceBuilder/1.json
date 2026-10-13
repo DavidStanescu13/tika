@@ -1,0 +1,20 @@
+{
+  "className": "StandardReferenceBuilder",
+  "methodName": "setScore",
+  "brief": "public StandardReferenceBuilder setScore(double score){}",
+  "methodSignature": "setScore(double)",
+  "sourceCode": "public StandardReferenceBuilder setScore(double score) {\n            this.score = score;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "double"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public StandardReferenceBuilder setScore(double score) {\n    this.score = score;\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

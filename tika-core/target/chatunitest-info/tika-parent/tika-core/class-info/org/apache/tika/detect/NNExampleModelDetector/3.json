@@ -1,0 +1,34 @@
+{
+  "className": "NNExampleModelDetector",
+  "methodName": "readNNParams",
+  "brief": "private void readNNParams(final NNTrainedModelBuilder builder, final String line){}",
+  "methodSignature": "readNNParams(NNTrainedModelBuilder, String)",
+  "sourceCode": "private void readNNParams(final NNTrainedModelBuilder builder, final String line) {\n        String[] sarr = line.split(\"\\t\");\n        int n = sarr.length;\n        float[] params = new float[n];\n        try {\n            int i = 0;\n            for (String fstr : sarr) {\n                params[i] = Float.parseFloat(fstr);\n                i++;\n            }\n            builder.setParams(params);\n        } catch (Exception e) {\n            LOG.warn(\"Unable to parse the model configuration\", e);\n            throw new RuntimeException(\"Unable to parse the model configuration\", e);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "NNTrainedModelBuilder",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.detect.NNTrainedModelBuilder": [
+      "setParams(float[])"
+    ],
+    "java.lang.String": [
+      "split(String)"
+    ],
+    "java.lang.Float": [
+      "parseFloat(String)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Read the next line for the model parameters and populate the build which\n * later will be used to instantiate the instance of TrainedModel\n *\n * @param builder\n * @param line\n */\nprivate void readNNParams(final NNTrainedModelBuilder builder, final String line) {\n    String[] sarr = line.split(\"\\t\");\n    int n = sarr.length;\n    float[] params = new float[n];\n    try {\n        int i = 0;\n        for (String fstr : sarr) {\n            params[i] = Float.parseFloat(fstr);\n            i++;\n        }\n        builder.setParams(params);\n    } catch (Exception e) {\n        LOG.warn(\"Unable to parse the model configuration\", e);\n        throw new RuntimeException(\"Unable to parse the model configuration\", e);\n    }\n}",
+  "method_comment": "\n     * Read the next line for the model parameters and populate the build which\n     * later will be used to instantiate the instance of TrainedModel\n     *\n     * @param builder\n     * @param line\n     ",
+  "method_annotation": ""
+}

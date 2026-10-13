@@ -1,0 +1,22 @@
+{
+  "className": "PasswordProvider",
+  "methodName": "getPassword",
+  "brief": "String getPassword(Metadata metadata);",
+  "methodSignature": "getPassword(Metadata)",
+  "sourceCode": "String getPassword(Metadata metadata);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "/**\n * Looks up the password for a document with the given metadata,\n * and returns it for the Parser. If no password is available\n * for the document, will return null.\n *\n * @param metadata document metadata\n * @return The document decryption password, or <code>null</code> if not known\n */\nString getPassword(Metadata metadata);",
+  "method_comment": "\n     * Looks up the password for a document with the given metadata,\n     * and returns it for the Parser. If no password is available\n     * for the document, will return null.\n     *\n     * @param metadata document metadata\n     * @return The document decryption password, or <code>null</code> if not known\n     ",
+  "method_annotation": ""
+}

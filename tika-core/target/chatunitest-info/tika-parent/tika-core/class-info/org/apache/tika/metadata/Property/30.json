@@ -1,0 +1,18 @@
+{
+  "className": "Property",
+  "methodName": "getPropertyType",
+  "brief": "public PropertyType getPropertyType(){}",
+  "methodSignature": "getPropertyType()",
+  "sourceCode": "public PropertyType getPropertyType() {\n        return propertyType;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public PropertyType getPropertyType() {\n    return propertyType;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

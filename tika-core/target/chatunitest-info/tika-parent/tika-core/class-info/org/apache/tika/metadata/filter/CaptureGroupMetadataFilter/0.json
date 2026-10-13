@@ -1,0 +1,35 @@
+{
+  "className": "CaptureGroupMetadataFilter",
+  "methodName": "filter",
+  "brief": "@Override\r\n    protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "@Override\n    protected void filter(Metadata metadata) {\n        String val = metadata.get(sourceField);\n        if (StringUtils.isBlank(val)) {\n            return;\n        }\n        Matcher m = regex.matcher(val);\n        if (m.find()) {\n            // target field name is operator-configured; may legitimately be a reserved key\n            metadata.setTrusted(targetField, m.group(1));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(String)",
+      "setTrusted(String, String)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "group(int)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void filter(Metadata metadata) {\n    String val = metadata.get(sourceField);\n    if (StringUtils.isBlank(val)) {\n        return;\n    }\n    Matcher m = regex.matcher(val);\n    if (m.find()) {\n        // target field name is operator-configured; may legitimately be a reserved key\n        metadata.setTrusted(targetField, m.group(1));\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

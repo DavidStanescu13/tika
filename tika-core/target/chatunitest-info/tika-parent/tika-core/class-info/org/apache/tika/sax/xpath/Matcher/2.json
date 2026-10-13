@@ -1,0 +1,23 @@
+{
+  "className": "Matcher",
+  "methodName": "matchesAttribute",
+  "brief": "public boolean matchesAttribute(String namespace, String name){}",
+  "methodSignature": "matchesAttribute(String, String)",
+  "sourceCode": "public boolean matchesAttribute(String namespace, String name) {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Returns <code>true</code> if the XPath expression matches the named\n * attribute of the element associated with this evaluation state.\n *\n * @param namespace attribute namespace or <code>null</code>\n * @param name      attribute name\n * @return XPath evaluation state for named attribute of this element\n */\npublic boolean matchesAttribute(String namespace, String name) {\n    return false;\n}",
+  "method_comment": "\n     * Returns <code>true</code> if the XPath expression matches the named\n     * attribute of the element associated with this evaluation state.\n     *\n     * @param namespace attribute namespace or <code>null</code>\n     * @param name      attribute name\n     * @return XPath evaluation state for named attribute of this element\n     ",
+  "method_annotation": ""
+}

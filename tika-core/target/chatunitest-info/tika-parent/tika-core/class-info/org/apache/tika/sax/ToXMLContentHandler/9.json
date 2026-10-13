@@ -1,0 +1,28 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "writeEscaped",
+  "brief": "private void writeEscaped(char[] ch, int from, int to, boolean attribute) throws SAXException{}",
+  "methodSignature": "writeEscaped(char[], int, int, boolean)",
+  "sourceCode": "private void writeEscaped(char[] ch, int from, int to, boolean attribute) throws SAXException {\n        int pos = from;\n        while (pos < to) {\n            if (ch[pos] == '<') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"lt\");\n            } else if (ch[pos] == '>') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"gt\");\n            } else if (ch[pos] == '&') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"amp\");\n            } else if (attribute && ch[pos] == '\"') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"quot\");\n            } else {\n                pos++;\n            }\n        }\n        super.characters(ch, from, to - from);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.ToTextContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given characters with XML meta characters escaped.\n *\n * @param ch        character array\n * @param from      start position in the array\n * @param to        end position in the array\n * @param attribute whether the characters should be escaped as\n *                  an attribute value or normal character content\n * @throws SAXException if the characters could not be written\n */\nprivate void writeEscaped(char[] ch, int from, int to, boolean attribute) throws SAXException {\n    int pos = from;\n    while (pos < to) {\n        if (ch[pos] == '<') {\n            from = pos = writeCharsAndEntity(ch, from, pos, \"lt\");\n        } else if (ch[pos] == '>') {\n            from = pos = writeCharsAndEntity(ch, from, pos, \"gt\");\n        } else if (ch[pos] == '&') {\n            from = pos = writeCharsAndEntity(ch, from, pos, \"amp\");\n        } else if (attribute && ch[pos] == '\"') {\n            from = pos = writeCharsAndEntity(ch, from, pos, \"quot\");\n        } else {\n            pos++;\n        }\n    }\n    super.characters(ch, from, to - from);\n}",
+  "method_comment": "\n     * Writes the given characters with XML meta characters escaped.\n     *\n     * @param ch        character array\n     * @param from      start position in the array\n     * @param to        end position in the array\n     * @param attribute whether the characters should be escaped as\n     *                  an attribute value or normal character content\n     * @throws SAXException if the characters could not be written\n     ",
+  "method_annotation": ""
+}

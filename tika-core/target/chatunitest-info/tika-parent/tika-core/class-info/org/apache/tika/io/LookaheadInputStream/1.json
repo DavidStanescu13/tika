@@ -1,0 +1,26 @@
+{
+  "className": "LookaheadInputStream",
+  "methodName": "fill",
+  "brief": "private void fill() throws IOException{}",
+  "methodSignature": "fill()",
+  "sourceCode": "private void fill() throws IOException {\n        if (available() == 0 && buffered < buffer.length && stream != null) {\n            int n = stream.read(buffer, buffered, buffer.length - buffered);\n            if (n != -1) {\n                buffered += n;\n            } else {\n                close();\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.LookaheadInputStream": [
+      "available()",
+      "close()"
+    ],
+    "java.io.InputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "private void fill() throws IOException {\n    if (available() == 0 && buffered < buffer.length && stream != null) {\n        int n = stream.read(buffer, buffered, buffer.length - buffered);\n        if (n != -1) {\n            buffered += n;\n        } else {\n            close();\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

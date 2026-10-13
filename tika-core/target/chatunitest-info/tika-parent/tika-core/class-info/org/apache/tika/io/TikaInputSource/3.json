@@ -1,0 +1,18 @@
+{
+  "className": "TikaInputSource",
+  "methodName": "getLength",
+  "brief": "long getLength();",
+  "methodSignature": "getLength()",
+  "sourceCode": "long getLength();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the length of the content, or -1 if unknown.\n */\nlong getLength();",
+  "method_comment": "\n     * Returns the length of the content, or -1 if unknown.\n     ",
+  "method_annotation": ""
+}

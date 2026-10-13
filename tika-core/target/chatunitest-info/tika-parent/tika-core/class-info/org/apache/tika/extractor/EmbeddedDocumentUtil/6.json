@@ -1,0 +1,24 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "extensionOf",
+  "brief": "private static String extensionOf(MimeType mimeType){}",
+  "methodSignature": "extensionOf(MimeType)",
+  "sourceCode": "private static String extensionOf(MimeType mimeType) {\n        return mimeType == null ? \"\" : mimeType.getExtension();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [
+      "getExtension()"
+    ]
+  },
+  "full_method_info": "private static String extensionOf(MimeType mimeType) {\n    return mimeType == null ? \"\" : mimeType.getExtension();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

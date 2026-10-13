@@ -1,0 +1,18 @@
+{
+  "className": "ProbabilisticMimeDetectionSelector",
+  "methodName": "initializeDefaultProbabilityParameters",
+  "brief": "private void initializeDefaultProbabilityParameters(){}",
+  "methodSignature": "initializeDefaultProbabilityParameters()",
+  "sourceCode": "private void initializeDefaultProbabilityParameters() {\n        priorMagicFileType = 0.5f;\n        priorExtensionFileType = 0.5f;\n        priorMetaFileType = 0.5f;\n        magic_trust = DEFAULT_MAGIC_TRUST;\n        extension_trust = DEFAULT_EXTENSION_TRUST;\n        meta_trust = DEFAULT_META_TRUST;\n\n        // probability of the type detected by magic test given that the type is\n        // not the detected type. The default is taken by 1 - the magic trust\n        magic_neg = 1 - DEFAULT_MAGIC_TRUST;\n        // probability of the type detected by extension test given that the\n        // type is not the type detected by extension test\n        extension_neg = 1 - DEFAULT_EXTENSION_TRUST;\n        // same as above; but it could be customized to suffice different use.\n        meta_neg = 1 - DEFAULT_META_TRUST;\n        threshold = 0.5001f;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Initilize probability parameters with default values;\n */\nprivate void initializeDefaultProbabilityParameters() {\n    priorMagicFileType = 0.5f;\n    priorExtensionFileType = 0.5f;\n    priorMetaFileType = 0.5f;\n    magic_trust = DEFAULT_MAGIC_TRUST;\n    extension_trust = DEFAULT_EXTENSION_TRUST;\n    meta_trust = DEFAULT_META_TRUST;\n    // probability of the type detected by magic test given that the type is\n    // not the detected type. The default is taken by 1 - the magic trust\n    magic_neg = 1 - DEFAULT_MAGIC_TRUST;\n    // probability of the type detected by extension test given that the\n    // type is not the type detected by extension test\n    extension_neg = 1 - DEFAULT_EXTENSION_TRUST;\n    // same as above; but it could be customized to suffice different use.\n    meta_neg = 1 - DEFAULT_META_TRUST;\n    threshold = 0.5001f;\n}",
+  "method_comment": "\n     * Initilize probability parameters with default values;\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,27 @@
+{
+  "className": "WriteOutContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.characters(ch, start, length);\n            writeCount += length;\n        } else {\n            super.characters(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given characters to the given character stream.\n */\n@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    if (writeLimitReached) {\n        return;\n    }\n    if (writeLimit == -1 || writeCount + length <= writeLimit) {\n        super.characters(ch, start, length);\n        writeCount += length;\n    } else {\n        super.characters(ch, start, writeLimit - writeCount);\n        handleWriteLimitReached();\n    }\n}",
+  "method_comment": "\n     * Writes the given characters to the given character stream.\n     ",
+  "method_annotation": "@Override\n"
+}

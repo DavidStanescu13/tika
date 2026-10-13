@@ -1,0 +1,22 @@
+{
+  "className": "AutoDetectReader",
+  "methodName": "asInputSource",
+  "brief": "public InputSource asInputSource(){}",
+  "methodSignature": "asInputSource()",
+  "sourceCode": "public InputSource asInputSource() {\n        InputSource source = new InputSource(this);\n        source.setEncoding(charset.name());\n        return source;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [
+      "name()"
+    ]
+  },
+  "full_method_info": "public InputSource asInputSource() {\n    InputSource source = new InputSource(this);\n    source.setEncoding(charset.name());\n    return source;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

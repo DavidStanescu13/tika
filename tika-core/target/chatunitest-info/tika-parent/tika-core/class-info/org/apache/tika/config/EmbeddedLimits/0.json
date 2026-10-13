@@ -1,0 +1,18 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "getMaxDepth",
+  "brief": "public int getMaxDepth(){}",
+  "methodSignature": "getMaxDepth()",
+  "sourceCode": "public int getMaxDepth() {\n        return maxDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum nesting depth for embedded documents.\n *\n * @return maximum depth, or -1 for unlimited\n */\npublic int getMaxDepth() {\n    return maxDepth;\n}",
+  "method_comment": "\n     * Gets the maximum nesting depth for embedded documents.\n     *\n     * @return maximum depth, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

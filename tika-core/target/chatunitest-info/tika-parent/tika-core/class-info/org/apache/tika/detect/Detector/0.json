@@ -1,0 +1,26 @@
+{
+  "className": "Detector",
+  "methodName": "detect",
+  "brief": "MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException;",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Detects the content type of the given input document. Returns\n * <code>application/octet-stream</code> if the type of the document\n * can not be detected.\n * <p>\n * If the document input stream is not available, then the first\n * argument may be <code>null</code>. Otherwise the detector may\n * read bytes from the start of the stream to help in type detection.\n * The detector is expected to mark the stream before reading any bytes\n * from it, and to reset the stream before returning. The stream must\n * not be closed by the detector.\n * <p>\n * The given input metadata is only read, not modified, by the detector.\n *\n * @param tis      document input stream, or <code>null</code>\n * @param metadata input metadata for the document\n * @param parseContext the parse context\n * @return detected media type, or <code>application/octet-stream</code>\n * @throws IOException if the document input stream could not be read\n */\nMediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;",
+  "method_comment": "\n     * Detects the content type of the given input document. Returns\n     * <code>application/octet-stream</code> if the type of the document\n     * can not be detected.\n     * <p>\n     * If the document input stream is not available, then the first\n     * argument may be <code>null</code>. Otherwise the detector may\n     * read bytes from the start of the stream to help in type detection.\n     * The detector is expected to mark the stream before reading any bytes\n     * from it, and to reset the stream before returning. The stream must\n     * not be closed by the detector.\n     * <p>\n     * The given input metadata is only read, not modified, by the detector.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     * @throws IOException if the document input stream could not be read\n     ",
+  "method_annotation": ""
+}

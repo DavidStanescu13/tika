@@ -1,0 +1,22 @@
+{
+  "className": "EndDocumentShieldingContentHandler",
+  "methodName": "reallyEndDocument",
+  "brief": "public void reallyEndDocument() throws SAXException{}",
+  "methodSignature": "reallyEndDocument()",
+  "sourceCode": "public void reallyEndDocument() throws SAXException {\n        super.endDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endDocument()"
+    ]
+  },
+  "full_method_info": "public void reallyEndDocument() throws SAXException {\n    super.endDocument();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

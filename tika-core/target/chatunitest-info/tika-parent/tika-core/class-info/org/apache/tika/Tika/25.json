@@ -1,0 +1,31 @@
+{
+  "className": "Tika",
+  "methodName": "parseToString",
+  "brief": "public String parseToString(URL url) throws IOException, TikaException{}",
+  "methodSignature": "parseToString(URL)",
+  "sourceCode": "public String parseToString(URL url) throws IOException, TikaException {\n        ParseContext context = new ParseContext();\n        Metadata metadata = Metadata.newInstance(context);\n        InputStream stream = TikaInputStream.get(url, metadata);\n        return parseToString(stream, metadata, maxStringLength, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL"
+  ],
+  "dependentMethods": {
+    "java.net.URL": [],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(URL, Metadata)"
+    ],
+    "org.apache.tika.Tika": [
+      "parseToString(InputStream, Metadata, int, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the resource at the given URL and returns the extracted\n * text content.\n * <p>\n * To avoid unpredictable excess memory use, the returned string contains\n * only up to {@link #getMaxStringLength()} first characters extracted\n * from the input document. Use the {@link #setMaxStringLength(int)}\n * method to adjust this limitation.\n *\n * @param url the URL of the resource to be parsed\n * @return extracted text content\n * @throws IOException   if the resource can not be read\n * @throws TikaException if the resource can not be parsed\n */\npublic String parseToString(URL url) throws IOException, TikaException {\n    ParseContext context = new ParseContext();\n    Metadata metadata = Metadata.newInstance(context);\n    InputStream stream = TikaInputStream.get(url, metadata);\n    return parseToString(stream, metadata, maxStringLength, context);\n}",
+  "method_comment": "\n     * Parses the resource at the given URL and returns the extracted\n     * text content.\n     * <p>\n     * To avoid unpredictable excess memory use, the returned string contains\n     * only up to {@link #getMaxStringLength()} first characters extracted\n     * from the input document. Use the {@link #setMaxStringLength(int)}\n     * method to adjust this limitation.\n     *\n     * @param url the URL of the resource to be parsed\n     * @return extracted text content\n     * @throws IOException   if the resource can not be read\n     * @throws TikaException if the resource can not be parsed\n     ",
+  "method_annotation": ""
+}

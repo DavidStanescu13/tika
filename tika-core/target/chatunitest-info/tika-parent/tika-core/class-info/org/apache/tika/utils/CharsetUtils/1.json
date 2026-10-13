@@ -1,0 +1,28 @@
+{
+  "className": "CharsetUtils",
+  "methodName": "isSupported",
+  "brief": "public static boolean isSupported(String charsetName){}",
+  "methodSignature": "isSupported(String)",
+  "sourceCode": "public static boolean isSupported(String charsetName) {\n        try {\n            if (isSupportedICU != null && (Boolean) isSupportedICU.invoke(null, charsetName)) {\n                return true;\n            }\n            return Charset.isSupported(charsetName);\n        } catch (IllegalCharsetNameException e) {\n            return false;\n        } catch (IllegalArgumentException e) {\n            // null, for example\n            return false;\n        } catch (Exception e) {\n            // Unexpected exception, what to do?\n            return false;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.reflect.Method": [
+      "invoke(Object, Object[])"
+    ],
+    "java.nio.charset.Charset": [
+      "isSupported(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Safely return whether <charsetName> is supported, without throwing exceptions\n *\n * @param charsetName Name of charset (can be null)\n * @return true if the character set is supported\n */\npublic static boolean isSupported(String charsetName) {\n    try {\n        if (isSupportedICU != null && (Boolean) isSupportedICU.invoke(null, charsetName)) {\n            return true;\n        }\n        return Charset.isSupported(charsetName);\n    } catch (IllegalCharsetNameException e) {\n        return false;\n    } catch (IllegalArgumentException e) {\n        // null, for example\n        return false;\n    } catch (Exception e) {\n        // Unexpected exception, what to do?\n        return false;\n    }\n}",
+  "method_comment": "\n     * Safely return whether <charsetName> is supported, without throwing exceptions\n     *\n     * @param charsetName Name of charset (can be null)\n     * @return true if the character set is supported\n     ",
+  "method_annotation": ""
+}

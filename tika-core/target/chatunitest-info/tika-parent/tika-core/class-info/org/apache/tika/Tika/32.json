@@ -1,0 +1,26 @@
+{
+  "className": "Tika",
+  "methodName": "getString",
+  "brief": "public static String getString(){}",
+  "methodSignature": "getString()",
+  "sourceCode": "public static String getString() {\n        String version = null;\n\n        try (InputStream stream = Tika.class\n                .getResourceAsStream(\"/META-INF/maven/org.apache.tika/tika-core/pom.properties\")) {\n            if (stream != null) {\n                Properties properties = new Properties();\n                properties.load(stream);\n                version = properties.getProperty(\"version\");\n            }\n        } catch (Exception ignore) {\n        }\n\n        if (version != null) {\n            return \"Apache Tika \" + version;\n        } else {\n            return \"Apache Tika\";\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "getResourceAsStream(String)"
+    ],
+    "java.util.Properties": [
+      "load(InputStream)",
+      "getProperty(String)"
+    ]
+  },
+  "full_method_info": "public static String getString() {\n    String version = null;\n    try (InputStream stream = Tika.class.getResourceAsStream(\"/META-INF/maven/org.apache.tika/tika-core/pom.properties\")) {\n        if (stream != null) {\n            Properties properties = new Properties();\n            properties.load(stream);\n            version = properties.getProperty(\"version\");\n        }\n    } catch (Exception ignore) {\n    }\n    if (version != null) {\n        return \"Apache Tika \" + version;\n    } else {\n        return \"Apache Tika\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

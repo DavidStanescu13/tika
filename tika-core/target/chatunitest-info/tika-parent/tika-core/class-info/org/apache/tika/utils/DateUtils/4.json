@@ -1,0 +1,28 @@
+{
+  "className": "DateUtils",
+  "methodName": "doFormatDate",
+  "brief": "private static String doFormatDate(Calendar calendar){}",
+  "methodSignature": "doFormatDate(Calendar)",
+  "sourceCode": "private static String doFormatDate(Calendar calendar) {\n        return calendar.toInstant().truncatedTo(ChronoUnit.SECONDS).toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Calendar"
+  ],
+  "dependentMethods": {
+    "java.util.Calendar": [
+      "toInstant()"
+    ],
+    "java.time.Instant": [
+      "truncatedTo(TemporalUnit)",
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns ISO-8601 formatted time converted to UTC, truncated to the seconds place\n * @param calendar\n * @return\n */\nprivate static String doFormatDate(Calendar calendar) {\n    return calendar.toInstant().truncatedTo(ChronoUnit.SECONDS).toString();\n}",
+  "method_comment": "\n     * Returns ISO-8601 formatted time converted to UTC, truncated to the seconds place\n     * @param calendar\n     * @return\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,21 @@
+{
+  "className": "FileTooLongException",
+  "methodName": "msg",
+  "brief": "private static String msg(long length, long maxLength){}",
+  "methodSignature": "msg(long, long)",
+  "sourceCode": "private static String msg(long length, long maxLength) {\n        return \"File is \" + length + \" bytes, but \" + maxLength +\n                \" is the maximum length allowed.  You can modify maxLength via \" +\n                \"the setter on the fetcher.\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "private static String msg(long length, long maxLength) {\n    return \"File is \" + length + \" bytes, but \" + maxLength + \" is the maximum length allowed.  You can modify maxLength via \" + \"the setter on the fetcher.\";\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

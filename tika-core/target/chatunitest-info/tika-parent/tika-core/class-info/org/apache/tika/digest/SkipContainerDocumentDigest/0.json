@@ -1,0 +1,24 @@
+{
+  "className": "SkipContainerDocumentDigest",
+  "methodName": "shouldSkip",
+  "brief": "public static boolean shouldSkip(ParseContext context){}",
+  "methodSignature": "shouldSkip(ParseContext)",
+  "sourceCode": "public static boolean shouldSkip(ParseContext context) {\n        return context.get(SkipContainerDocumentDigest.class) != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if container document digesting should be skipped for this parse.\n *\n * @param context the parse context\n * @return true if container document digesting should be skipped\n */\npublic static boolean shouldSkip(ParseContext context) {\n    return context.get(SkipContainerDocumentDigest.class) != null;\n}",
+  "method_comment": "\n     * Checks if container document digesting should be skipped for this parse.\n     *\n     * @param context the parse context\n     * @return true if container document digesting should be skipped\n     ",
+  "method_annotation": ""
+}

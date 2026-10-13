@@ -1,0 +1,26 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "checkCommand",
+  "brief": "public static boolean checkCommand(String checkCmd, int... errorValue){}",
+  "methodSignature": "checkCommand(String, int[])",
+  "sourceCode": "public static boolean checkCommand(String checkCmd, int... errorValue) {\n        return checkCommand(new String[]{checkCmd}, errorValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.ProcessUtils": [
+      "checkCommand(String[], int[])"
+    ]
+  },
+  "full_method_info": "/**\n * Checks to see if the command can be run. Typically used with\n * something like \"myapp --version\" to check to see if \"myapp\"\n * is installed and on the path.\n *\n * @param checkCmd   The check command to run\n * @param errorValue What is considered an error value? Default is 127 (command not found).\n * @return true if the command ran successfully (exit code not in errorValue list)\n */\npublic static boolean checkCommand(String checkCmd, int... errorValue) {\n    return checkCommand(new String[] { checkCmd }, errorValue);\n}",
+  "method_comment": "\n     * Checks to see if the command can be run. Typically used with\n     * something like \"myapp --version\" to check to see if \"myapp\"\n     * is installed and on the path.\n     *\n     * @param checkCmd   The check command to run\n     * @param errorValue What is considered an error value? Default is 127 (command not found).\n     * @return true if the command ran successfully (exit code not in errorValue list)\n     ",
+  "method_annotation": ""
+}

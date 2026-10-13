@@ -1,0 +1,24 @@
+{
+  "className": "EndianUtils",
+  "methodName": "readLongBE",
+  "brief": "public static long readLongBE(InputStream stream) throws IOException, BufferUnderrunException{}",
+  "methodSignature": "readLongBE(InputStream)",
+  "sourceCode": "public static long readLongBE(InputStream stream) throws IOException, BufferUnderrunException {\n        int ch1 = stream.read();\n        int ch2 = stream.read();\n        int ch3 = stream.read();\n        int ch4 = stream.read();\n        int ch5 = stream.read();\n        int ch6 = stream.read();\n        int ch7 = stream.read();\n        int ch8 = stream.read();\n        if ((ch1 | ch2 | ch3 | ch4 | ch5 | ch6 | ch7 | ch8) < 0) {\n            throw new BufferUnderrunException();\n        }\n\n        return ((long) ch1 << 56) + ((long) ch2 << 48) + ((long) ch3 << 40) + ((long) ch4 << 32) +\n                ((long) ch5 << 24) + // cast to long to preserve bit 31 (sign bit for ints)\n                (ch6 << 16) + (ch7 << 8) + (ch8);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read()"
+    ]
+  },
+  "full_method_info": "/**\n * Get a NE long value from an InputStream\n *\n * @param stream the InputStream from which the long is to be read\n * @return the long (64-bit) value\n * @throws IOException             will be propagated back to the caller\n * @throws BufferUnderrunException if the stream cannot provide enough bytes\n */\npublic static long readLongBE(InputStream stream) throws IOException, BufferUnderrunException {\n    int ch1 = stream.read();\n    int ch2 = stream.read();\n    int ch3 = stream.read();\n    int ch4 = stream.read();\n    int ch5 = stream.read();\n    int ch6 = stream.read();\n    int ch7 = stream.read();\n    int ch8 = stream.read();\n    if ((ch1 | ch2 | ch3 | ch4 | ch5 | ch6 | ch7 | ch8) < 0) {\n        throw new BufferUnderrunException();\n    }\n    return ((long) ch1 << 56) + ((long) ch2 << 48) + ((long) ch3 << 40) + ((long) ch4 << 32) + // cast to long to preserve bit 31 (sign bit for ints)\n    ((long) ch5 << 24) + (ch6 << 16) + (ch7 << 8) + (ch8);\n}",
+  "method_comment": "\n     * Get a NE long value from an InputStream\n     *\n     * @param stream the InputStream from which the long is to be read\n     * @return the long (64-bit) value\n     * @throws IOException             will be propagated back to the caller\n     * @throws BufferUnderrunException if the stream cannot provide enough bytes\n     ",
+  "method_annotation": ""
+}

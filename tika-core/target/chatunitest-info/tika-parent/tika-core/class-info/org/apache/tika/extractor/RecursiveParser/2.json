@@ -1,0 +1,28 @@
+{
+  "className": "RecursiveParser",
+  "methodName": "RecursiveParser",
+  "brief": "private RecursiveParser(Parser statelessParser,\r\n                ContainerExtractor extractor,\r\n                EmbeddedResourceHandler handler,\r\n                ParseContext parseContext){}",
+  "methodSignature": "RecursiveParser(Parser, ContainerExtractor, EmbeddedResourceHandler, ParseContext)",
+  "sourceCode": "private RecursiveParser(Parser statelessParser,\n                ContainerExtractor extractor,\n                EmbeddedResourceHandler handler,\n                ParseContext parseContext) {\n            super(statelessParser);\n            this.extractor = extractor;\n            this.handler = handler;\n            this.parseContext = parseContext;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "ContainerExtractor",
+    "EmbeddedResourceHandler",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.extractor.ContainerExtractor": [],
+    "org.apache.tika.extractor.EmbeddedResourceHandler": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "private RecursiveParser(Parser statelessParser, ContainerExtractor extractor, EmbeddedResourceHandler handler, ParseContext parseContext) {\n    super(statelessParser);\n    this.extractor = extractor;\n    this.handler = handler;\n    this.parseContext = parseContext;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

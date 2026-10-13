@@ -1,0 +1,22 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "setArbitrationInfo",
+  "brief": "public void setArbitrationInfo(String info){}",
+  "methodSignature": "setArbitrationInfo(String)",
+  "sourceCode": "public void setArbitrationInfo(String info) {\n        this.arbitrationInfo = info;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Set by the meta detector to describe how it reached its decision.\n * Values: \"unanimous\", \"scored\", \"no-stream\", \"empty-stream\", etc.\n */\npublic void setArbitrationInfo(String info) {\n    this.arbitrationInfo = info;\n}",
+  "method_comment": "\n     * Set by the meta detector to describe how it reached its decision.\n     * Values: \"unanimous\", \"scored\", \"no-stream\", \"empty-stream\", etc.\n     ",
+  "method_annotation": ""
+}

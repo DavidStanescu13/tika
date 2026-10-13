@@ -1,0 +1,38 @@
+{
+  "fullClassName": "org.apache.tika.parser.PasswordProvider",
+  "className": "PasswordProvider",
+  "index": 252,
+  "modifier": "[public ]",
+  "extend": "[Serializable]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public interface PasswordProvider",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getPassword(Metadata)": "0"
+  },
+  "methodsBrief": [
+    "String getPassword(Metadata metadata);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.Serializable;\nimport org.apache.tika.metadata.Metadata;\n\n/**\n * Interface for providing a password to a Parser for handling Encrypted\n * and Password Protected Documents.\n * An implementation of this should be set on the {@link ParseContext}\n * supplied to {@link Parser#parse(java.io.InputStream, org.xml.sax.ContentHandler,\n * Metadata, ParseContext)}\n * to provide a way to get the document password.\n * An implementation of this interface defines some specific selection\n * or lookup criteria, to be applied against the document metadata passed\n * to the {@link #getPassword(Metadata)} method.\n *\n * @since Apache Tika 1.1\n */\npublic interface PasswordProvider extends Serializable {\n\n    /**\n     * Looks up the password for a document with the given metadata,\n     * and returns it for the Parser. If no password is available\n     * for the document, will return null.\n     *\n     * @param metadata document metadata\n     * @return The document decryption password, or <code>null</code> if not known\n     */\n    String getPassword(Metadata metadata);\n}\n",
+  "classDeclarationCode": "/**\n * Interface for providing a password to a Parser for handling Encrypted\n * and Password Protected Documents.\n * An implementation of this should be set on the {@link ParseContext}\n * supplied to {@link Parser#parse(java.io.InputStream, org.xml.sax.ContentHandler,\n * Metadata, ParseContext)}\n * to provide a way to get the document password.\n * An implementation of this interface defines some specific selection\n * or lookup criteria, to be applied against the document metadata passed\n * to the {@link #getPassword(Metadata)} method.\n *\n * @since Apache Tika 1.1\n */\npublic interface PasswordProvider extends Serializable {\n\n    /**\n     * Looks up the password for a document with the given metadata,\n     * and returns it for the Parser. If no password is available\n     * for the document, will return null.\n     *\n     * @param metadata document metadata\n     * @return The document decryption password, or <code>null</code> if not known\n     */\n    String getPassword(Metadata metadata);\n}",
+  "subClasses": []
+}

@@ -1,0 +1,24 @@
+{
+  "className": "HexCoDec",
+  "methodName": "encode",
+  "brief": "public static char[] encode(byte[] bites, int startIndex, int length){}",
+  "methodSignature": "encode(byte[], int, int)",
+  "sourceCode": "public static char[] encode(byte[] bites, int startIndex, int length) {\n        char[] result = new char[length * 2];\n        for (int i = 0, j = 0; i < length; i++) {\n            int bite = bites[startIndex++] & 0xff;\n            result[j++] = HEX_CHARS[bite >> 4];\n            result[j++] = HEX_CHARS[bite & 0xf];\n        }\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Hex encode an array of bytes\n *\n * @param bites      the array of bytes to encode.\n * @param startIndex the index of the first character to encode.\n * @param length     the number of characters to encode.\n * @return the array of hex characters.\n */\npublic static char[] encode(byte[] bites, int startIndex, int length) {\n    char[] result = new char[length * 2];\n    for (int i = 0, j = 0; i < length; i++) {\n        int bite = bites[startIndex++] & 0xff;\n        result[j++] = HEX_CHARS[bite >> 4];\n        result[j++] = HEX_CHARS[bite & 0xf];\n    }\n    return result;\n}",
+  "method_comment": "\n     * Hex encode an array of bytes\n     *\n     * @param bites      the array of bytes to encode.\n     * @param startIndex the index of the first character to encode.\n     * @param length     the number of characters to encode.\n     * @return the array of hex characters.\n     ",
+  "method_annotation": ""
+}

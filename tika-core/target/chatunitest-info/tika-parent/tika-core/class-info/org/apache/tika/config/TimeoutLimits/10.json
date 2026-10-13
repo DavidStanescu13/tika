@@ -1,0 +1,21 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "TimeoutLimits",
+  "brief": "public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis){}",
+  "methodSignature": "TimeoutLimits(long, long)",
+  "sourceCode": "public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis) {\n    this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n    this.progressTimeoutMillis = progressTimeoutMillis;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

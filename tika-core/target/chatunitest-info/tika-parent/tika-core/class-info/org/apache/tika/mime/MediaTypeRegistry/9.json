@@ -1,0 +1,28 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "isInstanceOf",
+  "brief": "public boolean isInstanceOf(MediaType a, MediaType b){}",
+  "methodSignature": "isInstanceOf(MediaType, MediaType)",
+  "sourceCode": "public boolean isInstanceOf(MediaType a, MediaType b) {\n        return a != null && (a.equals(b) || isSpecializationOf(a, b));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks whether the given media type equals the given base type or\n * is a specialization of it. Both types should be already normalised.\n *\n * @param a media type, normalised\n * @param b base type, normalised\n * @return <code>true</code> if b equals a or is a specialization of it,\n * <code>false</code> otherwise\n * @since Apache Tika 1.2\n */\npublic boolean isInstanceOf(MediaType a, MediaType b) {\n    return a != null && (a.equals(b) || isSpecializationOf(a, b));\n}",
+  "method_comment": "\n     * Checks whether the given media type equals the given base type or\n     * is a specialization of it. Both types should be already normalised.\n     *\n     * @param a media type, normalised\n     * @param b base type, normalised\n     * @return <code>true</code> if b equals a or is a specialization of it,\n     * <code>false</code> otherwise\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": ""
+}

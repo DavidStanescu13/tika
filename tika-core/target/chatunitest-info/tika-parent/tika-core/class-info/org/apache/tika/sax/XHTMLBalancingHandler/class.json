@@ -1,0 +1,55 @@
+{
+  "fullClassName": "org.apache.tika.sax.XHTMLBalancingHandler",
+  "className": "XHTMLBalancingHandler",
+  "index": 323,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class XHTMLBalancingHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayDeque;",
+    "import java.util.Deque;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [
+    "private final Deque<QName> openElements = new ArrayDeque<>();"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startElement(String, String, String, Attributes)": "0",
+    "endElement(String, String, String)": "1",
+    "drainOpenElements()": "2",
+    "openElementCount()": "3",
+    "XHTMLBalancingHandler(ContentHandler)": "4"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attrs)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+    "public void drainOpenElements() throws SAXException{}",
+    "public int openElementCount(){}",
+    "public XHTMLBalancingHandler(ContentHandler handler){}"
+  ],
+  "constructorSigs": [
+    "XHTMLBalancingHandler(ContentHandler)"
+  ],
+  "constructorBrief": [
+    "public XHTMLBalancingHandler(ContentHandler handler){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.ArrayDeque;\nimport java.util.Deque;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\n\n/**\n * SAX decorator that tracks open elements so a parser can recover well-formed\n * XHTML when an exception interrupts the SAX stream mid-element.\n * <p>\n * The decorator is a thin passthrough on the happy path: it pushes and pops an\n * internal stack on {@code startElement}/{@code endElement} and otherwise forwards\n * every event to the wrapped handler unchanged. It deliberately does NOT mask\n * bad event sequences (mismatched or excess endElement, duplicate attributes,\n * etc.) -- those remain visible to {@link StrictXHTMLValidator} so parser bugs\n * still surface as test failures.\n * <p>\n * The unhappy path -- a per-part SAX parser throwing mid-element after emitting\n * one or more start tags -- is handled via {@link #drainOpenElements()}, which\n * emits a matching {@code endElement} (with the original uri/localName/qName)\n * for every element still on the stack, in reverse open order. The wrapped\n * handler is left in a well-formed state with no dangling elements from the\n * failed sub-parse.\n * <p>\n * Typical use wraps the handler that receives events from an inner SAX parser,\n * inside the catch arm that swallows the inner parser's exception:\n * <pre>{@code\n * XHTMLBalancingHandler balancer = new XHTMLBalancingHandler(contentHandler);\n * try {\n *     XMLReaderUtils.parseSAX(stream, new EmbeddedContentHandler(balancer), context);\n * } catch (SAXException e) {\n *     balancer.drainOpenElements();\n *     // ... log and continue ...\n * }\n * }</pre>\n * This handler does not touch {@code startDocument}/{@code endDocument}; the\n * caller still owns the document lifecycle.\n */\npublic class XHTMLBalancingHandler extends ContentHandlerDecorator {\n\n    private final Deque<QName> openElements = new ArrayDeque<>();\n\n    public XHTMLBalancingHandler(ContentHandler handler) {\n        super(handler);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {\n        openElements.push(new QName(uri, localName, qName));\n        super.startElement(uri, localName, qName, attrs);\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        // Pop best-effort: an unbalanced endElement (e.g., emitted after the\n        // matching startElement was swallowed) still forwards downstream so a\n        // wrapping StrictXHTMLValidator sees the violation.\n        if (!openElements.isEmpty()) {\n            openElements.pop();\n        }\n        super.endElement(uri, localName, qName);\n    }\n\n    /**\n     * Emits a matching {@code endElement} for every element still on the open\n     * stack, in reverse open order. After this call the stack is empty.\n     * <p>\n     * Intended for the catch arm of a caller that swallowed a\n     * {@link SAXException} from an inner SAX parser: the inner parser may have\n     * left one or more elements open mid-stream, and downstream serialization\n     * needs matching closers before any further events.\n     * <p>\n     * Does NOT emit {@code endDocument} -- document lifecycle stays with the\n     * caller.\n     */\n    public void drainOpenElements() throws SAXException {\n        while (!openElements.isEmpty()) {\n            QName q = openElements.pop();\n            super.endElement(q.uri, q.localName, q.qName);\n        }\n    }\n\n    /**\n     * Number of elements currently open through this handler. Exposed for\n     * tests and for callers that want to know whether\n     * {@link #drainOpenElements()} would emit anything.\n     */\n    public int openElementCount() {\n        return openElements.size();\n    }\n\n    private static final class QName {\n\n        final String uri;\n\n        final String localName;\n\n        final String qName;\n\n        QName(String uri, String localName, String qName) {\n            this.uri = uri == null ? \"\" : uri;\n            this.localName = localName == null ? \"\" : localName;\n            this.qName = qName == null ? \"\" : qName;\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * SAX decorator that tracks open elements so a parser can recover well-formed\n * XHTML when an exception interrupts the SAX stream mid-element.\n * <p>\n * The decorator is a thin passthrough on the happy path: it pushes and pops an\n * internal stack on {@code startElement}/{@code endElement} and otherwise forwards\n * every event to the wrapped handler unchanged. It deliberately does NOT mask\n * bad event sequences (mismatched or excess endElement, duplicate attributes,\n * etc.) -- those remain visible to {@link StrictXHTMLValidator} so parser bugs\n * still surface as test failures.\n * <p>\n * The unhappy path -- a per-part SAX parser throwing mid-element after emitting\n * one or more start tags -- is handled via {@link #drainOpenElements()}, which\n * emits a matching {@code endElement} (with the original uri/localName/qName)\n * for every element still on the stack, in reverse open order. The wrapped\n * handler is left in a well-formed state with no dangling elements from the\n * failed sub-parse.\n * <p>\n * Typical use wraps the handler that receives events from an inner SAX parser,\n * inside the catch arm that swallows the inner parser's exception:\n * <pre>{@code\n * XHTMLBalancingHandler balancer = new XHTMLBalancingHandler(contentHandler);\n * try {\n *     XMLReaderUtils.parseSAX(stream, new EmbeddedContentHandler(balancer), context);\n * } catch (SAXException e) {\n *     balancer.drainOpenElements();\n *     // ... log and continue ...\n * }\n * }</pre>\n * This handler does not touch {@code startDocument}/{@code endDocument}; the\n * caller still owns the document lifecycle.\n */\npublic class XHTMLBalancingHandler extends ContentHandlerDecorator {\n\n    private final Deque<QName> openElements = new ArrayDeque<>();\n\n    public XHTMLBalancingHandler(ContentHandler handler) {\n        super(handler);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {\n        openElements.push(new QName(uri, localName, qName));\n        super.startElement(uri, localName, qName, attrs);\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        // Pop best-effort: an unbalanced endElement (e.g., emitted after the\n        // matching startElement was swallowed) still forwards downstream so a\n        // wrapping StrictXHTMLValidator sees the violation.\n        if (!openElements.isEmpty()) {\n            openElements.pop();\n        }\n        super.endElement(uri, localName, qName);\n    }\n\n    /**\n     * Emits a matching {@code endElement} for every element still on the open\n     * stack, in reverse open order. After this call the stack is empty.\n     * <p>\n     * Intended for the catch arm of a caller that swallowed a\n     * {@link SAXException} from an inner SAX parser: the inner parser may have\n     * left one or more elements open mid-stream, and downstream serialization\n     * needs matching closers before any further events.\n     * <p>\n     * Does NOT emit {@code endDocument} -- document lifecycle stays with the\n     * caller.\n     */\n    public void drainOpenElements() throws SAXException {\n        while (!openElements.isEmpty()) {\n            QName q = openElements.pop();\n            super.endElement(q.uri, q.localName, q.qName);\n        }\n    }\n\n    /**\n     * Number of elements currently open through this handler. Exposed for\n     * tests and for callers that want to know whether\n     * {@link #drainOpenElements()} would emit anything.\n     */\n    public int openElementCount() {\n        return openElements.size();\n    }\n\n    private static final class QName {\n\n        final String uri;\n\n        final String localName;\n\n        final String qName;\n\n        QName(String uri, String localName, String qName) {\n            this.uri = uri == null ? \"\" : uri;\n            this.localName = localName == null ? \"\" : localName;\n            this.qName = qName == null ? \"\" : qName;\n        }\n    }\n}",
+  "subClasses": []
+}

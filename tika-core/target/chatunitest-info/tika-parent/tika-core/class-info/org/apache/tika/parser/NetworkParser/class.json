@@ -1,0 +1,79 @@
+{
+  "fullClassName": "org.apache.tika.parser.NetworkParser",
+  "className": "NetworkParser",
+  "index": 240,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class NetworkParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.FilterOutputStream;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.OutputStream;",
+    "import java.net.Socket;",
+    "import java.net.URI;",
+    "import java.net.URL;",
+    "import java.net.URLConnection;",
+    "import java.util.Collections;",
+    "import java.util.Set;",
+    "import org.apache.commons.io.IOUtils;",
+    "import org.apache.commons.io.input.CloseShieldInputStream;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.sax.TaggedContentHandler;",
+    "import org.apache.tika.sax.TeeContentHandler;",
+    "import org.apache.tika.utils.XMLReaderUtils;"
+  ],
+  "fields": [
+    "private final URI uri;",
+    "private final Set<MediaType> supportedTypes;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "1",
+    "NetworkParser(URI, Set)": "2",
+    "NetworkParser(URI)": "3"
+  },
+  "methodsBrief": [
+    "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+    "public NetworkParser(URI uri, Set<MediaType> supportedTypes){}",
+    "public NetworkParser(URI uri){}"
+  ],
+  "constructorSigs": [
+    "NetworkParser(URI, Set)",
+    "NetworkParser(URI)"
+  ],
+  "constructorBrief": [
+    "public NetworkParser(URI uri, Set<MediaType> supportedTypes){}",
+    "public NetworkParser(URI uri){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.net.URI": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.FilterOutputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\nimport java.net.Socket;\nimport java.net.URI;\nimport java.net.URL;\nimport java.net.URLConnection;\nimport java.util.Collections;\nimport java.util.Set;\nimport org.apache.commons.io.IOUtils;\nimport org.apache.commons.io.input.CloseShieldInputStream;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.sax.TaggedContentHandler;\nimport org.apache.tika.sax.TeeContentHandler;\nimport org.apache.tika.utils.XMLReaderUtils;\n\npublic class NetworkParser implements Parser {\n\n    private final URI uri;\n\n    private final Set<MediaType> supportedTypes;\n\n    public NetworkParser(URI uri, Set<MediaType> supportedTypes) {\n        this.uri = uri;\n        this.supportedTypes = supportedTypes;\n    }\n\n    public NetworkParser(URI uri) {\n        this(uri, Collections.singleton(MediaType.OCTET_STREAM));\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return supportedTypes;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (\"telnet\".equals(uri.getScheme())) {\n            try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {\n                new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {\n\n                    @Override\n                    public void close() throws IOException {\n                        socket.shutdownOutput();\n                    }\n                }).parse(socket.getInputStream(), handler, metadata, context);\n            }\n        } else {\n            URL url = uri.toURL();\n            URLConnection connection = url.openConnection();\n            connection.setDoOutput(true);\n            connection.connect();\n            try (InputStream input = connection.getInputStream()) {\n                new ParsingTask(tis, connection.getOutputStream()).parse(CloseShieldInputStream.wrap(input), handler, metadata, context);\n            }\n        }\n    }\n\n    private static class ParsingTask implements Runnable {\n\n        private final TikaInputStream input;\n\n        private final OutputStream output;\n\n        private volatile Exception exception = null;\n\n        public ParsingTask(TikaInputStream input, OutputStream output) {\n            this.input = input;\n            this.output = output;\n        }\n\n        public void parse(InputStream stream, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n            Thread thread = new Thread(this, \"Tika network parser\");\n            thread.start();\n            TaggedContentHandler tagged = new TaggedContentHandler(handler);\n            try {\n                XMLReaderUtils.parseSAX(stream, new TeeContentHandler(tagged, new MetaHandler(metadata)), context);\n            } catch (SAXException e) {\n                tagged.throwIfCauseOf(e);\n                throw new TikaException(\"Invalid network parser output\", e);\n            } catch (IOException e) {\n                throw new TikaException(\"Unable to read network parser output\", e);\n            } finally {\n                try {\n                    thread.join(1000);\n                } catch (InterruptedException e) {\n                    throw new TikaException(\"Network parser interrupted\", e);\n                }\n                if (exception != null) {\n                    input.throwIfCauseOf(exception);\n                    throw new TikaException(\"Unexpected network parser error\", exception);\n                }\n            }\n        }\n\n        // ----------------------------------------------------------<Runnable>\n        public void run() {\n            try {\n                try {\n                    IOUtils.copy(input, output);\n                } finally {\n                    output.close();\n                }\n            } catch (Exception e) {\n                exception = e;\n            }\n        }\n    }\n\n    private static class MetaHandler extends DefaultHandler {\n\n        private final Metadata metadata;\n\n        public MetaHandler(Metadata metadata) {\n            this.metadata = metadata;\n        }\n\n        @Override\n        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n            if (\"http://www.w3.org/1999/xhtml\".equals(uri) && \"meta\".equals(localName)) {\n                String name = attributes.getValue(\"\", \"name\");\n                String content = attributes.getValue(\"\", \"content\");\n                if (name != null && content != null) {\n                    metadata.add(name, content);\n                }\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "public class NetworkParser implements Parser {\n\n    private final URI uri;\n\n    private final Set<MediaType> supportedTypes;\n\n    public NetworkParser(URI uri, Set<MediaType> supportedTypes) {\n        this.uri = uri;\n        this.supportedTypes = supportedTypes;\n    }\n\n    public NetworkParser(URI uri) {\n        this(uri, Collections.singleton(MediaType.OCTET_STREAM));\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return supportedTypes;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (\"telnet\".equals(uri.getScheme())) {\n            try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {\n                new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {\n\n                    @Override\n                    public void close() throws IOException {\n                        socket.shutdownOutput();\n                    }\n                }).parse(socket.getInputStream(), handler, metadata, context);\n            }\n        } else {\n            URL url = uri.toURL();\n            URLConnection connection = url.openConnection();\n            connection.setDoOutput(true);\n            connection.connect();\n            try (InputStream input = connection.getInputStream()) {\n                new ParsingTask(tis, connection.getOutputStream()).parse(CloseShieldInputStream.wrap(input), handler, metadata, context);\n            }\n        }\n    }\n\n    private static class ParsingTask implements Runnable {\n\n        private final TikaInputStream input;\n\n        private final OutputStream output;\n\n        private volatile Exception exception = null;\n\n        public ParsingTask(TikaInputStream input, OutputStream output) {\n            this.input = input;\n            this.output = output;\n        }\n\n        public void parse(InputStream stream, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n            Thread thread = new Thread(this, \"Tika network parser\");\n            thread.start();\n            TaggedContentHandler tagged = new TaggedContentHandler(handler);\n            try {\n                XMLReaderUtils.parseSAX(stream, new TeeContentHandler(tagged, new MetaHandler(metadata)), context);\n            } catch (SAXException e) {\n                tagged.throwIfCauseOf(e);\n                throw new TikaException(\"Invalid network parser output\", e);\n            } catch (IOException e) {\n                throw new TikaException(\"Unable to read network parser output\", e);\n            } finally {\n                try {\n                    thread.join(1000);\n                } catch (InterruptedException e) {\n                    throw new TikaException(\"Network parser interrupted\", e);\n                }\n                if (exception != null) {\n                    input.throwIfCauseOf(exception);\n                    throw new TikaException(\"Unexpected network parser error\", exception);\n                }\n            }\n        }\n\n        // ----------------------------------------------------------<Runnable>\n        public void run() {\n            try {\n                try {\n                    IOUtils.copy(input, output);\n                } finally {\n                    output.close();\n                }\n            } catch (Exception e) {\n                exception = e;\n            }\n        }\n    }\n\n    private static class MetaHandler extends DefaultHandler {\n\n        private final Metadata metadata;\n\n        public MetaHandler(Metadata metadata) {\n            this.metadata = metadata;\n        }\n\n        @Override\n        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n            if (\"http://www.w3.org/1999/xhtml\".equals(uri) && \"meta\".equals(localName)) {\n                String name = attributes.getValue(\"\", \"name\");\n                String content = attributes.getValue(\"\", \"content\");\n                if (name != null && content != null) {\n                    metadata.add(name, content);\n                }\n            }\n        }\n    }\n}",
+  "subClasses": []
+}

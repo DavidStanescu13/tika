@@ -1,0 +1,108 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_4_2_Test {
+
+    @Mock
+    private ProcessBuilder processBuilder;
+
+    @Mock
+    private Process process;
+
+    @Mock
+    private StreamGobbler outGobbler;
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @BeforeEach
+    public void setUp() {
+        when(processBuilder.start()).thenReturn(process);
+        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("stdout".getBytes(StandardCharsets.UTF_8)));
+        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("stderr".getBytes(StandardCharsets.UTF_8)));
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException {
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(4, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("stdout", result.stdout);
+        assertEquals("stderr", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteTimeout() throws IOException, InterruptedException {
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        when(process.exitValue()).thenReturn(1);
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertTrue(result.isTimeout);
+        assertEquals(1, result.exitValue);
+    }
+
+    @Test
+    public void testExecuteException() throws IOException, InterruptedException {
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(-1000, result.exitValue);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_4_2_Test: line 7 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_execute_4_2_Test: line 18 : package org.mockito does not exist
+Error in ProcessUtils_execute_4_2_Test: line 16 : package org.mockito does not exist
+Error in ProcessUtils_execute_4_2_Test: line 27 : cannot find symbol
+  symbol: class MockitoExtension
+Error in ProcessUtils_execute_4_2_Test: line 30 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
+Error in ProcessUtils_execute_4_2_Test: line 33 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
+Error in ProcessUtils_execute_4_2_Test: line 36 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
+Error in ProcessUtils_execute_4_2_Test: line 39 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
+Error in ProcessUtils_execute_4_2_Test: line 42 : cannot find symbol
+  symbol:   class InjectMocks
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test

@@ -1,0 +1,29 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String local, String name) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String local, String name) throws SAXException {\n        if (!AUTO.contains(name)) {\n            super.endElement(uri, local, name);\n            if (XHTML.equals(uri) && ENDLINE.contains(name)) {\n                newline();\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Ends the given element. Block elements are automatically followed\n * by a newline character.\n */\n@Override\npublic void endElement(String uri, String local, String name) throws SAXException {\n    if (!AUTO.contains(name)) {\n        super.endElement(uri, local, name);\n        if (XHTML.equals(uri) && ENDLINE.contains(name)) {\n            newline();\n        }\n    }\n}",
+  "method_comment": "\n     * Ends the given element. Block elements are automatically followed\n     * by a newline character.\n     ",
+  "method_annotation": "@Override\n"
+}

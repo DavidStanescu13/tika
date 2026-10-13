@@ -1,0 +1,34 @@
+{
+  "className": "ParsingReader",
+  "methodName": "ParsingReader",
+  "brief": "public ParsingReader(Parser parser, InputStream stream, final Metadata metadata,\r\n                         ParseContext context) throws IOException{}",
+  "methodSignature": "ParsingReader(Parser, InputStream, Metadata, ParseContext)",
+  "sourceCode": "public ParsingReader(Parser parser, InputStream stream, final Metadata metadata,\n                         ParseContext context) throws IOException {\n        this(parser, stream, metadata, context, command -> {\n            String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n            if (name != null) {\n                name = \"Apache Tika: \" + name;\n            } else {\n                name = \"Apache Tika\";\n            }\n            Thread thread = new Thread(command, name);\n            thread.setDaemon(true);\n            thread.start();\n        });\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "InputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.lang.Thread": [
+      "setDaemon(boolean)",
+      "start()"
+    ]
+  },
+  "full_method_info": "public ParsingReader(Parser parser, InputStream stream, final Metadata metadata, ParseContext context) throws IOException {\n    this(parser, stream, metadata, context, command -> {\n        String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (name != null) {\n            name = \"Apache Tika: \" + name;\n        } else {\n            name = \"Apache Tika\";\n        }\n        Thread thread = new Thread(command, name);\n        thread.setDaemon(true);\n        thread.start();\n    });\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

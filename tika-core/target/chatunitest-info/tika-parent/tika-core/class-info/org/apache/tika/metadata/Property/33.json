@@ -1,0 +1,18 @@
+{
+  "className": "Property",
+  "methodName": "getPrimaryProperty",
+  "brief": "public Property getPrimaryProperty(){}",
+  "methodSignature": "getPrimaryProperty()",
+  "sourceCode": "public Property getPrimaryProperty() {\n        return primaryProperty;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the primary property for a composite property\n *\n * @return the primary property\n */\npublic Property getPrimaryProperty() {\n    return primaryProperty;\n}",
+  "method_comment": "\n     * Gets the primary property for a composite property\n     *\n     * @return the primary property\n     ",
+  "method_annotation": ""
+}

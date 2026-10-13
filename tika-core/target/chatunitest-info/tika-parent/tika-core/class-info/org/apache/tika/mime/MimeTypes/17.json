@@ -1,0 +1,35 @@
+{
+  "className": "MimeTypes",
+  "methodName": "applyHint",
+  "brief": "private List<MimeType> applyHint(List<MimeType> possibleTypes, MimeType hint){}",
+  "methodSignature": "applyHint(List, MimeType)",
+  "sourceCode": "private List<MimeType> applyHint(List<MimeType> possibleTypes, MimeType hint) {\n        if (possibleTypes == null || possibleTypes.isEmpty()) {\n            return Collections.singletonList(hint);\n        } else {\n            for (final MimeType type : possibleTypes) {\n                if (hint.equals(type) ||\n                        registry.isSpecializationOf(hint.getType(), type.getType())) {\n                    // Use just this type\n                    return Collections.singletonList(hint);\n                }\n            }\n        }\n\n        // Hint didn't help, sorry\n        return possibleTypes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<MimeType>",
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [
+      "equals(Object)",
+      "getType()"
+    ],
+    "java.util.List": [
+      "isEmpty()"
+    ],
+    "java.util.Collections": [
+      "singletonList(T)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Use the MimeType hint to try to clarify or specialise the current\n * possible types list.\n * If the hint is a specialised form, use that instead\n * If there are multiple possible types, use the hint to select one\n */\nprivate List<MimeType> applyHint(List<MimeType> possibleTypes, MimeType hint) {\n    if (possibleTypes == null || possibleTypes.isEmpty()) {\n        return Collections.singletonList(hint);\n    } else {\n        for (final MimeType type : possibleTypes) {\n            if (hint.equals(type) || registry.isSpecializationOf(hint.getType(), type.getType())) {\n                // Use just this type\n                return Collections.singletonList(hint);\n            }\n        }\n    }\n    // Hint didn't help, sorry\n    return possibleTypes;\n}",
+  "method_comment": "\n     * Use the MimeType hint to try to clarify or specialise the current\n     * possible types list.\n     * If the hint is a specialised form, use that instead\n     * If there are multiple possible types, use the hint to select one\n     ",
+  "method_annotation": ""
+}

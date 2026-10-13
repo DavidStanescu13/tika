@@ -1,0 +1,18 @@
+{
+  "className": "JsonConfig",
+  "methodName": "json",
+  "brief": "String json();",
+  "methodSignature": "json()",
+  "sourceCode": "String json();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the JSON configuration string.\n *\n * @return the JSON configuration\n */\nString json();",
+  "method_comment": "\n     * Returns the JSON configuration string.\n     *\n     * @return the JSON configuration\n     ",
+  "method_annotation": ""
+}

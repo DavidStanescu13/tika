@@ -1,0 +1,25 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "newBulletList",
+  "brief": "private static BulletList newBulletList(){}",
+  "methodSignature": "newBulletList()",
+  "sourceCode": "private static BulletList newBulletList() {\n        BulletList list = new BulletList();\n        list.setMarker(\"-\");\n        list.setTight(true);\n        return list;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.commonmark.node.BulletList": [
+      "setMarker(String)"
+    ],
+    "org.commonmark.node.ListBlock": [
+      "setTight(boolean)"
+    ]
+  },
+  "full_method_info": "private static BulletList newBulletList() {\n    BulletList list = new BulletList();\n    list.setMarker(\"-\");\n    list.setTight(true);\n    return list;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

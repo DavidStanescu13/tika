@@ -1,0 +1,18 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "getSpoolTypes",
+  "brief": "public Set<MediaType> getSpoolTypes(){}",
+  "methodSignature": "getSpoolTypes()",
+  "sourceCode": "public Set<MediaType> getSpoolTypes() {\n        return spoolTypes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the media types that should be spooled to disk.\n *\n * @return set of media types to spool\n */\npublic Set<MediaType> getSpoolTypes() {\n    return spoolTypes;\n}",
+  "method_comment": "\n     * Returns the media types that should be spooled to disk.\n     *\n     * @return set of media types to spool\n     ",
+  "method_annotation": ""
+}

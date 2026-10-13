@@ -1,0 +1,25 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "getContextClassLoader",
+  "brief": "static ClassLoader getContextClassLoader(){}",
+  "methodSignature": "getContextClassLoader()",
+  "sourceCode": "static ClassLoader getContextClassLoader() {\n        ClassLoader loader = CONTEXT_CLASS_LOADER;\n        if (loader == null) {\n            loader = ServiceLoader.class.getClassLoader();\n        }\n        if (loader == null) {\n            loader = ClassLoader.getSystemClassLoader();\n        }\n        return loader;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "getClassLoader()"
+    ],
+    "java.lang.ClassLoader": [
+      "getSystemClassLoader()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the context class loader of the current thread. If such\n * a class loader is not available, then the loader of this class or\n * finally the system class loader is returned.\n *\n * @return context class loader, or <code>null</code> if no loader\n * is available\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-441\">TIKA-441</a>\n */\nstatic ClassLoader getContextClassLoader() {\n    ClassLoader loader = CONTEXT_CLASS_LOADER;\n    if (loader == null) {\n        loader = ServiceLoader.class.getClassLoader();\n    }\n    if (loader == null) {\n        loader = ClassLoader.getSystemClassLoader();\n    }\n    return loader;\n}",
+  "method_comment": "\n     * Returns the context class loader of the current thread. If such\n     * a class loader is not available, then the loader of this class or\n     * finally the system class loader is returned.\n     *\n     * @return context class loader, or <code>null</code> if no loader\n     * is available\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-441\">TIKA-441</a>\n     ",
+  "method_annotation": ""
+}

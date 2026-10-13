@@ -1,0 +1,27 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "parse",
+  "brief": "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        parse(tis, handler, null, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Processes the given Stream through one or more parsers,\n * resetting things between parsers as requested by policy.\n * The actual processing is delegated to one or more {@link Parser}s.\n * <p>\n * Note that you'll get text from every parser this way, to have\n * control of which content is from which parser you need to\n * call the method with a {@link ContentHandlerFactory} instead.\n */\n@Override\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    parse(tis, handler, null, metadata, context);\n}",
+  "method_comment": "\n     * Processes the given Stream through one or more parsers,\n     * resetting things between parsers as requested by policy.\n     * The actual processing is delegated to one or more {@link Parser}s.\n     * <p>\n     * Note that you'll get text from every parser this way, to have\n     * control of which content is from which parser you need to\n     * call the method with a {@link ContentHandlerFactory} instead.\n     ",
+  "method_annotation": "@Override\n"
+}

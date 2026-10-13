@@ -1,0 +1,51 @@
+{
+  "fullClassName": "org.apache.tika.utils.ParserUtils",
+  "className": "ParserUtils",
+  "index": 347,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class ParserUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import static org.apache.tika.metadata.TikaCoreProperties.EMBEDDED_EXCEPTION;",
+    "import java.util.Arrays;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.Property;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.parser.Parser;",
+    "import org.apache.tika.parser.ParserDecorator;"
+  ],
+  "fields": [
+    "public final static Property EMBEDDED_PARSER = Property.internalText(\n            TikaCoreProperties.TIKA_META_EXCEPTION_PREFIX + \"embedded-parser\");"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "cloneMetadata(Metadata)": "0",
+    "getParserClassname(Parser)": "1",
+    "recordParserDetails(Parser, Metadata)": "2",
+    "recordParserDetails(String, Metadata)": "3",
+    "recordParserFailure(Parser, Throwable, Metadata)": "4"
+  },
+  "methodsBrief": [
+    "public static Metadata cloneMetadata(Metadata m){}",
+    "public static String getParserClassname(Parser parser){}",
+    "public static void recordParserDetails(Parser parser, Metadata metadata){}",
+    "public static void recordParserDetails(String parserClassName, Metadata metadata){}",
+    "public static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport static org.apache.tika.metadata.TikaCoreProperties.EMBEDDED_EXCEPTION;\nimport java.util.Arrays;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.Property;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.parser.Parser;\nimport org.apache.tika.parser.ParserDecorator;\n\n/**\n * Helper util methods for Parsers themselves.\n */\npublic class ParserUtils {\n\n    public final static Property EMBEDDED_PARSER = Property.internalText(TikaCoreProperties.TIKA_META_EXCEPTION_PREFIX + \"embedded-parser\");\n\n    /**\n     * Does a deep clone of a Metadata object.\n     */\n    public static Metadata cloneMetadata(Metadata m) {\n        Metadata clone = new Metadata();\n        for (String n : m.names()) {\n            if (!m.isMultiValued(n)) {\n                clone.reconstruct(n, m.get(n), false);\n            } else {\n                for (String val : m.getValues(n)) {\n                    clone.reconstruct(n, val, true);\n                }\n            }\n        }\n        return clone;\n    }\n\n    /**\n     * Identifies the real class name of the {@link Parser}, unwrapping\n     * any {@link ParserDecorator} decorations on top of it.\n     */\n    public static String getParserClassname(Parser parser) {\n        if (parser instanceof ParserDecorator) {\n            return ((ParserDecorator) parser).getWrappedParser().getClass().getName();\n        } else {\n            return parser.getClass().getName();\n        }\n    }\n\n    /**\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     */\n    public static void recordParserDetails(Parser parser, Metadata metadata) {\n        String className = getParserClassname(parser);\n        recordParserDetails(className, metadata);\n    }\n\n    /**\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     */\n    public static void recordParserDetails(String parserClassName, Metadata metadata) {\n        String[] parsedBys = metadata.getValues(TikaCoreProperties.TIKA_PARSED_BY);\n        if (parsedBys == null || parsedBys.length == 0) {\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        } else if (Arrays.stream(parsedBys).noneMatch(parserClassName::equals)) {\n            // only add parser once\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        }\n    }\n\n    /**\n     * Records details of a {@link Parser}'s failure to the\n     * {@link Metadata}, so you can check what went wrong even if the\n     * {@link Exception} wasn't immediately thrown (eg when several different\n     * Parsers are used)\n     */\n    public static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata) {\n        String trace = ExceptionUtils.getStackTrace(failure);\n        metadata.add(EMBEDDED_EXCEPTION, trace);\n        metadata.add(EMBEDDED_PARSER, getParserClassname(parser));\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Helper util methods for Parsers themselves.\n */\npublic class ParserUtils {\n\n    public final static Property EMBEDDED_PARSER = Property.internalText(TikaCoreProperties.TIKA_META_EXCEPTION_PREFIX + \"embedded-parser\");\n\n    /**\n     * Does a deep clone of a Metadata object.\n     */\n    public static Metadata cloneMetadata(Metadata m) {\n        Metadata clone = new Metadata();\n        for (String n : m.names()) {\n            if (!m.isMultiValued(n)) {\n                clone.reconstruct(n, m.get(n), false);\n            } else {\n                for (String val : m.getValues(n)) {\n                    clone.reconstruct(n, val, true);\n                }\n            }\n        }\n        return clone;\n    }\n\n    /**\n     * Identifies the real class name of the {@link Parser}, unwrapping\n     * any {@link ParserDecorator} decorations on top of it.\n     */\n    public static String getParserClassname(Parser parser) {\n        if (parser instanceof ParserDecorator) {\n            return ((ParserDecorator) parser).getWrappedParser().getClass().getName();\n        } else {\n            return parser.getClass().getName();\n        }\n    }\n\n    /**\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     */\n    public static void recordParserDetails(Parser parser, Metadata metadata) {\n        String className = getParserClassname(parser);\n        recordParserDetails(className, metadata);\n    }\n\n    /**\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     */\n    public static void recordParserDetails(String parserClassName, Metadata metadata) {\n        String[] parsedBys = metadata.getValues(TikaCoreProperties.TIKA_PARSED_BY);\n        if (parsedBys == null || parsedBys.length == 0) {\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        } else if (Arrays.stream(parsedBys).noneMatch(parserClassName::equals)) {\n            // only add parser once\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        }\n    }\n\n    /**\n     * Records details of a {@link Parser}'s failure to the\n     * {@link Metadata}, so you can check what went wrong even if the\n     * {@link Exception} wasn't immediately thrown (eg when several different\n     * Parsers are used)\n     */\n    public static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata) {\n        String trace = ExceptionUtils.getStackTrace(failure);\n        metadata.add(EMBEDDED_EXCEPTION, trace);\n        metadata.add(EMBEDDED_PARSER, getParserClassname(parser));\n    }\n}",
+  "subClasses": []
+}

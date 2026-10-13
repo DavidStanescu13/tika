@@ -1,0 +1,26 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getRegisteredMimeType",
+  "brief": "private static MimeType getRegisteredMimeType(MimeTypes mimeTypes, String name){}",
+  "methodSignature": "getRegisteredMimeType(MimeTypes, String)",
+  "sourceCode": "private static MimeType getRegisteredMimeType(MimeTypes mimeTypes, String name) {\n        try {\n            return mimeTypes.getRegisteredMimeType(name);\n        } catch (MimeTypeException e) {\n            return null;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeTypes",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypes": [
+      "getRegisteredMimeType(String)"
+    ],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Not {@link MimeTypes#forName(String)}: that registers a new, glob-less type for\n * any name it doesn't recognize, so <code>text/plain; charset=UTF-8</code> would\n * lose its extension and add a registry entry per charset seen. This prefers an\n * exact parameterized match (<code>application/dita+xml;format=map</code> is real)\n * and otherwise falls back to the base type.\n *\n * @return the registered type, or null if unknown or invalid\n */\nprivate static MimeType getRegisteredMimeType(MimeTypes mimeTypes, String name) {\n    try {\n        return mimeTypes.getRegisteredMimeType(name);\n    } catch (MimeTypeException e) {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Not {@link MimeTypes#forName(String)}: that registers a new, glob-less type for\n     * any name it doesn't recognize, so <code>text/plain; charset=UTF-8</code> would\n     * lose its extension and add a registry entry per charset seen. This prefers an\n     * exact parameterized match (<code>application/dita+xml;format=map</code> is real)\n     * and otherwise falls back to the base type.\n     *\n     * @return the registered type, or null if unknown or invalid\n     ",
+  "method_annotation": ""
+}

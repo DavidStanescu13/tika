@@ -1,0 +1,72 @@
+{
+  "fullClassName": "org.apache.tika.quality.TextQualityScore",
+  "className": "TextQualityScore",
+  "index": 265,
+  "modifier": "[public , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.quality",
+  "packageDeclaration": "package org.apache.tika.quality;",
+  "classSignature": "public final class TextQualityScore",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "public static final float UNKNOWN = Float.NaN;",
+    "private final float zScore;",
+    "private final float pClean;",
+    "private final float ciLow;",
+    "private final float ciHigh;",
+    "private final String dominantScript;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getZScore()": "0",
+    "getPClean()": "1",
+    "getCiLow()": "2",
+    "getCiHigh()": "3",
+    "getDominantScript()": "4",
+    "isUnknown()": "5",
+    "toString()": "6",
+    "TextQualityScore(float, float, float, float, String)": "7"
+  },
+  "methodsBrief": [
+    "public float getZScore(){}",
+    "public float getPClean(){}",
+    "public float getCiLow(){}",
+    "public float getCiHigh(){}",
+    "public String getDominantScript(){}",
+    "public boolean isUnknown(){}",
+    "@Override\r\n    public String toString(){}",
+    "public TextQualityScore(float zScore, float pClean,\r\n                            float ciLow, float ciHigh,\r\n                            String dominantScript){}"
+  ],
+  "constructorSigs": [
+    "TextQualityScore(float, float, float, float, String)"
+  ],
+  "constructorBrief": [
+    "public TextQualityScore(float zScore, float pClean,\r\n                            float ciLow, float ciHigh,\r\n                            String dominantScript){}"
+  ],
+  "getterSetterSigs": [
+    "getZScore()",
+    "getPClean()",
+    "getCiLow()",
+    "getCiHigh()",
+    "getDominantScript()"
+  ],
+  "getterSetterBrief": [
+    "public float getZScore(){}",
+    "public float getPClean(){}",
+    "public float getCiLow(){}",
+    "public float getCiHigh(){}",
+    "public String getDominantScript(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.quality;\n\n/**\n * Result of scoring a string for text quality via a {@link TextQualityDetector}.\n *\n * <p>{@code zScore} is the primary output: how many standard deviations below\n * typical clean text this string scores on its dominant script's model.\n * Negative means worse than average clean text; more negative means worse.\n *\n * <p>{@code pClean} is a probability estimate in [0,1] that this is clean text.\n *\n * <p>{@code ciLow} / {@code ciHigh} are the 95% confidence interval bounds on\n * {@code zScore}.  For short strings these bounds are wide; for long strings\n * they narrow.  Prefer {@code ciLow < threshold} over {@code zScore < threshold}\n * when triggering actions, to reduce false positives on short strings.\n */\npublic final class TextQualityScore {\n\n    /**\n     * Sentinel z-score returned when scoring could not be run (e.g. null or empty input).\n     */\n    public static final float UNKNOWN = Float.NaN;\n\n    private final float zScore;\n\n    private final float pClean;\n\n    private final float ciLow;\n\n    private final float ciHigh;\n\n    private final String dominantScript;\n\n    public TextQualityScore(float zScore, float pClean, float ciLow, float ciHigh, String dominantScript) {\n        this.zScore = zScore;\n        this.pClean = pClean;\n        this.ciLow = ciLow;\n        this.ciHigh = ciHigh;\n        this.dominantScript = dominantScript;\n    }\n\n    /**\n     * Z-score relative to clean text for the detected script. 0 = average clean; negative = worse.\n     */\n    public float getZScore() {\n        return zScore;\n    }\n\n    /**\n     * Probability in [0,1] that this string is clean text.\n     */\n    public float getPClean() {\n        return pClean;\n    }\n\n    /**\n     * Lower bound of the 95% confidence interval on zScore.\n     */\n    public float getCiLow() {\n        return ciLow;\n    }\n\n    /**\n     * Upper bound of the 95% confidence interval on zScore.\n     */\n    public float getCiHigh() {\n        return ciHigh;\n    }\n\n    /**\n     * Name of the dominant Unicode script detected, e.g. \"LATIN\", \"CYRILLIC\", \"ARABIC\".\n     */\n    public String getDominantScript() {\n        return dominantScript;\n    }\n\n    /**\n     * True if scoring could not be performed (e.g. empty or unsupported-script input).\n     */\n    public boolean isUnknown() {\n        return Float.isNaN(zScore);\n    }\n\n    @Override\n    public String toString() {\n        if (isUnknown()) {\n            return \"TextQualityScore[UNKNOWN script=\" + dominantScript + \"]\";\n        }\n        return String.format(java.util.Locale.ROOT, \"TextQualityScore[z=%.3f p=%.3f ci=(%.3f,%.3f) script=%s]\", zScore, pClean, ciLow, ciHigh, dominantScript);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Result of scoring a string for text quality via a {@link TextQualityDetector}.\n *\n * <p>{@code zScore} is the primary output: how many standard deviations below\n * typical clean text this string scores on its dominant script's model.\n * Negative means worse than average clean text; more negative means worse.\n *\n * <p>{@code pClean} is a probability estimate in [0,1] that this is clean text.\n *\n * <p>{@code ciLow} / {@code ciHigh} are the 95% confidence interval bounds on\n * {@code zScore}.  For short strings these bounds are wide; for long strings\n * they narrow.  Prefer {@code ciLow < threshold} over {@code zScore < threshold}\n * when triggering actions, to reduce false positives on short strings.\n */\npublic final class TextQualityScore {\n\n    /**\n     * Sentinel z-score returned when scoring could not be run (e.g. null or empty input).\n     */\n    public static final float UNKNOWN = Float.NaN;\n\n    private final float zScore;\n\n    private final float pClean;\n\n    private final float ciLow;\n\n    private final float ciHigh;\n\n    private final String dominantScript;\n\n    public TextQualityScore(float zScore, float pClean, float ciLow, float ciHigh, String dominantScript) {\n        this.zScore = zScore;\n        this.pClean = pClean;\n        this.ciLow = ciLow;\n        this.ciHigh = ciHigh;\n        this.dominantScript = dominantScript;\n    }\n\n    /**\n     * Z-score relative to clean text for the detected script. 0 = average clean; negative = worse.\n     */\n    public float getZScore() {\n        return zScore;\n    }\n\n    /**\n     * Probability in [0,1] that this string is clean text.\n     */\n    public float getPClean() {\n        return pClean;\n    }\n\n    /**\n     * Lower bound of the 95% confidence interval on zScore.\n     */\n    public float getCiLow() {\n        return ciLow;\n    }\n\n    /**\n     * Upper bound of the 95% confidence interval on zScore.\n     */\n    public float getCiHigh() {\n        return ciHigh;\n    }\n\n    /**\n     * Name of the dominant Unicode script detected, e.g. \"LATIN\", \"CYRILLIC\", \"ARABIC\".\n     */\n    public String getDominantScript() {\n        return dominantScript;\n    }\n\n    /**\n     * True if scoring could not be performed (e.g. empty or unsupported-script input).\n     */\n    public boolean isUnknown() {\n        return Float.isNaN(zScore);\n    }\n\n    @Override\n    public String toString() {\n        if (isUnknown()) {\n            return \"TextQualityScore[UNKNOWN script=\" + dominantScript + \"]\";\n        }\n        return String.format(java.util.Locale.ROOT, \"TextQualityScore[z=%.3f p=%.3f ci=(%.3f,%.3f) script=%s]\", zScore, pClean, ciLow, ciHigh, dominantScript);\n    }\n}",
+  "subClasses": []
+}

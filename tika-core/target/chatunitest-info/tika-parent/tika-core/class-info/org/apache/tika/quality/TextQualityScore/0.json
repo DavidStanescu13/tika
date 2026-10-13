@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "getZScore",
+  "brief": "public float getZScore(){}",
+  "methodSignature": "getZScore()",
+  "sourceCode": "public float getZScore() {\n        return zScore;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Z-score relative to clean text for the detected script. 0 = average clean; negative = worse.\n */\npublic float getZScore() {\n    return zScore;\n}",
+  "method_comment": " Z-score relative to clean text for the detected script. 0 = average clean; negative = worse. ",
+  "method_annotation": ""
+}

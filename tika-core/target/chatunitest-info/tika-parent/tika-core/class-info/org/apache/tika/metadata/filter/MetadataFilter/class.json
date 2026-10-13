@@ -1,0 +1,55 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.MetadataFilter",
+  "className": "MetadataFilter",
+  "index": 147,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[Serializable, Closeable]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "public abstract class MetadataFilter",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.io.Closeable;",
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import java.util.List;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable",
+    "Closeable"
+  ],
+  "methodSigs": {
+    "filter(List, ParseContext)": "0",
+    "doFilter(List, ParseContext)": "1",
+    "filter(List)": "2",
+    "close()": "3"
+  },
+  "methodsBrief": [
+    "public final void filter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException{}",
+    "protected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException;",
+    "public void filter(List<Metadata> metadataList) throws TikaException{}",
+    "@Override\r\n    public void close() throws IOException{}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.io.Closeable;\nimport java.io.IOException;\nimport java.io.Serializable;\nimport java.util.List;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.parser.ParseContext;\n\npublic abstract class MetadataFilter implements Serializable, Closeable {\n\n    /**\n     * Filters the metadata list in place using per-request context.\n     * The list and the metadata objects within it may be modified.\n     * Callers must pass a mutable list and should make a defensive\n     * copy before calling if the original data must be preserved.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context (e.g. skip flags, runtime config)\n     * @throws TikaException if filtering fails\n     */\n    public final void filter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        doFilter(metadataList, parseContext);\n    }\n\n    /**\n     * Applies the filter in place. A filter that needs to write a reserved Tika-native\n     * ({@code tk:}) key by name (rather than via its {@link org.apache.tika.metadata.Property})\n     * should call {@link Metadata#addTrusted} / {@link Metadata#setTrusted} explicitly at that\n     * write.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context\n     * @throws TikaException if filtering fails\n     */\n    protected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException;\n\n    /**\n     * Convenience overload for callers that have no per-request context.\n     * Delegates to {@link #filter(List, ParseContext)} with an empty context.\n     */\n    public void filter(List<Metadata> metadataList) throws TikaException {\n        filter(metadataList, new ParseContext());\n    }\n\n    /**\n     * Releases any resources held by this filter (e.g. HTTP connection pools,\n     * thread pools). The default implementation is a no-op; filters that hold\n     * long-lived resources should override this.\n     * <p>\n     * Callers that control the filter lifecycle (e.g. {@code PipesServer},\n     * try-with-resources blocks) should call this when the filter is no longer\n     * needed.\n     */\n    @Override\n    public void close() throws IOException {\n    }\n}\n",
+  "classDeclarationCode": "public abstract class MetadataFilter implements Serializable, Closeable {\n\n    /**\n     * Filters the metadata list in place using per-request context.\n     * The list and the metadata objects within it may be modified.\n     * Callers must pass a mutable list and should make a defensive\n     * copy before calling if the original data must be preserved.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context (e.g. skip flags, runtime config)\n     * @throws TikaException if filtering fails\n     */\n    public final void filter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        doFilter(metadataList, parseContext);\n    }\n\n    /**\n     * Applies the filter in place. A filter that needs to write a reserved Tika-native\n     * ({@code tk:}) key by name (rather than via its {@link org.apache.tika.metadata.Property})\n     * should call {@link Metadata#addTrusted} / {@link Metadata#setTrusted} explicitly at that\n     * write.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context\n     * @throws TikaException if filtering fails\n     */\n    protected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException;\n\n    /**\n     * Convenience overload for callers that have no per-request context.\n     * Delegates to {@link #filter(List, ParseContext)} with an empty context.\n     */\n    public void filter(List<Metadata> metadataList) throws TikaException {\n        filter(metadataList, new ParseContext());\n    }\n\n    /**\n     * Releases any resources held by this filter (e.g. HTTP connection pools,\n     * thread pools). The default implementation is a no-op; filters that hold\n     * long-lived resources should override this.\n     * <p>\n     * Callers that control the filter lifecycle (e.g. {@code PipesServer},\n     * try-with-resources blocks) should call this when the filter is no longer\n     * needed.\n     */\n    @Override\n    public void close() throws IOException {\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.metadata.filter.CompositeMetadataFilter",
+    "org.apache.tika.metadata.filter.MetadataFilterBase",
+    "org.apache.tika.metadata.filter.NoOpFilter",
+    "org.apache.tika.metadata.filter.RemoveByMimeMetadataFilter"
+  ]
+}

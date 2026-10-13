@@ -1,0 +1,22 @@
+{
+  "className": "AcceptAll",
+  "methodName": "select",
+  "brief": "@Override\r\n        public boolean select(Metadata metadata){}",
+  "methodSignature": "select(Metadata)",
+  "sourceCode": "@Override\n        public boolean select(Metadata metadata) {\n            return true;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "@Override\npublic boolean select(Metadata metadata) {\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

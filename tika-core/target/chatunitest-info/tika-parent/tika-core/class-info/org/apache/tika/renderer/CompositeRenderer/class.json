@@ -1,0 +1,83 @@
+{
+  "fullClassName": "org.apache.tika.renderer.CompositeRenderer",
+  "className": "CompositeRenderer",
+  "index": 266,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Renderer]",
+  "packageName": "org.apache.tika.renderer",
+  "packageDeclaration": "package org.apache.tika.renderer;",
+  "classSignature": "public class CompositeRenderer",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.Collections;",
+    "import java.util.HashMap;",
+    "import java.util.List;",
+    "import java.util.Map;",
+    "import java.util.Set;",
+    "import java.util.concurrent.ConcurrentHashMap;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [
+    "private Map<MediaType, Renderer> rendererMap = new HashMap<>();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Renderer"
+  ],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "render(TikaInputStream, Metadata, ParseContext, RenderRequest[])": "1",
+    "getLeafRenderer(MediaType)": "2",
+    "getDefaultRenderers(ServiceLoader)": "3",
+    "CompositeRenderer(ServiceLoader)": "4",
+    "CompositeRenderer(List)": "5"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "@Override\r\n    public RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext,\r\n                                RenderRequest... requests) throws IOException, TikaException{}",
+    "public Renderer getLeafRenderer(MediaType mt){}",
+    "private static List<Renderer> getDefaultRenderers(ServiceLoader loader){}",
+    "public CompositeRenderer(ServiceLoader serviceLoader){}",
+    "public CompositeRenderer(List<Renderer> renderers){}"
+  ],
+  "constructorSigs": [
+    "CompositeRenderer(ServiceLoader)",
+    "CompositeRenderer(List)"
+  ],
+  "constructorBrief": [
+    "public CompositeRenderer(ServiceLoader serviceLoader){}",
+    "public CompositeRenderer(List<Renderer> renderers){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.renderer.CompositeRenderer": [
+      "getDefaultRenderers(ServiceLoader)"
+    ],
+    "org.apache.tika.renderer.Renderer": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "java.util.Collections": [
+      "unmodifiableMap(Map<? extends K, ? extends V>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.renderer;\n\nimport java.io.IOException;\nimport java.util.Collections;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.concurrent.ConcurrentHashMap;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\npublic class CompositeRenderer implements Renderer {\n\n    private Map<MediaType, Renderer> rendererMap = new HashMap<>();\n\n    public CompositeRenderer(ServiceLoader serviceLoader) {\n        this(getDefaultRenderers(serviceLoader));\n    }\n\n    public CompositeRenderer(List<Renderer> renderers) {\n        Map<MediaType, Renderer> tmp = new ConcurrentHashMap<>();\n        ParseContext empty = new ParseContext();\n        for (Renderer renderer : renderers) {\n            for (MediaType mt : renderer.getSupportedTypes(empty)) {\n                tmp.put(mt, renderer);\n            }\n        }\n        rendererMap = Collections.unmodifiableMap(tmp);\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return rendererMap.keySet();\n    }\n\n    @Override\n    public RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext, RenderRequest... requests) throws IOException, TikaException {\n        String mediaTypeString = metadata.get(TikaCoreProperties.TYPE);\n        if (mediaTypeString == null) {\n            throw new TikaException(\"need to specify file type in metadata\");\n        }\n        MediaType mt = MediaType.parse(mediaTypeString);\n        if (mt == null) {\n            throw new TikaException(\"can't parse mediaType: \" + mediaTypeString);\n        }\n        Renderer renderer = rendererMap.get(mt);\n        if (renderer == null) {\n            throw new TikaException(\"I regret I can't find a renderer for \" + mt);\n        }\n        return renderer.render(tis, metadata, parseContext, requests);\n    }\n\n    public Renderer getLeafRenderer(MediaType mt) {\n        return rendererMap.get(mt);\n    }\n\n    private static List<Renderer> getDefaultRenderers(ServiceLoader loader) {\n        List<Renderer> staticRenderers = loader.loadStaticServiceProviders(Renderer.class);\n        ServiceLoaderUtils.sortLoadedClasses(staticRenderers);\n        return staticRenderers;\n    }\n}\n",
+  "classDeclarationCode": "public class CompositeRenderer implements Renderer {\n\n    private Map<MediaType, Renderer> rendererMap = new HashMap<>();\n\n    public CompositeRenderer(ServiceLoader serviceLoader) {\n        this(getDefaultRenderers(serviceLoader));\n    }\n\n    public CompositeRenderer(List<Renderer> renderers) {\n        Map<MediaType, Renderer> tmp = new ConcurrentHashMap<>();\n        ParseContext empty = new ParseContext();\n        for (Renderer renderer : renderers) {\n            for (MediaType mt : renderer.getSupportedTypes(empty)) {\n                tmp.put(mt, renderer);\n            }\n        }\n        rendererMap = Collections.unmodifiableMap(tmp);\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return rendererMap.keySet();\n    }\n\n    @Override\n    public RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext, RenderRequest... requests) throws IOException, TikaException {\n        String mediaTypeString = metadata.get(TikaCoreProperties.TYPE);\n        if (mediaTypeString == null) {\n            throw new TikaException(\"need to specify file type in metadata\");\n        }\n        MediaType mt = MediaType.parse(mediaTypeString);\n        if (mt == null) {\n            throw new TikaException(\"can't parse mediaType: \" + mediaTypeString);\n        }\n        Renderer renderer = rendererMap.get(mt);\n        if (renderer == null) {\n            throw new TikaException(\"I regret I can't find a renderer for \" + mt);\n        }\n        return renderer.render(tis, metadata, parseContext, requests);\n    }\n\n    public Renderer getLeafRenderer(MediaType mt) {\n        return rendererMap.get(mt);\n    }\n\n    private static List<Renderer> getDefaultRenderers(ServiceLoader loader) {\n        List<Renderer> staticRenderers = loader.loadStaticServiceProviders(Renderer.class);\n        ServiceLoaderUtils.sortLoadedClasses(staticRenderers);\n        return staticRenderers;\n    }\n}",
+  "subClasses": []
+}

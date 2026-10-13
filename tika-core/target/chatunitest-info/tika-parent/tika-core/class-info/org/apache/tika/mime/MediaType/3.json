@@ -1,0 +1,25 @@
+{
+  "className": "MediaType",
+  "methodName": "text",
+  "brief": "public static MediaType text(String type){}",
+  "methodSignature": "text(String)",
+  "sourceCode": "public static MediaType text(String type) {\n        return MediaType.parse(\"text/\" + type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "public static MediaType text(String type) {\n    return MediaType.parse(\"text/\" + type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

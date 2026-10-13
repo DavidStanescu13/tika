@@ -1,0 +1,27 @@
+{
+  "className": "TailStream",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(long n) throws IOException{}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(long n) throws IOException {\n        int bufSize = (int) Math.min(n, SKIP_SIZE);\n        byte[] buf = new byte[bufSize];\n        long bytesSkipped = 0;\n        int bytesRead = 0;\n\n        while (bytesSkipped < n && bytesRead != -1) {\n            int len = (int) Math.min(bufSize, n - bytesSkipped);\n            bytesRead = read(buf, 0, len);\n            if (bytesRead != -1) {\n                bytesSkipped += bytesRead;\n            }\n        }\n\n        return (bytesRead < 0 && bytesSkipped == 0) ? -1 : bytesSkipped;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "org.apache.tika.io.TailStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * {@inheritDoc} This implementation delegates to the {@code read()} method\n * to ensure that the tail buffer is also filled if data is skipped.\n */\n@Override\npublic long skip(long n) throws IOException {\n    int bufSize = (int) Math.min(n, SKIP_SIZE);\n    byte[] buf = new byte[bufSize];\n    long bytesSkipped = 0;\n    int bytesRead = 0;\n    while (bytesSkipped < n && bytesRead != -1) {\n        int len = (int) Math.min(bufSize, n - bytesSkipped);\n        bytesRead = read(buf, 0, len);\n        if (bytesRead != -1) {\n            bytesSkipped += bytesRead;\n        }\n    }\n    return (bytesRead < 0 && bytesSkipped == 0) ? -1 : bytesSkipped;\n}",
+  "method_comment": "\n     * {@inheritDoc} This implementation delegates to the {@code read()} method\n     * to ensure that the tail buffer is also filled if data is skipped.\n     ",
+  "method_annotation": "@Override\n"
+}

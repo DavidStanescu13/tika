@@ -1,0 +1,37 @@
+{
+  "className": "RegexCaptureParser",
+  "methodName": "RegexCaptureParser",
+  "brief": "public RegexCaptureParser(RegexCaptureParserConfig config){}",
+  "methodSignature": "RegexCaptureParser(RegexCaptureParserConfig)",
+  "sourceCode": "public RegexCaptureParser(RegexCaptureParserConfig config) {\n        this.config = config;\n        this.captureMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getCaptureMap().entrySet()) {\n            this.captureMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.matchMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getMatchMap().entrySet()) {\n            this.matchMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.writeContent = config.isWriteContent();\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "RegexCaptureParserConfig"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.RegexCaptureParserConfig": [
+      "getMatchMap()",
+      "isWriteContent()",
+      "getCaptureMap()"
+    ],
+    "java.util.Map": [
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.regex.Pattern": [
+      "compile(String)"
+    ]
+  },
+  "full_method_info": "public RegexCaptureParser(RegexCaptureParserConfig config) {\n    this.config = config;\n    this.captureMap = new HashMap<>();\n    for (Map.Entry<String, String> e : config.getCaptureMap().entrySet()) {\n        this.captureMap.put(e.getKey(), Pattern.compile(e.getValue()));\n    }\n    this.matchMap = new HashMap<>();\n    for (Map.Entry<String, String> e : config.getMatchMap().entrySet()) {\n        this.matchMap.put(e.getKey(), Pattern.compile(e.getValue()));\n    }\n    this.writeContent = config.isWriteContent();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

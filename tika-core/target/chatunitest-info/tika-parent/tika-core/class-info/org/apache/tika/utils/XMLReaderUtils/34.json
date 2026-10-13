@@ -1,0 +1,20 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "setMaxEntityExpansions",
+  "brief": "public static void setMaxEntityExpansions(int maxEntityExpansions){}",
+  "methodSignature": "setMaxEntityExpansions(int)",
+  "sourceCode": "public static void setMaxEntityExpansions(int maxEntityExpansions) {\n        MAX_ENTITY_EXPANSIONS = maxEntityExpansions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Set the maximum number of entity expansions allowable in SAX/DOM/StAX parsing.\n * <b>NOTE:</b>A value less than or equal to zero indicates no limit.\n * This will override the system property {@link #JAXP_ENTITY_EXPANSION_LIMIT_KEY}\n * and the {@link #DEFAULT_MAX_ENTITY_EXPANSIONS} value for allowable entity expansions\n * <p>\n * <b>NOTE:</b> To trigger a rebuild of the pool of parsers with this setting,\n * the client must call {@link #setPoolSize(int)} to rebuild the SAX and DOM parsers\n * with this setting.\n * </p>\n *\n * @param maxEntityExpansions -- maximum number of allowable entity expansions\n * @since Apache Tika 1.19\n */\npublic static void setMaxEntityExpansions(int maxEntityExpansions) {\n    MAX_ENTITY_EXPANSIONS = maxEntityExpansions;\n}",
+  "method_comment": "\n     * Set the maximum number of entity expansions allowable in SAX/DOM/StAX parsing.\n     * <b>NOTE:</b>A value less than or equal to zero indicates no limit.\n     * This will override the system property {@link #JAXP_ENTITY_EXPANSION_LIMIT_KEY}\n     * and the {@link #DEFAULT_MAX_ENTITY_EXPANSIONS} value for allowable entity expansions\n     * <p>\n     * <b>NOTE:</b> To trigger a rebuild of the pool of parsers with this setting,\n     * the client must call {@link #setPoolSize(int)} to rebuild the SAX and DOM parsers\n     * with this setting.\n     * </p>\n     *\n     * @param maxEntityExpansions -- maximum number of allowable entity expansions\n     * @since Apache Tika 1.19\n     ",
+  "method_annotation": ""
+}

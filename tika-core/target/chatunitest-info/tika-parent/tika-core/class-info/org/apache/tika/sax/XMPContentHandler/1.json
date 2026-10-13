@@ -1,0 +1,18 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        endElement(RDF, \"RDF\", \"rdf:RDF\");\n\n        endPrefixMapping(\"xmp\");\n        endPrefixMapping(\"rdf\");\n\n        super.endDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Ends the XMP document by writing the following footer and\n * clearing the namespace mappings:\n * <pre>\n * &lt;/rdf:RDF&gt;\n * </pre>\n */\n@Override\npublic void endDocument() throws SAXException {\n    endElement(RDF, \"RDF\", \"rdf:RDF\");\n    endPrefixMapping(\"xmp\");\n    endPrefixMapping(\"rdf\");\n    super.endDocument();\n}",
+  "method_comment": "\n     * Ends the XMP document by writing the following footer and\n     * clearing the namespace mappings:\n     * <pre>\n     * &lt;/rdf:RDF&gt;\n     * </pre>\n     ",
+  "method_annotation": "@Override\n"
+}

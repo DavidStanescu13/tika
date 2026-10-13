@@ -1,0 +1,38 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "setAlwaysInclude",
+  "brief": "private void setAlwaysInclude(String field, String value, Map<String, String[]> data){}",
+  "methodSignature": "setAlwaysInclude(String, String, Map)",
+  "sourceCode": "private void setAlwaysInclude(String field, String value, Map<String, String[]> data) {\n        if (TIKA_CONTENT_KEY.equals(field)) {\n            data.put(field, new String[]{ value });\n            return;\n        }\n        int sizeToAdd = estimateSize(value);\n        //if the maxFieldSize is < minimumMaxFieldSizeInAlwaysFields, use the minmax\n        //we do not want to truncate a mime!\n        int alwaysMaxFieldLength = Math.max(minimumMaxFieldSizeInAlwaysFields, maxFieldSize);\n        String toSet = value;\n        if (sizeToAdd > alwaysMaxFieldLength) {\n            toSet = truncate(value, alwaysMaxFieldLength, data);\n            sizeToAdd = estimateSize(toSet);\n        }\n        int totalAdded = data.containsKey(field) ? 0 : estimateSize(field);\n        totalAdded += sizeToAdd;\n        if (data.containsKey(field)) {\n            String[] vals = data.get(field);\n            //this should only ever be single valued!!!\n            if (vals.length > 0) {\n                totalAdded -= estimateSize(vals[0]);\n            }\n        }\n        estimatedSize += totalAdded;\n        data.put(field, new String[]{toSet});\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Map<String,String[]>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "containsKey(Object)"
+    ],
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter": [
+      "estimateSize(String)",
+      "truncate(String, int, String[]>)"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ]
+  },
+  "full_method_info": "private void setAlwaysInclude(String field, String value, Map<String, String[]> data) {\n    if (TIKA_CONTENT_KEY.equals(field)) {\n        data.put(field, new String[] { value });\n        return;\n    }\n    int sizeToAdd = estimateSize(value);\n    // if the maxFieldSize is < minimumMaxFieldSizeInAlwaysFields, use the minmax\n    // we do not want to truncate a mime!\n    int alwaysMaxFieldLength = Math.max(minimumMaxFieldSizeInAlwaysFields, maxFieldSize);\n    String toSet = value;\n    if (sizeToAdd > alwaysMaxFieldLength) {\n        toSet = truncate(value, alwaysMaxFieldLength, data);\n        sizeToAdd = estimateSize(toSet);\n    }\n    int totalAdded = data.containsKey(field) ? 0 : estimateSize(field);\n    totalAdded += sizeToAdd;\n    if (data.containsKey(field)) {\n        String[] vals = data.get(field);\n        // this should only ever be single valued!!!\n        if (vals.length > 0) {\n            totalAdded -= estimateSize(vals[0]);\n        }\n    }\n    estimatedSize += totalAdded;\n    data.put(field, new String[] { toSet });\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

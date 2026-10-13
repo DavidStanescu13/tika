@@ -1,0 +1,30 @@
+{
+  "className": "Tika",
+  "methodName": "parse",
+  "brief": "public Reader parse(Path path, Metadata metadata) throws IOException{}",
+  "methodSignature": "parse(Path, Metadata)",
+  "sourceCode": "public Reader parse(Path path, Metadata metadata) throws IOException {\n        InputStream stream = TikaInputStream.get(path, metadata);\n        return parse(stream, metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Path, Metadata)"
+    ],
+    "org.apache.tika.Tika": [
+      "parse(InputStream, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the file at the given path and returns the extracted text content.\n * <p>\n * Metadata information extracted from the document is returned in\n * the supplied metadata instance.\n *\n * @param path     the path of the file to be parsed\n * @param metadata where document's metadata will be populated\n * @return extracted text content\n * @throws IOException if the file can not be read or parsed\n */\npublic Reader parse(Path path, Metadata metadata) throws IOException {\n    InputStream stream = TikaInputStream.get(path, metadata);\n    return parse(stream, metadata);\n}",
+  "method_comment": "\n     * Parses the file at the given path and returns the extracted text content.\n     * <p>\n     * Metadata information extracted from the document is returned in\n     * the supplied metadata instance.\n     *\n     * @param path     the path of the file to be parsed\n     * @param metadata where document's metadata will be populated\n     * @return extracted text content\n     * @throws IOException if the file can not be read or parsed\n     ",
+  "method_annotation": ""
+}

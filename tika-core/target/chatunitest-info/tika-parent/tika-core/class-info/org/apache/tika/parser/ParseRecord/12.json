@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "isWriteLimitReached",
+  "brief": "public boolean isWriteLimitReached(){}",
+  "methodSignature": "isWriteLimitReached()",
+  "sourceCode": "public boolean isWriteLimitReached() {\n        return writeLimitReached;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isWriteLimitReached() {\n    return writeLimitReached;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

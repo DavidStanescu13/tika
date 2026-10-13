@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "getUniformTypeIdentifier",
+  "brief": "public String getUniformTypeIdentifier(){}",
+  "methodSignature": "getUniformTypeIdentifier()",
+  "sourceCode": "public String getUniformTypeIdentifier() {\n        return uti;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get the UTI for this mime type.\n *\n * @return The Uniform Type Identifier\n * @see <a href=\"http://en.wikipedia.org/wiki/Uniform_Type_Identifier\">http://en.wikipedia.org/wiki/Uniform_Type_Identifier</a>\n */\npublic String getUniformTypeIdentifier() {\n    return uti;\n}",
+  "method_comment": "\n     * Get the UTI for this mime type.\n     *\n     * @return The Uniform Type Identifier\n     * @see <a href=\"http://en.wikipedia.org/wiki/Uniform_Type_Identifier\">http://en.wikipedia.org/wiki/Uniform_Type_Identifier</a>\n     ",
+  "method_annotation": ""
+}

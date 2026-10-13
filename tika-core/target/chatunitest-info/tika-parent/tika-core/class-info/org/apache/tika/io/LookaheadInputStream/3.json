@@ -1,0 +1,33 @@
+{
+  "className": "LookaheadInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+  "methodSignature": "read(byte[], int, int)",
+  "sourceCode": "@Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        fill();\n        if (buffered > position) {\n            len = Math.min(len, buffered - position);\n            System.arraycopy(buffer, position, b, off, len);\n            position += len;\n            return len;\n        } else {\n            return -1;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.LookaheadInputStream": [
+      "fill()"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic int read(byte[] b, int off, int len) throws IOException {\n    fill();\n    if (buffered > position) {\n        len = Math.min(len, buffered - position);\n        System.arraycopy(buffer, position, b, off, len);\n        position += len;\n        return len;\n    } else {\n        return -1;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

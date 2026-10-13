@@ -1,0 +1,25 @@
+{
+  "className": "Magic",
+  "methodName": "hashCode",
+  "brief": "public int hashCode(){}",
+  "methodSignature": "hashCode()",
+  "sourceCode": "public int hashCode() {\n        return type.hashCode() ^ string.hashCode();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [
+      "hashCode()"
+    ],
+    "java.lang.String": [
+      "hashCode()"
+    ]
+  },
+  "full_method_info": "public int hashCode() {\n    return type.hashCode() ^ string.hashCode();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

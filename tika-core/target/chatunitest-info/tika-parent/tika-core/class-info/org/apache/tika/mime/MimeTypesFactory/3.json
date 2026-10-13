@@ -1,0 +1,22 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(InputStream stream) throws IOException, MimeTypeException{}",
+  "methodSignature": "create(InputStream)",
+  "sourceCode": "public static MimeTypes create(InputStream stream) throws IOException, MimeTypeException {\n        return create(new InputStream[]{stream});\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": []
+  },
+  "full_method_info": "/**\n * @see #create(InputStream...)\n */\npublic static MimeTypes create(InputStream stream) throws IOException, MimeTypeException {\n    return create(new InputStream[] { stream });\n}",
+  "method_comment": "\n     * @see #create(InputStream...)\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,40 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName){}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) {\n        if (type != null) {\n            if (MIME_TYPE_TAG.equals(qName)) {\n                type = null;\n            } else if (COMMENT_TAG.equals(qName)) {\n                type.setDescription(characters.toString().trim());\n                characters = null;\n            } else if (ACRONYM_TAG.equals(qName)) {\n                type.setAcronym(characters.toString().trim());\n                characters = null;\n            } else if (TIKA_UTI_TAG.equals(qName)) {\n                type.setUniformTypeIdentifier(characters.toString().trim());\n                characters = null;\n            } else if (TIKA_LINK_TAG.equals(qName)) {\n                try {\n                    type.addLink(new URI(characters.toString().trim()));\n                } catch (URISyntaxException e) {\n                    throw new IllegalArgumentException(\"unable to parse link: \" + characters, e);\n                }\n                characters = null;\n            } else if (MATCH_TAG.equals(qName)) {\n                current.stop();\n            } else if (MAGIC_TAG.equals(qName)) {\n                for (Clause clause : current.getClauses()) {\n                    type.addMagic(new Magic(type, priority, clause));\n                }\n                current = null;\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "trim()"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "setUniformTypeIdentifier(String)",
+      "setDescription(String)",
+      "addLink(URI)",
+      "addMagic(Magic)",
+      "setAcronym(String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()"
+    ],
+    "org.apache.tika.mime.MimeTypesReader.ClauseRecord": [
+      "getClauses()",
+      "stop()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) {\n    if (type != null) {\n        if (MIME_TYPE_TAG.equals(qName)) {\n            type = null;\n        } else if (COMMENT_TAG.equals(qName)) {\n            type.setDescription(characters.toString().trim());\n            characters = null;\n        } else if (ACRONYM_TAG.equals(qName)) {\n            type.setAcronym(characters.toString().trim());\n            characters = null;\n        } else if (TIKA_UTI_TAG.equals(qName)) {\n            type.setUniformTypeIdentifier(characters.toString().trim());\n            characters = null;\n        } else if (TIKA_LINK_TAG.equals(qName)) {\n            try {\n                type.addLink(new URI(characters.toString().trim()));\n            } catch (URISyntaxException e) {\n                throw new IllegalArgumentException(\"unable to parse link: \" + characters, e);\n            }\n            characters = null;\n        } else if (MATCH_TAG.equals(qName)) {\n            current.stop();\n        } else if (MAGIC_TAG.equals(qName)) {\n            for (Clause clause : current.getClauses()) {\n                type.addMagic(new Magic(type, priority, clause));\n            }\n            current = null;\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

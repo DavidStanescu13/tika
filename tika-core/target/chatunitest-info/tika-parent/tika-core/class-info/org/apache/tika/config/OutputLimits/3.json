@@ -1,0 +1,20 @@
+{
+  "className": "OutputLimits",
+  "methodName": "setThrowOnWriteLimit",
+  "brief": "public void setThrowOnWriteLimit(boolean throwOnWriteLimit){}",
+  "methodSignature": "setThrowOnWriteLimit(boolean)",
+  "sourceCode": "public void setThrowOnWriteLimit(boolean throwOnWriteLimit) {\n        this.throwOnWriteLimit = throwOnWriteLimit;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether to throw an exception when writeLimit is reached.\n *\n * @param throwOnWriteLimit true to throw an exception\n */\npublic void setThrowOnWriteLimit(boolean throwOnWriteLimit) {\n    this.throwOnWriteLimit = throwOnWriteLimit;\n}",
+  "method_comment": "\n     * Sets whether to throw an exception when writeLimit is reached.\n     *\n     * @param throwOnWriteLimit true to throw an exception\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "Translator",
+  "methodName": "translate",
+  "brief": "String translate(String text, String targetLanguage) throws TikaException, IOException;",
+  "methodSignature": "translate(String, String)",
+  "sourceCode": "String translate(String text, String targetLanguage) throws TikaException, IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Translate text to the given language\n * This method attempts to auto-detect the source language of the text.\n *\n * @param text           The text to translate.\n * @param targetLanguage The desired language to translate to (for example, \"hi\").\n * @return The translation result. If translation is unavailable, returns the same text back.\n * @throws TikaException       When there is an error translating.\n * @throws java.io.IOException\n * @since Tika 1.6\n */\nString translate(String text, String targetLanguage) throws TikaException, IOException;",
+  "method_comment": "\n     * Translate text to the given language\n     * This method attempts to auto-detect the source language of the text.\n     *\n     * @param text           The text to translate.\n     * @param targetLanguage The desired language to translate to (for example, \"hi\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "AbstractEncodingDetectorParser",
+  "methodName": "setEncodingDetector",
+  "brief": "public void setEncodingDetector(EncodingDetector encodingDetector){}",
+  "methodSignature": "setEncodingDetector(EncodingDetector)",
+  "sourceCode": "public void setEncodingDetector(EncodingDetector encodingDetector) {\n        this.encodingDetector = encodingDetector;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "EncodingDetector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.detect.EncodingDetector": []
+  },
+  "full_method_info": "public void setEncodingDetector(EncodingDetector encodingDetector) {\n    this.encodingDetector = encodingDetector;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

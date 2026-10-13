@@ -1,0 +1,22 @@
+{
+  "className": "NNTrainedModel",
+  "methodName": "populateThetas",
+  "brief": "private void populateThetas(final float[] nn_params){}",
+  "methodSignature": "populateThetas(float[])",
+  "sourceCode": "private void populateThetas(final float[] nn_params) {\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        int i, j, k = 0;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta1[j][i] = nn_params[k];\n                k++;\n            }\n        }\n\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta2[j][i] = nn_params[k];\n                k++;\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float[]"
+  ],
+  "dependentMethods": {
+    "float": []
+  },
+  "full_method_info": "// convert the vector params to the 2 thetas.\nprivate void populateThetas(final float[] nn_params) {\n    int m = this.Theta1.length;\n    int n = this.Theta1[0].length;\n    int i, j, k = 0;\n    for (i = 0; i < n; i++) {\n        for (j = 0; j < m; j++) {\n            this.Theta1[j][i] = nn_params[k];\n            k++;\n        }\n    }\n    m = this.Theta2.length;\n    n = this.Theta2[0].length;\n    for (i = 0; i < n; i++) {\n        for (j = 0; j < m; j++) {\n            this.Theta2[j][i] = nn_params[k];\n            k++;\n        }\n    }\n}",
+  "method_comment": " convert the vector params to the 2 thetas.",
+  "method_annotation": ""
+}

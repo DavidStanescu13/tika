@@ -1,0 +1,29 @@
+{
+  "className": "ClearByAttachmentTypeMetadataFilter",
+  "methodName": "filter",
+  "brief": "protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "protected void filter(Metadata metadata) {\n        String type = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_TYPE);\n        if (type == null) {\n            return;\n        }\n        if (! types.contains(type)) {\n            return;\n        }\n        for (String n : metadata.names()) {\n            metadata.remove(n);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)",
+      "names()",
+      "remove(String)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "protected void filter(Metadata metadata) {\n    String type = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_TYPE);\n    if (type == null) {\n        return;\n    }\n    if (!types.contains(type)) {\n        return;\n    }\n    for (String n : metadata.names()) {\n        metadata.remove(n);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

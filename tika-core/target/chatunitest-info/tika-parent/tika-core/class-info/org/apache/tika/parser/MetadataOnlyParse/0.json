@@ -1,0 +1,18 @@
+{
+  "className": "MetadataOnlyParse",
+  "methodName": "MetadataOnlyParse",
+  "brief": "private MetadataOnlyParse(){}",
+  "methodSignature": "MetadataOnlyParse()",
+  "sourceCode": "private MetadataOnlyParse() {\n        // Private constructor for singleton\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "private MetadataOnlyParse() {\n    // Private constructor for singleton\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

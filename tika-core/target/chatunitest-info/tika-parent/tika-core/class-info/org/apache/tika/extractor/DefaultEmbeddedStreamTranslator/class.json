@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.extractor.DefaultEmbeddedStreamTranslator",
+  "className": "DefaultEmbeddedStreamTranslator",
+  "index": 78,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[EmbeddedStreamTranslator]",
+  "packageName": "org.apache.tika.extractor",
+  "packageDeclaration": "package org.apache.tika.extractor;",
+  "classSignature": "public class DefaultEmbeddedStreamTranslator",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.OutputStream;",
+    "import java.util.List;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [
+    "final List<EmbeddedStreamTranslator> translators;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "EmbeddedStreamTranslator"
+  ],
+  "methodSigs": {
+    "getDefaultFilters(ServiceLoader)": "0",
+    "shouldTranslate(TikaInputStream, Metadata)": "1",
+    "translate(TikaInputStream, Metadata, OutputStream)": "2",
+    "DefaultEmbeddedStreamTranslator()": "3",
+    "DefaultEmbeddedStreamTranslator(List)": "4"
+  },
+  "methodsBrief": [
+    "private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader){}",
+    "@Override\r\n    public boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException{}",
+    "@Override\r\n    public void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException{}",
+    "public DefaultEmbeddedStreamTranslator(){}",
+    "private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators){}"
+  ],
+  "constructorSigs": [
+    "DefaultEmbeddedStreamTranslator()",
+    "DefaultEmbeddedStreamTranslator(List)"
+  ],
+  "constructorBrief": [
+    "public DefaultEmbeddedStreamTranslator(){}",
+    "private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.extractor.DefaultEmbeddedStreamTranslator": [
+      "getDefaultFilters(ServiceLoader)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.extractor;\n\nimport java.io.IOException;\nimport java.io.OutputStream;\nimport java.util.List;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\n/**\n * Loads EmbeddedStreamTranslators via service loading.  Tries to run each\n * in turn. If a translator accepts the stream, it will do the translation but not close the stream.\n */\npublic class DefaultEmbeddedStreamTranslator implements EmbeddedStreamTranslator {\n\n    final List<EmbeddedStreamTranslator> translators;\n\n    private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader) {\n        List<EmbeddedStreamTranslator> embeddedStreamTranslators = loader.loadServiceProviders(EmbeddedStreamTranslator.class);\n        ServiceLoaderUtils.sortLoadedClasses(embeddedStreamTranslators);\n        return embeddedStreamTranslators;\n    }\n\n    public DefaultEmbeddedStreamTranslator() {\n        this(getDefaultFilters(new ServiceLoader()));\n    }\n\n    private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators) {\n        this.translators = translators;\n    }\n\n    /**\n     * This should sniff the stream to determine if it needs to be translated.\n     * The translator is responsible for resetting the stream if any bytes have been read.\n     * @param inputStream\n     * @param metadata\n     * @return\n     * @throws IOException\n     */\n    @Override\n    public boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    /**\n     * This will consume the InputStream and write the stream to the output stream\n     * @param inputStream\n     * @param metadata\n     * @param outputStream to write to\n     * @return\n     * @throws IOException\n     */\n    @Override\n    public void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                translator.translate(inputStream, metadata, outputStream);\n                return;\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Loads EmbeddedStreamTranslators via service loading.  Tries to run each\n * in turn. If a translator accepts the stream, it will do the translation but not close the stream.\n */\npublic class DefaultEmbeddedStreamTranslator implements EmbeddedStreamTranslator {\n\n    final List<EmbeddedStreamTranslator> translators;\n\n    private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader) {\n        List<EmbeddedStreamTranslator> embeddedStreamTranslators = loader.loadServiceProviders(EmbeddedStreamTranslator.class);\n        ServiceLoaderUtils.sortLoadedClasses(embeddedStreamTranslators);\n        return embeddedStreamTranslators;\n    }\n\n    public DefaultEmbeddedStreamTranslator() {\n        this(getDefaultFilters(new ServiceLoader()));\n    }\n\n    private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators) {\n        this.translators = translators;\n    }\n\n    /**\n     * This should sniff the stream to determine if it needs to be translated.\n     * The translator is responsible for resetting the stream if any bytes have been read.\n     * @param inputStream\n     * @param metadata\n     * @return\n     * @throws IOException\n     */\n    @Override\n    public boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    /**\n     * This will consume the InputStream and write the stream to the output stream\n     * @param inputStream\n     * @param metadata\n     * @param outputStream to write to\n     * @return\n     * @throws IOException\n     */\n    @Override\n    public void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                translator.translate(inputStream, metadata, outputStream);\n                return;\n            }\n        }\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,25 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getIntBE",
+  "brief": "public static int getIntBE(byte[] data){}",
+  "methodSignature": "getIntBE(byte[])",
+  "sourceCode": "public static int getIntBE(byte[] data) {\n        return getIntBE(data, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.EndianUtils": [
+      "getIntBE(byte[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a BE int value from the beginning of a byte array\n *\n * @param data the byte array\n * @return the int (32-bit) value\n */\npublic static int getIntBE(byte[] data) {\n    return getIntBE(data, 0);\n}",
+  "method_comment": "\n     * Get a BE int value from the beginning of a byte array\n     *\n     * @param data the byte array\n     * @return the int (32-bit) value\n     ",
+  "method_annotation": ""
+}

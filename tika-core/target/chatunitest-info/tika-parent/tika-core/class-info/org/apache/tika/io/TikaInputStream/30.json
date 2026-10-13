@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "getPath",
+  "brief": "public Path getPath() throws IOException{}",
+  "methodSignature": "getPath()",
+  "sourceCode": "public Path getPath() throws IOException {\n        TikaInputSource source = inputSource();\n        if (source == null) {\n            throw new IOException(\"No TikaInputSource available\");\n        }\n        return source.getPath(suffix);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "inputSource()"
+    ],
+    "org.apache.tika.io.TikaInputSource": [
+      "getPath(String)"
+    ]
+  },
+  "full_method_info": "public Path getPath() throws IOException {\n    TikaInputSource source = inputSource();\n    if (source == null) {\n        throw new IOException(\"No TikaInputSource available\");\n    }\n    return source.getPath(suffix);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

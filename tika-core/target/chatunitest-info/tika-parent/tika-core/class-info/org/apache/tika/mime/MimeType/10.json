@@ -1,0 +1,30 @@
+{
+  "className": "MimeType",
+  "methodName": "addLink",
+  "brief": "void addLink(URI link){}",
+  "methodSignature": "addLink(URI)",
+  "sourceCode": "void addLink(URI link) {\n        if (link == null) {\n            throw new IllegalArgumentException(\"Missing Link\");\n        }\n        List<URI> copy = new ArrayList<>(links.size() + 1);\n        copy.addAll(links);\n        copy.add(link);\n        links = Collections.unmodifiableList(copy);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URI"
+  ],
+  "dependentMethods": {
+    "java.net.URI": [],
+    "java.util.List": [
+      "addAll(Collection<? extends E>)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a link to this mime type\n *\n * @param link\n */\nvoid addLink(URI link) {\n    if (link == null) {\n        throw new IllegalArgumentException(\"Missing Link\");\n    }\n    List<URI> copy = new ArrayList<>(links.size() + 1);\n    copy.addAll(links);\n    copy.add(link);\n    links = Collections.unmodifiableList(copy);\n}",
+  "method_comment": "\n     * Add a link to this mime type\n     *\n     * @param link\n     ",
+  "method_annotation": ""
+}

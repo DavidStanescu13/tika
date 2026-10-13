@@ -1,0 +1,34 @@
+{
+  "className": "StandardsExtractingContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<StandardReference> standards =\n                StandardsText.extractStandardReferences(stringBuilder.toString(), threshold);\n        for (StandardReference standardReference : standards) {\n            metadata.add(STANDARD_REFERENCES, standardReference.toString());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endDocument()"
+    ],
+    "org.apache.tika.sax.StandardsText": [
+      "extractStandardReferences(String, double)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(String, String)"
+    ],
+    "org.apache.tika.sax.StandardReference": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * This method is called whenever the Parser is done parsing the file. So,\n * we check the output for any standard references.\n */\n@Override\npublic void endDocument() throws SAXException {\n    super.endDocument();\n    List<StandardReference> standards = StandardsText.extractStandardReferences(stringBuilder.toString(), threshold);\n    for (StandardReference standardReference : standards) {\n        metadata.add(STANDARD_REFERENCES, standardReference.toString());\n    }\n}",
+  "method_comment": "\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any standard references.\n     ",
+  "method_annotation": "@Override\n"
+}

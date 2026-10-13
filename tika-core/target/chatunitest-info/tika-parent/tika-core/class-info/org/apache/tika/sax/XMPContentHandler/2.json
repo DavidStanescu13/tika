@@ -1,0 +1,24 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "startDescription",
+  "brief": "public void startDescription(String about, String prefix, String uri) throws SAXException{}",
+  "methodSignature": "startDescription(String, String, String)",
+  "sourceCode": "public void startDescription(String about, String prefix, String uri) throws SAXException {\n        this.prefix = prefix;\n        this.uri = uri;\n\n        startPrefixMapping(prefix, uri);\n        AttributesImpl attributes = new AttributesImpl();\n        attributes.addAttribute(RDF, \"about\", \"rdf:about\", \"CDATA\", about);\n        startElement(RDF, \"Description\", \"rdf:Description\", attributes);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void startDescription(String about, String prefix, String uri) throws SAXException {\n    this.prefix = prefix;\n    this.uri = uri;\n    startPrefixMapping(prefix, uri);\n    AttributesImpl attributes = new AttributesImpl();\n    attributes.addAttribute(RDF, \"about\", \"rdf:about\", \"CDATA\", about);\n    startElement(RDF, \"Description\", \"rdf:Description\", attributes);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

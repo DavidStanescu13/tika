@@ -1,0 +1,20 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "setWriteLimit",
+  "brief": "public void setWriteLimit(int writeLimit){}",
+  "methodSignature": "setWriteLimit(int)",
+  "sourceCode": "public void setWriteLimit(int writeLimit) {\n        this.writeLimit = writeLimit;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the write limit.\n * @param writeLimit max characters to extract; -1 for unlimited\n */\npublic void setWriteLimit(int writeLimit) {\n    this.writeLimit = writeLimit;\n}",
+  "method_comment": "\n     * Sets the write limit.\n     * @param writeLimit max characters to extract; -1 for unlimited\n     ",
+  "method_annotation": ""
+}

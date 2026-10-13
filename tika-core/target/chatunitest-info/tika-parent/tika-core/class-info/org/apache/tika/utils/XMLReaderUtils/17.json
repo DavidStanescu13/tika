@@ -1,0 +1,28 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "buildDOM",
+  "brief": "public static Document buildDOM(Path path) throws TikaException, IOException, SAXException{}",
+  "methodSignature": "buildDOM(Path)",
+  "sourceCode": "public static Document buildDOM(Path path) throws TikaException, IOException, SAXException {\n        try (InputStream is = Files.newInputStream(path)) {\n            return buildDOM(is);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "java.nio.file.Files": [
+      "newInputStream(Path, OpenOption[])"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "buildDOM(InputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * Builds a Document with a DocumentBuilder from the pool\n *\n * @param path path to parse\n * @return a document\n * @throws TikaException\n * @throws IOException\n * @throws SAXException\n * @since Apache Tika 1.19.1\n */\npublic static Document buildDOM(Path path) throws TikaException, IOException, SAXException {\n    try (InputStream is = Files.newInputStream(path)) {\n        return buildDOM(is);\n    }\n}",
+  "method_comment": "\n     * Builds a Document with a DocumentBuilder from the pool\n     *\n     * @param path path to parse\n     * @return a document\n     * @throws TikaException\n     * @throws IOException\n     * @throws SAXException\n     * @since Apache Tika 1.19.1\n     ",
+  "method_annotation": ""
+}

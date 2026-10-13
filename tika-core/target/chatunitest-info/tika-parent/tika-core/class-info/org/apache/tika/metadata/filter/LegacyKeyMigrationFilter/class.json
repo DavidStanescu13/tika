@@ -1,0 +1,102 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter",
+  "className": "LegacyKeyMigrationFilter",
+  "index": 145,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class LegacyKeyMigrationFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.InputStream;",
+    "import java.nio.charset.StandardCharsets;",
+    "import java.util.ArrayList;",
+    "import java.util.HashMap;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Map;",
+    "import java.util.Set;",
+    "import java.util.function.UnaryOperator;",
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;"
+  ],
+  "fields": [
+    "static final String DEFAULT_TABLE = \"/org/apache/tika/metadata/metadata-migration-3x-4x.json\";",
+    "private static final Pattern ROW =\n            Pattern.compile(\"\\\\{\\\"v3\\\":\\\"(.*?)\\\",\\\"v4\\\":\\\"(.*?)\\\"}\");",
+    "private static final Map<String, String> DIGEST_ALG_V4_TO_V3 = Map.of(\n            \"SHA-1\", \"SHA1\", \"SHA-256\", \"SHA256\", \"SHA-384\", \"SHA384\", \"SHA-512\", \"SHA512\",\n            \"SHA3-256\", \"SHA3_256\", \"SHA3-384\", \"SHA3_384\", \"SHA3-512\", \"SHA3_512\");",
+    "private static final String V4_DIGEST = TikaCoreProperties.TIKA_META_PREFIX + \"digest:\";",
+    "private static final String V3_DIGEST = TikaCoreProperties.LEGACY_TIKA_META_PREFIX + \"digest:\";",
+    "private final Map<String, String> renames;",
+    "private final Set<String> drops;",
+    "private final List<UnaryOperator<String>> prefixRules;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "loadTable(String)": "1",
+    "unescape(String)": "2",
+    "digestRule(Direction)": "3",
+    "LegacyKeyMigrationFilter()": "4",
+    "LegacyKeyMigrationFilter(Config)": "5",
+    "LegacyKeyMigrationFilter(Map, Direction)": "6"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void filter(Metadata metadata){}",
+    "private static Map<String, String> loadTable(String resource){}",
+    "private static String unescape(String s){}",
+    "private static UnaryOperator<String> digestRule(Direction direction){}",
+    "public LegacyKeyMigrationFilter(){}",
+    "public LegacyKeyMigrationFilter(Config config){}",
+    "LegacyKeyMigrationFilter(Map<String, String> table, Direction direction){}"
+  ],
+  "constructorSigs": [
+    "LegacyKeyMigrationFilter()",
+    "LegacyKeyMigrationFilter(Config)",
+    "LegacyKeyMigrationFilter(Map, Direction)"
+  ],
+  "constructorBrief": [
+    "public LegacyKeyMigrationFilter(){}",
+    "public LegacyKeyMigrationFilter(Config config){}",
+    "LegacyKeyMigrationFilter(Map<String, String> table, Direction direction){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter.Config": [],
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter": [
+      "loadTable(String)"
+    ],
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter.Direction": [],
+    "java.util.Map": [
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.io.InputStream;\nimport java.nio.charset.StandardCharsets;\nimport java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.function.UnaryOperator;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\n\n/**\n * Rewrites 4.x metadata keys back to their 3.x spellings (or vice versa) so consumers pinned to 3.x\n * key names keep working after the 4.0 rename break. Opt-in; enable it in the metadata-filter chain\n * and it rewrites at the emit edge. Because it runs inside the {@link MetadataFilter} trusted bracket,\n * it may write reserved (e.g. {@code X-TIKA:}/{@code tk:}) keys that a plain String write couldn't.\n *\n * <p><b>Data-driven, not hand-coded.</b> The renames come from the committed migration table\n * (generated by joining the 3.x and 4.x field-attributed key tables — TIKA-4797). Three tiers:\n * <ul>\n *   <li><b>flat renames</b> — the enumerated key-for-key changes (the bulk);</li>\n *   <li><b>drops</b> — 3.x keys 4.x no longer emits (only relevant on ingest);</li>\n *   <li><b>prefix rules</b> — the open families whose suffix also transforms\n *       ({@code tk:exception:}/{@code tk:warn:} snake&harr;kebab, {@code tk:digest:} algorithm names).</li>\n * </ul>\n * Unmapped keys pass through unchanged (this is a compatibility bridge, not an allow-list).\n *\n * <p><b>Skeleton status (TIKA-4799):</b> the flat/drop/passthrough mechanism is complete; the\n * bundled table and the concrete prefix rules land with the rename PRs (the table resource is absent\n * until then, so the default filter is a safe no-op). See {@link #prefixRules} for where the\n * digest/exception rules slot in.\n */\n@TikaComponent\npublic class LegacyKeyMigrationFilter extends MetadataFilterBase {\n\n    /**\n     * V4_TO_V3 = egress (4.x output rewritten to 3.x keys, the BWC case); V3_TO_V4 = ingest.\n     */\n    public enum Direction {\n\n        V4_TO_V3, V3_TO_V4\n    }\n\n    /**\n     * Generated by the TIKA-4797 migration join; deposited into tika-core resources when renames land.\n     */\n    static final String DEFAULT_TABLE = \"/org/apache/tika/metadata/metadata-migration-3x-4x.json\";\n\n    // {\"v3\":\"...\",\"v4\":\"...\"} ; v4 == \"DROPPED\" marks a 3.x key with no 4.x successor.\n    private static final Pattern ROW = Pattern.compile(\"\\\\{\\\"v3\\\":\\\"(.*?)\\\",\\\"v4\\\":\\\"(.*?)\\\"}\");\n\n    // 4.x digest keys use the JCA name (DigestDef.getJavaName); 3.x used the enum name. MD2/MD5 match.\n    private static final Map<String, String> DIGEST_ALG_V4_TO_V3 = Map.of(\"SHA-1\", \"SHA1\", \"SHA-256\", \"SHA256\", \"SHA-384\", \"SHA384\", \"SHA-512\", \"SHA512\", \"SHA3-256\", \"SHA3_256\", \"SHA3-384\", \"SHA3_384\", \"SHA3-512\", \"SHA3_512\");\n\n    private static final String V4_DIGEST = TikaCoreProperties.TIKA_META_PREFIX + \"digest:\";\n\n    private static final String V3_DIGEST = TikaCoreProperties.LEGACY_TIKA_META_PREFIX + \"digest:\";\n\n    public static class Config {\n\n        public Direction direction = Direction.V4_TO_V3;\n\n        public String table = DEFAULT_TABLE;\n    }\n\n    // source key -> target key (direction applied)\n    private final Map<String, String> renames;\n\n    // source keys to remove (ingest only)\n    private final Set<String> drops;\n\n    private final List<UnaryOperator<String>> prefixRules;\n\n    public LegacyKeyMigrationFilter() {\n        this(new Config());\n    }\n\n    public LegacyKeyMigrationFilter(Config config) {\n        this(loadTable(config.table), config.direction);\n    }\n\n    LegacyKeyMigrationFilter(Map<String, String> table, Direction direction) {\n        this.renames = new HashMap<>();\n        this.drops = new HashSet<>();\n        for (Map.Entry<String, String> e : table.entrySet()) {\n            String v3 = e.getKey();\n            String v4 = e.getValue();\n            boolean dropped = v4 == null || \"DROPPED\".equals(v4);\n            if (direction == Direction.V4_TO_V3) {\n                if (!dropped) {\n                    // 4.x key -> 3.x key\n                    renames.put(v4, v3);\n                }\n            } else {\n                // V3_TO_V4\n                if (dropped) {\n                    drops.add(v3);\n                } else {\n                    renames.put(v3, v4);\n                }\n            }\n        }\n        // Digest keys have no declaring field, so they aren't in the flat table -- rewrite them by\n        // prefix rule instead. (Exception/warn keys ARE enumerated in the table.)\n        this.prefixRules = new ArrayList<>();\n        this.prefixRules.add(digestRule(direction));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        for (String name : metadata.names()) {\n            // names() returns a snapshot copy\n            if (drops.contains(name)) {\n                metadata.remove(name);\n                continue;\n            }\n            String mapped = renames.get(name);\n            if (mapped == null) {\n                for (UnaryOperator<String> rule : prefixRules) {\n                    String r = rule.apply(name);\n                    if (r != null) {\n                        mapped = r;\n                        break;\n                    }\n                }\n            }\n            if (mapped != null && !mapped.equals(name)) {\n                String[] values = metadata.getValues(name);\n                metadata.remove(name);\n                for (String v : values) {\n                    // targets may be reserved (tk:/X-TIKA:)\n                    metadata.addTrusted(mapped, v);\n                }\n            }\n            // unmapped -> pass through unchanged\n        }\n    }\n\n    private static Map<String, String> loadTable(String resource) {\n        Map<String, String> table = new HashMap<>();\n        try (InputStream in = LegacyKeyMigrationFilter.class.getResourceAsStream(resource)) {\n            if (in == null) {\n                // not bundled yet -> no-op bridge\n                return table;\n            }\n            Matcher m = ROW.matcher(new String(in.readAllBytes(), StandardCharsets.UTF_8));\n            while (m.find()) {\n                table.put(unescape(m.group(1)), unescape(m.group(2)));\n            }\n        } catch (Exception e) {\n            throw new IllegalStateException(\"could not read migration table \" + resource, e);\n        }\n        return table;\n    }\n\n    private static String unescape(String s) {\n        return s.replace(\"\\\\\\\"\", \"\\\"\").replace(\"\\\\\\\\\", \"\\\\\");\n    }\n\n    /**\n     * {@code tk:digest:<jca-alg>[:enc]} &harr; {@code X-TIKA:digest:<enum-alg>[:enc]} (encoding kept).\n     */\n    private static UnaryOperator<String> digestRule(Direction direction) {\n        boolean egress = direction == Direction.V4_TO_V3;\n        String fromPrefix = egress ? V4_DIGEST : V3_DIGEST;\n        String toPrefix = egress ? V3_DIGEST : V4_DIGEST;\n        Map<String, String> alg = new HashMap<>();\n        DIGEST_ALG_V4_TO_V3.forEach((v4, v3) -> alg.put(egress ? v4 : v3, egress ? v3 : v4));\n        return name -> {\n            if (!name.startsWith(fromPrefix)) {\n                return null;\n            }\n            // <alg> or <alg>:<enc>\n            String rest = name.substring(fromPrefix.length());\n            int c = rest.indexOf(':');\n            String a = c < 0 ? rest : rest.substring(0, c);\n            String enc = c < 0 ? \"\" : rest.substring(c);\n            return toPrefix + alg.getOrDefault(a, a) + enc;\n        };\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Rewrites 4.x metadata keys back to their 3.x spellings (or vice versa) so consumers pinned to 3.x\n * key names keep working after the 4.0 rename break. Opt-in; enable it in the metadata-filter chain\n * and it rewrites at the emit edge. Because it runs inside the {@link MetadataFilter} trusted bracket,\n * it may write reserved (e.g. {@code X-TIKA:}/{@code tk:}) keys that a plain String write couldn't.\n *\n * <p><b>Data-driven, not hand-coded.</b> The renames come from the committed migration table\n * (generated by joining the 3.x and 4.x field-attributed key tables — TIKA-4797). Three tiers:\n * <ul>\n *   <li><b>flat renames</b> — the enumerated key-for-key changes (the bulk);</li>\n *   <li><b>drops</b> — 3.x keys 4.x no longer emits (only relevant on ingest);</li>\n *   <li><b>prefix rules</b> — the open families whose suffix also transforms\n *       ({@code tk:exception:}/{@code tk:warn:} snake&harr;kebab, {@code tk:digest:} algorithm names).</li>\n * </ul>\n * Unmapped keys pass through unchanged (this is a compatibility bridge, not an allow-list).\n *\n * <p><b>Skeleton status (TIKA-4799):</b> the flat/drop/passthrough mechanism is complete; the\n * bundled table and the concrete prefix rules land with the rename PRs (the table resource is absent\n * until then, so the default filter is a safe no-op). See {@link #prefixRules} for where the\n * digest/exception rules slot in.\n */\n@TikaComponent\npublic class LegacyKeyMigrationFilter extends MetadataFilterBase {\n\n    /**\n     * V4_TO_V3 = egress (4.x output rewritten to 3.x keys, the BWC case); V3_TO_V4 = ingest.\n     */\n    public enum Direction {\n\n        V4_TO_V3, V3_TO_V4\n    }\n\n    /**\n     * Generated by the TIKA-4797 migration join; deposited into tika-core resources when renames land.\n     */\n    static final String DEFAULT_TABLE = \"/org/apache/tika/metadata/metadata-migration-3x-4x.json\";\n\n    // {\"v3\":\"...\",\"v4\":\"...\"} ; v4 == \"DROPPED\" marks a 3.x key with no 4.x successor.\n    private static final Pattern ROW = Pattern.compile(\"\\\\{\\\"v3\\\":\\\"(.*?)\\\",\\\"v4\\\":\\\"(.*?)\\\"}\");\n\n    // 4.x digest keys use the JCA name (DigestDef.getJavaName); 3.x used the enum name. MD2/MD5 match.\n    private static final Map<String, String> DIGEST_ALG_V4_TO_V3 = Map.of(\"SHA-1\", \"SHA1\", \"SHA-256\", \"SHA256\", \"SHA-384\", \"SHA384\", \"SHA-512\", \"SHA512\", \"SHA3-256\", \"SHA3_256\", \"SHA3-384\", \"SHA3_384\", \"SHA3-512\", \"SHA3_512\");\n\n    private static final String V4_DIGEST = TikaCoreProperties.TIKA_META_PREFIX + \"digest:\";\n\n    private static final String V3_DIGEST = TikaCoreProperties.LEGACY_TIKA_META_PREFIX + \"digest:\";\n\n    public static class Config {\n\n        public Direction direction = Direction.V4_TO_V3;\n\n        public String table = DEFAULT_TABLE;\n    }\n\n    // source key -> target key (direction applied)\n    private final Map<String, String> renames;\n\n    // source keys to remove (ingest only)\n    private final Set<String> drops;\n\n    private final List<UnaryOperator<String>> prefixRules;\n\n    public LegacyKeyMigrationFilter() {\n        this(new Config());\n    }\n\n    public LegacyKeyMigrationFilter(Config config) {\n        this(loadTable(config.table), config.direction);\n    }\n\n    LegacyKeyMigrationFilter(Map<String, String> table, Direction direction) {\n        this.renames = new HashMap<>();\n        this.drops = new HashSet<>();\n        for (Map.Entry<String, String> e : table.entrySet()) {\n            String v3 = e.getKey();\n            String v4 = e.getValue();\n            boolean dropped = v4 == null || \"DROPPED\".equals(v4);\n            if (direction == Direction.V4_TO_V3) {\n                if (!dropped) {\n                    // 4.x key -> 3.x key\n                    renames.put(v4, v3);\n                }\n            } else {\n                // V3_TO_V4\n                if (dropped) {\n                    drops.add(v3);\n                } else {\n                    renames.put(v3, v4);\n                }\n            }\n        }\n        // Digest keys have no declaring field, so they aren't in the flat table -- rewrite them by\n        // prefix rule instead. (Exception/warn keys ARE enumerated in the table.)\n        this.prefixRules = new ArrayList<>();\n        this.prefixRules.add(digestRule(direction));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        for (String name : metadata.names()) {\n            // names() returns a snapshot copy\n            if (drops.contains(name)) {\n                metadata.remove(name);\n                continue;\n            }\n            String mapped = renames.get(name);\n            if (mapped == null) {\n                for (UnaryOperator<String> rule : prefixRules) {\n                    String r = rule.apply(name);\n                    if (r != null) {\n                        mapped = r;\n                        break;\n                    }\n                }\n            }\n            if (mapped != null && !mapped.equals(name)) {\n                String[] values = metadata.getValues(name);\n                metadata.remove(name);\n                for (String v : values) {\n                    // targets may be reserved (tk:/X-TIKA:)\n                    metadata.addTrusted(mapped, v);\n                }\n            }\n            // unmapped -> pass through unchanged\n        }\n    }\n\n    private static Map<String, String> loadTable(String resource) {\n        Map<String, String> table = new HashMap<>();\n        try (InputStream in = LegacyKeyMigrationFilter.class.getResourceAsStream(resource)) {\n            if (in == null) {\n                // not bundled yet -> no-op bridge\n                return table;\n            }\n            Matcher m = ROW.matcher(new String(in.readAllBytes(), StandardCharsets.UTF_8));\n            while (m.find()) {\n                table.put(unescape(m.group(1)), unescape(m.group(2)));\n            }\n        } catch (Exception e) {\n            throw new IllegalStateException(\"could not read migration table \" + resource, e);\n        }\n        return table;\n    }\n\n    private static String unescape(String s) {\n        return s.replace(\"\\\\\\\"\", \"\\\"\").replace(\"\\\\\\\\\", \"\\\\\");\n    }\n\n    /**\n     * {@code tk:digest:<jca-alg>[:enc]} &harr; {@code X-TIKA:digest:<enum-alg>[:enc]} (encoding kept).\n     */\n    private static UnaryOperator<String> digestRule(Direction direction) {\n        boolean egress = direction == Direction.V4_TO_V3;\n        String fromPrefix = egress ? V4_DIGEST : V3_DIGEST;\n        String toPrefix = egress ? V3_DIGEST : V4_DIGEST;\n        Map<String, String> alg = new HashMap<>();\n        DIGEST_ALG_V4_TO_V3.forEach((v4, v3) -> alg.put(egress ? v4 : v3, egress ? v3 : v4));\n        return name -> {\n            if (!name.startsWith(fromPrefix)) {\n                return null;\n            }\n            // <alg> or <alg>:<enc>\n            String rest = name.substring(fromPrefix.length());\n            int c = rest.indexOf(':');\n            String a = c < 0 ? rest : rest.substring(0, c);\n            String enc = c < 0 ? \"\" : rest.substring(c);\n            return toPrefix + alg.getOrDefault(a, a) + enc;\n        };\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "isDynamic",
+  "brief": "public boolean isDynamic(){}",
+  "methodSignature": "isDynamic()",
+  "sourceCode": "public boolean isDynamic() {\n        return dynamic;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns if the service loader is static or dynamic\n *\n * @return dynamic or static loading\n * @since Apache Tika 1.10\n */\npublic boolean isDynamic() {\n    return dynamic;\n}",
+  "method_comment": "\n     * Returns if the service loader is static or dynamic\n     *\n     * @return dynamic or static loading\n     * @since Apache Tika 1.10\n     ",
+  "method_annotation": ""
+}

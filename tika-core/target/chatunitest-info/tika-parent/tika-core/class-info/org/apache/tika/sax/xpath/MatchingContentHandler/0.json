@@ -1,0 +1,33 @@
+{
+  "className": "MatchingContentHandler",
+  "methodName": "startElement",
+  "brief": "public void startElement(String uri, String localName, String name, Attributes attributes)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "public void startElement(String uri, String localName, String name, Attributes attributes)\n            throws SAXException {\n        matchers.addFirst(matcher);\n        matcher = matcher.descend(uri, localName);\n\n        AttributesImpl matches = new AttributesImpl();\n        for (int i = 0; i < attributes.getLength(); i++) {\n            String attributeURI = attributes.getURI(i);\n            String attributeName = attributes.getLocalName(i);\n            if (matcher.matchesAttribute(attributeURI, attributeName)) {\n                matches.addAttribute(attributeURI, attributeName, attributes.getQName(i),\n                        attributes.getType(i), attributes.getValue(i));\n            }\n        }\n\n        if (matcher.matchesElement() || matches.getLength() > 0) {\n            super.startElement(uri, localName, name, matches);\n            if (!matcher.matchesElement()) {\n                // Force the matcher to match the current element, so the\n                // endElement method knows to emit the correct event\n                matcher = new CompositeMatcher(matcher, ElementMatcher.INSTANCE);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.LinkedList": [
+      "addFirst(E)"
+    ],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesAttribute(String, String)",
+      "descend(String, String)",
+      "matchesElement()"
+    ]
+  },
+  "full_method_info": "public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {\n    matchers.addFirst(matcher);\n    matcher = matcher.descend(uri, localName);\n    AttributesImpl matches = new AttributesImpl();\n    for (int i = 0; i < attributes.getLength(); i++) {\n        String attributeURI = attributes.getURI(i);\n        String attributeName = attributes.getLocalName(i);\n        if (matcher.matchesAttribute(attributeURI, attributeName)) {\n            matches.addAttribute(attributeURI, attributeName, attributes.getQName(i), attributes.getType(i), attributes.getValue(i));\n        }\n    }\n    if (matcher.matchesElement() || matches.getLength() > 0) {\n        super.startElement(uri, localName, name, matches);\n        if (!matcher.matchesElement()) {\n            // Force the matcher to match the current element, so the\n            // endElement method knows to emit the correct event\n            matcher = new CompositeMatcher(matcher, ElementMatcher.INSTANCE);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

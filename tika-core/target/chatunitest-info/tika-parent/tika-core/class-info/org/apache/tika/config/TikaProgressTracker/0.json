@@ -1,0 +1,27 @@
+{
+  "className": "TikaProgressTracker",
+  "methodName": "update",
+  "brief": "public static void update(ParseContext context){}",
+  "methodSignature": "update(ParseContext)",
+  "sourceCode": "public static void update(ParseContext context) {\n        if (context == null) {\n            return;\n        }\n        TikaProgressTracker tracker = context.get(TikaProgressTracker.class);\n        if (tracker != null) {\n            tracker.update();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.config.TikaProgressTracker": [
+      "update()"
+    ]
+  },
+  "full_method_info": "/**\n * Signals progress from a ParseContext. If no tracker is present, this is a no-op.\n * <p>\n * This is the preferred way for parsers to signal progress:\n * <pre>\n * TikaProgressTracker.update(context);\n * </pre>\n *\n * @param context the ParseContext (may be null)\n */\npublic static void update(ParseContext context) {\n    if (context == null) {\n        return;\n    }\n    TikaProgressTracker tracker = context.get(TikaProgressTracker.class);\n    if (tracker != null) {\n        tracker.update();\n    }\n}",
+  "method_comment": "\n     * Signals progress from a ParseContext. If no tracker is present, this is a no-op.\n     * <p>\n     * This is the preferred way for parsers to signal progress:\n     * <pre>\n     * TikaProgressTracker.update(context);\n     * </pre>\n     *\n     * @param context the ParseContext (may be null)\n     ",
+  "method_annotation": ""
+}

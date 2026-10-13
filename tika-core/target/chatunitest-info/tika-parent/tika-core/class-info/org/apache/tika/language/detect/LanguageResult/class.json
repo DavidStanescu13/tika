@@ -1,0 +1,78 @@
+{
+  "fullClassName": "org.apache.tika.language.detect.LanguageResult",
+  "className": "LanguageResult",
+  "index": 114,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.language.detect",
+  "packageDeclaration": "package org.apache.tika.language.detect;",
+  "classSignature": "public class LanguageResult",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Locale;"
+  ],
+  "fields": [
+    "public static final LanguageResult NULL = new LanguageResult(\"\", LanguageConfidence.NONE, 0.0f);",
+    "private final String language;",
+    "private final LanguageConfidence confidence;",
+    "private final float rawScore;",
+    "private final float confidenceScore;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getLanguage()": "0",
+    "getRawScore()": "1",
+    "getConfidenceScore()": "2",
+    "getConfidence()": "3",
+    "isReasonablyCertain()": "4",
+    "isUnknown()": "5",
+    "isLanguage(String)": "6",
+    "toString()": "7",
+    "LanguageResult(String, LanguageConfidence, float)": "8",
+    "LanguageResult(String, LanguageConfidence, float, float)": "9"
+  },
+  "methodsBrief": [
+    "public String getLanguage(){}",
+    "public float getRawScore(){}",
+    "public float getConfidenceScore(){}",
+    "public LanguageConfidence getConfidence(){}",
+    "public boolean isReasonablyCertain(){}",
+    "public boolean isUnknown(){}",
+    "public boolean isLanguage(String language){}",
+    "@Override\r\n    public String toString(){}",
+    "public LanguageResult(String language, LanguageConfidence confidence, float rawScore){}",
+    "public LanguageResult(String language, LanguageConfidence confidence,\r\n                          float rawScore, float confidenceScore){}"
+  ],
+  "constructorSigs": [
+    "LanguageResult(String, LanguageConfidence, float)",
+    "LanguageResult(String, LanguageConfidence, float, float)"
+  ],
+  "constructorBrief": [
+    "public LanguageResult(String language, LanguageConfidence confidence, float rawScore){}",
+    "public LanguageResult(String language, LanguageConfidence confidence,\r\n                          float rawScore, float confidenceScore){}"
+  ],
+  "getterSetterSigs": [
+    "getLanguage()",
+    "getRawScore()",
+    "getConfidenceScore()",
+    "getConfidence()"
+  ],
+  "getterSetterBrief": [
+    "public String getLanguage(){}",
+    "public float getRawScore(){}",
+    "public float getConfidenceScore(){}",
+    "public LanguageConfidence getConfidence(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.tika.language.detect.LanguageConfidence": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.language.detect;\n\nimport java.util.Locale;\n\npublic class LanguageResult {\n\n    // A result that indicates no match. Used when no language was detected.\n    public static final LanguageResult NULL = new LanguageResult(\"\", LanguageConfidence.NONE, 0.0f);\n\n    private final String language;\n\n    private final LanguageConfidence confidence;\n\n    // rawScore should be a number from 0.0 to 1.0, with higher values implying\n    // greater confidence.\n    private final float rawScore;\n\n    // Detector-agnostic confidence score (0.0 to 1.0, higher = more confident).\n    // Detectors can populate this however makes sense for their internals\n    // (e.g., entropy-derived for CharSoup, probability-based for OpenNLP).\n    // Defaults to rawScore for backwards compatibility.\n    private final float confidenceScore;\n\n    public LanguageResult(String language, LanguageConfidence confidence, float rawScore) {\n        this(language, confidence, rawScore, rawScore);\n    }\n\n    public LanguageResult(String language, LanguageConfidence confidence, float rawScore, float confidenceScore) {\n        this.language = language;\n        this.confidence = confidence;\n        this.rawScore = rawScore;\n        this.confidenceScore = confidenceScore;\n    }\n\n    /**\n     * The ISO 639-1 language code (plus optional country code)\n     *\n     * @return a string representation of the language code\n     */\n    public String getLanguage() {\n        return language;\n    }\n\n    public float getRawScore() {\n        return rawScore;\n    }\n\n    /**\n     * Detector-agnostic confidence score (0.0 to 1.0). Higher values indicate\n     * the detector is more confident in the result. This can be used to compare\n     * results across different text decodings (e.g., for encoding detection)\n     * without knowing the detector implementation.\n     */\n    public float getConfidenceScore() {\n        return confidenceScore;\n    }\n\n    public LanguageConfidence getConfidence() {\n        return confidence;\n    }\n\n    public boolean isReasonablyCertain() {\n        return confidence == LanguageConfidence.HIGH;\n    }\n\n    public boolean isUnknown() {\n        return confidence == LanguageConfidence.NONE;\n    }\n\n    /**\n     * Return true if the target language matches the detected language. We consider\n     * it a match if, for the precision requested or detected, it matches. This means:\n     * <p>\n     * target | detected | match?\n     * zh | en | false\n     * zh | zh | true\n     * zh | zh-CN | true\n     * zh-CN | zh | true\n     * zh-CN | zh-TW | false\n     * zh-CN | zh-cn | true (case-insensitive)\n     *\n     * @param language\n     * @return\n     */\n    public boolean isLanguage(String language) {\n        String[] targetLanguage = language.split(\"\\\\-\");\n        String[] resultLanguage = this.language.split(\"\\\\-\");\n        int minLength = Math.min(targetLanguage.length, resultLanguage.length);\n        for (int i = 0; i < minLength; i++) {\n            if (!targetLanguage[i].equalsIgnoreCase(resultLanguage[i])) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return String.format(Locale.US, \"%s: %s (%f)\", language, confidence, rawScore);\n    }\n}\n",
+  "classDeclarationCode": "public class LanguageResult {\n\n    // A result that indicates no match. Used when no language was detected.\n    public static final LanguageResult NULL = new LanguageResult(\"\", LanguageConfidence.NONE, 0.0f);\n\n    private final String language;\n\n    private final LanguageConfidence confidence;\n\n    // rawScore should be a number from 0.0 to 1.0, with higher values implying\n    // greater confidence.\n    private final float rawScore;\n\n    // Detector-agnostic confidence score (0.0 to 1.0, higher = more confident).\n    // Detectors can populate this however makes sense for their internals\n    // (e.g., entropy-derived for CharSoup, probability-based for OpenNLP).\n    // Defaults to rawScore for backwards compatibility.\n    private final float confidenceScore;\n\n    public LanguageResult(String language, LanguageConfidence confidence, float rawScore) {\n        this(language, confidence, rawScore, rawScore);\n    }\n\n    public LanguageResult(String language, LanguageConfidence confidence, float rawScore, float confidenceScore) {\n        this.language = language;\n        this.confidence = confidence;\n        this.rawScore = rawScore;\n        this.confidenceScore = confidenceScore;\n    }\n\n    /**\n     * The ISO 639-1 language code (plus optional country code)\n     *\n     * @return a string representation of the language code\n     */\n    public String getLanguage() {\n        return language;\n    }\n\n    public float getRawScore() {\n        return rawScore;\n    }\n\n    /**\n     * Detector-agnostic confidence score (0.0 to 1.0). Higher values indicate\n     * the detector is more confident in the result. This can be used to compare\n     * results across different text decodings (e.g., for encoding detection)\n     * without knowing the detector implementation.\n     */\n    public float getConfidenceScore() {\n        return confidenceScore;\n    }\n\n    public LanguageConfidence getConfidence() {\n        return confidence;\n    }\n\n    public boolean isReasonablyCertain() {\n        return confidence == LanguageConfidence.HIGH;\n    }\n\n    public boolean isUnknown() {\n        return confidence == LanguageConfidence.NONE;\n    }\n\n    /**\n     * Return true if the target language matches the detected language. We consider\n     * it a match if, for the precision requested or detected, it matches. This means:\n     * <p>\n     * target | detected | match?\n     * zh | en | false\n     * zh | zh | true\n     * zh | zh-CN | true\n     * zh-CN | zh | true\n     * zh-CN | zh-TW | false\n     * zh-CN | zh-cn | true (case-insensitive)\n     *\n     * @param language\n     * @return\n     */\n    public boolean isLanguage(String language) {\n        String[] targetLanguage = language.split(\"\\\\-\");\n        String[] resultLanguage = this.language.split(\"\\\\-\");\n        int minLength = Math.min(targetLanguage.length, resultLanguage.length);\n        for (int i = 0; i < minLength; i++) {\n            if (!targetLanguage[i].equalsIgnoreCase(resultLanguage[i])) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return String.format(Locale.US, \"%s: %s (%f)\", language, confidence, rawScore);\n    }\n}",
+  "subClasses": []
+}

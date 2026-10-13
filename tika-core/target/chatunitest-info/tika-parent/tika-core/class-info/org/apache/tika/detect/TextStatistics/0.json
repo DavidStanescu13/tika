@@ -1,0 +1,24 @@
+{
+  "className": "TextStatistics",
+  "methodName": "addData",
+  "brief": "public void addData(byte[] buffer, int offset, int length){}",
+  "methodSignature": "addData(byte[], int, int)",
+  "sourceCode": "public void addData(byte[] buffer, int offset, int length) {\n        for (int i = 0; i < length; i++) {\n            counts[buffer[offset + i] & 0xff]++;\n            total++;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "public void addData(byte[] buffer, int offset, int length) {\n    for (int i = 0; i < length; i++) {\n        counts[buffer[offset + i] & 0xff]++;\n        total++;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

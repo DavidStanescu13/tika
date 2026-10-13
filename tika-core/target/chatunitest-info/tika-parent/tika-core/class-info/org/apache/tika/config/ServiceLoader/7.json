@@ -1,0 +1,29 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "getServiceClass",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public <T> Class<? extends T> getServiceClass(Class<T> iface, String name)\r\n            throws ClassNotFoundException{}",
+  "methodSignature": "getServiceClass(Class, String)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> Class<? extends T> getServiceClass(Class<T> iface, String name)\n            throws ClassNotFoundException {\n        if (loader == null) {\n            throw new ClassNotFoundException(\"Service class \" + name + \" is not available\");\n        }\n        Class<?> klass = Class.forName(name, true, loader);\n        if (klass.isInterface()) {\n            throw new ClassNotFoundException(\"Service class \" + name + \" is an interface\");\n        } else if (!iface.isAssignableFrom(klass)) {\n            throw new ClassNotFoundException(\n                    \"Service class \" + name + \" does not implement \" + iface.getName());\n        } else {\n            return (Class<? extends T>) klass;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.Class": [
+      "isAssignableFrom(Object>)",
+      "forName(String, boolean, ClassLoader)",
+      "isInterface()",
+      "getName()"
+    ]
+  },
+  "full_method_info": "/**\n * Loads and returns the named service class that's expected to implement\n * the given interface.\n * <p>\n *\n * @param iface service interface\n * @param name  service class name\n * @return service class\n * @throws ClassNotFoundException if the service class can not be found\n *                                or does not implement the given interface\n * @see Class#forName(String, boolean, ClassLoader)\n * @since Apache Tika 1.1\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> Class<? extends T> getServiceClass(Class<T> iface, String name) throws ClassNotFoundException {\n    if (loader == null) {\n        throw new ClassNotFoundException(\"Service class \" + name + \" is not available\");\n    }\n    Class<?> klass = Class.forName(name, true, loader);\n    if (klass.isInterface()) {\n        throw new ClassNotFoundException(\"Service class \" + name + \" is an interface\");\n    } else if (!iface.isAssignableFrom(klass)) {\n        throw new ClassNotFoundException(\"Service class \" + name + \" does not implement \" + iface.getName());\n    } else {\n        return (Class<? extends T>) klass;\n    }\n}",
+  "method_comment": "\n     * Loads and returns the named service class that's expected to implement\n     * the given interface.\n     * <p>\n     *\n     * @param iface service interface\n     * @param name  service class name\n     * @return service class\n     * @throws ClassNotFoundException if the service class can not be found\n     *                                or does not implement the given interface\n     * @see Class#forName(String, boolean, ClassLoader)\n     * @since Apache Tika 1.1\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

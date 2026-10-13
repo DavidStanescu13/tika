@@ -1,0 +1,31 @@
+{
+  "className": "StreamCache",
+  "methodName": "readAt",
+  "brief": "int readAt(long position) throws IOException{}",
+  "methodSignature": "readAt(long)",
+  "sourceCode": "int readAt(long position) throws IOException {\n        if (position < 0 || position >= totalSize) {\n            return -1;\n        }\n\n        if (memoryBuffer != null) {\n            return memoryBuffer[(int) position] & 0xFF;\n        } else {\n            flushSpillStream();\n            try (RandomAccessFile raf = new RandomAccessFile(spillFile.toFile(), \"r\")) {\n                raf.seek(position);\n                return raf.read();\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "flushSpillStream()"
+    ],
+    "java.nio.file.Path": [
+      "toFile()"
+    ],
+    "java.io.RandomAccessFile": [
+      "read()",
+      "seek(long)"
+    ]
+  },
+  "full_method_info": "/**\n * Read a single byte at the given position.\n */\nint readAt(long position) throws IOException {\n    if (position < 0 || position >= totalSize) {\n        return -1;\n    }\n    if (memoryBuffer != null) {\n        return memoryBuffer[(int) position] & 0xFF;\n    } else {\n        flushSpillStream();\n        try (RandomAccessFile raf = new RandomAccessFile(spillFile.toFile(), \"r\")) {\n            raf.seek(position);\n            return raf.read();\n        }\n    }\n}",
+  "method_comment": "\n     * Read a single byte at the given position.\n     ",
+  "method_annotation": ""
+}

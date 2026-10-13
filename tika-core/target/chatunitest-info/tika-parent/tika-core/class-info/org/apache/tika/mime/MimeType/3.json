@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "getDescription",
+  "brief": "public String getDescription(){}",
+  "methodSignature": "getDescription()",
+  "sourceCode": "public String getDescription() {\n        return description;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the description of this media type.\n *\n * @return media type description\n */\npublic String getDescription() {\n    return description;\n}",
+  "method_comment": "\n     * Returns the description of this media type.\n     *\n     * @return media type description\n     ",
+  "method_annotation": ""
+}

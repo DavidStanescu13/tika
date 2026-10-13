@@ -1,0 +1,18 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "inputSource",
+  "brief": "private TikaInputSource inputSource(){}",
+  "methodSignature": "inputSource()",
+  "sourceCode": "private TikaInputSource inputSource() {\n        return in instanceof TikaInputSource ? (TikaInputSource) in : null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the backing TikaInputSource, or null if using protected constructor.\n */\nprivate TikaInputSource inputSource() {\n    return in instanceof TikaInputSource ? (TikaInputSource) in : null;\n}",
+  "method_comment": "\n     * Returns the backing TikaInputSource, or null if using protected constructor.\n     ",
+  "method_annotation": ""
+}

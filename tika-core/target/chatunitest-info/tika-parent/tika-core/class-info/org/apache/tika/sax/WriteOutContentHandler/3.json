@@ -1,0 +1,25 @@
+{
+  "className": "WriteOutContentHandler",
+  "methodName": "handleWriteLimitReached",
+  "brief": "private void handleWriteLimitReached() throws WriteLimitReachedException{}",
+  "methodSignature": "handleWriteLimitReached()",
+  "sourceCode": "private void handleWriteLimitReached() throws WriteLimitReachedException {\n        writeLimitReached = true;\n        writeCount = writeLimit;\n        if (throwOnWriteLimitReached) {\n            throw new WriteLimitReachedException(writeLimit);\n        } else {\n            ParseRecord parseRecord = parseContext.get(ParseRecord.class);\n            if (parseRecord != null) {\n                parseRecord.setWriteLimitReached(true);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.ParseRecord": [
+      "setWriteLimitReached(boolean)"
+    ]
+  },
+  "full_method_info": "private void handleWriteLimitReached() throws WriteLimitReachedException {\n    writeLimitReached = true;\n    writeCount = writeLimit;\n    if (throwOnWriteLimitReached) {\n        throw new WriteLimitReachedException(writeLimit);\n    } else {\n        ParseRecord parseRecord = parseContext.get(ParseRecord.class);\n        if (parseRecord != null) {\n            parseRecord.setWriteLimitReached(true);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

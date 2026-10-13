@@ -1,0 +1,26 @@
+{
+  "className": "EncodingDetector",
+  "methodName": "detect",
+  "brief": "List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\r\n                                ParseContext parseContext) throws IOException;",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\n                                ParseContext parseContext) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Detects the character encoding of the given text document.\n *\n * <p>Returns an empty list if the encoding cannot be determined.\n * Returns a ranked list of candidates in descending confidence order\n * otherwise. The first entry is always the best guess.</p>\n *\n * <p>If the document input stream is not available, then the first\n * argument may be {@code null}. Otherwise the detector may read bytes\n * from the start of the stream to help in encoding detection.\n * The given stream is guaranteed to support the\n * {@link TikaInputStream#markSupported() mark feature} and the detector\n * is expected to {@link TikaInputStream#mark(int) mark} the stream before\n * reading any bytes from it, and to {@link TikaInputStream#reset() reset}\n * the stream before returning. The stream must not be closed by the\n * detector.</p>\n *\n * <p>The given input metadata is only read, not modified, by the detector.</p>\n *\n * @param tis          text document input stream, or {@code null}\n * @param metadata     input metadata for the document\n * @param parseContext the parse context\n * @return ranked list of encoding results, empty if unknown; never {@code null}\n * @throws IOException if the document input stream could not be read\n */\nList<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;",
+  "method_comment": "\n     * Detects the character encoding of the given text document.\n     *\n     * <p>Returns an empty list if the encoding cannot be determined.\n     * Returns a ranked list of candidates in descending confidence order\n     * otherwise. The first entry is always the best guess.</p>\n     *\n     * <p>If the document input stream is not available, then the first\n     * argument may be {@code null}. Otherwise the detector may read bytes\n     * from the start of the stream to help in encoding detection.\n     * The given stream is guaranteed to support the\n     * {@link TikaInputStream#markSupported() mark feature} and the detector\n     * is expected to {@link TikaInputStream#mark(int) mark} the stream before\n     * reading any bytes from it, and to {@link TikaInputStream#reset() reset}\n     * the stream before returning. The stream must not be closed by the\n     * detector.</p>\n     *\n     * <p>The given input metadata is only read, not modified, by the detector.</p>\n     *\n     * @param tis          text document input stream, or {@code null}\n     * @param metadata     input metadata for the document\n     * @param parseContext the parse context\n     * @return ranked list of encoding results, empty if unknown; never {@code null}\n     * @throws IOException if the document input stream could not be read\n     ",
+  "method_annotation": ""
+}

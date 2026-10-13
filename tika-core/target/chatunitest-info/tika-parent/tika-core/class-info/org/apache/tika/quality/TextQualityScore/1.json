@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "getPClean",
+  "brief": "public float getPClean(){}",
+  "methodSignature": "getPClean()",
+  "sourceCode": "public float getPClean() {\n        return pClean;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Probability in [0,1] that this string is clean text.\n */\npublic float getPClean() {\n    return pClean;\n}",
+  "method_comment": " Probability in [0,1] that this string is clean text. ",
+  "method_annotation": ""
+}

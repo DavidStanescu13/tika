@@ -1,0 +1,24 @@
+{
+  "className": "RootXML",
+  "methodName": "isEmpty",
+  "brief": "private boolean isEmpty(String str){}",
+  "methodSignature": "isEmpty(String)",
+  "sourceCode": "private boolean isEmpty(String str) {\n            return (str == null) || (str.equals(\"\"));\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if a string is null or empty.\n */\nprivate boolean isEmpty(String str) {\n    return (str == null) || (str.equals(\"\"));\n}",
+  "method_comment": "\n         * Checks if a string is null or empty.\n         ",
+  "method_annotation": ""
+}

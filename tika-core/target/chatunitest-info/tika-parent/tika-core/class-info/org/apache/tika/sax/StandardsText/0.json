@@ -1,0 +1,27 @@
+{
+  "className": "StandardsText",
+  "methodName": "extractStandardReferences",
+  "brief": "public static ArrayList<StandardReference> extractStandardReferences(String text,\r\n                                                                         double threshold){}",
+  "methodSignature": "extractStandardReferences(String, double)",
+  "sourceCode": "public static ArrayList<StandardReference> extractStandardReferences(String text,\n                                                                         double threshold) {\n        Map<Integer, String> headers = findHeaders(text);\n\n        return findStandards(text, headers, threshold);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "double"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.StandardsText": [
+      "findHeaders(String)",
+      "findStandards(String, String>, double)"
+    ]
+  },
+  "full_method_info": "/**\n * Extracts the standard references found within the given text.\n *\n * @param text      the text from which the standard references are extracted.\n * @param threshold the lower bound limit to be used in order to select only the\n *                  standard references with score greater than or equal to the\n *                  threshold. For instance, using a threshold of 0.75 means that\n *                  only the patterns with score greater than or equal to 0.75\n *                  will be returned.\n * @return the list of standard references extracted from the given text.\n */\npublic static ArrayList<StandardReference> extractStandardReferences(String text, double threshold) {\n    Map<Integer, String> headers = findHeaders(text);\n    return findStandards(text, headers, threshold);\n}",
+  "method_comment": "\n     * Extracts the standard references found within the given text.\n     *\n     * @param text      the text from which the standard references are extracted.\n     * @param threshold the lower bound limit to be used in order to select only the\n     *                  standard references with score greater than or equal to the\n     *                  threshold. For instance, using a threshold of 0.75 means that\n     *                  only the patterns with score greater than or equal to 0.75\n     *                  will be returned.\n     * @return the list of standard references extracted from the given text.\n     ",
+  "method_annotation": ""
+}

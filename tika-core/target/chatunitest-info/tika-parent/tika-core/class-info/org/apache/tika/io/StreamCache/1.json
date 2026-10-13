@@ -1,0 +1,34 @@
+{
+  "className": "StreamCache",
+  "methodName": "append",
+  "brief": "void append(byte[] b, int off, int len) throws IOException{}",
+  "methodSignature": "append(byte[], int, int)",
+  "sourceCode": "void append(byte[] b, int off, int len) throws IOException {\n        if (closed) {\n            throw new IOException(\"StreamCache is closed\");\n        }\n\n        if (memoryBuffer != null) {\n            if (memorySize + len > memoryThreshold) {\n                spillToFile();\n                spillOutputStream.write(b, off, len);\n            } else {\n                ensureMemoryCapacity(memorySize + len);\n                System.arraycopy(b, off, memoryBuffer, memorySize, len);\n                memorySize += len;\n            }\n        } else {\n            spillOutputStream.write(b, off, len);\n        }\n        totalSize += len;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.StreamCache": [
+      "spillToFile()",
+      "ensureMemoryCapacity(int)"
+    ],
+    "java.io.OutputStream": [
+      "write(byte[], int, int)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Append multiple bytes to the cache.\n */\nvoid append(byte[] b, int off, int len) throws IOException {\n    if (closed) {\n        throw new IOException(\"StreamCache is closed\");\n    }\n    if (memoryBuffer != null) {\n        if (memorySize + len > memoryThreshold) {\n            spillToFile();\n            spillOutputStream.write(b, off, len);\n        } else {\n            ensureMemoryCapacity(memorySize + len);\n            System.arraycopy(b, off, memoryBuffer, memorySize, len);\n            memorySize += len;\n        }\n    } else {\n        spillOutputStream.write(b, off, len);\n    }\n    totalSize += len;\n}",
+  "method_comment": "\n     * Append multiple bytes to the cache.\n     ",
+  "method_annotation": ""
+}

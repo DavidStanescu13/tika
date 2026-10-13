@@ -1,0 +1,18 @@
+{
+  "className": "RenderingTracker",
+  "methodName": "getNextId",
+  "brief": "public synchronized int getNextId(){}",
+  "methodSignature": "getNextId()",
+  "sourceCode": "public synchronized int getNextId() {\n        return ++id;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public synchronized int getNextId() {\n    return ++id;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

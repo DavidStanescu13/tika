@@ -1,0 +1,28 @@
+{
+  "className": "MediaType",
+  "methodName": "set",
+  "brief": "public static Set<MediaType> set(MediaType... types){}",
+  "methodSignature": "set(MediaType[])",
+  "sourceCode": "public static Set<MediaType> set(MediaType... types) {\n        Set<MediaType> set = new HashSet<>();\n        for (MediaType type : types) {\n            if (type != null) {\n                set.add(type);\n            }\n        }\n        return Collections.unmodifiableSet(set);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType...": [],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Convenience method that returns an unmodifiable set that contains\n * all the given media types.\n *\n * @param types media types\n * @return unmodifiable set of the given types\n * @since Apache Tika 1.2\n */\npublic static Set<MediaType> set(MediaType... types) {\n    Set<MediaType> set = new HashSet<>();\n    for (MediaType type : types) {\n        if (type != null) {\n            set.add(type);\n        }\n    }\n    return Collections.unmodifiableSet(set);\n}",
+  "method_comment": "\n     * Convenience method that returns an unmodifiable set that contains\n     * all the given media types.\n     *\n     * @param types media types\n     * @return unmodifiable set of the given types\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": ""
+}

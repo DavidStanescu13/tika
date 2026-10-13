@@ -1,0 +1,63 @@
+{
+  "className": "CompositeEncodingDetector",
+  "methodName": "detectFirstMatch",
+  "brief": "private List<EncodingResult> detectFirstMatch(TikaInputStream tis, Metadata metadata,\r\n                                                  ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detectFirstMatch(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "private List<EncodingResult> detectFirstMatch(TikaInputStream tis, Metadata metadata,\n                                                  ParseContext parseContext)\n            throws IOException {\n        for (EncodingDetector detector : getDetectors()) {\n            String name = detector.getClass().getSimpleName();\n            LOG.trace(\"chardet enter {}\", name);\n            List<EncodingResult> results = detector.detect(tis, metadata, parseContext);\n            if (!results.isEmpty()) {\n                Charset detected = results.get(0).getCharset();\n                LOG.trace(\"chardet hit  {} -> {} [{}] conf={}\", name, detected.name(),\n                        results.get(0).getResultType(), results.get(0).getConfidence());\n                metadata.set(TikaCoreProperties.DETECTED_ENCODING, detected.name());\n                if (!name.equals(\"CompositeEncodingDetector\")) {\n                    metadata.set(TikaCoreProperties.ENCODING_DETECTOR, name);\n                }\n                return results;\n            }\n            LOG.trace(\"chardet miss {} (empty)\", name);\n        }\n        LOG.trace(\"chardet no detector returned a result\");\n        return Collections.emptyList();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.detect.CompositeEncodingDetector": [
+      "getDetectors()"
+    ],
+    "java.lang.Class": [
+      "getSimpleName()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "org.slf4j.Logger": [
+      "trace(String)",
+      "trace(String, Object[])",
+      "trace(String, Object)"
+    ],
+    "org.apache.tika.detect.EncodingDetector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "get(int)"
+    ],
+    "org.apache.tika.detect.EncodingResult": [
+      "getCharset()",
+      "getConfidence()",
+      "getResultType()"
+    ],
+    "java.nio.charset.Charset": [
+      "name()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Collections": [
+      "emptyList()"
+    ]
+  },
+  "full_method_info": "/**\n * Traditional first-match-wins behavior: returns the results from the\n * first detector that produces a non-empty list.\n */\nprivate List<EncodingResult> detectFirstMatch(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    for (EncodingDetector detector : getDetectors()) {\n        String name = detector.getClass().getSimpleName();\n        LOG.trace(\"chardet enter {}\", name);\n        List<EncodingResult> results = detector.detect(tis, metadata, parseContext);\n        if (!results.isEmpty()) {\n            Charset detected = results.get(0).getCharset();\n            LOG.trace(\"chardet hit  {} -> {} [{}] conf={}\", name, detected.name(), results.get(0).getResultType(), results.get(0).getConfidence());\n            metadata.set(TikaCoreProperties.DETECTED_ENCODING, detected.name());\n            if (!name.equals(\"CompositeEncodingDetector\")) {\n                metadata.set(TikaCoreProperties.ENCODING_DETECTOR, name);\n            }\n            return results;\n        }\n        LOG.trace(\"chardet miss {} (empty)\", name);\n    }\n    LOG.trace(\"chardet no detector returned a result\");\n    return Collections.emptyList();\n}",
+  "method_comment": "\n     * Traditional first-match-wins behavior: returns the results from the\n     * first detector that produces a non-empty list.\n     ",
+  "method_annotation": ""
+}

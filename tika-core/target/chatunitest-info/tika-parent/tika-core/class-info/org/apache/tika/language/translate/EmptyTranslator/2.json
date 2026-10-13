@@ -1,0 +1,18 @@
+{
+  "className": "EmptyTranslator",
+  "methodName": "isAvailable",
+  "brief": "public boolean isAvailable(){}",
+  "methodSignature": "isAvailable()",
+  "sourceCode": "public boolean isAvailable() {\n        return true;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isAvailable() {\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

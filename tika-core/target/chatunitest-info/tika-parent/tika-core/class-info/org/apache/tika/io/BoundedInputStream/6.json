@@ -1,0 +1,18 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "hasHitBound",
+  "brief": "public boolean hasHitBound(){}",
+  "methodSignature": "hasHitBound()",
+  "sourceCode": "public boolean hasHitBound() {\n        return pos >= max;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean hasHitBound() {\n    return pos >= max;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

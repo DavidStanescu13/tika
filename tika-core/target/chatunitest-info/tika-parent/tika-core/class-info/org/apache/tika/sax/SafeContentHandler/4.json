@@ -1,0 +1,28 @@
+{
+  "className": "SafeContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String name, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String name, Attributes atts)\n            throws SAXException {\n        // TODO: enable this, but some parsers currently\n        // trip it\n        //assert verifyStartElement(name);\n        // Look for any invalid characters in attribute values.\n        for (int i = 0; i < atts.getLength(); i++) {\n            if (isInvalid(atts.getValue(i))) {\n                // Found an invalid character, so need to filter the attributes\n                AttributesImpl filtered = new AttributesImpl();\n                for (int j = 0; j < atts.getLength(); j++) {\n                    String value = atts.getValue(j);\n                    if (j >= i && isInvalid(value)) {\n                        // Filter the attribute value when needed\n                        Output buffer = new StringOutput();\n                        filter(value.toCharArray(), 0, value.length(), buffer);\n                        value = buffer.toString();\n                    }\n                    filtered.addAttribute(atts.getURI(j), atts.getLocalName(j), atts.getQName(j),\n                            atts.getType(j), value);\n                }\n                atts = filtered;\n                break;\n            }\n        }\n        super.startElement(uri, localName, name, atts);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()",
+      "length()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {\n    // TODO: enable this, but some parsers currently\n    // trip it\n    // assert verifyStartElement(name);\n    // Look for any invalid characters in attribute values.\n    for (int i = 0; i < atts.getLength(); i++) {\n        if (isInvalid(atts.getValue(i))) {\n            // Found an invalid character, so need to filter the attributes\n            AttributesImpl filtered = new AttributesImpl();\n            for (int j = 0; j < atts.getLength(); j++) {\n                String value = atts.getValue(j);\n                if (j >= i && isInvalid(value)) {\n                    // Filter the attribute value when needed\n                    Output buffer = new StringOutput();\n                    filter(value.toCharArray(), 0, value.length(), buffer);\n                    value = buffer.toString();\n                }\n                filtered.addAttribute(atts.getURI(j), atts.getLocalName(j), atts.getQName(j), atts.getType(j), value);\n            }\n            atts = filtered;\n            break;\n        }\n    }\n    super.startElement(uri, localName, name, atts);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

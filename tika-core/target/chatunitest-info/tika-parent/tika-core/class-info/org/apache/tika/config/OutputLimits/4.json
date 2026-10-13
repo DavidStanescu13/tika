@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "getMaxXmlDepth",
+  "brief": "public int getMaxXmlDepth(){}",
+  "methodSignature": "getMaxXmlDepth()",
+  "sourceCode": "public int getMaxXmlDepth() {\n        return maxXmlDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum XML element nesting depth.\n *\n * @return maximum XML depth\n */\npublic int getMaxXmlDepth() {\n    return maxXmlDepth;\n}",
+  "method_comment": "\n     * Gets the maximum XML element nesting depth.\n     *\n     * @return maximum XML depth\n     ",
+  "method_annotation": ""
+}

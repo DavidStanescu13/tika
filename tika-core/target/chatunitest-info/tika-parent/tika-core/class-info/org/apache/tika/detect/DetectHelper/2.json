@@ -1,0 +1,27 @@
+{
+  "className": "DetectHelper",
+  "methodName": "isContentTruncatedForDetection",
+  "brief": "public static boolean isContentTruncatedForDetection(Metadata metadata){}",
+  "methodSignature": "isContentTruncatedForDetection(Metadata)",
+  "sourceCode": "public static boolean isContentTruncatedForDetection(Metadata metadata) {\n        String value = metadata.get(TikaCoreProperties.TRUNCATED_CONTENT_FOR_DETECTION);\n        return Boolean.parseBoolean(value);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "java.lang.Boolean": [
+      "parseBoolean(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if the given metadata indicates that the content was truncated for detection.\n *\n * @param metadata the metadata to check\n * @return true if the content was truncated, false otherwise\n */\npublic static boolean isContentTruncatedForDetection(Metadata metadata) {\n    String value = metadata.get(TikaCoreProperties.TRUNCATED_CONTENT_FOR_DETECTION);\n    return Boolean.parseBoolean(value);\n}",
+  "method_comment": "\n     * Checks if the given metadata indicates that the content was truncated for detection.\n     *\n     * @param metadata the metadata to check\n     * @return true if the content was truncated, false otherwise\n     ",
+  "method_annotation": ""
+}

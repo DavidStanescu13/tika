@@ -1,0 +1,18 @@
+{
+  "className": "StandardReference",
+  "methodName": "getIdentifier",
+  "brief": "public String getIdentifier(){}",
+  "methodSignature": "getIdentifier()",
+  "sourceCode": "public String getIdentifier() {\n        return identifier;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public String getIdentifier() {\n    return identifier;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

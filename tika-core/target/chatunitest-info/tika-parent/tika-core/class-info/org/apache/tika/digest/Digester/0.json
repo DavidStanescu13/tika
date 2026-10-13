@@ -1,0 +1,26 @@
+{
+  "className": "Digester",
+  "methodName": "digest",
+  "brief": "void digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException;",
+  "methodSignature": "digest(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "void digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Digests a TikaInputStream and sets the appropriate value(s) in the metadata.\n * The Digester is responsible for calling {@link TikaInputStream#enableRewind()}\n * and {@link TikaInputStream#rewind()} to ensure the stream can be read by\n * subsequent processing after digesting.\n * <p>\n * The stream must not be closed by the digester.\n *\n * @param tis          TikaInputStream to digest\n * @param m            Metadata to set the values for\n * @param parseContext ParseContext\n * @throws IOException on I/O error\n */\nvoid digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException;",
+  "method_comment": "\n     * Digests a TikaInputStream and sets the appropriate value(s) in the metadata.\n     * The Digester is responsible for calling {@link TikaInputStream#enableRewind()}\n     * and {@link TikaInputStream#rewind()} to ensure the stream can be read by\n     * subsequent processing after digesting.\n     * <p>\n     * The stream must not be closed by the digester.\n     *\n     * @param tis          TikaInputStream to digest\n     * @param m            Metadata to set the values for\n     * @param parseContext ParseContext\n     * @throws IOException on I/O error\n     ",
+  "method_annotation": ""
+}

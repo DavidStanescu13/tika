@@ -1,0 +1,26 @@
+{
+  "className": "CompositeMatcher",
+  "methodName": "descend",
+  "brief": "public Matcher descend(String namespace, String name){}",
+  "methodSignature": "descend(String, String)",
+  "sourceCode": "public Matcher descend(String namespace, String name) {\n        Matcher a = this.a.descend(namespace, name);\n        Matcher b = this.b.descend(namespace, name);\n        if (a == FAIL) {\n            return b;\n        } else if (b == FAIL) {\n            return a;\n        } else if (this.a == a && this.b == b) {\n            return this;\n        } else {\n            return new CompositeMatcher(a, b);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "descend(String, String)"
+    ]
+  },
+  "full_method_info": "public Matcher descend(String namespace, String name) {\n    Matcher a = this.a.descend(namespace, name);\n    Matcher b = this.b.descend(namespace, name);\n    if (a == FAIL) {\n        return b;\n    } else if (b == FAIL) {\n        return a;\n    } else if (this.a == a && this.b == b) {\n        return this;\n    } else {\n        return new CompositeMatcher(a, b);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

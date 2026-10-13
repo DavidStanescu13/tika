@@ -1,0 +1,47 @@
+{
+  "fullClassName": "org.apache.tika.sax.RichTextContentHandler",
+  "className": "RichTextContentHandler",
+  "index": 295,
+  "modifier": "[public ]",
+  "extend": "[WriteOutContentHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class RichTextContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Writer;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "WriteOutContentHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startElement(String, String, String, Attributes)": "0",
+    "RichTextContentHandler(Writer)": "1"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+    "public RichTextContentHandler(Writer writer){}"
+  ],
+  "constructorSigs": [
+    "RichTextContentHandler(Writer)"
+  ],
+  "constructorBrief": [
+    "public RichTextContentHandler(Writer writer){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.Writer": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.Writer;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.SAXException;\n\n/**\n * Content handler for Rich Text, it will extract XHTML &lt;img/&gt;\n * tag &lt;alt/&gt; attribute and XHTML &lt;a/&gt; tag &lt;name/&gt;\n * attribute into the output.\n */\npublic class RichTextContentHandler extends WriteOutContentHandler {\n\n    public RichTextContentHandler(Writer writer) {\n        super(writer);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        super.startElement(uri, localName, qName, attributes);\n        if (\"img\".equals(localName) && attributes.getValue(\"alt\") != null) {\n            String nfo = \"[image: \" + attributes.getValue(\"alt\") + ']';\n            characters(nfo.toCharArray(), 0, nfo.length());\n        }\n        if (\"a\".equals(localName) && attributes.getValue(\"name\") != null) {\n            String nfo = \"[bookmark: \" + attributes.getValue(\"name\") + ']';\n            characters(nfo.toCharArray(), 0, nfo.length());\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content handler for Rich Text, it will extract XHTML &lt;img/&gt;\n * tag &lt;alt/&gt; attribute and XHTML &lt;a/&gt; tag &lt;name/&gt;\n * attribute into the output.\n */\npublic class RichTextContentHandler extends WriteOutContentHandler {\n\n    public RichTextContentHandler(Writer writer) {\n        super(writer);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        super.startElement(uri, localName, qName, attributes);\n        if (\"img\".equals(localName) && attributes.getValue(\"alt\") != null) {\n            String nfo = \"[image: \" + attributes.getValue(\"alt\") + ']';\n            characters(nfo.toCharArray(), 0, nfo.length());\n        }\n        if (\"a\".equals(localName) && attributes.getValue(\"name\") != null) {\n            String nfo = \"[bookmark: \" + attributes.getValue(\"name\") + ']';\n            characters(nfo.toCharArray(), 0, nfo.length());\n        }\n    }\n}",
+  "subClasses": []
+}

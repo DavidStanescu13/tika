@@ -1,0 +1,24 @@
+{
+  "className": "PageBasedRenderResults",
+  "methodName": "getPage",
+  "brief": "public List<RenderResult> getPage(int pageNumber){}",
+  "methodSignature": "getPage(int)",
+  "sourceCode": "public List<RenderResult> getPage(int pageNumber) {\n        return results.get(pageNumber);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "public List<RenderResult> getPage(int pageNumber) {\n    return results.get(pageNumber);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

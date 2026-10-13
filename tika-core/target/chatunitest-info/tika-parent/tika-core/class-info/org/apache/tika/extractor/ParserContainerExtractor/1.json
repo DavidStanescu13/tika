@@ -1,0 +1,33 @@
+{
+  "className": "ParserContainerExtractor",
+  "methodName": "extract",
+  "brief": "@Override\r\n    public void extract(\r\n            TikaInputStream stream, ContainerExtractor recurseExtractor,\r\n            EmbeddedResourceHandler handler, ParseContext parseContext)\r\n            throws IOException, TikaException{}",
+  "methodSignature": "extract(TikaInputStream, ContainerExtractor, EmbeddedResourceHandler, ParseContext)",
+  "sourceCode": "@Override\n    public void extract(\n            TikaInputStream stream, ContainerExtractor recurseExtractor,\n            EmbeddedResourceHandler handler, ParseContext parseContext)\n            throws IOException, TikaException {\n        parseContext.set(Parser.class, new RecursiveParser(parser, recurseExtractor, handler, parseContext));\n        try {\n            parser.parse(stream, new DefaultHandler(), Metadata.newInstance(parseContext), parseContext);\n        } catch (SAXException e) {\n            throw new TikaException(\"Unexpected SAX exception\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContainerExtractor",
+    "EmbeddedResourceHandler",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.extractor.ContainerExtractor": [],
+    "org.apache.tika.extractor.EmbeddedResourceHandler": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void extract(TikaInputStream stream, ContainerExtractor recurseExtractor, EmbeddedResourceHandler handler, ParseContext parseContext) throws IOException, TikaException {\n    parseContext.set(Parser.class, new RecursiveParser(parser, recurseExtractor, handler, parseContext));\n    try {\n        parser.parse(stream, new DefaultHandler(), Metadata.newInstance(parseContext), parseContext);\n    } catch (SAXException e) {\n        throw new TikaException(\"Unexpected SAX exception\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

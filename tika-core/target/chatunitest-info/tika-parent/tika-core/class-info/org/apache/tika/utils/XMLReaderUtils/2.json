@@ -1,0 +1,26 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getSAXParser",
+  "brief": "public static SAXParser getSAXParser() throws TikaException{}",
+  "methodSignature": "getSAXParser()",
+  "sourceCode": "public static SAXParser getSAXParser() throws TikaException {\n        try {\n            SAXParser parser = getSAXParserFactory().newSAXParser();\n            trySetXercesSecurityManager(parser);\n            return parser;\n        } catch (ParserConfigurationException e) {\n            throw new TikaException(\"Unable to configure a SAX parser\", e);\n        } catch (SAXException e) {\n            throw new TikaException(\"Unable to create a SAX parser\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParserFactory": [
+      "newSAXParser()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getSAXParserFactory()",
+      "trySetXercesSecurityManager(SAXParser)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the SAX parser specified in this parsing context. If a parser\n * is not explicitly specified, then one is created using the specified\n * or the default SAX parser factory.\n * <p>\n * If you call reset() on the parser, make sure to replace the\n * SecurityManager which will be cleared by xerces2 on reset().\n * </p>\n *\n * @return SAX parser\n * @throws TikaException if a SAX parser could not be created\n * @see #getSAXParserFactory()\n * @since Apache Tika 0.8\n */\npublic static SAXParser getSAXParser() throws TikaException {\n    try {\n        SAXParser parser = getSAXParserFactory().newSAXParser();\n        trySetXercesSecurityManager(parser);\n        return parser;\n    } catch (ParserConfigurationException e) {\n        throw new TikaException(\"Unable to configure a SAX parser\", e);\n    } catch (SAXException e) {\n        throw new TikaException(\"Unable to create a SAX parser\", e);\n    }\n}",
+  "method_comment": "\n     * Returns the SAX parser specified in this parsing context. If a parser\n     * is not explicitly specified, then one is created using the specified\n     * or the default SAX parser factory.\n     * <p>\n     * If you call reset() on the parser, make sure to replace the\n     * SecurityManager which will be cleared by xerces2 on reset().\n     * </p>\n     *\n     * @return SAX parser\n     * @throws TikaException if a SAX parser could not be created\n     * @see #getSAXParserFactory()\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

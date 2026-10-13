@@ -1,0 +1,18 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "loadModels",
+  "brief": "public abstract LanguageDetector loadModels() throws IOException;",
+  "methodSignature": "loadModels()",
+  "sourceCode": "public abstract LanguageDetector loadModels() throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Load (or re-load) all available language models. This must\n * be called after any settings that would impact the models\n * being loaded (e.g. mixed language/short text), but\n * before any of the document processing routines (below)\n * are called. Note that it only needs to be called once.\n *\n * @return this\n */\npublic abstract LanguageDetector loadModels() throws IOException;",
+  "method_comment": "\n     * Load (or re-load) all available language models. This must\n     * be called after any settings that would impact the models\n     * being loaded (e.g. mixed language/short text), but\n     * before any of the document processing routines (below)\n     * are called. Note that it only needs to be called once.\n     *\n     * @return this\n     ",
+  "method_annotation": ""
+}

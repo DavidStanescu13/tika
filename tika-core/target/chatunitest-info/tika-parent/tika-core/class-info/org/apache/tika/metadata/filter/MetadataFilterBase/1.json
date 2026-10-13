@@ -1,0 +1,22 @@
+{
+  "className": "MetadataFilterBase",
+  "methodName": "filter",
+  "brief": "protected abstract void filter(Metadata metadata);",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "protected abstract void filter(Metadata metadata);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "protected abstract void filter(Metadata metadata);",
+  "method_comment": "",
+  "method_annotation": ""
+}

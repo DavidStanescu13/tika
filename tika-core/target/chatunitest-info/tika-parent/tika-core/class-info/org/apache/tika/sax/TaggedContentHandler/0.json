@@ -1,0 +1,24 @@
+{
+  "className": "TaggedContentHandler",
+  "methodName": "isCauseOf",
+  "brief": "public boolean isCauseOf(SAXException exception){}",
+  "methodSignature": "isCauseOf(SAXException)",
+  "sourceCode": "public boolean isCauseOf(SAXException exception) {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            return this == tagged.getTag();\n        } else {\n            return false;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXException"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.TaggedSAXException": [
+      "getTag()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the given exception was caused by this handler.\n *\n * @param exception an exception\n * @return <code>true</code> if the exception was thrown by this handler,\n * <code>false</code> otherwise\n */\npublic boolean isCauseOf(SAXException exception) {\n    if (exception instanceof TaggedSAXException) {\n        TaggedSAXException tagged = (TaggedSAXException) exception;\n        return this == tagged.getTag();\n    } else {\n        return false;\n    }\n}",
+  "method_comment": "\n     * Tests if the given exception was caused by this handler.\n     *\n     * @param exception an exception\n     * @return <code>true</code> if the exception was thrown by this handler,\n     * <code>false</code> otherwise\n     ",
+  "method_annotation": ""
+}

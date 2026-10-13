@@ -1,0 +1,41 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getParsers",
+  "brief": "@Override\r\n    public Map<MediaType, Parser> getParsers(ParseContext context){}",
+  "methodSignature": "getParsers(ParseContext)",
+  "sourceCode": "@Override\n    public Map<MediaType, Parser> getParsers(ParseContext context) {\n        Map<MediaType, Parser> map = super.getParsers(context);\n\n        if (loader != null) {\n            // Add dynamic parser service (they always override static ones)\n            MediaTypeRegistry registry = getMediaTypeRegistry();\n            List<Parser> parsers = loader.loadDynamicServiceProviders(Parser.class);\n            Collections.reverse(parsers); // best parser last\n            for (Parser parser : parsers) {\n                for (MediaType type : parser.getSupportedTypes(context)) {\n                    map.put(registry.normalize(type), parser);\n                }\n            }\n        }\n\n        return map;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.CompositeParser": [
+      "getParsers(ParseContext)",
+      "getMediaTypeRegistry()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "loadDynamicServiceProviders(Class<T>)"
+    ],
+    "java.util.Collections": [
+      "reverse(Object>)"
+    ],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "normalize(MediaType)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Map<MediaType, Parser> getParsers(ParseContext context) {\n    Map<MediaType, Parser> map = super.getParsers(context);\n    if (loader != null) {\n        // Add dynamic parser service (they always override static ones)\n        MediaTypeRegistry registry = getMediaTypeRegistry();\n        List<Parser> parsers = loader.loadDynamicServiceProviders(Parser.class);\n        // best parser last\n        Collections.reverse(parsers);\n        for (Parser parser : parsers) {\n            for (MediaType type : parser.getSupportedTypes(context)) {\n                map.put(registry.normalize(type), parser);\n            }\n        }\n    }\n    return map;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

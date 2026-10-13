@@ -1,0 +1,18 @@
+{
+  "className": "CompositeMetadataFilter",
+  "methodName": "getFilters",
+  "brief": "public List<MetadataFilter> getFilters(){}",
+  "methodSignature": "getFilters()",
+  "sourceCode": "public List<MetadataFilter> getFilters() {\n        return filters;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public List<MetadataFilter> getFilters() {\n    return filters;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

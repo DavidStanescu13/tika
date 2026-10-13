@@ -1,0 +1,20 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "loadModels",
+  "brief": "public abstract LanguageDetector loadModels(Set<String> languages) throws IOException;",
+  "methodSignature": "loadModels(Set)",
+  "sourceCode": "public abstract LanguageDetector loadModels(Set<String> languages) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Load (or re-load) the models specified in <languages>. These use the\n * ISO 639-1 names, with an optional \"-<country code>\" for more\n * specific specification (e.g. \"zh-CN\" for Chinese in China).\n *\n * @param languages list of target languages.\n * @return this\n */\npublic abstract LanguageDetector loadModels(Set<String> languages) throws IOException;",
+  "method_comment": "\n     * Load (or re-load) the models specified in <languages>. These use the\n     * ISO 639-1 names, with an optional \"-<country code>\" for more\n     * specific specification (e.g. \"zh-CN\" for Chinese in China).\n     *\n     * @param languages list of target languages.\n     * @return this\n     ",
+  "method_annotation": ""
+}

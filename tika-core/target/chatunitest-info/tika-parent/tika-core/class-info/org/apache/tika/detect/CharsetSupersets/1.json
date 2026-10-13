@@ -1,0 +1,25 @@
+{
+  "className": "CharsetSupersets",
+  "methodName": "decodeAs",
+  "brief": "public static Charset decodeAs(Charset detected){}",
+  "methodSignature": "decodeAs(Charset)",
+  "sourceCode": "public static Charset decodeAs(Charset detected) {\n        Charset superset = supersetOf(detected);\n        return superset != null ? superset : detected;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [],
+    "org.apache.tika.detect.CharsetSupersets": [
+      "supersetOf(Charset)"
+    ]
+  },
+  "full_method_info": "/**\n * The charset to decode with: {@link #supersetOf(Charset) superset} of\n * {@code detected} if one exists, else {@code detected} (null only if\n * {@code detected} is null). For bare-{@link Charset} callers; detection\n * results can use {@link EncodingResult#getDecodeAs()}.\n */\npublic static Charset decodeAs(Charset detected) {\n    Charset superset = supersetOf(detected);\n    return superset != null ? superset : detected;\n}",
+  "method_comment": "\n     * The charset to decode with: {@link #supersetOf(Charset) superset} of\n     * {@code detected} if one exists, else {@code detected} (null only if\n     * {@code detected} is null). For bare-{@link Charset} callers; detection\n     * results can use {@link EncodingResult#getDecodeAs()}.\n     ",
+  "method_annotation": ""
+}

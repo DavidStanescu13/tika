@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "isQuoteAssignmentValues",
+  "brief": "public boolean isQuoteAssignmentValues(){}",
+  "methodSignature": "isQuoteAssignmentValues()",
+  "sourceCode": "public boolean isQuoteAssignmentValues() {\n        return quoteAssignmentValues;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets whether or not to quote assignment values, i.e. tag='value'. The\n * default is false.\n *\n * @return whether or not to quote assignment values\n */\npublic boolean isQuoteAssignmentValues() {\n    return quoteAssignmentValues;\n}",
+  "method_comment": "\n     * Gets whether or not to quote assignment values, i.e. tag='value'. The\n     * default is false.\n     *\n     * @return whether or not to quote assignment values\n     ",
+  "method_annotation": ""
+}

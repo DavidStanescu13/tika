@@ -1,0 +1,29 @@
+{
+  "className": "DefaultTranslator",
+  "methodName": "translate",
+  "brief": "public String translate(String text, String targetLanguage) throws TikaException, IOException{}",
+  "methodSignature": "translate(String, String)",
+  "sourceCode": "public String translate(String text, String targetLanguage) throws TikaException, IOException {\n        Translator t = getFirstAvailable(loader);\n        if (t != null) {\n            return t.translate(text, targetLanguage);\n        }\n        throw new TikaException(\"No translators currently available\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.language.translate.DefaultTranslator": [
+      "getFirstAvailable(ServiceLoader)"
+    ],
+    "org.apache.tika.language.translate.Translator": [
+      "translate(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Translate, using the first available service-loaded translator\n */\npublic String translate(String text, String targetLanguage) throws TikaException, IOException {\n    Translator t = getFirstAvailable(loader);\n    if (t != null) {\n        return t.translate(text, targetLanguage);\n    }\n    throw new TikaException(\"No translators currently available\");\n}",
+  "method_comment": "\n     * Translate, using the first available service-loaded translator\n     ",
+  "method_annotation": ""
+}

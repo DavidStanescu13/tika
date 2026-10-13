@@ -1,0 +1,18 @@
+{
+  "className": "SAXOutputConfig",
+  "methodName": "isIncludeTitle",
+  "brief": "public boolean isIncludeTitle(){}",
+  "methodSignature": "isIncludeTitle()",
+  "sourceCode": "public boolean isIncludeTitle() {\n        return includeTitle;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isIncludeTitle() {\n    return includeTitle;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

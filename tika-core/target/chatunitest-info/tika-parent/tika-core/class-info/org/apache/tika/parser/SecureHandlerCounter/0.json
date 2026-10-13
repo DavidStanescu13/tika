@@ -1,0 +1,24 @@
+{
+  "className": "SecureHandlerCounter",
+  "methodName": "getAvailable",
+  "brief": "int getAvailable(int length){}",
+  "methodSignature": "getAvailable(int)",
+  "sourceCode": "int getAvailable(int length) {\n            return Math.min(totalWriteLimit - totalChars, length);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Given the requested length, how many characters are actually available\n * @param length\n * @return\n */\nint getAvailable(int length) {\n    return Math.min(totalWriteLimit - totalChars, length);\n}",
+  "method_comment": "\n         * Given the requested length, how many characters are actually available\n         * @param length\n         * @return\n         ",
+  "method_annotation": ""
+}

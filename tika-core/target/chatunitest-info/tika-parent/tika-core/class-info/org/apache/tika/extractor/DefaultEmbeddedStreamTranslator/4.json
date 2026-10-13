@@ -1,0 +1,20 @@
+{
+  "className": "DefaultEmbeddedStreamTranslator",
+  "methodName": "DefaultEmbeddedStreamTranslator",
+  "brief": "private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators){}",
+  "methodSignature": "DefaultEmbeddedStreamTranslator(List)",
+  "sourceCode": "private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators) {\n        this.translators = translators;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<EmbeddedStreamTranslator>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "private DefaultEmbeddedStreamTranslator(List<EmbeddedStreamTranslator> translators) {\n    this.translators = translators;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

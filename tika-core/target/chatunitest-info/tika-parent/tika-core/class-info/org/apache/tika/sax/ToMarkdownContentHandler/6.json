@@ -1,0 +1,25 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "renderToWriter",
+  "brief": "private void renderToWriter() throws IOException{}",
+  "methodSignature": "renderToWriter()",
+  "sourceCode": "private void renderToWriter() throws IOException {\n        if (finished) {\n            return;\n        }\n        renderer.render(document, writer);\n        writer.flush();\n        finished = true;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.commonmark.renderer.markdown.MarkdownRenderer": [
+      "render(Node, Appendable)"
+    ],
+    "java.io.Writer": [
+      "flush()"
+    ]
+  },
+  "full_method_info": "private void renderToWriter() throws IOException {\n    if (finished) {\n        return;\n    }\n    renderer.render(document, writer);\n    writer.flush();\n    finished = true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

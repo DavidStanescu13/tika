@@ -1,0 +1,22 @@
+{
+  "className": "MagicMatch",
+  "methodName": "getDetector",
+  "brief": "private synchronized MagicDetector getDetector(){}",
+  "methodSignature": "getDetector()",
+  "sourceCode": "private synchronized MagicDetector getDetector() {\n        if (detector == null) {\n            detector = MagicDetector.parse(mediaType, type, offset, value, mask);\n        }\n        return detector;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.MagicDetector": [
+      "parse(MediaType, String, String, String, String)"
+    ]
+  },
+  "full_method_info": "private synchronized MagicDetector getDetector() {\n    if (detector == null) {\n        detector = MagicDetector.parse(mediaType, type, offset, value, mask);\n    }\n    return detector;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

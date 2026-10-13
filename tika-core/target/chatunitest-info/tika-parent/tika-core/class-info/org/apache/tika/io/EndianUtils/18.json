@@ -1,0 +1,25 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getUShortBE",
+  "brief": "public static int getUShortBE(byte[] data){}",
+  "methodSignature": "getUShortBE(byte[])",
+  "sourceCode": "public static int getUShortBE(byte[] data) {\n        return getUShortBE(data, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.EndianUtils": [
+      "getUShortBE(byte[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a BE unsigned short value from the beginning of a byte array\n *\n * @param data the byte array\n * @return the unsigned short (16-bit) value in an int\n */\npublic static int getUShortBE(byte[] data) {\n    return getUShortBE(data, 0);\n}",
+  "method_comment": "\n     * Get a BE unsigned short value from the beginning of a byte array\n     *\n     * @param data the byte array\n     * @return the unsigned short (16-bit) value in an int\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "Property",
+  "methodName": "getPropertyType",
+  "brief": "public static PropertyType getPropertyType(String key){}",
+  "methodSignature": "getPropertyType(String)",
+  "sourceCode": "public static PropertyType getPropertyType(String key) {\n        PropertyType type = null;\n        Property prop = PROPERTIES.get(key);\n        if (prop != null) {\n            type = prop.getPropertyType();\n        }\n        return type;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getPropertyType()"
+    ]
+  },
+  "full_method_info": "/**\n * Get the type of a property\n *\n * @param key name of the property\n * @return the type of the property\n */\npublic static PropertyType getPropertyType(String key) {\n    PropertyType type = null;\n    Property prop = PROPERTIES.get(key);\n    if (prop != null) {\n        type = prop.getPropertyType();\n    }\n    return type;\n}",
+  "method_comment": "\n     * Get the type of a property\n     *\n     * @param key name of the property\n     * @return the type of the property\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,45 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        String name = localName(localName, qName);\n\n        if (name.equals(\"script\") || name.equals(\"style\")) {\n            suppressDepth = Math.max(0, suppressDepth - 1);\n            return;\n        }\n        if (suppressDepth > 0) {\n            return;\n        }\n\n        switch (name) {\n            case \"h1\":\n            case \"h2\":\n            case \"h3\":\n            case \"h4\":\n            case \"h5\":\n            case \"h6\":\n            case \"p\":\n            case \"blockquote\":\n            case \"ul\":\n            case \"ol\":\n            case \"li\":\n            case \"b\":\n            case \"strong\":\n            case \"i\":\n            case \"em\":\n            case \"s\":\n            case \"strike\":\n            case \"del\":\n            case \"a\":\n                closeImplicitParagraph();\n                pop();\n                break;\n            case \"dt\":\n                pop(); // StrongEmphasis\n                pop(); // Paragraph\n                break;\n            case \"dd\":\n                pop();\n                break;\n            case \"pre\":\n                if (codeBlock != null) {\n                    codeBlock.setLiteral(withTrailingNewline(codeBlockText.toString()));\n                    codeBlock = null;\n                    codeBlockText = null;\n                }\n                break;\n            case \"code\":\n                if (inlineCode != null) {\n                    inlineCode.setLiteral(inlineCodeText.toString());\n                    inlineCode = null;\n                    inlineCodeText = null;\n                }\n                break;\n            case \"div\":\n                closeImplicitParagraph();\n                break;\n            case \"table\":\n                endTable();\n                break;\n            case \"tr\":\n                if (tableDepth == 1) {\n                    pop();\n                    rowIndex++;\n                }\n                break;\n            case \"th\":\n            case \"td\":\n                if (tableDepth == 1) {\n                    pop();\n                }\n                break;\n            default:\n                break;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "withTrailingNewline(String)",
+      "localName(String, String)",
+      "endTable()",
+      "pop()",
+      "closeImplicitParagraph()"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ],
+    "org.commonmark.node.FencedCodeBlock": [
+      "setLiteral(String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()"
+    ],
+    "org.commonmark.node.Code": [
+      "setLiteral(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) throws SAXException {\n    String name = localName(localName, qName);\n    if (name.equals(\"script\") || name.equals(\"style\")) {\n        suppressDepth = Math.max(0, suppressDepth - 1);\n        return;\n    }\n    if (suppressDepth > 0) {\n        return;\n    }\n    switch(name) {\n        case \"h1\":\n        case \"h2\":\n        case \"h3\":\n        case \"h4\":\n        case \"h5\":\n        case \"h6\":\n        case \"p\":\n        case \"blockquote\":\n        case \"ul\":\n        case \"ol\":\n        case \"li\":\n        case \"b\":\n        case \"strong\":\n        case \"i\":\n        case \"em\":\n        case \"s\":\n        case \"strike\":\n        case \"del\":\n        case \"a\":\n            closeImplicitParagraph();\n            pop();\n            break;\n        case \"dt\":\n            // StrongEmphasis\n            pop();\n            // Paragraph\n            pop();\n            break;\n        case \"dd\":\n            pop();\n            break;\n        case \"pre\":\n            if (codeBlock != null) {\n                codeBlock.setLiteral(withTrailingNewline(codeBlockText.toString()));\n                codeBlock = null;\n                codeBlockText = null;\n            }\n            break;\n        case \"code\":\n            if (inlineCode != null) {\n                inlineCode.setLiteral(inlineCodeText.toString());\n                inlineCode = null;\n                inlineCodeText = null;\n            }\n            break;\n        case \"div\":\n            closeImplicitParagraph();\n            break;\n        case \"table\":\n            endTable();\n            break;\n        case \"tr\":\n            if (tableDepth == 1) {\n                pop();\n                rowIndex++;\n            }\n            break;\n        case \"th\":\n        case \"td\":\n            if (tableDepth == 1) {\n                pop();\n            }\n            break;\n        default:\n            break;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

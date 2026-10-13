@@ -1,0 +1,35 @@
+{
+  "className": "TikaExtras",
+  "methodName": "extrasDir",
+  "brief": "public static Path extrasDir(){}",
+  "methodSignature": "extrasDir()",
+  "sourceCode": "public static Path extrasDir() {\n        String prop = System.getProperty(EXTRAS_DIR_PROPERTY);\n        if (prop == null || prop.isBlank()) {\n            return null;\n        }\n        try {\n            return Path.of(prop.trim());\n        } catch (java.nio.file.InvalidPathException e) {\n            LOG.warn(\"Ignoring invalid {}: {}\", EXTRAS_DIR_PROPERTY, e.getMessage());\n            return null;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.System": [
+      "getProperty(String)"
+    ],
+    "java.lang.String": [
+      "isBlank()",
+      "trim()"
+    ],
+    "java.nio.file.Path": [
+      "of(String, String[])"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Object, Object)"
+    ],
+    "java.nio.file.InvalidPathException": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * The configured extras directory, or {@code null} if the feature is off.\n */\npublic static Path extrasDir() {\n    String prop = System.getProperty(EXTRAS_DIR_PROPERTY);\n    if (prop == null || prop.isBlank()) {\n        return null;\n    }\n    try {\n        return Path.of(prop.trim());\n    } catch (java.nio.file.InvalidPathException e) {\n        LOG.warn(\"Ignoring invalid {}: {}\", EXTRAS_DIR_PROPERTY, e.getMessage());\n        return null;\n    }\n}",
+  "method_comment": " The configured extras directory, or {@code null} if the feature is off. ",
+  "method_annotation": ""
+}

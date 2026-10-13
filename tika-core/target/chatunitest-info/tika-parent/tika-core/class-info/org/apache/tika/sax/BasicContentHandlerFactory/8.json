@@ -1,0 +1,27 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "createHandler",
+  "brief": "@Override\r\n    public ContentHandler createHandler(OutputStream os, Charset charset){}",
+  "methodSignature": "createHandler(OutputStream, Charset)",
+  "sourceCode": "@Override\n    public ContentHandler createHandler(OutputStream os, Charset charset) {\n        return maybeValidate(createHandlerInner(os, charset));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OutputStream",
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.io.OutputStream": [],
+    "java.nio.charset.Charset": [],
+    "org.apache.tika.sax.BasicContentHandlerFactory": [
+      "createHandlerInner(OutputStream, Charset)"
+    ]
+  },
+  "full_method_info": "@Override\npublic ContentHandler createHandler(OutputStream os, Charset charset) {\n    return maybeValidate(createHandlerInner(os, charset));\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

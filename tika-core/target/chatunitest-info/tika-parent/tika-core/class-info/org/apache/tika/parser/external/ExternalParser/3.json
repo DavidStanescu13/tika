@@ -1,0 +1,40 @@
+{
+  "className": "ExternalParser",
+  "methodName": "handleOutputFile",
+  "brief": "private void handleOutputFile(Path outFile, Parser handler,\r\n                                  boolean isContentSource,\r\n                                  XHTMLContentHandler xhtml, Metadata metadata,\r\n                                  ParseContext context)\r\n            throws IOException, SAXException, TikaException{}",
+  "methodSignature": "handleOutputFile(Path, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)",
+  "sourceCode": "private void handleOutputFile(Path outFile, Parser handler,\n                                  boolean isContentSource,\n                                  XHTMLContentHandler xhtml, Metadata metadata,\n                                  ParseContext context)\n            throws IOException, SAXException, TikaException {\n        if (handler != null) {\n            ContentHandler target = isContentSource ?\n                    new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(outFile)) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw file content as XHTML text\n            try (BufferedReader reader = Files.newBufferedReader(outFile)) {\n                String line = reader.readLine();\n                while (line != null) {\n                    xhtml.characters(line);\n                    xhtml.newline();\n                    line = reader.readLine();\n                }\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path",
+    "Parser",
+    "boolean",
+    "XHTMLContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.sax.XHTMLContentHandler": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Path)"
+    ],
+    "java.nio.file.Files": [
+      "newBufferedReader(Path)"
+    ],
+    "java.io.BufferedReader": [
+      "readLine()"
+    ]
+  },
+  "full_method_info": "private void handleOutputFile(Path outFile, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    if (handler != null) {\n        ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n        try (TikaInputStream tis = TikaInputStream.get(outFile)) {\n            handler.parse(tis, target, metadata, context);\n        }\n    } else if (isContentSource) {\n        // No handler — write raw file content as XHTML text\n        try (BufferedReader reader = Files.newBufferedReader(outFile)) {\n            String line = reader.readLine();\n            while (line != null) {\n                xhtml.characters(line);\n                xhtml.newline();\n                line = reader.readLine();\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

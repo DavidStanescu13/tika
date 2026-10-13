@@ -1,0 +1,22 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getParsers",
+  "brief": "public Map<MediaType, Parser> getParsers(){}",
+  "methodSignature": "getParsers()",
+  "sourceCode": "public Map<MediaType, Parser> getParsers() {\n        return getParsers(new ParseContext());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.parser.CompositeParser": [
+      "getParsers(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the component parsers.\n *\n * @return component parsers, keyed by media type\n */\npublic Map<MediaType, Parser> getParsers() {\n    return getParsers(new ParseContext());\n}",
+  "method_comment": "\n     * Returns the component parsers.\n     *\n     * @return component parsers, keyed by media type\n     ",
+  "method_annotation": ""
+}

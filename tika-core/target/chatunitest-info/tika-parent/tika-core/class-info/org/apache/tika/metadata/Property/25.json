@@ -1,0 +1,31 @@
+{
+  "className": "Property",
+  "methodName": "composite",
+  "brief": "public static Property composite(Property primaryProperty,\r\n                                     Property[] secondaryExtractProperties){}",
+  "methodSignature": "composite(Property, Property[])",
+  "sourceCode": "public static Property composite(Property primaryProperty,\n                                     Property[] secondaryExtractProperties) {\n        if (primaryProperty == null) {\n            throw new NullPointerException(\"primaryProperty must not be null\");\n        }\n        if (primaryProperty.getPropertyType() == PropertyType.COMPOSITE) {\n            throw new PropertyTypeException(primaryProperty.getPropertyType());\n        }\n        if (secondaryExtractProperties != null) {\n            for (Property secondaryExtractProperty : secondaryExtractProperties) {\n                if (secondaryExtractProperty.getPropertyType() == PropertyType.COMPOSITE) {\n                    throw new PropertyTypeException(secondaryExtractProperty.getPropertyType());\n                }\n            }\n        }\n        String[] choices = null;\n        if (primaryProperty.getChoices() != null) {\n            choices = primaryProperty.getChoices().toArray(new String[0]);\n        }\n        return new Property(primaryProperty.getName(), primaryProperty.isInternal(),\n                PropertyType.COMPOSITE, ValueType.PROPERTY, choices, primaryProperty,\n                secondaryExtractProperties);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "Property[]"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getName()",
+      "getPropertyType()",
+      "getChoices()",
+      "isInternal()"
+    ],
+    "java.util.Set": [
+      "toArray(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Constructs a new composite property from the given primary and array of secondary properties.\n * <p>\n * Note that name of the composite property is taken from its primary property,\n * and primary and secondary properties must not be composite properties themselves.\n *\n * @param primaryProperty\n * @param secondaryExtractProperties\n * @return the composite property\n */\npublic static Property composite(Property primaryProperty, Property[] secondaryExtractProperties) {\n    if (primaryProperty == null) {\n        throw new NullPointerException(\"primaryProperty must not be null\");\n    }\n    if (primaryProperty.getPropertyType() == PropertyType.COMPOSITE) {\n        throw new PropertyTypeException(primaryProperty.getPropertyType());\n    }\n    if (secondaryExtractProperties != null) {\n        for (Property secondaryExtractProperty : secondaryExtractProperties) {\n            if (secondaryExtractProperty.getPropertyType() == PropertyType.COMPOSITE) {\n                throw new PropertyTypeException(secondaryExtractProperty.getPropertyType());\n            }\n        }\n    }\n    String[] choices = null;\n    if (primaryProperty.getChoices() != null) {\n        choices = primaryProperty.getChoices().toArray(new String[0]);\n    }\n    return new Property(primaryProperty.getName(), primaryProperty.isInternal(), PropertyType.COMPOSITE, ValueType.PROPERTY, choices, primaryProperty, secondaryExtractProperties);\n}",
+  "method_comment": "\n     * Constructs a new composite property from the given primary and array of secondary properties.\n     * <p>\n     * Note that name of the composite property is taken from its primary property,\n     * and primary and secondary properties must not be composite properties themselves.\n     *\n     * @param primaryProperty\n     * @param secondaryExtractProperties\n     * @return the composite property\n     ",
+  "method_annotation": ""
+}

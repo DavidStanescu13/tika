@@ -1,0 +1,27 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "addService",
+  "brief": "static void addService(Object reference, Object service, int rank){}",
+  "methodSignature": "addService(Object, Object, int)",
+  "sourceCode": "static void addService(Object reference, Object service, int rank) {\n        synchronized (SERVICES) {\n            SERVICES.put(reference, new RankedService(service, rank));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object",
+    "Object",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "static void addService(Object reference, Object service, int rank) {\n    synchronized (SERVICES) {\n        SERVICES.put(reference, new RankedService(service, rank));\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

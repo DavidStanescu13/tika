@@ -1,0 +1,25 @@
+{
+  "className": "HexCoDec",
+  "methodName": "decode",
+  "brief": "public static byte[] decode(char[] hexChars){}",
+  "methodSignature": "decode(char[])",
+  "sourceCode": "public static byte[] decode(char[] hexChars) {\n        return decode(hexChars, 0, hexChars.length);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.mime.HexCoDec": [
+      "decode(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Decode an array of hex chars\n *\n * @param hexChars an array of hex characters.\n * @return the decode hex chars as bytes.\n */\npublic static byte[] decode(char[] hexChars) {\n    return decode(hexChars, 0, hexChars.length);\n}",
+  "method_comment": "\n     * Decode an array of hex chars\n     *\n     * @param hexChars an array of hex characters.\n     * @return the decode hex chars as bytes.\n     ",
+  "method_annotation": ""
+}

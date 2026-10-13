@@ -1,0 +1,22 @@
+{
+  "className": "MimeType",
+  "methodName": "setUniformTypeIdentifier",
+  "brief": "void setUniformTypeIdentifier(String v){}",
+  "methodSignature": "setUniformTypeIdentifier(String)",
+  "sourceCode": "void setUniformTypeIdentifier(String v) {\n        if (v == null) {\n            throw new IllegalArgumentException(\"Uniform Type Identifier is missing\");\n        }\n        uti = v;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Set The Uniform Type Identifier\n *\n * @param uti\n */\nvoid setUniformTypeIdentifier(String v) {\n    if (v == null) {\n        throw new IllegalArgumentException(\"Uniform Type Identifier is missing\");\n    }\n    uti = v;\n}",
+  "method_comment": "\n     * Set The Uniform Type Identifier\n     *\n     * @param uti\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "MatchingContentHandler",
+  "methodName": "ignorableWhitespace",
+  "brief": "public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "ignorableWhitespace(char[], int, int)",
+  "sourceCode": "public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (matcher.matchesText()) {\n            super.ignorableWhitespace(ch, start, length);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesText()"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "ignorableWhitespace(char[], int, int)"
+    ]
+  },
+  "full_method_info": "public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n    if (matcher.matchesText()) {\n        super.ignorableWhitespace(ch, start, length);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

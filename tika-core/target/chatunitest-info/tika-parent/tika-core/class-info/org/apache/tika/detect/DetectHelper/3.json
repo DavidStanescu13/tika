@@ -1,0 +1,24 @@
+{
+  "className": "DetectHelper",
+  "methodName": "getDetectionContentLength",
+  "brief": "public static int getDetectionContentLength(Metadata metadata){}",
+  "methodSignature": "getDetectionContentLength(Metadata)",
+  "sourceCode": "public static int getDetectionContentLength(Metadata metadata) {\n        Integer value = metadata.getInt(TikaCoreProperties.DETECTION_CONTENT_LENGTH);\n        return value != null ? value : -1;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "getInt(Property)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the number of bytes buffered for detection.\n *\n * @param metadata the metadata to check\n * @return the number of bytes buffered, or -1 if not set\n */\npublic static int getDetectionContentLength(Metadata metadata) {\n    Integer value = metadata.getInt(TikaCoreProperties.DETECTION_CONTENT_LENGTH);\n    return value != null ? value : -1;\n}",
+  "method_comment": "\n     * Gets the number of bytes buffered for detection.\n     *\n     * @param metadata the metadata to check\n     * @return the number of bytes buffered, or -1 if not set\n     ",
+  "method_annotation": ""
+}

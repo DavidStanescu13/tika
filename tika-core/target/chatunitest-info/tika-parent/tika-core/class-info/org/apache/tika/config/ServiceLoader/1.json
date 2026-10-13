@@ -1,0 +1,22 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "setContextClassLoader",
+  "brief": "public static void setContextClassLoader(ClassLoader loader){}",
+  "methodSignature": "setContextClassLoader(ClassLoader)",
+  "sourceCode": "public static void setContextClassLoader(ClassLoader loader) {\n        CONTEXT_CLASS_LOADER = loader;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ClassLoader"
+  ],
+  "dependentMethods": {
+    "java.lang.ClassLoader": []
+  },
+  "full_method_info": "/**\n * Sets the context class loader to use for all threads that access\n * this class. Used for example in an OSGi environment to avoid problems\n * with the default context class loader.\n *\n * @param loader default context class loader,\n *               or <code>null</code> to automatically pick the loader\n */\npublic static void setContextClassLoader(ClassLoader loader) {\n    CONTEXT_CLASS_LOADER = loader;\n}",
+  "method_comment": "\n     * Sets the context class loader to use for all threads that access\n     * this class. Used for example in an OSGi environment to avoid problems\n     * with the default context class loader.\n     *\n     * @param loader default context class loader,\n     *               or <code>null</code> to automatically pick the loader\n     ",
+  "method_annotation": ""
+}

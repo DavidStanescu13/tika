@@ -1,0 +1,18 @@
+{
+  "className": "Initializable",
+  "methodName": "initialize",
+  "brief": "void initialize() throws TikaConfigException;",
+  "methodSignature": "initialize()",
+  "sourceCode": "void initialize() throws TikaConfigException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Called after all properties have been set to allow for\n * validation and initialization that depends on multiple properties.\n *\n * @throws TikaConfigException if there is a problem with the configuration\n */\nvoid initialize() throws TikaConfigException;",
+  "method_comment": "\n     * Called after all properties have been set to allow for\n     * validation and initialization that depends on multiple properties.\n     *\n     * @throws TikaConfigException if there is a problem with the configuration\n     ",
+  "method_annotation": ""
+}

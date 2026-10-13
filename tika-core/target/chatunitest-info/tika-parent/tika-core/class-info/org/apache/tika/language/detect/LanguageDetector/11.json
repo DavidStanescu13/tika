@@ -1,0 +1,18 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "reset",
+  "brief": "public abstract void reset();",
+  "methodSignature": "reset()",
+  "sourceCode": "public abstract void reset();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "// ============================================================\n// The routines below are called when processing a document\n// ============================================================\n/**\n * Reset statistics about the current document being processed.\n */\npublic abstract void reset();",
+  "method_comment": "\n     * Reset statistics about the current document being processed.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "metadata",
+  "brief": "public void metadata(Metadata metadata) throws SAXException{}",
+  "methodSignature": "metadata(Metadata)",
+  "sourceCode": "public void metadata(Metadata metadata) throws SAXException {\n        description(metadata, \"xmp\", XMP);\n        description(metadata, \"dc\", \"http://purl.org/dc/elements/1.1/\");\n        description(metadata, \"xmpTPg\", \"http://ns.adobe.com/xap/1.0/t/pg/\");\n        description(metadata, \"xmpRigths\", \"http://ns.adobe.com/xap/1.0/rights/\");\n        description(metadata, \"xmpMM\", \"http://ns.adobe.com/xap/1.0/mm/\");\n        description(metadata, \"xmpidq\", \"http://ns.adobe.com/xmp/identifier/qual/1.0/\");\n        description(metadata, \"xmpBJ\", \"http://ns.adobe.com/xap/1.0/bj/\");\n        description(metadata, \"xmpDM\", \"http://ns.adobe.com/xmp/1.0/DynamicMedia/\");\n        description(metadata, \"pdf\", \"http://ns.adobe.com/pdf/1.3/\");\n        description(metadata, \"photoshop\", \"s http://ns.adobe.com/photoshop/1.0/\");\n        description(metadata, \"crs\", \"http://ns.adobe.com/camera-raw-settings/1.0/\");\n        description(metadata, \"tiff\", \"http://ns.adobe.com/tiff/1.0/\");\n        description(metadata, \"exif\", \"http://ns.adobe.com/exif/1.0/\");\n        description(metadata, \"aux\", \"http://ns.adobe.com/exif/1.0/aux/\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "public void metadata(Metadata metadata) throws SAXException {\n    description(metadata, \"xmp\", XMP);\n    description(metadata, \"dc\", \"http://purl.org/dc/elements/1.1/\");\n    description(metadata, \"xmpTPg\", \"http://ns.adobe.com/xap/1.0/t/pg/\");\n    description(metadata, \"xmpRigths\", \"http://ns.adobe.com/xap/1.0/rights/\");\n    description(metadata, \"xmpMM\", \"http://ns.adobe.com/xap/1.0/mm/\");\n    description(metadata, \"xmpidq\", \"http://ns.adobe.com/xmp/identifier/qual/1.0/\");\n    description(metadata, \"xmpBJ\", \"http://ns.adobe.com/xap/1.0/bj/\");\n    description(metadata, \"xmpDM\", \"http://ns.adobe.com/xmp/1.0/DynamicMedia/\");\n    description(metadata, \"pdf\", \"http://ns.adobe.com/pdf/1.3/\");\n    description(metadata, \"photoshop\", \"s http://ns.adobe.com/photoshop/1.0/\");\n    description(metadata, \"crs\", \"http://ns.adobe.com/camera-raw-settings/1.0/\");\n    description(metadata, \"tiff\", \"http://ns.adobe.com/tiff/1.0/\");\n    description(metadata, \"exif\", \"http://ns.adobe.com/exif/1.0/\");\n    description(metadata, \"aux\", \"http://ns.adobe.com/exif/1.0/aux/\");\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

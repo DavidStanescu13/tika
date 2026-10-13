@@ -1,0 +1,24 @@
+{
+  "className": "DefaultEncodingDetector",
+  "methodName": "DefaultEncodingDetector",
+  "brief": "public DefaultEncodingDetector(ServiceLoader loader){}",
+  "methodSignature": "DefaultEncodingDetector(ServiceLoader)",
+  "sourceCode": "public DefaultEncodingDetector(ServiceLoader loader) {\n        super(loader.loadServiceProviders(EncodingDetector.class));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadServiceProviders(Class<T>)"
+    ]
+  },
+  "full_method_info": "public DefaultEncodingDetector(ServiceLoader loader) {\n    super(loader.loadServiceProviders(EncodingDetector.class));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

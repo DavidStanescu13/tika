@@ -1,0 +1,33 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "trySetStaxSecurityManager",
+  "brief": "private static void trySetStaxSecurityManager(XMLInputFactory inputFactory){}",
+  "methodSignature": "trySetStaxSecurityManager(XMLInputFactory)",
+  "sourceCode": "private static void trySetStaxSecurityManager(XMLInputFactory inputFactory) {\n        //try default java entity expansion, then fallback to woodstox, then warn...once.\n        try {\n            inputFactory.setProperty(\"http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit\",\n                    MAX_ENTITY_EXPANSIONS);\n        } catch (IllegalArgumentException e) {\n            try {\n                inputFactory.setProperty(\"com.ctc.wstx.maxEntityCount\", MAX_ENTITY_EXPANSIONS);\n            } catch (IllegalArgumentException e2) {\n                if (HAS_WARNED_STAX.getAndSet(true) == false) {\n                    LOG.warn(\"Could not set limit on maximum entity expansions for: \" + inputFactory.getClass());\n                }\n            }\n\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "XMLInputFactory"
+  ],
+  "dependentMethods": {
+    "javax.xml.stream.XMLInputFactory": [
+      "setProperty(String, Object)"
+    ],
+    "java.util.concurrent.atomic.AtomicBoolean": [
+      "getAndSet(boolean)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "full_method_info": "private static void trySetStaxSecurityManager(XMLInputFactory inputFactory) {\n    // try default java entity expansion, then fallback to woodstox, then warn...once.\n    try {\n        inputFactory.setProperty(\"http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit\", MAX_ENTITY_EXPANSIONS);\n    } catch (IllegalArgumentException e) {\n        try {\n            inputFactory.setProperty(\"com.ctc.wstx.maxEntityCount\", MAX_ENTITY_EXPANSIONS);\n        } catch (IllegalArgumentException e2) {\n            if (HAS_WARNED_STAX.getAndSet(true) == false) {\n                LOG.warn(\"Could not set limit on maximum entity expansions for: \" + inputFactory.getClass());\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

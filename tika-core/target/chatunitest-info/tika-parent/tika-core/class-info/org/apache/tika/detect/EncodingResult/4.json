@@ -1,0 +1,18 @@
+{
+  "className": "EncodingResult",
+  "methodName": "getLabel",
+  "brief": "public String getLabel(){}",
+  "methodSignature": "getLabel()",
+  "sourceCode": "public String getLabel() {\n        return label;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The detector's original label for this result.  Usually identical to\n * {@link #getCharset()}{@code .name()}, but preserved when the detector\n * uses finer-grained labels than the Java charset registry supports (e.g.\n * {@code \"IBM420-ltr\"}, {@code \"IBM420-rtl\"}, {@code \"windows-874\"}).\n */\npublic String getLabel() {\n    return label;\n}",
+  "method_comment": "\n     * The detector's original label for this result.  Usually identical to\n     * {@link #getCharset()}{@code .name()}, but preserved when the detector\n     * uses finer-grained labels than the Java charset registry supports (e.g.\n     * {@code \"IBM420-ltr\"}, {@code \"IBM420-rtl\"}, {@code \"windows-874\"}).\n     ",
+  "method_annotation": ""
+}

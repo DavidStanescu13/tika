@@ -1,0 +1,18 @@
+{
+  "className": "StreamGobbler",
+  "methodName": "getStreamLength",
+  "brief": "public long getStreamLength(){}",
+  "methodSignature": "getStreamLength()",
+  "sourceCode": "public long getStreamLength() {\n        return streamLength;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public long getStreamLength() {\n    return streamLength;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

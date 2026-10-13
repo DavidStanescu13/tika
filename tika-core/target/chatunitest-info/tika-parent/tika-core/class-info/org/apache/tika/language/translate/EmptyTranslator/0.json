@@ -1,0 +1,24 @@
+{
+  "className": "EmptyTranslator",
+  "methodName": "translate",
+  "brief": "public String translate(String text, String sourceLanguage, String targetLanguage){}",
+  "methodSignature": "translate(String, String, String)",
+  "sourceCode": "public String translate(String text, String sourceLanguage, String targetLanguage) {\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public String translate(String text, String sourceLanguage, String targetLanguage) {\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,101 @@
+{
+  "fullClassName": "org.apache.tika.detect.CompositeDetector",
+  "className": "CompositeDetector",
+  "index": 19,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Detector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class CompositeDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.ArrayList;",
+    "import java.util.Arrays;",
+    "import java.util.Collection;",
+    "import java.util.Collections;",
+    "import java.util.List;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.utils.StringUtils;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 5980683158436430252L;",
+    "private final MediaTypeRegistry registry;",
+    "private final List<Detector> detectors;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Detector"
+  ],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0",
+    "detectOverrides(Metadata)": "1",
+    "getDetectors()": "2",
+    "isExcluded(Collection, Class)": "3",
+    "assignableFrom(Collection, Class)": "4",
+    "CompositeDetector(MediaTypeRegistry, List, Collection)": "5",
+    "CompositeDetector(MediaTypeRegistry, List)": "6",
+    "CompositeDetector(List)": "7",
+    "CompositeDetector(Detector[])": "8"
+  },
+  "methodsBrief": [
+    "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+    "private static MediaType detectOverrides(Metadata metadata){}",
+    "public List<Detector> getDetectors(){}",
+    "private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors,\r\n                               Class<? extends Detector> d){}",
+    "private boolean assignableFrom(Collection<Class<? extends Detector>> excludeDetectors,\r\n                                   Class<? extends Detector> d){}",
+    "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors,\r\n                             Collection<Class<? extends Detector>> excludeDetectors){}",
+    "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors){}",
+    "public CompositeDetector(List<Detector> detectors){}",
+    "public CompositeDetector(Detector... detectors){}"
+  ],
+  "constructorSigs": [
+    "CompositeDetector(MediaTypeRegistry, List, Collection)",
+    "CompositeDetector(MediaTypeRegistry, List)",
+    "CompositeDetector(List)",
+    "CompositeDetector(Detector[])"
+  ],
+  "constructorBrief": [
+    "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors,\r\n                             Collection<Class<? extends Detector>> excludeDetectors){}",
+    "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors){}",
+    "public CompositeDetector(List<Detector> detectors){}",
+    "public CompositeDetector(Detector... detectors){}"
+  ],
+  "getterSetterSigs": [
+    "getDetectors()"
+  ],
+  "getterSetterBrief": [
+    "public List<Detector> getDetectors(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.tika.detect.Detector...": [],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\nimport java.util.List;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.utils.StringUtils;\n\n/**\n * Content type detector that combines multiple different detection mechanisms.\n */\npublic class CompositeDetector implements Detector {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 5980683158436430252L;\n\n    private final MediaTypeRegistry registry;\n\n    private final List<Detector> detectors;\n\n    public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors, Collection<Class<? extends Detector>> excludeDetectors) {\n        if (excludeDetectors == null || excludeDetectors.isEmpty()) {\n            this.detectors = detectors;\n        } else {\n            this.detectors = new ArrayList<>();\n            for (Detector d : detectors) {\n                if (!isExcluded(excludeDetectors, d.getClass())) {\n                    this.detectors.add(d);\n                }\n            }\n        }\n        this.registry = registry;\n    }\n\n    public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors) {\n        this(registry, detectors, null);\n    }\n\n    public CompositeDetector(List<Detector> detectors) {\n        this(new MediaTypeRegistry(), detectors);\n    }\n\n    public CompositeDetector(Detector... detectors) {\n        this(Arrays.asList(detectors));\n    }\n\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        MediaType override = detectOverrides(metadata);\n        if (override != null) {\n            return override;\n        }\n        MediaType type = MediaType.OCTET_STREAM;\n        // we have to iterate through all detectors because the override detector may\n        // be within a CompositeDetector\n        for (Detector detector : getDetectors()) {\n            MediaType detected = detector.detect(tis, metadata, parseContext);\n            if (registry.isSpecializationOf(detected, type)) {\n                type = detected;\n            }\n        }\n        return type;\n    }\n\n    /**\n     * @param metadata\n     * @return mediaType if a parseable mediatype was sent in via user or parser overrides\n     */\n    private static MediaType detectOverrides(Metadata metadata) {\n        String override = metadata.get(TikaCoreProperties.CONTENT_TYPE_USER_OVERRIDE);\n        if (!StringUtils.isBlank(override)) {\n            MediaType mt = MediaType.parse(override);\n            if (mt != null) {\n                return mt;\n            }\n        }\n        override = metadata.get(TikaCoreProperties.CONTENT_TYPE_PARSER_OVERRIDE);\n        if (!StringUtils.isBlank(override)) {\n            MediaType mt = MediaType.parse(override);\n            if (mt != null) {\n                return mt;\n            }\n        }\n        return null;\n    }\n\n    /**\n     * Returns the component detectors.\n     */\n    public List<Detector> getDetectors() {\n        return Collections.unmodifiableList(detectors);\n    }\n\n    private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors, Class<? extends Detector> d) {\n        return excludeDetectors.contains(d) || assignableFrom(excludeDetectors, d);\n    }\n\n    private boolean assignableFrom(Collection<Class<? extends Detector>> excludeDetectors, Class<? extends Detector> d) {\n        for (Class<? extends Detector> e : excludeDetectors) {\n            if (e.isAssignableFrom(d)) {\n                return true;\n            }\n        }\n        return false;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content type detector that combines multiple different detection mechanisms.\n */\npublic class CompositeDetector implements Detector {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 5980683158436430252L;\n\n    private final MediaTypeRegistry registry;\n\n    private final List<Detector> detectors;\n\n    public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors, Collection<Class<? extends Detector>> excludeDetectors) {\n        if (excludeDetectors == null || excludeDetectors.isEmpty()) {\n            this.detectors = detectors;\n        } else {\n            this.detectors = new ArrayList<>();\n            for (Detector d : detectors) {\n                if (!isExcluded(excludeDetectors, d.getClass())) {\n                    this.detectors.add(d);\n                }\n            }\n        }\n        this.registry = registry;\n    }\n\n    public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors) {\n        this(registry, detectors, null);\n    }\n\n    public CompositeDetector(List<Detector> detectors) {\n        this(new MediaTypeRegistry(), detectors);\n    }\n\n    public CompositeDetector(Detector... detectors) {\n        this(Arrays.asList(detectors));\n    }\n\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        MediaType override = detectOverrides(metadata);\n        if (override != null) {\n            return override;\n        }\n        MediaType type = MediaType.OCTET_STREAM;\n        // we have to iterate through all detectors because the override detector may\n        // be within a CompositeDetector\n        for (Detector detector : getDetectors()) {\n            MediaType detected = detector.detect(tis, metadata, parseContext);\n            if (registry.isSpecializationOf(detected, type)) {\n                type = detected;\n            }\n        }\n        return type;\n    }\n\n    /**\n     * @param metadata\n     * @return mediaType if a parseable mediatype was sent in via user or parser overrides\n     */\n    private static MediaType detectOverrides(Metadata metadata) {\n        String override = metadata.get(TikaCoreProperties.CONTENT_TYPE_USER_OVERRIDE);\n        if (!StringUtils.isBlank(override)) {\n            MediaType mt = MediaType.parse(override);\n            if (mt != null) {\n                return mt;\n            }\n        }\n        override = metadata.get(TikaCoreProperties.CONTENT_TYPE_PARSER_OVERRIDE);\n        if (!StringUtils.isBlank(override)) {\n            MediaType mt = MediaType.parse(override);\n            if (mt != null) {\n                return mt;\n            }\n        }\n        return null;\n    }\n\n    /**\n     * Returns the component detectors.\n     */\n    public List<Detector> getDetectors() {\n        return Collections.unmodifiableList(detectors);\n    }\n\n    private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors, Class<? extends Detector> d) {\n        return excludeDetectors.contains(d) || assignableFrom(excludeDetectors, d);\n    }\n\n    private boolean assignableFrom(Collection<Class<? extends Detector>> excludeDetectors, Class<? extends Detector> d) {\n        for (Class<? extends Detector> e : excludeDetectors) {\n            if (e.isAssignableFrom(d)) {\n                return true;\n            }\n        }\n        return false;\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.detect.DefaultDetector",
+    "org.apache.tika.detect.DefaultProbDetector"
+  ]
+}

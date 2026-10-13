@@ -1,0 +1,31 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "lazyEndHead",
+  "brief": "private void lazyEndHead(boolean isFrameset) throws SAXException{}",
+  "methodSignature": "lazyEndHead(boolean)",
+  "sourceCode": "private void lazyEndHead(boolean isFrameset) throws SAXException {\n        lazyStartHead();\n\n        if (!headEnded) {\n            headEnded = true;\n            useFrameset = isFrameset;\n\n            // TIKA-478: Emit all metadata values (other than title). We have to call\n            // startElement() and characters() directly to avoid recursive problems.\n            if (writeMetadataToHead) {\n                for (String name : metadata.names()) {\n                    if (name.equals(\"title\")) {\n                        continue;\n                    }\n\n                    for (String value : metadata.getValues(name)) {\n                        // Putting null values into attributes causes problems, but is\n                        // allowed by Metadata, so guard against that.\n                        if (value != null) {\n                            AttributesImpl attributes = new AttributesImpl();\n                            attributes.addAttribute(\"\", \"name\", \"name\", \"CDATA\", name);\n                            attributes.addAttribute(\"\", \"content\", \"content\", \"CDATA\", value);\n                            super.startElement(XHTML, \"meta\", \"meta\", attributes);\n                            super.endElement(XHTML, \"meta\", \"meta\");\n                            newline();\n                        }\n                    }\n                }\n            }\n\n            if (includeTitle) {\n                super.startElement(XHTML, \"title\", \"title\", EMPTY_ATTRIBUTES);\n                String title = metadata.get(TikaCoreProperties.TITLE);\n                if (title != null && title.length() > 0) {\n                    char[] titleChars = title.toCharArray();\n                    super.characters(titleChars, 0, titleChars.length);\n                } else {\n                    // TIKA-725: Prefer <title></title> over <title/>\n                    super.characters(new char[0], 0, 0);\n                }\n                super.endElement(XHTML, \"title\", \"title\");\n                newline();\n            }\n\n            super.endElement(XHTML, \"head\", \"head\");\n            newline();\n\n            if (useFrameset) {\n                super.startElement(XHTML, \"frameset\", \"frameset\", EMPTY_ATTRIBUTES);\n            } else {\n                super.startElement(XHTML, \"body\", \"body\", EMPTY_ATTRIBUTES);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "names()",
+      "get(Property)",
+      "getValues(String)"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "toCharArray()",
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Generates the following XHTML prefix when called for the first time:\n * <pre>\n * &lt;html&gt;\n *   &lt;head&gt;\n *     &lt;title&gt;...&lt;/title&gt;\n *   &lt;/head&gt;\n *   &lt;body&gt; (or &lt;frameset&gt;\n * </pre>\n */\nprivate void lazyEndHead(boolean isFrameset) throws SAXException {\n    lazyStartHead();\n    if (!headEnded) {\n        headEnded = true;\n        useFrameset = isFrameset;\n        // TIKA-478: Emit all metadata values (other than title). We have to call\n        // startElement() and characters() directly to avoid recursive problems.\n        if (writeMetadataToHead) {\n            for (String name : metadata.names()) {\n                if (name.equals(\"title\")) {\n                    continue;\n                }\n                for (String value : metadata.getValues(name)) {\n                    // Putting null values into attributes causes problems, but is\n                    // allowed by Metadata, so guard against that.\n                    if (value != null) {\n                        AttributesImpl attributes = new AttributesImpl();\n                        attributes.addAttribute(\"\", \"name\", \"name\", \"CDATA\", name);\n                        attributes.addAttribute(\"\", \"content\", \"content\", \"CDATA\", value);\n                        super.startElement(XHTML, \"meta\", \"meta\", attributes);\n                        super.endElement(XHTML, \"meta\", \"meta\");\n                        newline();\n                    }\n                }\n            }\n        }\n        if (includeTitle) {\n            super.startElement(XHTML, \"title\", \"title\", EMPTY_ATTRIBUTES);\n            String title = metadata.get(TikaCoreProperties.TITLE);\n            if (title != null && title.length() > 0) {\n                char[] titleChars = title.toCharArray();\n                super.characters(titleChars, 0, titleChars.length);\n            } else {\n                // TIKA-725: Prefer <title></title> over <title/>\n                super.characters(new char[0], 0, 0);\n            }\n            super.endElement(XHTML, \"title\", \"title\");\n            newline();\n        }\n        super.endElement(XHTML, \"head\", \"head\");\n        newline();\n        if (useFrameset) {\n            super.startElement(XHTML, \"frameset\", \"frameset\", EMPTY_ATTRIBUTES);\n        } else {\n            super.startElement(XHTML, \"body\", \"body\", EMPTY_ATTRIBUTES);\n        }\n    }\n}",
+  "method_comment": "\n     * Generates the following XHTML prefix when called for the first time:\n     * <pre>\n     * &lt;html&gt;\n     *   &lt;head&gt;\n     *     &lt;title&gt;...&lt;/title&gt;\n     *   &lt;/head&gt;\n     *   &lt;body&gt; (or &lt;frameset&gt;\n     * </pre>\n     ",
+  "method_annotation": ""
+}

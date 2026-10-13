@@ -1,0 +1,25 @@
+{
+  "className": "NNTrainedModel",
+  "methodName": "predict",
+  "brief": "@Override\r\n    public float predict(float[] unseen){}",
+  "methodSignature": "predict(float[])",
+  "sourceCode": "@Override\n    public float predict(float[] unseen) {\n        // please ensure the unseen in size consistent with theta1\n\n        int i, j;\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        float[] hh = new float[m + 1];// hidden unit summation\n        hh[0] = 1;\n        for (i = 0; i < m; i++) {\n            double h = 0;\n            for (j = 0; j < n; j++) {\n                h += this.Theta1[i][j] * unseen[j];\n            }\n            // apply sigmoid\n            h = 1.0 / (1.0 + Math.exp(-h));\n            hh[i + 1] = (float) h;\n        }\n\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        float[] oo = new float[m];\n        for (i = 0; i < m; i++) {\n            double o = 0;\n            for (j = 0; j < n; j++) {\n                o += this.Theta2[i][j] * hh[j];\n            }\n            // apply sigmoid\n            o = 1.0 / (1.0 + Math.exp(-o));\n            oo[i] = (float) o;\n        }\n\n        return oo[0];\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float[]"
+  ],
+  "dependentMethods": {
+    "float": [],
+    "java.lang.Math": [
+      "exp(double)"
+    ]
+  },
+  "full_method_info": "/**\n * The given input vector of unseen is m=(256 + 1) * n= 1 this returns a\n * prediction probability\n */\n@Override\npublic float predict(float[] unseen) {\n    // please ensure the unseen in size consistent with theta1\n    int i, j;\n    int m = this.Theta1.length;\n    int n = this.Theta1[0].length;\n    // hidden unit summation\n    float[] hh = new float[m + 1];\n    hh[0] = 1;\n    for (i = 0; i < m; i++) {\n        double h = 0;\n        for (j = 0; j < n; j++) {\n            h += this.Theta1[i][j] * unseen[j];\n        }\n        // apply sigmoid\n        h = 1.0 / (1.0 + Math.exp(-h));\n        hh[i + 1] = (float) h;\n    }\n    m = this.Theta2.length;\n    n = this.Theta2[0].length;\n    float[] oo = new float[m];\n    for (i = 0; i < m; i++) {\n        double o = 0;\n        for (j = 0; j < n; j++) {\n            o += this.Theta2[i][j] * hh[j];\n        }\n        // apply sigmoid\n        o = 1.0 / (1.0 + Math.exp(-o));\n        oo[i] = (float) o;\n    }\n    return oo[0];\n}",
+  "method_comment": "\n     * The given input vector of unseen is m=(256 + 1) * n= 1 this returns a\n     * prediction probability\n     ",
+  "method_annotation": "@Override\n"
+}

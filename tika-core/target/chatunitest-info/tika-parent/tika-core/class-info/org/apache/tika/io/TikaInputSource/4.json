@@ -1,0 +1,18 @@
+{
+  "className": "TikaInputSource",
+  "methodName": "enableRewind",
+  "brief": "void enableRewind();",
+  "methodSignature": "enableRewind()",
+  "sourceCode": "void enableRewind();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Enables full rewind capability.\n * <p>\n * For ByteArraySource and FileSource, this is a no-op (always rewindable).\n * For CachingSource, this switches from passthrough mode to caching mode,\n * enabling subsequent {@link #seekTo(long)} and rewind operations.\n * <p>\n * Must be called when position is 0, otherwise throws IllegalStateException.\n *\n * @throws IllegalStateException if position is not 0\n */\nvoid enableRewind();",
+  "method_comment": "\n     * Enables full rewind capability.\n     * <p>\n     * For ByteArraySource and FileSource, this is a no-op (always rewindable).\n     * For CachingSource, this switches from passthrough mode to caching mode,\n     * enabling subsequent {@link #seekTo(long)} and rewind operations.\n     * <p>\n     * Must be called when position is 0, otherwise throws IllegalStateException.\n     *\n     * @throws IllegalStateException if position is not 0\n     ",
+  "method_annotation": ""
+}

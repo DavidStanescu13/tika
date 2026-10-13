@@ -1,0 +1,18 @@
+{
+  "className": "ParseContextConfig",
+  "methodName": "isConfigDeserializerAvailable",
+  "brief": "public static boolean isConfigDeserializerAvailable(){}",
+  "methodSignature": "isConfigDeserializerAvailable()",
+  "sourceCode": "public static boolean isConfigDeserializerAvailable() {\n        return CONFIG_DESERIALIZER_CLASS != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Checks if ConfigDeserializer is available on the classpath.\n *\n * @return true if tika-serialization is available\n */\npublic static boolean isConfigDeserializerAvailable() {\n    return CONFIG_DESERIALIZER_CLASS != null;\n}",
+  "method_comment": "\n     * Checks if ConfigDeserializer is available on the classpath.\n     *\n     * @return true if tika-serialization is available\n     ",
+  "method_annotation": ""
+}

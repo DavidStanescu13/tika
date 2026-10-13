@@ -1,0 +1,22 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "loadDefaultModels",
+  "brief": "public abstract void loadDefaultModels(final InputStream modelStream);",
+  "methodSignature": "loadDefaultModels(InputStream)",
+  "sourceCode": "public abstract void loadDefaultModels(final InputStream modelStream);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": []
+  },
+  "full_method_info": "public abstract void loadDefaultModels(final InputStream modelStream);",
+  "method_comment": "",
+  "method_annotation": ""
+}

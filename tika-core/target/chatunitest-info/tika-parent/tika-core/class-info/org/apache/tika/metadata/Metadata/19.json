@@ -1,0 +1,32 @@
+{
+  "className": "Metadata",
+  "methodName": "setAll",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public void setAll(Properties properties){}",
+  "methodSignature": "setAll(Properties)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public void setAll(Properties properties) {\n        Enumeration<String> names = (Enumeration<String>) properties.propertyNames();\n        while (names.hasMoreElements()) {\n            String name = names.nextElement();\n            metadata.put(name, new String[]{properties.getProperty(name)});\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Properties"
+  ],
+  "dependentMethods": {
+    "java.util.Properties": [
+      "propertyNames()",
+      "getProperty(String)"
+    ],
+    "java.util.Enumeration": [
+      "nextElement()",
+      "hasMoreElements()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Copy All key-value pairs from properties.\n *\n * @param properties properties to copy from\n */\n@SuppressWarnings(\"unchecked\")\npublic void setAll(Properties properties) {\n    Enumeration<String> names = (Enumeration<String>) properties.propertyNames();\n    while (names.hasMoreElements()) {\n        String name = names.nextElement();\n        metadata.put(name, new String[] { properties.getProperty(name) });\n    }\n}",
+  "method_comment": "\n     * Copy All key-value pairs from properties.\n     *\n     * @param properties properties to copy from\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

@@ -1,0 +1,87 @@
+{
+  "fullClassName": "org.apache.tika.detect.FileCommandDetector",
+  "className": "FileCommandDetector",
+  "index": 32,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Detector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class FileCommandDetector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.nio.file.Path;",
+    "import org.slf4j.Logger;",
+    "import org.slf4j.LoggerFactory;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.ExternalProcess;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.Property;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.utils.FileProcessResult;",
+    "import org.apache.tika.utils.ProcessUtils;",
+    "import org.apache.tika.utils.StringUtils;"
+  ],
+  "fields": [
+    "public static Property FILE_MIME = Property.externalText(\"file:mime\");",
+    "private static final Logger LOGGER = LoggerFactory.getLogger(FileCommandDetector.class);",
+    "private static final long DEFAULT_TIMEOUT_MS = 6000;",
+    "private static final String DEFAULT_FILE_COMMAND_PATH = \"file\";",
+    "private static boolean HAS_WARNED = false;",
+    "private Boolean hasFileCommand = null;",
+    "private String fileCommandPath = DEFAULT_FILE_COMMAND_PATH;",
+    "private int maxBytes = 1_000_000;",
+    "private long timeoutMs = DEFAULT_TIMEOUT_MS;",
+    "private boolean useMime = false;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Detector"
+  ],
+  "methodSigs": {
+    "checkHasFile()": "0",
+    "checkHasFile(String)": "1",
+    "detect(TikaInputStream, Metadata, ParseContext)": "2",
+    "detectOnPath(Path, Metadata)": "3",
+    "setFilePath(String)": "4",
+    "setUseMime(boolean)": "5",
+    "isUseMime()": "6",
+    "setMaxBytes(int)": "7",
+    "setTimeoutMs(long)": "8"
+  },
+  "methodsBrief": [
+    "public static boolean checkHasFile(){}",
+    "public static boolean checkHasFile(String fileCommandPath){}",
+    "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException{}",
+    "private MediaType detectOnPath(Path path, Metadata metadata) throws IOException{}",
+    "public void setFilePath(String fileCommandPath){}",
+    "public void setUseMime(boolean useMime){}",
+    "public boolean isUseMime(){}",
+    "public void setMaxBytes(int maxBytes){}",
+    "public void setTimeoutMs(long timeoutMs){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "setFilePath(String)",
+    "setUseMime(boolean)",
+    "setMaxBytes(int)",
+    "setTimeoutMs(long)"
+  ],
+  "getterSetterBrief": [
+    "public void setFilePath(String fileCommandPath){}",
+    "public void setUseMime(boolean useMime){}",
+    "public void setMaxBytes(int maxBytes){}",
+    "public void setTimeoutMs(long timeoutMs){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.nio.file.Path;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.ExternalProcess;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.Property;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.utils.FileProcessResult;\nimport org.apache.tika.utils.ProcessUtils;\nimport org.apache.tika.utils.StringUtils;\n\n/**\n * This runs the linux 'file' command against a file.  If\n * this is called on a TikaInputStream, it will use the underlying Path\n * or spool the full file to disk and then run file against that.\n * <p>\n * If this is run against any other type of InputStream, it will spool\n * up to {@link #maxBytes} to disk and then run the detector.\n * <p>\n * As with all detectors, mark must be supported.\n * <p>\n * If you want to use file's mime type in the parse, e.g.\n * to select the parser in AutoDetectParser, set {@link FileCommandDetector#setUseMime(boolean)}\n * to true.  The default behavior is to store the value as {@link FileCommandDetector#FILE_MIME}\n * but rely on other detectors for the \"active\" mime used by Tika.\n */\n@TikaComponent(spi = false)\npublic class FileCommandDetector implements Detector {\n\n    // TODO: file has some diff mimes names for some very common mimes\n    // should we map file mimes to Tika mimes, e.g. text/xml -> application/xml??\n    public static Property FILE_MIME = Property.externalText(\"file:mime\");\n\n    private static final Logger LOGGER = LoggerFactory.getLogger(FileCommandDetector.class);\n\n    private static final long DEFAULT_TIMEOUT_MS = 6000;\n\n    private static final String DEFAULT_FILE_COMMAND_PATH = \"file\";\n\n    private static boolean HAS_WARNED = false;\n\n    private Boolean hasFileCommand = null;\n\n    private String fileCommandPath = DEFAULT_FILE_COMMAND_PATH;\n\n    private int maxBytes = 1_000_000;\n\n    private long timeoutMs = DEFAULT_TIMEOUT_MS;\n\n    private boolean useMime = false;\n\n    public static boolean checkHasFile() {\n        return checkHasFile(DEFAULT_FILE_COMMAND_PATH);\n    }\n\n    public static boolean checkHasFile(String fileCommandPath) {\n        String[] commandline = new String[] { fileCommandPath, \"-v\" };\n        return ProcessUtils.checkCommand(commandline);\n    }\n\n    /**\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return mime as identified by the file command or application/octet-stream otherwise\n     * @throws IOException\n     */\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        if (hasFileCommand == null) {\n            hasFileCommand = checkHasFile(this.fileCommandPath);\n        }\n        if (!hasFileCommand) {\n            if (!HAS_WARNED) {\n                LOGGER.warn(\"'file' command isn't working: '\" + fileCommandPath + \"'\");\n                HAS_WARNED = true;\n            }\n            return MediaType.OCTET_STREAM;\n        }\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n        // spool the full file to disk, if there is no underlying file\n        return detectOnPath(tis.getPath(), metadata);\n    }\n\n    private MediaType detectOnPath(Path path, Metadata metadata) throws IOException {\n        String[] args = new String[] { ProcessUtils.escapeCommandLine(fileCommandPath), \"-b\", \"--mime-type\", ProcessUtils.escapeCommandLine(path.toAbsolutePath().toString()) };\n        ProcessBuilder builder = new ProcessBuilder(args);\n        FileProcessResult result = ProcessUtils.execute(builder, timeoutMs, 10000, 10000);\n        if (result.isTimeout()) {\n            metadata.set(ExternalProcess.IS_TIMEOUT, true);\n            return MediaType.OCTET_STREAM;\n        }\n        if (result.getExitValue() != 0) {\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            return MediaType.OCTET_STREAM;\n        }\n        String mimeString = result.getStdout();\n        if (StringUtils.isBlank(mimeString)) {\n            return MediaType.OCTET_STREAM;\n        }\n        metadata.set(FILE_MIME, mimeString);\n        if (useMime) {\n            MediaType mt = MediaType.parse(mimeString);\n            if (mt == null) {\n                return MediaType.OCTET_STREAM;\n            } else {\n                return mt;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }\n\n    public void setFilePath(String fileCommandPath) {\n        // this opens up a potential command vulnerability.\n        // Don't ever let an untrusted user set this.\n        this.fileCommandPath = fileCommandPath;\n        checkHasFile(this.fileCommandPath);\n    }\n\n    public void setUseMime(boolean useMime) {\n        this.useMime = useMime;\n    }\n\n    public boolean isUseMime() {\n        return useMime;\n    }\n\n    /**\n     * If this is not called on a TikaInputStream, this detector\n     * will spool up to this many bytes to a file to be detected\n     * by the 'file' command.\n     *\n     * @param maxBytes\n     */\n    public void setMaxBytes(int maxBytes) {\n        this.maxBytes = maxBytes;\n    }\n\n    public void setTimeoutMs(long timeoutMs) {\n        this.timeoutMs = timeoutMs;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This runs the linux 'file' command against a file.  If\n * this is called on a TikaInputStream, it will use the underlying Path\n * or spool the full file to disk and then run file against that.\n * <p>\n * If this is run against any other type of InputStream, it will spool\n * up to {@link #maxBytes} to disk and then run the detector.\n * <p>\n * As with all detectors, mark must be supported.\n * <p>\n * If you want to use file's mime type in the parse, e.g.\n * to select the parser in AutoDetectParser, set {@link FileCommandDetector#setUseMime(boolean)}\n * to true.  The default behavior is to store the value as {@link FileCommandDetector#FILE_MIME}\n * but rely on other detectors for the \"active\" mime used by Tika.\n */\n@TikaComponent(spi = false)\npublic class FileCommandDetector implements Detector {\n\n    // TODO: file has some diff mimes names for some very common mimes\n    // should we map file mimes to Tika mimes, e.g. text/xml -> application/xml??\n    public static Property FILE_MIME = Property.externalText(\"file:mime\");\n\n    private static final Logger LOGGER = LoggerFactory.getLogger(FileCommandDetector.class);\n\n    private static final long DEFAULT_TIMEOUT_MS = 6000;\n\n    private static final String DEFAULT_FILE_COMMAND_PATH = \"file\";\n\n    private static boolean HAS_WARNED = false;\n\n    private Boolean hasFileCommand = null;\n\n    private String fileCommandPath = DEFAULT_FILE_COMMAND_PATH;\n\n    private int maxBytes = 1_000_000;\n\n    private long timeoutMs = DEFAULT_TIMEOUT_MS;\n\n    private boolean useMime = false;\n\n    public static boolean checkHasFile() {\n        return checkHasFile(DEFAULT_FILE_COMMAND_PATH);\n    }\n\n    public static boolean checkHasFile(String fileCommandPath) {\n        String[] commandline = new String[] { fileCommandPath, \"-v\" };\n        return ProcessUtils.checkCommand(commandline);\n    }\n\n    /**\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return mime as identified by the file command or application/octet-stream otherwise\n     * @throws IOException\n     */\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        if (hasFileCommand == null) {\n            hasFileCommand = checkHasFile(this.fileCommandPath);\n        }\n        if (!hasFileCommand) {\n            if (!HAS_WARNED) {\n                LOGGER.warn(\"'file' command isn't working: '\" + fileCommandPath + \"'\");\n                HAS_WARNED = true;\n            }\n            return MediaType.OCTET_STREAM;\n        }\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n        // spool the full file to disk, if there is no underlying file\n        return detectOnPath(tis.getPath(), metadata);\n    }\n\n    private MediaType detectOnPath(Path path, Metadata metadata) throws IOException {\n        String[] args = new String[] { ProcessUtils.escapeCommandLine(fileCommandPath), \"-b\", \"--mime-type\", ProcessUtils.escapeCommandLine(path.toAbsolutePath().toString()) };\n        ProcessBuilder builder = new ProcessBuilder(args);\n        FileProcessResult result = ProcessUtils.execute(builder, timeoutMs, 10000, 10000);\n        if (result.isTimeout()) {\n            metadata.set(ExternalProcess.IS_TIMEOUT, true);\n            return MediaType.OCTET_STREAM;\n        }\n        if (result.getExitValue() != 0) {\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            return MediaType.OCTET_STREAM;\n        }\n        String mimeString = result.getStdout();\n        if (StringUtils.isBlank(mimeString)) {\n            return MediaType.OCTET_STREAM;\n        }\n        metadata.set(FILE_MIME, mimeString);\n        if (useMime) {\n            MediaType mt = MediaType.parse(mimeString);\n            if (mt == null) {\n                return MediaType.OCTET_STREAM;\n            } else {\n                return mt;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }\n\n    public void setFilePath(String fileCommandPath) {\n        // this opens up a potential command vulnerability.\n        // Don't ever let an untrusted user set this.\n        this.fileCommandPath = fileCommandPath;\n        checkHasFile(this.fileCommandPath);\n    }\n\n    public void setUseMime(boolean useMime) {\n        this.useMime = useMime;\n    }\n\n    public boolean isUseMime() {\n        return useMime;\n    }\n\n    /**\n     * If this is not called on a TikaInputStream, this detector\n     * will spool up to this many bytes to a file to be detected\n     * by the 'file' command.\n     *\n     * @param maxBytes\n     */\n    public void setMaxBytes(int maxBytes) {\n        this.maxBytes = maxBytes;\n    }\n\n    public void setTimeoutMs(long timeoutMs) {\n        this.timeoutMs = timeoutMs;\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,30 @@
+{
+  "className": "ChannelTypePropertyConverter",
+  "methodName": "convertAndSet",
+  "brief": "public static void convertAndSet(Metadata metadata, Object value){}",
+  "methodSignature": "convertAndSet(Metadata, Object)",
+  "sourceCode": "public static void convertAndSet(Metadata metadata, Object value) {\n            if (value instanceof Integer || value instanceof Long) {\n                metadata.set(property, convert(value));\n            }\n            if (value instanceof Date) {\n                // Won't happen in this case, just an example of already\n                //  converted to a type metadata.set(property) handles\n                metadata.set(property, (Date) value);\n            }\n            if (value instanceof String) {\n                // Already converted, or so we hope!\n                metadata.set(property, (String) value);\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "Object"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "set(Property, Date)"
+    ],
+    "java.lang.Object": [],
+    "org.apache.tika.metadata.XMPDM.ChannelTypePropertyConverter": [
+      "convert(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * How convert+set might work\n */\npublic static void convertAndSet(Metadata metadata, Object value) {\n    if (value instanceof Integer || value instanceof Long) {\n        metadata.set(property, convert(value));\n    }\n    if (value instanceof Date) {\n        // Won't happen in this case, just an example of already\n        // converted to a type metadata.set(property) handles\n        metadata.set(property, (Date) value);\n    }\n    if (value instanceof String) {\n        // Already converted, or so we hope!\n        metadata.set(property, (String) value);\n    }\n}",
+  "method_comment": "\n         * How convert+set might work\n         ",
+  "method_annotation": ""
+}

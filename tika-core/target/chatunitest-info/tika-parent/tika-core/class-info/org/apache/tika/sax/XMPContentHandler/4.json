@@ -1,0 +1,26 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "property",
+  "brief": "public void property(String name, String value) throws SAXException{}",
+  "methodSignature": "property(String, String)",
+  "sourceCode": "public void property(String name, String value) throws SAXException {\n        String qname = prefix + \":\" + name;\n        startElement(uri, name, qname, EMPTY_ATTRIBUTES);\n        characters(value.toCharArray(), 0, value.length());\n        endElement(uri, name, qname);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()",
+      "length()"
+    ]
+  },
+  "full_method_info": "public void property(String name, String value) throws SAXException {\n    String qname = prefix + \":\" + name;\n    startElement(uri, name, qname, EMPTY_ATTRIBUTES);\n    characters(value.toCharArray(), 0, value.length());\n    endElement(uri, name, qname);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

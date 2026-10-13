@@ -1,0 +1,25 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "addType",
+  "brief": "public void addType(MediaType type){}",
+  "methodSignature": "addType(MediaType)",
+  "sourceCode": "public void addType(MediaType type) {\n        registry.put(type, type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "public void addType(MediaType type) {\n    registry.put(type, type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

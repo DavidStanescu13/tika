@@ -1,0 +1,24 @@
+{
+  "className": "ByteArraySource",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(long n){}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(long n) {\n        if (n <= 0) {\n            return 0;\n        }\n        int available = length - position;\n        int toSkip = (int) Math.min(n, available);\n        position += toSkip;\n        return toSkip;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(long, long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic long skip(long n) {\n    if (n <= 0) {\n        return 0;\n    }\n    int available = length - position;\n    int toSkip = (int) Math.min(n, available);\n    position += toSkip;\n    return toSkip;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

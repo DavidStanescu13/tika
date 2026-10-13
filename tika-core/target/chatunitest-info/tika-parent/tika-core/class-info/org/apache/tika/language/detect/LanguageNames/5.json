@@ -1,0 +1,27 @@
+{
+  "className": "LanguageNames",
+  "methodName": "equals",
+  "brief": "public static boolean equals(String languageTagA, String languageTagB){}",
+  "methodSignature": "equals(String, String)",
+  "sourceCode": "public static boolean equals(String languageTagA, String languageTagB) {\n        Locale localeA = Locale.forLanguageTag(languageTagA);\n        Locale localeB = Locale.forLanguageTag(languageTagB);\n\n        // TODO Fill in script if missing and something we could derive from lang+region\n        // e.g. zh-CN => zh-Hans-CN, zh-TW => zh-Hant-TW.\n\n        // TODO Treat missing script == present script, if present script is default\n        //  (suppressed) for the language. So \"en-Latn\" == \"en\"\n\n        // TODO probably OK to ignore extensions\n\n        // TODO Do we want/need a fuzzy match for region (and script)\n        // E.g. are 'en' and 'en-GB' equal? Depends on the direction, e.g. if you want 'en', and\n        // you get back something more specific (en-GB) then that's OK, but if you explicitly want\n        // en-GB and you get back en then that might not be OK.\n        return localeA.equals(localeB);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Locale": [
+      "forLanguageTag(String)",
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public static boolean equals(String languageTagA, String languageTagB) {\n    Locale localeA = Locale.forLanguageTag(languageTagA);\n    Locale localeB = Locale.forLanguageTag(languageTagB);\n    // TODO Fill in script if missing and something we could derive from lang+region\n    // e.g. zh-CN => zh-Hans-CN, zh-TW => zh-Hant-TW.\n    // TODO Treat missing script == present script, if present script is default\n    // (suppressed) for the language. So \"en-Latn\" == \"en\"\n    // TODO probably OK to ignore extensions\n    // TODO Do we want/need a fuzzy match for region (and script)\n    // E.g. are 'en' and 'en-GB' equal? Depends on the direction, e.g. if you want 'en', and\n    // you get back something more specific (en-GB) then that's OK, but if you explicitly want\n    // en-GB and you get back en then that might not be OK.\n    return localeA.equals(localeB);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

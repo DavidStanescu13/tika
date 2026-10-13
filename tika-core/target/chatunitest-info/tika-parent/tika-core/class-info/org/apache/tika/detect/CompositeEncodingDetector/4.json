@@ -1,0 +1,45 @@
+{
+  "className": "CompositeEncodingDetector",
+  "methodName": "buildTrace",
+  "brief": "private static String buildTrace(EncodingDetectorContext context){}",
+  "methodSignature": "buildTrace(EncodingDetectorContext)",
+  "sourceCode": "private static String buildTrace(EncodingDetectorContext context) {\n        StringBuilder sb = new StringBuilder();\n        for (EncodingDetectorContext.Result r : context.getResults()) {\n            if (sb.length() > 0) {\n                sb.append(\", \");\n            }\n            sb.append(r.getDetectorName()).append(\"->\").append(r.getCharset().name());\n            sb.append(\"[\").append(r.getResultType()).append(\"]\");\n            if (r.getResultType() == EncodingResult.ResultType.STATISTICAL) {\n                sb.append(String.format(java.util.Locale.ROOT, \"(%.2f)\", r.getConfidence()));\n            }\n        }\n        String info = context.getArbitrationInfo();\n        if (info != null) {\n            sb.append(\" [\").append(info).append(\"]\");\n        }\n        return sb.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "EncodingDetectorContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.detect.EncodingDetectorContext": [
+      "getResults()",
+      "getArbitrationInfo()"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(Object)",
+      "append(String)"
+    ],
+    "org.apache.tika.detect.EncodingDetectorContext.Result": [
+      "getCharset()",
+      "getDetectorName()",
+      "getConfidence()",
+      "getResultType()"
+    ],
+    "java.nio.charset.Charset": [
+      "name()"
+    ],
+    "java.lang.String": [
+      "format(Locale, String, Object[])"
+    ]
+  },
+  "full_method_info": "private static String buildTrace(EncodingDetectorContext context) {\n    StringBuilder sb = new StringBuilder();\n    for (EncodingDetectorContext.Result r : context.getResults()) {\n        if (sb.length() > 0) {\n            sb.append(\", \");\n        }\n        sb.append(r.getDetectorName()).append(\"->\").append(r.getCharset().name());\n        sb.append(\"[\").append(r.getResultType()).append(\"]\");\n        if (r.getResultType() == EncodingResult.ResultType.STATISTICAL) {\n            sb.append(String.format(java.util.Locale.ROOT, \"(%.2f)\", r.getConfidence()));\n        }\n    }\n    String info = context.getArbitrationInfo();\n    if (info != null) {\n        sb.append(\" [\").append(info).append(\"]\");\n    }\n    return sb.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

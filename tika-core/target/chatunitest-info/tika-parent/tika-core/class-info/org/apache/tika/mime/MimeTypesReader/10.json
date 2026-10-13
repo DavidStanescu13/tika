@@ -1,0 +1,26 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "handleMimeError",
+  "brief": "protected void handleMimeError(String input, MimeTypeException ex, String qName,\r\n                                   Attributes attributes) throws SAXException{}",
+  "methodSignature": "handleMimeError(String, MimeTypeException, String, Attributes)",
+  "sourceCode": "protected void handleMimeError(String input, MimeTypeException ex, String qName,\n                                   Attributes attributes) throws SAXException {\n        throw new SAXException(ex);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MimeTypeException",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MimeTypeException": []
+  },
+  "full_method_info": "protected void handleMimeError(String input, MimeTypeException ex, String qName, Attributes attributes) throws SAXException {\n    throw new SAXException(ex);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

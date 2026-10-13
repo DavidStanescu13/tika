@@ -1,0 +1,55 @@
+{
+  "fullClassName": "org.apache.tika.sax.xpath.XPathParser",
+  "className": "XPathParser",
+  "index": 338,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax.xpath",
+  "packageDeclaration": "package org.apache.tika.sax.xpath;",
+  "classSignature": "public class XPathParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.HashMap;",
+    "import java.util.Map;"
+  ],
+  "fields": [
+    "private final Map<String, String> prefixes = new HashMap<>();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "addPrefix(String, String)": "0",
+    "parse(String)": "1",
+    "XPathParser()": "2",
+    "XPathParser(String, String)": "3"
+  },
+  "methodsBrief": [
+    "public void addPrefix(String prefix, String namespace){}",
+    "public Matcher parse(String xpath){}",
+    "public XPathParser(){}",
+    "public XPathParser(String prefix, String namespace){}"
+  ],
+  "constructorSigs": [
+    "XPathParser()",
+    "XPathParser(String, String)"
+  ],
+  "constructorBrief": [
+    "public XPathParser(){}",
+    "public XPathParser(String prefix, String namespace){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.XPathParser": [
+      "addPrefix(String, String)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax.xpath;\n\nimport java.util.HashMap;\nimport java.util.Map;\n\n/**\n * Parser for a very simple XPath subset. Only the following XPath constructs\n * (with namespaces) are supported:\n * <ul>\n *   <li><code>.../node()</code></li>\n *   <li><code>.../text()</code></li>\n *   <li><code>.../@*</code></li>\n *   <li><code>.../@name</code></li>\n *   <li><code>.../*...</code></li>\n *   <li><code>.../name...</code></li>\n *   <li><code>...//*...</code></li>\n *   <li><code>...//name...</code></li>\n * </ul>\n * <p>\n * In addition the non-abbreviated <code>.../descendant::node()</code>\n * construct can be used for cases where the descendant-or-self axis\n * used by the <code>...//node()</code> construct is not appropriate.\n */\npublic class XPathParser {\n\n    private final Map<String, String> prefixes = new HashMap<>();\n\n    public XPathParser() {\n    }\n\n    public XPathParser(String prefix, String namespace) {\n        addPrefix(prefix, namespace);\n    }\n\n    public void addPrefix(String prefix, String namespace) {\n        prefixes.put(prefix, namespace);\n    }\n\n    /**\n     * Parses the given simple XPath expression to an evaluation state\n     * initialized at the document node. Invalid expressions are not flagged\n     * as errors, they just result in a failing evaluation state.\n     *\n     * @param xpath simple XPath expression\n     * @return XPath evaluation state\n     */\n    public Matcher parse(String xpath) {\n        if (xpath.equals(\"/text()\")) {\n            return TextMatcher.INSTANCE;\n        } else if (xpath.equals(\"/node()\")) {\n            return NodeMatcher.INSTANCE;\n        } else if (xpath.equals(\"/descendant::node()\") || xpath.equals(\"/descendant:node()\")) {\n            // for compatibility\n            return new CompositeMatcher(TextMatcher.INSTANCE, new ChildMatcher(new SubtreeMatcher(NodeMatcher.INSTANCE)));\n        } else if (xpath.equals(\"/@*\")) {\n            return AttributeMatcher.INSTANCE;\n        } else if (xpath.isEmpty()) {\n            return ElementMatcher.INSTANCE;\n        } else if (xpath.startsWith(\"/@\")) {\n            String name = xpath.substring(2);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedAttributeMatcher(prefixes.get(prefix), name);\n            } else {\n                return Matcher.FAIL;\n            }\n        } else if (xpath.startsWith(\"/*\")) {\n            return new ChildMatcher(parse(xpath.substring(2)));\n        } else if (xpath.startsWith(\"///\")) {\n            return Matcher.FAIL;\n        } else if (xpath.startsWith(\"//\")) {\n            return new SubtreeMatcher(parse(xpath.substring(1)));\n        } else if (xpath.startsWith(\"/\")) {\n            int slash = xpath.indexOf('/', 1);\n            if (slash == -1) {\n                slash = xpath.length();\n            }\n            String name = xpath.substring(1, slash);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedElementMatcher(prefixes.get(prefix), name, parse(xpath.substring(slash)));\n            } else {\n                return Matcher.FAIL;\n            }\n        } else {\n            return Matcher.FAIL;\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Parser for a very simple XPath subset. Only the following XPath constructs\n * (with namespaces) are supported:\n * <ul>\n *   <li><code>.../node()</code></li>\n *   <li><code>.../text()</code></li>\n *   <li><code>.../@*</code></li>\n *   <li><code>.../@name</code></li>\n *   <li><code>.../*...</code></li>\n *   <li><code>.../name...</code></li>\n *   <li><code>...//*...</code></li>\n *   <li><code>...//name...</code></li>\n * </ul>\n * <p>\n * In addition the non-abbreviated <code>.../descendant::node()</code>\n * construct can be used for cases where the descendant-or-self axis\n * used by the <code>...//node()</code> construct is not appropriate.\n */\npublic class XPathParser {\n\n    private final Map<String, String> prefixes = new HashMap<>();\n\n    public XPathParser() {\n    }\n\n    public XPathParser(String prefix, String namespace) {\n        addPrefix(prefix, namespace);\n    }\n\n    public void addPrefix(String prefix, String namespace) {\n        prefixes.put(prefix, namespace);\n    }\n\n    /**\n     * Parses the given simple XPath expression to an evaluation state\n     * initialized at the document node. Invalid expressions are not flagged\n     * as errors, they just result in a failing evaluation state.\n     *\n     * @param xpath simple XPath expression\n     * @return XPath evaluation state\n     */\n    public Matcher parse(String xpath) {\n        if (xpath.equals(\"/text()\")) {\n            return TextMatcher.INSTANCE;\n        } else if (xpath.equals(\"/node()\")) {\n            return NodeMatcher.INSTANCE;\n        } else if (xpath.equals(\"/descendant::node()\") || xpath.equals(\"/descendant:node()\")) {\n            // for compatibility\n            return new CompositeMatcher(TextMatcher.INSTANCE, new ChildMatcher(new SubtreeMatcher(NodeMatcher.INSTANCE)));\n        } else if (xpath.equals(\"/@*\")) {\n            return AttributeMatcher.INSTANCE;\n        } else if (xpath.isEmpty()) {\n            return ElementMatcher.INSTANCE;\n        } else if (xpath.startsWith(\"/@\")) {\n            String name = xpath.substring(2);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedAttributeMatcher(prefixes.get(prefix), name);\n            } else {\n                return Matcher.FAIL;\n            }\n        } else if (xpath.startsWith(\"/*\")) {\n            return new ChildMatcher(parse(xpath.substring(2)));\n        } else if (xpath.startsWith(\"///\")) {\n            return Matcher.FAIL;\n        } else if (xpath.startsWith(\"//\")) {\n            return new SubtreeMatcher(parse(xpath.substring(1)));\n        } else if (xpath.startsWith(\"/\")) {\n            int slash = xpath.indexOf('/', 1);\n            if (slash == -1) {\n                slash = xpath.length();\n            }\n            String name = xpath.substring(1, slash);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedElementMatcher(prefixes.get(prefix), name, parse(xpath.substring(slash)));\n            } else {\n                return Matcher.FAIL;\n            }\n        } else {\n            return Matcher.FAIL;\n        }\n    }\n}",
+  "subClasses": []
+}

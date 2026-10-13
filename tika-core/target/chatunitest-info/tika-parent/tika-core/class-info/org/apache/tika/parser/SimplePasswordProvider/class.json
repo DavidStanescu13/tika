@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.parser.SimplePasswordProvider",
+  "className": "SimplePasswordProvider",
+  "index": 261,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[PasswordProvider]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@TikaComponent(contextKey = PasswordProvider.class)\r\npublic class SimplePasswordProvider",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "private String password;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "PasswordProvider"
+  ],
+  "methodSigs": {
+    "getPassword(Metadata)": "0",
+    "getPassword()": "1",
+    "setPassword(String)": "2",
+    "SimplePasswordProvider()": "3",
+    "SimplePasswordProvider(String)": "4"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public String getPassword(Metadata metadata){}",
+    "public String getPassword(){}",
+    "public void setPassword(String password){}",
+    "public SimplePasswordProvider(){}",
+    "public SimplePasswordProvider(String password){}"
+  ],
+  "constructorSigs": [
+    "SimplePasswordProvider()",
+    "SimplePasswordProvider(String)"
+  ],
+  "constructorBrief": [
+    "public SimplePasswordProvider(){}",
+    "public SimplePasswordProvider(String password){}"
+  ],
+  "getterSetterSigs": [
+    "getPassword()",
+    "setPassword(String)"
+  ],
+  "getterSetterBrief": [
+    "public String getPassword(){}",
+    "public void setPassword(String password){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.metadata.Metadata;\n\n/**\n * A simple {@link PasswordProvider} that returns a configured password\n * for all documents. This can be configured via JSON in the parseContext:\n * <pre>\n * {\n *   \"parseContext\": {\n *     \"simple-password-provider\": {\n *       \"password\": \"secret\"\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(contextKey = PasswordProvider.class)\npublic class SimplePasswordProvider implements PasswordProvider {\n\n    private static final long serialVersionUID = 1L;\n\n    private String password;\n\n    public SimplePasswordProvider() {\n    }\n\n    public SimplePasswordProvider(String password) {\n        this.password = password;\n    }\n\n    @Override\n    public String getPassword(Metadata metadata) {\n        return password;\n    }\n\n    public String getPassword() {\n        return password;\n    }\n\n    public void setPassword(String password) {\n        this.password = password;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A simple {@link PasswordProvider} that returns a configured password\n * for all documents. This can be configured via JSON in the parseContext:\n * <pre>\n * {\n *   \"parseContext\": {\n *     \"simple-password-provider\": {\n *       \"password\": \"secret\"\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(contextKey = PasswordProvider.class)\npublic class SimplePasswordProvider implements PasswordProvider {\n\n    private static final long serialVersionUID = 1L;\n\n    private String password;\n\n    public SimplePasswordProvider() {\n    }\n\n    public SimplePasswordProvider(String password) {\n        this.password = password;\n    }\n\n    @Override\n    public String getPassword(Metadata metadata) {\n        return password;\n    }\n\n    public String getPassword() {\n        return password;\n    }\n\n    public void setPassword(String password) {\n        this.password = password;\n    }\n}",
+  "subClasses": []
+}

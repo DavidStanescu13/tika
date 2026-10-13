@@ -1,0 +1,28 @@
+{
+  "className": "MediaType",
+  "methodName": "getBaseType",
+  "brief": "public MediaType getBaseType(){}",
+  "methodSignature": "getBaseType()",
+  "sourceCode": "public MediaType getBaseType() {\n        if (parameters.isEmpty()) {\n            return this;\n        } else {\n            return MediaType.parse(string.substring(0, semicolon));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "isEmpty()"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.lang.String": [
+      "substring(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the base form of the MediaType, excluding\n * any parameters, such as \"text/plain\" for\n * \"text/plain; charset=utf-8\"\n */\npublic MediaType getBaseType() {\n    if (parameters.isEmpty()) {\n        return this;\n    } else {\n        return MediaType.parse(string.substring(0, semicolon));\n    }\n}",
+  "method_comment": "\n     * Returns the base form of the MediaType, excluding\n     * any parameters, such as \"text/plain\" for\n     * \"text/plain; charset=utf-8\"\n     ",
+  "method_annotation": ""
+}

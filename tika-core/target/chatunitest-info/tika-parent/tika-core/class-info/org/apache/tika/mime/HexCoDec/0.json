@@ -1,0 +1,27 @@
+{
+  "className": "HexCoDec",
+  "methodName": "decode",
+  "brief": "public static byte[] decode(String hexValue){}",
+  "methodSignature": "decode(String)",
+  "sourceCode": "public static byte[] decode(String hexValue) {\n        return decode(hexValue.toCharArray());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()"
+    ],
+    "org.apache.tika.mime.HexCoDec": [
+      "decode(char[])"
+    ]
+  },
+  "full_method_info": "/**\n * Decode a hex string\n *\n * @param hexValue the string of hex characters\n * @return the decode hex string as bytes.\n */\npublic static byte[] decode(String hexValue) {\n    return decode(hexValue.toCharArray());\n}",
+  "method_comment": "\n     * Decode a hex string\n     *\n     * @param hexValue the string of hex characters\n     * @return the decode hex string as bytes.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,35 @@
+{
+  "className": "ElementMappingContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String namespaceURI, String localName, String qName, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String namespaceURI, String localName, String qName, Attributes atts)\n            throws SAXException {\n        TargetElement mapping = mappings.get(new QName(namespaceURI, localName));\n        if (mapping != null) {\n            QName tag = mapping.getMappedTagName();\n            super.startElement(tag.getNamespaceURI(), tag.getLocalPart(), getQNameAsString(tag),\n                    mapping.mapAttributes(atts));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "org.apache.tika.sax.ElementMappingContentHandler.TargetElement": [
+      "getMappedTagName()"
+    ],
+    "javax.xml.namespace.QName": [
+      "getNamespaceURI()",
+      "getLocalPart()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {\n    TargetElement mapping = mappings.get(new QName(namespaceURI, localName));\n    if (mapping != null) {\n        QName tag = mapping.getMappedTagName();\n        super.startElement(tag.getNamespaceURI(), tag.getLocalPart(), getQNameAsString(tag), mapping.mapAttributes(atts));\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

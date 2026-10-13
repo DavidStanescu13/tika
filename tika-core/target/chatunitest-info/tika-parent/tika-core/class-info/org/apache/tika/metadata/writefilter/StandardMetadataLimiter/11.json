@@ -1,0 +1,27 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "include",
+  "brief": "private boolean include(String field, String value){}",
+  "methodSignature": "include(String, String)",
+  "sourceCode": "private boolean include(String field, String value) {\n        return includeField(field) && includeValue(value);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter": [
+      "includeValue(String)",
+      "includeField(String)"
+    ]
+  },
+  "full_method_info": "private boolean include(String field, String value) {\n    return includeField(field) && includeValue(value);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

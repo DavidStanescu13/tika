@@ -1,0 +1,20 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setMaxStdOut",
+  "brief": "public void setMaxStdOut(int maxStdOut){}",
+  "methodSignature": "setMaxStdOut(int)",
+  "sourceCode": "public void setMaxStdOut(int maxStdOut) {\n        this.maxStdOut = maxStdOut;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setMaxStdOut(int maxStdOut) {\n    this.maxStdOut = maxStdOut;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

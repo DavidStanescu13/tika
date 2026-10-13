@@ -1,0 +1,30 @@
+{
+  "className": "ExpandedTitleContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        super.endElement(uri, localName, qName);\n        if (TITLE_TAG.equalsIgnoreCase(localName) && XHTMLContentHandler.XHTML.equals(uri)) {\n            isTitleTagOpen = false;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "equalsIgnoreCase(String)"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endElement(String, String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) throws SAXException {\n    super.endElement(uri, localName, qName);\n    if (TITLE_TAG.equalsIgnoreCase(localName) && XHTMLContentHandler.XHTML.equals(uri)) {\n        isTitleTagOpen = false;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

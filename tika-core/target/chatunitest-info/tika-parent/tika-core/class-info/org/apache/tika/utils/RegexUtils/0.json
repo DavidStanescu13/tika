@@ -1,0 +1,37 @@
+{
+  "className": "RegexUtils",
+  "methodName": "extractLinks",
+  "brief": "public static List<String> extractLinks(String content){}",
+  "methodSignature": "extractLinks(String)",
+  "sourceCode": "public static List<String> extractLinks(String content) {\n        if (content == null || content.isEmpty()) {\n            return Collections.emptyList();\n        }\n\n        List<String> extractions = new ArrayList<>();\n        final Matcher matcher = LINKS_PATTERN.matcher(content);\n        while (matcher.find()) {\n            extractions.add(matcher.group());\n        }\n        return extractions;\n\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "java.util.Collections": [
+      "emptyList()"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "group()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Extract urls from plain text.\n *\n * @param content The plain text content to examine\n * @return List of urls within found in the plain text\n */\npublic static List<String> extractLinks(String content) {\n    if (content == null || content.isEmpty()) {\n        return Collections.emptyList();\n    }\n    List<String> extractions = new ArrayList<>();\n    final Matcher matcher = LINKS_PATTERN.matcher(content);\n    while (matcher.find()) {\n        extractions.add(matcher.group());\n    }\n    return extractions;\n}",
+  "method_comment": "\n     * Extract urls from plain text.\n     *\n     * @param content The plain text content to examine\n     * @return List of urls within found in the plain text\n     ",
+  "method_annotation": ""
+}

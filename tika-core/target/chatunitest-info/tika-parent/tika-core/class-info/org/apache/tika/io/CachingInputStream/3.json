@@ -1,0 +1,24 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "seekTo",
+  "brief": "void seekTo(long newPosition) throws IOException{}",
+  "methodSignature": "seekTo(long)",
+  "sourceCode": "void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0) {\n            throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n        }\n        if (newPosition > cache.size()) {\n            throw new IOException(\"Cannot seek past cached content. Position: \" + newPosition + \", cached: \" + cache.size());\n        }\n        this.position = newPosition;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Seek to a specific position in the stream.\n * Can only seek to positions that have already been read (cached).\n */\nvoid seekTo(long newPosition) throws IOException {\n    if (newPosition < 0) {\n        throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n    }\n    if (newPosition > cache.size()) {\n        throw new IOException(\"Cannot seek past cached content. Position: \" + newPosition + \", cached: \" + cache.size());\n    }\n    this.position = newPosition;\n}",
+  "method_comment": "\n     * Seek to a specific position in the stream.\n     * Can only seek to positions that have already been read (cached).\n     ",
+  "method_annotation": ""
+}

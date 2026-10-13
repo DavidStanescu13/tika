@@ -1,0 +1,18 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "getProgressTimeoutMillis",
+  "brief": "public long getProgressTimeoutMillis(){}",
+  "methodSignature": "getProgressTimeoutMillis()",
+  "sourceCode": "public long getProgressTimeoutMillis() {\n        return progressTimeoutMillis;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum time in milliseconds between progress updates before\n * the task is considered stalled.\n *\n * @return progress timeout in milliseconds\n */\npublic long getProgressTimeoutMillis() {\n    return progressTimeoutMillis;\n}",
+  "method_comment": "\n     * Gets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @return progress timeout in milliseconds\n     ",
+  "method_annotation": ""
+}

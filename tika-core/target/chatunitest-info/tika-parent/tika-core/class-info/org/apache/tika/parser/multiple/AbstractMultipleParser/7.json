@@ -1,0 +1,29 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "parserCompleted",
+  "brief": "protected abstract boolean parserCompleted(Parser parser, Metadata metadata,\r\n                                               ContentHandler handler, ParseContext context,\r\n                                               Exception exception);",
+  "methodSignature": "parserCompleted(Parser, Metadata, ContentHandler, ParseContext, Exception)",
+  "sourceCode": "protected abstract boolean parserCompleted(Parser parser, Metadata metadata,\n                                               ContentHandler handler, ParseContext context,\n                                               Exception exception);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Parser",
+    "Metadata",
+    "ContentHandler",
+    "ParseContext",
+    "Exception"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.lang.Exception": []
+  },
+  "full_method_info": "/**\n * Used to notify implementations that a Parser has Finished\n * or Failed, and to allow them to decide to continue or\n * abort further parsing\n */\nprotected abstract boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception);",
+  "method_comment": "\n     * Used to notify implementations that a Parser has Finished\n     * or Failed, and to allow them to decide to continue or\n     * abort further parsing\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "TailStream",
+  "methodName": "getTail",
+  "brief": "public byte[] getTail(){}",
+  "methodSignature": "getTail()",
+  "sourceCode": "public byte[] getTail() {\n        int size = (int) Math.min(tailSize, bytesRead);\n        byte[] result = new byte[size];\n        System.arraycopy(tailBuffer, currentIndex, result, 0, size - currentIndex);\n        System.arraycopy(tailBuffer, 0, result, size - currentIndex, currentIndex);\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns an array with the last data read from the underlying stream. If\n * the underlying stream contained more data than the ''tailSize''\n * constructor argument, the returned array has a length of ''tailSize''.\n * Otherwise, its length equals the number of bytes read.\n *\n * @return an array with the last data read from the underlying stream\n */\npublic byte[] getTail() {\n    int size = (int) Math.min(tailSize, bytesRead);\n    byte[] result = new byte[size];\n    System.arraycopy(tailBuffer, currentIndex, result, 0, size - currentIndex);\n    System.arraycopy(tailBuffer, 0, result, size - currentIndex, currentIndex);\n    return result;\n}",
+  "method_comment": "\n     * Returns an array with the last data read from the underlying stream. If\n     * the underlying stream contained more data than the ''tailSize''\n     * constructor argument, the returned array has a length of ''tailSize''.\n     * Otherwise, its length equals the number of bytes read.\n     *\n     * @return an array with the last data read from the underlying stream\n     ",
+  "method_annotation": ""
+}

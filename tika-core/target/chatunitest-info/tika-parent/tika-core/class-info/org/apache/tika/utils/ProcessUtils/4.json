@@ -1,0 +1,54 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "execute",
+  "brief": "public static FileProcessResult execute(ProcessBuilder pb,\r\n                                            long timeoutMillis,\r\n                                            int maxStdoutBuffer, int maxStdErrBuffer)\r\n            throws IOException{}",
+  "methodSignature": "execute(ProcessBuilder, long, int, int)",
+  "sourceCode": "public static FileProcessResult execute(ProcessBuilder pb,\n                                            long timeoutMillis,\n                                            int maxStdoutBuffer, int maxStdErrBuffer)\n            throws IOException {\n        Process p = null;\n        String id = null;\n        try {\n            p = pb.start();\n            id = register(p);\n            long elapsed = -1;\n            long start = System.currentTimeMillis();\n            StreamGobbler outGobbler = new StreamGobbler(p.getInputStream(), maxStdoutBuffer);\n            StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);\n\n            Thread outThread = new Thread(outGobbler);\n            outThread.start();\n\n            Thread errThread = new Thread(errGobbler);\n            errThread.start();\n            int exitValue = -1;\n            boolean complete = false;\n            try {\n                complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);\n                elapsed = System.currentTimeMillis() - start;\n                if (complete) {\n                    exitValue = p.exitValue();\n                    outThread.join(1000);\n                    errThread.join(1000);\n                } else {\n                    p.destroyForcibly();\n                    outThread.join(1000);\n                    errThread.join(1000);\n                    boolean completed = p.waitFor(500, TimeUnit.MILLISECONDS);\n                    if (completed) {\n                        try {\n                            exitValue = p.exitValue();\n                        } catch (IllegalThreadStateException e) {\n                            //not finished!\n                        }\n                    }\n                }\n            } catch (InterruptedException e) {\n                exitValue = -1000;\n            } finally {\n                outThread.interrupt();\n                errThread.interrupt();\n            }\n            FileProcessResult result = new FileProcessResult();\n            result.processTimeMillis = elapsed;\n            result.stderrLength = errGobbler.getStreamLength();\n            result.stdoutLength = outGobbler.getStreamLength();\n            result.isTimeout = ! complete;\n            result.exitValue = exitValue;\n            result.stdout = StringUtils.joinWith(\"\\n\", outGobbler.getLines());\n            result.stderr = StringUtils.joinWith(\"\\n\", errGobbler.getLines());\n            result.stdoutTruncated = outGobbler.getIsTruncated();\n            result.stderrTruncated = errGobbler.getIsTruncated();\n            return result;\n        } finally {\n            if (p != null) {\n                p.destroyForcibly();\n            }\n            if (id != null) {\n                release(id);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ProcessBuilder",
+    "long",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.ProcessBuilder": [
+      "start()"
+    ],
+    "org.apache.tika.utils.ProcessUtils": [
+      "release(String)",
+      "register(Process)"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ],
+    "java.lang.Process": [
+      "exitValue()",
+      "waitFor(long, TimeUnit)",
+      "getInputStream()",
+      "getErrorStream()",
+      "destroyForcibly()"
+    ],
+    "java.lang.Thread": [
+      "start()",
+      "join(long)",
+      "interrupt()"
+    ],
+    "org.apache.tika.utils.StreamGobbler": [
+      "getLines()",
+      "getStreamLength()",
+      "getIsTruncated()"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "joinWith(String, String>)"
+    ]
+  },
+  "full_method_info": "/**\n * This writes stdout and stderr to the FileProcessResult.\n *\n * @param pb\n * @param timeoutMillis\n * @param maxStdoutBuffer\n * @param maxStdErrBuffer\n * @return\n * @throws IOException\n */\npublic static FileProcessResult execute(ProcessBuilder pb, long timeoutMillis, int maxStdoutBuffer, int maxStdErrBuffer) throws IOException {\n    Process p = null;\n    String id = null;\n    try {\n        p = pb.start();\n        id = register(p);\n        long elapsed = -1;\n        long start = System.currentTimeMillis();\n        StreamGobbler outGobbler = new StreamGobbler(p.getInputStream(), maxStdoutBuffer);\n        StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);\n        Thread outThread = new Thread(outGobbler);\n        outThread.start();\n        Thread errThread = new Thread(errGobbler);\n        errThread.start();\n        int exitValue = -1;\n        boolean complete = false;\n        try {\n            complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);\n            elapsed = System.currentTimeMillis() - start;\n            if (complete) {\n                exitValue = p.exitValue();\n                outThread.join(1000);\n                errThread.join(1000);\n            } else {\n                p.destroyForcibly();\n                outThread.join(1000);\n                errThread.join(1000);\n                boolean completed = p.waitFor(500, TimeUnit.MILLISECONDS);\n                if (completed) {\n                    try {\n                        exitValue = p.exitValue();\n                    } catch (IllegalThreadStateException e) {\n                        // not finished!\n                    }\n                }\n            }\n        } catch (InterruptedException e) {\n            exitValue = -1000;\n        } finally {\n            outThread.interrupt();\n            errThread.interrupt();\n        }\n        FileProcessResult result = new FileProcessResult();\n        result.processTimeMillis = elapsed;\n        result.stderrLength = errGobbler.getStreamLength();\n        result.stdoutLength = outGobbler.getStreamLength();\n        result.isTimeout = !complete;\n        result.exitValue = exitValue;\n        result.stdout = StringUtils.joinWith(\"\\n\", outGobbler.getLines());\n        result.stderr = StringUtils.joinWith(\"\\n\", errGobbler.getLines());\n        result.stdoutTruncated = outGobbler.getIsTruncated();\n        result.stderrTruncated = errGobbler.getIsTruncated();\n        return result;\n    } finally {\n        if (p != null) {\n            p.destroyForcibly();\n        }\n        if (id != null) {\n            release(id);\n        }\n    }\n}",
+  "method_comment": "\n     * This writes stdout and stderr to the FileProcessResult.\n     *\n     * @param pb\n     * @param timeoutMillis\n     * @param maxStdoutBuffer\n     * @param maxStdErrBuffer\n     * @return\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

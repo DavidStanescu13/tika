@@ -1,0 +1,25 @@
+{
+  "className": "RecursiveParser",
+  "methodName": "getSupportedTypes",
+  "brief": "@Override\r\n        public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "@Override\n        public Set<MediaType> getSupportedTypes(ParseContext context) {\n            return parser.getSupportedTypes(context);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<MediaType> getSupportedTypes(ParseContext context) {\n    return parser.getSupportedTypes(context);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

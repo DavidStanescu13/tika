@@ -1,0 +1,89 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_escapeCommandLine_2_0_Test {
+
+    @Mock
+    private SystemUtils systemUtils;
+
+    @Test
+    public void testEscapeCommandLine_NullInput() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine(null);
+        assertEquals(null, result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_NoSpaces_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(true);
+        String result = processUtils.escapeCommandLine("test");
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(true);
+        String result = processUtils.escapeCommandLine("test arg");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(true);
+        String result = processUtils.escapeCommandLine("\"test arg\"");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_NoSpaces_NonWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(false);
+        String result = processUtils.escapeCommandLine("test");
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_NonWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(false);
+        String result = processUtils.escapeCommandLine("test arg");
+        assertEquals("test arg", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_NonWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        when(systemUtils.IS_OS_WINDOWS).thenReturn(false);
+        String result = processUtils.escapeCommandLine("\"test arg\"");
+        assertEquals("\"test arg\"", result);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_escapeCommandLine_2_0_Test: line 4 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_escapeCommandLine_2_0_Test: line 16 : package org.mockito does not exist
+Error in ProcessUtils_escapeCommandLine_2_0_Test: line 14 : package org.mockito does not exist
+Error in ProcessUtils_escapeCommandLine_2_0_Test: line 19 : cannot find symbol
+  symbol: class MockitoExtension
+Error in ProcessUtils_escapeCommandLine_2_0_Test: line 22 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test

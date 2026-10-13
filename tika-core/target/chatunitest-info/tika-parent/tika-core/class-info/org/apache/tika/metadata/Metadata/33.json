@@ -1,0 +1,34 @@
+{
+  "className": "Metadata",
+  "methodName": "set",
+  "brief": "public void set(Property property, Calendar date){}",
+  "methodSignature": "set(Property, Calendar)",
+  "sourceCode": "public void set(Property property, Calendar date) {\n        if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n            throw new PropertyTypeException(Property.PropertyType.SIMPLE,\n                    property.getPrimaryProperty().getPropertyType());\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n            throw new PropertyTypeException(Property.ValueType.DATE,\n                    property.getPrimaryProperty().getValueType());\n        }\n        String dateString = null;\n        if (date != null) {\n            dateString = formatDate(date);\n        }\n        set(property, dateString);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "Calendar"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "java.util.Calendar": [],
+    "org.apache.tika.utils.DateUtils": [
+      "formatDate(Calendar)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the date value of the identified metadata property.\n *\n * @param property simple integer property definition\n * @param date     property value\n * @since Apache Tika 0.8\n */\npublic void set(Property property, Calendar date) {\n    if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n        throw new PropertyTypeException(Property.PropertyType.SIMPLE, property.getPrimaryProperty().getPropertyType());\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n        throw new PropertyTypeException(Property.ValueType.DATE, property.getPrimaryProperty().getValueType());\n    }\n    String dateString = null;\n    if (date != null) {\n        dateString = formatDate(date);\n    }\n    set(property, dateString);\n}",
+  "method_comment": "\n     * Sets the date value of the identified metadata property.\n     *\n     * @param property simple integer property definition\n     * @param date     property value\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

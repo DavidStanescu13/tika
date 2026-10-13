@@ -1,0 +1,28 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "build",
+  "brief": "public static Parser build(CompositeParser parser, Detector detector,\r\n                               AutoDetectParserConfig autoDetectParserConfig){}",
+  "methodSignature": "build(CompositeParser, Detector, AutoDetectParserConfig)",
+  "sourceCode": "public static Parser build(CompositeParser parser, Detector detector,\n                               AutoDetectParserConfig autoDetectParserConfig) {\n        return new AutoDetectParser(parser.getMediaTypeRegistry(), parser, detector,\n                autoDetectParserConfig);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CompositeParser",
+    "Detector",
+    "AutoDetectParserConfig"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.CompositeParser": [
+      "getMediaTypeRegistry()"
+    ],
+    "org.apache.tika.detect.Detector": [],
+    "org.apache.tika.parser.AutoDetectParserConfig": []
+  },
+  "full_method_info": "public static Parser build(CompositeParser parser, Detector detector, AutoDetectParserConfig autoDetectParserConfig) {\n    return new AutoDetectParser(parser.getMediaTypeRegistry(), parser, detector, autoDetectParserConfig);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        String str = \"TikaInputStream of \";\n        if (hasFile()) {\n            try {\n                str += getPath().toString();\n            } catch (IOException e) {\n                str += \"unknown path\";\n            }\n        } else {\n            str += in.toString();\n        }\n        if (openContainer != null) {\n            str += \" (in \" + openContainer + \")\";\n        }\n        return str;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "hasFile()",
+      "getPath()"
+    ],
+    "java.nio.file.Path": [
+      "toString()"
+    ],
+    "java.lang.Object": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    String str = \"TikaInputStream of \";\n    if (hasFile()) {\n        try {\n            str += getPath().toString();\n        } catch (IOException e) {\n            str += \"unknown path\";\n        }\n    } else {\n        str += in.toString();\n    }\n    if (openContainer != null) {\n        str += \" (in \" + openContainer + \")\";\n    }\n    return str;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

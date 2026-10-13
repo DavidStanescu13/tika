@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "scoreA",
+  "brief": "public TextQualityScore scoreA(){}",
+  "methodSignature": "scoreA()",
+  "sourceCode": "public TextQualityScore scoreA() {\n        return scoreA;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Quality score for candidate A.\n */\npublic TextQualityScore scoreA() {\n    return scoreA;\n}",
+  "method_comment": " Quality score for candidate A. ",
+  "method_annotation": ""
+}

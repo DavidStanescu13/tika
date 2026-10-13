@@ -1,0 +1,25 @@
+{
+  "className": "Result",
+  "methodName": "getConfidence",
+  "brief": "public float getConfidence(){}",
+  "methodSignature": "getConfidence()",
+  "sourceCode": "public float getConfidence() {\n            return encodingResults.get(0).getConfidence();\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.EncodingResult": [
+      "getConfidence()"
+    ],
+    "java.util.List": [
+      "get(int)"
+    ]
+  },
+  "full_method_info": "/**\n * The confidence of the top-ranked result from this detector.\n */\npublic float getConfidence() {\n    return encodingResults.get(0).getConfidence();\n}",
+  "method_comment": "\n         * The confidence of the top-ranked result from this detector.\n         ",
+  "method_annotation": ""
+}

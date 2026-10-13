@@ -1,0 +1,25 @@
+{
+  "className": "ParseContext",
+  "methodName": "hasJsonConfig",
+  "brief": "public boolean hasJsonConfig(String name){}",
+  "methodSignature": "hasJsonConfig(String)",
+  "sourceCode": "public boolean hasJsonConfig(String name) {\n        return jsonConfigs.containsKey(name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "containsKey(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if a JSON configuration exists for the given component name.\n *\n * @param name the component name\n * @return true if a JSON config exists\n * @since Apache Tika 4.0\n */\npublic boolean hasJsonConfig(String name) {\n    return jsonConfigs.containsKey(name);\n}",
+  "method_comment": "\n     * Checks if a JSON configuration exists for the given component name.\n     *\n     * @param name the component name\n     * @return true if a JSON config exists\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

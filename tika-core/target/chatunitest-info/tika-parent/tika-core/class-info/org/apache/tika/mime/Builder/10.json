@@ -1,0 +1,18 @@
+{
+  "className": "Builder",
+  "methodName": "build2",
+  "brief": "public ProbabilisticMimeDetectionSelector build2(){}",
+  "methodSignature": "build2()",
+  "sourceCode": "public ProbabilisticMimeDetectionSelector build2() {\n            return new ProbabilisticMimeDetectionSelector(this);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Initialize the MimeTypes with this builder instance\n */\npublic ProbabilisticMimeDetectionSelector build2() {\n    return new ProbabilisticMimeDetectionSelector(this);\n}",
+  "method_comment": "\n         * Initialize the MimeTypes with this builder instance\n         ",
+  "method_annotation": ""
+}

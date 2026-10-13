@@ -1,0 +1,30 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String local, String name, Attributes attributes)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String local, String name, Attributes attributes)\n            throws SAXException {\n\n        if (name.equals(\"frameset\")) {\n            lazyEndHead(true);\n        } else if (!AUTO.contains(name)) {\n            if (HEAD.contains(name)) {\n                lazyStartHead();\n            } else {\n                lazyEndHead(false);\n            }\n\n            if (XHTML.equals(uri) && INDENT.contains(name)) {\n                ignorableWhitespace(TAB, 0, TAB.length);\n            }\n\n            super.startElement(uri, local, name, attributes);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Starts the given element. Table cells and list items are automatically\n * indented by emitting a tab character as ignorable whitespace.\n */\n@Override\npublic void startElement(String uri, String local, String name, Attributes attributes) throws SAXException {\n    if (name.equals(\"frameset\")) {\n        lazyEndHead(true);\n    } else if (!AUTO.contains(name)) {\n        if (HEAD.contains(name)) {\n            lazyStartHead();\n        } else {\n            lazyEndHead(false);\n        }\n        if (XHTML.equals(uri) && INDENT.contains(name)) {\n            ignorableWhitespace(TAB, 0, TAB.length);\n        }\n        super.startElement(uri, local, name, attributes);\n    }\n}",
+  "method_comment": "\n     * Starts the given element. Table cells and list items are automatically\n     * indented by emitting a tab character as ignorable whitespace.\n     ",
+  "method_annotation": "@Override\n"
+}

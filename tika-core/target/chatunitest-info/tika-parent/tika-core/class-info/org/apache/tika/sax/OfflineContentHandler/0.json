@@ -1,0 +1,23 @@
+{
+  "className": "OfflineContentHandler",
+  "methodName": "resolveEntity",
+  "brief": "@Override\r\n    public InputSource resolveEntity(String publicId, String systemId){}",
+  "methodSignature": "resolveEntity(String, String)",
+  "sourceCode": "@Override\n    public InputSource resolveEntity(String publicId, String systemId) {\n        return new InputSource(new ClosedInputStream());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Returns an empty stream. This will make an XML parser silently\n * ignore any external entities.\n */\n@Override\npublic InputSource resolveEntity(String publicId, String systemId) {\n    return new InputSource(new ClosedInputStream());\n}",
+  "method_comment": "\n     * Returns an empty stream. This will make an XML parser silently\n     * ignore any external entities.\n     ",
+  "method_annotation": "@Override\n"
+}

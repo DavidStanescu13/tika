@@ -1,0 +1,24 @@
+{
+  "className": "DIFContentHandler",
+  "methodName": "ignorableWhitespace",
+  "brief": "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "ignorableWhitespace(char[], int, int)",
+  "sourceCode": "@Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        delegate.ignorableWhitespace(ch, start, length);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "@Override\npublic void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n    delegate.ignorableWhitespace(ch, start, length);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

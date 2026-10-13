@@ -1,0 +1,25 @@
+{
+  "className": "WriteLimitReachedException",
+  "methodName": "isWriteLimitReached",
+  "brief": "public static boolean isWriteLimitReached(Throwable t){}",
+  "methodSignature": "isWriteLimitReached(Throwable)",
+  "sourceCode": "public static boolean isWriteLimitReached(Throwable t) {\n        return isWriteLimitReached(t, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [],
+    "org.apache.tika.exception.WriteLimitReachedException": [
+      "isWriteLimitReached(Throwable, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks whether the given exception (or any of it's root causes) was\n * thrown by this handler as a signal of reaching the write limit.\n *\n * @param t throwable\n * @return <code>true</code> if the write limit was reached,\n * <code>false</code> otherwise\n * @since Apache Tika 2.0\n */\npublic static boolean isWriteLimitReached(Throwable t) {\n    return isWriteLimitReached(t, 0);\n}",
+  "method_comment": "\n     * Checks whether the given exception (or any of it's root causes) was\n     * thrown by this handler as a signal of reaching the write limit.\n     *\n     * @param t throwable\n     * @return <code>true</code> if the write limit was reached,\n     * <code>false</code> otherwise\n     * @since Apache Tika 2.0\n     ",
+  "method_annotation": ""
+}

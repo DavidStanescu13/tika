@@ -1,0 +1,54 @@
+{
+  "className": "DigestHelper",
+  "methodName": "maybeDigest",
+  "brief": "public static void maybeDigest(TikaInputStream tis,\r\n                                   Metadata metadata,\r\n                                   ParseContext context) throws IOException{}",
+  "methodSignature": "maybeDigest(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "public static void maybeDigest(TikaInputStream tis,\n                                   Metadata metadata,\n                                   ParseContext context) throws IOException {\n        DigesterFactory digesterFactory = context.get(DigesterFactory.class);\n\n        if (digesterFactory == null) {\n            return;\n        }\n\n        // Get skip setting from factory or ParseContext marker\n        boolean skipContainer = digesterFactory.isSkipContainerDocumentDigest()\n                || SkipContainerDocumentDigest.shouldSkip(context);\n\n        if (skipContainer) {\n            Integer depth = metadata.getInt(TikaCoreProperties.EMBEDDED_DEPTH);\n            if (depth == null || depth == 0) {\n                return;\n            }\n        }\n\n        Digester digester = digesterFactory.build();\n\n        // Handle embedded stream translation if needed (e.g., for OLE2 objects in TikaInputStream's\n        // open container). The translator consumes `tis` to produce the translated bytes that get\n        // digested, so we enableRewind() before and rewind() after — otherwise the caller (typically\n        // AutoDetectParser) would see an exhausted stream and fail its zero-byte probe (TIKA-XXXX).\n        if (EMBEDDED_STREAM_TRANSLATOR.shouldTranslate(tis, metadata)) {\n            tis.enableRewind();\n            try (TemporaryResources tmp = new TemporaryResources()) {\n                Path tmpBytes = tmp.createTempFile();\n                try (OutputStream os = Files.newOutputStream(tmpBytes)) {\n                    EMBEDDED_STREAM_TRANSLATOR.translate(tis, metadata, os);\n                }\n                try (TikaInputStream translated = TikaInputStream.get(tmpBytes)) {\n                    digester.digest(translated, metadata, context);\n                }\n            } finally {\n                tis.rewind();\n            }\n        } else {\n            digester.digest(tis, metadata, context);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "enableRewind()",
+      "get(Path)",
+      "rewind()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "getInt(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.digest.DigesterFactory": [
+      "isSkipContainerDocumentDigest()",
+      "build()"
+    ],
+    "org.apache.tika.digest.SkipContainerDocumentDigest": [
+      "shouldSkip(ParseContext)"
+    ],
+    "org.apache.tika.extractor.EmbeddedStreamTranslator": [
+      "translate(TikaInputStream, Metadata, OutputStream)",
+      "shouldTranslate(TikaInputStream, Metadata)"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile()"
+    ],
+    "java.nio.file.Files": [
+      "newOutputStream(Path, OpenOption[])"
+    ],
+    "org.apache.tika.digest.Digester": [
+      "digest(TikaInputStream, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Computes digests on the stream if a DigesterFactory is configured in ParseContext.\n * <p>\n * This is called directly from AutoDetectParser.parse() before type detection.\n *\n * @param tis      the TikaInputStream to digest\n * @param metadata metadata to read depth from and write digests to\n * @param context  parse context (should contain DigesterFactory, may contain SkipContainerDocumentDigest marker)\n * @throws IOException if an I/O error occurs\n */\npublic static void maybeDigest(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n    DigesterFactory digesterFactory = context.get(DigesterFactory.class);\n    if (digesterFactory == null) {\n        return;\n    }\n    // Get skip setting from factory or ParseContext marker\n    boolean skipContainer = digesterFactory.isSkipContainerDocumentDigest() || SkipContainerDocumentDigest.shouldSkip(context);\n    if (skipContainer) {\n        Integer depth = metadata.getInt(TikaCoreProperties.EMBEDDED_DEPTH);\n        if (depth == null || depth == 0) {\n            return;\n        }\n    }\n    Digester digester = digesterFactory.build();\n    // Handle embedded stream translation if needed (e.g., for OLE2 objects in TikaInputStream's\n    // open container). The translator consumes `tis` to produce the translated bytes that get\n    // digested, so we enableRewind() before and rewind() after — otherwise the caller (typically\n    // AutoDetectParser) would see an exhausted stream and fail its zero-byte probe (TIKA-XXXX).\n    if (EMBEDDED_STREAM_TRANSLATOR.shouldTranslate(tis, metadata)) {\n        tis.enableRewind();\n        try (TemporaryResources tmp = new TemporaryResources()) {\n            Path tmpBytes = tmp.createTempFile();\n            try (OutputStream os = Files.newOutputStream(tmpBytes)) {\n                EMBEDDED_STREAM_TRANSLATOR.translate(tis, metadata, os);\n            }\n            try (TikaInputStream translated = TikaInputStream.get(tmpBytes)) {\n                digester.digest(translated, metadata, context);\n            }\n        } finally {\n            tis.rewind();\n        }\n    } else {\n        digester.digest(tis, metadata, context);\n    }\n}",
+  "method_comment": "\n     * Computes digests on the stream if a DigesterFactory is configured in ParseContext.\n     * <p>\n     * This is called directly from AutoDetectParser.parse() before type detection.\n     *\n     * @param tis      the TikaInputStream to digest\n     * @param metadata metadata to read depth from and write digests to\n     * @param context  parse context (should contain DigesterFactory, may contain SkipContainerDocumentDigest marker)\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": ""
+}

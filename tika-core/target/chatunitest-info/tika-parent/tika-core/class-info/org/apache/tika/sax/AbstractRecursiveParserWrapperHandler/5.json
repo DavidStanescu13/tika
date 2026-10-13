@@ -1,0 +1,18 @@
+{
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "methodName": "getContentHandlerFactory",
+  "brief": "public ContentHandlerFactory getContentHandlerFactory(){}",
+  "methodSignature": "getContentHandlerFactory()",
+  "sourceCode": "public ContentHandlerFactory getContentHandlerFactory() {\n        return contentHandlerFactory;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public ContentHandlerFactory getContentHandlerFactory() {\n    return contentHandlerFactory;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

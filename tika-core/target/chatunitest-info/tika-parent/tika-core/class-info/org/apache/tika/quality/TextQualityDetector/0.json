@@ -1,0 +1,22 @@
+{
+  "className": "TextQualityDetector",
+  "methodName": "score",
+  "brief": "TextQualityScore score(String text);",
+  "methodSignature": "score(String)",
+  "sourceCode": "TextQualityScore score(String text);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Scores the given string for text quality.\n *\n * @param text the string to score; must not be null\n * @return a {@link TextQualityScore}; check {@link TextQualityScore#isUnknown()}\n *         if the input is empty or the script is not covered by the model\n */\nTextQualityScore score(String text);",
+  "method_comment": "\n     * Scores the given string for text quality.\n     *\n     * @param text the string to score; must not be null\n     * @return a {@link TextQualityScore}; check {@link TextQualityScore#isUnknown()}\n     *         if the input is empty or the script is not covered by the model\n     ",
+  "method_annotation": ""
+}

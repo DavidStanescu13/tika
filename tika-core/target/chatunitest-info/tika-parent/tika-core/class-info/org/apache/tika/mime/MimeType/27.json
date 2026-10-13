@@ -1,0 +1,23 @@
+{
+  "className": "MimeType",
+  "methodName": "getExtensions",
+  "brief": "public List<String> getExtensions(){}",
+  "methodSignature": "getExtensions()",
+  "sourceCode": "public List<String> getExtensions() {\n        if (extensions != null) {\n            return Collections.unmodifiableList(extensions);\n        } else {\n            return Collections.emptyList();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)",
+      "emptyList()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the list of all known file extensions of this media type.\n *\n * @return known extensions in order of preference (best first)\n * @since Apache Tika 0.10\n */\npublic List<String> getExtensions() {\n    if (extensions != null) {\n        return Collections.unmodifiableList(extensions);\n    } else {\n        return Collections.emptyList();\n    }\n}",
+  "method_comment": "\n     * Returns the list of all known file extensions of this media type.\n     *\n     * @return known extensions in order of preference (best first)\n     * @since Apache Tika 0.10\n     ",
+  "method_annotation": ""
+}

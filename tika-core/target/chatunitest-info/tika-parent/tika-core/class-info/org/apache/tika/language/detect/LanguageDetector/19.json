@@ -1,0 +1,27 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "detect",
+  "brief": "public LanguageResult detect(CharSequence text){}",
+  "methodSignature": "detect(CharSequence)",
+  "sourceCode": "public LanguageResult detect(CharSequence text) {\n        reset();\n        addText(text);\n        return detect();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [],
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "reset()",
+      "addText(CharSequence)",
+      "detect()"
+    ]
+  },
+  "full_method_info": "public LanguageResult detect(CharSequence text) {\n    reset();\n    addText(text);\n    return detect();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

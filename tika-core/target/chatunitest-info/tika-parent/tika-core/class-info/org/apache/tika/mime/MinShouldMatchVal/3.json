@@ -1,0 +1,20 @@
+{
+  "className": "MinShouldMatchVal",
+  "methodName": "MinShouldMatchVal",
+  "brief": "MinShouldMatchVal(int val){}",
+  "methodSignature": "MinShouldMatchVal(int)",
+  "sourceCode": "MinShouldMatchVal(int val) {\n            this.val = val;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "MinShouldMatchVal(int val) {\n    this.val = val;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

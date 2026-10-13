@@ -1,0 +1,26 @@
+{
+  "className": "ConfigValidator",
+  "methodName": "mustNotBeEmpty",
+  "brief": "public static void mustNotBeEmpty(String paramName, String paramValue)\r\n            throws TikaConfigException{}",
+  "methodSignature": "mustNotBeEmpty(String, String)",
+  "sourceCode": "public static void mustNotBeEmpty(String paramName, String paramValue)\n            throws TikaConfigException {\n        if (StringUtils.isBlank(paramValue)) {\n            throw new TikaConfigException(\n                    \"parameter '\" + paramName + \"' must be set in the config file\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Validates that a string parameter is not null or blank.\n *\n * @param paramName the name of the parameter (for error messages)\n * @param paramValue the value to validate\n * @throws TikaConfigException if the value is null or blank\n */\npublic static void mustNotBeEmpty(String paramName, String paramValue) throws TikaConfigException {\n    if (StringUtils.isBlank(paramValue)) {\n        throw new TikaConfigException(\"parameter '\" + paramName + \"' must be set in the config file\");\n    }\n}",
+  "method_comment": "\n     * Validates that a string parameter is not null or blank.\n     *\n     * @param paramName the name of the parameter (for error messages)\n     * @param paramValue the value to validate\n     * @throws TikaConfigException if the value is null or blank\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "LookaheadInputStream",
+  "methodName": "LookaheadInputStream",
+  "brief": "public LookaheadInputStream(InputStream stream, int n){}",
+  "methodSignature": "LookaheadInputStream(InputStream, int)",
+  "sourceCode": "public LookaheadInputStream(InputStream stream, int n) {\n        this.stream = stream;\n        this.buffer = new byte[n];\n        if (stream != null) {\n            stream.mark(n);\n        }\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "mark(int)"
+    ]
+  },
+  "full_method_info": "public LookaheadInputStream(InputStream stream, int n) {\n    this.stream = stream;\n    this.buffer = new byte[n];\n    if (stream != null) {\n        stream.mark(n);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

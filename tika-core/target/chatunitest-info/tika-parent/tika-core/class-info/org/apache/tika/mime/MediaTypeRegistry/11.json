@@ -1,0 +1,37 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "getSupertype",
+  "brief": "public MediaType getSupertype(MediaType type){}",
+  "methodSignature": "getSupertype(MediaType)",
+  "sourceCode": "public MediaType getSupertype(MediaType type) {\n        if (type == null) {\n            return null;\n        } else if (inheritance.containsKey(type)) {\n            return inheritance.get(type);\n        } else if (type.hasParameters()) {\n            return type.getBaseType();\n        } else if (type.getSubtype().endsWith(\"+xml\")) {\n            return MediaType.APPLICATION_XML;\n        } else if (type.getSubtype().endsWith(\"+zip\")) {\n            return MediaType.APPLICATION_ZIP;\n        } else if (\"text\".equals(type.getType()) && !MediaType.TEXT_PLAIN.equals(type)) {\n            return MediaType.TEXT_PLAIN;\n        } else if (type.getType().contains(\"empty\") && !MediaType.EMPTY.equals(type)) {\n            return MediaType.EMPTY;\n        } else if (!MediaType.OCTET_STREAM.equals(type)) {\n            return MediaType.OCTET_STREAM;\n        } else {\n            return null;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "getSubtype()",
+      "equals(Object)",
+      "hasParameters()",
+      "getType()",
+      "getBaseType()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "containsKey(Object)"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "contains(CharSequence)",
+      "endsWith(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the supertype of the given type. If the media type database\n * has an explicit inheritance rule for the type, then that is used.\n * Next, if the given type has any parameters, then the respective base\n * type (parameter-less) is returned. Otherwise built-in heuristics like\n * text/... -&gt; text/plain and .../...+xml -&gt; application/xml are used.\n * Finally application/octet-stream is returned for all types for which no other\n * supertype is known, and the return value for application/octet-stream\n * is <code>null</code>.\n *\n * @param type media type\n * @return supertype, or <code>null</code> for application/octet-stream\n * @since Apache Tika 0.8\n */\npublic MediaType getSupertype(MediaType type) {\n    if (type == null) {\n        return null;\n    } else if (inheritance.containsKey(type)) {\n        return inheritance.get(type);\n    } else if (type.hasParameters()) {\n        return type.getBaseType();\n    } else if (type.getSubtype().endsWith(\"+xml\")) {\n        return MediaType.APPLICATION_XML;\n    } else if (type.getSubtype().endsWith(\"+zip\")) {\n        return MediaType.APPLICATION_ZIP;\n    } else if (\"text\".equals(type.getType()) && !MediaType.TEXT_PLAIN.equals(type)) {\n        return MediaType.TEXT_PLAIN;\n    } else if (type.getType().contains(\"empty\") && !MediaType.EMPTY.equals(type)) {\n        return MediaType.EMPTY;\n    } else if (!MediaType.OCTET_STREAM.equals(type)) {\n        return MediaType.OCTET_STREAM;\n    } else {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Returns the supertype of the given type. If the media type database\n     * has an explicit inheritance rule for the type, then that is used.\n     * Next, if the given type has any parameters, then the respective base\n     * type (parameter-less) is returned. Otherwise built-in heuristics like\n     * text/... -&gt; text/plain and .../...+xml -&gt; application/xml are used.\n     * Finally application/octet-stream is returned for all types for which no other\n     * supertype is known, and the return value for application/octet-stream\n     * is <code>null</code>.\n     *\n     * @param type media type\n     * @return supertype, or <code>null</code> for application/octet-stream\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "methodName": "endDocument",
+  "brief": "public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException{}",
+  "methodSignature": "endDocument(ContentHandler, Metadata)",
+  "sourceCode": "public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, 0);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, int)"
+    ]
+  },
+  "full_method_info": "/**\n * This is called after the full parse has completed.  Override this\n * for custom behavior.  Make sure to call this as <code>super.endDocument(...)</code>\n * in subclasses.\n *\n * @param contentHandler content handler that was used on the main document\n * @param metadata       metadata that was gathered for the main document\n * @throws SAXException\n */\npublic void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n    metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, 0);\n}",
+  "method_comment": "\n     * This is called after the full parse has completed.  Override this\n     * for custom behavior.  Make sure to call this as <code>super.endDocument(...)</code>\n     * in subclasses.\n     *\n     * @param contentHandler content handler that was used on the main document\n     * @param metadata       metadata that was gathered for the main document\n     * @throws SAXException\n     ",
+  "method_annotation": ""
+}

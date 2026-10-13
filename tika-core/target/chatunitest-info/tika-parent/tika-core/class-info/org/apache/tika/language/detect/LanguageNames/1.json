@@ -1,0 +1,26 @@
+{
+  "className": "LanguageNames",
+  "methodName": "normalizeName",
+  "brief": "public static String normalizeName(String languageTag){}",
+  "methodSignature": "normalizeName(String)",
+  "sourceCode": "public static String normalizeName(String languageTag) {\n        Locale locale = Locale.forLanguageTag(languageTag);\n        return locale.toLanguageTag();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Locale": [
+      "forLanguageTag(String)",
+      "toLanguageTag()"
+    ]
+  },
+  "full_method_info": "public static String normalizeName(String languageTag) {\n    Locale locale = Locale.forLanguageTag(languageTag);\n    return locale.toLanguageTag();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

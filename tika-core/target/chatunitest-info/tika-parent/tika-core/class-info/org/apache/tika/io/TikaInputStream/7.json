@@ -1,0 +1,42 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(Path path, Metadata metadata) throws IOException{}",
+  "methodSignature": "get(Path, Metadata)",
+  "sourceCode": "public static TikaInputStream get(Path path, Metadata metadata) throws IOException {\n        if (StringUtils.isBlank(metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY))) {\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, path.getFileName().toString());\n        }\n        metadata.set(Metadata.CONTENT_LENGTH, Long.toString(Files.size(path)));\n        String ext = FilenameUtils.getSuffixFromPath(path.getFileName().toString());\n        TemporaryResources tmp = new TemporaryResources();\n        TikaInputSource inputSource = new FileSource(path);\n        return new TikaInputStream(inputSource, tmp, ext);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [
+      "getFileName()",
+      "toString()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "get(Property)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "java.lang.Long": [
+      "toString(long)"
+    ],
+    "java.nio.file.Files": [
+      "size(Path)"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "getSuffixFromPath(String)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(Path path, Metadata metadata) throws IOException {\n    if (StringUtils.isBlank(metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY))) {\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, path.getFileName().toString());\n    }\n    metadata.set(Metadata.CONTENT_LENGTH, Long.toString(Files.size(path)));\n    String ext = FilenameUtils.getSuffixFromPath(path.getFileName().toString());\n    TemporaryResources tmp = new TemporaryResources();\n    TikaInputSource inputSource = new FileSource(path);\n    return new TikaInputStream(inputSource, tmp, ext);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

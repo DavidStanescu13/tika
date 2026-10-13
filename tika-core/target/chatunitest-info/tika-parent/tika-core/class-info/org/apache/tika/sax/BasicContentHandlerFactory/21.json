@@ -1,0 +1,23 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "BasicContentHandlerFactory",
+  "brief": "public BasicContentHandlerFactory(HANDLER_TYPE type, int writeLimit){}",
+  "methodSignature": "BasicContentHandlerFactory(HANDLER_TYPE, int)",
+  "sourceCode": "public BasicContentHandlerFactory(HANDLER_TYPE type, int writeLimit) {\n        this(type, writeLimit, true, null);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "HANDLER_TYPE",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.BasicContentHandlerFactory.HANDLER_TYPE": []
+  },
+  "full_method_info": "public BasicContentHandlerFactory(HANDLER_TYPE type, int writeLimit) {\n    this(type, writeLimit, true, null);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

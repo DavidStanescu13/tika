@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "isEmbeddedCountLimitReached",
+  "brief": "public boolean isEmbeddedCountLimitReached(){}",
+  "methodSignature": "isEmbeddedCountLimitReached()",
+  "sourceCode": "public boolean isEmbeddedCountLimitReached() {\n        return embeddedCountLimitReached;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns whether the embedded count limit was reached during parsing.\n *\n * @return true if the count limit was reached\n */\npublic boolean isEmbeddedCountLimitReached() {\n    return embeddedCountLimitReached;\n}",
+  "method_comment": "\n     * Returns whether the embedded count limit was reached during parsing.\n     *\n     * @return true if the count limit was reached\n     ",
+  "method_annotation": ""
+}

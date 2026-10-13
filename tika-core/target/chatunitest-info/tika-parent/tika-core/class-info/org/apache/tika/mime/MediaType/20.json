@@ -1,0 +1,25 @@
+{
+  "className": "MediaType",
+  "methodName": "compareTo",
+  "brief": "public int compareTo(MediaType that){}",
+  "methodSignature": "compareTo(MediaType)",
+  "sourceCode": "public int compareTo(MediaType that) {\n        return string.compareTo(that.string);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.lang.String": [
+      "compareTo(String)"
+    ]
+  },
+  "full_method_info": "public int compareTo(MediaType that) {\n    return string.compareTo(that.string);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

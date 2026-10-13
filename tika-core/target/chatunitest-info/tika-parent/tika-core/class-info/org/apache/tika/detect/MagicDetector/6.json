@@ -1,0 +1,46 @@
+{
+  "className": "MagicDetector",
+  "methodName": "matchesBuffer",
+  "brief": "private boolean matchesBuffer(byte[] buffer, int startOffset, int endOffset){}",
+  "methodSignature": "matchesBuffer(byte[], int, int)",
+  "sourceCode": "private boolean matchesBuffer(byte[] buffer, int startOffset, int endOffset) {\n        if (this.isRegex) {\n            int bufferLen = Math.min(buffer.length - startOffset, length + (endOffset - startOffset));\n            if (bufferLen <= 0) {\n                return false;\n            }\n            ByteBuffer bb = ByteBuffer.wrap(buffer, startOffset, bufferLen);\n            CharBuffer result = ISO_8859_1.decode(bb);\n            Matcher m = compiledPattern.matcher(result);\n\n            // Loop until we've covered the entire offset range\n            for (int i = 0; i <= endOffset - startOffset; i++) {\n                // For regex, use available data length, not the fixed 8KB buffer size\n                int regionEnd = Math.min(length + i, result.length());\n                if (i < regionEnd) {\n                    m.region(i, regionEnd);\n                    if (m.lookingAt()) {\n                        return true;\n                    }\n                }\n            }\n        } else {\n            // Loop until we've covered the entire offset range\n            for (int i = startOffset; i <= endOffset; i++) {\n                if (i + length > buffer.length) {\n                    break;\n                }\n                boolean match = true;\n                int masked;\n                for (int j = 0; match && j < length; j++) {\n                    masked = (buffer[i + j] & mask[j]);\n                    if (this.isStringIgnoreCase) {\n                        masked = Character.toLowerCase(masked);\n                    }\n                    match = (masked == pattern[j]);\n                }\n                if (match) {\n                    return true;\n                }\n            }\n        }\n\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.nio.ByteBuffer": [
+      "wrap(byte[], int, int)"
+    ],
+    "java.nio.charset.Charset": [
+      "decode(ByteBuffer)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.nio.CharBuffer": [
+      "length()"
+    ],
+    "java.util.regex.Matcher": [
+      "region(int, int)",
+      "lookingAt()"
+    ],
+    "java.lang.Character": [
+      "toLowerCase(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Core matching logic that checks if the pattern matches anywhere in the buffer\n * within the specified offset range.\n *\n * @param buffer the byte array to search in\n * @param startOffset the first position in the buffer to start matching (inclusive)\n * @param endOffset the last position in the buffer to start matching (inclusive)\n * @return true if a match is found, false otherwise\n */\nprivate boolean matchesBuffer(byte[] buffer, int startOffset, int endOffset) {\n    if (this.isRegex) {\n        int bufferLen = Math.min(buffer.length - startOffset, length + (endOffset - startOffset));\n        if (bufferLen <= 0) {\n            return false;\n        }\n        ByteBuffer bb = ByteBuffer.wrap(buffer, startOffset, bufferLen);\n        CharBuffer result = ISO_8859_1.decode(bb);\n        Matcher m = compiledPattern.matcher(result);\n        // Loop until we've covered the entire offset range\n        for (int i = 0; i <= endOffset - startOffset; i++) {\n            // For regex, use available data length, not the fixed 8KB buffer size\n            int regionEnd = Math.min(length + i, result.length());\n            if (i < regionEnd) {\n                m.region(i, regionEnd);\n                if (m.lookingAt()) {\n                    return true;\n                }\n            }\n        }\n    } else {\n        // Loop until we've covered the entire offset range\n        for (int i = startOffset; i <= endOffset; i++) {\n            if (i + length > buffer.length) {\n                break;\n            }\n            boolean match = true;\n            int masked;\n            for (int j = 0; match && j < length; j++) {\n                masked = (buffer[i + j] & mask[j]);\n                if (this.isStringIgnoreCase) {\n                    masked = Character.toLowerCase(masked);\n                }\n                match = (masked == pattern[j]);\n            }\n            if (match) {\n                return true;\n            }\n        }\n    }\n    return false;\n}",
+  "method_comment": "\n     * Core matching logic that checks if the pattern matches anywhere in the buffer\n     * within the specified offset range.\n     *\n     * @param buffer the byte array to search in\n     * @param startOffset the first position in the buffer to start matching (inclusive)\n     * @param endOffset the last position in the buffer to start matching (inclusive)\n     * @return true if a match is found, false otherwise\n     ",
+  "method_annotation": ""
+}

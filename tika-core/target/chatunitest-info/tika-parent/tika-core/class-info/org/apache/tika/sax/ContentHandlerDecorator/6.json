@@ -1,0 +1,18 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        try {\n            handler.endDocument();\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void endDocument() throws SAXException {\n    try {\n        handler.endDocument();\n    } catch (SAXException e) {\n        handleException(e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

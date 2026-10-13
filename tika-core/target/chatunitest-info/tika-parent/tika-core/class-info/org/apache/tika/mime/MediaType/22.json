@@ -1,0 +1,26 @@
+{
+  "className": "MediaType",
+  "methodName": "MediaType",
+  "brief": "public MediaType(String type, String subtype){}",
+  "methodSignature": "MediaType(String, String)",
+  "sourceCode": "public MediaType(String type, String subtype) {\n        this(type, subtype, Collections.emptyMap());\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "emptyMap()"
+    ]
+  },
+  "full_method_info": "public MediaType(String type, String subtype) {\n    this(type, subtype, Collections.emptyMap());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getIntBE",
+  "brief": "public static int getIntBE(byte[] data, int offset){}",
+  "methodSignature": "getIntBE(byte[], int)",
+  "sourceCode": "public static int getIntBE(byte[] data, int offset) {\n        int i = offset;\n        int b0 = data[i++] & 0xFF;\n        int b1 = data[i++] & 0xFF;\n        int b2 = data[i++] & 0xFF;\n        int b3 = data[i++] & 0xFF;\n        return (b0 << 24) + (b1 << 16) + (b2 << 8) + (b3);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Get a BE int value from a byte array\n *\n * @param data   the byte array\n * @param offset a starting offset into the byte array\n * @return the int (32-bit) value\n */\npublic static int getIntBE(byte[] data, int offset) {\n    int i = offset;\n    int b0 = data[i++] & 0xFF;\n    int b1 = data[i++] & 0xFF;\n    int b2 = data[i++] & 0xFF;\n    int b3 = data[i++] & 0xFF;\n    return (b0 << 24) + (b1 << 16) + (b2 << 8) + (b3);\n}",
+  "method_comment": "\n     * Get a BE int value from a byte array\n     *\n     * @param data   the byte array\n     * @param offset a starting offset into the byte array\n     * @return the int (32-bit) value\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,52 @@
+{
+  "className": "ProbabilisticMimeDetectionSelector",
+  "methodName": "detect",
+  "brief": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n\n        List<MimeType> possibleTypes = new ArrayList<>();\n\n        // Get type based on magic prefix\n        if (tis != null) {\n            tis.mark(mimeTypes.getMinLength());\n            try {\n                byte[] prefix = mimeTypes.readMagicHeader(tis);\n                //defensive copy\n                possibleTypes.addAll(mimeTypes.getMimeType(prefix));\n            } finally {\n                tis.reset();\n            }\n        }\n\n        MimeType extHint = null;\n        // Get type based on resourceName hint (if available)\n        String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (resourceName != null) {\n            String name = null;\n\n            // Deal with a URI or a path name in as the resource name\n            try {\n                URI uri = new URI(resourceName);\n                String path = uri.getPath();\n                if (path != null) {\n                    int slash = path.lastIndexOf('/');\n                    if (slash + 1 < path.length()) {\n                        name = path.substring(slash + 1);\n                    }\n                }\n            } catch (URISyntaxException e) {\n                name = resourceName;\n            }\n\n            if (name != null) {\n                // MimeType hint = getMimeType(name);\n                extHint = mimeTypes.getMimeType(name);\n                // If we have some types based on mime magic, try to specialise\n                // and/or select the type based on that\n                // Otherwise, use the type identified from the name\n                // possibleTypes = applyHint(possibleTypes, hint);\n            }\n        }\n\n        // Get type based on metadata hint (if available)\n        MimeType metaHint = null;\n        String typeName = metadata.get(Metadata.CONTENT_TYPE);\n        if (typeName != null) {\n            try {\n                // MimeType hint = forName(typeName);\n                metaHint = mimeTypes.forName(typeName);\n                // possibleTypes = applyHint(possibleTypes, hint);\n            } catch (MimeTypeException e) {\n                // Malformed type name, ignore\n            }\n        }\n\n        /*\n         * the following calls the probability selection.\n         */\n        return applyProbilities(possibleTypes, extHint, metaHint);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "getMinLength()",
+      "getMimeType(String)",
+      "readMagicHeader(InputStream)",
+      "forName(String)",
+      "getMimeType(byte[])"
+    ],
+    "java.util.List": [
+      "addAll(Collection<? extends E>)"
+    ],
+    "java.net.URI": [
+      "getPath()"
+    ],
+    "java.lang.String": [
+      "substring(int)",
+      "lastIndexOf(int)",
+      "length()"
+    ],
+    "org.apache.tika.mime.ProbabilisticMimeDetectionSelector": [
+      "applyProbilities(MimeType>, MimeType, MimeType)"
+    ]
+  },
+  "full_method_info": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    List<MimeType> possibleTypes = new ArrayList<>();\n    // Get type based on magic prefix\n    if (tis != null) {\n        tis.mark(mimeTypes.getMinLength());\n        try {\n            byte[] prefix = mimeTypes.readMagicHeader(tis);\n            // defensive copy\n            possibleTypes.addAll(mimeTypes.getMimeType(prefix));\n        } finally {\n            tis.reset();\n        }\n    }\n    MimeType extHint = null;\n    // Get type based on resourceName hint (if available)\n    String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    if (resourceName != null) {\n        String name = null;\n        // Deal with a URI or a path name in as the resource name\n        try {\n            URI uri = new URI(resourceName);\n            String path = uri.getPath();\n            if (path != null) {\n                int slash = path.lastIndexOf('/');\n                if (slash + 1 < path.length()) {\n                    name = path.substring(slash + 1);\n                }\n            }\n        } catch (URISyntaxException e) {\n            name = resourceName;\n        }\n        if (name != null) {\n            // MimeType hint = getMimeType(name);\n            extHint = mimeTypes.getMimeType(name);\n            // If we have some types based on mime magic, try to specialise\n            // and/or select the type based on that\n            // Otherwise, use the type identified from the name\n            // possibleTypes = applyHint(possibleTypes, hint);\n        }\n    }\n    // Get type based on metadata hint (if available)\n    MimeType metaHint = null;\n    String typeName = metadata.get(Metadata.CONTENT_TYPE);\n    if (typeName != null) {\n        try {\n            // MimeType hint = forName(typeName);\n            metaHint = mimeTypes.forName(typeName);\n            // possibleTypes = applyHint(possibleTypes, hint);\n        } catch (MimeTypeException e) {\n            // Malformed type name, ignore\n        }\n    }\n    /*\n         * the following calls the probability selection.\n         */\n    return applyProbilities(possibleTypes, extHint, metaHint);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

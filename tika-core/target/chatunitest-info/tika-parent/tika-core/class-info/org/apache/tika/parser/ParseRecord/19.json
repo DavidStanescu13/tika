@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "getEmbeddedCount",
+  "brief": "public int getEmbeddedCount(){}",
+  "methodSignature": "getEmbeddedCount()",
+  "sourceCode": "public int getEmbeddedCount() {\n        return embeddedCount;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the current count of embedded documents processed.\n *\n * @return the embedded document count\n */\npublic int getEmbeddedCount() {\n    return embeddedCount;\n}",
+  "method_comment": "\n     * Gets the current count of embedded documents processed.\n     *\n     * @return the embedded document count\n     ",
+  "method_annotation": ""
+}

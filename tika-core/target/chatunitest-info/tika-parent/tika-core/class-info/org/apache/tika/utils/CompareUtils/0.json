@@ -1,0 +1,32 @@
+{
+  "className": "CompareUtils",
+  "methodName": "compareClassName",
+  "brief": "public static int compareClassName(Object o1, Object o2){}",
+  "methodSignature": "compareClassName(Object, Object)",
+  "sourceCode": "public static int compareClassName(Object o1, Object o2) {\n        // Get class names.\n        String n1 = o1.getClass().getName();\n        String n2 = o2.getClass().getName();\n\n        // Judge if they are Tika's class by name.\n        boolean tika1 = n1.startsWith(\"org.apache.tika.\");\n        boolean tika2 = n2.startsWith(\"org.apache.tika.\");\n\n        // If both classes are Tika's class or both are not Tika's class,\n        // compare by name String.\n        if (tika1 == tika2) {\n            return n1.compareTo(n2);\n        }\n\n        // Otherwise one of these two class is Tika's class.\n        // Then the non-Tika's class comes before Tika's class.\n        return tika1 ? 1 : -1;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object",
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "java.lang.Class": [
+      "getName()"
+    ],
+    "java.lang.String": [
+      "startsWith(String)",
+      "compareTo(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Compare two classes by class names.\n * If both classes are Tika's or both are not Tika's class, compare by name String.\n * Otherwise one of these two class is Tika's class.\n * Then the non-Tika's class comes before Tika's class.\n *\n * @param o1 the object 1 to be compared\n * @param o2 the object 2 to be compared\n * @return a negative integer, zero, or a positive integer\n */\npublic static int compareClassName(Object o1, Object o2) {\n    // Get class names.\n    String n1 = o1.getClass().getName();\n    String n2 = o2.getClass().getName();\n    // Judge if they are Tika's class by name.\n    boolean tika1 = n1.startsWith(\"org.apache.tika.\");\n    boolean tika2 = n2.startsWith(\"org.apache.tika.\");\n    // If both classes are Tika's class or both are not Tika's class,\n    // compare by name String.\n    if (tika1 == tika2) {\n        return n1.compareTo(n2);\n    }\n    // Otherwise one of these two class is Tika's class.\n    // Then the non-Tika's class comes before Tika's class.\n    return tika1 ? 1 : -1;\n}",
+  "method_comment": "\n     * Compare two classes by class names.\n     * If both classes are Tika's or both are not Tika's class, compare by name String.\n     * Otherwise one of these two class is Tika's class.\n     * Then the non-Tika's class comes before Tika's class.\n     *\n     * @param o1 the object 1 to be compared\n     * @param o2 the object 2 to be compared\n     * @return a negative integer, zero, or a positive integer\n     ",
+  "method_annotation": ""
+}

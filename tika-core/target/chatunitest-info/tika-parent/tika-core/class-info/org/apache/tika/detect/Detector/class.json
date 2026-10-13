@@ -1,0 +1,44 @@
+{
+  "fullClassName": "org.apache.tika.detect.Detector",
+  "className": "Detector",
+  "index": 25,
+  "modifier": "[public ]",
+  "extend": "[Serializable, SelfConfiguring]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public interface Detector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import org.apache.tika.config.SelfConfiguring;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable",
+    "SelfConfiguring"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0"
+  },
+  "methodsBrief": [
+    "MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.io.Serializable;\nimport org.apache.tika.config.SelfConfiguring;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Content type detector. Implementations of this interface use various\n * heuristics to detect the content type of a document based on given\n * input metadata or the first few bytes of the document stream.\n *\n * @since Apache Tika 0.3\n */\npublic interface Detector extends Serializable, SelfConfiguring {\n\n    /**\n     * Detects the content type of the given input document. Returns\n     * <code>application/octet-stream</code> if the type of the document\n     * can not be detected.\n     * <p>\n     * If the document input stream is not available, then the first\n     * argument may be <code>null</code>. Otherwise the detector may\n     * read bytes from the start of the stream to help in type detection.\n     * The detector is expected to mark the stream before reading any bytes\n     * from it, and to reset the stream before returning. The stream must\n     * not be closed by the detector.\n     * <p>\n     * The given input metadata is only read, not modified, by the detector.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     * @throws IOException if the document input stream could not be read\n     */\n    MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;\n}\n",
+  "classDeclarationCode": "/**\n * Content type detector. Implementations of this interface use various\n * heuristics to detect the content type of a document based on given\n * input metadata or the first few bytes of the document stream.\n *\n * @since Apache Tika 0.3\n */\npublic interface Detector extends Serializable, SelfConfiguring {\n\n    /**\n     * Detects the content type of the given input document. Returns\n     * <code>application/octet-stream</code> if the type of the document\n     * can not be detected.\n     * <p>\n     * If the document input stream is not available, then the first\n     * argument may be <code>null</code>. Otherwise the detector may\n     * read bytes from the start of the stream to help in type detection.\n     * The detector is expected to mark the stream before reading any bytes\n     * from it, and to reset the stream before returning. The stream must\n     * not be closed by the detector.\n     * <p>\n     * The given input metadata is only read, not modified, by the detector.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     * @throws IOException if the document input stream could not be read\n     */\n    MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;\n}",
+  "subClasses": []
+}

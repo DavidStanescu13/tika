@@ -1,0 +1,25 @@
+{
+  "className": "MediaType",
+  "methodName": "video",
+  "brief": "public static MediaType video(String type){}",
+  "methodSignature": "video(String)",
+  "sourceCode": "public static MediaType video(String type) {\n        return MediaType.parse(\"video/\" + type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "public static MediaType video(String type) {\n    return MediaType.parse(\"video/\" + type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

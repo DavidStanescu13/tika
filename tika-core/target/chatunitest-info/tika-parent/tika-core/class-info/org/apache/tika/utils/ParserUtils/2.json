@@ -1,0 +1,28 @@
+{
+  "className": "ParserUtils",
+  "methodName": "recordParserDetails",
+  "brief": "public static void recordParserDetails(Parser parser, Metadata metadata){}",
+  "methodSignature": "recordParserDetails(Parser, Metadata)",
+  "sourceCode": "public static void recordParserDetails(Parser parser, Metadata metadata) {\n        String className = getParserClassname(parser);\n        recordParserDetails(className, metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.utils.ParserUtils": [
+      "getParserClassname(Parser)",
+      "recordParserDetails(String, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * Records details of the {@link Parser} used to the {@link Metadata},\n * typically wanted where multiple parsers could be picked between\n * or used.\n */\npublic static void recordParserDetails(Parser parser, Metadata metadata) {\n    String className = getParserClassname(parser);\n    recordParserDetails(className, metadata);\n}",
+  "method_comment": "\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     ",
+  "method_annotation": ""
+}

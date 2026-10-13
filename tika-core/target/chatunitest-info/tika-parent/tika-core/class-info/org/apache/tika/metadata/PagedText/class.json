@@ -1,0 +1,31 @@
+{
+  "fullClassName": "org.apache.tika.metadata.PagedText",
+  "className": "PagedText",
+  "index": 167,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata",
+  "packageDeclaration": "package org.apache.tika.metadata;",
+  "classSignature": "public interface PagedText",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "Property N_PAGES = Property.internalInteger(\"xmpTPg:NPages\");"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {},
+  "methodsBrief": [],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata;\n\n/**\n * XMP Paged-text schema. This is a collection of\n * {@link Property property definition} constants for the paged text\n * properties defined in the XMP standard.\n *\n * @see <a href=\"http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/cc-201306/XMPSpecificationPart2.pdf\"\n * >XMP Specification, Part 2: Standard Schemas</a>\n * @since Apache Tika 0.8\n */\npublic interface PagedText {\n\n    /**\n     * \"The number of pages in the document (including any in contained\n     * documents).\"\n     */\n    Property N_PAGES = Property.internalInteger(\"xmpTPg:NPages\");\n    // TODO MaxPageSize, Fonts, Colorants, PlateNames\n}\n",
+  "classDeclarationCode": "/**\n * XMP Paged-text schema. This is a collection of\n * {@link Property property definition} constants for the paged text\n * properties defined in the XMP standard.\n *\n * @see <a href=\"http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/cc-201306/XMPSpecificationPart2.pdf\"\n * >XMP Specification, Part 2: Standard Schemas</a>\n * @since Apache Tika 0.8\n */\npublic interface PagedText {\n\n    /**\n     * \"The number of pages in the document (including any in contained\n     * documents).\"\n     */\n    Property N_PAGES = Property.internalInteger(\"xmpTPg:NPages\");\n    // TODO MaxPageSize, Fonts, Colorants, PlateNames\n}",
+  "subClasses": []
+}

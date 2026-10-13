@@ -1,0 +1,22 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getAllComponentParsers",
+  "brief": "public List<Parser> getAllComponentParsers(){}",
+  "methodSignature": "getAllComponentParsers()",
+  "sourceCode": "public List<Parser> getAllComponentParsers() {\n        return Collections.unmodifiableList(parsers);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns all parsers registered with the Composite Parser,\n * including ones which may not currently be active.\n * This won't include the Fallback Parser, if defined\n */\npublic List<Parser> getAllComponentParsers() {\n    return Collections.unmodifiableList(parsers);\n}",
+  "method_comment": "\n     * Returns all parsers registered with the Composite Parser,\n     * including ones which may not currently be active.\n     * This won't include the Fallback Parser, if defined\n     ",
+  "method_annotation": ""
+}

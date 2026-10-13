@@ -1,0 +1,21 @@
+{
+  "className": "TikaMemoryLimitException",
+  "methodName": "msg",
+  "brief": "private static String msg(long triedToAllocate, long maxAllowable){}",
+  "methodSignature": "msg(long, long)",
+  "sourceCode": "private static String msg(long triedToAllocate, long maxAllowable) {\n        return \"Tried to allocate \" + triedToAllocate + \" bytes, but \" + maxAllowable +\n                \" is the maximum allowed. Please open an issue https://issues.apache.org/jira/projects/TIKA\" +\n                \" if you believe this file is not corrupt.\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "private static String msg(long triedToAllocate, long maxAllowable) {\n    return \"Tried to allocate \" + triedToAllocate + \" bytes, but \" + maxAllowable + \" is the maximum allowed. Please open an issue https://issues.apache.org/jira/projects/TIKA\" + \" if you believe this file is not corrupt.\";\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

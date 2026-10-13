@@ -1,0 +1,22 @@
+{
+  "className": "ClauseRecord",
+  "methodName": "ClauseRecord",
+  "brief": "public ClauseRecord(Clause clause){}",
+  "methodSignature": "ClauseRecord(Clause)",
+  "sourceCode": "public ClauseRecord(Clause clause) {\n            this.parent = current;\n            this.clause = clause;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Clause"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.Clause": []
+  },
+  "full_method_info": "public ClauseRecord(Clause clause) {\n    this.parent = current;\n    this.clause = clause;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

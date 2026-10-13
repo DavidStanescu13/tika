@@ -1,0 +1,22 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setCommandAssignmentDelimeter",
+  "brief": "public void setCommandAssignmentDelimeter(String commandAssignmentDelimeter){}",
+  "methodSignature": "setCommandAssignmentDelimeter(String)",
+  "sourceCode": "public void setCommandAssignmentDelimeter(String commandAssignmentDelimeter) {\n        this.commandAssignmentDelimeter = commandAssignmentDelimeter;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the delimiter for multiple assignments for the command line tool,\n * i.e. \", \".\n *\n * @param commandAssignmentDelimeter\n */\npublic void setCommandAssignmentDelimeter(String commandAssignmentDelimeter) {\n    this.commandAssignmentDelimeter = commandAssignmentDelimeter;\n}",
+  "method_comment": "\n     * Sets the delimiter for multiple assignments for the command line tool,\n     * i.e. \", \".\n     *\n     * @param commandAssignmentDelimeter\n     ",
+  "method_annotation": ""
+}

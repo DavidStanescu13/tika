@@ -1,0 +1,27 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getMimeType",
+  "brief": "@Deprecated\r\n    public MimeType getMimeType(String name){}",
+  "methodSignature": "getMimeType(String)",
+  "sourceCode": "@Deprecated\n    public MimeType getMimeType(String name) {\n        MimeType type = patterns.matches(name);\n        if (type != null) {\n            return type;\n        }\n        type = patterns.matches(name.toLowerCase(Locale.ENGLISH));\n        if (type != null) {\n            return type;\n        } else {\n            return rootMimeType;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toLowerCase(Locale)"
+    ],
+    "org.apache.tika.mime.Patterns": [
+      "matches(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Find the Mime Content Type of a document from its name.\n * Returns application/octet-stream if no better match is found.\n *\n * @param name of the document to analyze.\n * @return the Mime Content Type of the specified document name\n * @deprecated Use {@link Tika#detect(String)} instead\n */\n@Deprecated\npublic MimeType getMimeType(String name) {\n    MimeType type = patterns.matches(name);\n    if (type != null) {\n        return type;\n    }\n    type = patterns.matches(name.toLowerCase(Locale.ENGLISH));\n    if (type != null) {\n        return type;\n    } else {\n        return rootMimeType;\n    }\n}",
+  "method_comment": "\n     * Find the Mime Content Type of a document from its name.\n     * Returns application/octet-stream if no better match is found.\n     *\n     * @param name of the document to analyze.\n     * @return the Mime Content Type of the specified document name\n     * @deprecated Use {@link Tika#detect(String)} instead\n     ",
+  "method_annotation": "@Deprecated\n"
+}

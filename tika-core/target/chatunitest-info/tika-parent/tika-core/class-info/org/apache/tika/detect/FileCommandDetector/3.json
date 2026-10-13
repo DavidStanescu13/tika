@@ -1,0 +1,46 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "detectOnPath",
+  "brief": "private MediaType detectOnPath(Path path, Metadata metadata) throws IOException{}",
+  "methodSignature": "detectOnPath(Path, Metadata)",
+  "sourceCode": "private MediaType detectOnPath(Path path, Metadata metadata) throws IOException {\n\n        String[] args =\n                new String[]{ProcessUtils.escapeCommandLine(fileCommandPath), \"-b\", \"--mime-type\",\n                        ProcessUtils.escapeCommandLine(path.toAbsolutePath().toString())};\n        ProcessBuilder builder = new ProcessBuilder(args);\n        FileProcessResult result = ProcessUtils.execute(builder, timeoutMs, 10000, 10000);\n        if (result.isTimeout()) {\n            metadata.set(ExternalProcess.IS_TIMEOUT, true);\n            return MediaType.OCTET_STREAM;\n        }\n        if (result.getExitValue() != 0) {\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            return MediaType.OCTET_STREAM;\n        }\n        String mimeString = result.getStdout();\n        if (StringUtils.isBlank(mimeString)) {\n            return MediaType.OCTET_STREAM;\n        }\n        metadata.set(FILE_MIME, mimeString);\n        if (useMime) {\n            MediaType mt = MediaType.parse(mimeString);\n            if (mt == null) {\n                return MediaType.OCTET_STREAM;\n            } else {\n                return mt;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [
+      "toAbsolutePath()",
+      "toString()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "set(Property, boolean)",
+      "set(Property, int)"
+    ],
+    "org.apache.tika.utils.ProcessUtils": [
+      "escapeCommandLine(String)",
+      "execute(ProcessBuilder, long, int, int)"
+    ],
+    "org.apache.tika.utils.FileProcessResult": [
+      "getExitValue()",
+      "isTimeout()",
+      "getStdout()"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "private MediaType detectOnPath(Path path, Metadata metadata) throws IOException {\n    String[] args = new String[] { ProcessUtils.escapeCommandLine(fileCommandPath), \"-b\", \"--mime-type\", ProcessUtils.escapeCommandLine(path.toAbsolutePath().toString()) };\n    ProcessBuilder builder = new ProcessBuilder(args);\n    FileProcessResult result = ProcessUtils.execute(builder, timeoutMs, 10000, 10000);\n    if (result.isTimeout()) {\n        metadata.set(ExternalProcess.IS_TIMEOUT, true);\n        return MediaType.OCTET_STREAM;\n    }\n    if (result.getExitValue() != 0) {\n        metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n        return MediaType.OCTET_STREAM;\n    }\n    String mimeString = result.getStdout();\n    if (StringUtils.isBlank(mimeString)) {\n        return MediaType.OCTET_STREAM;\n    }\n    metadata.set(FILE_MIME, mimeString);\n    if (useMime) {\n        MediaType mt = MediaType.parse(mimeString);\n        if (mt == null) {\n            return MediaType.OCTET_STREAM;\n        } else {\n            return mt;\n        }\n    }\n    return MediaType.OCTET_STREAM;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

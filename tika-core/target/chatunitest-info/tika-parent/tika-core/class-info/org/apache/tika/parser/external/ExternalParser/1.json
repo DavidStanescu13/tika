@@ -1,0 +1,86 @@
+{
+  "className": "ExternalParser",
+  "methodName": "parse",
+  "brief": "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        try (TemporaryResources tmp = new TemporaryResources()) {\n            Path outFile = null;\n            Path p = tis.getPath();\n            List<String> thisCommandLine = new ArrayList<>();\n            Matcher inputMatcher = INPUT_TOKEN_MATCHER.matcher(\"\");\n            Matcher outputMatcher = OUTPUT_TOKEN_MATCHER.matcher(\"\");\n            boolean hasOutputFile = false;\n            for (String c : commandLine) {\n                if (inputMatcher.reset(c).find()) {\n                    // ProcessBuilder uses argv arrays, not shell invocation,\n                    // so no escaping is needed or desired here.\n                    String updated = c.replace(INPUT_FILE_TOKEN,\n                            p.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                } else if (outputMatcher.reset(c).find()) {\n                    outFile = tmp.createTempFile();\n                    String updated = c.replace(OUTPUT_FILE_TOKEN,\n                            outFile.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                    hasOutputFile = true;\n                } else {\n                    thisCommandLine.add(c);\n                }\n            }\n\n            // Always capture both stdout and stderr in memory\n            long localTimeoutMillis = TimeoutLimits.getProcessTimeoutMillis(\n                    context, config.getTimeoutMs());\n            FileProcessResult result = ProcessUtils.execute(\n                    new ProcessBuilder(thisCommandLine),\n                    localTimeoutMillis, config.getMaxStdOut(), config.getMaxStdErr());\n\n            // Set process metadata\n            metadata.set(ExternalProcess.IS_TIMEOUT, result.isTimeout());\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            TikaProgressTracker.update(context);\n            metadata.set(ExternalProcess.STD_OUT_LENGTH, result.getStdoutLength());\n            metadata.set(ExternalProcess.STD_OUT_IS_TRUNCATED,\n                    result.isStdoutTruncated());\n            metadata.set(ExternalProcess.STD_ERR_LENGTH, result.getStderrLength());\n            metadata.set(ExternalProcess.STD_ERR_IS_TRUNCATED,\n                    result.isStderrTruncated());\n\n            if (config.isReturnStdout()) {\n                metadata.set(ExternalProcess.STD_OUT, result.getStdout());\n            }\n            if (config.isReturnStderr()) {\n                metadata.set(ExternalProcess.STD_ERR, result.getStderr());\n            }\n\n            // Determine content source\n            String effectiveContentSource = config.getContentSource();\n            if (effectiveContentSource == null) {\n                effectiveContentSource = hasOutputFile ? \"outputFile\" : \"stdout\";\n            }\n\n            XHTMLContentHandler xhtml =\n                    new XHTMLContentHandler(handler, metadata, context);\n            xhtml.startDocument();\n\n            // Process each stream through its handler\n            handleStream(result.getStdout(), stdoutHandler,\n                    \"stdout\".equals(effectiveContentSource),\n                    xhtml, metadata, context);\n\n            handleStream(result.getStderr(), stderrHandler,\n                    \"stderr\".equals(effectiveContentSource),\n                    xhtml, metadata, context);\n\n            if (hasOutputFile && outFile != null) {\n                handleOutputFile(outFile, outputFileHandler,\n                        \"outputFile\".equals(effectiveContentSource),\n                        xhtml, metadata, context);\n            }\n\n            xhtml.endDocument();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "getPath()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, long)",
+      "set(Property, String)",
+      "set(Property, boolean)",
+      "set(Property, int)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "reset(CharSequence)"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "replace(CharSequence, CharSequence)"
+    ],
+    "java.nio.file.Path": [
+      "toAbsolutePath()",
+      "toString()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile()"
+    ],
+    "org.apache.tika.config.TimeoutLimits": [
+      "getProcessTimeoutMillis(ParseContext, long)"
+    ],
+    "org.apache.tika.parser.external.ExternalParserConfig": [
+      "getTimeoutMs()",
+      "getContentSource()",
+      "isReturnStderr()",
+      "getMaxStdErr()",
+      "isReturnStdout()",
+      "getMaxStdOut()"
+    ],
+    "org.apache.tika.utils.ProcessUtils": [
+      "execute(ProcessBuilder, long, int, int)"
+    ],
+    "org.apache.tika.utils.FileProcessResult": [
+      "getExitValue()",
+      "getStderr()",
+      "isStdoutTruncated()",
+      "getStderrLength()",
+      "isTimeout()",
+      "getStdoutLength()",
+      "getStdout()",
+      "isStderrTruncated()"
+    ],
+    "org.apache.tika.config.TikaProgressTracker": [
+      "update(ParseContext)"
+    ],
+    "org.apache.tika.parser.external.ExternalParser": [
+      "handleOutputFile(Path, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)",
+      "handleStream(String, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    try (TemporaryResources tmp = new TemporaryResources()) {\n        Path outFile = null;\n        Path p = tis.getPath();\n        List<String> thisCommandLine = new ArrayList<>();\n        Matcher inputMatcher = INPUT_TOKEN_MATCHER.matcher(\"\");\n        Matcher outputMatcher = OUTPUT_TOKEN_MATCHER.matcher(\"\");\n        boolean hasOutputFile = false;\n        for (String c : commandLine) {\n            if (inputMatcher.reset(c).find()) {\n                // ProcessBuilder uses argv arrays, not shell invocation,\n                // so no escaping is needed or desired here.\n                String updated = c.replace(INPUT_FILE_TOKEN, p.toAbsolutePath().toString());\n                thisCommandLine.add(updated);\n            } else if (outputMatcher.reset(c).find()) {\n                outFile = tmp.createTempFile();\n                String updated = c.replace(OUTPUT_FILE_TOKEN, outFile.toAbsolutePath().toString());\n                thisCommandLine.add(updated);\n                hasOutputFile = true;\n            } else {\n                thisCommandLine.add(c);\n            }\n        }\n        // Always capture both stdout and stderr in memory\n        long localTimeoutMillis = TimeoutLimits.getProcessTimeoutMillis(context, config.getTimeoutMs());\n        FileProcessResult result = ProcessUtils.execute(new ProcessBuilder(thisCommandLine), localTimeoutMillis, config.getMaxStdOut(), config.getMaxStdErr());\n        // Set process metadata\n        metadata.set(ExternalProcess.IS_TIMEOUT, result.isTimeout());\n        metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n        TikaProgressTracker.update(context);\n        metadata.set(ExternalProcess.STD_OUT_LENGTH, result.getStdoutLength());\n        metadata.set(ExternalProcess.STD_OUT_IS_TRUNCATED, result.isStdoutTruncated());\n        metadata.set(ExternalProcess.STD_ERR_LENGTH, result.getStderrLength());\n        metadata.set(ExternalProcess.STD_ERR_IS_TRUNCATED, result.isStderrTruncated());\n        if (config.isReturnStdout()) {\n            metadata.set(ExternalProcess.STD_OUT, result.getStdout());\n        }\n        if (config.isReturnStderr()) {\n            metadata.set(ExternalProcess.STD_ERR, result.getStderr());\n        }\n        // Determine content source\n        String effectiveContentSource = config.getContentSource();\n        if (effectiveContentSource == null) {\n            effectiveContentSource = hasOutputFile ? \"outputFile\" : \"stdout\";\n        }\n        XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata, context);\n        xhtml.startDocument();\n        // Process each stream through its handler\n        handleStream(result.getStdout(), stdoutHandler, \"stdout\".equals(effectiveContentSource), xhtml, metadata, context);\n        handleStream(result.getStderr(), stderrHandler, \"stderr\".equals(effectiveContentSource), xhtml, metadata, context);\n        if (hasOutputFile && outFile != null) {\n            handleOutputFile(outFile, outputFileHandler, \"outputFile\".equals(effectiveContentSource), xhtml, metadata, context);\n        }\n        xhtml.endDocument();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

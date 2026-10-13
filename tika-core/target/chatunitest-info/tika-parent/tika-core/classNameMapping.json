@@ -1,0 +1,1053 @@
+{
+  "StandardReference": [
+    "org.apache.tika.sax.StandardReference"
+  ],
+  "HttpHeaders": [
+    "org.apache.tika.metadata.HttpHeaders"
+  ],
+  "AbstractParser": [
+    "org.apache.tika.parser.AbstractParser"
+  ],
+  "MetadataWriteLimiterFactory": [
+    "org.apache.tika.metadata.writefilter.MetadataWriteLimiterFactory"
+  ],
+  "XPathParser": [
+    "org.apache.tika.sax.xpath.XPathParser"
+  ],
+  "NamedElementMatcher": [
+    "org.apache.tika.sax.xpath.NamedElementMatcher"
+  ],
+  "MatchingContentHandler": [
+    "org.apache.tika.sax.xpath.MatchingContentHandler"
+  ],
+  "EncodingDetectorContext": [
+    "org.apache.tika.detect.EncodingDetectorContext"
+  ],
+  "MimeTypesFactory": [
+    "org.apache.tika.mime.MimeTypesFactory"
+  ],
+  "RenderResult": [
+    "org.apache.tika.renderer.RenderResult"
+  ],
+  "NoOpContentHandler": [
+    "org.apache.tika.sax.NoOpContentHandler"
+  ],
+  "Embedder": [
+    "org.apache.tika.embedder.Embedder"
+  ],
+  "TikaInputStream": [
+    "org.apache.tika.io.TikaInputStream"
+  ],
+  "ExternalParserConfig": [
+    "org.apache.tika.parser.external.ExternalParserConfig"
+  ],
+  "DigestHelper": [
+    "org.apache.tika.digest.DigestHelper"
+  ],
+  "Translator": [
+    "org.apache.tika.language.translate.Translator"
+  ],
+  "DWG": [
+    "org.apache.tika.metadata.DWG"
+  ],
+  "MediaType": [
+    "org.apache.tika.mime.MediaType"
+  ],
+  "ProbabilisticMimeDetectionSelector": [
+    "org.apache.tika.mime.ProbabilisticMimeDetectionSelector"
+  ],
+  "ContentHandlerDecoratorFactory": [
+    "org.apache.tika.sax.ContentHandlerDecoratorFactory"
+  ],
+  "Geographic": [
+    "org.apache.tika.metadata.Geographic"
+  ],
+  "MimeTypesReaderMetKeys": [
+    "org.apache.tika.mime.MimeTypesReaderMetKeys"
+  ],
+  "OrClause": [
+    "org.apache.tika.mime.OrClause"
+  ],
+  "ElementInfo": [
+    "org.apache.tika.sax.ElementInfo"
+  ],
+  "ExtractorHandler": [
+    "org.apache.tika.detect.ExtractorHandler"
+  ],
+  "XMPMM": [
+    "org.apache.tika.metadata.XMPMM"
+  ],
+  "ParserDecorator": [
+    "org.apache.tika.parser.ParserDecorator"
+  ],
+  "ChildMatcher": [
+    "org.apache.tika.sax.xpath.ChildMatcher"
+  ],
+  "RenderRequest": [
+    "org.apache.tika.renderer.RenderRequest"
+  ],
+  "CleanPhoneText": [
+    "org.apache.tika.sax.CleanPhoneText"
+  ],
+  "PageAnchoring": [
+    "org.apache.tika.metadata.PageAnchoring"
+  ],
+  "ErrorParser": [
+    "org.apache.tika.parser.ErrorParser"
+  ],
+  "Parser": [
+    "org.apache.tika.parser.Parser"
+  ],
+  "XercesPoolSAXParser": [
+    "org.apache.tika.utils.XercesPoolSAXParser"
+  ],
+  "LegacyKeyMigrationFilter": [
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter"
+  ],
+  "MachineMetadata": [
+    "org.apache.tika.metadata.MachineMetadata"
+  ],
+  "XMPIdq": [
+    "org.apache.tika.metadata.XMPIdq"
+  ],
+  "PagedText": [
+    "org.apache.tika.metadata.PagedText"
+  ],
+  "Link": [
+    "org.apache.tika.sax.Link"
+  ],
+  "MetadataWriteLimiter": [
+    "org.apache.tika.metadata.writefilter.MetadataWriteLimiter"
+  ],
+  "Endian": [
+    "org.apache.tika.metadata.Endian"
+  ],
+  "Office": [
+    "org.apache.tika.metadata.Office"
+  ],
+  "EmbeddedDocumentExtractor": [
+    "org.apache.tika.extractor.EmbeddedDocumentExtractor"
+  ],
+  "ParsingReader": [
+    "org.apache.tika.parser.ParsingReader"
+  ],
+  "Matcher": [
+    "org.apache.tika.sax.xpath.Matcher"
+  ],
+  "JsonConfig": [
+    "org.apache.tika.config.JsonConfig"
+  ],
+  "Metadata": [
+    "org.apache.tika.metadata.Metadata"
+  ],
+  "DefaultProbDetector": [
+    "org.apache.tika.detect.DefaultProbDetector"
+  ],
+  "EmbeddedStreamTranslator": [
+    "org.apache.tika.extractor.EmbeddedStreamTranslator"
+  ],
+  "MediaTypeRegistry": [
+    "org.apache.tika.mime.MediaTypeRegistry"
+  ],
+  "PageRangeRequest": [
+    "org.apache.tika.renderer.PageRangeRequest"
+  ],
+  "WriteLimitReachedException": [
+    "org.apache.tika.exception.WriteLimitReachedException"
+  ],
+  "Font": [
+    "org.apache.tika.metadata.Font"
+  ],
+  "SecureHandlerCounter": [
+    "org.apache.tika.parser.SecureHandlerCounter"
+  ],
+  "TextContentHandler": [
+    "org.apache.tika.sax.TextContentHandler"
+  ],
+  "TrainedModel": [
+    "org.apache.tika.detect.TrainedModel"
+  ],
+  "TextMatcher": [
+    "org.apache.tika.sax.xpath.TextMatcher"
+  ],
+  "WARC": [
+    "org.apache.tika.metadata.WARC"
+  ],
+  "RegexUtils": [
+    "org.apache.tika.utils.RegexUtils"
+  ],
+  "LinkContentHandler": [
+    "org.apache.tika.sax.LinkContentHandler"
+  ],
+  "Digester": [
+    "org.apache.tika.digest.Digester"
+  ],
+  "IgnoreZeroByteFileException": [
+    "org.apache.tika.exception.IgnoreZeroByteFileException"
+  ],
+  "Output": [
+    "org.apache.tika.sax.Output"
+  ],
+  "XmlRootExtractor": [
+    "org.apache.tika.detect.XmlRootExtractor"
+  ],
+  "TikaTimeoutException": [
+    "org.apache.tika.exception.TikaTimeoutException"
+  ],
+  "AttributeMatcher": [
+    "org.apache.tika.sax.xpath.AttributeMatcher"
+  ],
+  "CharsetUtils": [
+    "org.apache.tika.utils.CharsetUtils"
+  ],
+  "SAXOutputConfig": [
+    "org.apache.tika.sax.SAXOutputConfig"
+  ],
+  "StandardsText": [
+    "org.apache.tika.sax.StandardsText"
+  ],
+  "EmptyParser": [
+    "org.apache.tika.parser.EmptyParser"
+  ],
+  "StandardsExtractingContentHandler": [
+    "org.apache.tika.sax.StandardsExtractingContentHandler"
+  ],
+  "TextQualityComparison": [
+    "org.apache.tika.quality.TextQualityComparison"
+  ],
+  "MimeFilteringDecorator": [
+    "org.apache.tika.parser.MimeFilteringDecorator"
+  ],
+  "EmbeddedContentHandler": [
+    "org.apache.tika.sax.EmbeddedContentHandler"
+  ],
+  "AcceptAll": [
+    "org.apache.tika.extractor.AcceptAll"
+  ],
+  "TimeoutLimits": [
+    "org.apache.tika.config.TimeoutLimits"
+  ],
+  "LanguageDetector": [
+    "org.apache.tika.language.detect.LanguageDetector"
+  ],
+  "ToTextContentHandler": [
+    "org.apache.tika.sax.ToTextContentHandler"
+  ],
+  "ZeroByteFileException": [
+    "org.apache.tika.exception.ZeroByteFileException"
+  ],
+  "Initializable": [
+    "org.apache.tika.config.Initializable"
+  ],
+  "WriteOutContentHandler": [
+    "org.apache.tika.sax.WriteOutContentHandler"
+  ],
+  "MetadataFilter": [
+    "org.apache.tika.metadata.filter.MetadataFilter"
+  ],
+  "TextDetector": [
+    "org.apache.tika.detect.TextDetector"
+  ],
+  "RemoveByMimeMetadataFilter": [
+    "org.apache.tika.metadata.filter.RemoveByMimeMetadataFilter"
+  ],
+  "XMPPDF": [
+    "org.apache.tika.metadata.XMPPDF"
+  ],
+  "Audio": [
+    "org.apache.tika.metadata.Audio"
+  ],
+  "SimpleThreadPoolExecutor": [
+    "org.apache.tika.concurrent.SimpleThreadPoolExecutor"
+  ],
+  "CompositeRenderer": [
+    "org.apache.tika.renderer.CompositeRenderer"
+  ],
+  "AbstractMultipleParser": [
+    "org.apache.tika.parser.multiple.AbstractMultipleParser"
+  ],
+  "AndClause": [
+    "org.apache.tika.mime.AndClause"
+  ],
+  "AccessPermissionException": [
+    "org.apache.tika.exception.AccessPermissionException"
+  ],
+  "DurationFormatUtils": [
+    "org.apache.tika.utils.DurationFormatUtils"
+  ],
+  "TikaPagedText": [
+    "org.apache.tika.metadata.TikaPagedText"
+  ],
+  "TextQualityDetector": [
+    "org.apache.tika.quality.TextQualityDetector"
+  ],
+  "OfficeOpenXMLExtended": [
+    "org.apache.tika.metadata.OfficeOpenXMLExtended"
+  ],
+  "RTFMetadata": [
+    "org.apache.tika.metadata.RTFMetadata"
+  ],
+  "EmptyTranslator": [
+    "org.apache.tika.language.translate.EmptyTranslator"
+  ],
+  "RenderResults": [
+    "org.apache.tika.renderer.RenderResults"
+  ],
+  "Tika": [
+    "org.apache.tika.Tika"
+  ],
+  "ServiceLoaderUtils": [
+    "org.apache.tika.utils.ServiceLoaderUtils"
+  ],
+  "DigestDef": [
+    "org.apache.tika.digest.DigestDef"
+  ],
+  "NNTrainedModel": [
+    "org.apache.tika.detect.NNTrainedModel"
+  ],
+  "EncodingDetector": [
+    "org.apache.tika.detect.EncodingDetector"
+  ],
+  "SkipContainerDocumentDigest": [
+    "org.apache.tika.digest.SkipContainerDocumentDigest"
+  ],
+  "FileSystem": [
+    "org.apache.tika.metadata.FileSystem"
+  ],
+  "TikaMemoryLimitException": [
+    "org.apache.tika.exception.TikaMemoryLimitException"
+  ],
+  "TypeDetector": [
+    "org.apache.tika.detect.TypeDetector"
+  ],
+  "ContainerExtractor": [
+    "org.apache.tika.extractor.ContainerExtractor"
+  ],
+  "AbstractEncodingDetectorParser": [
+    "org.apache.tika.parser.AbstractEncodingDetectorParser"
+  ],
+  "DelegatingParser": [
+    "org.apache.tika.parser.DelegatingParser"
+  ],
+  "ContentHandlerFactory": [
+    "org.apache.tika.sax.ContentHandlerFactory"
+  ],
+  "LanguageNames": [
+    "org.apache.tika.language.detect.LanguageNames"
+  ],
+  "FileTooLongException": [
+    "org.apache.tika.exception.FileTooLongException"
+  ],
+  "EndianUtils": [
+    "org.apache.tika.io.EndianUtils"
+  ],
+  "ParseRecord": [
+    "org.apache.tika.parser.ParseRecord"
+  ],
+  "PhoneExtractingContentHandler": [
+    "org.apache.tika.sax.PhoneExtractingContentHandler"
+  ],
+  "TailStream": [
+    "org.apache.tika.io.TailStream"
+  ],
+  "MAPI": [
+    "org.apache.tika.metadata.MAPI"
+  ],
+  "PST": [
+    "org.apache.tika.metadata.PST"
+  ],
+  "Video": [
+    "org.apache.tika.metadata.Video"
+  ],
+  "EncodingResult": [
+    "org.apache.tika.detect.EncodingResult"
+  ],
+  "RegexCaptureParserConfig": [
+    "org.apache.tika.parser.RegexCaptureParserConfig"
+  ],
+  "Renderer": [
+    "org.apache.tika.renderer.Renderer"
+  ],
+  "Epub": [
+    "org.apache.tika.metadata.Epub"
+  ],
+  "CacheInputStream": [
+    "org.apache.tika.io.CacheInputStream"
+  ],
+  "LanguageWriter": [
+    "org.apache.tika.language.detect.LanguageWriter"
+  ],
+  "ByteArraySource": [
+    "org.apache.tika.io.ByteArraySource"
+  ],
+  "LengthComparator": [
+    "org.apache.tika.mime.LengthComparator"
+  ],
+  "QuickTime": [
+    "org.apache.tika.metadata.QuickTime"
+  ],
+  "LanguageResult": [
+    "org.apache.tika.language.detect.LanguageResult"
+  ],
+  "MetadataOnlyParse": [
+    "org.apache.tika.parser.MetadataOnlyParse"
+  ],
+  "EndDocumentShieldingContentHandler": [
+    "org.apache.tika.sax.EndDocumentShieldingContentHandler"
+  ],
+  "ExceptionUtils": [
+    "org.apache.tika.utils.ExceptionUtils"
+  ],
+  "PropertyTypeException": [
+    "org.apache.tika.metadata.PropertyTypeException"
+  ],
+  "EmbeddedLimits": [
+    "org.apache.tika.config.EmbeddedLimits"
+  ],
+  "ClimateForcast": [
+    "org.apache.tika.metadata.ClimateForcast"
+  ],
+  "StandardReferenceBuilder": [
+    "org.apache.tika.sax.StandardReferenceBuilder"
+  ],
+  "OfficeOpenXMLCore": [
+    "org.apache.tika.metadata.OfficeOpenXMLCore"
+  ],
+  "RootXML": [
+    "org.apache.tika.mime.RootXML"
+  ],
+  "NetworkParser": [
+    "org.apache.tika.parser.NetworkParser"
+  ],
+  "DefaultEmbeddedStreamTranslator": [
+    "org.apache.tika.extractor.DefaultEmbeddedStreamTranslator"
+  ],
+  "TikaProgressTracker": [
+    "org.apache.tika.config.TikaProgressTracker"
+  ],
+  "CachingSource": [
+    "org.apache.tika.io.CachingSource"
+  ],
+  "StrictXHTMLValidator": [
+    "org.apache.tika.sax.StrictXHTMLValidator"
+  ],
+  "PDF": [
+    "org.apache.tika.metadata.PDF"
+  ],
+  "AutoDetectReader": [
+    "org.apache.tika.detect.AutoDetectReader"
+  ],
+  "StandardMetadataLimiter": [
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter"
+  ],
+  "AutoDetectParser": [
+    "org.apache.tika.parser.AutoDetectParser"
+  ],
+  "TextQualityScore": [
+    "org.apache.tika.quality.TextQualityScore"
+  ],
+  "SubtreeMatcher": [
+    "org.apache.tika.sax.xpath.SubtreeMatcher"
+  ],
+  "MagicDetector": [
+    "org.apache.tika.detect.MagicDetector"
+  ],
+  "StandardExtractorFactory": [
+    "org.apache.tika.extractor.StandardExtractorFactory"
+  ],
+  "TextStatistics": [
+    "org.apache.tika.detect.TextStatistics"
+  ],
+  "ContentHandlerDecorator": [
+    "org.apache.tika.sax.ContentHandlerDecorator"
+  ],
+  "ConfigurableThreadPoolExecutor": [
+    "org.apache.tika.concurrent.ConfigurableThreadPoolExecutor"
+  ],
+  "DefaultParser": [
+    "org.apache.tika.parser.DefaultParser"
+  ],
+  "SimplePasswordProvider": [
+    "org.apache.tika.parser.SimplePasswordProvider"
+  ],
+  "EmbeddedDocumentUtil": [
+    "org.apache.tika.extractor.EmbeddedDocumentUtil"
+  ],
+  "DetectHelper": [
+    "org.apache.tika.detect.DetectHelper"
+  ],
+  "QName": [
+    "org.apache.tika.sax.QName"
+  ],
+  "QuattroPro": [
+    "org.apache.tika.metadata.QuattroPro"
+  ],
+  "MinShouldMatchVal": [
+    "org.apache.tika.mime.MinShouldMatchVal"
+  ],
+  "FilenameUtils": [
+    "org.apache.tika.io.FilenameUtils"
+  ],
+  "AutoDetectParserConfig": [
+    "org.apache.tika.parser.AutoDetectParserConfig"
+  ],
+  "NameDetector": [
+    "org.apache.tika.detect.NameDetector"
+  ],
+  "UnsupportedFormatException": [
+    "org.apache.tika.exception.UnsupportedFormatException"
+  ],
+  "ElementMappingContentHandler": [
+    "org.apache.tika.sax.ElementMappingContentHandler"
+  ],
+  "OfflineContentHandler": [
+    "org.apache.tika.sax.OfflineContentHandler"
+  ],
+  "ElementMatcher": [
+    "org.apache.tika.sax.xpath.ElementMatcher"
+  ],
+  "RichTextContentHandler": [
+    "org.apache.tika.sax.RichTextContentHandler"
+  ],
+  "DateNormalizingMetadataFilter": [
+    "org.apache.tika.metadata.filter.DateNormalizingMetadataFilter"
+  ],
+  "ParseContext": [
+    "org.apache.tika.parser.ParseContext"
+  ],
+  "GeoPointMetadataFilter": [
+    "org.apache.tika.metadata.filter.GeoPointMetadataFilter"
+  ],
+  "Photoshop": [
+    "org.apache.tika.metadata.Photoshop"
+  ],
+  "IncludeFieldMetadataFilter": [
+    "org.apache.tika.metadata.filter.IncludeFieldMetadataFilter"
+  ],
+  "MetaHandler": [
+    "org.apache.tika.parser.MetaHandler"
+  ],
+  "SystemUtils": [
+    "org.apache.tika.utils.SystemUtils"
+  ],
+  "EmbeddedLimitReachedException": [
+    "org.apache.tika.exception.EmbeddedLimitReachedException"
+  ],
+  "Zip": [
+    "org.apache.tika.metadata.Zip"
+  ],
+  "CompositeEncodingDetector": [
+    "org.apache.tika.detect.CompositeEncodingDetector"
+  ],
+  "ExcludeFieldMetadataFilter": [
+    "org.apache.tika.metadata.filter.ExcludeFieldMetadataFilter"
+  ],
+  "SkipEmbeddedDocumentSelector": [
+    "org.apache.tika.extractor.SkipEmbeddedDocumentSelector"
+  ],
+  "BasicContentHandlerFactory": [
+    "org.apache.tika.sax.BasicContentHandlerFactory"
+  ],
+  "TrainedModelDetector": [
+    "org.apache.tika.detect.TrainedModelDetector"
+  ],
+  "EmbeddedParserDecorator": [
+    "org.apache.tika.parser.EmbeddedParserDecorator"
+  ],
+  "SecureContentHandler": [
+    "org.apache.tika.sax.SecureContentHandler"
+  ],
+  "NoOpFilter": [
+    "org.apache.tika.metadata.filter.NoOpFilter"
+  ],
+  "BOMDetector": [
+    "org.apache.tika.detect.BOMDetector"
+  ],
+  "FileProcessResult": [
+    "org.apache.tika.utils.FileProcessResult"
+  ],
+  "ParentContentHandler": [
+    "org.apache.tika.extractor.ParentContentHandler"
+  ],
+  "PassthroughPrefix": [
+    "org.apache.tika.metadata.PassthroughPrefix"
+  ],
+  "RecursivelySecureContentHandler": [
+    "org.apache.tika.parser.RecursivelySecureContentHandler"
+  ],
+  "WriteLimiter": [
+    "org.apache.tika.sax.WriteLimiter"
+  ],
+  "DefaultMetadataFilter": [
+    "org.apache.tika.metadata.filter.DefaultMetadataFilter"
+  ],
+  "StreamCache": [
+    "org.apache.tika.io.StreamCache"
+  ],
+  "Database": [
+    "org.apache.tika.metadata.Database"
+  ],
+  "DefaultEncodingDetector": [
+    "org.apache.tika.detect.DefaultEncodingDetector"
+  ],
+  "FileCommandDetector": [
+    "org.apache.tika.detect.FileCommandDetector"
+  ],
+  "Patterns": [
+    "org.apache.tika.mime.Patterns"
+  ],
+  "CompareUtils": [
+    "org.apache.tika.utils.CompareUtils"
+  ],
+  "DefaultDetector": [
+    "org.apache.tika.detect.DefaultDetector"
+  ],
+  "Google": [
+    "org.apache.tika.metadata.Google"
+  ],
+  "ParsingEmbeddedDocumentExtractor": [
+    "org.apache.tika.extractor.ParsingEmbeddedDocumentExtractor"
+  ],
+  "CompositeParser": [
+    "org.apache.tika.parser.CompositeParser"
+  ],
+  "FileSource": [
+    "org.apache.tika.io.FileSource"
+  ],
+  "DIFContentHandler": [
+    "org.apache.tika.sax.DIFContentHandler"
+  ],
+  "RenderingState": [
+    "org.apache.tika.renderer.RenderingState"
+  ],
+  "ToMarkdownContentHandler": [
+    "org.apache.tika.sax.ToMarkdownContentHandler"
+  ],
+  "PageBasedRenderResults": [
+    "org.apache.tika.renderer.PageBasedRenderResults"
+  ],
+  "CharsetSupersets": [
+    "org.apache.tika.detect.CharsetSupersets"
+  ],
+  "TikaInputSource": [
+    "org.apache.tika.io.TikaInputSource"
+  ],
+  "CreativeCommons": [
+    "org.apache.tika.metadata.CreativeCommons"
+  ],
+  "ParsingIntent": [
+    "org.apache.tika.parser.ParsingIntent"
+  ],
+  "ChannelTypePropertyConverter": [
+    "org.apache.tika.metadata.ChannelTypePropertyConverter"
+  ],
+  "ServiceLoader": [
+    "org.apache.tika.config.ServiceLoader"
+  ],
+  "ConfigDeserializer": [
+    "org.apache.tika.config.ConfigDeserializer"
+  ],
+  "CaptureGroupMetadataFilter": [
+    "org.apache.tika.metadata.filter.CaptureGroupMetadataFilter"
+  ],
+  "UnrecognizedPoolSAXParser": [
+    "org.apache.tika.utils.UnrecognizedPoolSAXParser"
+  ],
+  "CorruptedFileException": [
+    "org.apache.tika.exception.CorruptedFileException"
+  ],
+  "BoundedInputStream": [
+    "org.apache.tika.io.BoundedInputStream"
+  ],
+  "BuiltInPoolSAXParser": [
+    "org.apache.tika.utils.BuiltInPoolSAXParser"
+  ],
+  "XMPDM": [
+    "org.apache.tika.metadata.XMPDM"
+  ],
+  "XHTMLBalancingHandler": [
+    "org.apache.tika.sax.XHTMLBalancingHandler"
+  ],
+  "StatefulParser": [
+    "org.apache.tika.parser.StatefulParser"
+  ],
+  "OverrideDetector": [
+    "org.apache.tika.detect.OverrideDetector"
+  ],
+  "TeeContentHandler": [
+    "org.apache.tika.sax.TeeContentHandler"
+  ],
+  "RenderingTracker": [
+    "org.apache.tika.renderer.RenderingTracker"
+  ],
+  "ConfigValidator": [
+    "org.apache.tika.config.ConfigValidator"
+  ],
+  "WordPerfect": [
+    "org.apache.tika.metadata.WordPerfect"
+  ],
+  "BodyContentHandler": [
+    "org.apache.tika.sax.BodyContentHandler"
+  ],
+  "StreamGobbler": [
+    "org.apache.tika.utils.StreamGobbler"
+  ],
+  "RuntimeSAXException": [
+    "org.apache.tika.exception.RuntimeSAXException"
+  ],
+  "DigesterFactory": [
+    "org.apache.tika.digest.DigesterFactory"
+  ],
+  "EncryptedDocumentException": [
+    "org.apache.tika.exception.EncryptedDocumentException"
+  ],
+  "BufferUnderrunException": [
+    "org.apache.tika.io.BufferUnderrunException"
+  ],
+  "XMPDC": [
+    "org.apache.tika.metadata.XMPDC"
+  ],
+  "RegexCaptureParser": [
+    "org.apache.tika.parser.RegexCaptureParser"
+  ],
+  "RenderingParser": [
+    "org.apache.tika.parser.RenderingParser"
+  ],
+  "AbstractRecursiveParserWrapperHandler": [
+    "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler"
+  ],
+  "UnpackHandler": [
+    "org.apache.tika.extractor.UnpackHandler"
+  ],
+  "StringOutput": [
+    "org.apache.tika.sax.StringOutput"
+  ],
+  "SelfConfiguring": [
+    "org.apache.tika.config.SelfConfiguring"
+  ],
+  "TikaActivator": [
+    "org.apache.tika.config.TikaActivator"
+  ],
+  "CompositeMetadataFilter": [
+    "org.apache.tika.metadata.filter.CompositeMetadataFilter"
+  ],
+  "MimeType": [
+    "org.apache.tika.mime.MimeType"
+  ],
+  "MetadataCharsetDetector": [
+    "org.apache.tika.detect.MetadataCharsetDetector"
+  ],
+  "EmbeddedDocumentExtractorFactory": [
+    "org.apache.tika.extractor.EmbeddedDocumentExtractorFactory"
+  ],
+  "ClearByAttachmentTypeMetadataFilter": [
+    "org.apache.tika.metadata.filter.ClearByAttachmentTypeMetadataFilter"
+  ],
+  "MetaEncodingDetector": [
+    "org.apache.tika.detect.MetaEncodingDetector"
+  ],
+  "StringSizePair": [
+    "org.apache.tika.metadata.writefilter.StringSizePair"
+  ],
+  "CompositeDigester": [
+    "org.apache.tika.digest.CompositeDigester"
+  ],
+  "InputStreamDigester": [
+    "org.apache.tika.digest.InputStreamDigester"
+  ],
+  "Property": [
+    "org.apache.tika.metadata.Property"
+  ],
+  "MagicMatch": [
+    "org.apache.tika.mime.MagicMatch"
+  ],
+  "ExternalParser": [
+    "org.apache.tika.parser.external.ExternalParser"
+  ],
+  "CompositeDetector": [
+    "org.apache.tika.detect.CompositeDetector"
+  ],
+  "ToXMLContentHandler": [
+    "org.apache.tika.sax.ToXMLContentHandler"
+  ],
+  "UnpackSelector": [
+    "org.apache.tika.extractor.UnpackSelector"
+  ],
+  "PoolSAXParser": [
+    "org.apache.tika.utils.PoolSAXParser"
+  ],
+  "LookaheadInputStream": [
+    "org.apache.tika.io.LookaheadInputStream"
+  ],
+  "TextAndAttributeContentHandler": [
+    "org.apache.tika.sax.TextAndAttributeContentHandler"
+  ],
+  "TemporaryResources": [
+    "org.apache.tika.io.TemporaryResources"
+  ],
+  "XMPTIFF": [
+    "org.apache.tika.metadata.XMPTIFF"
+  ],
+  "HexCoDec": [
+    "org.apache.tika.mime.HexCoDec"
+  ],
+  "XHTMLContentHandler": [
+    "org.apache.tika.sax.XHTMLContentHandler"
+  ],
+  "ExpandedTitleContentHandler": [
+    "org.apache.tika.sax.ExpandedTitleContentHandler"
+  ],
+  "AbstractExternalProcessParser": [
+    "org.apache.tika.parser.AbstractExternalProcessParser"
+  ],
+  "Rendering": [
+    "org.apache.tika.metadata.Rendering"
+  ],
+  "ToHTMLContentHandler": [
+    "org.apache.tika.sax.ToHTMLContentHandler"
+  ],
+  "EncodingProbeCache": [
+    "org.apache.tika.detect.EncodingProbeCache"
+  ],
+  "ClauseRecord": [
+    "org.apache.tika.mime.ClauseRecord"
+  ],
+  "TikaMimeKeys": [
+    "org.apache.tika.metadata.TikaMimeKeys"
+  ],
+  "LanguageHandler": [
+    "org.apache.tika.language.detect.LanguageHandler"
+  ],
+  "ExternalEmbedder": [
+    "org.apache.tika.embedder.ExternalEmbedder"
+  ],
+  "ParserState": [
+    "org.apache.tika.parser.ParserState"
+  ],
+  "Builder": [
+    "org.apache.tika.mime.Builder"
+  ],
+  "CryptoParser": [
+    "org.apache.tika.parser.CryptoParser"
+  ],
+  "SafeContentHandler": [
+    "org.apache.tika.sax.SafeContentHandler"
+  ],
+  "TaggedContentHandler": [
+    "org.apache.tika.sax.TaggedContentHandler"
+  ],
+  "HighByteLetterStats": [
+    "org.apache.tika.detect.HighByteLetterStats"
+  ],
+  "HTML": [
+    "org.apache.tika.metadata.HTML"
+  ],
+  "DateUtils": [
+    "org.apache.tika.utils.DateUtils"
+  ],
+  "RecursiveParserWrapper": [
+    "org.apache.tika.parser.RecursiveParserWrapper"
+  ],
+  "Result": [
+    "org.apache.tika.detect.Result"
+  ],
+  "Encoder": [
+    "org.apache.tika.digest.Encoder"
+  ],
+  "RecursiveParserWrapperHandler": [
+    "org.apache.tika.sax.RecursiveParserWrapperHandler"
+  ],
+  "Xerces2PoolSAXParser": [
+    "org.apache.tika.utils.Xerces2PoolSAXParser"
+  ],
+  "ParserUtils": [
+    "org.apache.tika.utils.ParserUtils"
+  ],
+  "SecureSAXException": [
+    "org.apache.tika.sax.SecureSAXException"
+  ],
+  "MalformedCharException": [
+    "org.apache.tika.detect.MalformedCharException"
+  ],
+  "SpoolingStrategy": [
+    "org.apache.tika.io.SpoolingStrategy"
+  ],
+  "FieldNameMappingFilter": [
+    "org.apache.tika.metadata.filter.FieldNameMappingFilter"
+  ],
+  "EmbeddedResourceHandler": [
+    "org.apache.tika.extractor.EmbeddedResourceHandler"
+  ],
+  "ParseContextConfig": [
+    "org.apache.tika.config.ParseContextConfig"
+  ],
+  "DublinCore": [
+    "org.apache.tika.metadata.DublinCore"
+  ],
+  "LinkBuilder": [
+    "org.apache.tika.sax.LinkBuilder"
+  ],
+  "XMPRights": [
+    "org.apache.tika.metadata.XMPRights"
+  ],
+  "ExternalProcess": [
+    "org.apache.tika.metadata.ExternalProcess"
+  ],
+  "MimeTypes": [
+    "org.apache.tika.mime.MimeTypes"
+  ],
+  "NNTrainedModelBuilder": [
+    "org.apache.tika.detect.NNTrainedModelBuilder"
+  ],
+  "PasswordProvider": [
+    "org.apache.tika.parser.PasswordProvider"
+  ],
+  "ProcessUtils": [
+    "org.apache.tika.utils.ProcessUtils"
+  ],
+  "PoolDOMBuilder": [
+    "org.apache.tika.utils.PoolDOMBuilder"
+  ],
+  "StoppingEarlyException": [
+    "org.apache.tika.sax.StoppingEarlyException"
+  ],
+  "Detector": [
+    "org.apache.tika.detect.Detector"
+  ],
+  "StandardMetadataLimiterFactory": [
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiterFactory"
+  ],
+  "StreamingContentHandlerFactory": [
+    "org.apache.tika.sax.StreamingContentHandlerFactory"
+  ],
+  "TaggedSAXException": [
+    "org.apache.tika.sax.TaggedSAXException"
+  ],
+  "OverrideEncodingDetector": [
+    "org.apache.tika.detect.OverrideEncodingDetector"
+  ],
+  "MinShouldMatchClause": [
+    "org.apache.tika.mime.MinShouldMatchClause"
+  ],
+  "Message": [
+    "org.apache.tika.metadata.Message"
+  ],
+  "Config": [
+    "org.apache.tika.detect.Config",
+    "org.apache.tika.metadata.filter.Config"
+  ],
+  "TikaConfigException": [
+    "org.apache.tika.exception.TikaConfigException"
+  ],
+  "CachingInputStream": [
+    "org.apache.tika.io.CachingInputStream"
+  ],
+  "TikaCoreProperties": [
+    "org.apache.tika.metadata.TikaCoreProperties"
+  ],
+  "TIFF": [
+    "org.apache.tika.metadata.TIFF"
+  ],
+  "MimeTypeException": [
+    "org.apache.tika.mime.MimeTypeException"
+  ],
+  "StringUtils": [
+    "org.apache.tika.utils.StringUtils"
+  ],
+  "ParsingTask": [
+    "org.apache.tika.parser.ParsingTask"
+  ],
+  "StandardOrganizations": [
+    "org.apache.tika.sax.StandardOrganizations"
+  ],
+  "ParserContainerExtractor": [
+    "org.apache.tika.extractor.ParserContainerExtractor"
+  ],
+  "MimeTypesReader": [
+    "org.apache.tika.mime.MimeTypesReader"
+  ],
+  "DefaultTranslator": [
+    "org.apache.tika.language.translate.DefaultTranslator"
+  ],
+  "TargetElement": [
+    "org.apache.tika.sax.TargetElement"
+  ],
+  "MetadataFilterBase": [
+    "org.apache.tika.metadata.filter.MetadataFilterBase"
+  ],
+  "NodeMatcher": [
+    "org.apache.tika.sax.xpath.NodeMatcher"
+  ],
+  "ParserPostProcessor": [
+    "org.apache.tika.parser.ParserPostProcessor"
+  ],
+  "DocumentSelector": [
+    "org.apache.tika.extractor.DocumentSelector"
+  ],
+  "EmbeddedDocumentByteStoreExtractorFactory": [
+    "org.apache.tika.extractor.EmbeddedDocumentByteStoreExtractorFactory"
+  ],
+  "NNExampleModelDetector": [
+    "org.apache.tika.detect.NNExampleModelDetector"
+  ],
+  "TikaException": [
+    "org.apache.tika.exception.TikaException"
+  ],
+  "FallbackParser": [
+    "org.apache.tika.parser.multiple.FallbackParser"
+  ],
+  "EmptyDetector": [
+    "org.apache.tika.detect.EmptyDetector"
+  ],
+  "ReservedNamespaces": [
+    "org.apache.tika.metadata.ReservedNamespaces"
+  ],
+  "SupplementingParser": [
+    "org.apache.tika.parser.multiple.SupplementingParser"
+  ],
+  "Magic": [
+    "org.apache.tika.mime.Magic"
+  ],
+  "RecursiveParser": [
+    "org.apache.tika.extractor.RecursiveParser"
+  ],
+  "AccessPermissions": [
+    "org.apache.tika.metadata.AccessPermissions"
+  ],
+  "OutputLimits": [
+    "org.apache.tika.config.OutputLimits"
+  ],
+  "CompositeMatcher": [
+    "org.apache.tika.sax.xpath.CompositeMatcher"
+  ],
+  "ZeroSizeFileDetector": [
+    "org.apache.tika.detect.ZeroSizeFileDetector"
+  ],
+  "IPTC": [
+    "org.apache.tika.metadata.IPTC"
+  ],
+  "XMLReaderUtils": [
+    "org.apache.tika.utils.XMLReaderUtils"
+  ],
+  "NamedAttributeMatcher": [
+    "org.apache.tika.sax.xpath.NamedAttributeMatcher"
+  ],
+  "XMPContentHandler": [
+    "org.apache.tika.sax.XMPContentHandler"
+  ],
+  "RankedService": [
+    "org.apache.tika.config.RankedService"
+  ],
+  "TikaExtras": [
+    "org.apache.tika.config.TikaExtras"
+  ],
+  "XMP": [
+    "org.apache.tika.metadata.XMP"
+  ],
+  "Clause": [
+    "org.apache.tika.mime.Clause"
+  ],
+  "ConcurrentUtils": [
+    "org.apache.tika.utils.ConcurrentUtils"
+  ]
+}

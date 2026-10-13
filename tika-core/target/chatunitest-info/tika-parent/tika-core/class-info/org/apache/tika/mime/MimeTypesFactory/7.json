@@ -1,0 +1,23 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(String coreFilePath, String extensionFilePath)\r\n            throws IOException, MimeTypeException{}",
+  "methodSignature": "create(String, String)",
+  "sourceCode": "public static MimeTypes create(String coreFilePath, String extensionFilePath)\n            throws IOException, MimeTypeException {\n        return create(coreFilePath, extensionFilePath, null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Creates and returns a MimeTypes instance. The core mimetypes\n * will be loaded from the specified file path, and any custom\n * override mimetypes found will loaded afterwards.\n * The file paths will be interpreted by the default class loader in\n * getResource().\n *\n * @param coreFilePath      The main MimeTypes file to load\n * @param extensionFilePath The name of extension MimeType files to load afterwards\n * @throws IOException       if the file can not be accessed\n * @throws MimeTypeException if the type configuration is invalid\n */\npublic static MimeTypes create(String coreFilePath, String extensionFilePath) throws IOException, MimeTypeException {\n    return create(coreFilePath, extensionFilePath, null);\n}",
+  "method_comment": "\n     * Creates and returns a MimeTypes instance. The core mimetypes\n     * will be loaded from the specified file path, and any custom\n     * override mimetypes found will loaded afterwards.\n     * The file paths will be interpreted by the default class loader in\n     * getResource().\n     *\n     * @param coreFilePath      The main MimeTypes file to load\n     * @param extensionFilePath The name of extension MimeType files to load afterwards\n     * @throws IOException       if the file can not be accessed\n     * @throws MimeTypeException if the type configuration is invalid\n     ",
+  "method_annotation": ""
+}

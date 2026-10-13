@@ -1,0 +1,26 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getDefaultMimeTypes",
+  "brief": "public static synchronized MimeTypes getDefaultMimeTypes(ClassLoader classLoader){}",
+  "methodSignature": "getDefaultMimeTypes(ClassLoader)",
+  "sourceCode": "public static synchronized MimeTypes getDefaultMimeTypes(ClassLoader classLoader) {\n        MimeTypes types = DEFAULT_TYPES;\n        if (classLoader != null) {\n            types = CLASSLOADER_SPECIFIC_DEFAULT_TYPES.get(classLoader);\n        }\n\n        if (types == null) {\n            try {\n                types = MimeTypesFactory\n                        .create(\"tika-mimetypes.xml\", \"custom-mimetypes.xml\", classLoader);\n            } catch (MimeTypeException e) {\n                throw new RuntimeException(\"Unable to parse the default media type registry\", e);\n            } catch (IOException e) {\n                throw new RuntimeException(\"Unable to read the default media type registry\", e);\n            }\n\n            if (classLoader == null) {\n                DEFAULT_TYPES = types;\n            } else {\n                CLASSLOADER_SPECIFIC_DEFAULT_TYPES.put(classLoader, types);\n            }\n        }\n        return types;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ClassLoader"
+  ],
+  "dependentMethods": {
+    "java.lang.ClassLoader": [],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the default MimeTypes. This includes all the built-in\n * media types, and any custom override ones present.\n *\n * @param classLoader to use, if not the default\n * @return MimeTypes default type registry\n */\npublic static synchronized MimeTypes getDefaultMimeTypes(ClassLoader classLoader) {\n    MimeTypes types = DEFAULT_TYPES;\n    if (classLoader != null) {\n        types = CLASSLOADER_SPECIFIC_DEFAULT_TYPES.get(classLoader);\n    }\n    if (types == null) {\n        try {\n            types = MimeTypesFactory.create(\"tika-mimetypes.xml\", \"custom-mimetypes.xml\", classLoader);\n        } catch (MimeTypeException e) {\n            throw new RuntimeException(\"Unable to parse the default media type registry\", e);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n        if (classLoader == null) {\n            DEFAULT_TYPES = types;\n        } else {\n            CLASSLOADER_SPECIFIC_DEFAULT_TYPES.put(classLoader, types);\n        }\n    }\n    return types;\n}",
+  "method_comment": "\n     * Get the default MimeTypes. This includes all the built-in\n     * media types, and any custom override ones present.\n     *\n     * @param classLoader to use, if not the default\n     * @return MimeTypes default type registry\n     ",
+  "method_annotation": ""
+}

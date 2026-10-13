@@ -1,0 +1,23 @@
+{
+  "className": "RecursiveParserWrapperHandler",
+  "methodName": "startEmbeddedDocument",
+  "brief": "@Override\r\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+  "methodSignature": "startEmbeddedDocument(ContentHandler, Metadata)",
+  "sourceCode": "@Override\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\n            throws SAXException {\n        super.startEmbeddedDocument(contentHandler, metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "/**\n * This is called before parsing an embedded document\n *\n * @param contentHandler - local content handler to use on the embedded document\n * @param metadata       metadata to use for the embedded document\n * @throws SAXException\n */\n@Override\npublic void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n    super.startEmbeddedDocument(contentHandler, metadata);\n}",
+  "method_comment": "\n     * This is called before parsing an embedded document\n     *\n     * @param contentHandler - local content handler to use on the embedded document\n     * @param metadata       metadata to use for the embedded document\n     * @throws SAXException\n     ",
+  "method_annotation": "@Override\n"
+}

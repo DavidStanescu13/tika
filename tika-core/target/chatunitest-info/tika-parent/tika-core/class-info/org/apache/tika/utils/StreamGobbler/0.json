@@ -1,0 +1,32 @@
+{
+  "className": "StreamGobbler",
+  "methodName": "run",
+  "brief": "@Override\r\n    public void run(){}",
+  "methodSignature": "run()",
+  "sourceCode": "@Override\n    public void run() {\n        try (Reader r = new BufferedReader(\n                new InputStreamReader(is, StandardCharsets.UTF_8))) {\n            String line = readLineBounded(r);\n            while (line != null) {\n                if (maxBufferLength >= 0) {\n                    if (streamLength + line.length() > maxBufferLength) {\n                        int len = maxBufferLength - (int) streamLength;\n                        if (len > 0) {\n                            isTruncated = true;\n                            String truncatedLine =\n                                    line.substring(0, Math.min(line.length(), len));\n                            lines.add(truncatedLine);\n                        }\n                    } else {\n                        lines.add(line);\n                    }\n                }\n                streamLength += line.length();\n                line = readLineBounded(r);\n            }\n        } catch (IOException e) {\n            return;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.utils.StreamGobbler": [
+      "readLineBounded(Reader)"
+    ],
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void run() {\n    try (Reader r = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {\n        String line = readLineBounded(r);\n        while (line != null) {\n            if (maxBufferLength >= 0) {\n                if (streamLength + line.length() > maxBufferLength) {\n                    int len = maxBufferLength - (int) streamLength;\n                    if (len > 0) {\n                        isTruncated = true;\n                        String truncatedLine = line.substring(0, Math.min(line.length(), len));\n                        lines.add(truncatedLine);\n                    }\n                } else {\n                    lines.add(line);\n                }\n            }\n            streamLength += line.length();\n            line = readLineBounded(r);\n        }\n    } catch (IOException e) {\n        return;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

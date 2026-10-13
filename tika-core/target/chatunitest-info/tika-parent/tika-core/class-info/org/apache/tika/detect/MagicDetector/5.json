@@ -1,0 +1,28 @@
+{
+  "className": "MagicDetector",
+  "methodName": "matches",
+  "brief": "public boolean matches(byte[] data){}",
+  "methodSignature": "matches(byte[])",
+  "sourceCode": "public boolean matches(byte[] data) {\n        if (data == null) {\n            return false;\n        }\n\n        // For non-regex, we need at least patternLength bytes starting at offsetRangeBegin.\n        // For regex, we can match with less data since the pattern may be shorter than the buffer.\n        if (!isRegex) {\n            int requiredLength = offsetRangeBegin + length;\n            if (data.length < requiredLength) {\n                return false;\n            }\n            // For non-regex, we need enough data after the start position for the pattern\n            int maxOffset = Math.min(offsetRangeEnd, data.length - length);\n            return matchesBuffer(data, offsetRangeBegin, maxOffset);\n        } else {\n            // For regex, just need data to reach offsetRangeBegin\n            if (data.length <= offsetRangeBegin) {\n                return false;\n            }\n            // For regex, try all positions up to min(offsetRangeEnd, data.length - 1)\n            // The regex pattern can match even at the last byte position\n            int maxOffset = Math.min(offsetRangeEnd, data.length - 1);\n            return matchesBuffer(data, offsetRangeBegin, maxOffset);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "org.apache.tika.detect.MagicDetector": [
+      "matchesBuffer(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if the given byte array matches this magic pattern.\n * This is a more efficient alternative to {@link #detect(TikaInputStream, Metadata, ParseContext)}\n * when you already have the bytes in memory.\n *\n * @param data the byte array to check\n * @return true if the data matches this magic pattern, false otherwise\n */\npublic boolean matches(byte[] data) {\n    if (data == null) {\n        return false;\n    }\n    // For non-regex, we need at least patternLength bytes starting at offsetRangeBegin.\n    // For regex, we can match with less data since the pattern may be shorter than the buffer.\n    if (!isRegex) {\n        int requiredLength = offsetRangeBegin + length;\n        if (data.length < requiredLength) {\n            return false;\n        }\n        // For non-regex, we need enough data after the start position for the pattern\n        int maxOffset = Math.min(offsetRangeEnd, data.length - length);\n        return matchesBuffer(data, offsetRangeBegin, maxOffset);\n    } else {\n        // For regex, just need data to reach offsetRangeBegin\n        if (data.length <= offsetRangeBegin) {\n            return false;\n        }\n        // For regex, try all positions up to min(offsetRangeEnd, data.length - 1)\n        // The regex pattern can match even at the last byte position\n        int maxOffset = Math.min(offsetRangeEnd, data.length - 1);\n        return matchesBuffer(data, offsetRangeBegin, maxOffset);\n    }\n}",
+  "method_comment": "\n     * Checks if the given byte array matches this magic pattern.\n     * This is a more efficient alternative to {@link #detect(TikaInputStream, Metadata, ParseContext)}\n     * when you already have the bytes in memory.\n     *\n     * @param data the byte array to check\n     * @return true if the data matches this magic pattern, false otherwise\n     ",
+  "method_annotation": ""
+}

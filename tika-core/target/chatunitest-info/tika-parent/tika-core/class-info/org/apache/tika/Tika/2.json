@@ -1,0 +1,28 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(InputStream stream) throws IOException{}",
+  "methodSignature": "detect(InputStream)",
+  "sourceCode": "public String detect(InputStream stream) throws IOException {\n        ParseContext context = new ParseContext();\n        return detect(stream, Metadata.newInstance(context));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.Tika": [
+      "detect(InputStream, Metadata)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of the given document. The type detection is\n * based on the content of the given document stream.\n * <p>\n * If the document stream supports the\n * {@link InputStream#markSupported() mark feature}, then the stream is\n * marked and reset to the original position before this method returns.\n * Only a limited number of bytes are read from the stream.\n * <p>\n * The given document stream is <em>not</em> closed by this method.\n *\n * @param stream the document stream\n * @return detected media type\n * @throws IOException if the stream can not be read\n */\npublic String detect(InputStream stream) throws IOException {\n    ParseContext context = new ParseContext();\n    return detect(stream, Metadata.newInstance(context));\n}",
+  "method_comment": "\n     * Detects the media type of the given document. The type detection is\n     * based on the content of the given document stream.\n     * <p>\n     * If the document stream supports the\n     * {@link InputStream#markSupported() mark feature}, then the stream is\n     * marked and reset to the original position before this method returns.\n     * Only a limited number of bytes are read from the stream.\n     * <p>\n     * The given document stream is <em>not</em> closed by this method.\n     *\n     * @param stream the document stream\n     * @return detected media type\n     * @throws IOException if the stream can not be read\n     ",
+  "method_annotation": ""
+}

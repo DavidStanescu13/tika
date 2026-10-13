@@ -1,0 +1,25 @@
+{
+  "className": "RecursivelySecureContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n        public void startElement(String uri, String localName, String name, Attributes atts)\r\n                throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n        public void startElement(String uri, String localName, String name, Attributes atts)\n                throws SAXException {\n            this.handler.startElement(uri, localName, name, atts);\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Bypass the SecureContentHandler...\n * <p>\n * This handler only looks at zip bomb via zip expansion.\n * Users should be protected within entries against nested\n * nested xml entities.  We don't want to carry\n * those stats _across_ entries.\n *\n * @param uri\n * @param localName\n * @param name\n * @param atts\n * @throws SAXException\n */\n@Override\npublic void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {\n    this.handler.startElement(uri, localName, name, atts);\n}",
+  "method_comment": "\n         * Bypass the SecureContentHandler...\n         * <p>\n         * This handler only looks at zip bomb via zip expansion.\n         * Users should be protected within entries against nested\n         * nested xml entities.  We don't want to carry\n         * those stats _across_ entries.\n         *\n         * @param uri\n         * @param localName\n         * @param name\n         * @param atts\n         * @throws SAXException\n         ",
+  "method_annotation": "@Override\n"
+}

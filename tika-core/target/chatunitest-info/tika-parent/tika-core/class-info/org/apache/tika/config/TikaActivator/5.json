@@ -1,0 +1,30 @@
+{
+  "className": "TikaActivator",
+  "methodName": "removedService",
+  "brief": "public void removedService(ServiceReference reference, Object service){}",
+  "methodSignature": "removedService(ServiceReference, Object)",
+  "sourceCode": "public void removedService(ServiceReference reference, Object service) {\n        ServiceLoader.removeService(reference);\n        bundleContext.ungetService(reference);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceReference",
+    "Object"
+  ],
+  "dependentMethods": {
+    "org.osgi.framework.ServiceReference": [],
+    "java.lang.Object": [],
+    "org.apache.tika.config.ServiceLoader": [
+      "removeService(Object)"
+    ],
+    "org.osgi.framework.BundleContext": [
+      "ungetService(ServiceReference<?>)"
+    ]
+  },
+  "full_method_info": "public void removedService(ServiceReference reference, Object service) {\n    ServiceLoader.removeService(reference);\n    bundleContext.ungetService(reference);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

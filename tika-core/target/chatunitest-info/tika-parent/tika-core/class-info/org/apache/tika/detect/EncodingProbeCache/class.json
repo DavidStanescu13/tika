@@ -1,0 +1,39 @@
+{
+  "fullClassName": "org.apache.tika.detect.EncodingProbeCache",
+  "className": "EncodingProbeCache",
+  "index": 30,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class EncodingProbeCache",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private byte[] probe;",
+    "private int contentTarget = -1;",
+    "private int rawCap = -1;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "get(int, int)": "0",
+    "put(byte[], int, int)": "1"
+  },
+  "methodsBrief": [
+    "public byte[] get(int contentTarget, int rawCap){}",
+    "public void put(byte[] probe, int contentTarget, int rawCap){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\n/**\n * Caches the raw encoding-detection probe (the leading bytes read for detection)\n * so that multiple detectors in a chain do not each re-read and re-tag-strip the\n * same bytes. For example a statistical detector and a downstream meta detector\n * that re-reads the bytes for arbitration can share one probe.\n * <p>\n * An instance is held by {@link EncodingDetectorContext}, so it inherits that\n * context's per-detection lifecycle: created fresh per detection and discarded\n * with the context immediately afterwards. That matters because a\n * {@link org.apache.tika.parser.ParseContext} flows on into recursive\n * (attachment/embedded) parsing — a probe must never outlive the single detection\n * it was read for.\n * <p>\n * Not thread-safe: a single detection runs its detectors sequentially on one\n * thread. The cache is keyed by the probe parameters — {@link #get} returns the\n * cached probe only when both {@code contentTarget} and {@code rawCap} match what\n * it was stored with, so a detector that wants a differently-sized probe\n * transparently reads (and caches) its own.\n * <p>\n * The cached array is shared read-only state; callers must not mutate it in place.\n */\npublic class EncodingProbeCache {\n\n    private byte[] probe;\n\n    private int contentTarget = -1;\n\n    private int rawCap = -1;\n\n    /**\n     * @return the cached probe if one was stored with the same {@code contentTarget} and\n     * {@code rawCap}; otherwise {@code null}\n     */\n    public byte[] get(int contentTarget, int rawCap) {\n        if (probe != null && this.contentTarget == contentTarget && this.rawCap == rawCap) {\n            return probe;\n        }\n        return null;\n    }\n\n    /**\n     * Stores the probe bytes read with the given parameters.\n     */\n    public void put(byte[] probe, int contentTarget, int rawCap) {\n        this.probe = probe;\n        this.contentTarget = contentTarget;\n        this.rawCap = rawCap;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Caches the raw encoding-detection probe (the leading bytes read for detection)\n * so that multiple detectors in a chain do not each re-read and re-tag-strip the\n * same bytes. For example a statistical detector and a downstream meta detector\n * that re-reads the bytes for arbitration can share one probe.\n * <p>\n * An instance is held by {@link EncodingDetectorContext}, so it inherits that\n * context's per-detection lifecycle: created fresh per detection and discarded\n * with the context immediately afterwards. That matters because a\n * {@link org.apache.tika.parser.ParseContext} flows on into recursive\n * (attachment/embedded) parsing — a probe must never outlive the single detection\n * it was read for.\n * <p>\n * Not thread-safe: a single detection runs its detectors sequentially on one\n * thread. The cache is keyed by the probe parameters — {@link #get} returns the\n * cached probe only when both {@code contentTarget} and {@code rawCap} match what\n * it was stored with, so a detector that wants a differently-sized probe\n * transparently reads (and caches) its own.\n * <p>\n * The cached array is shared read-only state; callers must not mutate it in place.\n */\npublic class EncodingProbeCache {\n\n    private byte[] probe;\n\n    private int contentTarget = -1;\n\n    private int rawCap = -1;\n\n    /**\n     * @return the cached probe if one was stored with the same {@code contentTarget} and\n     * {@code rawCap}; otherwise {@code null}\n     */\n    public byte[] get(int contentTarget, int rawCap) {\n        if (probe != null && this.contentTarget == contentTarget && this.rawCap == rawCap) {\n            return probe;\n        }\n        return null;\n    }\n\n    /**\n     * Stores the probe bytes read with the given parameters.\n     */\n    public void put(byte[] probe, int contentTarget, int rawCap) {\n        this.probe = probe;\n        this.contentTarget = contentTarget;\n        this.rawCap = rawCap;\n    }\n}",
+  "subClasses": []
+}

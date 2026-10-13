@@ -1,0 +1,28 @@
+{
+  "className": "ContainerExtractor",
+  "methodName": "extract",
+  "brief": "void extract(TikaInputStream stream, ContainerExtractor recurseExtractor,\r\n            EmbeddedResourceHandler handler, ParseContext parseContext)\r\n            throws IOException, TikaException;",
+  "methodSignature": "extract(TikaInputStream, ContainerExtractor, EmbeddedResourceHandler, ParseContext)",
+  "sourceCode": "void extract(TikaInputStream stream, ContainerExtractor recurseExtractor,\n            EmbeddedResourceHandler handler, ParseContext parseContext)\n            throws IOException, TikaException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContainerExtractor",
+    "EmbeddedResourceHandler",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.extractor.ContainerExtractor": [],
+    "org.apache.tika.extractor.EmbeddedResourceHandler": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Processes a container file, and extracts all the embedded\n * resources from within it.\n * <p>\n * The {@link EmbeddedResourceHandler} you supply will\n * be called for each embedded resource in the container. It is\n * up to you whether you process the contents of the resource or not.\n * <p>\n * The given document stream is consumed but not closed by this method.\n * The responsibility to close the stream remains on the caller.\n * <p>\n * If required, nested containers (such as a .docx within a .zip)\n * can automatically be recursed into, and processed inline. If\n * no recurseExtractor is given, the nested containers will be\n * treated as with any other embedded resources.\n *\n * @param stream           the document stream (input)\n * @param recurseExtractor the extractor to use on any embedded containers\n * @param handler          handler for the embedded files (output)\n * @param parseContext     the parse context\n * @throws IOException   if the document stream could not be read\n * @throws TikaException if the container could not be parsed\n * @since Apache Tika 0.8\n */\nvoid extract(TikaInputStream stream, ContainerExtractor recurseExtractor, EmbeddedResourceHandler handler, ParseContext parseContext) throws IOException, TikaException;",
+  "method_comment": "\n     * Processes a container file, and extracts all the embedded\n     * resources from within it.\n     * <p>\n     * The {@link EmbeddedResourceHandler} you supply will\n     * be called for each embedded resource in the container. It is\n     * up to you whether you process the contents of the resource or not.\n     * <p>\n     * The given document stream is consumed but not closed by this method.\n     * The responsibility to close the stream remains on the caller.\n     * <p>\n     * If required, nested containers (such as a .docx within a .zip)\n     * can automatically be recursed into, and processed inline. If\n     * no recurseExtractor is given, the nested containers will be\n     * treated as with any other embedded resources.\n     *\n     * @param stream           the document stream (input)\n     * @param recurseExtractor the extractor to use on any embedded containers\n     * @param handler          handler for the embedded files (output)\n     * @param parseContext     the parse context\n     * @throws IOException   if the document stream could not be read\n     * @throws TikaException if the container could not be parsed\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

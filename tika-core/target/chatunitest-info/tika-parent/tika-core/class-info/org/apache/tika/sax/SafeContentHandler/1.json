@@ -1,0 +1,28 @@
+{
+  "className": "SafeContentHandler",
+  "methodName": "isInvalid",
+  "brief": "private boolean isInvalid(String value){}",
+  "methodSignature": "isInvalid(String)",
+  "sourceCode": "private boolean isInvalid(String value) {\n        char[] ch = value.toCharArray();\n\n        int i = 0;\n        while (i < ch.length) {\n            int c = Character.codePointAt(ch, i);\n            if (isInvalid(c)) {\n                return true;\n            }\n            i = i + Character.charCount(c);\n        }\n\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()"
+    ],
+    "java.lang.Character": [
+      "charCount(int)",
+      "codePointAt(char[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks if the given string contains any invalid XML characters.\n *\n * @param value string to be checked\n * @return <code>true</code> if the string contains invalid XML characters,\n * <code>false</code> otherwise\n */\nprivate boolean isInvalid(String value) {\n    char[] ch = value.toCharArray();\n    int i = 0;\n    while (i < ch.length) {\n        int c = Character.codePointAt(ch, i);\n        if (isInvalid(c)) {\n            return true;\n        }\n        i = i + Character.charCount(c);\n    }\n    return false;\n}",
+  "method_comment": "\n     * Checks if the given string contains any invalid XML characters.\n     *\n     * @param value string to be checked\n     * @return <code>true</code> if the string contains invalid XML characters,\n     * <code>false</code> otherwise\n     ",
+  "method_annotation": ""
+}

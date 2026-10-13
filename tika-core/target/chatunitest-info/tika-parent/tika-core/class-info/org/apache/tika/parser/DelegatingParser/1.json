@@ -1,0 +1,28 @@
+{
+  "className": "DelegatingParser",
+  "methodName": "getSupportedTypes",
+  "brief": "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return getDelegateParser(context).getSupportedTypes(context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "org.apache.tika.parser.DelegatingParser": [
+      "getDelegateParser(ParseContext)"
+    ]
+  },
+  "full_method_info": "public Set<MediaType> getSupportedTypes(ParseContext context) {\n    return getDelegateParser(context).getSupportedTypes(context);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "DurationFormatUtils",
+  "methodName": "addUnitString",
+  "brief": "private static void addUnitString(StringBuilder sb, long unit, String unitString){}",
+  "methodSignature": "addUnitString(StringBuilder, long, String)",
+  "sourceCode": "private static void addUnitString(StringBuilder sb, long unit, String unitString) {\n        //only add unit if >= 1\n        if (unit == 1) {\n            addComma(sb);\n            sb.append(\"1 \");\n            sb.append(unitString);\n        } else if (unit > 1) {\n            addComma(sb);\n            sb.append(unit);\n            sb.append(\" \");\n            sb.append(unitString);\n            sb.append(\"s\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringBuilder",
+    "long",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "append(long)",
+      "append(String)"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.utils.DurationFormatUtils": [
+      "addComma(StringBuilder)"
+    ]
+  },
+  "full_method_info": "private static void addUnitString(StringBuilder sb, long unit, String unitString) {\n    // only add unit if >= 1\n    if (unit == 1) {\n        addComma(sb);\n        sb.append(\"1 \");\n        sb.append(unitString);\n    } else if (unit > 1) {\n        addComma(sb);\n        sb.append(unit);\n        sb.append(\" \");\n        sb.append(unitString);\n        sb.append(\"s\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

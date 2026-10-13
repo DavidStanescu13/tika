@@ -1,0 +1,18 @@
+{
+  "className": "StreamGobbler",
+  "methodName": "getIsTruncated",
+  "brief": "public boolean getIsTruncated(){}",
+  "methodSignature": "getIsTruncated()",
+  "sourceCode": "public boolean getIsTruncated() {\n        return isTruncated;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean getIsTruncated() {\n    return isTruncated;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

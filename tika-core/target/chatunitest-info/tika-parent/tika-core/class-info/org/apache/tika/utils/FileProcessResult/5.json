@@ -1,0 +1,18 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "getStdoutLength",
+  "brief": "public long getStdoutLength(){}",
+  "methodSignature": "getStdoutLength()",
+  "sourceCode": "public long getStdoutLength() {\n        return stdoutLength;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public long getStdoutLength() {\n    return stdoutLength;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

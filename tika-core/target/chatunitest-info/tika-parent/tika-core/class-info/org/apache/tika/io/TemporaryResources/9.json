@@ -1,0 +1,22 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "dispose",
+  "brief": "public void dispose() throws TikaException{}",
+  "methodSignature": "dispose()",
+  "sourceCode": "public void dispose() throws TikaException {\n        try {\n            close();\n        } catch (IOException e) {\n            throw new TikaException(\"Failed to close temporary resources\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": [
+      "close()"
+    ]
+  },
+  "full_method_info": "/**\n * Calls the {@link #close()} method and wraps the potential\n * {@link IOException} into a {@link TikaException} for convenience\n * when used within Tika.\n *\n * @throws TikaException if one or more of the tracked resources\n *                       could not be closed\n */\npublic void dispose() throws TikaException {\n    try {\n        close();\n    } catch (IOException e) {\n        throw new TikaException(\"Failed to close temporary resources\", e);\n    }\n}",
+  "method_comment": "\n     * Calls the {@link #close()} method and wraps the potential\n     * {@link IOException} into a {@link TikaException} for convenience\n     * when used within Tika.\n     *\n     * @throws TikaException if one or more of the tracked resources\n     *                       could not be closed\n     ",
+  "method_annotation": ""
+}

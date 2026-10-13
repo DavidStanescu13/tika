@@ -1,0 +1,20 @@
+{
+  "className": "StandardsExtractingContentHandler",
+  "methodName": "setThreshold",
+  "brief": "public void setThreshold(double score){}",
+  "methodSignature": "setThreshold(double)",
+  "sourceCode": "public void setThreshold(double score) {\n        this.threshold = score;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "double"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the score to be used as threshold.\n *\n * @param score the score to be used as threshold.\n */\npublic void setThreshold(double score) {\n    this.threshold = score;\n}",
+  "method_comment": "\n     * Sets the score to be used as threshold.\n     *\n     * @param score the score to be used as threshold.\n     ",
+  "method_annotation": ""
+}

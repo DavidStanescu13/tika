@@ -1,0 +1,22 @@
+{
+  "className": "ParseContext",
+  "methodName": "getJsonConfigs",
+  "brief": "public Map<String, JsonConfig> getJsonConfigs(){}",
+  "methodSignature": "getJsonConfigs()",
+  "sourceCode": "public Map<String, JsonConfig> getJsonConfigs() {\n        return Collections.unmodifiableMap(jsonConfigs);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableMap(Map<? extends K, ? extends V>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns all JSON configurations for serialization.\n *\n * @return unmodifiable map of component name to JsonConfig\n * @since Apache Tika 4.0\n */\npublic Map<String, JsonConfig> getJsonConfigs() {\n    return Collections.unmodifiableMap(jsonConfigs);\n}",
+  "method_comment": "\n     * Returns all JSON configurations for serialization.\n     *\n     * @return unmodifiable map of component name to JsonConfig\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

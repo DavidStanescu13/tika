@@ -1,0 +1,28 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "unmodifiableSet",
+  "brief": "private static Set<String> unmodifiableSet(String... elements){}",
+  "methodSignature": "unmodifiableSet(String[])",
+  "sourceCode": "private static Set<String> unmodifiableSet(String... elements) {\n        return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(elements)));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String...": [],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ]
+  },
+  "full_method_info": "private static Set<String> unmodifiableSet(String... elements) {\n    return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(elements)));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

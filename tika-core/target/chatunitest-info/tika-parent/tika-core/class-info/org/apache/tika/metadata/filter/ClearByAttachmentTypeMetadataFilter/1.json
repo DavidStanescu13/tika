@@ -1,0 +1,35 @@
+{
+  "className": "ClearByAttachmentTypeMetadataFilter",
+  "methodName": "setTypes",
+  "brief": "public void setTypes(List<String> types) throws TikaConfigException{}",
+  "methodSignature": "setTypes(List)",
+  "sourceCode": "public void setTypes(List<String> types) throws TikaConfigException {\n        for (String t : types) {\n            try {\n                TikaCoreProperties.EmbeddedResourceType.valueOf(t);\n            } catch (IllegalArgumentException e) {\n                StringBuilder sb = new StringBuilder();\n                int i = 0;\n                for (TikaCoreProperties.EmbeddedResourceType type : TikaCoreProperties.EmbeddedResourceType.values()) {\n                    if (i++ > 0) {\n                        sb.append(\", \");\n                    }\n                    sb.append(type.name());\n                }\n                throw new TikaConfigException(\"I'm sorry. I regret I don't recognise \" + t +\n                        \". I do recognize the following (case-sensitive):\" + sb.toString());\n            }\n        }\n        this.types.addAll(types);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.TikaCoreProperties.EmbeddedResourceType": [
+      "values()",
+      "valueOf(String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "java.lang.Enum": [
+      "name()"
+    ],
+    "java.util.Set": [
+      "addAll(Collection<? extends E>)"
+    ]
+  },
+  "full_method_info": "/**\n * For types see {@link TikaCoreProperties.EmbeddedResourceType}\n *\n * @param types attachment types that should be deleted.\n * @throws TikaConfigException\n */\npublic void setTypes(List<String> types) throws TikaConfigException {\n    for (String t : types) {\n        try {\n            TikaCoreProperties.EmbeddedResourceType.valueOf(t);\n        } catch (IllegalArgumentException e) {\n            StringBuilder sb = new StringBuilder();\n            int i = 0;\n            for (TikaCoreProperties.EmbeddedResourceType type : TikaCoreProperties.EmbeddedResourceType.values()) {\n                if (i++ > 0) {\n                    sb.append(\", \");\n                }\n                sb.append(type.name());\n            }\n            throw new TikaConfigException(\"I'm sorry. I regret I don't recognise \" + t + \". I do recognize the following (case-sensitive):\" + sb.toString());\n        }\n    }\n    this.types.addAll(types);\n}",
+  "method_comment": "\n     * For types see {@link TikaCoreProperties.EmbeddedResourceType}\n     *\n     * @param types attachment types that should be deleted.\n     * @throws TikaConfigException\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,85 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.ClearByAttachmentTypeMetadataFilter",
+  "className": "ClearByAttachmentTypeMetadataFilter",
+  "index": 131,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class ClearByAttachmentTypeMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Set;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.exception.TikaConfigException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;"
+  ],
+  "fields": [
+    "private final Set<String> types;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "setTypes(List)": "1",
+    "getTypes()": "2",
+    "ClearByAttachmentTypeMetadataFilter()": "3",
+    "ClearByAttachmentTypeMetadataFilter(Set)": "4",
+    "ClearByAttachmentTypeMetadataFilter(Config)": "5",
+    "ClearByAttachmentTypeMetadataFilter(JsonConfig)": "6"
+  },
+  "methodsBrief": [
+    "protected void filter(Metadata metadata){}",
+    "public void setTypes(List<String> types) throws TikaConfigException{}",
+    "public List<String> getTypes(){}",
+    "public ClearByAttachmentTypeMetadataFilter(){}",
+    "public ClearByAttachmentTypeMetadataFilter(Set<String> types){}",
+    "public ClearByAttachmentTypeMetadataFilter(Config config) throws TikaConfigException{}",
+    "public ClearByAttachmentTypeMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException{}"
+  ],
+  "constructorSigs": [
+    "ClearByAttachmentTypeMetadataFilter()",
+    "ClearByAttachmentTypeMetadataFilter(Set)",
+    "ClearByAttachmentTypeMetadataFilter(Config)",
+    "ClearByAttachmentTypeMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public ClearByAttachmentTypeMetadataFilter(){}",
+    "public ClearByAttachmentTypeMetadataFilter(Set<String> types){}",
+    "public ClearByAttachmentTypeMetadataFilter(Config config) throws TikaConfigException{}",
+    "public ClearByAttachmentTypeMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException{}"
+  ],
+  "getterSetterSigs": [
+    "setTypes(List)",
+    "getTypes()"
+  ],
+  "getterSetterBrief": [
+    "public void setTypes(List<String> types) throws TikaConfigException{}",
+    "public List<String> getTypes(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.ClearByAttachmentTypeMetadataFilter.Config": [],
+    "org.apache.tika.metadata.filter.ClearByAttachmentTypeMetadataFilter": [
+      "setTypes(String>)"
+    ],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Set;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.exception.TikaConfigException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\n\n/**\n * This class clears the entire metadata object if the\n * attachment type matches one of the types.  The idea is that you might not want\n * to store/transmit metadata for images or specific file types.\n */\n@TikaComponent\npublic class ClearByAttachmentTypeMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> types = new ArrayList<>();\n    }\n\n    private final Set<String> types;\n\n    public ClearByAttachmentTypeMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(Set<String> types) {\n        this.types = types;\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(Config config) throws TikaConfigException {\n        this.types = new HashSet<>();\n        // Validate types using existing validation logic\n        setTypes(config.types);\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    protected void filter(Metadata metadata) {\n        String type = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_TYPE);\n        if (type == null) {\n            return;\n        }\n        if (!types.contains(type)) {\n            return;\n        }\n        for (String n : metadata.names()) {\n            metadata.remove(n);\n        }\n    }\n\n    /**\n     * For types see {@link TikaCoreProperties.EmbeddedResourceType}\n     *\n     * @param types attachment types that should be deleted.\n     * @throws TikaConfigException\n     */\n    public void setTypes(List<String> types) throws TikaConfigException {\n        for (String t : types) {\n            try {\n                TikaCoreProperties.EmbeddedResourceType.valueOf(t);\n            } catch (IllegalArgumentException e) {\n                StringBuilder sb = new StringBuilder();\n                int i = 0;\n                for (TikaCoreProperties.EmbeddedResourceType type : TikaCoreProperties.EmbeddedResourceType.values()) {\n                    if (i++ > 0) {\n                        sb.append(\", \");\n                    }\n                    sb.append(type.name());\n                }\n                throw new TikaConfigException(\"I'm sorry. I regret I don't recognise \" + t + \". I do recognize the following (case-sensitive):\" + sb.toString());\n            }\n        }\n        this.types.addAll(types);\n    }\n\n    public List<String> getTypes() {\n        return new ArrayList<>(types);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This class clears the entire metadata object if the\n * attachment type matches one of the types.  The idea is that you might not want\n * to store/transmit metadata for images or specific file types.\n */\n@TikaComponent\npublic class ClearByAttachmentTypeMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> types = new ArrayList<>();\n    }\n\n    private final Set<String> types;\n\n    public ClearByAttachmentTypeMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(Set<String> types) {\n        this.types = types;\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(Config config) throws TikaConfigException {\n        this.types = new HashSet<>();\n        // Validate types using existing validation logic\n        setTypes(config.types);\n    }\n\n    public ClearByAttachmentTypeMetadataFilter(JsonConfig jsonConfig) throws TikaConfigException {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    protected void filter(Metadata metadata) {\n        String type = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_TYPE);\n        if (type == null) {\n            return;\n        }\n        if (!types.contains(type)) {\n            return;\n        }\n        for (String n : metadata.names()) {\n            metadata.remove(n);\n        }\n    }\n\n    /**\n     * For types see {@link TikaCoreProperties.EmbeddedResourceType}\n     *\n     * @param types attachment types that should be deleted.\n     * @throws TikaConfigException\n     */\n    public void setTypes(List<String> types) throws TikaConfigException {\n        for (String t : types) {\n            try {\n                TikaCoreProperties.EmbeddedResourceType.valueOf(t);\n            } catch (IllegalArgumentException e) {\n                StringBuilder sb = new StringBuilder();\n                int i = 0;\n                for (TikaCoreProperties.EmbeddedResourceType type : TikaCoreProperties.EmbeddedResourceType.values()) {\n                    if (i++ > 0) {\n                        sb.append(\", \");\n                    }\n                    sb.append(type.name());\n                }\n                throw new TikaConfigException(\"I'm sorry. I regret I don't recognise \" + t + \". I do recognize the following (case-sensitive):\" + sb.toString());\n            }\n        }\n        this.types.addAll(types);\n    }\n\n    public List<String> getTypes() {\n        return new ArrayList<>(types);\n    }\n}",
+  "subClasses": []
+}

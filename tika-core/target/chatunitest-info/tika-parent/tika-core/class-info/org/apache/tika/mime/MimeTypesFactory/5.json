@@ -1,0 +1,22 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(URL url) throws IOException, MimeTypeException{}",
+  "methodSignature": "create(URL)",
+  "sourceCode": "public static MimeTypes create(URL url) throws IOException, MimeTypeException {\n        return create(new URL[]{url});\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL"
+  ],
+  "dependentMethods": {
+    "java.net.URL": []
+  },
+  "full_method_info": "/**\n * @see #create(URL...)\n */\npublic static MimeTypes create(URL url) throws IOException, MimeTypeException {\n    return create(new URL[] { url });\n}",
+  "method_comment": "\n     * @see #create(URL...)\n     ",
+  "method_annotation": ""
+}

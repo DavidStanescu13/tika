@@ -1,0 +1,28 @@
+{
+  "className": "TikaActivator",
+  "methodName": "stop",
+  "brief": "public void stop(BundleContext context) throws Exception{}",
+  "methodSignature": "stop(BundleContext)",
+  "sourceCode": "public void stop(BundleContext context) throws Exception {\n        for (ServiceTracker tracker : trackers) {\n            tracker.close();\n        }\n        trackers.clear();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "BundleContext"
+  ],
+  "dependentMethods": {
+    "org.osgi.framework.BundleContext": [],
+    "org.osgi.util.tracker.ServiceTracker": [
+      "close()"
+    ],
+    "java.util.List": [
+      "clear()"
+    ]
+  },
+  "full_method_info": "public void stop(BundleContext context) throws Exception {\n    for (ServiceTracker tracker : trackers) {\n        tracker.close();\n    }\n    trackers.clear();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

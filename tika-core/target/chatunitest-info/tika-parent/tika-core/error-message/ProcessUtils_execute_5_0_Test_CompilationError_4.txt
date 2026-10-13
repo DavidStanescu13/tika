@@ -1,0 +1,84 @@
+package org.apache.tika.utils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_5_0_Test {
+
+    @Mock
+    private ProcessBuilder processBuilder;
+
+    @Mock
+    private Process process;
+
+    @Mock
+    private StreamGobbler streamGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    private Path stdoutRedirect;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        stdoutRedirect = Files.createTempFile("test", ".txt");
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException {
+        when(processBuilder.start()).thenReturn(process);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("output".getBytes()));
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1024);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(5, result.stderrLength);
+        assertEquals(6, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("error\noutput", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_5_0_Test: line 16 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_execute_5_0_Test: line 23 : package org.mockito does not exist
+Error in ProcessUtils_execute_5_0_Test: line 21 : package org.mockito does not exist
+Error in ProcessUtils_execute_5_0_Test: line 26 : cannot find symbol
+  symbol: class MockitoExtension
+Error in ProcessUtils_execute_5_0_Test: line 29 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_0_Test
+Error in ProcessUtils_execute_5_0_Test: line 32 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_0_Test
+Error in ProcessUtils_execute_5_0_Test: line 35 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_0_Test
+Error in ProcessUtils_execute_5_0_Test: line 38 : cannot find symbol
+  symbol:   class InjectMocks
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_0_Test

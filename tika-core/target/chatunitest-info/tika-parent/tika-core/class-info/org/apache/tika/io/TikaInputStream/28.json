@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "addCloseableResource",
+  "brief": "public void addCloseableResource(Closeable closeable){}",
+  "methodSignature": "addCloseableResource(Closeable)",
+  "sourceCode": "public void addCloseableResource(Closeable closeable) {\n        tmp.addResource(closeable);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Closeable"
+  ],
+  "dependentMethods": {
+    "java.io.Closeable": [],
+    "org.apache.tika.io.TemporaryResources": [
+      "addResource(Closeable)"
+    ]
+  },
+  "full_method_info": "public void addCloseableResource(Closeable closeable) {\n    tmp.addResource(closeable);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

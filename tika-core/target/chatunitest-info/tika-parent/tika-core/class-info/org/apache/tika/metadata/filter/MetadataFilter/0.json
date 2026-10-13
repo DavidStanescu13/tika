@@ -1,0 +1,26 @@
+{
+  "className": "MetadataFilter",
+  "methodName": "filter",
+  "brief": "public final void filter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException{}",
+  "methodSignature": "filter(List, ParseContext)",
+  "sourceCode": "public final void filter(List<Metadata> metadataList, ParseContext parseContext)\n            throws TikaException {\n        doFilter(metadataList, parseContext);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Metadata>",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.metadata.filter.MetadataFilter": [
+      "doFilter(Metadata>, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Filters the metadata list in place using per-request context.\n * The list and the metadata objects within it may be modified.\n * Callers must pass a mutable list and should make a defensive\n * copy before calling if the original data must be preserved.\n *\n * @param metadataList the list to filter (must be mutable)\n * @param parseContext per-request context (e.g. skip flags, runtime config)\n * @throws TikaException if filtering fails\n */\npublic final void filter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n    doFilter(metadataList, parseContext);\n}",
+  "method_comment": "\n     * Filters the metadata list in place using per-request context.\n     * The list and the metadata objects within it may be modified.\n     * Callers must pass a mutable list and should make a defensive\n     * copy before calling if the original data must be preserved.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context (e.g. skip flags, runtime config)\n     * @throws TikaException if filtering fails\n     ",
+  "method_annotation": ""
+}

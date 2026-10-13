@@ -1,0 +1,28 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "equals",
+  "brief": "private static boolean equals(Parser parser, Class clazz){}",
+  "methodSignature": "equals(Parser, Class)",
+  "sourceCode": "private static boolean equals(Parser parser, Class clazz) {\n        if (parser == null) {\n            return false;\n        }\n        return parser.getClass().equals(clazz);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Class"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.lang.Class": [],
+    "java.lang.Object": [
+      "equals(Object)",
+      "getClass()"
+    ]
+  },
+  "full_method_info": "private static boolean equals(Parser parser, Class clazz) {\n    if (parser == null) {\n        return false;\n    }\n    return parser.getClass().equals(clazz);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

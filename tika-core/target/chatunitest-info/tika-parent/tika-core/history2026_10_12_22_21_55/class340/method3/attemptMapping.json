@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "CharsetUtils_forName_3_0_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_forName_3_0_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_forName_3_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "forName",
+    "methodSig": "forName(String)"
+  },
+  "attempt1": {
+    "testClassName": "CharsetUtils_forName_3_1_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_forName_3_1_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_forName_3_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "forName",
+    "methodSig": "forName(String)"
+  },
+  "attempt2": {
+    "testClassName": "CharsetUtils_forName_3_2_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_forName_3_2_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_forName_3_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "forName",
+    "methodSig": "forName(String)"
+  },
+  "attempt3": {
+    "testClassName": "CharsetUtils_forName_3_3_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_forName_3_3_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_forName_3_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "forName",
+    "methodSig": "forName(String)"
+  },
+  "attempt4": {
+    "testClassName": "CharsetUtils_forName_3_4_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_forName_3_4_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_forName_3_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "forName",
+    "methodSig": "forName(String)"
+  }
+}

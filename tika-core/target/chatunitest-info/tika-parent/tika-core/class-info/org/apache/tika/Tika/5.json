@@ -1,0 +1,31 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(Path path) throws IOException{}",
+  "methodSignature": "detect(Path)",
+  "sourceCode": "public String detect(Path path) throws IOException {\n        ParseContext context = new ParseContext();\n        Metadata metadata = Metadata.newInstance(context);\n        try (InputStream stream = TikaInputStream.get(path, metadata)) {\n            return detect(stream, metadata);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Path, Metadata)"
+    ],
+    "org.apache.tika.Tika": [
+      "detect(InputStream, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of the file at the given path. The type\n * detection is based on the document content and a potential known\n * file extension.\n * <p>\n * Use the {@link #detect(String)} method when you want to detect the\n * type of the document without actually accessing the file.\n *\n * @param path the path of the file\n * @return detected media type\n * @throws IOException if the file can not be read\n */\npublic String detect(Path path) throws IOException {\n    ParseContext context = new ParseContext();\n    Metadata metadata = Metadata.newInstance(context);\n    try (InputStream stream = TikaInputStream.get(path, metadata)) {\n        return detect(stream, metadata);\n    }\n}",
+  "method_comment": "\n     * Detects the media type of the file at the given path. The type\n     * detection is based on the document content and a potential known\n     * file extension.\n     * <p>\n     * Use the {@link #detect(String)} method when you want to detect the\n     * type of the document without actually accessing the file.\n     *\n     * @param path the path of the file\n     * @return detected media type\n     * @throws IOException if the file can not be read\n     ",
+  "method_annotation": ""
+}

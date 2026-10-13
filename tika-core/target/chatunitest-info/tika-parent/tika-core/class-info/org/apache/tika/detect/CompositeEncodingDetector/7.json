@@ -1,0 +1,25 @@
+{
+  "className": "CompositeEncodingDetector",
+  "methodName": "assignableFrom",
+  "brief": "private boolean assignableFrom(\r\n            Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors,\r\n            Class<? extends EncodingDetector> encodingDetector){}",
+  "methodSignature": "assignableFrom(Collection, Class)",
+  "sourceCode": "private boolean assignableFrom(\n            Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors,\n            Class<? extends EncodingDetector> encodingDetector) {\n        for (Class<? extends EncodingDetector> e : excludeEncodingDetectors) {\n            if (e.isAssignableFrom(encodingDetector)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<Class<? extends EncodingDetector>>",
+    "Class<? extends EncodingDetector>"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "isAssignableFrom(Object>)"
+    ]
+  },
+  "full_method_info": "private boolean assignableFrom(Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors, Class<? extends EncodingDetector> encodingDetector) {\n    for (Class<? extends EncodingDetector> e : excludeEncodingDetectors) {\n        if (e.isAssignableFrom(encodingDetector)) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,32 @@
+{
+  "className": "InputStreamDigester",
+  "methodName": "setContentLength",
+  "brief": "private static void setContentLength(long length, Metadata metadata){}",
+  "methodSignature": "setContentLength(long, Metadata)",
+  "sourceCode": "private static void setContentLength(long length, Metadata metadata) {\n        if (StringUtils.isBlank(metadata.get(Metadata.CONTENT_LENGTH))) {\n            //only add it if it hasn't been populated already\n            metadata.set(Metadata.CONTENT_LENGTH, Long.toString(length));\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "get(Property)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "java.lang.Long": [
+      "toString(long)"
+    ]
+  },
+  "full_method_info": "private static void setContentLength(long length, Metadata metadata) {\n    if (StringUtils.isBlank(metadata.get(Metadata.CONTENT_LENGTH))) {\n        // only add it if it hasn't been populated already\n        metadata.set(Metadata.CONTENT_LENGTH, Long.toString(length));\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

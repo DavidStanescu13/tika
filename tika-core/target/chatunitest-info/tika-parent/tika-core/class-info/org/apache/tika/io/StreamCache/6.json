@@ -1,0 +1,20 @@
+{
+  "className": "StreamCache",
+  "methodName": "getInputStreamFrom",
+  "brief": "InputStream getInputStreamFrom(long offset) throws IOException{}",
+  "methodSignature": "getInputStreamFrom(long)",
+  "sourceCode": "InputStream getInputStreamFrom(long offset) throws IOException {\n        return new CacheInputStream(offset);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get an InputStream that reads from the given offset.\n */\nInputStream getInputStreamFrom(long offset) throws IOException {\n    return new CacheInputStream(offset);\n}",
+  "method_comment": "\n     * Get an InputStream that reads from the given offset.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        lazyEndHead(useFrameset);\n        super.characters(ch, start, length);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "/**\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-210\">TIKA-210</a>\n */\n@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    lazyEndHead(useFrameset);\n    super.characters(ch, start, length);\n}",
+  "method_comment": "\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-210\">TIKA-210</a>\n     ",
+  "method_annotation": "@Override\n"
+}

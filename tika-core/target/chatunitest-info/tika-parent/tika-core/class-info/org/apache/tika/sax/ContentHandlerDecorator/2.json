@@ -1,0 +1,22 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "endPrefixMapping",
+  "brief": "@Override\r\n    public void endPrefixMapping(String prefix) throws SAXException{}",
+  "methodSignature": "endPrefixMapping(String)",
+  "sourceCode": "@Override\n    public void endPrefixMapping(String prefix) throws SAXException {\n        try {\n            handler.endPrefixMapping(prefix);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void endPrefixMapping(String prefix) throws SAXException {\n    try {\n        handler.endPrefixMapping(prefix);\n    } catch (SAXException e) {\n        handleException(e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

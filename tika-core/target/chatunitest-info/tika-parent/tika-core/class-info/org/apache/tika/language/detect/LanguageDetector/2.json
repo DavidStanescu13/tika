@@ -1,0 +1,27 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "getLanguageDetectors",
+  "brief": "public static List<LanguageDetector> getLanguageDetectors(ServiceLoader loader){}",
+  "methodSignature": "getLanguageDetectors(ServiceLoader)",
+  "sourceCode": "public static List<LanguageDetector> getLanguageDetectors(ServiceLoader loader) {\n        List<LanguageDetector> detectors =\n                loader.loadStaticServiceProviders(LanguageDetector.class);\n        detectors.sort(CompareUtils::compareClassName);\n        return detectors;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>)"
+    ],
+    "java.util.List": [
+      "sort(Comparator<? super E>)"
+    ]
+  },
+  "full_method_info": "public static List<LanguageDetector> getLanguageDetectors(ServiceLoader loader) {\n    List<LanguageDetector> detectors = loader.loadStaticServiceProviders(LanguageDetector.class);\n    detectors.sort(CompareUtils::compareClassName);\n    return detectors;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

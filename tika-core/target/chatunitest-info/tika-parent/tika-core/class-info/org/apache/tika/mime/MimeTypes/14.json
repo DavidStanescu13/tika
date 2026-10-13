@@ -1,0 +1,37 @@
+{
+  "className": "MimeTypes",
+  "methodName": "add",
+  "brief": "void add(MimeType type){}",
+  "methodSignature": "add(MimeType)",
+  "sourceCode": "void add(MimeType type) {\n        registry.addType(type.getType());\n        types.put(type.getType(), type);\n\n        // Update the magics index...\n        if (type.hasMagic()) {\n            magics.addAll(type.getMagics());\n        }\n\n        // Update the xml (xmlRoot) index...\n        if (type.hasRootXML()) {\n            xmls.add(type);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [
+      "getType()",
+      "hasMagic()",
+      "hasRootXML()",
+      "getMagics()"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "addType(MediaType)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "java.util.List": [
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Add the specified mime-type in the repository.\n *\n * @param type is the mime-type to add.\n */\nvoid add(MimeType type) {\n    registry.addType(type.getType());\n    types.put(type.getType(), type);\n    // Update the magics index...\n    if (type.hasMagic()) {\n        magics.addAll(type.getMagics());\n    }\n    // Update the xml (xmlRoot) index...\n    if (type.hasRootXML()) {\n        xmls.add(type);\n    }\n}",
+  "method_comment": "\n     * Add the specified mime-type in the repository.\n     *\n     * @param type is the mime-type to add.\n     ",
+  "method_annotation": ""
+}

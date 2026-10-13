@@ -1,0 +1,22 @@
+{
+  "className": "ParseContext",
+  "methodName": "getContextMap",
+  "brief": "public Map<String, Object> getContextMap(){}",
+  "methodSignature": "getContextMap()",
+  "sourceCode": "public Map<String, Object> getContextMap() {\n        return Collections.unmodifiableMap(context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableMap(Map<? extends K, ? extends V>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the internal context map for serialization purposes.\n * The returned map is unmodifiable.\n * <p>\n * This method is intended for use by serialization frameworks only.\n * Keys are fully-qualified class names, values are the objects stored in the context.\n *\n * @return an unmodifiable view of the context map\n * @since Apache Tika 4.0\n */\npublic Map<String, Object> getContextMap() {\n    return Collections.unmodifiableMap(context);\n}",
+  "method_comment": "\n     * Returns the internal context map for serialization purposes.\n     * The returned map is unmodifiable.\n     * <p>\n     * This method is intended for use by serialization frameworks only.\n     * Keys are fully-qualified class names, values are the objects stored in the context.\n     *\n     * @return an unmodifiable view of the context map\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

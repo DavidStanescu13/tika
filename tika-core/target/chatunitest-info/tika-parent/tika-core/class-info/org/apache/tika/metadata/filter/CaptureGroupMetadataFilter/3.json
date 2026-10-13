@@ -1,0 +1,22 @@
+{
+  "className": "CaptureGroupMetadataFilter",
+  "methodName": "setTargetField",
+  "brief": "public void setTargetField(String targetField){}",
+  "methodSignature": "setTargetField(String)",
+  "sourceCode": "public void setTargetField(String targetField) {\n        this.targetField = targetField;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void setTargetField(String targetField) {\n    this.targetField = targetField;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

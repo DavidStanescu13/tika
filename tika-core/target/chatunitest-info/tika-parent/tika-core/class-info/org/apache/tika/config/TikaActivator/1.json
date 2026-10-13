@@ -1,0 +1,32 @@
+{
+  "className": "TikaActivator",
+  "methodName": "trackService",
+  "brief": "private void trackService(BundleContext context, Class<?> iface){}",
+  "methodSignature": "trackService(BundleContext, Class)",
+  "sourceCode": "private void trackService(BundleContext context, Class<?> iface) {\n        ServiceTracker tracker = new ServiceTracker(context, iface.getName(), this);\n        trackers.add(tracker);\n        tracker.open();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "BundleContext",
+    "Class<?>"
+  ],
+  "dependentMethods": {
+    "org.osgi.framework.BundleContext": [],
+    "java.lang.Class": [
+      "getName()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.osgi.util.tracker.ServiceTracker": [
+      "open()"
+    ]
+  },
+  "full_method_info": "private void trackService(BundleContext context, Class<?> iface) {\n    ServiceTracker tracker = new ServiceTracker(context, iface.getName(), this);\n    trackers.add(tracker);\n    tracker.open();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

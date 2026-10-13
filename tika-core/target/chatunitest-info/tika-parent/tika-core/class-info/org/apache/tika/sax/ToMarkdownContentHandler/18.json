@@ -1,0 +1,25 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "startRow",
+  "brief": "private void startRow(){}",
+  "methodSignature": "startRow()",
+  "sourceCode": "private void startRow() {\n        if (tableDepth != 1) {\n            return;\n        }\n        TableRow row = new TableRow();\n        if (rowIndex == 0) {\n            TableHead head = new TableHead();\n            tableBlock.appendChild(head);\n            head.appendChild(row);\n            inHeaderRow = true;\n        } else {\n            if (tableBody == null) {\n                tableBody = new TableBody();\n                tableBlock.appendChild(tableBody);\n            }\n            tableBody.appendChild(row);\n            inHeaderRow = false;\n        }\n        stack.push(row);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ],
+    "java.util.Deque": [
+      "push(E)"
+    ]
+  },
+  "full_method_info": "private void startRow() {\n    if (tableDepth != 1) {\n        return;\n    }\n    TableRow row = new TableRow();\n    if (rowIndex == 0) {\n        TableHead head = new TableHead();\n        tableBlock.appendChild(head);\n        head.appendChild(row);\n        inHeaderRow = true;\n    } else {\n        if (tableBody == null) {\n            tableBody = new TableBody();\n            tableBlock.appendChild(tableBody);\n        }\n        tableBody.appendChild(row);\n        inHeaderRow = false;\n    }\n    stack.push(row);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

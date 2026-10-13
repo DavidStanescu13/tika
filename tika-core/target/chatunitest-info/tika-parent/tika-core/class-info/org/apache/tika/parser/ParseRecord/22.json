@@ -1,0 +1,20 @@
+{
+  "className": "ParseRecord",
+  "methodName": "setMaxEmbeddedCount",
+  "brief": "public void setMaxEmbeddedCount(int maxEmbeddedCount){}",
+  "methodSignature": "setMaxEmbeddedCount(int)",
+  "sourceCode": "public void setMaxEmbeddedCount(int maxEmbeddedCount) {\n        this.maxEmbeddedCount = maxEmbeddedCount;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum number of embedded documents to parse.\n * A value of -1 means unlimited (the default).\n *\n * @param maxEmbeddedCount the maximum embedded count, or -1 for unlimited\n */\npublic void setMaxEmbeddedCount(int maxEmbeddedCount) {\n    this.maxEmbeddedCount = maxEmbeddedCount;\n}",
+  "method_comment": "\n     * Sets the maximum number of embedded documents to parse.\n     * A value of -1 means unlimited (the default).\n     *\n     * @param maxEmbeddedCount the maximum embedded count, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

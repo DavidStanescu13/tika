@@ -1,0 +1,18 @@
+{
+  "className": "AutoDetectParserConfig",
+  "methodName": "getThrowOnZeroBytes",
+  "brief": "public boolean getThrowOnZeroBytes(){}",
+  "methodSignature": "getThrowOnZeroBytes()",
+  "sourceCode": "public boolean getThrowOnZeroBytes() {\n        return throwOnZeroBytes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean getThrowOnZeroBytes() {\n    return throwOnZeroBytes;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

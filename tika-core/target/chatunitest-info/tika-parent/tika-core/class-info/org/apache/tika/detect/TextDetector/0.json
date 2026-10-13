@@ -1,0 +1,40 @@
+{
+  "className": "TextDetector",
+  "methodName": "detect",
+  "brief": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n\n        tis.mark(bytesToTest);\n        try {\n            TextStatistics stats = new TextStatistics();\n\n            byte[] buffer = new byte[1024];\n            int n = 0;\n            int m = tis.read(buffer, 0, Math.min(bytesToTest, buffer.length));\n            while (m != -1 && n < bytesToTest) {\n                stats.addData(buffer, 0, m);\n                n += m;\n                m = tis.read(buffer, 0, Math.min(bytesToTest - n, buffer.length));\n            }\n\n            if (stats.isMostlyAscii() || stats.looksLikeUTF8()) {\n                return MediaType.TEXT_PLAIN;\n            } else {\n                return MediaType.OCTET_STREAM;\n            }\n        } finally {\n            tis.reset();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "read(byte[], int, int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "org.apache.tika.detect.TextStatistics": [
+      "addData(byte[], int, int)",
+      "looksLikeUTF8()",
+      "isMostlyAscii()"
+    ]
+  },
+  "full_method_info": "/**\n * Looks at the beginning of the document input stream to determine\n * whether the document is text or not.\n *\n * @param tis      document input stream, or <code>null</code>\n * @param metadata ignored\n * @param context the parse context\n * @return \"text/plain\" if the input stream suggest a text document,\n * \"application/octet-stream\" otherwise\n */\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n    if (tis == null) {\n        return MediaType.OCTET_STREAM;\n    }\n    tis.mark(bytesToTest);\n    try {\n        TextStatistics stats = new TextStatistics();\n        byte[] buffer = new byte[1024];\n        int n = 0;\n        int m = tis.read(buffer, 0, Math.min(bytesToTest, buffer.length));\n        while (m != -1 && n < bytesToTest) {\n            stats.addData(buffer, 0, m);\n            n += m;\n            m = tis.read(buffer, 0, Math.min(bytesToTest - n, buffer.length));\n        }\n        if (stats.isMostlyAscii() || stats.looksLikeUTF8()) {\n            return MediaType.TEXT_PLAIN;\n        } else {\n            return MediaType.OCTET_STREAM;\n        }\n    } finally {\n        tis.reset();\n    }\n}",
+  "method_comment": "\n     * Looks at the beginning of the document input stream to determine\n     * whether the document is text or not.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata ignored\n     * @param context the parse context\n     * @return \"text/plain\" if the input stream suggest a text document,\n     * \"application/octet-stream\" otherwise\n     ",
+  "method_annotation": ""
+}

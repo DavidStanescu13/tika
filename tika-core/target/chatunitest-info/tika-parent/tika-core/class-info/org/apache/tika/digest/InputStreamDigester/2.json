@@ -1,0 +1,18 @@
+{
+  "className": "InputStreamDigester",
+  "methodName": "getProvider",
+  "brief": "protected Provider getProvider(){}",
+  "methodSignature": "getProvider()",
+  "sourceCode": "protected Provider getProvider() {\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * When subclassing this, becare to ensure that your provider is\n * thread-safe (not likely) or return a new provider with each call.\n *\n * @return provider to use to get the MessageDigest from the algorithm name.\n * Default is to return null.\n */\nprotected Provider getProvider() {\n    return null;\n}",
+  "method_comment": "\n     * When subclassing this, becare to ensure that your provider is\n     * thread-safe (not likely) or return a new provider with each call.\n     *\n     * @return provider to use to get the MessageDigest from the algorithm name.\n     * Default is to return null.\n     ",
+  "method_annotation": ""
+}

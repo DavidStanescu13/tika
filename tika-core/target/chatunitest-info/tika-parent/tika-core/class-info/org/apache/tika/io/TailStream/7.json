@@ -1,0 +1,20 @@
+{
+  "className": "TailStream",
+  "methodName": "appendByte",
+  "brief": "private void appendByte(byte b){}",
+  "methodSignature": "appendByte(byte)",
+  "sourceCode": "private void appendByte(byte b) {\n        tailBuffer[currentIndex++] = b;\n        if (currentIndex >= tailSize) {\n            currentIndex = 0;\n        }\n        bytesRead++;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Adds the given byte to the internal tail buffer.\n *\n * @param b the byte to be added\n */\nprivate void appendByte(byte b) {\n    tailBuffer[currentIndex++] = b;\n    if (currentIndex >= tailSize) {\n        currentIndex = 0;\n    }\n    bytesRead++;\n}",
+  "method_comment": "\n     * Adds the given byte to the internal tail buffer.\n     *\n     * @param b the byte to be added\n     ",
+  "method_annotation": ""
+}

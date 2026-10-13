@@ -1,0 +1,53 @@
+{
+  "className": "NetworkParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        if (\"telnet\".equals(uri.getScheme())) {\n            try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {\n                new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {\n                    @Override\n                    public void close() throws IOException {\n                        socket.shutdownOutput();\n                    }\n                }).parse(socket.getInputStream(), handler, metadata, context);\n            }\n        } else {\n            URL url = uri.toURL();\n            URLConnection connection = url.openConnection();\n            connection.setDoOutput(true);\n            connection.connect();\n            try (InputStream input = connection.getInputStream()) {\n                new ParsingTask(tis, connection.getOutputStream())\n                        .parse(CloseShieldInputStream.wrap(input), handler, metadata, context);\n            }\n        }\n\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.net.URI": [
+      "toURL()",
+      "getScheme()",
+      "getHost()",
+      "getPort()"
+    ],
+    "java.net.Socket": [
+      "shutdownOutput()",
+      "getOutputStream()",
+      "getInputStream()"
+    ],
+    "java.net.URL": [
+      "openConnection()"
+    ],
+    "java.net.URLConnection": [
+      "connect()",
+      "setDoOutput(boolean)",
+      "getOutputStream()",
+      "getInputStream()"
+    ],
+    "org.apache.commons.io.input.CloseShieldInputStream": [
+      "wrap(InputStream)"
+    ]
+  },
+  "full_method_info": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    if (\"telnet\".equals(uri.getScheme())) {\n        try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {\n            new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {\n\n                @Override\n                public void close() throws IOException {\n                    socket.shutdownOutput();\n                }\n            }).parse(socket.getInputStream(), handler, metadata, context);\n        }\n    } else {\n        URL url = uri.toURL();\n        URLConnection connection = url.openConnection();\n        connection.setDoOutput(true);\n        connection.connect();\n        try (InputStream input = connection.getInputStream()) {\n            new ParsingTask(tis, connection.getOutputStream()).parse(CloseShieldInputStream.wrap(input), handler, metadata, context);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

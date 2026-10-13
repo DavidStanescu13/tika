@@ -1,0 +1,27 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getStatelessParser",
+  "brief": "public static Parser getStatelessParser(ParseContext context){}",
+  "methodSignature": "getStatelessParser(ParseContext)",
+  "sourceCode": "public static Parser getStatelessParser(ParseContext context) {\n        Parser p = context.get(Parser.class);\n        if (p == null) {\n            return null;\n        }\n        if (p instanceof StatefulParser) {\n            return ((StatefulParser) p).getWrappedParser();\n        }\n        return p;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ]
+  },
+  "full_method_info": "/**\n * Utility function to get the Parser that was sent in to the\n * ParseContext to handle embedded documents.  If it is stateful,\n * unwrap it to get its stateless delegating parser.\n * <p>\n * If there is no Parser in the parser context, this will return null.\n *\n * @param context\n * @return\n */\npublic static Parser getStatelessParser(ParseContext context) {\n    Parser p = context.get(Parser.class);\n    if (p == null) {\n        return null;\n    }\n    if (p instanceof StatefulParser) {\n        return ((StatefulParser) p).getWrappedParser();\n    }\n    return p;\n}",
+  "method_comment": "\n     * Utility function to get the Parser that was sent in to the\n     * ParseContext to handle embedded documents.  If it is stateful,\n     * unwrap it to get its stateless delegating parser.\n     * <p>\n     * If there is no Parser in the parser context, this will return null.\n     *\n     * @param context\n     * @return\n     ",
+  "method_annotation": ""
+}

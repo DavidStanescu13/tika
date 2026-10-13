@@ -1,0 +1,27 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "charsetFromContentEncoding",
+  "brief": "public static Charset charsetFromContentEncoding(Metadata metadata){}",
+  "methodSignature": "charsetFromContentEncoding(Metadata)",
+  "sourceCode": "public static Charset charsetFromContentEncoding(Metadata metadata) {\n        return parseCharset(metadata.get(Metadata.CONTENT_ENCODING));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.detect.MetadataCharsetDetector": [
+      "parseCharset(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the charset named in {@link Metadata#CONTENT_ENCODING}, or\n * {@code null} if absent or unparseable.  This key is used by\n * {@code RFC822Parser} to expose the charset declared in MIME body-part\n * headers when the bare media type is stored separately in\n * {@link Metadata#CONTENT_TYPE}.\n */\npublic static Charset charsetFromContentEncoding(Metadata metadata) {\n    return parseCharset(metadata.get(Metadata.CONTENT_ENCODING));\n}",
+  "method_comment": "\n     * Returns the charset named in {@link Metadata#CONTENT_ENCODING}, or\n     * {@code null} if absent or unparseable.  This key is used by\n     * {@code RFC822Parser} to expose the charset declared in MIME body-part\n     * headers when the bare media type is stored separately in\n     * {@link Metadata#CONTENT_TYPE}.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "TikaInputStream",
+  "brief": "private TikaInputStream(TikaInputSource inputSource, TemporaryResources tmp, String suffix){}",
+  "methodSignature": "TikaInputStream(TikaInputSource, TemporaryResources, String)",
+  "sourceCode": "private TikaInputStream(TikaInputSource inputSource, TemporaryResources tmp, String suffix) {\n        super((InputStream) inputSource);\n        this.tmp = tmp;\n        this.suffix = suffix;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputSource",
+    "TemporaryResources",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputSource": [],
+    "org.apache.tika.io.TemporaryResources": [],
+    "java.lang.String": []
+  },
+  "full_method_info": "private TikaInputStream(TikaInputSource inputSource, TemporaryResources tmp, String suffix) {\n    super((InputStream) inputSource);\n    this.tmp = tmp;\n    this.suffix = suffix;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

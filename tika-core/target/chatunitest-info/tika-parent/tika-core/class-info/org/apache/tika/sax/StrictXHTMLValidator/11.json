@@ -1,0 +1,29 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "checkAttributesUnique",
+  "brief": "private void checkAttributesUnique(String elementQName, String elementLocalName,\r\n                                       Attributes attrs) throws SAXException{}",
+  "methodSignature": "checkAttributesUnique(String, String, Attributes)",
+  "sourceCode": "private void checkAttributesUnique(String elementQName, String elementLocalName,\n                                       Attributes attrs) throws SAXException {\n        int n = attrs.getLength();\n        if (n < 2) {\n            return;\n        }\n        // (uri, localName) pairs must be unique per the XML namespaces spec.\n        // We also check raw qnames because Tika's serializers emit by qname and\n        // duplicate qnames produce malformed XHTML even when localnames differ.\n        Set<String> seenUriLocal = new HashSet<>(n);\n        Set<String> seenQNames = new HashSet<>(n);\n        for (int i = 0; i < n; i++) {\n            String uri = nullSafe(attrs.getURI(i));\n            String local = nullSafe(attrs.getLocalName(i));\n            String qn = nullSafe(attrs.getQName(i));\n            // U+0001 cannot appear in a valid XML uri/localName, so it joins the\n            // two unambiguously without risk of a key collision.\n            String key = uri + \"\\u0001\" + local;\n            if (!seenUriLocal.add(key)) {\n                throw new SAXException(\n                        \"StrictXHTMLValidator: duplicate attribute on <\"\n                                + display(elementQName, elementLocalName) + \">: \"\n                                + (uri.isEmpty() ? local : (\"{\" + uri + \"}\" + local)));\n            }\n            if (!qn.isEmpty() && !seenQNames.add(qn)) {\n                throw new SAXException(\n                        \"StrictXHTMLValidator: duplicate attribute qname on <\"\n                                + display(elementQName, elementLocalName) + \">: \" + qn);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private void checkAttributesUnique(String elementQName, String elementLocalName, Attributes attrs) throws SAXException {\n    int n = attrs.getLength();\n    if (n < 2) {\n        return;\n    }\n    // (uri, localName) pairs must be unique per the XML namespaces spec.\n    // We also check raw qnames because Tika's serializers emit by qname and\n    // duplicate qnames produce malformed XHTML even when localnames differ.\n    Set<String> seenUriLocal = new HashSet<>(n);\n    Set<String> seenQNames = new HashSet<>(n);\n    for (int i = 0; i < n; i++) {\n        String uri = nullSafe(attrs.getURI(i));\n        String local = nullSafe(attrs.getLocalName(i));\n        String qn = nullSafe(attrs.getQName(i));\n        // U+0001 cannot appear in a valid XML uri/localName, so it joins the\n        // two unambiguously without risk of a key collision.\n        String key = uri + \"\\u0001\" + local;\n        if (!seenUriLocal.add(key)) {\n            throw new SAXException(\"StrictXHTMLValidator: duplicate attribute on <\" + display(elementQName, elementLocalName) + \">: \" + (uri.isEmpty() ? local : (\"{\" + uri + \"}\" + local)));\n        }\n        if (!qn.isEmpty() && !seenQNames.add(qn)) {\n            throw new SAXException(\"StrictXHTMLValidator: duplicate attribute qname on <\" + display(elementQName, elementLocalName) + \">: \" + qn);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

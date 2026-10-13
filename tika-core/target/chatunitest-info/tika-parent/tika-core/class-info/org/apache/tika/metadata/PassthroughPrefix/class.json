@@ -1,0 +1,67 @@
+{
+  "fullClassName": "org.apache.tika.metadata.PassthroughPrefix",
+  "className": "PassthroughPrefix",
+  "index": 168,
+  "modifier": "[public , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata",
+  "packageDeclaration": "package org.apache.tika.metadata;",
+  "classSignature": "public final class PassthroughPrefix",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collection;",
+    "import java.util.Collections;",
+    "import java.util.Map;",
+    "import java.util.concurrent.ConcurrentHashMap;"
+  ],
+  "fields": [
+    "private static final Map<String, PassthroughPrefix> REGISTRY = new ConcurrentHashMap<>();",
+    "private final String prefix;",
+    "private final Provenance provenance;",
+    "private final String description;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "file(String, String)": "0",
+    "tool(String, String)": "1",
+    "key(String)": "2",
+    "prefix()": "3",
+    "provenance()": "4",
+    "description()": "5",
+    "registered()": "6",
+    "PassthroughPrefix(String, Provenance, String)": "7"
+  },
+  "methodsBrief": [
+    "public static PassthroughPrefix file(String prefix, String description){}",
+    "public static PassthroughPrefix tool(String prefix, String description){}",
+    "public String key(String suffix){}",
+    "public String prefix(){}",
+    "public Provenance provenance(){}",
+    "public String description(){}",
+    "public static Collection<PassthroughPrefix> registered(){}",
+    "private PassthroughPrefix(String prefix, Provenance provenance, String description){}"
+  ],
+  "constructorSigs": [
+    "PassthroughPrefix(String, Provenance, String)"
+  ],
+  "constructorBrief": [
+    "private PassthroughPrefix(String prefix, Provenance provenance, String description){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.PassthroughPrefix.Provenance": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata;\n\nimport java.util.Collection;\nimport java.util.Collections;\nimport java.util.Map;\nimport java.util.concurrent.ConcurrentHashMap;\n\n/**\n * A Tika-owned prefix under which keys are passed through from the source: the prefix is fixed, but\n * each key name comes verbatim from the document or tool, so keys are unbounded and can't be\n * {@link Property} constants. Declaring one self-registers it, so the open set is enumerable (as\n * {@link Property} makes the closed set) and lintable: a String write is legitimate iff its key is a\n * registered {@link Property} or its prefix is a registered {@code PassthroughPrefix}.\n *\n * @since Apache Tika 4.0.0\n */\npublic final class PassthroughPrefix {\n\n    public enum Provenance {\n\n        FILE, TOOL\n    }\n\n    private static final Map<String, PassthroughPrefix> REGISTRY = new ConcurrentHashMap<>();\n\n    private final String prefix;\n\n    private final Provenance provenance;\n\n    private final String description;\n\n    private PassthroughPrefix(String prefix, Provenance provenance, String description) {\n        this.prefix = prefix;\n        this.provenance = provenance;\n        this.description = description;\n        REGISTRY.put(prefix, this);\n    }\n\n    public static PassthroughPrefix file(String prefix, String description) {\n        return new PassthroughPrefix(prefix, Provenance.FILE, description);\n    }\n\n    public static PassthroughPrefix tool(String prefix, String description) {\n        return new PassthroughPrefix(prefix, Provenance.TOOL, description);\n    }\n\n    /**\n     * The full key for a source-derived {@code suffix}.\n     */\n    public String key(String suffix) {\n        return prefix + suffix;\n    }\n\n    public String prefix() {\n        return prefix;\n    }\n\n    public Provenance provenance() {\n        return provenance;\n    }\n\n    public String description() {\n        return description;\n    }\n\n    /**\n     * Declared prefixes, from loaded classes only.\n     */\n    public static Collection<PassthroughPrefix> registered() {\n        return Collections.unmodifiableCollection(REGISTRY.values());\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A Tika-owned prefix under which keys are passed through from the source: the prefix is fixed, but\n * each key name comes verbatim from the document or tool, so keys are unbounded and can't be\n * {@link Property} constants. Declaring one self-registers it, so the open set is enumerable (as\n * {@link Property} makes the closed set) and lintable: a String write is legitimate iff its key is a\n * registered {@link Property} or its prefix is a registered {@code PassthroughPrefix}.\n *\n * @since Apache Tika 4.0.0\n */\npublic final class PassthroughPrefix {\n\n    public enum Provenance {\n\n        FILE, TOOL\n    }\n\n    private static final Map<String, PassthroughPrefix> REGISTRY = new ConcurrentHashMap<>();\n\n    private final String prefix;\n\n    private final Provenance provenance;\n\n    private final String description;\n\n    private PassthroughPrefix(String prefix, Provenance provenance, String description) {\n        this.prefix = prefix;\n        this.provenance = provenance;\n        this.description = description;\n        REGISTRY.put(prefix, this);\n    }\n\n    public static PassthroughPrefix file(String prefix, String description) {\n        return new PassthroughPrefix(prefix, Provenance.FILE, description);\n    }\n\n    public static PassthroughPrefix tool(String prefix, String description) {\n        return new PassthroughPrefix(prefix, Provenance.TOOL, description);\n    }\n\n    /**\n     * The full key for a source-derived {@code suffix}.\n     */\n    public String key(String suffix) {\n        return prefix + suffix;\n    }\n\n    public String prefix() {\n        return prefix;\n    }\n\n    public Provenance provenance() {\n        return provenance;\n    }\n\n    public String description() {\n        return description;\n    }\n\n    /**\n     * Declared prefixes, from loaded classes only.\n     */\n    public static Collection<PassthroughPrefix> registered() {\n        return Collections.unmodifiableCollection(REGISTRY.values());\n    }\n}",
+  "subClasses": []
+}

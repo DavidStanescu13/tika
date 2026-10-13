@@ -1,0 +1,22 @@
+{
+  "className": "CompositeDetector",
+  "methodName": "getDetectors",
+  "brief": "public List<Detector> getDetectors(){}",
+  "methodSignature": "getDetectors()",
+  "sourceCode": "public List<Detector> getDetectors() {\n        return Collections.unmodifiableList(detectors);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the component detectors.\n */\npublic List<Detector> getDetectors() {\n    return Collections.unmodifiableList(detectors);\n}",
+  "method_comment": "\n     * Returns the component detectors.\n     ",
+  "method_annotation": ""
+}

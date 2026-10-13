@@ -1,0 +1,55 @@
+{
+  "fullClassName": "org.apache.tika.sax.TaggedSAXException",
+  "className": "TaggedSAXException",
+  "index": 312,
+  "modifier": "[public ]",
+  "extend": "[SAXException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class TaggedSAXException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [
+    "private final Object tag;"
+  ],
+  "superClasses": [
+    "SAXException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getTag()": "0",
+    "getCause()": "1",
+    "TaggedSAXException(SAXException, Object)": "2"
+  },
+  "methodsBrief": [
+    "public Object getTag(){}",
+    "@Override\r\n    public SAXException getCause(){}",
+    "public TaggedSAXException(SAXException original, Object tag){}"
+  ],
+  "constructorSigs": [
+    "TaggedSAXException(SAXException, Object)"
+  ],
+  "constructorBrief": [
+    "public TaggedSAXException(SAXException original, Object tag){}"
+  ],
+  "getterSetterSigs": [
+    "getTag()",
+    "getCause()"
+  ],
+  "getterSetterBrief": [
+    "public Object getTag(){}",
+    "@Override\r\n    public SAXException getCause(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.Object": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport org.xml.sax.SAXException;\n\n/**\n * A {@link SAXException} wrapper that tags the wrapped exception with\n * a given object reference. Both the tag and the wrapped original exception\n * can be used to determine further processing when this exception is caught.\n */\npublic class TaggedSAXException extends SAXException {\n\n    /**\n     * The object reference used to tag the exception.\n     */\n    private final Object tag;\n\n    public TaggedSAXException(SAXException original, Object tag) {\n        super(original.getMessage(), original);\n        this.tag = tag;\n    }\n\n    /**\n     * Returns the object reference used as the tag this exception.\n     *\n     * @return tag object\n     */\n    public Object getTag() {\n        return tag;\n    }\n\n    /**\n     * Returns the wrapped exception. The only difference to the overridden\n     * {@link Throwable#getCause()} method is the narrower return type.\n     *\n     * @return wrapped exception\n     */\n    @Override\n    public SAXException getCause() {\n        return (SAXException) super.getCause();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A {@link SAXException} wrapper that tags the wrapped exception with\n * a given object reference. Both the tag and the wrapped original exception\n * can be used to determine further processing when this exception is caught.\n */\npublic class TaggedSAXException extends SAXException {\n\n    /**\n     * The object reference used to tag the exception.\n     */\n    private final Object tag;\n\n    public TaggedSAXException(SAXException original, Object tag) {\n        super(original.getMessage(), original);\n        this.tag = tag;\n    }\n\n    /**\n     * Returns the object reference used as the tag this exception.\n     *\n     * @return tag object\n     */\n    public Object getTag() {\n        return tag;\n    }\n\n    /**\n     * Returns the wrapped exception. The only difference to the overridden\n     * {@link Throwable#getCause()} method is the narrower return type.\n     *\n     * @return wrapped exception\n     */\n    @Override\n    public SAXException getCause() {\n        return (SAXException) super.getCause();\n    }\n}",
+  "subClasses": []
+}

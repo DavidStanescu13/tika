@@ -1,0 +1,49 @@
+{
+  "className": "ExternalParser",
+  "methodName": "ExternalParser",
+  "brief": "public ExternalParser(ExternalParserConfig config){}",
+  "methodSignature": "ExternalParser(ExternalParserConfig)",
+  "sourceCode": "public ExternalParser(ExternalParserConfig config) {\n        this.config = config;\n        this.supportedTypes = new HashSet<>();\n        for (String s : config.getSupportedTypes()) {\n            this.supportedTypes.add(MediaType.parse(s));\n        }\n        this.commandLine = new ArrayList<>(config.getCommandLine());\n        this.stdoutHandler = config.getStdoutHandler();\n        this.stderrHandler = config.getStderrHandler();\n        this.outputFileHandler = config.getOutputFileHandler();\n\n        // Set up lazy check\n        if (config.getCheckCommandLine() != null && !config.getCheckCommandLine().isEmpty()) {\n            this.checkCmd = config.getCheckCommandLine().toArray(new String[0]);\n            if (config.getCheckErrorCodes() != null &&\n                    !config.getCheckErrorCodes().isEmpty()) {\n                this.checkErrorCodes = config.getCheckErrorCodes().stream()\n                        .mapToInt(Integer::intValue).toArray();\n            } else {\n                this.checkErrorCodes = new int[]{127};\n            }\n            this.checkResult = null; // will be lazily evaluated\n        } else {\n            this.checkCmd = null;\n            this.checkErrorCodes = null;\n            this.checkResult = Boolean.TRUE; // no check configured, always available\n        }\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ExternalParserConfig"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.external.ExternalParserConfig": [
+      "getStdoutHandler()",
+      "getStderrHandler()",
+      "getCommandLine()",
+      "getCheckErrorCodes()",
+      "getCheckCommandLine()",
+      "getSupportedTypes()",
+      "getOutputFileHandler()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "isEmpty()"
+    ],
+    "java.util.stream.IntStream": [
+      "toArray()"
+    ],
+    "java.util.stream.Stream": [
+      "mapToInt(ToIntFunction<? super T>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ]
+  },
+  "full_method_info": "public ExternalParser(ExternalParserConfig config) {\n    this.config = config;\n    this.supportedTypes = new HashSet<>();\n    for (String s : config.getSupportedTypes()) {\n        this.supportedTypes.add(MediaType.parse(s));\n    }\n    this.commandLine = new ArrayList<>(config.getCommandLine());\n    this.stdoutHandler = config.getStdoutHandler();\n    this.stderrHandler = config.getStderrHandler();\n    this.outputFileHandler = config.getOutputFileHandler();\n    // Set up lazy check\n    if (config.getCheckCommandLine() != null && !config.getCheckCommandLine().isEmpty()) {\n        this.checkCmd = config.getCheckCommandLine().toArray(new String[0]);\n        if (config.getCheckErrorCodes() != null && !config.getCheckErrorCodes().isEmpty()) {\n            this.checkErrorCodes = config.getCheckErrorCodes().stream().mapToInt(Integer::intValue).toArray();\n        } else {\n            this.checkErrorCodes = new int[] { 127 };\n        }\n        // will be lazily evaluated\n        this.checkResult = null;\n    } else {\n        this.checkCmd = null;\n        this.checkErrorCodes = null;\n        // no check configured, always available\n        this.checkResult = Boolean.TRUE;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

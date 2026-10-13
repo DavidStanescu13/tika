@@ -1,0 +1,27 @@
+{
+  "className": "DefaultEmbeddedStreamTranslator",
+  "methodName": "getDefaultFilters",
+  "brief": "private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader){}",
+  "methodSignature": "getDefaultFilters(ServiceLoader)",
+  "sourceCode": "private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader) {\n        List<EmbeddedStreamTranslator> embeddedStreamTranslators\n                = loader.loadServiceProviders(EmbeddedStreamTranslator.class);\n        ServiceLoaderUtils.sortLoadedClasses(embeddedStreamTranslators);\n        return embeddedStreamTranslators;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadServiceProviders(Class<T>)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "sortLoadedClasses(List<T>)"
+    ]
+  },
+  "full_method_info": "private static List<EmbeddedStreamTranslator> getDefaultFilters(ServiceLoader loader) {\n    List<EmbeddedStreamTranslator> embeddedStreamTranslators = loader.loadServiceProviders(EmbeddedStreamTranslator.class);\n    ServiceLoaderUtils.sortLoadedClasses(embeddedStreamTranslators);\n    return embeddedStreamTranslators;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

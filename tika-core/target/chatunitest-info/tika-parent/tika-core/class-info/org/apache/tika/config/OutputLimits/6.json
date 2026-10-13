@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "getMaxPackageEntryDepth",
+  "brief": "public int getMaxPackageEntryDepth(){}",
+  "methodSignature": "getMaxPackageEntryDepth()",
+  "sourceCode": "public int getMaxPackageEntryDepth() {\n        return maxPackageEntryDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum package entry nesting depth.\n *\n * @return maximum package entry depth\n */\npublic int getMaxPackageEntryDepth() {\n    return maxPackageEntryDepth;\n}",
+  "method_comment": "\n     * Gets the maximum package entry nesting depth.\n     *\n     * @return maximum package entry depth\n     ",
+  "method_annotation": ""
+}

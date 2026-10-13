@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "hashCode",
+  "brief": "@Override\r\n    public int hashCode(){}",
+  "methodSignature": "hashCode()",
+  "sourceCode": "@Override\n    public int hashCode() {\n        int result = writeLimit;\n        result = 31 * result + (throwOnWriteLimit ? 1 : 0);\n        result = 31 * result + maxXmlDepth;\n        result = 31 * result + maxPackageEntryDepth;\n        result = 31 * result + (int) (zipBombThreshold ^ (zipBombThreshold >>> 32));\n        result = 31 * result + (int) (zipBombRatio ^ (zipBombRatio >>> 32));\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic int hashCode() {\n    int result = writeLimit;\n    result = 31 * result + (throwOnWriteLimit ? 1 : 0);\n    result = 31 * result + maxXmlDepth;\n    result = 31 * result + maxPackageEntryDepth;\n    result = 31 * result + (int) (zipBombThreshold ^ (zipBombThreshold >>> 32));\n    result = 31 * result + (int) (zipBombRatio ^ (zipBombRatio >>> 32));\n    return result;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

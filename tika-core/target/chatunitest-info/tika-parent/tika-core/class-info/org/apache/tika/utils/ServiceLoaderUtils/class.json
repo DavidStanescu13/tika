@@ -1,0 +1,40 @@
+{
+  "fullClassName": "org.apache.tika.utils.ServiceLoaderUtils",
+  "className": "ServiceLoaderUtils",
+  "index": 350,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class ServiceLoaderUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.lang.reflect.Constructor;",
+    "import java.lang.reflect.InvocationTargetException;",
+    "import java.util.List;",
+    "import org.apache.tika.config.ServiceLoader;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "sortLoadedClasses(List)": "0",
+    "newInstance(Class, ServiceLoader)": "1"
+  },
+  "methodsBrief": [
+    "public static <T> void sortLoadedClasses(List<T> loaded){}",
+    "public static <T> T newInstance(Class klass, ServiceLoader loader){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport java.lang.reflect.Constructor;\nimport java.lang.reflect.InvocationTargetException;\nimport java.util.List;\nimport org.apache.tika.config.ServiceLoader;\n\n/**\n * Service Loading and Ordering related utils\n */\npublic class ServiceLoaderUtils {\n\n    /**\n     * Sorts a list of loaded classes, so that non-Tika ones come\n     * before Tika ones, and otherwise in reverse alphabetical order\n     */\n    public static <T> void sortLoadedClasses(List<T> loaded) {\n        loaded.sort(CompareUtils::compareClassName);\n    }\n\n    /**\n     * Loads a class and instantiates it.  If the class can be initialized\n     * with a ServiceLoader, the ServiceLoader constructor is used.\n     * Otherwise, a zero arg newInstance() is called.\n     *\n     * @param klass     class to build\n     * @param loader    service loader\n     * @param <T>       service type\n     * @return instance of service\n     */\n    public static <T> T newInstance(Class klass, ServiceLoader loader) {\n        try {\n            try {\n                Constructor<T> constructor = klass.getDeclaredConstructor(ServiceLoader.class);\n                return constructor.newInstance(loader);\n            } catch (NoSuchMethodException e) {\n                return (T) klass.getDeclaredConstructor().newInstance();\n            } catch (InvocationTargetException e) {\n                throw new RuntimeException(e);\n            }\n        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {\n            throw new RuntimeException(e);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Service Loading and Ordering related utils\n */\npublic class ServiceLoaderUtils {\n\n    /**\n     * Sorts a list of loaded classes, so that non-Tika ones come\n     * before Tika ones, and otherwise in reverse alphabetical order\n     */\n    public static <T> void sortLoadedClasses(List<T> loaded) {\n        loaded.sort(CompareUtils::compareClassName);\n    }\n\n    /**\n     * Loads a class and instantiates it.  If the class can be initialized\n     * with a ServiceLoader, the ServiceLoader constructor is used.\n     * Otherwise, a zero arg newInstance() is called.\n     *\n     * @param klass     class to build\n     * @param loader    service loader\n     * @param <T>       service type\n     * @return instance of service\n     */\n    public static <T> T newInstance(Class klass, ServiceLoader loader) {\n        try {\n            try {\n                Constructor<T> constructor = klass.getDeclaredConstructor(ServiceLoader.class);\n                return constructor.newInstance(loader);\n            } catch (NoSuchMethodException e) {\n                return (T) klass.getDeclaredConstructor().newInstance();\n            } catch (InvocationTargetException e) {\n                throw new RuntimeException(e);\n            }\n        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {\n            throw new RuntimeException(e);\n        }\n    }\n}",
+  "subClasses": []
+}

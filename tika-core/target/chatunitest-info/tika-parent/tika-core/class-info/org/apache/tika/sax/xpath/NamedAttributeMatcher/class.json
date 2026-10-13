@@ -1,0 +1,48 @@
+{
+  "fullClassName": "org.apache.tika.sax.xpath.NamedAttributeMatcher",
+  "className": "NamedAttributeMatcher",
+  "index": 333,
+  "modifier": "[public ]",
+  "extend": "[Matcher]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax.xpath",
+  "packageDeclaration": "package org.apache.tika.sax.xpath;",
+  "classSignature": "public class NamedAttributeMatcher",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Objects;"
+  ],
+  "fields": [
+    "private final String namespace;",
+    "private final String name;"
+  ],
+  "superClasses": [
+    "Matcher"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "matchesAttribute(String, String)": "0",
+    "NamedAttributeMatcher(String, String)": "1"
+  },
+  "methodsBrief": [
+    "public boolean matchesAttribute(String namespace, String name){}",
+    "public NamedAttributeMatcher(String namespace, String name){}"
+  ],
+  "constructorSigs": [
+    "NamedAttributeMatcher(String, String)"
+  ],
+  "constructorBrief": [
+    "public NamedAttributeMatcher(String namespace, String name){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax.xpath;\n\nimport java.util.Objects;\n\n/**\n * Final evaluation state of a <code>.../@name</code> XPath expression.\n * Matches the named attributes of the current element.\n */\npublic class NamedAttributeMatcher extends Matcher {\n\n    private final String namespace;\n\n    private final String name;\n\n    public NamedAttributeMatcher(String namespace, String name) {\n        this.namespace = namespace;\n        this.name = name;\n    }\n\n    public boolean matchesAttribute(String namespace, String name) {\n        return Objects.equals(namespace, this.namespace) && name.equals(this.name);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Final evaluation state of a <code>.../@name</code> XPath expression.\n * Matches the named attributes of the current element.\n */\npublic class NamedAttributeMatcher extends Matcher {\n\n    private final String namespace;\n\n    private final String name;\n\n    public NamedAttributeMatcher(String namespace, String name) {\n        this.namespace = namespace;\n        this.name = name;\n    }\n\n    public boolean matchesAttribute(String namespace, String name) {\n        return Objects.equals(namespace, this.namespace) && name.equals(this.name);\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Metadata",
+  "methodName": "addTrusted",
+  "brief": "public void addTrusted(final String name, final String value){}",
+  "methodSignature": "addTrusted(String, String)",
+  "sourceCode": "public void addTrusted(final String name, final String value) {\n        writeLimiter.add(name, value, metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.writefilter.MetadataWriteLimiter": [
+      "add(String, String, String[]>)"
+    ]
+  },
+  "full_method_info": "/**\n * Trusted add, bypassing the reserved-key guard: writes reach reserved Tika-native\n * ({@code tk:}) keys directly. For internal/known-trusted writers (metadata filters,\n * clone/merge/deserialize, emit-time enrichment) that legitimately need to assert a\n * reserved key by name rather than by its {@link Property}.\n */\npublic void addTrusted(final String name, final String value) {\n    writeLimiter.add(name, value, metadata);\n}",
+  "method_comment": "\n     * Trusted add, bypassing the reserved-key guard: writes reach reserved Tika-native\n     * ({@code tk:}) keys directly. For internal/known-trusted writers (metadata filters,\n     * clone/merge/deserialize, emit-time enrichment) that legitimately need to assert a\n     * reserved key by name rather than by its {@link Property}.\n     ",
+  "method_annotation": ""
+}

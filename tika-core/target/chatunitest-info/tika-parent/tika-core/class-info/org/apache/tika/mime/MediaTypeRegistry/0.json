@@ -1,0 +1,23 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "getDefaultRegistry",
+  "brief": "public static MediaTypeRegistry getDefaultRegistry(){}",
+  "methodSignature": "getDefaultRegistry()",
+  "sourceCode": "public static MediaTypeRegistry getDefaultRegistry() {\n        return MimeTypes.getDefaultMimeTypes().getMediaTypeRegistry();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypes": [
+      "getMediaTypeRegistry()",
+      "getDefaultMimeTypes()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the built-in media type registry included in Tika.\n *\n * @return default media type registry\n * @since Apache Tika 0.8\n */\npublic static MediaTypeRegistry getDefaultRegistry() {\n    return MimeTypes.getDefaultMimeTypes().getMediaTypeRegistry();\n}",
+  "method_comment": "\n     * Returns the built-in media type registry included in Tika.\n     *\n     * @return default media type registry\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

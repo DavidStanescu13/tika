@@ -1,0 +1,70 @@
+{
+  "fullClassName": "org.apache.tika.parser.AutoDetectParserConfig",
+  "className": "AutoDetectParserConfig",
+  "index": 227,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class AutoDetectParserConfig",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.sax.ContentHandlerDecoratorFactory;"
+  ],
+  "fields": [
+    "private static ContentHandlerDecoratorFactory NOOP_CONTENT_HANDLER_DECORATOR_FACTORY =\n            new ContentHandlerDecoratorFactory() {\n                @Override\n                public ContentHandler decorate(ContentHandler contentHandler, Metadata metadata,\n                                               ParseContext parseContext) {\n                    return contentHandler;\n                }\n            };",
+    "public static AutoDetectParserConfig DEFAULT = new AutoDetectParserConfig();",
+    "private ContentHandlerDecoratorFactory contentHandlerDecoratorFactory =\n            NOOP_CONTENT_HANDLER_DECORATOR_FACTORY;",
+    "private boolean throwOnZeroBytes = true;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory)": "0",
+    "getContentHandlerDecoratorFactory()": "1",
+    "setThrowOnZeroBytes(boolean)": "2",
+    "getThrowOnZeroBytes()": "3",
+    "toString()": "4",
+    "AutoDetectParserConfig()": "5"
+  },
+  "methodsBrief": [
+    "public void setContentHandlerDecoratorFactory(\r\n            ContentHandlerDecoratorFactory contentHandlerDecoratorFactory){}",
+    "public ContentHandlerDecoratorFactory getContentHandlerDecoratorFactory(){}",
+    "public void setThrowOnZeroBytes(boolean throwOnZeroBytes){}",
+    "public boolean getThrowOnZeroBytes(){}",
+    "@Override\r\n    public String toString(){}",
+    "public AutoDetectParserConfig(){}"
+  ],
+  "constructorSigs": [
+    "AutoDetectParserConfig()"
+  ],
+  "constructorBrief": [
+    "public AutoDetectParserConfig(){}"
+  ],
+  "getterSetterSigs": [
+    "setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory)",
+    "getContentHandlerDecoratorFactory()",
+    "setThrowOnZeroBytes(boolean)",
+    "getThrowOnZeroBytes()"
+  ],
+  "getterSetterBrief": [
+    "public void setContentHandlerDecoratorFactory(\r\n            ContentHandlerDecoratorFactory contentHandlerDecoratorFactory){}",
+    "public ContentHandlerDecoratorFactory getContentHandlerDecoratorFactory(){}",
+    "public void setThrowOnZeroBytes(boolean throwOnZeroBytes){}",
+    "public boolean getThrowOnZeroBytes(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.Serializable;\nimport org.xml.sax.ContentHandler;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.sax.ContentHandlerDecoratorFactory;\n\n/**\n * Configuration for AutoDetectParser behavior.\n * <p>\n * Note: Security limits (zip bomb thresholds, XML depth, etc.) are now configured\n * via {@link org.apache.tika.config.OutputLimits} in the ParseContext, not here.\n * <p>\n * This is a config POJO. It uses standard Jackson deserialization for its\n * primitive fields, but component fields (like contentHandlerDecoratorFactory)\n * use compact format.\n */\n@TikaComponent(spi = false)\npublic class AutoDetectParserConfig implements Serializable {\n\n    private static ContentHandlerDecoratorFactory NOOP_CONTENT_HANDLER_DECORATOR_FACTORY = new ContentHandlerDecoratorFactory() {\n\n        @Override\n        public ContentHandler decorate(ContentHandler contentHandler, Metadata metadata, ParseContext parseContext) {\n            return contentHandler;\n        }\n    };\n\n    public static AutoDetectParserConfig DEFAULT = new AutoDetectParserConfig();\n\n    private ContentHandlerDecoratorFactory contentHandlerDecoratorFactory = NOOP_CONTENT_HANDLER_DECORATOR_FACTORY;\n\n    private boolean throwOnZeroBytes = true;\n\n    public AutoDetectParserConfig() {\n    }\n\n    public void setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory contentHandlerDecoratorFactory) {\n        this.contentHandlerDecoratorFactory = contentHandlerDecoratorFactory;\n    }\n\n    public ContentHandlerDecoratorFactory getContentHandlerDecoratorFactory() {\n        return contentHandlerDecoratorFactory;\n    }\n\n    public void setThrowOnZeroBytes(boolean throwOnZeroBytes) {\n        this.throwOnZeroBytes = throwOnZeroBytes;\n    }\n\n    public boolean getThrowOnZeroBytes() {\n        return throwOnZeroBytes;\n    }\n\n    @Override\n    public String toString() {\n        return \"AutoDetectParserConfig{\" + \"contentHandlerDecoratorFactory=\" + contentHandlerDecoratorFactory + \", throwOnZeroBytes=\" + throwOnZeroBytes + '}';\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for AutoDetectParser behavior.\n * <p>\n * Note: Security limits (zip bomb thresholds, XML depth, etc.) are now configured\n * via {@link org.apache.tika.config.OutputLimits} in the ParseContext, not here.\n * <p>\n * This is a config POJO. It uses standard Jackson deserialization for its\n * primitive fields, but component fields (like contentHandlerDecoratorFactory)\n * use compact format.\n */\n@TikaComponent(spi = false)\npublic class AutoDetectParserConfig implements Serializable {\n\n    private static ContentHandlerDecoratorFactory NOOP_CONTENT_HANDLER_DECORATOR_FACTORY = new ContentHandlerDecoratorFactory() {\n\n        @Override\n        public ContentHandler decorate(ContentHandler contentHandler, Metadata metadata, ParseContext parseContext) {\n            return contentHandler;\n        }\n    };\n\n    public static AutoDetectParserConfig DEFAULT = new AutoDetectParserConfig();\n\n    private ContentHandlerDecoratorFactory contentHandlerDecoratorFactory = NOOP_CONTENT_HANDLER_DECORATOR_FACTORY;\n\n    private boolean throwOnZeroBytes = true;\n\n    public AutoDetectParserConfig() {\n    }\n\n    public void setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory contentHandlerDecoratorFactory) {\n        this.contentHandlerDecoratorFactory = contentHandlerDecoratorFactory;\n    }\n\n    public ContentHandlerDecoratorFactory getContentHandlerDecoratorFactory() {\n        return contentHandlerDecoratorFactory;\n    }\n\n    public void setThrowOnZeroBytes(boolean throwOnZeroBytes) {\n        this.throwOnZeroBytes = throwOnZeroBytes;\n    }\n\n    public boolean getThrowOnZeroBytes() {\n        return throwOnZeroBytes;\n    }\n\n    @Override\n    public String toString() {\n        return \"AutoDetectParserConfig{\" + \"contentHandlerDecoratorFactory=\" + contentHandlerDecoratorFactory + \", throwOnZeroBytes=\" + throwOnZeroBytes + '}';\n    }\n}",
+  "subClasses": []
+}

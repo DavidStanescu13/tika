@@ -1,0 +1,32 @@
+{
+  "className": "CharsetUtils",
+  "methodName": "initCommonCharsets",
+  "brief": "private static Map<String, Charset> initCommonCharsets(String... names){}",
+  "methodSignature": "initCommonCharsets(String[])",
+  "sourceCode": "private static Map<String, Charset> initCommonCharsets(String... names) {\n        Map<String, Charset> charsets = new HashMap<>();\n        for (String name : names) {\n            try {\n                Charset charset = Charset.forName(name);\n                COMMON_CHARSETS.put(name.toLowerCase(ENGLISH), charset);\n                for (String alias : charset.aliases()) {\n                    COMMON_CHARSETS.put(alias.toLowerCase(ENGLISH), charset);\n                }\n            } catch (IllegalArgumentException e) {\n                // ignore\n            }\n        }\n        return charsets;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String...": [],
+    "java.nio.charset.Charset": [
+      "aliases()",
+      "forName(String)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "java.lang.String": [
+      "toLowerCase(Locale)"
+    ]
+  },
+  "full_method_info": "private static Map<String, Charset> initCommonCharsets(String... names) {\n    Map<String, Charset> charsets = new HashMap<>();\n    for (String name : names) {\n        try {\n            Charset charset = Charset.forName(name);\n            COMMON_CHARSETS.put(name.toLowerCase(ENGLISH), charset);\n            for (String alias : charset.aliases()) {\n                COMMON_CHARSETS.put(alias.toLowerCase(ENGLISH), charset);\n            }\n        } catch (IllegalArgumentException e) {\n            // ignore\n        }\n    }\n    return charsets;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

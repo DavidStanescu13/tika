@@ -1,0 +1,18 @@
+{
+  "className": "RenderResults",
+  "methodName": "getResults",
+  "brief": "public List<RenderResult> getResults(){}",
+  "methodSignature": "getResults()",
+  "sourceCode": "public List<RenderResult> getResults() {\n        return results;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public List<RenderResult> getResults() {\n    return results;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

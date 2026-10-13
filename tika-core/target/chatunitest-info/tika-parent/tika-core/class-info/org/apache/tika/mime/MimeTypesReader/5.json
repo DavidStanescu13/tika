@@ -1,0 +1,27 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "read",
+  "brief": "public void read(Document document) throws MimeTypeException{}",
+  "methodSignature": "read(Document)",
+  "sourceCode": "public void read(Document document) throws MimeTypeException {\n        try {\n            Transformer transformer = XMLReaderUtils.getTransformer();\n            transformer.transform(new DOMSource(document), new SAXResult(this));\n        } catch (TransformerException | TikaException e) {\n            throw new MimeTypeException(\"Failed to parse type registry\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Document"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getTransformer()"
+    ],
+    "javax.xml.transform.Transformer": [
+      "transform(Source, Result)"
+    ]
+  },
+  "full_method_info": "public void read(Document document) throws MimeTypeException {\n    try {\n        Transformer transformer = XMLReaderUtils.getTransformer();\n        transformer.transform(new DOMSource(document), new SAXResult(this));\n    } catch (TransformerException | TikaException e) {\n        throw new MimeTypeException(\"Failed to parse type registry\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

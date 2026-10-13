@@ -1,0 +1,24 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "estimateSize",
+  "brief": "private static int estimateSize(String s){}",
+  "methodSignature": "estimateSize(String)",
+  "sourceCode": "private static int estimateSize(String s) {\n        if (s == null) {\n            return 0;\n        }\n        return 2 * s.length();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()"
+    ]
+  },
+  "full_method_info": "private static int estimateSize(String s) {\n    if (s == null) {\n        return 0;\n    }\n    return 2 * s.length();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

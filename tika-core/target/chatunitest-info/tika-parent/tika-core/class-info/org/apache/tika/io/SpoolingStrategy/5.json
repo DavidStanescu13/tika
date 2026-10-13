@@ -1,0 +1,18 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "getMediaTypeRegistry",
+  "brief": "public MediaTypeRegistry getMediaTypeRegistry(){}",
+  "methodSignature": "getMediaTypeRegistry()",
+  "sourceCode": "public MediaTypeRegistry getMediaTypeRegistry() {\n        return mediaTypeRegistry;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the media type registry.\n *\n * @return the media type registry, or null if not set\n */\npublic MediaTypeRegistry getMediaTypeRegistry() {\n    return mediaTypeRegistry;\n}",
+  "method_comment": "\n     * Returns the media type registry.\n     *\n     * @return the media type registry, or null if not set\n     ",
+  "method_annotation": ""
+}

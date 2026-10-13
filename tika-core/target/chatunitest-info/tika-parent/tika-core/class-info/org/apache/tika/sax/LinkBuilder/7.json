@@ -1,0 +1,22 @@
+{
+  "className": "LinkBuilder",
+  "methodName": "LinkBuilder",
+  "brief": "public LinkBuilder(String type){}",
+  "methodSignature": "LinkBuilder(String)",
+  "sourceCode": "public LinkBuilder(String type) {\n        this.type = type;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public LinkBuilder(String type) {\n    this.type = type;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

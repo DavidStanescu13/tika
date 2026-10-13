@@ -1,0 +1,59 @@
+{
+  "fullClassName": "org.apache.tika.sax.ToHTMLContentHandler",
+  "className": "ToHTMLContentHandler",
+  "index": 316,
+  "modifier": "[public ]",
+  "extend": "[ToXMLContentHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class ToHTMLContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.OutputStream;",
+    "import java.io.UnsupportedEncodingException;",
+    "import java.util.Arrays;",
+    "import java.util.HashSet;",
+    "import java.util.Set;",
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [
+    "private static final Set<String> EMPTY_ELEMENTS = new HashSet<>(\n            Arrays.asList(\"area\", \"base\", \"basefont\", \"br\", \"col\", \"frame\", \"hr\", \"img\", \"input\",\n                    \"isindex\", \"link\", \"meta\", \"param\"));"
+  ],
+  "superClasses": [
+    "ToXMLContentHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startDocument()": "0",
+    "endElement(String, String, String)": "1",
+    "ToHTMLContentHandler(OutputStream, String)": "2",
+    "ToHTMLContentHandler()": "3"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void startDocument() throws SAXException{}",
+    "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+    "public ToHTMLContentHandler(OutputStream stream, String encoding)\r\n            throws UnsupportedEncodingException{}",
+    "public ToHTMLContentHandler(){}"
+  ],
+  "constructorSigs": [
+    "ToHTMLContentHandler(OutputStream, String)",
+    "ToHTMLContentHandler()"
+  ],
+  "constructorBrief": [
+    "public ToHTMLContentHandler(OutputStream stream, String encoding)\r\n            throws UnsupportedEncodingException{}",
+    "public ToHTMLContentHandler(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.OutputStream": [],
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.OutputStream;\nimport java.io.UnsupportedEncodingException;\nimport java.util.Arrays;\nimport java.util.HashSet;\nimport java.util.Set;\nimport org.xml.sax.SAXException;\n\n/**\n * SAX event handler that serializes the HTML document to a character stream.\n * The incoming SAX events are expected to be well-formed (properly nested,\n * etc.) and valid HTML.\n *\n * @since Apache Tika 0.10\n */\npublic class ToHTMLContentHandler extends ToXMLContentHandler {\n\n    private static final Set<String> EMPTY_ELEMENTS = new HashSet<>(Arrays.asList(\"area\", \"base\", \"basefont\", \"br\", \"col\", \"frame\", \"hr\", \"img\", \"input\", \"isindex\", \"link\", \"meta\", \"param\"));\n\n    public ToHTMLContentHandler(OutputStream stream, String encoding) throws UnsupportedEncodingException {\n        super(stream, encoding);\n    }\n\n    public ToHTMLContentHandler() {\n        super();\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (inStartElement) {\n            write('>');\n            inStartElement = false;\n            if (EMPTY_ELEMENTS.contains(localName)) {\n                namespaces.clear();\n                return;\n            }\n        }\n        super.endElement(uri, localName, qName);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * SAX event handler that serializes the HTML document to a character stream.\n * The incoming SAX events are expected to be well-formed (properly nested,\n * etc.) and valid HTML.\n *\n * @since Apache Tika 0.10\n */\npublic class ToHTMLContentHandler extends ToXMLContentHandler {\n\n    private static final Set<String> EMPTY_ELEMENTS = new HashSet<>(Arrays.asList(\"area\", \"base\", \"basefont\", \"br\", \"col\", \"frame\", \"hr\", \"img\", \"input\", \"isindex\", \"link\", \"meta\", \"param\"));\n\n    public ToHTMLContentHandler(OutputStream stream, String encoding) throws UnsupportedEncodingException {\n        super(stream, encoding);\n    }\n\n    public ToHTMLContentHandler() {\n        super();\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (inStartElement) {\n            write('>');\n            inStartElement = false;\n            if (EMPTY_ELEMENTS.contains(localName)) {\n                namespaces.clear();\n                return;\n            }\n        }\n        super.endElement(uri, localName, qName);\n    }\n}",
+  "subClasses": []
+}

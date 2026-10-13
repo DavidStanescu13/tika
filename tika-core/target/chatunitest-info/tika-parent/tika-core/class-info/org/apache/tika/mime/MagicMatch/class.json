@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.mime.MagicMatch",
+  "className": "MagicMatch",
+  "index": 205,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[Clause]",
+  "packageName": "org.apache.tika.mime",
+  "packageDeclaration": "package org.apache.tika.mime;",
+  "classSignature": "class MagicMatch",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.detect.MagicDetector;"
+  ],
+  "fields": [
+    "private final MediaType mediaType;",
+    "private final String type;",
+    "private final String offset;",
+    "private final String value;",
+    "private final String mask;",
+    "private MagicDetector detector = null;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Clause"
+  ],
+  "methodSigs": {
+    "getDetector()": "0",
+    "eval(byte[])": "1",
+    "size()": "2",
+    "toString()": "3",
+    "MagicMatch(MediaType, String, String, String, String)": "4"
+  },
+  "methodsBrief": [
+    "private synchronized MagicDetector getDetector(){}",
+    "public boolean eval(byte[] data){}",
+    "public int size(){}",
+    "public String toString(){}",
+    "MagicMatch(MediaType mediaType, String type, String offset, String value, String mask){}"
+  ],
+  "constructorSigs": [
+    "MagicMatch(MediaType, String, String, String, String)"
+  ],
+  "constructorBrief": [
+    "MagicMatch(MediaType mediaType, String type, String offset, String value, String mask){}"
+  ],
+  "getterSetterSigs": [
+    "getDetector()"
+  ],
+  "getterSetterBrief": [
+    "private synchronized MagicDetector getDetector(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.mime;\n\nimport org.apache.tika.detect.MagicDetector;\n\n/**\n * Defines a magic match.\n */\nclass MagicMatch implements Clause {\n\n    private final MediaType mediaType;\n\n    private final String type;\n\n    private final String offset;\n\n    private final String value;\n\n    private final String mask;\n\n    private MagicDetector detector = null;\n\n    MagicMatch(MediaType mediaType, String type, String offset, String value, String mask) {\n        this.mediaType = mediaType;\n        this.type = type;\n        this.offset = offset;\n        this.value = value;\n        this.mask = mask;\n    }\n\n    private synchronized MagicDetector getDetector() {\n        if (detector == null) {\n            detector = MagicDetector.parse(mediaType, type, offset, value, mask);\n        }\n        return detector;\n    }\n\n    public boolean eval(byte[] data) {\n        return getDetector().matches(data);\n    }\n\n    public int size() {\n        return getDetector().getLength();\n    }\n\n    public String toString() {\n        return mediaType.toString() + \" \" + type + \" \" + offset + \" \" + value + \" \" + mask;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Defines a magic match.\n */\nclass MagicMatch implements Clause {\n\n    private final MediaType mediaType;\n\n    private final String type;\n\n    private final String offset;\n\n    private final String value;\n\n    private final String mask;\n\n    private MagicDetector detector = null;\n\n    MagicMatch(MediaType mediaType, String type, String offset, String value, String mask) {\n        this.mediaType = mediaType;\n        this.type = type;\n        this.offset = offset;\n        this.value = value;\n        this.mask = mask;\n    }\n\n    private synchronized MagicDetector getDetector() {\n        if (detector == null) {\n            detector = MagicDetector.parse(mediaType, type, offset, value, mask);\n        }\n        return detector;\n    }\n\n    public boolean eval(byte[] data) {\n        return getDetector().matches(data);\n    }\n\n    public int size() {\n        return getDetector().getLength();\n    }\n\n    public String toString() {\n        return mediaType.toString() + \" \" + type + \" \" + offset + \" \" + value + \" \" + mask;\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,20 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setQuoteAssignmentValues",
+  "brief": "public void setQuoteAssignmentValues(boolean quoteAssignmentValues){}",
+  "methodSignature": "setQuoteAssignmentValues(boolean)",
+  "sourceCode": "public void setQuoteAssignmentValues(boolean quoteAssignmentValues) {\n        this.quoteAssignmentValues = quoteAssignmentValues;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether or not to quote assignment values, i.e. tag='value'.\n *\n * @param quoteAssignmentValues\n */\npublic void setQuoteAssignmentValues(boolean quoteAssignmentValues) {\n    this.quoteAssignmentValues = quoteAssignmentValues;\n}",
+  "method_comment": "\n     * Sets whether or not to quote assignment values, i.e. tag='value'.\n     *\n     * @param quoteAssignmentValues\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setMetadataCommandArguments",
+  "brief": "public void setMetadataCommandArguments(Map<Property, String[]> arguments){}",
+  "methodSignature": "setMetadataCommandArguments(Map)",
+  "sourceCode": "public void setMetadataCommandArguments(Map<Property, String[]> arguments) {\n        this.metadataCommandArguments = arguments;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<Property,String[]>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the map of Metadata keys to command line parameters. Set this to\n * null to disable Metadata embedding.\n *\n * @param arguments\n */\npublic void setMetadataCommandArguments(Map<Property, String[]> arguments) {\n    this.metadataCommandArguments = arguments;\n}",
+  "method_comment": "\n     * Sets the map of Metadata keys to command line parameters. Set this to\n     * null to disable Metadata embedding.\n     *\n     * @param arguments\n     ",
+  "method_annotation": ""
+}

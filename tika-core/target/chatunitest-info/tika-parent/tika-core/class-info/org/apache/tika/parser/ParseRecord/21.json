@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "getMaxEmbeddedDepth",
+  "brief": "public int getMaxEmbeddedDepth(){}",
+  "methodSignature": "getMaxEmbeddedDepth()",
+  "sourceCode": "public int getMaxEmbeddedDepth() {\n        return maxEmbeddedDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum depth for parsing embedded documents.\n *\n * @return the maximum embedded depth, or -1 if unlimited\n */\npublic int getMaxEmbeddedDepth() {\n    return maxEmbeddedDepth;\n}",
+  "method_comment": "\n     * Gets the maximum depth for parsing embedded documents.\n     *\n     * @return the maximum embedded depth, or -1 if unlimited\n     ",
+  "method_annotation": ""
+}

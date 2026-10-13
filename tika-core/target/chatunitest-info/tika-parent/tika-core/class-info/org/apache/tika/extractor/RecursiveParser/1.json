@@ -1,0 +1,44 @@
+{
+  "className": "RecursiveParser",
+  "methodName": "parse",
+  "brief": "@Override\r\n        public void parse(\r\n                TikaInputStream stream, ContentHandler ignored,\r\n                Metadata metadata, ParseContext context)\r\n                throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n        public void parse(\n                TikaInputStream stream, ContentHandler ignored,\n                Metadata metadata, ParseContext context)\n                throws IOException, SAXException, TikaException {\n            // Figure out what we have to process\n            String filename = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n            MediaType type = detector.detect(stream, metadata, parseContext);\n\n            if (extractor == null) {\n                // Let the handler process the embedded resource\n                handler.handle(filename, type, stream, parseContext);\n            } else {\n                // Use a temporary file to process the stream twice\n                File file = stream.getFile();\n\n                // Let the handler process the embedded resource\n                try (TikaInputStream tis = TikaInputStream.get(file.toPath())) {\n                    handler.handle(filename, type, tis, parseContext);\n                }\n\n                // Recurse\n                extractor.extract(stream, extractor, handler, parseContext);\n            }\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Path)",
+      "getFile()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.extractor.EmbeddedResourceHandler": [
+      "handle(String, MediaType, TikaInputStream, ParseContext)"
+    ],
+    "java.io.File": [
+      "toPath()"
+    ],
+    "org.apache.tika.extractor.ContainerExtractor": [
+      "extract(TikaInputStream, ContainerExtractor, EmbeddedResourceHandler, ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void parse(TikaInputStream stream, ContentHandler ignored, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    // Figure out what we have to process\n    String filename = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    MediaType type = detector.detect(stream, metadata, parseContext);\n    if (extractor == null) {\n        // Let the handler process the embedded resource\n        handler.handle(filename, type, stream, parseContext);\n    } else {\n        // Use a temporary file to process the stream twice\n        File file = stream.getFile();\n        // Let the handler process the embedded resource\n        try (TikaInputStream tis = TikaInputStream.get(file.toPath())) {\n            handler.handle(filename, type, tis, parseContext);\n        }\n        // Recurse\n        extractor.extract(stream, extractor, handler, parseContext);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,25 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getParser",
+  "brief": "protected Parser getParser(Metadata metadata){}",
+  "methodSignature": "getParser(Metadata)",
+  "sourceCode": "protected Parser getParser(Metadata metadata) {\n        return getParser(metadata, new ParseContext());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.CompositeParser": [
+      "getParser(Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the parser that best matches the given metadata. By default\n * looks for a parser that matches the content type metadata property,\n * and uses the fallback parser if a better match is not found. The\n * type hierarchy information included in the configured media type\n * registry is used when looking for a matching parser instance.\n * <p>\n * Subclasses can override this method to provide more accurate\n * parser resolution.\n *\n * @param metadata document metadata\n * @return matching parser\n */\nprotected Parser getParser(Metadata metadata) {\n    return getParser(metadata, new ParseContext());\n}",
+  "method_comment": "\n     * Returns the parser that best matches the given metadata. By default\n     * looks for a parser that matches the content type metadata property,\n     * and uses the fallback parser if a better match is not found. The\n     * type hierarchy information included in the configured media type\n     * registry is used when looking for a matching parser instance.\n     * <p>\n     * Subclasses can override this method to provide more accurate\n     * parser resolution.\n     *\n     * @param metadata document metadata\n     * @return matching parser\n     ",
+  "method_annotation": ""
+}

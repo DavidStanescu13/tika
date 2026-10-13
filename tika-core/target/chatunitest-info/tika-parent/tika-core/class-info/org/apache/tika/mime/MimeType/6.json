@@ -1,0 +1,22 @@
+{
+  "className": "MimeType",
+  "methodName": "setAcronym",
+  "brief": "void setAcronym(String v){}",
+  "methodSignature": "setAcronym(String)",
+  "sourceCode": "void setAcronym(String v) {\n        if (v == null) {\n            throw new IllegalArgumentException(\"Acronym is missing\");\n        }\n        acronym = v;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Set an acronym for the mime type\n *\n * @param acronym\n */\nvoid setAcronym(String v) {\n    if (v == null) {\n        throw new IllegalArgumentException(\"Acronym is missing\");\n    }\n    acronym = v;\n}",
+  "method_comment": "\n     * Set an acronym for the mime type\n     *\n     * @param acronym\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "MinShouldMatchVal",
+  "methodName": "size",
+  "brief": "@Override\r\n        public int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "@Override\n        public int size() {\n            return 0;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic int size() {\n    return 0;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,22 @@
+{
+  "className": "FileSource",
+  "methodName": "reset",
+  "brief": "@Override\r\n    public synchronized void reset() throws IOException{}",
+  "methodSignature": "reset()",
+  "sourceCode": "@Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        seekTo(markPosition);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.FileSource": [
+      "seekTo(long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic synchronized void reset() throws IOException {\n    if (markPosition < 0) {\n        throw new IOException(\"Mark not set\");\n    }\n    seekTo(markPosition);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,20 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "setOutputThreshold",
+  "brief": "public void setOutputThreshold(long threshold){}",
+  "methodSignature": "setOutputThreshold(long)",
+  "sourceCode": "public void setOutputThreshold(long threshold) {\n        this.threshold = threshold;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the threshold for output characters before the zip bomb prevention\n * is activated. This avoids false positives in cases where an otherwise\n * normal document for some reason starts with a highly compressible\n * sequence of bytes.\n *\n * @param threshold new output threshold\n */\npublic void setOutputThreshold(long threshold) {\n    this.threshold = threshold;\n}",
+  "method_comment": "\n     * Sets the threshold for output characters before the zip bomb prevention\n     * is activated. This avoids false positives in cases where an otherwise\n     * normal document for some reason starts with a highly compressible\n     * sequence of bytes.\n     *\n     * @param threshold new output threshold\n     ",
+  "method_annotation": ""
+}

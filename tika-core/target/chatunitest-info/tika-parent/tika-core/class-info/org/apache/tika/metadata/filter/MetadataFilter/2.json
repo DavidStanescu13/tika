@@ -1,0 +1,24 @@
+{
+  "className": "MetadataFilter",
+  "methodName": "filter",
+  "brief": "public void filter(List<Metadata> metadataList) throws TikaException{}",
+  "methodSignature": "filter(List)",
+  "sourceCode": "public void filter(List<Metadata> metadataList) throws TikaException {\n        filter(metadataList, new ParseContext());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Metadata>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.filter.MetadataFilter": [
+      "filter(Metadata>, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Convenience overload for callers that have no per-request context.\n * Delegates to {@link #filter(List, ParseContext)} with an empty context.\n */\npublic void filter(List<Metadata> metadataList) throws TikaException {\n    filter(metadataList, new ParseContext());\n}",
+  "method_comment": "\n     * Convenience overload for callers that have no per-request context.\n     * Delegates to {@link #filter(List, ParseContext)} with an empty context.\n     ",
+  "method_annotation": ""
+}

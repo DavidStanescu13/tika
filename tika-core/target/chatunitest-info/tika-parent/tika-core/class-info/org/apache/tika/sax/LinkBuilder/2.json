@@ -1,0 +1,22 @@
+{
+  "className": "LinkBuilder",
+  "methodName": "setTitle",
+  "brief": "public void setTitle(String title){}",
+  "methodSignature": "setTitle(String)",
+  "sourceCode": "public void setTitle(String title) {\n        if (title != null) {\n            this.title = title;\n        } else {\n            this.title = \"\";\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void setTitle(String title) {\n    if (title != null) {\n        this.title = title;\n    } else {\n        this.title = \"\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "MimeTypes",
+  "methodName": "readMagicHeader",
+  "brief": "byte[] readMagicHeader(InputStream stream) throws IOException{}",
+  "methodSignature": "readMagicHeader(InputStream)",
+  "sourceCode": "byte[] readMagicHeader(InputStream stream) throws IOException {\n        if (stream == null) {\n            throw new IllegalArgumentException(\"InputStream is missing\");\n        }\n\n        byte[] bytes = new byte[getMinLength()];\n        int totalRead = 0;\n\n        int lastRead = stream.read(bytes);\n        while (lastRead != -1) {\n            totalRead += lastRead;\n            if (totalRead == bytes.length) {\n                return bytes;\n            }\n            lastRead = stream.read(bytes, totalRead, bytes.length - totalRead);\n        }\n\n        byte[] shorter = new byte[totalRead];\n        System.arraycopy(bytes, 0, shorter, 0, totalRead);\n        return shorter;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read(byte[], int, int)",
+      "read(byte[])"
+    ],
+    "org.apache.tika.mime.MimeTypes": [
+      "getMinLength()"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Reads the first {@link #getMinLength()} bytes from the given stream.\n * If the stream is shorter, then the entire content of the stream is\n * returned.\n * <p>\n * The given stream is never {@link InputStream#close() closed},\n * {@link InputStream#mark(int) marked}, or\n * {@link InputStream#reset() reset} by this method.\n *\n * @param stream stream to be read\n * @return first {@link #getMinLength()} (or fewer) bytes of the stream\n * @throws IOException if the stream can not be read\n */\nbyte[] readMagicHeader(InputStream stream) throws IOException {\n    if (stream == null) {\n        throw new IllegalArgumentException(\"InputStream is missing\");\n    }\n    byte[] bytes = new byte[getMinLength()];\n    int totalRead = 0;\n    int lastRead = stream.read(bytes);\n    while (lastRead != -1) {\n        totalRead += lastRead;\n        if (totalRead == bytes.length) {\n            return bytes;\n        }\n        lastRead = stream.read(bytes, totalRead, bytes.length - totalRead);\n    }\n    byte[] shorter = new byte[totalRead];\n    System.arraycopy(bytes, 0, shorter, 0, totalRead);\n    return shorter;\n}",
+  "method_comment": "\n     * Reads the first {@link #getMinLength()} bytes from the given stream.\n     * If the stream is shorter, then the entire content of the stream is\n     * returned.\n     * <p>\n     * The given stream is never {@link InputStream#close() closed},\n     * {@link InputStream#mark(int) marked}, or\n     * {@link InputStream#reset() reset} by this method.\n     *\n     * @param stream stream to be read\n     * @return first {@link #getMinLength()} (or fewer) bytes of the stream\n     * @throws IOException if the stream can not be read\n     ",
+  "method_annotation": ""
+}

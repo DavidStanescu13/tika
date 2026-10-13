@@ -1,0 +1,30 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(final byte[] b, final int off, final int len) throws IOException{}",
+  "methodSignature": "read(byte[], int, int)",
+  "sourceCode": "@Override\n    public int read(final byte[] b, final int off, final int len) throws IOException {\n        if (max >= 0 && pos >= max) {\n            return EOF;\n        }\n        final long maxRead = max >= 0 ? Math.min(len, max - pos) : len;\n        final int bytesRead = in.read(b, off, (int) maxRead);\n\n        if (bytesRead == EOF) {\n            return EOF;\n        }\n\n        pos += bytesRead;\n        return bytesRead;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.io.InputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Invokes the delegate's <code>read(byte[], int, int)</code> method.\n * <p>\n * This does not have the same guarantees as IOUtil's readFully()...be careful.\n *\n * @param b   the buffer to read the bytes into\n * @param off The start offset\n * @param len The number of bytes to read\n * @return the number of bytes read or -1 if the end of stream or\n * the limit has been reached.\n * @throws IOException if an I/O error occurs\n */\n@Override\npublic int read(final byte[] b, final int off, final int len) throws IOException {\n    if (max >= 0 && pos >= max) {\n        return EOF;\n    }\n    final long maxRead = max >= 0 ? Math.min(len, max - pos) : len;\n    final int bytesRead = in.read(b, off, (int) maxRead);\n    if (bytesRead == EOF) {\n        return EOF;\n    }\n    pos += bytesRead;\n    return bytesRead;\n}",
+  "method_comment": "\n     * Invokes the delegate's <code>read(byte[], int, int)</code> method.\n     * <p>\n     * This does not have the same guarantees as IOUtil's readFully()...be careful.\n     *\n     * @param b   the buffer to read the bytes into\n     * @param off The start offset\n     * @param len The number of bytes to read\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": "@Override\n"
+}

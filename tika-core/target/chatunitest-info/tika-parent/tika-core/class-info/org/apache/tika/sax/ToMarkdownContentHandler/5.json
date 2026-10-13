@@ -1,0 +1,22 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "writePartialContentIfUnfinished",
+  "brief": "public void writePartialContentIfUnfinished() throws IOException{}",
+  "methodSignature": "writePartialContentIfUnfinished()",
+  "sourceCode": "public void writePartialContentIfUnfinished() throws IOException {\n        renderToWriter();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "renderToWriter()"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the document model accumulated so far to the underlying writer and\n * flushes it, if it has not already been written.\n * <p>\n * This handler buffers the whole document and only writes it to the writer in\n * {@link #endDocument()}, which a parser does not call when it aborts\n * mid-document (a parse exception, or a write-limit abort with\n * {@code throwOnWriteLimitReached=true}). Unlike the streaming text/HTML/XML\n * handlers, that would leave an {@code OutputStream}/{@code Writer} consumer\n * with an empty result. A parse driver that owns the writer can call this in a\n * {@code finally} so partial Markdown is still emitted on failure. Idempotent:\n * a no-op once the content has been written (including after a successful\n * {@code endDocument()}).\n *\n * @throws IOException if writing to or flushing the underlying writer fails\n */\npublic void writePartialContentIfUnfinished() throws IOException {\n    renderToWriter();\n}",
+  "method_comment": "\n     * Renders the document model accumulated so far to the underlying writer and\n     * flushes it, if it has not already been written.\n     * <p>\n     * This handler buffers the whole document and only writes it to the writer in\n     * {@link #endDocument()}, which a parser does not call when it aborts\n     * mid-document (a parse exception, or a write-limit abort with\n     * {@code throwOnWriteLimitReached=true}). Unlike the streaming text/HTML/XML\n     * handlers, that would leave an {@code OutputStream}/{@code Writer} consumer\n     * with an empty result. A parse driver that owns the writer can call this in a\n     * {@code finally} so partial Markdown is still emitted on failure. Idempotent:\n     * a no-op once the content has been written (including after a successful\n     * {@code endDocument()}).\n     *\n     * @throws IOException if writing to or flushing the underlying writer fails\n     ",
+  "method_annotation": ""
+}

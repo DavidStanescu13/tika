@@ -1,0 +1,27 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length){}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) {\n        if (characters != null) {\n            characters.append(ch, start, length);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.lang.StringBuilder": [
+      "append(char[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void characters(char[] ch, int start, int length) {\n    if (characters != null) {\n        characters.append(ch, start, length);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,18 @@
+{
+  "className": "NNTrainedModelBuilder",
+  "methodName": "build",
+  "brief": "public NNTrainedModel build(){}",
+  "methodSignature": "build()",
+  "sourceCode": "public NNTrainedModel build() {\n        return new NNTrainedModel(numOfInputs, numOfHidden, numOfOutputs, params);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public NNTrainedModel build() {\n    return new NNTrainedModel(numOfInputs, numOfHidden, numOfOutputs, params);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

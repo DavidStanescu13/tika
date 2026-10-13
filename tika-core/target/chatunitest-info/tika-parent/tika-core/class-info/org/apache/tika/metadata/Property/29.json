@@ -1,0 +1,22 @@
+{
+  "className": "Property",
+  "methodName": "isMultiValuePermitted",
+  "brief": "public boolean isMultiValuePermitted(){}",
+  "methodSignature": "isMultiValuePermitted()",
+  "sourceCode": "public boolean isMultiValuePermitted() {\n        if (propertyType == PropertyType.BAG || propertyType == PropertyType.SEQ ||\n                propertyType == PropertyType.ALT) {\n            return true;\n        } else if (propertyType == PropertyType.COMPOSITE) {\n            // Base it on the primary property's behaviour\n            return primaryProperty.isMultiValuePermitted();\n        }\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "isMultiValuePermitted()"
+    ]
+  },
+  "full_method_info": "/**\n * Is the PropertyType one which accepts multiple values?\n */\npublic boolean isMultiValuePermitted() {\n    if (propertyType == PropertyType.BAG || propertyType == PropertyType.SEQ || propertyType == PropertyType.ALT) {\n        return true;\n    } else if (propertyType == PropertyType.COMPOSITE) {\n        // Base it on the primary property's behaviour\n        return primaryProperty.isMultiValuePermitted();\n    }\n    return false;\n}",
+  "method_comment": "\n     * Is the PropertyType one which accepts multiple values?\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,40 @@
+{
+  "className": "NNExampleModelDetector",
+  "methodName": "loadDefaultModels",
+  "brief": "@Override\r\n    public void loadDefaultModels(InputStream modelStream){}",
+  "methodSignature": "loadDefaultModels(InputStream)",
+  "sourceCode": "@Override\n    public void loadDefaultModels(InputStream modelStream) {\n        BufferedReader bReader = new BufferedReader(new InputStreamReader(modelStream, UTF_8));\n\n        NNTrainedModelBuilder nnBuilder = new NNTrainedModelBuilder();\n        String line;\n        try {\n            while ((line = bReader.readLine()) != null) {\n                line = line.trim();\n                if (line.startsWith(\"#\")) {\n                    readDescription(nnBuilder, line);\n                } else {\n                    readNNParams(nnBuilder, line);\n                    // add this model into map of trained models.\n                    super.registerModels(nnBuilder.getType(), nnBuilder.build());\n                }\n\n            }\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "java.io.BufferedReader": [
+      "readLine()"
+    ],
+    "java.lang.String": [
+      "startsWith(String)",
+      "trim()"
+    ],
+    "org.apache.tika.detect.NNExampleModelDetector": [
+      "readDescription(NNTrainedModelBuilder, String)",
+      "readNNParams(NNTrainedModelBuilder, String)"
+    ],
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "registerModels(MediaType, TrainedModel)"
+    ],
+    "org.apache.tika.detect.NNTrainedModelBuilder": [
+      "getType()",
+      "build()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void loadDefaultModels(InputStream modelStream) {\n    BufferedReader bReader = new BufferedReader(new InputStreamReader(modelStream, UTF_8));\n    NNTrainedModelBuilder nnBuilder = new NNTrainedModelBuilder();\n    String line;\n    try {\n        while ((line = bReader.readLine()) != null) {\n            line = line.trim();\n            if (line.startsWith(\"#\")) {\n                readDescription(nnBuilder, line);\n            } else {\n                readNNParams(nnBuilder, line);\n                // add this model into map of trained models.\n                super.registerModels(nnBuilder.getType(), nnBuilder.build());\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeException(\"Unable to read the default media type registry\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

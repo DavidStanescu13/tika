@@ -1,0 +1,25 @@
+{
+  "className": "ParseContext",
+  "methodName": "getResolvedConfig",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public <T> T getResolvedConfig(String name){}",
+  "methodSignature": "getResolvedConfig(String)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> T getResolvedConfig(String name) {\n        if (resolvedConfigs == null) {\n            return null;\n        }\n        return (T) resolvedConfigs.get(name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a resolved configuration object from the cache.\n * <p>\n * This is used by tika-serialization after deserializing a JSON config.\n * The resolved object is cached here to avoid repeated deserialization.\n *\n * @param name the component name\n * @return the resolved object, or null if not cached\n * @since Apache Tika 4.0\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> T getResolvedConfig(String name) {\n    if (resolvedConfigs == null) {\n        return null;\n    }\n    return (T) resolvedConfigs.get(name);\n}",
+  "method_comment": "\n     * Gets a resolved configuration object from the cache.\n     * <p>\n     * This is used by tika-serialization after deserializing a JSON config.\n     * The resolved object is cached here to avoid repeated deserialization.\n     *\n     * @param name the component name\n     * @return the resolved object, or null if not cached\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

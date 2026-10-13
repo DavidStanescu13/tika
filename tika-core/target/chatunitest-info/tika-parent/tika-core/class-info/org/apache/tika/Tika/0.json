@@ -1,0 +1,33 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(InputStream stream, Metadata metadata) throws IOException{}",
+  "methodSignature": "detect(InputStream, Metadata)",
+  "sourceCode": "public String detect(InputStream stream, Metadata metadata) throws IOException {\n        if (stream == null) {\n            return detector.detect(null, metadata, new ParseContext()).toString();\n        }\n        try (TikaInputStream tis = TikaInputStream.get(stream)) {\n            return detector.detect(tis, metadata, new ParseContext()).toString();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of the given document. The type detection is\n * based on the content of the given document stream and any given\n * document metadata. The document stream can be <code>null</code>,\n * in which case only the given document metadata is used for type\n * detection.\n * <p>\n * If the document stream supports the\n * {@link InputStream#markSupported() mark feature}, then the stream is\n * marked and reset to the original position before this method returns.\n * Only a limited number of bytes are read from the stream.\n * <p>\n * The given document stream is <em>not</em> closed by this method.\n * <p>\n * Unlike in the {@link #parse(InputStream, Metadata)} method, the\n * given document metadata is <em>not</em> modified by this method.\n *\n * @param stream   the document stream, or <code>null</code>\n * @param metadata document metadata\n * @return detected media type\n * @throws IOException if the stream can not be read\n */\npublic String detect(InputStream stream, Metadata metadata) throws IOException {\n    if (stream == null) {\n        return detector.detect(null, metadata, new ParseContext()).toString();\n    }\n    try (TikaInputStream tis = TikaInputStream.get(stream)) {\n        return detector.detect(tis, metadata, new ParseContext()).toString();\n    }\n}",
+  "method_comment": "\n     * Detects the media type of the given document. The type detection is\n     * based on the content of the given document stream and any given\n     * document metadata. The document stream can be <code>null</code>,\n     * in which case only the given document metadata is used for type\n     * detection.\n     * <p>\n     * If the document stream supports the\n     * {@link InputStream#markSupported() mark feature}, then the stream is\n     * marked and reset to the original position before this method returns.\n     * Only a limited number of bytes are read from the stream.\n     * <p>\n     * The given document stream is <em>not</em> closed by this method.\n     * <p>\n     * Unlike in the {@link #parse(InputStream, Metadata)} method, the\n     * given document metadata is <em>not</em> modified by this method.\n     *\n     * @param stream   the document stream, or <code>null</code>\n     * @param metadata document metadata\n     * @return detected media type\n     * @throws IOException if the stream can not be read\n     ",
+  "method_annotation": ""
+}

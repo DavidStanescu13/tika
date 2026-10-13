@@ -1,0 +1,138 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CharsetUtils_clean_2_4_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Method getCharsetICU;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testCleanWithValidCharset() throws Exception {
+        String charsetName = "UTF-8";
+        String expected = "UTF-8";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithInvalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        String expected = null;
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(null);
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNullCharset() throws Exception {
+        String charsetName = null;
+        String expected = null;
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(null);
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithWhitespace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String expected = "UTF-8";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithISOName() throws Exception {
+        String charsetName = "ISO 8859-1";
+        String expected = "ISO-8859-1";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithCPName() throws Exception {
+        String charsetName = "CP-1252";
+        String expected = "CP1252";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithWinName() throws Exception {
+        String charsetName = "WIN-1252";
+        String expected = "Windows-1252";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(Charset.forName(charsetName));
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNone() throws Exception {
+        String charsetName = "none";
+        String expected = null;
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(null);
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNo() throws Exception {
+        String charsetName = "no";
+        String expected = null;
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(null);
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithNoICU() throws Exception {
+        String charsetName = "UTF-8";
+        String expected = "UTF-8";
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(null);
+        when(isSupportedICU.invoke(null)).thenReturn(false);
+        String result = (String) getPrivateMethod("clean").invoke(charsetUtils, charsetName);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testCleanWithException() throws Exception {
+        String charsetName = "INVALID";
+        String expected = null;
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_clean_2_4_Test: line 10 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_4_Test: line 13 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_clean_2_4_Test: line 8 : package org.mockito does not exist

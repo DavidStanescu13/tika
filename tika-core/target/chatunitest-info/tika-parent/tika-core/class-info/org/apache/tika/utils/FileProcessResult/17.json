@@ -1,0 +1,20 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "setStdoutTruncated",
+  "brief": "public void setStdoutTruncated(boolean stdoutTruncated){}",
+  "methodSignature": "setStdoutTruncated(boolean)",
+  "sourceCode": "public void setStdoutTruncated(boolean stdoutTruncated) {\n        this.stdoutTruncated = stdoutTruncated;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setStdoutTruncated(boolean stdoutTruncated) {\n    this.stdoutTruncated = stdoutTruncated;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

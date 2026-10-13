@@ -1,0 +1,33 @@
+{
+  "className": "LanguageNames",
+  "methodName": "makeName",
+  "brief": "public static String makeName(String language, String script, String region){}",
+  "methodSignature": "makeName(String, String, String)",
+  "sourceCode": "public static String makeName(String language, String script, String region) {\n        Locale locale =\n                new Locale.Builder().setLanguage(language).setScript(script).setRegion(region)\n                        .build();\n        return locale.toLanguageTag();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Locale.Builder": [
+      "setLanguage(String)",
+      "setScript(String)",
+      "build()",
+      "setRegion(String)"
+    ],
+    "java.util.Locale": [
+      "toLanguageTag()"
+    ]
+  },
+  "full_method_info": "public static String makeName(String language, String script, String region) {\n    Locale locale = new Locale.Builder().setLanguage(language).setScript(script).setRegion(region).build();\n    return locale.toLanguageTag();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

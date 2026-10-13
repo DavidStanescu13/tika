@@ -1,0 +1,24 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "mark",
+  "brief": "@Override\r\n    public void mark(int readlimit){}",
+  "methodSignature": "mark(int)",
+  "sourceCode": "@Override\n    public void mark(int readlimit) {\n        super.mark(readlimit);\n        mark = position;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "mark(int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void mark(int readlimit) {\n    super.mark(readlimit);\n    mark = position;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

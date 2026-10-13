@@ -1,0 +1,26 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "createHandlerInner",
+  "brief": "private ContentHandler createHandlerInner(OutputStream os, Charset charset){}",
+  "methodSignature": "createHandlerInner(OutputStream, Charset)",
+  "sourceCode": "private ContentHandler createHandlerInner(OutputStream os, Charset charset) {\n        if (type == HANDLER_TYPE.IGNORE) {\n            return new NoOpContentHandler();\n        }\n        try {\n            if (writeLimit > -1) {\n                switch (type) {\n                    case BODY:\n                        return new WriteOutContentHandler(\n                                new BodyContentHandler(new OutputStreamWriter(os, charset)),\n                                writeLimit);\n                    case TEXT:\n                        return new WriteOutContentHandler(\n                                new ToTextContentHandler(os, charset.name()), writeLimit);\n                    case HTML:\n                        return new WriteOutContentHandler(\n                                new ToHTMLContentHandler(os, charset.name()), writeLimit);\n                    case XML:\n                        return new WriteOutContentHandler(\n                                new ToXMLContentHandler(os, charset.name()), writeLimit);\n                    case MARKDOWN:\n                        return new WriteOutContentHandler(\n                                new ToMarkdownContentHandler(os, charset.name()), writeLimit);\n                    default:\n                        return new WriteOutContentHandler(\n                                new ToTextContentHandler(os, charset.name()), writeLimit);\n                }\n            } else {\n                switch (type) {\n                    case BODY:\n                        return new BodyContentHandler(new OutputStreamWriter(os, charset));\n                    case TEXT:\n                        return new ToTextContentHandler(os, charset.name());\n                    case HTML:\n                        return new ToHTMLContentHandler(os, charset.name());\n                    case XML:\n                        return new ToXMLContentHandler(os, charset.name());\n                    case MARKDOWN:\n                        return new ToMarkdownContentHandler(os, charset.name());\n                    default:\n                        return new ToTextContentHandler(os, charset.name());\n\n                }\n            }\n        } catch (UnsupportedEncodingException e) {\n            throw new RuntimeException(\"couldn't find charset for name: \" + charset);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OutputStream",
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.io.OutputStream": [],
+    "java.nio.charset.Charset": [
+      "name()"
+    ]
+  },
+  "full_method_info": "private ContentHandler createHandlerInner(OutputStream os, Charset charset) {\n    if (type == HANDLER_TYPE.IGNORE) {\n        return new NoOpContentHandler();\n    }\n    try {\n        if (writeLimit > -1) {\n            switch(type) {\n                case BODY:\n                    return new WriteOutContentHandler(new BodyContentHandler(new OutputStreamWriter(os, charset)), writeLimit);\n                case TEXT:\n                    return new WriteOutContentHandler(new ToTextContentHandler(os, charset.name()), writeLimit);\n                case HTML:\n                    return new WriteOutContentHandler(new ToHTMLContentHandler(os, charset.name()), writeLimit);\n                case XML:\n                    return new WriteOutContentHandler(new ToXMLContentHandler(os, charset.name()), writeLimit);\n                case MARKDOWN:\n                    return new WriteOutContentHandler(new ToMarkdownContentHandler(os, charset.name()), writeLimit);\n                default:\n                    return new WriteOutContentHandler(new ToTextContentHandler(os, charset.name()), writeLimit);\n            }\n        } else {\n            switch(type) {\n                case BODY:\n                    return new BodyContentHandler(new OutputStreamWriter(os, charset));\n                case TEXT:\n                    return new ToTextContentHandler(os, charset.name());\n                case HTML:\n                    return new ToHTMLContentHandler(os, charset.name());\n                case XML:\n                    return new ToXMLContentHandler(os, charset.name());\n                case MARKDOWN:\n                    return new ToMarkdownContentHandler(os, charset.name());\n                default:\n                    return new ToTextContentHandler(os, charset.name());\n            }\n        }\n    } catch (UnsupportedEncodingException e) {\n        throw new RuntimeException(\"couldn't find charset for name: \" + charset);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

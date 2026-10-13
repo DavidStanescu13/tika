@@ -1,0 +1,18 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "getMaximumPackageEntryDepth",
+  "brief": "public int getMaximumPackageEntryDepth(){}",
+  "methodSignature": "getMaximumPackageEntryDepth()",
+  "sourceCode": "public int getMaximumPackageEntryDepth() {\n        return maxPackageEntryDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the maximum package entry nesting level.\n *\n * @return maximum package entry nesting level\n */\npublic int getMaximumPackageEntryDepth() {\n    return maxPackageEntryDepth;\n}",
+  "method_comment": "\n     * Returns the maximum package entry nesting level.\n     *\n     * @return maximum package entry nesting level\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,34 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "getChildTypes",
+  "brief": "public SortedSet<MediaType> getChildTypes(MediaType type){}",
+  "methodSignature": "getChildTypes(MediaType)",
+  "sourceCode": "public SortedSet<MediaType> getChildTypes(MediaType type) {\n        SortedSet<MediaType> children = new TreeSet<>();\n        for (Map.Entry<MediaType, MediaType> entry : inheritance.entrySet()) {\n            if (entry.getValue().equals(type)) {\n                children.add(entry.getKey());\n            }\n        }\n        return children;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "equals(Object)"
+    ],
+    "java.util.Map": [
+      "entrySet()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the set of known children of the given canonical media type\n *\n * @param type canonical media type\n * @return known children\n * @since Apache Tika 1.8\n */\npublic SortedSet<MediaType> getChildTypes(MediaType type) {\n    SortedSet<MediaType> children = new TreeSet<>();\n    for (Map.Entry<MediaType, MediaType> entry : inheritance.entrySet()) {\n        if (entry.getValue().equals(type)) {\n            children.add(entry.getKey());\n        }\n    }\n    return children;\n}",
+  "method_comment": "\n     * Returns the set of known children of the given canonical media type\n     *\n     * @param type canonical media type\n     * @return known children\n     * @since Apache Tika 1.8\n     ",
+  "method_annotation": ""
+}

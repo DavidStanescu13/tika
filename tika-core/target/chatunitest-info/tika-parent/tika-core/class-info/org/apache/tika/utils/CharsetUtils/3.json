@@ -1,0 +1,41 @@
+{
+  "className": "CharsetUtils",
+  "methodName": "forName",
+  "brief": "public static Charset forName(String name){}",
+  "methodSignature": "forName(String)",
+  "sourceCode": "public static Charset forName(String name) {\n        if (name == null) {\n            throw new IllegalArgumentException();\n        }\n\n        // Get rid of cruft around names, like <>, trailing commas, etc.\n        Matcher m = CHARSET_NAME_PATTERN.matcher(name);\n        if (!m.matches()) {\n            throw new IllegalCharsetNameException(name);\n        }\n        name = m.group(1);\n\n        String lower = name.toLowerCase(Locale.ENGLISH);\n        Charset charset = COMMON_CHARSETS.get(lower);\n        if (charset != null) {\n            return charset;\n        } else if (\"none\".equals(lower) || \"no\".equals(lower)) {\n            throw new IllegalCharsetNameException(name);\n        } else {\n            Matcher iso = ISO_NAME_PATTERN.matcher(lower);\n            Matcher cp = CP_NAME_PATTERN.matcher(lower);\n            Matcher win = WIN_NAME_PATTERN.matcher(lower);\n            if (iso.matches()) {\n                // Handle \"iso 8859-x\" error\n                name = \"iso-8859-\" + iso.group(1);\n                charset = COMMON_CHARSETS.get(name);\n            } else if (cp.matches()) {\n                // Handle \"cp-xxx\" error\n                name = \"cp\" + cp.group(1);\n                charset = COMMON_CHARSETS.get(name);\n            } else if (win.matches()) {\n                // Handle \"winxxx\" and \"win-xxx\" errors\n                name = \"windows-\" + win.group(1);\n                charset = COMMON_CHARSETS.get(name);\n            }\n            if (charset != null) {\n                return charset;\n            }\n        }\n\n        if (getCharsetICU != null) {\n            try {\n                Charset cs = (Charset) getCharsetICU.invoke(null, name);\n                if (cs != null) {\n                    return cs;\n                }\n            } catch (IllegalArgumentException | IllegalAccessException |\n                    InvocationTargetException e) {\n                //ignore\n            }\n        }\n\n        return Charset.forName(name);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "toLowerCase(Locale)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "matches()",
+      "group(int)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.lang.reflect.Method": [
+      "invoke(Object, Object[])"
+    ],
+    "java.nio.charset.Charset": [
+      "forName(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns Charset impl, if one exists.  This method\n * optionally uses ICU4J's CharsetICU.forNameICU,\n * if it is found on the classpath, else only uses\n * JDK's builtin Charset.forName.\n */\npublic static Charset forName(String name) {\n    if (name == null) {\n        throw new IllegalArgumentException();\n    }\n    // Get rid of cruft around names, like <>, trailing commas, etc.\n    Matcher m = CHARSET_NAME_PATTERN.matcher(name);\n    if (!m.matches()) {\n        throw new IllegalCharsetNameException(name);\n    }\n    name = m.group(1);\n    String lower = name.toLowerCase(Locale.ENGLISH);\n    Charset charset = COMMON_CHARSETS.get(lower);\n    if (charset != null) {\n        return charset;\n    } else if (\"none\".equals(lower) || \"no\".equals(lower)) {\n        throw new IllegalCharsetNameException(name);\n    } else {\n        Matcher iso = ISO_NAME_PATTERN.matcher(lower);\n        Matcher cp = CP_NAME_PATTERN.matcher(lower);\n        Matcher win = WIN_NAME_PATTERN.matcher(lower);\n        if (iso.matches()) {\n            // Handle \"iso 8859-x\" error\n            name = \"iso-8859-\" + iso.group(1);\n            charset = COMMON_CHARSETS.get(name);\n        } else if (cp.matches()) {\n            // Handle \"cp-xxx\" error\n            name = \"cp\" + cp.group(1);\n            charset = COMMON_CHARSETS.get(name);\n        } else if (win.matches()) {\n            // Handle \"winxxx\" and \"win-xxx\" errors\n            name = \"windows-\" + win.group(1);\n            charset = COMMON_CHARSETS.get(name);\n        }\n        if (charset != null) {\n            return charset;\n        }\n    }\n    if (getCharsetICU != null) {\n        try {\n            Charset cs = (Charset) getCharsetICU.invoke(null, name);\n            if (cs != null) {\n                return cs;\n            }\n        } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {\n            // ignore\n        }\n    }\n    return Charset.forName(name);\n}",
+  "method_comment": "\n     * Returns Charset impl, if one exists.  This method\n     * optionally uses ICU4J's CharsetICU.forNameICU,\n     * if it is found on the classpath, else only uses\n     * JDK's builtin Charset.forName.\n     ",
+  "method_annotation": ""
+}

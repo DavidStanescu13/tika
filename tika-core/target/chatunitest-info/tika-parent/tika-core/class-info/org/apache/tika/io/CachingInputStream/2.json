@@ -1,0 +1,27 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(long n) throws IOException{}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(long n) throws IOException {\n        if (n <= 0) {\n            return 0;\n        }\n\n        // We need to actually read the bytes to cache them\n        long skipped = 0;\n        byte[] buffer = new byte[4096];\n        while (skipped < n) {\n            int toRead = (int) Math.min(buffer.length, n - skipped);\n            int read = read(buffer, 0, toRead);\n            if (read == -1) {\n                break;\n            }\n            skipped += read;\n        }\n        return skipped;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "org.apache.tika.io.CachingInputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic long skip(long n) throws IOException {\n    if (n <= 0) {\n        return 0;\n    }\n    // We need to actually read the bytes to cache them\n    long skipped = 0;\n    byte[] buffer = new byte[4096];\n    while (skipped < n) {\n        int toRead = (int) Math.min(buffer.length, n - skipped);\n        int read = read(buffer, 0, toRead);\n        if (read == -1) {\n            break;\n        }\n        skipped += read;\n    }\n    return skipped;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,28 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "getUniqueCharsets",
+  "brief": "public Set<Charset> getUniqueCharsets(){}",
+  "methodSignature": "getUniqueCharsets()",
+  "sourceCode": "public Set<Charset> getUniqueCharsets() {\n        Set<Charset> charsets = new LinkedHashSet<>();\n        for (Result r : results) {\n            for (EncodingResult er : r.getEncodingResults()) {\n                charsets.add(er.getCharset());\n            }\n        }\n        return charsets;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.EncodingDetectorContext.Result": [
+      "getEncodingResults()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "org.apache.tika.detect.EncodingResult": [
+      "getCharset()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the unique charsets from ALL results of every detector,\n * in detection order (top result first within each detector).\n *\n * <p>Using all candidates rather than just each detector's top-1 is\n * important when a single detector returns a ranked list (e.g., Mojibuster\n * on a short probe returns [windows-1252, windows-1250, Shift-JIS]). If\n * only the top-1 were used, CharSoup would see a single charset and\n * return \"unanimous\" without ever attempting arbitration.</p>\n */\npublic Set<Charset> getUniqueCharsets() {\n    Set<Charset> charsets = new LinkedHashSet<>();\n    for (Result r : results) {\n        for (EncodingResult er : r.getEncodingResults()) {\n            charsets.add(er.getCharset());\n        }\n    }\n    return charsets;\n}",
+  "method_comment": "\n     * Returns the unique charsets from ALL results of every detector,\n     * in detection order (top result first within each detector).\n     *\n     * <p>Using all candidates rather than just each detector's top-1 is\n     * important when a single detector returns a ranked list (e.g., Mojibuster\n     * on a short probe returns [windows-1252, windows-1250, Shift-JIS]). If\n     * only the top-1 were used, CharSoup would see a single charset and\n     * return \"unanimous\" without ever attempting arbitration.</p>\n     ",
+  "method_annotation": ""
+}

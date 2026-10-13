@@ -1,0 +1,25 @@
+{
+  "className": "MimeType",
+  "methodName": "addMagic",
+  "brief": "void addMagic(Magic magic){}",
+  "methodSignature": "addMagic(Magic)",
+  "sourceCode": "void addMagic(Magic magic) {\n        if (magic == null) {\n            return;\n        }\n        if (magics == null) {\n            magics = new ArrayList<>();\n        }\n        magics.add(magic);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Magic"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.Magic": [],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "void addMagic(Magic magic) {\n    if (magic == null) {\n        return;\n    }\n    if (magics == null) {\n        magics = new ArrayList<>();\n    }\n    magics.add(magic);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

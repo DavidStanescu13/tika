@@ -1,0 +1,22 @@
+{
+  "className": "Tika",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        return getString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.Tika": [
+      "getString()"
+    ]
+  },
+  "full_method_info": "// --------------------------------------------------------------< Object >\npublic String toString() {\n    return getString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

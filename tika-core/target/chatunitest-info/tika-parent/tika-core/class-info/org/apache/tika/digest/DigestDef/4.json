@@ -1,0 +1,29 @@
+{
+  "className": "DigestDef",
+  "methodName": "metadataKey",
+  "brief": "public String metadataKey(){}",
+  "methodSignature": "metadataKey()",
+  "sourceCode": "public String metadataKey() {\n        StringBuilder sb = new StringBuilder();\n        sb.append(TikaCoreProperties.TIKA_META_PREFIX);\n        sb.append(\"digest\");\n        sb.append(TikaCoreProperties.NAMESPACE_PREFIX_DELIMITER);\n        sb.append(algorithm.getJavaName());\n        if (encoding != Encoding.HEX) {\n            sb.append(\":\");\n            sb.append(encoding.name());\n        }\n        return sb.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "org.apache.tika.digest.DigestDef.Algorithm": [
+      "getJavaName()"
+    ],
+    "java.lang.Enum": [
+      "name()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the metadata key for storing this digest value.\n * <p>\n * For HEX encoding (the default), returns {@code tk:digest:ALGORITHM}.\n * For other encodings, returns {@code tk:digest:ALGORITHM:ENCODING}.\n *\n * @return the metadata key\n */\npublic String metadataKey() {\n    StringBuilder sb = new StringBuilder();\n    sb.append(TikaCoreProperties.TIKA_META_PREFIX);\n    sb.append(\"digest\");\n    sb.append(TikaCoreProperties.NAMESPACE_PREFIX_DELIMITER);\n    sb.append(algorithm.getJavaName());\n    if (encoding != Encoding.HEX) {\n        sb.append(\":\");\n        sb.append(encoding.name());\n    }\n    return sb.toString();\n}",
+  "method_comment": "\n     * Returns the metadata key for storing this digest value.\n     * <p>\n     * For HEX encoding (the default), returns {@code tk:digest:ALGORITHM}.\n     * For other encodings, returns {@code tk:digest:ALGORITHM:ENCODING}.\n     *\n     * @return the metadata key\n     ",
+  "method_annotation": ""
+}

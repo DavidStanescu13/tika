@@ -1,0 +1,30 @@
+{
+  "className": "ParsingReader",
+  "methodName": "getMetadata",
+  "brief": "private static Metadata getMetadata(String name, ParseContext context){}",
+  "methodSignature": "getMetadata(String, ParseContext)",
+  "sourceCode": "private static Metadata getMetadata(String name, ParseContext context) {\n        Metadata metadata = Metadata.newInstance(context);\n        if (name != null && name.length() > 0) {\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n        }\n        return metadata;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "newInstance(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Utility method that returns a {@link Metadata} instance\n * for a document with the given name.\n *\n * @param name resource name (or <code>null</code>)\n * @param context parse context to create metadata from\n * @return metadata instance\n */\nprivate static Metadata getMetadata(String name, ParseContext context) {\n    Metadata metadata = Metadata.newInstance(context);\n    if (name != null && name.length() > 0) {\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n    }\n    return metadata;\n}",
+  "method_comment": "\n     * Utility method that returns a {@link Metadata} instance\n     * for a document with the given name.\n     *\n     * @param name resource name (or <code>null</code>)\n     * @param context parse context to create metadata from\n     * @return metadata instance\n     ",
+  "method_annotation": ""
+}

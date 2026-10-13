@@ -1,0 +1,20 @@
+{
+  "className": "OutputLimits",
+  "methodName": "setZipBombRatio",
+  "brief": "public void setZipBombRatio(long zipBombRatio){}",
+  "methodSignature": "setZipBombRatio(long)",
+  "sourceCode": "public void setZipBombRatio(long zipBombRatio) {\n        this.zipBombRatio = zipBombRatio;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the zip bomb ratio (maximum output:input ratio).\n *\n * @param zipBombRatio zip bomb ratio\n */\npublic void setZipBombRatio(long zipBombRatio) {\n    this.zipBombRatio = zipBombRatio;\n}",
+  "method_comment": "\n     * Sets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @param zipBombRatio zip bomb ratio\n     ",
+  "method_annotation": ""
+}

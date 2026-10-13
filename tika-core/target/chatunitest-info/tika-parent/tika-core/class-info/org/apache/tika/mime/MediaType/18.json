@@ -1,0 +1,25 @@
+{
+  "className": "MediaType",
+  "methodName": "equals",
+  "brief": "public boolean equals(Object object){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "public boolean equals(Object object) {\n        if (object instanceof MediaType) {\n            MediaType that = (MediaType) object;\n            return string.equals(that.string);\n        } else {\n            return false;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public boolean equals(Object object) {\n    if (object instanceof MediaType) {\n        MediaType that = (MediaType) object;\n        return string.equals(that.string);\n    } else {\n        return false;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

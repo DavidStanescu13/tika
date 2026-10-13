@@ -1,0 +1,25 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getIntLE",
+  "brief": "public static int getIntLE(byte[] data){}",
+  "methodSignature": "getIntLE(byte[])",
+  "sourceCode": "public static int getIntLE(byte[] data) {\n        return getIntLE(data, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.EndianUtils": [
+      "getIntLE(byte[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a LE int value from the beginning of a byte array\n *\n * @param data the byte array\n * @return the int (32-bit) value\n */\npublic static int getIntLE(byte[] data) {\n    return getIntLE(data, 0);\n}",
+  "method_comment": "\n     * Get a LE int value from the beginning of a byte array\n     *\n     * @param data the byte array\n     * @return the int (32-bit) value\n     ",
+  "method_annotation": ""
+}

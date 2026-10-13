@@ -1,0 +1,27 @@
+{
+  "className": "DefaultTranslator",
+  "methodName": "getDefaultTranslators",
+  "brief": "private static List<Translator> getDefaultTranslators(ServiceLoader loader){}",
+  "methodSignature": "getDefaultTranslators(ServiceLoader)",
+  "sourceCode": "private static List<Translator> getDefaultTranslators(ServiceLoader loader) {\n        List<Translator> translators = loader.loadStaticServiceProviders(Translator.class);\n        translators.sort(CompareUtils::compareClassName);\n        return translators;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>)"
+    ],
+    "java.util.List": [
+      "sort(Comparator<? super E>)"
+    ]
+  },
+  "full_method_info": "/**\n * Finds all statically loadable translators and sort the list by name,\n * rather than discovery order.\n *\n * @param loader service loader\n * @return ordered list of statically loadable translators\n */\nprivate static List<Translator> getDefaultTranslators(ServiceLoader loader) {\n    List<Translator> translators = loader.loadStaticServiceProviders(Translator.class);\n    translators.sort(CompareUtils::compareClassName);\n    return translators;\n}",
+  "method_comment": "\n     * Finds all statically loadable translators and sort the list by name,\n     * rather than discovery order.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable translators\n     ",
+  "method_annotation": ""
+}

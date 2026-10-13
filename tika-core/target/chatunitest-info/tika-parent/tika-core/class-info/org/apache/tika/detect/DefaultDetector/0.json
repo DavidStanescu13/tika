@@ -1,0 +1,32 @@
+{
+  "className": "DefaultDetector",
+  "methodName": "getDefaultDetectors",
+  "brief": "private static List<Detector> getDefaultDetectors(ServiceLoader loader,\r\n                                                      Collection<Class<? extends Detector>>\r\n                                                              excludeDetectors){}",
+  "methodSignature": "getDefaultDetectors(ServiceLoader, Collection)",
+  "sourceCode": "private static List<Detector> getDefaultDetectors(ServiceLoader loader,\n                                                      Collection<Class<? extends Detector>>\n                                                              excludeDetectors) {\n        List<Detector> detectors =\n                loader.loadStaticServiceProviders(Detector.class, excludeDetectors);\n\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        //look for the override index and put that first\n        int overrideIndex = -1;\n        int i = 0;\n        for (Detector detector : detectors) {\n            if (detector instanceof OverrideDetector) {\n                overrideIndex = i;\n                break;\n            }\n            i++;\n        }\n        if (overrideIndex > -1) {\n            Detector detector = detectors.remove(overrideIndex);\n            detectors.add(0, detector);\n        }\n        return detectors;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader",
+    "Collection<Class<? extends Detector>>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>, Class<? extends T>>)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "sortLoadedClasses(List<T>)"
+    ],
+    "java.util.List": [
+      "remove(int)",
+      "add(int, E)"
+    ]
+  },
+  "full_method_info": "/**\n * Finds all statically loadable detectors and sort the list by name,\n * rather than discovery order. Detectors are used in the given order,\n * so put the Tika parsers last so that non-Tika (user supplied)\n * parsers can take precedence.\n * <p>\n * If an {@link OverrideDetector} is loaded, it takes precedence over\n * all other detectors.\n * <p>\n * Note: MimeTypes is handled separately in the detect() method, not included here.\n *\n * @param loader service loader\n * @return ordered list of statically loadable detectors\n */\nprivate static List<Detector> getDefaultDetectors(ServiceLoader loader, Collection<Class<? extends Detector>> excludeDetectors) {\n    List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class, excludeDetectors);\n    ServiceLoaderUtils.sortLoadedClasses(detectors);\n    // look for the override index and put that first\n    int overrideIndex = -1;\n    int i = 0;\n    for (Detector detector : detectors) {\n        if (detector instanceof OverrideDetector) {\n            overrideIndex = i;\n            break;\n        }\n        i++;\n    }\n    if (overrideIndex > -1) {\n        Detector detector = detectors.remove(overrideIndex);\n        detectors.add(0, detector);\n    }\n    return detectors;\n}",
+  "method_comment": "\n     * Finds all statically loadable detectors and sort the list by name,\n     * rather than discovery order. Detectors are used in the given order,\n     * so put the Tika parsers last so that non-Tika (user supplied)\n     * parsers can take precedence.\n     * <p>\n     * If an {@link OverrideDetector} is loaded, it takes precedence over\n     * all other detectors.\n     * <p>\n     * Note: MimeTypes is handled separately in the detect() method, not included here.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable detectors\n     ",
+  "method_annotation": ""
+}

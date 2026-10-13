@@ -1,0 +1,25 @@
+{
+  "className": "MagicMatch",
+  "methodName": "size",
+  "brief": "public int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "public int size() {\n        return getDetector().getLength();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.MagicDetector": [
+      "getLength()"
+    ],
+    "org.apache.tika.mime.MagicMatch": [
+      "getDetector()"
+    ]
+  },
+  "full_method_info": "public int size() {\n    return getDetector().getLength();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

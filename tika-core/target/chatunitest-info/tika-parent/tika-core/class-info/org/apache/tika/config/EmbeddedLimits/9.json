@@ -1,0 +1,18 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        return \"EmbeddedLimits{\" +\n                \"maxDepth=\" + maxDepth +\n                \", throwOnMaxDepth=\" + throwOnMaxDepth +\n                \", maxCount=\" + maxCount +\n                \", throwOnMaxCount=\" + throwOnMaxCount +\n                '}';\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic String toString() {\n    return \"EmbeddedLimits{\" + \"maxDepth=\" + maxDepth + \", throwOnMaxDepth=\" + throwOnMaxDepth + \", maxCount=\" + maxCount + \", throwOnMaxCount=\" + throwOnMaxCount + '}';\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

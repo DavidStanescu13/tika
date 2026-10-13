@@ -1,0 +1,95 @@
+{
+  "fullClassName": "org.apache.tika.detect.TrainedModelDetector",
+  "className": "TrainedModelDetector",
+  "index": 47,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[Detector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public abstract class TrainedModelDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import static java.nio.charset.StandardCharsets.UTF_8;",
+    "import java.io.File;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.Writer;",
+    "import java.nio.Buffer;",
+    "import java.nio.ByteBuffer;",
+    "import java.nio.channels.Channels;",
+    "import java.nio.channels.ReadableByteChannel;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import java.util.HashMap;",
+    "import java.util.Map;",
+    "import org.apache.tika.io.TemporaryResources;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "private final Map<MediaType, TrainedModel> MODEL_MAP = new HashMap<>();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Detector"
+  ],
+  "methodSigs": {
+    "getMinLength()": "0",
+    "detect(TikaInputStream, Metadata, ParseContext)": "1",
+    "readByteFrequencies(InputStream)": "2",
+    "writeHisto(float[])": "3",
+    "loadDefaultModels(Path)": "4",
+    "loadDefaultModels(File)": "5",
+    "loadDefaultModels(InputStream)": "6",
+    "loadDefaultModels(ClassLoader)": "7",
+    "registerModels(MediaType, TrainedModel)": "8",
+    "TrainedModelDetector()": "9"
+  },
+  "methodsBrief": [
+    "public int getMinLength(){}",
+    "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+    "protected float[] readByteFrequencies(final InputStream input) throws IOException{}",
+    "private void writeHisto(final float[] histogram) throws IOException{}",
+    "public void loadDefaultModels(Path modelFile){}",
+    "public void loadDefaultModels(File modelFile){}",
+    "public abstract void loadDefaultModels(final InputStream modelStream);",
+    "public abstract void loadDefaultModels(final ClassLoader classLoader);",
+    "protected void registerModels(MediaType type, TrainedModel model){}",
+    "public TrainedModelDetector(){}"
+  ],
+  "constructorSigs": [
+    "TrainedModelDetector()"
+  ],
+  "constructorBrief": [
+    "public TrainedModelDetector(){}"
+  ],
+  "getterSetterSigs": [
+    "getMinLength()"
+  ],
+  "getterSetterBrief": [
+    "public int getMinLength(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(ClassLoader)"
+    ],
+    "java.lang.Class": [
+      "getClassLoader()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport static java.nio.charset.StandardCharsets.UTF_8;\nimport java.io.File;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.Writer;\nimport java.nio.Buffer;\nimport java.nio.ByteBuffer;\nimport java.nio.channels.Channels;\nimport java.nio.channels.ReadableByteChannel;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.util.HashMap;\nimport java.util.Map;\nimport org.apache.tika.io.TemporaryResources;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\npublic abstract class TrainedModelDetector implements Detector {\n\n    private static final long serialVersionUID = 1L;\n\n    private final Map<MediaType, TrainedModel> MODEL_MAP = new HashMap<>();\n\n    public TrainedModelDetector() {\n        loadDefaultModels(getClass().getClassLoader());\n    }\n\n    public int getMinLength() {\n        return Integer.MAX_VALUE;\n    }\n\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        // convert to byte-histogram\n        if (tis != null) {\n            tis.mark(getMinLength());\n            float[] histogram = readByteFrequencies(tis);\n            // writeHisto(histogram); //on testing purpose\n            // threshold will be considered as\n            // MediaType.OCTET_STREAM\n            float maxprob = 0.5f;\n            MediaType maxType = MediaType.OCTET_STREAM;\n            /*\n             * iterate the map to find out the one that gives the higher\n             * prediction value.\n             */\n            for (Map.Entry<MediaType, TrainedModel> entry : MODEL_MAP.entrySet()) {\n                MediaType key = entry.getKey();\n                TrainedModel model = entry.getValue();\n                float prob = model.predict(histogram);\n                if (maxprob < prob) {\n                    maxprob = prob;\n                    maxType = key;\n                }\n            }\n            tis.reset();\n            return maxType;\n        }\n        return null;\n    }\n\n    /**\n     * Read the {@code inputstream} and build a byte frequency histogram\n     *\n     * @param input stream to read from\n     * @return byte frequencies array\n     * @throws IOException\n     */\n    protected float[] readByteFrequencies(final InputStream input) throws IOException {\n        ReadableByteChannel inputChannel;\n        // TODO: any reason to avoid closing of input & inputChannel?\n        try {\n            inputChannel = Channels.newChannel(input);\n            // long inSize = inputChannel.size();\n            float[] histogram = new float[257];\n            histogram[0] = 1;\n            // create buffer with capacity of maxBufSize bytes\n            ByteBuffer buf = ByteBuffer.allocate(1024 * 5);\n            // read into buffer.\n            int bytesRead = inputChannel.read(buf);\n            float max = -1;\n            while (bytesRead != -1) {\n                // make buffer ready for read\n                ((Buffer) buf).flip();\n                while (buf.hasRemaining()) {\n                    byte byt = buf.get();\n                    int idx = byt;\n                    idx++;\n                    if (byt < 0) {\n                        idx = 256 + idx;\n                        histogram[idx]++;\n                    } else {\n                        histogram[idx]++;\n                    }\n                    max = Math.max(max, histogram[idx]);\n                }\n                // make buffer ready for writing\n                buf.clear();\n                bytesRead = inputChannel.read(buf);\n            }\n            int i;\n            for (i = 1; i < histogram.length; i++) {\n                histogram[i] /= max;\n                histogram[i] = (float) Math.sqrt(histogram[i]);\n            }\n            return histogram;\n        } finally {\n            // inputChannel.close();\n        }\n    }\n\n    /**\n     * for testing purposes; this method write the histogram vector to a file.\n     *\n     * @param histogram\n     * @throws IOException\n     */\n    private void writeHisto(final float[] histogram) throws IOException {\n        Path histPath = new TemporaryResources().createTempFile();\n        try (Writer writer = Files.newBufferedWriter(histPath, UTF_8)) {\n            for (float bin : histogram) {\n                writer.write(bin + \"\\t\");\n                // writer.write(i + \"\\t\");\n            }\n            writer.write(\"\\r\\n\");\n        }\n    }\n\n    public void loadDefaultModels(Path modelFile) {\n        try (InputStream in = Files.newInputStream(modelFile)) {\n            loadDefaultModels(in);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    public void loadDefaultModels(File modelFile) {\n        loadDefaultModels(modelFile.toPath());\n    }\n\n    public abstract void loadDefaultModels(final InputStream modelStream);\n\n    public abstract void loadDefaultModels(final ClassLoader classLoader);\n\n    protected void registerModels(MediaType type, TrainedModel model) {\n        MODEL_MAP.put(type, model);\n    }\n}\n",
+  "classDeclarationCode": "public abstract class TrainedModelDetector implements Detector {\n\n    private static final long serialVersionUID = 1L;\n\n    private final Map<MediaType, TrainedModel> MODEL_MAP = new HashMap<>();\n\n    public TrainedModelDetector() {\n        loadDefaultModels(getClass().getClassLoader());\n    }\n\n    public int getMinLength() {\n        return Integer.MAX_VALUE;\n    }\n\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        // convert to byte-histogram\n        if (tis != null) {\n            tis.mark(getMinLength());\n            float[] histogram = readByteFrequencies(tis);\n            // writeHisto(histogram); //on testing purpose\n            // threshold will be considered as\n            // MediaType.OCTET_STREAM\n            float maxprob = 0.5f;\n            MediaType maxType = MediaType.OCTET_STREAM;\n            /*\n             * iterate the map to find out the one that gives the higher\n             * prediction value.\n             */\n            for (Map.Entry<MediaType, TrainedModel> entry : MODEL_MAP.entrySet()) {\n                MediaType key = entry.getKey();\n                TrainedModel model = entry.getValue();\n                float prob = model.predict(histogram);\n                if (maxprob < prob) {\n                    maxprob = prob;\n                    maxType = key;\n                }\n            }\n            tis.reset();\n            return maxType;\n        }\n        return null;\n    }\n\n    /**\n     * Read the {@code inputstream} and build a byte frequency histogram\n     *\n     * @param input stream to read from\n     * @return byte frequencies array\n     * @throws IOException\n     */\n    protected float[] readByteFrequencies(final InputStream input) throws IOException {\n        ReadableByteChannel inputChannel;\n        // TODO: any reason to avoid closing of input & inputChannel?\n        try {\n            inputChannel = Channels.newChannel(input);\n            // long inSize = inputChannel.size();\n            float[] histogram = new float[257];\n            histogram[0] = 1;\n            // create buffer with capacity of maxBufSize bytes\n            ByteBuffer buf = ByteBuffer.allocate(1024 * 5);\n            // read into buffer.\n            int bytesRead = inputChannel.read(buf);\n            float max = -1;\n            while (bytesRead != -1) {\n                // make buffer ready for read\n                ((Buffer) buf).flip();\n                while (buf.hasRemaining()) {\n                    byte byt = buf.get();\n                    int idx = byt;\n                    idx++;\n                    if (byt < 0) {\n                        idx = 256 + idx;\n                        histogram[idx]++;\n                    } else {\n                        histogram[idx]++;\n                    }\n                    max = Math.max(max, histogram[idx]);\n                }\n                // make buffer ready for writing\n                buf.clear();\n                bytesRead = inputChannel.read(buf);\n            }\n            int i;\n            for (i = 1; i < histogram.length; i++) {\n                histogram[i] /= max;\n                histogram[i] = (float) Math.sqrt(histogram[i]);\n            }\n            return histogram;\n        } finally {\n            // inputChannel.close();\n        }\n    }\n\n    /**\n     * for testing purposes; this method write the histogram vector to a file.\n     *\n     * @param histogram\n     * @throws IOException\n     */\n    private void writeHisto(final float[] histogram) throws IOException {\n        Path histPath = new TemporaryResources().createTempFile();\n        try (Writer writer = Files.newBufferedWriter(histPath, UTF_8)) {\n            for (float bin : histogram) {\n                writer.write(bin + \"\\t\");\n                // writer.write(i + \"\\t\");\n            }\n            writer.write(\"\\r\\n\");\n        }\n    }\n\n    public void loadDefaultModels(Path modelFile) {\n        try (InputStream in = Files.newInputStream(modelFile)) {\n            loadDefaultModels(in);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    public void loadDefaultModels(File modelFile) {\n        loadDefaultModels(modelFile.toPath());\n    }\n\n    public abstract void loadDefaultModels(final InputStream modelStream);\n\n    public abstract void loadDefaultModels(final ClassLoader classLoader);\n\n    protected void registerModels(MediaType type, TrainedModel model) {\n        MODEL_MAP.put(type, model);\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.detect.NNExampleModelDetector"
+  ]
+}

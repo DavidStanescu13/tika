@@ -1,0 +1,32 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "calculateExtension",
+  "brief": "public static String calculateExtension(Metadata metadata, String defaultValue){}",
+  "methodSignature": "calculateExtension(Metadata, String)",
+  "sourceCode": "public static String calculateExtension(Metadata metadata, String defaultValue) {\n        String mime = metadata.get(Metadata.CONTENT_TYPE);\n        if (mime == null) {\n            return defaultValue;\n        }\n        // Normalize OCR routing types (e.g., image/ocr-png -> image/png)\n        mime = EmbeddedDocumentUtil.normalizeMediaType(mime);\n        String ext = lookupExtension(mime);\n        if (ext != null) {\n            return ext;\n        }\n        return \".bin\";\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "normalizeMediaType(String)"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "lookupExtension(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Calculate the extension based on the {@link Metadata#CONTENT_TYPE} value.\n * On parse exception or null value, return the default value.\n *\n * @param metadata\n * @param defaultValue\n * @return the extension based on the mime type, including the initial \".\"\n */\npublic static String calculateExtension(Metadata metadata, String defaultValue) {\n    String mime = metadata.get(Metadata.CONTENT_TYPE);\n    if (mime == null) {\n        return defaultValue;\n    }\n    // Normalize OCR routing types (e.g., image/ocr-png -> image/png)\n    mime = EmbeddedDocumentUtil.normalizeMediaType(mime);\n    String ext = lookupExtension(mime);\n    if (ext != null) {\n        return ext;\n    }\n    return \".bin\";\n}",
+  "method_comment": "\n     * Calculate the extension based on the {@link Metadata#CONTENT_TYPE} value.\n     * On parse exception or null value, return the default value.\n     *\n     * @param metadata\n     * @param defaultValue\n     * @return the extension based on the mime type, including the initial \".\"\n     ",
+  "method_annotation": ""
+}

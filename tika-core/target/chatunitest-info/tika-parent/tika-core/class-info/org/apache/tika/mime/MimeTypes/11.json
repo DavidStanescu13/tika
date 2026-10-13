@@ -1,0 +1,28 @@
+{
+  "className": "MimeTypes",
+  "methodName": "addPattern",
+  "brief": "public void addPattern(MimeType type, String pattern, boolean isRegex)\r\n            throws MimeTypeException{}",
+  "methodSignature": "addPattern(MimeType, String, boolean)",
+  "sourceCode": "public void addPattern(MimeType type, String pattern, boolean isRegex)\n            throws MimeTypeException {\n        patterns.add(pattern, isRegex, type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [],
+    "java.lang.String": [],
+    "org.apache.tika.mime.Patterns": [
+      "add(String, boolean, MimeType)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds a file name pattern for the given media type. The caller can specify\n * whether the pattern being added <b>is</b> or <b>is not</b> a JDK standard\n * regular expression via the <code>isRegex</code> parameter. If the value\n * is set to true, then a JDK standard regex is assumed, otherwise the\n * freedesktop glob type is assumed.\n *\n * @param type    media type\n * @param pattern file name pattern\n * @param isRegex set to true if JDK std regexs are desired, otherwise set to\n *                false.\n * @throws MimeTypeException if the pattern conflicts with existing ones.\n */\npublic void addPattern(MimeType type, String pattern, boolean isRegex) throws MimeTypeException {\n    patterns.add(pattern, isRegex, type);\n}",
+  "method_comment": "\n     * Adds a file name pattern for the given media type. The caller can specify\n     * whether the pattern being added <b>is</b> or <b>is not</b> a JDK standard\n     * regular expression via the <code>isRegex</code> parameter. If the value\n     * is set to true, then a JDK standard regex is assumed, otherwise the\n     * freedesktop glob type is assumed.\n     *\n     * @param type    media type\n     * @param pattern file name pattern\n     * @param isRegex set to true if JDK std regexs are desired, otherwise set to\n     *                false.\n     * @throws MimeTypeException if the pattern conflicts with existing ones.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "TextQualityComparison",
+  "brief": "public TextQualityComparison(String winner, float delta,\r\n                                 TextQualityScore scoreA, TextQualityScore scoreB,\r\n                                 String labelA, String labelB){}",
+  "methodSignature": "TextQualityComparison(String, float, TextQualityScore, TextQualityScore, String, String)",
+  "sourceCode": "public TextQualityComparison(String winner, float delta,\n                                 TextQualityScore scoreA, TextQualityScore scoreB,\n                                 String labelA, String labelB) {\n        this.winner = winner;\n        this.delta = delta;\n        this.scoreA = scoreA;\n        this.scoreB = scoreB;\n        this.labelA = labelA;\n        this.labelB = labelB;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "float",
+    "TextQualityScore",
+    "TextQualityScore",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.quality.TextQualityScore": []
+  },
+  "full_method_info": "public TextQualityComparison(String winner, float delta, TextQualityScore scoreA, TextQualityScore scoreB, String labelA, String labelB) {\n    this.winner = winner;\n    this.delta = delta;\n    this.scoreA = scoreA;\n    this.scoreB = scoreB;\n    this.labelA = labelA;\n    this.labelB = labelB;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

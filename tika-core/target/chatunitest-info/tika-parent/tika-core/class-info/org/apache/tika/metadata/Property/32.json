@@ -1,0 +1,18 @@
+{
+  "className": "Property",
+  "methodName": "getChoices",
+  "brief": "public Set<String> getChoices(){}",
+  "methodSignature": "getChoices()",
+  "sourceCode": "public Set<String> getChoices() {\n        return choices;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the (immutable) set of choices for the values of this property.\n * Only defined for {@link ValueType#OPEN_CHOICE open} and\n * {@link ValueType#CLOSED_CHOICE closed choice} value types.\n *\n * @return available choices, or <code>null</code>\n */\npublic Set<String> getChoices() {\n    return choices;\n}",
+  "method_comment": "\n     * Returns the (immutable) set of choices for the values of this property.\n     * Only defined for {@link ValueType#OPEN_CHOICE open} and\n     * {@link ValueType#CLOSED_CHOICE closed choice} value types.\n     *\n     * @return available choices, or <code>null</code>\n     ",
+  "method_annotation": ""
+}

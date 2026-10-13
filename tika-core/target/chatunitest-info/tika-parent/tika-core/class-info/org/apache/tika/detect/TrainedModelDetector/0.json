@@ -1,0 +1,18 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "getMinLength",
+  "brief": "public int getMinLength(){}",
+  "methodSignature": "getMinLength()",
+  "sourceCode": "public int getMinLength() {\n        return Integer.MAX_VALUE;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public int getMinLength() {\n    return Integer.MAX_VALUE;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

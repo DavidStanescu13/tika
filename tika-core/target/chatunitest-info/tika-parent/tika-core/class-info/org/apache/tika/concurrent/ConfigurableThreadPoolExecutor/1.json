@@ -1,0 +1,20 @@
+{
+  "className": "ConfigurableThreadPoolExecutor",
+  "methodName": "setCorePoolSize",
+  "brief": "public void setCorePoolSize(int threads);",
+  "methodSignature": "setCorePoolSize(int)",
+  "sourceCode": "public void setCorePoolSize(int threads);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setCorePoolSize(int threads);",
+  "method_comment": "",
+  "method_annotation": ""
+}

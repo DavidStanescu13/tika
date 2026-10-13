@@ -1,0 +1,27 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "loadDefaultModels",
+  "brief": "public void loadDefaultModels(File modelFile){}",
+  "methodSignature": "loadDefaultModels(File)",
+  "sourceCode": "public void loadDefaultModels(File modelFile) {\n        loadDefaultModels(modelFile.toPath());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "File"
+  ],
+  "dependentMethods": {
+    "java.io.File": [
+      "toPath()"
+    ],
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(Path)"
+    ]
+  },
+  "full_method_info": "public void loadDefaultModels(File modelFile) {\n    loadDefaultModels(modelFile.toPath());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

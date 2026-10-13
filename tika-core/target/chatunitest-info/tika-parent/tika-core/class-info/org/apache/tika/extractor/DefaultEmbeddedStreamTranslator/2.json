@@ -1,0 +1,30 @@
+{
+  "className": "DefaultEmbeddedStreamTranslator",
+  "methodName": "translate",
+  "brief": "@Override\r\n    public void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException{}",
+  "methodSignature": "translate(TikaInputStream, Metadata, OutputStream)",
+  "sourceCode": "@Override\n    public void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                translator.translate(inputStream, metadata, outputStream);\n                return;\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "OutputStream"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "java.io.OutputStream": [],
+    "org.apache.tika.extractor.EmbeddedStreamTranslator": [
+      "translate(TikaInputStream, Metadata, OutputStream)",
+      "shouldTranslate(TikaInputStream, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * This will consume the InputStream and write the stream to the output stream\n * @param inputStream\n * @param metadata\n * @param outputStream to write to\n * @return\n * @throws IOException\n */\n@Override\npublic void translate(TikaInputStream inputStream, Metadata metadata, OutputStream outputStream) throws IOException {\n    for (EmbeddedStreamTranslator translator : translators) {\n        if (translator.shouldTranslate(inputStream, metadata)) {\n            translator.translate(inputStream, metadata, outputStream);\n            return;\n        }\n    }\n}",
+  "method_comment": "\n     * This will consume the InputStream and write the stream to the output stream\n     * @param inputStream\n     * @param metadata\n     * @param outputStream to write to\n     * @return\n     * @throws IOException\n     ",
+  "method_annotation": "@Override\n"
+}

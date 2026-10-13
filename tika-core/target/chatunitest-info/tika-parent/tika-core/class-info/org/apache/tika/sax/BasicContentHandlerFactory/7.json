@@ -1,0 +1,18 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "getFormatHandler",
+  "brief": "private ContentHandler getFormatHandler(){}",
+  "methodSignature": "getFormatHandler()",
+  "sourceCode": "private ContentHandler getFormatHandler() {\n        switch (type) {\n            case TEXT:\n                return new ToTextContentHandler();\n            case HTML:\n                return new ToHTMLContentHandler();\n            case XML:\n                return new ToXMLContentHandler();\n            case MARKDOWN:\n                return new ToMarkdownContentHandler();\n            default:\n                return new ToTextContentHandler();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "private ContentHandler getFormatHandler() {\n    switch(type) {\n        case TEXT:\n            return new ToTextContentHandler();\n        case HTML:\n            return new ToHTMLContentHandler();\n        case XML:\n            return new ToXMLContentHandler();\n        case MARKDOWN:\n            return new ToMarkdownContentHandler();\n        default:\n            return new ToTextContentHandler();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

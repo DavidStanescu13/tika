@@ -1,0 +1,22 @@
+{
+  "className": "LanguageNames",
+  "methodName": "getMacroLanguage",
+  "brief": "public static String getMacroLanguage(String languageTag){}",
+  "methodSignature": "getMacroLanguage(String)",
+  "sourceCode": "public static String getMacroLanguage(String languageTag) {\n        // TODO make it so\n        return languageTag;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * If language is a specific variant of a macro language (e.g. 'nb' for Norwegian Bokmal),\n * return the macro language (e.g. 'no' for Norwegian). If it doesn't have a macro language,\n * return unchanged.\n *\n * @param languageTag\n * @return\n */\npublic static String getMacroLanguage(String languageTag) {\n    // TODO make it so\n    return languageTag;\n}",
+  "method_comment": "\n     * If language is a specific variant of a macro language (e.g. 'nb' for Norwegian Bokmal),\n     * return the macro language (e.g. 'no' for Norwegian). If it doesn't have a macro language,\n     * return unchanged.\n     *\n     * @param languageTag\n     * @return\n     ",
+  "method_annotation": ""
+}

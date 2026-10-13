@@ -1,0 +1,26 @@
+{
+  "className": "EncodingResult",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        String cs = charset.name();\n        String lbl = label.equals(cs) ? cs : label + \"(\" + cs + \")\";\n        return lbl + \"@\" + String.format(java.util.Locale.ROOT, \"%.2f\", confidence)\n                + \"[\" + resultType + \"]\";\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [
+      "name()"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "format(Locale, String, Object[])"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    String cs = charset.name();\n    String lbl = label.equals(cs) ? cs : label + \"(\" + cs + \")\";\n    return lbl + \"@\" + String.format(java.util.Locale.ROOT, \"%.2f\", confidence) + \"[\" + resultType + \"]\";\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

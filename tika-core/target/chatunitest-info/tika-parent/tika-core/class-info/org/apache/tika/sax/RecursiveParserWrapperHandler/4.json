@@ -1,0 +1,18 @@
+{
+  "className": "RecursiveParserWrapperHandler",
+  "methodName": "getMetadataList",
+  "brief": "public List<Metadata> getMetadataList(){}",
+  "methodSignature": "getMetadataList()",
+  "sourceCode": "public List<Metadata> getMetadataList() {\n        return metadataList;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return a list of Metadata objects, one for the main document and one for each embedded\n * document\n */\npublic List<Metadata> getMetadataList() {\n    return metadataList;\n}",
+  "method_comment": "\n     * @return a list of Metadata objects, one for the main document and one for each embedded\n     * document\n     ",
+  "method_annotation": ""
+}

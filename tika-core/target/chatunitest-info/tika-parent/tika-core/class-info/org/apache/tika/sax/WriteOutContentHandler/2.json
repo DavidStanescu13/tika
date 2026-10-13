@@ -1,0 +1,27 @@
+{
+  "className": "WriteOutContentHandler",
+  "methodName": "ignorableWhitespace",
+  "brief": "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "ignorableWhitespace(char[], int, int)",
+  "sourceCode": "@Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.ignorableWhitespace(ch, start, length);\n            writeCount += length;\n        } else {\n            super.ignorableWhitespace(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "ignorableWhitespace(char[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n    if (writeLimitReached) {\n        return;\n    }\n    if (writeLimit == -1 || writeCount + length <= writeLimit) {\n        super.ignorableWhitespace(ch, start, length);\n        writeCount += length;\n    } else {\n        super.ignorableWhitespace(ch, start, writeLimit - writeCount);\n        handleWriteLimitReached();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

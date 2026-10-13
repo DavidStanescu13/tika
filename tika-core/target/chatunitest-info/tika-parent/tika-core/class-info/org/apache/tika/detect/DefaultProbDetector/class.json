@@ -1,0 +1,82 @@
+{
+  "fullClassName": "org.apache.tika.detect.DefaultProbDetector",
+  "className": "DefaultProbDetector",
+  "index": 23,
+  "modifier": "[public ]",
+  "extend": "[CompositeDetector]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class DefaultProbDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.List;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.mime.MimeTypes;",
+    "import org.apache.tika.mime.ProbabilisticMimeDetectionSelector;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = -8836240060532323352L;",
+    "private transient final ServiceLoader loader;"
+  ],
+  "superClasses": [
+    "CompositeDetector"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDefaultDetectors(ProbabilisticMimeDetectionSelector, ServiceLoader)": "0",
+    "getDetectors()": "1",
+    "DefaultProbDetector(ProbabilisticMimeDetectionSelector, ServiceLoader)": "2",
+    "DefaultProbDetector(ProbabilisticMimeDetectionSelector, ClassLoader)": "3",
+    "DefaultProbDetector(ClassLoader)": "4",
+    "DefaultProbDetector(MimeTypes)": "5",
+    "DefaultProbDetector()": "6"
+  },
+  "methodsBrief": [
+    "private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel,\r\n                                                      ServiceLoader loader){}",
+    "@Override\r\n    public List<Detector> getDetectors(){}",
+    "public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader){}",
+    "public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ClassLoader loader){}",
+    "public DefaultProbDetector(ClassLoader loader){}",
+    "public DefaultProbDetector(MimeTypes types){}",
+    "public DefaultProbDetector(){}"
+  ],
+  "constructorSigs": [
+    "DefaultProbDetector(ProbabilisticMimeDetectionSelector, ServiceLoader)",
+    "DefaultProbDetector(ProbabilisticMimeDetectionSelector, ClassLoader)",
+    "DefaultProbDetector(ClassLoader)",
+    "DefaultProbDetector(MimeTypes)",
+    "DefaultProbDetector()"
+  ],
+  "constructorBrief": [
+    "public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader){}",
+    "public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ClassLoader loader){}",
+    "public DefaultProbDetector(ClassLoader loader){}",
+    "public DefaultProbDetector(MimeTypes types){}",
+    "public DefaultProbDetector(){}"
+  ],
+  "getterSetterSigs": [
+    "getDetectors()"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public List<Detector> getDetectors(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.ProbabilisticMimeDetectionSelector": [
+      "getMediaTypeRegistry()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.detect.DefaultProbDetector": [
+      "getDefaultDetectors(ProbabilisticMimeDetectionSelector, ServiceLoader)"
+    ],
+    "java.lang.ClassLoader": [],
+    "org.apache.tika.mime.MimeTypes": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.util.List;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.mime.MimeTypes;\nimport org.apache.tika.mime.ProbabilisticMimeDetectionSelector;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\n/**\n * A version of {@link DefaultDetector} for probabilistic mime\n * detectors, which use statistical techniques to blend the\n * results of differing underlying detectors when attempting\n * to detect the type of a given file.\n * TODO Link to documentation on configuring these probabilities\n */\npublic class DefaultProbDetector extends CompositeDetector {\n\n    private static final long serialVersionUID = -8836240060532323352L;\n\n    private transient final ServiceLoader loader;\n\n    public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader) {\n        super(sel.getMediaTypeRegistry(), getDefaultDetectors(sel, loader));\n        this.loader = loader;\n    }\n\n    public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ClassLoader loader) {\n        this(sel, new ServiceLoader(loader));\n    }\n\n    public DefaultProbDetector(ClassLoader loader) {\n        this(new ProbabilisticMimeDetectionSelector(), loader);\n    }\n\n    public DefaultProbDetector(MimeTypes types) {\n        this(new ProbabilisticMimeDetectionSelector(types), new ServiceLoader());\n    }\n\n    public DefaultProbDetector() {\n        this(MimeTypes.getDefaultMimeTypes());\n    }\n\n    private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader) {\n        List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class);\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        detectors.add(sel);\n        return detectors;\n    }\n\n    @Override\n    public List<Detector> getDetectors() {\n        if (loader != null) {\n            List<Detector> detectors = loader.loadDynamicServiceProviders(Detector.class);\n            detectors.addAll(super.getDetectors());\n            return detectors;\n        } else {\n            return super.getDetectors();\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A version of {@link DefaultDetector} for probabilistic mime\n * detectors, which use statistical techniques to blend the\n * results of differing underlying detectors when attempting\n * to detect the type of a given file.\n * TODO Link to documentation on configuring these probabilities\n */\npublic class DefaultProbDetector extends CompositeDetector {\n\n    private static final long serialVersionUID = -8836240060532323352L;\n\n    private transient final ServiceLoader loader;\n\n    public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader) {\n        super(sel.getMediaTypeRegistry(), getDefaultDetectors(sel, loader));\n        this.loader = loader;\n    }\n\n    public DefaultProbDetector(ProbabilisticMimeDetectionSelector sel, ClassLoader loader) {\n        this(sel, new ServiceLoader(loader));\n    }\n\n    public DefaultProbDetector(ClassLoader loader) {\n        this(new ProbabilisticMimeDetectionSelector(), loader);\n    }\n\n    public DefaultProbDetector(MimeTypes types) {\n        this(new ProbabilisticMimeDetectionSelector(types), new ServiceLoader());\n    }\n\n    public DefaultProbDetector() {\n        this(MimeTypes.getDefaultMimeTypes());\n    }\n\n    private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader) {\n        List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class);\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        detectors.add(sel);\n        return detectors;\n    }\n\n    @Override\n    public List<Detector> getDetectors() {\n        if (loader != null) {\n            List<Detector> detectors = loader.loadDynamicServiceProviders(Detector.class);\n            detectors.addAll(super.getDetectors());\n            return detectors;\n        } else {\n            return super.getDetectors();\n        }\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,22 @@
+{
+  "className": "MinShouldMatchVal",
+  "methodName": "eval",
+  "brief": "@Override\r\n        public boolean eval(byte[] data){}",
+  "methodSignature": "eval(byte[])",
+  "sourceCode": "@Override\n        public boolean eval(byte[] data) {\n            throw new IllegalStateException(\n                    \"This should never be used \" + \"on this placeholder class\");\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "@Override\npublic boolean eval(byte[] data) {\n    throw new IllegalStateException(\"This should never be used \" + \"on this placeholder class\");\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

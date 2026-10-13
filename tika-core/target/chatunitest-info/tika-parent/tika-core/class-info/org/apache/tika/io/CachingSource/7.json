@@ -1,0 +1,18 @@
+{
+  "className": "CachingSource",
+  "methodName": "enableRewind",
+  "brief": "@Override\r\n    public void enableRewind(){}",
+  "methodSignature": "enableRewind()",
+  "sourceCode": "@Override\n    public void enableRewind() {\n        // Already in caching or file mode - no-op\n        if (cachingStream != null || fileStream != null) {\n            return;\n        }\n\n        if (passthroughPosition != 0) {\n            throw new IllegalStateException(\n                    \"Cannot enable rewind: position is \" + passthroughPosition +\n                            \", must be 0. Call enableRewind() before reading.\");\n        }\n\n        // Switch to caching mode\n        StreamCache cache = new StreamCache(tmp);\n        cachingStream = new CachingInputStream(passthroughStream, cache);\n        passthroughStream = null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void enableRewind() {\n    // Already in caching or file mode - no-op\n    if (cachingStream != null || fileStream != null) {\n        return;\n    }\n    if (passthroughPosition != 0) {\n        throw new IllegalStateException(\"Cannot enable rewind: position is \" + passthroughPosition + \", must be 0. Call enableRewind() before reading.\");\n    }\n    // Switch to caching mode\n    StreamCache cache = new StreamCache(tmp);\n    cachingStream = new CachingInputStream(passthroughStream, cache);\n    passthroughStream = null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

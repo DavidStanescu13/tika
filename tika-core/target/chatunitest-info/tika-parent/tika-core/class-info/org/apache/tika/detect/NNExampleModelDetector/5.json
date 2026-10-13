@@ -1,0 +1,25 @@
+{
+  "className": "NNExampleModelDetector",
+  "methodName": "NNExampleModelDetector",
+  "brief": "public NNExampleModelDetector(final Path modelFile){}",
+  "methodSignature": "NNExampleModelDetector(Path)",
+  "sourceCode": "public NNExampleModelDetector(final Path modelFile) {\n        loadDefaultModels(modelFile);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(Path)"
+    ]
+  },
+  "full_method_info": "public NNExampleModelDetector(final Path modelFile) {\n    loadDefaultModels(modelFile);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

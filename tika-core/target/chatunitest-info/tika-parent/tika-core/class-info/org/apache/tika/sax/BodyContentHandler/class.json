@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.sax.BodyContentHandler",
+  "className": "BodyContentHandler",
+  "index": 278,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class BodyContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Writer;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.sax.xpath.Matcher;",
+    "import org.apache.tika.sax.xpath.MatchingContentHandler;",
+    "import org.apache.tika.sax.xpath.XPathParser;"
+  ],
+  "fields": [
+    "private static final XPathParser PARSER = new XPathParser(\"xhtml\", XHTMLContentHandler.XHTML);",
+    "private static final Matcher MATCHER =\n            PARSER.parse(\"/xhtml:html/xhtml:body/descendant::node()\");"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "BodyContentHandler(ContentHandler)": "0",
+    "BodyContentHandler(Writer)": "1",
+    "BodyContentHandler(int)": "2",
+    "BodyContentHandler()": "3"
+  },
+  "methodsBrief": [
+    "public BodyContentHandler(ContentHandler handler){}",
+    "public BodyContentHandler(Writer writer){}",
+    "public BodyContentHandler(int writeLimit){}",
+    "public BodyContentHandler(){}"
+  ],
+  "constructorSigs": [
+    "BodyContentHandler(ContentHandler)",
+    "BodyContentHandler(Writer)",
+    "BodyContentHandler(int)",
+    "BodyContentHandler()"
+  ],
+  "constructorBrief": [
+    "public BodyContentHandler(ContentHandler handler){}",
+    "public BodyContentHandler(Writer writer){}",
+    "public BodyContentHandler(int writeLimit){}",
+    "public BodyContentHandler(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.Writer": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.Writer;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.sax.xpath.Matcher;\nimport org.apache.tika.sax.xpath.MatchingContentHandler;\nimport org.apache.tika.sax.xpath.XPathParser;\n\n/**\n * Content handler decorator that only passes everything inside\n * the XHTML &lt;body/&gt; tag to the underlying handler. Note that\n * the &lt;body/&gt; tag itself is <em>not</em> passed on.\n */\npublic class BodyContentHandler extends ContentHandlerDecorator {\n\n    /**\n     * XHTML XPath parser.\n     */\n    private static final XPathParser PARSER = new XPathParser(\"xhtml\", XHTMLContentHandler.XHTML);\n\n    /**\n     * The XPath matcher used to select the XHTML body contents.\n     */\n    private static final Matcher MATCHER = PARSER.parse(\"/xhtml:html/xhtml:body/descendant::node()\");\n\n    public BodyContentHandler(ContentHandler handler) {\n        super(new MatchingContentHandler(handler, MATCHER));\n    }\n\n    public BodyContentHandler(Writer writer) {\n        this(new WriteOutContentHandler(writer));\n    }\n\n    public BodyContentHandler(int writeLimit) {\n        this(new WriteOutContentHandler(writeLimit));\n    }\n\n    public BodyContentHandler() {\n        this(new WriteOutContentHandler());\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content handler decorator that only passes everything inside\n * the XHTML &lt;body/&gt; tag to the underlying handler. Note that\n * the &lt;body/&gt; tag itself is <em>not</em> passed on.\n */\npublic class BodyContentHandler extends ContentHandlerDecorator {\n\n    /**\n     * XHTML XPath parser.\n     */\n    private static final XPathParser PARSER = new XPathParser(\"xhtml\", XHTMLContentHandler.XHTML);\n\n    /**\n     * The XPath matcher used to select the XHTML body contents.\n     */\n    private static final Matcher MATCHER = PARSER.parse(\"/xhtml:html/xhtml:body/descendant::node()\");\n\n    public BodyContentHandler(ContentHandler handler) {\n        super(new MatchingContentHandler(handler, MATCHER));\n    }\n\n    public BodyContentHandler(Writer writer) {\n        this(new WriteOutContentHandler(writer));\n    }\n\n    public BodyContentHandler(int writeLimit) {\n        this(new WriteOutContentHandler(writeLimit));\n    }\n\n    public BodyContentHandler() {\n        this(new WriteOutContentHandler());\n    }\n}",
+  "subClasses": []
+}

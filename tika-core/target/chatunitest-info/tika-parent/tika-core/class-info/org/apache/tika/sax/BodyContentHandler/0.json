@@ -1,0 +1,20 @@
+{
+  "className": "BodyContentHandler",
+  "methodName": "BodyContentHandler",
+  "brief": "public BodyContentHandler(ContentHandler handler){}",
+  "methodSignature": "BodyContentHandler(ContentHandler)",
+  "sourceCode": "public BodyContentHandler(ContentHandler handler) {\n        super(new MatchingContentHandler(handler, MATCHER));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public BodyContentHandler(ContentHandler handler) {\n    super(new MatchingContentHandler(handler, MATCHER));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

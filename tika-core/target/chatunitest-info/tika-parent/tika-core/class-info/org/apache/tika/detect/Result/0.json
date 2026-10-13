@@ -1,0 +1,18 @@
+{
+  "className": "Result",
+  "methodName": "getEncodingResults",
+  "brief": "public List<EncodingResult> getEncodingResults(){}",
+  "methodSignature": "getEncodingResults()",
+  "sourceCode": "public List<EncodingResult> getEncodingResults() {\n            return encodingResults;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * All ranked results from this detector, highest confidence first.\n */\npublic List<EncodingResult> getEncodingResults() {\n    return encodingResults;\n}",
+  "method_comment": "\n         * All ranked results from this detector, highest confidence first.\n         ",
+  "method_annotation": ""
+}

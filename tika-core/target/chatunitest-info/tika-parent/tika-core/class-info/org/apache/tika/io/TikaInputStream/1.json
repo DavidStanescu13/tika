@@ -1,0 +1,29 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(InputStream stream, TemporaryResources tmp, Metadata metadata){}",
+  "methodSignature": "get(InputStream, TemporaryResources, Metadata)",
+  "sourceCode": "public static TikaInputStream get(InputStream stream, TemporaryResources tmp, Metadata metadata) {\n        if (stream == null) {\n            throw new NullPointerException(\"The Stream must not be null\");\n        }\n        if (stream instanceof TikaInputStream) {\n            return (TikaInputStream) stream;\n        }\n        String ext = getExtension(metadata);\n        TikaInputSource inputSource = new CachingSource(stream, tmp, -1, metadata);\n        return new TikaInputStream(inputSource, tmp, ext);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "TemporaryResources",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.io.TemporaryResources": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "getExtension(Metadata)"
+    ]
+  },
+  "full_method_info": "// ========== Static Factory Methods ==========\npublic static TikaInputStream get(InputStream stream, TemporaryResources tmp, Metadata metadata) {\n    if (stream == null) {\n        throw new NullPointerException(\"The Stream must not be null\");\n    }\n    if (stream instanceof TikaInputStream) {\n        return (TikaInputStream) stream;\n    }\n    String ext = getExtension(metadata);\n    TikaInputSource inputSource = new CachingSource(stream, tmp, -1, metadata);\n    return new TikaInputStream(inputSource, tmp, ext);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

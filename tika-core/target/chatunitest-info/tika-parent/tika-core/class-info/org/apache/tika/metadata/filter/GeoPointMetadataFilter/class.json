@@ -1,0 +1,74 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.GeoPointMetadataFilter",
+  "className": "GeoPointMetadataFilter",
+  "index": 141,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class GeoPointMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.utils.StringUtils;"
+  ],
+  "fields": [
+    "String geoPointFieldName = \"location\";"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setGeoPointFieldName(String)": "0",
+    "getGeoPointFieldName()": "1",
+    "filter(Metadata)": "2",
+    "GeoPointMetadataFilter()": "3",
+    "GeoPointMetadataFilter(Config)": "4",
+    "GeoPointMetadataFilter(JsonConfig)": "5"
+  },
+  "methodsBrief": [
+    "public void setGeoPointFieldName(String geoPointFieldName){}",
+    "public String getGeoPointFieldName(){}",
+    "@Override\r\n    protected void filter(Metadata metadata){}",
+    "public GeoPointMetadataFilter(){}",
+    "public GeoPointMetadataFilter(Config config){}",
+    "public GeoPointMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "GeoPointMetadataFilter()",
+    "GeoPointMetadataFilter(Config)",
+    "GeoPointMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public GeoPointMetadataFilter(){}",
+    "public GeoPointMetadataFilter(Config config){}",
+    "public GeoPointMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "setGeoPointFieldName(String)",
+    "getGeoPointFieldName()"
+  ],
+  "getterSetterBrief": [
+    "public void setGeoPointFieldName(String geoPointFieldName){}",
+    "public String getGeoPointFieldName(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.GeoPointMetadataFilter.Config": [],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.utils.StringUtils;\n\n/**\n * If {@link Metadata} contains a {@link TikaCoreProperties#LATITUDE} and\n * a {@link TikaCoreProperties#LONGITUDE}, this filter concatenates those with a\n * comma in the order LATITUDE,LONGITUDE.\n *\n * If you need any other mappings, please open a ticket on our JIRA.\n */\n@TikaComponent\npublic class GeoPointMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String geoPointFieldName = \"location\";\n    }\n\n    String geoPointFieldName = \"location\";\n\n    public GeoPointMetadataFilter() {\n    }\n\n    public GeoPointMetadataFilter(Config config) {\n        this.geoPointFieldName = config.geoPointFieldName;\n    }\n\n    public GeoPointMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    /**\n     * Set the field for the concatenated LATITUDE,LONGITUDE string.\n     * The default if &dquot;location&dquot;\n     *\n     * @param geoPointFieldName field name to use for the geopoint field\n     */\n    public void setGeoPointFieldName(String geoPointFieldName) {\n        this.geoPointFieldName = geoPointFieldName;\n    }\n\n    public String getGeoPointFieldName() {\n        return geoPointFieldName;\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        String lat = metadata.get(TikaCoreProperties.LATITUDE);\n        if (StringUtils.isEmpty(lat)) {\n            return;\n        }\n        String lng = metadata.get(TikaCoreProperties.LONGITUDE);\n        if (StringUtils.isEmpty(lng)) {\n            return;\n        }\n        // target field name is operator-configured; may legitimately be a reserved key\n        metadata.setTrusted(geoPointFieldName, lat + \",\" + lng);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * If {@link Metadata} contains a {@link TikaCoreProperties#LATITUDE} and\n * a {@link TikaCoreProperties#LONGITUDE}, this filter concatenates those with a\n * comma in the order LATITUDE,LONGITUDE.\n *\n * If you need any other mappings, please open a ticket on our JIRA.\n */\n@TikaComponent\npublic class GeoPointMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String geoPointFieldName = \"location\";\n    }\n\n    String geoPointFieldName = \"location\";\n\n    public GeoPointMetadataFilter() {\n    }\n\n    public GeoPointMetadataFilter(Config config) {\n        this.geoPointFieldName = config.geoPointFieldName;\n    }\n\n    public GeoPointMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    /**\n     * Set the field for the concatenated LATITUDE,LONGITUDE string.\n     * The default if &dquot;location&dquot;\n     *\n     * @param geoPointFieldName field name to use for the geopoint field\n     */\n    public void setGeoPointFieldName(String geoPointFieldName) {\n        this.geoPointFieldName = geoPointFieldName;\n    }\n\n    public String getGeoPointFieldName() {\n        return geoPointFieldName;\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        String lat = metadata.get(TikaCoreProperties.LATITUDE);\n        if (StringUtils.isEmpty(lat)) {\n            return;\n        }\n        String lng = metadata.get(TikaCoreProperties.LONGITUDE);\n        if (StringUtils.isEmpty(lng)) {\n            return;\n        }\n        // target field name is operator-configured; may legitimately be a reserved key\n        metadata.setTrusted(geoPointFieldName, lat + \",\" + lng);\n    }\n}",
+  "subClasses": []
+}

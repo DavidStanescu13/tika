@@ -1,0 +1,22 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "setMediaTypeRegistry",
+  "brief": "public void setMediaTypeRegistry(MediaTypeRegistry registry){}",
+  "methodSignature": "setMediaTypeRegistry(MediaTypeRegistry)",
+  "sourceCode": "public void setMediaTypeRegistry(MediaTypeRegistry registry) {\n        this.mediaTypeRegistry = registry;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaTypeRegistry"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaTypeRegistry": []
+  },
+  "full_method_info": "/**\n * Sets the media type registry used for checking type specializations.\n *\n * @param registry the media type registry\n */\npublic void setMediaTypeRegistry(MediaTypeRegistry registry) {\n    this.mediaTypeRegistry = registry;\n}",
+  "method_comment": "\n     * Sets the media type registry used for checking type specializations.\n     *\n     * @param registry the media type registry\n     ",
+  "method_annotation": ""
+}

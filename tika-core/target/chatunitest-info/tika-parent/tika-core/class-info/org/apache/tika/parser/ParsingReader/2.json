@@ -1,0 +1,22 @@
+{
+  "className": "ParsingReader",
+  "methodName": "close",
+  "brief": "@Override\r\n    public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "@Override\n    public void close() throws IOException {\n        reader.close();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.io.Reader": [
+      "close()"
+    ]
+  },
+  "full_method_info": "/**\n * Closes the read end of the pipe. If the parsing thread is still\n * running, next write to the pipe will fail and cause the thread\n * to stop. Thus there is no need to explicitly terminate the thread.\n *\n * @throws IOException if the pipe can not be closed\n */\n@Override\npublic void close() throws IOException {\n    reader.close();\n}",
+  "method_comment": "\n     * Closes the read end of the pipe. If the parsing thread is still\n     * running, next write to the pipe will fail and cause the thread\n     * to stop. Thus there is no need to explicitly terminate the thread.\n     *\n     * @throws IOException if the pipe can not be closed\n     ",
+  "method_annotation": "@Override\n"
+}

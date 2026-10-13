@@ -1,0 +1,20 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setCommandLine",
+  "brief": "public void setCommandLine(List<String> commandLine){}",
+  "methodSignature": "setCommandLine(List)",
+  "sourceCode": "public void setCommandLine(List<String> commandLine) {\n        this.commandLine = commandLine;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setCommandLine(List<String> commandLine) {\n    this.commandLine = commandLine;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

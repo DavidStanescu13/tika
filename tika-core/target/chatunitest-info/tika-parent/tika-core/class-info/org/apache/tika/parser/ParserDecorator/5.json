@@ -1,0 +1,27 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        parser.parse(tis, handler, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Delegates the method call to the decorated parser. Subclasses should\n * override this method (and use <code>super.parse()</code> to invoke\n * the decorated parser) to implement extra decoration.\n */\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    parser.parse(tis, handler, metadata, context);\n}",
+  "method_comment": "\n     * Delegates the method call to the decorated parser. Subclasses should\n     * override this method (and use <code>super.parse()</code> to invoke\n     * the decorated parser) to implement extra decoration.\n     ",
+  "method_annotation": ""
+}

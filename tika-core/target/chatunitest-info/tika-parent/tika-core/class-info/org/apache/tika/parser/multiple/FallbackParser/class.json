@@ -1,0 +1,61 @@
+{
+  "fullClassName": "org.apache.tika.parser.multiple.FallbackParser",
+  "className": "FallbackParser",
+  "index": 238,
+  "modifier": "[public ]",
+  "extend": "[AbstractMultipleParser]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser.multiple",
+  "packageDeclaration": "package org.apache.tika.parser.multiple;",
+  "classSignature": "public class FallbackParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import java.util.Collection;",
+    "import java.util.List;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.parser.Parser;"
+  ],
+  "fields": [
+    "public static final List<MetadataPolicy> allowedPolicies =\n            Arrays.asList(MetadataPolicy.values());",
+    "private static final long serialVersionUID = 5844409020977206167L;"
+  ],
+  "superClasses": [
+    "AbstractMultipleParser"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parserCompleted(Parser, Metadata, ContentHandler, ParseContext, Exception)": "0",
+    "FallbackParser(MediaTypeRegistry, MetadataPolicy, Collection)": "1",
+    "FallbackParser(MediaTypeRegistry, MetadataPolicy, Parser[])": "2"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler,\r\n                                      ParseContext context, Exception exception){}",
+    "public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                          Collection<? extends Parser> parsers){}",
+    "public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers){}"
+  ],
+  "constructorSigs": [
+    "FallbackParser(MediaTypeRegistry, MetadataPolicy, Collection)",
+    "FallbackParser(MediaTypeRegistry, MetadataPolicy, Parser[])"
+  ],
+  "constructorBrief": [
+    "public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                          Collection<? extends Parser> parsers){}",
+    "public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "org.apache.tika.parser.multiple.AbstractMultipleParser.MetadataPolicy": [],
+    "org.apache.tika.parser.Parser...": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser.multiple;\n\nimport java.util.Arrays;\nimport java.util.Collection;\nimport java.util.List;\nimport org.xml.sax.ContentHandler;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.parser.Parser;\n\n/**\n * Tries multiple parsers in turn, until one succeeds.\n * <p>\n * Can optionally keep Metadata from failed parsers when\n * trying the next one, depending on the {@link AbstractMultipleParser.MetadataPolicy}\n * chosen.\n *\n * @since Apache Tika 1.18\n */\npublic class FallbackParser extends AbstractMultipleParser {\n\n    /**\n     * The different Metadata Policies we support (all)\n     */\n    public static final List<MetadataPolicy> allowedPolicies = Arrays.asList(MetadataPolicy.values());\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 5844409020977206167L;\n\n    public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Collection<? extends Parser> parsers) {\n        super(registry, policy, parsers);\n    }\n\n    public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers) {\n        super(registry, policy, parsers);\n    }\n\n    @Override\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception) {\n        // If there was no exception, abort further parsers\n        return exception != null;\n        // Have the next parser tried\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Tries multiple parsers in turn, until one succeeds.\n * <p>\n * Can optionally keep Metadata from failed parsers when\n * trying the next one, depending on the {@link AbstractMultipleParser.MetadataPolicy}\n * chosen.\n *\n * @since Apache Tika 1.18\n */\npublic class FallbackParser extends AbstractMultipleParser {\n\n    /**\n     * The different Metadata Policies we support (all)\n     */\n    public static final List<MetadataPolicy> allowedPolicies = Arrays.asList(MetadataPolicy.values());\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 5844409020977206167L;\n\n    public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Collection<? extends Parser> parsers) {\n        super(registry, policy, parsers);\n    }\n\n    public FallbackParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers) {\n        super(registry, policy, parsers);\n    }\n\n    @Override\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception) {\n        // If there was no exception, abort further parsers\n        return exception != null;\n        // Have the next parser tried\n    }\n}",
+  "subClasses": []
+}

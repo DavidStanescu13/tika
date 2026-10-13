@@ -1,0 +1,18 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "endDescription",
+  "brief": "public void endDescription() throws SAXException{}",
+  "methodSignature": "endDescription()",
+  "sourceCode": "public void endDescription() throws SAXException {\n        endElement(RDF, \"Description\", \"rdf:Description\");\n        endPrefixMapping(prefix);\n\n        this.uri = null;\n        this.prefix = null;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public void endDescription() throws SAXException {\n    endElement(RDF, \"Description\", \"rdf:Description\");\n    endPrefixMapping(prefix);\n    this.uri = null;\n    this.prefix = null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

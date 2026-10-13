@@ -1,0 +1,62 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "execute",
+  "brief": "public static FileProcessResult execute(ProcessBuilder pb,\r\n                                            long timeoutMillis,\r\n                                            Path stdoutRedirect, int maxStdErrBuffer) throws IOException{}",
+  "methodSignature": "execute(ProcessBuilder, long, Path, int)",
+  "sourceCode": "public static FileProcessResult execute(ProcessBuilder pb,\n                                            long timeoutMillis,\n                                            Path stdoutRedirect, int maxStdErrBuffer) throws IOException {\n\n        if (!Files.isDirectory(stdoutRedirect.getParent())) {\n            Files.createDirectories(stdoutRedirect.getParent());\n        }\n\n        pb.redirectOutput(stdoutRedirect.toFile());\n        Process p = null;\n        String id = null;\n        try {\n            p = pb.start();\n            id = register(p);\n            long elapsed = -1;\n            long start = System.currentTimeMillis();\n            StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);\n\n            Thread errThread = new Thread(errGobbler);\n            errThread.start();\n            int exitValue = -1;\n            boolean complete = false;\n            try {\n                complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);\n                elapsed = System.currentTimeMillis() - start;\n                if (complete) {\n                    exitValue = p.exitValue();\n                    errThread.join(1000);\n                } else {\n                    p.destroyForcibly();\n                    errThread.join(1000);\n                }\n            } catch (InterruptedException e) {\n                exitValue = -1000;\n            }\n            FileProcessResult result = new FileProcessResult();\n            result.processTimeMillis = elapsed;\n            result.stderrLength = errGobbler.getStreamLength();\n            result.stdoutLength = Files.size(stdoutRedirect);\n            result.isTimeout = !complete;\n            result.exitValue = exitValue;\n            result.stdout = \"\";\n            result.stderr = StringUtils.joinWith(\"\\n\", errGobbler.getLines());\n            result.stdoutTruncated = false;\n            result.stderrTruncated = errGobbler.getIsTruncated();\n            return result;\n        } finally {\n            if (p != null) {\n                p.destroyForcibly();\n            }\n            if (id != null) {\n                release(id);\n            }\n        }\n\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ProcessBuilder",
+    "long",
+    "Path",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.ProcessBuilder": [
+      "redirectOutput(File)",
+      "start()"
+    ],
+    "java.nio.file.Path": [
+      "toFile()",
+      "getParent()"
+    ],
+    "java.nio.file.Files": [
+      "isDirectory(Path, LinkOption[])",
+      "createDirectories(Path, Object>[])",
+      "size(Path)"
+    ],
+    "org.apache.tika.utils.ProcessUtils": [
+      "release(String)",
+      "register(Process)"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ],
+    "java.lang.Process": [
+      "exitValue()",
+      "waitFor(long, TimeUnit)",
+      "getErrorStream()",
+      "destroyForcibly()"
+    ],
+    "java.lang.Thread": [
+      "start()",
+      "join(long)"
+    ],
+    "org.apache.tika.utils.StreamGobbler": [
+      "getLines()",
+      "getStreamLength()",
+      "getIsTruncated()"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "joinWith(String, String>)"
+    ]
+  },
+  "full_method_info": "/**\n * This redirects stdout to stdoutRedirect path.\n *\n * @param pb\n * @param timeoutMillis\n * @param stdoutRedirect\n * @param maxStdErrBuffer\n * @return\n * @throws IOException\n */\npublic static FileProcessResult execute(ProcessBuilder pb, long timeoutMillis, Path stdoutRedirect, int maxStdErrBuffer) throws IOException {\n    if (!Files.isDirectory(stdoutRedirect.getParent())) {\n        Files.createDirectories(stdoutRedirect.getParent());\n    }\n    pb.redirectOutput(stdoutRedirect.toFile());\n    Process p = null;\n    String id = null;\n    try {\n        p = pb.start();\n        id = register(p);\n        long elapsed = -1;\n        long start = System.currentTimeMillis();\n        StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);\n        Thread errThread = new Thread(errGobbler);\n        errThread.start();\n        int exitValue = -1;\n        boolean complete = false;\n        try {\n            complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);\n            elapsed = System.currentTimeMillis() - start;\n            if (complete) {\n                exitValue = p.exitValue();\n                errThread.join(1000);\n            } else {\n                p.destroyForcibly();\n                errThread.join(1000);\n            }\n        } catch (InterruptedException e) {\n            exitValue = -1000;\n        }\n        FileProcessResult result = new FileProcessResult();\n        result.processTimeMillis = elapsed;\n        result.stderrLength = errGobbler.getStreamLength();\n        result.stdoutLength = Files.size(stdoutRedirect);\n        result.isTimeout = !complete;\n        result.exitValue = exitValue;\n        result.stdout = \"\";\n        result.stderr = StringUtils.joinWith(\"\\n\", errGobbler.getLines());\n        result.stdoutTruncated = false;\n        result.stderrTruncated = errGobbler.getIsTruncated();\n        return result;\n    } finally {\n        if (p != null) {\n            p.destroyForcibly();\n        }\n        if (id != null) {\n            release(id);\n        }\n    }\n}",
+  "method_comment": "\n     * This redirects stdout to stdoutRedirect path.\n     *\n     * @param pb\n     * @param timeoutMillis\n     * @param stdoutRedirect\n     * @param maxStdErrBuffer\n     * @return\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

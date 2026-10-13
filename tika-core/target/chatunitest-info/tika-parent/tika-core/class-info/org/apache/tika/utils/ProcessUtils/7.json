@@ -1,0 +1,47 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "checkCommand",
+  "brief": "public static boolean checkCommand(String[] checkCmd, int... errorValue){}",
+  "methodSignature": "checkCommand(String[], int[])",
+  "sourceCode": "public static boolean checkCommand(String[] checkCmd, int... errorValue) {\n        if (errorValue.length == 0) {\n            errorValue = new int[]{127};\n        }\n\n        Process process = null;\n        try {\n            process = Runtime.getRuntime().exec(checkCmd);\n            StreamGobbler outGobbler = new StreamGobbler(process.getInputStream(), 0);\n            StreamGobbler errGobbler = new StreamGobbler(process.getErrorStream(), 0);\n            Thread outThread = new Thread(outGobbler);\n            Thread errThread = new Thread(errGobbler);\n            outThread.start();\n            errThread.start();\n            boolean finished = process.waitFor(60000, TimeUnit.MILLISECONDS);\n            if (!finished) {\n                throw new TimeoutException();\n            }\n            outThread.join(1000);\n            errThread.join(1000);\n            int result = process.exitValue();\n            LOG.debug(\"exit value for {}: {}\", checkCmd[0], result);\n            for (int err : errorValue) {\n                if (result == err) {\n                    return false;\n                }\n            }\n            return true;\n        } catch (IOException | InterruptedException | TimeoutException e) {\n            LOG.debug(\"exception trying to run \" + checkCmd[0], e);\n            return false;\n        } catch (SecurityException se) {\n            throw se;\n        } catch (Error err) {\n            if (err.getMessage() != null && (err.getMessage().contains(\"posix_spawn\") ||\n                    err.getMessage().contains(\"UNIXProcess\"))) {\n                LOG.debug(\"(TIKA-1526): exception trying to run: \" + checkCmd[0], err);\n                return false;\n            }\n            throw err;\n        } finally {\n            if (process != null) {\n                process.destroyForcibly();\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "contains(CharSequence)"
+    ],
+    "java.lang.Runtime": [
+      "exec(String[])",
+      "getRuntime()"
+    ],
+    "java.lang.Process": [
+      "exitValue()",
+      "waitFor(long, TimeUnit)",
+      "getInputStream()",
+      "getErrorStream()",
+      "destroyForcibly()"
+    ],
+    "java.lang.Thread": [
+      "start()",
+      "join(long)"
+    ],
+    "org.slf4j.Logger": [
+      "debug(String, Object, Object)",
+      "debug(String, Throwable)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * Checks to see if the command can be run. Typically used with\n * something like {@code new String[]{\"myapp\", \"--version\"}} to check to see if \"myapp\"\n * is installed and on the path.\n *\n * @param checkCmd   The check command to run\n * @param errorValue What is considered an error value? Default is 127 (command not found).\n * @return true if the command ran successfully (exit code not in errorValue list)\n */\npublic static boolean checkCommand(String[] checkCmd, int... errorValue) {\n    if (errorValue.length == 0) {\n        errorValue = new int[] { 127 };\n    }\n    Process process = null;\n    try {\n        process = Runtime.getRuntime().exec(checkCmd);\n        StreamGobbler outGobbler = new StreamGobbler(process.getInputStream(), 0);\n        StreamGobbler errGobbler = new StreamGobbler(process.getErrorStream(), 0);\n        Thread outThread = new Thread(outGobbler);\n        Thread errThread = new Thread(errGobbler);\n        outThread.start();\n        errThread.start();\n        boolean finished = process.waitFor(60000, TimeUnit.MILLISECONDS);\n        if (!finished) {\n            throw new TimeoutException();\n        }\n        outThread.join(1000);\n        errThread.join(1000);\n        int result = process.exitValue();\n        LOG.debug(\"exit value for {}: {}\", checkCmd[0], result);\n        for (int err : errorValue) {\n            if (result == err) {\n                return false;\n            }\n        }\n        return true;\n    } catch (IOException | InterruptedException | TimeoutException e) {\n        LOG.debug(\"exception trying to run \" + checkCmd[0], e);\n        return false;\n    } catch (SecurityException se) {\n        throw se;\n    } catch (Error err) {\n        if (err.getMessage() != null && (err.getMessage().contains(\"posix_spawn\") || err.getMessage().contains(\"UNIXProcess\"))) {\n            LOG.debug(\"(TIKA-1526): exception trying to run: \" + checkCmd[0], err);\n            return false;\n        }\n        throw err;\n    } finally {\n        if (process != null) {\n            process.destroyForcibly();\n        }\n    }\n}",
+  "method_comment": "\n     * Checks to see if the command can be run. Typically used with\n     * something like {@code new String[]{\"myapp\", \"--version\"}} to check to see if \"myapp\"\n     * is installed and on the path.\n     *\n     * @param checkCmd   The check command to run\n     * @param errorValue What is considered an error value? Default is 127 (command not found).\n     * @return true if the command ran successfully (exit code not in errorValue list)\n     ",
+  "method_annotation": ""
+}

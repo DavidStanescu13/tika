@@ -1,0 +1,26 @@
+{
+  "className": "BOMDetector",
+  "methodName": "startsWith",
+  "brief": "private boolean startsWith(ByteOrderMark bom, byte[] bytes){}",
+  "methodSignature": "startsWith(ByteOrderMark, byte[])",
+  "sourceCode": "private boolean startsWith(ByteOrderMark bom, byte[] bytes) {\n        byte[] bomBytes = bom.getBytes();\n        if (bytes.length < bomBytes.length) {\n            return false;\n        }\n        for (int i = 0; i < bomBytes.length; i++) {\n            if (bomBytes[i] != bytes[i]) {\n                return false;\n            }\n        }\n        return true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteOrderMark",
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.io.ByteOrderMark": [
+      "getBytes()"
+    ],
+    "byte": []
+  },
+  "full_method_info": "private boolean startsWith(ByteOrderMark bom, byte[] bytes) {\n    byte[] bomBytes = bom.getBytes();\n    if (bytes.length < bomBytes.length) {\n        return false;\n    }\n    for (int i = 0; i < bomBytes.length; i++) {\n        if (bomBytes[i] != bytes[i]) {\n            return false;\n        }\n    }\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

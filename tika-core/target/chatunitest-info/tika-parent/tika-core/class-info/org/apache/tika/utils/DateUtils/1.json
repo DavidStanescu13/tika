@@ -1,0 +1,29 @@
+{
+  "className": "DateUtils",
+  "methodName": "formatDate",
+  "brief": "public static String formatDate(Date date){}",
+  "methodSignature": "formatDate(Date)",
+  "sourceCode": "public static String formatDate(Date date) {\n        Calendar calendar = GregorianCalendar.getInstance(UTC, Locale.US);\n        calendar.setTime(date);\n        return doFormatDate(calendar);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Date"
+  ],
+  "dependentMethods": {
+    "java.util.Date": [],
+    "java.util.Calendar": [
+      "setTime(Date)",
+      "getInstance(TimeZone, Locale)"
+    ],
+    "org.apache.tika.utils.DateUtils": [
+      "doFormatDate(Calendar)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a ISO 8601 representation of the given date in UTC,\n * truncated to the seconds unit. This method is thread safe and non-blocking.\n *\n * @param date given date\n * @return ISO 8601 date string in UTC, truncated to the seconds unit\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n */\npublic static String formatDate(Date date) {\n    Calendar calendar = GregorianCalendar.getInstance(UTC, Locale.US);\n    calendar.setTime(date);\n    return doFormatDate(calendar);\n}",
+  "method_comment": "\n     * Returns a ISO 8601 representation of the given date in UTC,\n     * truncated to the seconds unit. This method is thread safe and non-blocking.\n     *\n     * @param date given date\n     * @return ISO 8601 date string in UTC, truncated to the seconds unit\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n     ",
+  "method_annotation": ""
+}

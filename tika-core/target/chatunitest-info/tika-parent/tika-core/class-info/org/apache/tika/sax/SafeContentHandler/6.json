@@ -1,0 +1,22 @@
+{
+  "className": "SafeContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        // TODO: enable this, but some parsers currently\n        // trip it\n        //assert verifyEndDocument();\n        super.endDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endDocument()"
+    ]
+  },
+  "full_method_info": "/*\n    private final List<String> elements = new ArrayList<String>();\n\n    // Called only from assert\n    private boolean verifyStartElement(String name) {\n        // TODO: we could strengthen this to do full\n        // XTHML validation, eg you shouldn't start p inside\n        // another p (but ODF parser, at least, seems to\n        // violate this):\n        //if (name.equals(\"p\")) {\n        //assert elements.size() == 0 || !elements.get(elements.size()-1).equals(\"p\");\n        //}\n        elements.add(name);\n        return true;\n    }\n\n    // Called only from assert\n    private boolean verifyEndElement(String name) {\n        assert elements.size() > 0: \"end tag=\" + name + \" with no startElement\";\n        final String currentElement = elements.get(elements.size()-1);\n        assert currentElement.equals(name): \"mismatched elements open=\" +\n        currentElement + \" close=\" + name;\n        elements.remove(elements.size()-1);\n        return true;\n    }\n\n    // Called only from assert\n    private boolean verifyEndDocument() {\n        assert elements.size() == 0;\n        return true;\n    }\n    */\n// ------------------------------------------------------< ContentHandler >\n@Override\npublic void endDocument() throws SAXException {\n    // TODO: enable this, but some parsers currently\n    // trip it\n    // assert verifyEndDocument();\n    super.endDocument();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

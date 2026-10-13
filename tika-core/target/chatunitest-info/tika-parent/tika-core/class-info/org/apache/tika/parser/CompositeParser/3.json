@@ -1,0 +1,36 @@
+{
+  "className": "CompositeParser",
+  "methodName": "findDuplicateParsers",
+  "brief": "public Map<MediaType, List<Parser>> findDuplicateParsers(ParseContext context){}",
+  "methodSignature": "findDuplicateParsers(ParseContext)",
+  "sourceCode": "public Map<MediaType, List<Parser>> findDuplicateParsers(ParseContext context) {\n        Map<MediaType, Parser> types = new HashMap<>();\n        Map<MediaType, List<Parser>> duplicates = new HashMap<>();\n        for (Parser parser : parsers) {\n            for (MediaType type : parser.getSupportedTypes(context)) {\n                MediaType canonicalType = registry.normalize(type);\n                if (types.containsKey(canonicalType)) {\n                    List<Parser> list = duplicates.get(canonicalType);\n                    if (list == null) {\n                        list = new ArrayList<>();\n                        list.add(types.get(canonicalType));\n                        duplicates.put(canonicalType, list);\n                    }\n                    list.add(parser);\n                } else {\n                    types.put(canonicalType, parser);\n                }\n            }\n        }\n        return duplicates;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "normalize(MediaType)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "containsKey(Object)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Utility method that goes through all the component parsers and finds\n * all media types for which more than one parser declares support. This\n * is useful in tracking down conflicting parser definitions.\n *\n * @param context parsing context\n * @return media types that are supported by at least two component parsers\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-660\">TIKA-660</a>\n * @since Apache Tika 0.10\n */\npublic Map<MediaType, List<Parser>> findDuplicateParsers(ParseContext context) {\n    Map<MediaType, Parser> types = new HashMap<>();\n    Map<MediaType, List<Parser>> duplicates = new HashMap<>();\n    for (Parser parser : parsers) {\n        for (MediaType type : parser.getSupportedTypes(context)) {\n            MediaType canonicalType = registry.normalize(type);\n            if (types.containsKey(canonicalType)) {\n                List<Parser> list = duplicates.get(canonicalType);\n                if (list == null) {\n                    list = new ArrayList<>();\n                    list.add(types.get(canonicalType));\n                    duplicates.put(canonicalType, list);\n                }\n                list.add(parser);\n            } else {\n                types.put(canonicalType, parser);\n            }\n        }\n    }\n    return duplicates;\n}",
+  "method_comment": "\n     * Utility method that goes through all the component parsers and finds\n     * all media types for which more than one parser declares support. This\n     * is useful in tracking down conflicting parser definitions.\n     *\n     * @param context parsing context\n     * @return media types that are supported by at least two component parsers\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-660\">TIKA-660</a>\n     * @since Apache Tika 0.10\n     ",
+  "method_annotation": ""
+}

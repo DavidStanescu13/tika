@@ -1,0 +1,24 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "addText",
+  "brief": "public abstract void addText(char[] cbuf, int off, int len);",
+  "methodSignature": "addText(char[], int, int)",
+  "sourceCode": "public abstract void addText(char[] cbuf, int off, int len);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "/**\n * Add statistics about this text for the current document. Note\n * that we assume an implicit word break exists before/after\n * each of these runs of text.\n *\n * @param cbuf Character buffer\n * @param off  Offset into cbuf to first character in the run of text\n * @param len  Number of characters in the run of text.\n */\npublic abstract void addText(char[] cbuf, int off, int len);",
+  "method_comment": "\n     * Add statistics about this text for the current document. Note\n     * that we assume an implicit word break exists before/after\n     * each of these runs of text.\n     *\n     * @param cbuf Character buffer\n     * @param off  Offset into cbuf to first character in the run of text\n     * @param len  Number of characters in the run of text.\n     ",
+  "method_annotation": ""
+}

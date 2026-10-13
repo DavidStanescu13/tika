@@ -1,0 +1,25 @@
+{
+  "className": "TargetElement",
+  "methodName": "TargetElement",
+  "brief": "public TargetElement(QName mappedTagName){}",
+  "methodSignature": "TargetElement(QName)",
+  "sourceCode": "public TargetElement(QName mappedTagName) {\n            this(mappedTagName, Collections.emptyMap());\n        }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "QName"
+  ],
+  "dependentMethods": {
+    "javax.xml.namespace.QName": [],
+    "java.util.Collections": [
+      "emptyMap()"
+    ]
+  },
+  "full_method_info": "public TargetElement(QName mappedTagName) {\n    this(mappedTagName, Collections.emptyMap());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

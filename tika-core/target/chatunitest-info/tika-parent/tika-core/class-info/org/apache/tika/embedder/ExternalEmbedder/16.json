@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getMetadataCommandArguments",
+  "brief": "public Map<Property, String[]> getMetadataCommandArguments(){}",
+  "methodSignature": "getMetadataCommandArguments()",
+  "sourceCode": "public Map<Property, String[]> getMetadataCommandArguments() {\n        return metadataCommandArguments;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the map of Metadata keys to command line parameters.\n *\n * @return the metadata to CLI param map\n */\npublic Map<Property, String[]> getMetadataCommandArguments() {\n    return metadataCommandArguments;\n}",
+  "method_comment": "\n     * Gets the map of Metadata keys to command line parameters.\n     *\n     * @return the metadata to CLI param map\n     ",
+  "method_annotation": ""
+}

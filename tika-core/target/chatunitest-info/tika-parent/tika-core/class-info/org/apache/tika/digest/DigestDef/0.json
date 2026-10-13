@@ -1,0 +1,18 @@
+{
+  "className": "DigestDef",
+  "methodName": "getAlgorithm",
+  "brief": "public Algorithm getAlgorithm(){}",
+  "methodSignature": "getAlgorithm()",
+  "sourceCode": "public Algorithm getAlgorithm() {\n        return algorithm;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Algorithm getAlgorithm() {\n    return algorithm;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

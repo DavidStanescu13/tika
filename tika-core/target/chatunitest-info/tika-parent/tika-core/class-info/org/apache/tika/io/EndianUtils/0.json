@@ -1,0 +1,25 @@
+{
+  "className": "EndianUtils",
+  "methodName": "readShortLE",
+  "brief": "public static short readShortLE(InputStream stream)\r\n            throws IOException, BufferUnderrunException{}",
+  "methodSignature": "readShortLE(InputStream)",
+  "sourceCode": "public static short readShortLE(InputStream stream)\n            throws IOException, BufferUnderrunException {\n        return (short) readUShortLE(stream);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.io.EndianUtils": [
+      "readUShortLE(InputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a LE short value from an InputStream\n *\n * @param stream the InputStream from which the short is to be read\n * @return the short (16-bit) value\n * @throws IOException             will be propagated back to the caller\n * @throws BufferUnderrunException if the stream cannot provide enough bytes\n */\npublic static short readShortLE(InputStream stream) throws IOException, BufferUnderrunException {\n    return (short) readUShortLE(stream);\n}",
+  "method_comment": "\n     * Get a LE short value from an InputStream\n     *\n     * @param stream the InputStream from which the short is to be read\n     * @return the short (16-bit) value\n     * @throws IOException             will be propagated back to the caller\n     * @throws BufferUnderrunException if the stream cannot provide enough bytes\n     ",
+  "method_annotation": ""
+}

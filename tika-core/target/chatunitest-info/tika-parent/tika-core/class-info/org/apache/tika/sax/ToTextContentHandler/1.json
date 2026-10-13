@@ -1,0 +1,27 @@
+{
+  "className": "ToTextContentHandler",
+  "methodName": "ignorableWhitespace",
+  "brief": "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "ignorableWhitespace(char[], int, int)",
+  "sourceCode": "@Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        characters(ch, start, length);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.ToTextContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given ignorable characters to the given character stream.\n * The default implementation simply forwards the call to the\n * {@link #characters(char[], int, int)} method.\n */\n@Override\npublic void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n    characters(ch, start, length);\n}",
+  "method_comment": "\n     * Writes the given ignorable characters to the given character stream.\n     * The default implementation simply forwards the call to the\n     * {@link #characters(char[], int, int)} method.\n     ",
+  "method_annotation": "@Override\n"
+}

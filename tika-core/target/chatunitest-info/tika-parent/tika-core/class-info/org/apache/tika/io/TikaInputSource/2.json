@@ -1,0 +1,22 @@
+{
+  "className": "TikaInputSource",
+  "methodName": "getPath",
+  "brief": "Path getPath(String suffix) throws IOException;",
+  "methodSignature": "getPath(String)",
+  "sourceCode": "Path getPath(String suffix) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Gets the file path, potentially spilling to a temp file if needed.\n * @param suffix file suffix for temp files\n * @return the file path\n */\nPath getPath(String suffix) throws IOException;",
+  "method_comment": "\n     * Gets the file path, potentially spilling to a temp file if needed.\n     * @param suffix file suffix for temp files\n     * @return the file path\n     ",
+  "method_annotation": ""
+}

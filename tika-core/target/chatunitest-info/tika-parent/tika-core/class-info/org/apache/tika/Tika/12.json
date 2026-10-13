@@ -1,0 +1,28 @@
+{
+  "className": "Tika",
+  "methodName": "parse",
+  "brief": "public Reader parse(InputStream stream) throws IOException{}",
+  "methodSignature": "parse(InputStream)",
+  "sourceCode": "public Reader parse(InputStream stream) throws IOException {\n        ParseContext context = new ParseContext();\n        return parse(stream, Metadata.newInstance(context), context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.Tika": [
+      "parse(InputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given document and returns the extracted text content.\n * <p>\n * The returned reader will be responsible for closing the given stream.\n * The stream and any associated resources will be closed at or before\n * the time when the {@link Reader#close()} method is called.\n *\n * @param stream the document to be parsed\n * @return extracted text content\n * @throws IOException if the document can not be read or parsed\n */\npublic Reader parse(InputStream stream) throws IOException {\n    ParseContext context = new ParseContext();\n    return parse(stream, Metadata.newInstance(context), context);\n}",
+  "method_comment": "\n     * Parses the given document and returns the extracted text content.\n     * <p>\n     * The returned reader will be responsible for closing the given stream.\n     * The stream and any associated resources will be closed at or before\n     * the time when the {@link Reader#close()} method is called.\n     *\n     * @param stream the document to be parsed\n     * @return extracted text content\n     * @throws IOException if the document can not be read or parsed\n     ",
+  "method_annotation": ""
+}

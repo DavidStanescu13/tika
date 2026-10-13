@@ -1,0 +1,18 @@
+{
+  "className": "StandardOrganizations",
+  "methodName": "getOrganizations",
+  "brief": "public static Map<String, String> getOrganizations(){}",
+  "methodSignature": "getOrganizations()",
+  "sourceCode": "public static Map<String, String> getOrganizations() {\n        return organizations;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the map containing the collection of the most important technical standard\n * organizations.\n *\n * @return the map containing the collection of the most important technical standard\n * organizations.\n */\npublic static Map<String, String> getOrganizations() {\n    return organizations;\n}",
+  "method_comment": "\n     * Returns the map containing the collection of the most important technical standard\n     * organizations.\n     *\n     * @return the map containing the collection of the most important technical standard\n     * organizations.\n     ",
+  "method_annotation": ""
+}

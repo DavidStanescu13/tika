@@ -1,0 +1,33 @@
+{
+  "className": "LegacyKeyMigrationFilter",
+  "methodName": "digestRule",
+  "brief": "private static UnaryOperator<String> digestRule(Direction direction){}",
+  "methodSignature": "digestRule(Direction)",
+  "sourceCode": "private static UnaryOperator<String> digestRule(Direction direction) {\n        boolean egress = direction == Direction.V4_TO_V3;\n        String fromPrefix = egress ? V4_DIGEST : V3_DIGEST;\n        String toPrefix = egress ? V3_DIGEST : V4_DIGEST;\n        Map<String, String> alg = new HashMap<>();\n        DIGEST_ALG_V4_TO_V3.forEach((v4, v3) -> alg.put(egress ? v4 : v3, egress ? v3 : v4));\n        return name -> {\n            if (!name.startsWith(fromPrefix)) {\n                return null;\n            }\n            String rest = name.substring(fromPrefix.length());   // <alg> or <alg>:<enc>\n            int c = rest.indexOf(':');\n            String a = c < 0 ? rest : rest.substring(0, c);\n            String enc = c < 0 ? \"\" : rest.substring(c);\n            return toPrefix + alg.getOrDefault(a, a) + enc;\n        };\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Direction"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter.Direction": [],
+    "java.util.Map": [
+      "getOrDefault(Object, V)",
+      "forEach(BiConsumer<? super K, ? super V>)",
+      "put(K, V)"
+    ],
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)",
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * {@code tk:digest:<jca-alg>[:enc]} &harr; {@code X-TIKA:digest:<enum-alg>[:enc]} (encoding kept).\n */\nprivate static UnaryOperator<String> digestRule(Direction direction) {\n    boolean egress = direction == Direction.V4_TO_V3;\n    String fromPrefix = egress ? V4_DIGEST : V3_DIGEST;\n    String toPrefix = egress ? V3_DIGEST : V4_DIGEST;\n    Map<String, String> alg = new HashMap<>();\n    DIGEST_ALG_V4_TO_V3.forEach((v4, v3) -> alg.put(egress ? v4 : v3, egress ? v3 : v4));\n    return name -> {\n        if (!name.startsWith(fromPrefix)) {\n            return null;\n        }\n        // <alg> or <alg>:<enc>\n        String rest = name.substring(fromPrefix.length());\n        int c = rest.indexOf(':');\n        String a = c < 0 ? rest : rest.substring(0, c);\n        String enc = c < 0 ? \"\" : rest.substring(c);\n        return toPrefix + alg.getOrDefault(a, a) + enc;\n    };\n}",
+  "method_comment": " {@code tk:digest:<jca-alg>[:enc]} &harr; {@code X-TIKA:digest:<enum-alg>[:enc]} (encoding kept). ",
+  "method_annotation": ""
+}

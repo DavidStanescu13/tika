@@ -1,0 +1,110 @@
+{
+  "fullClassName": "org.apache.tika.detect.DefaultDetector",
+  "className": "DefaultDetector",
+  "index": 21,
+  "modifier": "[public ]",
+  "extend": "[CompositeDetector]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class DefaultDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.ArrayList;",
+    "import java.util.Collection;",
+    "import java.util.Collections;",
+    "import java.util.List;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.mime.MimeTypes;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = -8170114575326908027L;",
+    "private transient final ServiceLoader loader;",
+    "private final Collection<Class<? extends Detector>> excludedClasses;",
+    "private final MimeTypes mimeTypes;",
+    "private final TextDetector textDetector;"
+  ],
+  "superClasses": [
+    "CompositeDetector"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDefaultDetectors(ServiceLoader, Collection)": "0",
+    "detect(TikaInputStream, Metadata, ParseContext)": "1",
+    "mostSpecific(MediaType, MediaType, MediaType)": "2",
+    "getDetectors()": "3",
+    "getExcludedClasses()": "4",
+    "DefaultDetector(MimeTypes, ServiceLoader, Collection)": "5",
+    "DefaultDetector(MimeTypes, ServiceLoader)": "6",
+    "DefaultDetector(MimeTypes, ClassLoader)": "7",
+    "DefaultDetector(ClassLoader)": "8",
+    "DefaultDetector(MimeTypes)": "9",
+    "DefaultDetector()": "10"
+  },
+  "methodsBrief": [
+    "private static List<Detector> getDefaultDetectors(ServiceLoader loader,\r\n                                                      Collection<Class<? extends Detector>>\r\n                                                              excludeDetectors){}",
+    "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+    "private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType){}",
+    "@Override\r\n    public List<Detector> getDetectors(){}",
+    "public Collection<Class<? extends Detector>> getExcludedClasses(){}",
+    "public DefaultDetector(MimeTypes types, ServiceLoader loader,\r\n                           Collection<Class<? extends Detector>> excludeDetectors){}",
+    "public DefaultDetector(MimeTypes types, ServiceLoader loader){}",
+    "public DefaultDetector(MimeTypes types, ClassLoader loader){}",
+    "public DefaultDetector(ClassLoader loader){}",
+    "public DefaultDetector(MimeTypes types){}",
+    "public DefaultDetector(){}"
+  ],
+  "constructorSigs": [
+    "DefaultDetector(MimeTypes, ServiceLoader, Collection)",
+    "DefaultDetector(MimeTypes, ServiceLoader)",
+    "DefaultDetector(MimeTypes, ClassLoader)",
+    "DefaultDetector(ClassLoader)",
+    "DefaultDetector(MimeTypes)",
+    "DefaultDetector()"
+  ],
+  "constructorBrief": [
+    "public DefaultDetector(MimeTypes types, ServiceLoader loader,\r\n                           Collection<Class<? extends Detector>> excludeDetectors){}",
+    "public DefaultDetector(MimeTypes types, ServiceLoader loader){}",
+    "public DefaultDetector(MimeTypes types, ClassLoader loader){}",
+    "public DefaultDetector(ClassLoader loader){}",
+    "public DefaultDetector(MimeTypes types){}",
+    "public DefaultDetector(){}"
+  ],
+  "getterSetterSigs": [
+    "getDetectors()",
+    "getExcludedClasses()"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public List<Detector> getDetectors(){}",
+    "public Collection<Class<? extends Detector>> getExcludedClasses(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.MimeTypes": [
+      "getMediaTypeRegistry()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.detect.DefaultDetector": [
+      "getDefaultDetectors(ServiceLoader, Detector>>)"
+    ],
+    "java.util.Collections": [
+      "emptySet()",
+      "unmodifiableCollection(Collection<? extends T>)"
+    ],
+    "java.lang.ClassLoader": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.Collection;\nimport java.util.Collections;\nimport java.util.List;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.mime.MimeTypes;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\n/**\n * A composite detector that orchestrates the detection pipeline:\n * <ol>\n *   <li>MimeTypes (magic byte) detection</li>\n *   <li>Container and other detectors loaded via SPI</li>\n *   <li>TextDetector as fallback for unknown types</li>\n *   <li>Returns the most specific type detected</li>\n * </ol>\n * <p>\n * Detectors are loaded and returned in a specified order, of user supplied\n * followed by non-MimeType Tika detectors.\n * If you need to control the order of the Detectors, you should instead\n * construct your own {@link CompositeDetector} and pass in the list\n * of Detectors in the required order.\n * <p>\n * Individual detectors that need random access (e.g., for container inspection)\n * handle their own spooling by calling {@link TikaInputStream#getFile()}.\n *\n * @since Apache Tika 0.9\n */\n@TikaComponent(spi = false)\npublic class DefaultDetector extends CompositeDetector {\n\n    private static final long serialVersionUID = -8170114575326908027L;\n\n    private transient final ServiceLoader loader;\n\n    private final Collection<Class<? extends Detector>> excludedClasses;\n\n    private final MimeTypes mimeTypes;\n\n    private final TextDetector textDetector;\n\n    public DefaultDetector(MimeTypes types, ServiceLoader loader, Collection<Class<? extends Detector>> excludeDetectors) {\n        super(types.getMediaTypeRegistry(), getDefaultDetectors(loader, excludeDetectors));\n        this.loader = loader;\n        this.mimeTypes = types;\n        this.textDetector = new TextDetector();\n        this.excludedClasses = excludeDetectors != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeDetectors)) : Collections.emptySet();\n    }\n\n    public DefaultDetector(MimeTypes types, ServiceLoader loader) {\n        this(types, loader, Collections.emptySet());\n    }\n\n    public DefaultDetector(MimeTypes types, ClassLoader loader) {\n        this(types, new ServiceLoader(loader));\n    }\n\n    public DefaultDetector(ClassLoader loader) {\n        this(MimeTypes.getDefaultMimeTypes(), loader);\n    }\n\n    public DefaultDetector(MimeTypes types) {\n        this(types, new ServiceLoader());\n    }\n\n    public DefaultDetector() {\n        this(MimeTypes.getDefaultMimeTypes());\n    }\n\n    /**\n     * Finds all statically loadable detectors and sort the list by name,\n     * rather than discovery order. Detectors are used in the given order,\n     * so put the Tika parsers last so that non-Tika (user supplied)\n     * parsers can take precedence.\n     * <p>\n     * If an {@link OverrideDetector} is loaded, it takes precedence over\n     * all other detectors.\n     * <p>\n     * Note: MimeTypes is handled separately in the detect() method, not included here.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable detectors\n     */\n    private static List<Detector> getDefaultDetectors(ServiceLoader loader, Collection<Class<? extends Detector>> excludeDetectors) {\n        List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class, excludeDetectors);\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        // look for the override index and put that first\n        int overrideIndex = -1;\n        int i = 0;\n        for (Detector detector : detectors) {\n            if (detector instanceof OverrideDetector) {\n                overrideIndex = i;\n                break;\n            }\n            i++;\n        }\n        if (overrideIndex > -1) {\n            Detector detector = detectors.remove(overrideIndex);\n            detectors.add(0, detector);\n        }\n        return detectors;\n    }\n\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        // 1. Magic detection via MimeTypes\n        MediaType magicType = mimeTypes.detect(tis, metadata, parseContext);\n        metadata.set(TikaCoreProperties.CONTENT_TYPE_MAGIC_DETECTED, magicType.toString());\n        // 2. Run other detectors (container detectors, etc.)\n        // Note: Container detectors that need random access handle their own spooling\n        MediaType detectedType = super.detect(tis, metadata, parseContext);\n        // 3. Text detection - only if still unknown\n        MediaType textType = null;\n        if (MediaType.OCTET_STREAM.equals(detectedType) && MediaType.OCTET_STREAM.equals(magicType)) {\n            textType = textDetector.detect(tis, metadata, parseContext);\n        }\n        // 4. Return most specific\n        return mostSpecific(magicType, detectedType, textType);\n    }\n\n    private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType) {\n        MediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\n        // Collect non-null, non-octet-stream candidates\n        MediaType best = MediaType.OCTET_STREAM;\n        // Start with magic type as baseline if valid\n        if (magicType != null && !MediaType.OCTET_STREAM.equals(magicType)) {\n            best = magicType;\n        }\n        // Container detectors may find more specific types (e.g., OLE -> msword)\n        // or less specific (e.g., commons-compress tar vs magic gtar)\n        // Use the registry to determine which is more specific\n        if (detectedType != null && !MediaType.OCTET_STREAM.equals(detectedType)) {\n            if (MediaType.OCTET_STREAM.equals(best)) {\n                best = detectedType;\n            } else if (registry.isSpecializationOf(detectedType, best)) {\n                // detectedType is more specific than best\n                best = detectedType;\n            } else if (!registry.isSpecializationOf(best, detectedType)) {\n                // Neither is a specialization of the other - prefer container detection\n                // for unrelated types (e.g., different format families)\n                best = detectedType;\n            }\n            // else: best is already more specific than detectedType, keep best\n        }\n        // Text detection as fallback only if still unknown\n        if (MediaType.OCTET_STREAM.equals(best) && textType != null && !MediaType.OCTET_STREAM.equals(textType)) {\n            best = textType;\n        }\n        return best;\n    }\n\n    @Override\n    public List<Detector> getDetectors() {\n        if (loader != null && loader.isDynamic()) {\n            List<Detector> detectors = loader.loadDynamicServiceProviders(Detector.class);\n            if (!detectors.isEmpty()) {\n                detectors.addAll(super.getDetectors());\n                return detectors;\n            } else {\n                return super.getDetectors();\n            }\n        } else {\n            return super.getDetectors();\n        }\n    }\n\n    /**\n     * Returns the classes that were explicitly excluded when constructing this detector.\n     * Used for round-trip serialization to preserve exclusion configuration.\n     *\n     * @return unmodifiable collection of excluded detector classes, never null\n     */\n    public Collection<Class<? extends Detector>> getExcludedClasses() {\n        return excludedClasses;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A composite detector that orchestrates the detection pipeline:\n * <ol>\n *   <li>MimeTypes (magic byte) detection</li>\n *   <li>Container and other detectors loaded via SPI</li>\n *   <li>TextDetector as fallback for unknown types</li>\n *   <li>Returns the most specific type detected</li>\n * </ol>\n * <p>\n * Detectors are loaded and returned in a specified order, of user supplied\n * followed by non-MimeType Tika detectors.\n * If you need to control the order of the Detectors, you should instead\n * construct your own {@link CompositeDetector} and pass in the list\n * of Detectors in the required order.\n * <p>\n * Individual detectors that need random access (e.g., for container inspection)\n * handle their own spooling by calling {@link TikaInputStream#getFile()}.\n *\n * @since Apache Tika 0.9\n */\n@TikaComponent(spi = false)\npublic class DefaultDetector extends CompositeDetector {\n\n    private static final long serialVersionUID = -8170114575326908027L;\n\n    private transient final ServiceLoader loader;\n\n    private final Collection<Class<? extends Detector>> excludedClasses;\n\n    private final MimeTypes mimeTypes;\n\n    private final TextDetector textDetector;\n\n    public DefaultDetector(MimeTypes types, ServiceLoader loader, Collection<Class<? extends Detector>> excludeDetectors) {\n        super(types.getMediaTypeRegistry(), getDefaultDetectors(loader, excludeDetectors));\n        this.loader = loader;\n        this.mimeTypes = types;\n        this.textDetector = new TextDetector();\n        this.excludedClasses = excludeDetectors != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeDetectors)) : Collections.emptySet();\n    }\n\n    public DefaultDetector(MimeTypes types, ServiceLoader loader) {\n        this(types, loader, Collections.emptySet());\n    }\n\n    public DefaultDetector(MimeTypes types, ClassLoader loader) {\n        this(types, new ServiceLoader(loader));\n    }\n\n    public DefaultDetector(ClassLoader loader) {\n        this(MimeTypes.getDefaultMimeTypes(), loader);\n    }\n\n    public DefaultDetector(MimeTypes types) {\n        this(types, new ServiceLoader());\n    }\n\n    public DefaultDetector() {\n        this(MimeTypes.getDefaultMimeTypes());\n    }\n\n    /**\n     * Finds all statically loadable detectors and sort the list by name,\n     * rather than discovery order. Detectors are used in the given order,\n     * so put the Tika parsers last so that non-Tika (user supplied)\n     * parsers can take precedence.\n     * <p>\n     * If an {@link OverrideDetector} is loaded, it takes precedence over\n     * all other detectors.\n     * <p>\n     * Note: MimeTypes is handled separately in the detect() method, not included here.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable detectors\n     */\n    private static List<Detector> getDefaultDetectors(ServiceLoader loader, Collection<Class<? extends Detector>> excludeDetectors) {\n        List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class, excludeDetectors);\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        // look for the override index and put that first\n        int overrideIndex = -1;\n        int i = 0;\n        for (Detector detector : detectors) {\n            if (detector instanceof OverrideDetector) {\n                overrideIndex = i;\n                break;\n            }\n            i++;\n        }\n        if (overrideIndex > -1) {\n            Detector detector = detectors.remove(overrideIndex);\n            detectors.add(0, detector);\n        }\n        return detectors;\n    }\n\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        // 1. Magic detection via MimeTypes\n        MediaType magicType = mimeTypes.detect(tis, metadata, parseContext);\n        metadata.set(TikaCoreProperties.CONTENT_TYPE_MAGIC_DETECTED, magicType.toString());\n        // 2. Run other detectors (container detectors, etc.)\n        // Note: Container detectors that need random access handle their own spooling\n        MediaType detectedType = super.detect(tis, metadata, parseContext);\n        // 3. Text detection - only if still unknown\n        MediaType textType = null;\n        if (MediaType.OCTET_STREAM.equals(detectedType) && MediaType.OCTET_STREAM.equals(magicType)) {\n            textType = textDetector.detect(tis, metadata, parseContext);\n        }\n        // 4. Return most specific\n        return mostSpecific(magicType, detectedType, textType);\n    }\n\n    private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType) {\n        MediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\n        // Collect non-null, non-octet-stream candidates\n        MediaType best = MediaType.OCTET_STREAM;\n        // Start with magic type as baseline if valid\n        if (magicType != null && !MediaType.OCTET_STREAM.equals(magicType)) {\n            best = magicType;\n        }\n        // Container detectors may find more specific types (e.g., OLE -> msword)\n        // or less specific (e.g., commons-compress tar vs magic gtar)\n        // Use the registry to determine which is more specific\n        if (detectedType != null && !MediaType.OCTET_STREAM.equals(detectedType)) {\n            if (MediaType.OCTET_STREAM.equals(best)) {\n                best = detectedType;\n            } else if (registry.isSpecializationOf(detectedType, best)) {\n                // detectedType is more specific than best\n                best = detectedType;\n            } else if (!registry.isSpecializationOf(best, detectedType)) {\n                // Neither is a specialization of the other - prefer container detection\n                // for unrelated types (e.g., different format families)\n                best = detectedType;\n            }\n            // else: best is already more specific than detectedType, keep best\n        }\n        // Text detection as fallback only if still unknown\n        if (MediaType.OCTET_STREAM.equals(best) && textType != null && !MediaType.OCTET_STREAM.equals(textType)) {\n            best = textType;\n        }\n        return best;\n    }\n\n    @Override\n    public List<Detector> getDetectors() {\n        if (loader != null && loader.isDynamic()) {\n            List<Detector> detectors = loader.loadDynamicServiceProviders(Detector.class);\n            if (!detectors.isEmpty()) {\n                detectors.addAll(super.getDetectors());\n                return detectors;\n            } else {\n                return super.getDetectors();\n            }\n        } else {\n            return super.getDetectors();\n        }\n    }\n\n    /**\n     * Returns the classes that were explicitly excluded when constructing this detector.\n     * Used for round-trip serialization to preserve exclusion configuration.\n     *\n     * @return unmodifiable collection of excluded detector classes, never null\n     */\n    public Collection<Class<? extends Detector>> getExcludedClasses() {\n        return excludedClasses;\n    }\n}",
+  "subClasses": []
+}

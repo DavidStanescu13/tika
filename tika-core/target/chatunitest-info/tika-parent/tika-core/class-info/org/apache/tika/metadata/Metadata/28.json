@@ -1,0 +1,33 @@
+{
+  "className": "Metadata",
+  "methodName": "add",
+  "brief": "public void add(Property property, int value){}",
+  "methodSignature": "add(Property, int)",
+  "sourceCode": "public void add(Property property, int value) {\n        if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n            throw new PropertyTypeException(PropertyType.SEQ,\n                    property.getPrimaryProperty().getPropertyType());\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n            throw new PropertyTypeException(Property.ValueType.INTEGER,\n                    property.getPrimaryProperty().getValueType());\n        }\n        add(property, Integer.toString(value));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)"
+    ],
+    "java.lang.Integer": [
+      "toString(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the integer value of the identified metadata property.\n *\n * @param property seq integer property definition\n * @param value    property value\n * @since Apache Tika 1.21\n */\npublic void add(Property property, int value) {\n    if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n        throw new PropertyTypeException(PropertyType.SEQ, property.getPrimaryProperty().getPropertyType());\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n        throw new PropertyTypeException(Property.ValueType.INTEGER, property.getPrimaryProperty().getValueType());\n    }\n    add(property, Integer.toString(value));\n}",
+  "method_comment": "\n     * Adds the integer value of the identified metadata property.\n     *\n     * @param property seq integer property definition\n     * @param value    property value\n     * @since Apache Tika 1.21\n     ",
+  "method_annotation": ""
+}

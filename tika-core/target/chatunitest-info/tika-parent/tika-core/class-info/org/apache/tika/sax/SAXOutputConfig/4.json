@@ -1,0 +1,18 @@
+{
+  "className": "SAXOutputConfig",
+  "methodName": "isWriteFileNameToContent",
+  "brief": "public boolean isWriteFileNameToContent(){}",
+  "methodSignature": "isWriteFileNameToContent()",
+  "sourceCode": "public boolean isWriteFileNameToContent() {\n        return writeFileNameToContent;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isWriteFileNameToContent() {\n    return writeFileNameToContent;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

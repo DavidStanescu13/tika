@@ -1,0 +1,37 @@
+{
+  "fullClassName": "org.apache.tika.extractor.UnpackSelector",
+  "className": "UnpackSelector",
+  "index": 93,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.extractor",
+  "packageDeclaration": "package org.apache.tika.extractor;",
+  "classSignature": "public interface UnpackSelector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "UnpackSelector ACCEPT_ALL = new AcceptAll();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "select(Metadata)": "0"
+  },
+  "methodsBrief": [
+    "boolean select(Metadata metadata);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.extractor;\n\nimport org.apache.tika.metadata.Metadata;\n\npublic interface UnpackSelector {\n\n    class AcceptAll implements UnpackSelector {\n\n        @Override\n        public boolean select(Metadata metadata) {\n            return true;\n        }\n    }\n\n    UnpackSelector ACCEPT_ALL = new AcceptAll();\n\n    boolean select(Metadata metadata);\n}\n",
+  "classDeclarationCode": "public interface UnpackSelector {\n\n    class AcceptAll implements UnpackSelector {\n\n        @Override\n        public boolean select(Metadata metadata) {\n            return true;\n        }\n    }\n\n    UnpackSelector ACCEPT_ALL = new AcceptAll();\n\n    boolean select(Metadata metadata);\n}",
+  "subClasses": []
+}

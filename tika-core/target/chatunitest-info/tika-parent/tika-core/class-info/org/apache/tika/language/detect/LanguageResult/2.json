@@ -1,0 +1,18 @@
+{
+  "className": "LanguageResult",
+  "methodName": "getConfidenceScore",
+  "brief": "public float getConfidenceScore(){}",
+  "methodSignature": "getConfidenceScore()",
+  "sourceCode": "public float getConfidenceScore() {\n        return confidenceScore;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Detector-agnostic confidence score (0.0 to 1.0). Higher values indicate\n * the detector is more confident in the result. This can be used to compare\n * results across different text decodings (e.g., for encoding detection)\n * without knowing the detector implementation.\n */\npublic float getConfidenceScore() {\n    return confidenceScore;\n}",
+  "method_comment": "\n     * Detector-agnostic confidence score (0.0 to 1.0). Higher values indicate\n     * the detector is more confident in the result. This can be used to compare\n     * results across different text decodings (e.g., for encoding detection)\n     * without knowing the detector implementation.\n     ",
+  "method_annotation": ""
+}

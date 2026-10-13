@@ -1,0 +1,25 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "release",
+  "brief": "private static Process release(String id){}",
+  "methodSignature": "release(String)",
+  "sourceCode": "private static Process release(String id) {\n        return PROCESS_MAP.remove(id);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.concurrent.ConcurrentHashMap": [
+      "remove(Object)"
+    ]
+  },
+  "full_method_info": "private static Process release(String id) {\n    return PROCESS_MAP.remove(id);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

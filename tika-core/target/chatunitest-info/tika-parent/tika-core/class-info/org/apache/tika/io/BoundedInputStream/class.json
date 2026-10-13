@@ -1,0 +1,81 @@
+{
+  "fullClassName": "org.apache.tika.io.BoundedInputStream",
+  "className": "BoundedInputStream",
+  "index": 95,
+  "modifier": "[public ]",
+  "extend": "[InputStream]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "public class BoundedInputStream",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.OutputStream;",
+    "import org.apache.commons.io.IOUtils;"
+  ],
+  "fields": [
+    "private final static int EOF = -1;",
+    "private final long max;",
+    "private final InputStream in;",
+    "private long pos;"
+  ],
+  "superClasses": [
+    "InputStream"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "read()": "0",
+    "read(byte[])": "1",
+    "read(byte[], int, int)": "2",
+    "skip(long)": "3",
+    "reset()": "4",
+    "mark(int)": "5",
+    "hasHitBound()": "6",
+    "readNBytes(int)": "7",
+    "readNBytes(byte[], int, int)": "8",
+    "available()": "9",
+    "markSupported()": "10",
+    "transferTo(OutputStream)": "11",
+    "getPos()": "12",
+    "BoundedInputStream(long, InputStream)": "13"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public int read() throws IOException{}",
+    "@Override\r\n    public int read(final byte[] b) throws IOException{}",
+    "@Override\r\n    public int read(final byte[] b, final int off, final int len) throws IOException{}",
+    "@Override\r\n    public long skip(final long n) throws IOException{}",
+    "@Override\r\n    public void reset() throws IOException{}",
+    "@Override\r\n    public void mark(int readLimit){}",
+    "public boolean hasHitBound(){}",
+    "@Override\r\n    public byte[] readNBytes(int len) throws IOException{}",
+    "@Override\r\n    public int readNBytes(byte[] b, int off, int len) throws IOException{}",
+    "@Override\r\n    public int available() throws IOException{}",
+    "@Override\r\n    public boolean markSupported(){}",
+    "@Override\r\n    public long transferTo(OutputStream out) throws IOException{}",
+    "public long getPos(){}",
+    "public BoundedInputStream(long max, InputStream in){}"
+  ],
+  "constructorSigs": [
+    "BoundedInputStream(long, InputStream)"
+  ],
+  "constructorBrief": [
+    "public BoundedInputStream(long max, InputStream in){}"
+  ],
+  "getterSetterSigs": [
+    "getPos()"
+  ],
+  "getterSetterBrief": [
+    "public long getPos(){}"
+  ],
+  "constructorDeps": {
+    "java.io.InputStream": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\nimport org.apache.commons.io.IOUtils;\n\n/**\n * Very slight modification of Commons' BoundedInputStream\n * so that we can figure out if this hit the bound or not.\n * <p>\n * This relies on IOUtils' skip and read to try to fully\n * read/skip inputstream.\n */\npublic class BoundedInputStream extends InputStream {\n\n    private final static int EOF = -1;\n\n    private final long max;\n\n    private final InputStream in;\n\n    private long pos;\n\n    public BoundedInputStream(long max, InputStream in) {\n        this.max = max;\n        this.in = in;\n    }\n\n    @Override\n    public int read() throws IOException {\n        if (max >= 0 && pos >= max) {\n            return EOF;\n        }\n        final int result = in.read();\n        pos++;\n        return result;\n    }\n\n    /**\n     * Invokes the delegate's <code>read(byte[])</code> method.\n     *\n     * @param b the buffer to read the bytes into\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public int read(final byte[] b) throws IOException {\n        return this.read(b, 0, b.length);\n    }\n\n    /**\n     * Invokes the delegate's <code>read(byte[], int, int)</code> method.\n     * <p>\n     * This does not have the same guarantees as IOUtil's readFully()...be careful.\n     *\n     * @param b   the buffer to read the bytes into\n     * @param off The start offset\n     * @param len The number of bytes to read\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public int read(final byte[] b, final int off, final int len) throws IOException {\n        if (max >= 0 && pos >= max) {\n            return EOF;\n        }\n        final long maxRead = max >= 0 ? Math.min(len, max - pos) : len;\n        final int bytesRead = in.read(b, off, (int) maxRead);\n        if (bytesRead == EOF) {\n            return EOF;\n        }\n        pos += bytesRead;\n        return bytesRead;\n    }\n\n    /**\n     * Invokes the delegate's <code>skip(long)</code> method.\n     * As with InputStream generally, this does not guarantee reading n bytes.\n     * Use IOUtils' skipFully for that functionality.\n     *\n     * @param n the number of bytes to skip\n     * @return the actual number of bytes skipped\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public long skip(final long n) throws IOException {\n        final long toSkip = max >= 0 ? Math.min(n, max - pos) : n;\n        final long skippedBytes = in.skip(toSkip);\n        pos += skippedBytes;\n        return skippedBytes;\n    }\n\n    @Override\n    public void reset() throws IOException {\n        in.reset();\n        pos = 0;\n    }\n\n    @Override\n    public void mark(int readLimit) {\n        in.mark(readLimit);\n    }\n\n    public boolean hasHitBound() {\n        return pos >= max;\n    }\n\n    @Override\n    public byte[] readNBytes(int len) throws IOException {\n        return in.readNBytes(len);\n    }\n\n    @Override\n    public int readNBytes(byte[] b, int off, int len) throws IOException {\n        return in.readNBytes(b, off, len);\n    }\n\n    @Override\n    public int available() throws IOException {\n        return in.available();\n    }\n\n    @Override\n    public boolean markSupported() {\n        return in.markSupported();\n    }\n\n    @Override\n    public long transferTo(OutputStream out) throws IOException {\n        return IOUtils.copy(this, out);\n    }\n\n    public long getPos() {\n        return pos;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Very slight modification of Commons' BoundedInputStream\n * so that we can figure out if this hit the bound or not.\n * <p>\n * This relies on IOUtils' skip and read to try to fully\n * read/skip inputstream.\n */\npublic class BoundedInputStream extends InputStream {\n\n    private final static int EOF = -1;\n\n    private final long max;\n\n    private final InputStream in;\n\n    private long pos;\n\n    public BoundedInputStream(long max, InputStream in) {\n        this.max = max;\n        this.in = in;\n    }\n\n    @Override\n    public int read() throws IOException {\n        if (max >= 0 && pos >= max) {\n            return EOF;\n        }\n        final int result = in.read();\n        pos++;\n        return result;\n    }\n\n    /**\n     * Invokes the delegate's <code>read(byte[])</code> method.\n     *\n     * @param b the buffer to read the bytes into\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public int read(final byte[] b) throws IOException {\n        return this.read(b, 0, b.length);\n    }\n\n    /**\n     * Invokes the delegate's <code>read(byte[], int, int)</code> method.\n     * <p>\n     * This does not have the same guarantees as IOUtil's readFully()...be careful.\n     *\n     * @param b   the buffer to read the bytes into\n     * @param off The start offset\n     * @param len The number of bytes to read\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public int read(final byte[] b, final int off, final int len) throws IOException {\n        if (max >= 0 && pos >= max) {\n            return EOF;\n        }\n        final long maxRead = max >= 0 ? Math.min(len, max - pos) : len;\n        final int bytesRead = in.read(b, off, (int) maxRead);\n        if (bytesRead == EOF) {\n            return EOF;\n        }\n        pos += bytesRead;\n        return bytesRead;\n    }\n\n    /**\n     * Invokes the delegate's <code>skip(long)</code> method.\n     * As with InputStream generally, this does not guarantee reading n bytes.\n     * Use IOUtils' skipFully for that functionality.\n     *\n     * @param n the number of bytes to skip\n     * @return the actual number of bytes skipped\n     * @throws IOException if an I/O error occurs\n     */\n    @Override\n    public long skip(final long n) throws IOException {\n        final long toSkip = max >= 0 ? Math.min(n, max - pos) : n;\n        final long skippedBytes = in.skip(toSkip);\n        pos += skippedBytes;\n        return skippedBytes;\n    }\n\n    @Override\n    public void reset() throws IOException {\n        in.reset();\n        pos = 0;\n    }\n\n    @Override\n    public void mark(int readLimit) {\n        in.mark(readLimit);\n    }\n\n    public boolean hasHitBound() {\n        return pos >= max;\n    }\n\n    @Override\n    public byte[] readNBytes(int len) throws IOException {\n        return in.readNBytes(len);\n    }\n\n    @Override\n    public int readNBytes(byte[] b, int off, int len) throws IOException {\n        return in.readNBytes(b, off, len);\n    }\n\n    @Override\n    public int available() throws IOException {\n        return in.available();\n    }\n\n    @Override\n    public boolean markSupported() {\n        return in.markSupported();\n    }\n\n    @Override\n    public long transferTo(OutputStream out) throws IOException {\n        return IOUtils.copy(this, out);\n    }\n\n    public long getPos() {\n        return pos;\n    }\n}",
+  "subClasses": []
+}

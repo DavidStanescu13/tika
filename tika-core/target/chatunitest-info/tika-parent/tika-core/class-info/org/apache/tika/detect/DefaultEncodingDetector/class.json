@@ -1,0 +1,58 @@
+{
+  "fullClassName": "org.apache.tika.detect.DefaultEncodingDetector",
+  "className": "DefaultEncodingDetector",
+  "index": 22,
+  "modifier": "[public ]",
+  "extend": "[CompositeEncodingDetector]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class DefaultEncodingDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collection;",
+    "import javax.imageio.spi.ServiceRegistry;",
+    "import org.apache.tika.config.ServiceLoader;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "CompositeEncodingDetector"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "DefaultEncodingDetector()": "0",
+    "DefaultEncodingDetector(ServiceLoader)": "1",
+    "DefaultEncodingDetector(ServiceLoader, Collection)": "2"
+  },
+  "methodsBrief": [
+    "public DefaultEncodingDetector(){}",
+    "public DefaultEncodingDetector(ServiceLoader loader){}",
+    "public DefaultEncodingDetector(ServiceLoader loader,\r\n                                   Collection<Class<? extends EncodingDetector>>\r\n                                           excludeEncodingDetectors){}"
+  ],
+  "constructorSigs": [
+    "DefaultEncodingDetector()",
+    "DefaultEncodingDetector(ServiceLoader)",
+    "DefaultEncodingDetector(ServiceLoader, Collection)"
+  ],
+  "constructorBrief": [
+    "public DefaultEncodingDetector(){}",
+    "public DefaultEncodingDetector(ServiceLoader loader){}",
+    "public DefaultEncodingDetector(ServiceLoader loader,\r\n                                   Collection<Class<? extends EncodingDetector>>\r\n                                           excludeEncodingDetectors){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.Class": [
+      "getClassLoader()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "loadServiceProviders(Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.util.Collection;\nimport javax.imageio.spi.ServiceRegistry;\nimport org.apache.tika.config.ServiceLoader;\n\n/**\n * A composite encoding detector over all {@link EncodingDetector}\n * implementations available through the\n * {@link ServiceRegistry service provider mechanism}.\n *\n * <p>The 4.x default chain (via {@code META-INF/services}): BOM and\n * metadata-charset detectors (tika-core), the HTML {@code <meta>} detector,\n * MojibusterEncodingDetector, and JunkFilterEncodingDetector — a\n * {@link MetaEncodingDetector} that arbitrates the candidates by decode quality\n * and always runs last, so detector order is irrelevant.</p>\n *\n * <p>UniversalEncodingDetector and Icu4jEncodingDetector are no longer\n * distributed by default and are not auto-discovered; add the jar and enable\n * them in a {@code tika-config} to use them.</p>\n *\n * @since Apache Tika 1.15\n */\npublic class DefaultEncodingDetector extends CompositeEncodingDetector {\n\n    public DefaultEncodingDetector() {\n        this(new ServiceLoader(DefaultEncodingDetector.class.getClassLoader()));\n    }\n\n    public DefaultEncodingDetector(ServiceLoader loader) {\n        super(loader.loadServiceProviders(EncodingDetector.class));\n    }\n\n    public DefaultEncodingDetector(ServiceLoader loader, Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors) {\n        super(loader.loadServiceProviders(EncodingDetector.class), excludeEncodingDetectors);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A composite encoding detector over all {@link EncodingDetector}\n * implementations available through the\n * {@link ServiceRegistry service provider mechanism}.\n *\n * <p>The 4.x default chain (via {@code META-INF/services}): BOM and\n * metadata-charset detectors (tika-core), the HTML {@code <meta>} detector,\n * MojibusterEncodingDetector, and JunkFilterEncodingDetector — a\n * {@link MetaEncodingDetector} that arbitrates the candidates by decode quality\n * and always runs last, so detector order is irrelevant.</p>\n *\n * <p>UniversalEncodingDetector and Icu4jEncodingDetector are no longer\n * distributed by default and are not auto-discovered; add the jar and enable\n * them in a {@code tika-config} to use them.</p>\n *\n * @since Apache Tika 1.15\n */\npublic class DefaultEncodingDetector extends CompositeEncodingDetector {\n\n    public DefaultEncodingDetector() {\n        this(new ServiceLoader(DefaultEncodingDetector.class.getClassLoader()));\n    }\n\n    public DefaultEncodingDetector(ServiceLoader loader) {\n        super(loader.loadServiceProviders(EncodingDetector.class));\n    }\n\n    public DefaultEncodingDetector(ServiceLoader loader, Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors) {\n        super(loader.loadServiceProviders(EncodingDetector.class), excludeEncodingDetectors);\n    }\n}",
+  "subClasses": []
+}

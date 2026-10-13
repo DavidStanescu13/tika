@@ -1,0 +1,20 @@
+{
+  "className": "HexCoDec",
+  "methodName": "hexCharToNibble",
+  "brief": "private static int hexCharToNibble(char ch){}",
+  "methodSignature": "hexCharToNibble(char)",
+  "sourceCode": "private static int hexCharToNibble(char ch) {\n        if ((ch >= '0') && (ch <= '9')) {\n            return ch - '0';\n        } else if ((ch >= 'a') && (ch <= 'f')) {\n            return ch - 'a' + 10;\n        } else if ((ch >= 'A') && (ch <= 'F')) {\n            return ch - 'A' + 10;\n        } else {\n            throw new IllegalArgumentException(\"Not a hex char - '\" + ch + \"'\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Internal method to turn a hex char into a nibble.\n */\nprivate static int hexCharToNibble(char ch) {\n    if ((ch >= '0') && (ch <= '9')) {\n        return ch - '0';\n    } else if ((ch >= 'a') && (ch <= 'f')) {\n        return ch - 'a' + 10;\n    } else if ((ch >= 'A') && (ch <= 'F')) {\n        return ch - 'A' + 10;\n    } else {\n        throw new IllegalArgumentException(\"Not a hex char - '\" + ch + \"'\");\n    }\n}",
+  "method_comment": "\n     * Internal method to turn a hex char into a nibble.\n     ",
+  "method_annotation": ""
+}

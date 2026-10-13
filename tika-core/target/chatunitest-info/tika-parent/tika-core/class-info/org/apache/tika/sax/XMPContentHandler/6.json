@@ -1,0 +1,34 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "description",
+  "brief": "private void description(Metadata metadata, String prefix, String uri) throws SAXException{}",
+  "methodSignature": "description(Metadata, String, String)",
+  "sourceCode": "private void description(Metadata metadata, String prefix, String uri) throws SAXException {\n        int count = 0;\n        for (Property property : Property.getProperties(prefix)) {\n            String value = metadata.get(property);\n            if (value != null) {\n                if (count++ == 0) {\n                    startDescription(\"\", prefix, uri);\n                }\n                property(property.getName().substring(prefix.length() + 1), value);\n            }\n        }\n\n        if (count > 0) {\n            endDescription();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "java.lang.String": [
+      "substring(int)",
+      "length()"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getProperties(String)",
+      "getName()"
+    ]
+  },
+  "full_method_info": "private void description(Metadata metadata, String prefix, String uri) throws SAXException {\n    int count = 0;\n    for (Property property : Property.getProperties(prefix)) {\n        String value = metadata.get(property);\n        if (value != null) {\n            if (count++ == 0) {\n                startDescription(\"\", prefix, uri);\n            }\n            property(property.getName().substring(prefix.length() + 1), value);\n        }\n    }\n    if (count > 0) {\n        endDescription();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

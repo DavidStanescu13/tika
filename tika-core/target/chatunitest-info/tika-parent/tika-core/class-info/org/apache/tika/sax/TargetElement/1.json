@@ -1,0 +1,18 @@
+{
+  "className": "TargetElement",
+  "methodName": "getAttributesMapping",
+  "brief": "public Map<QName, QName> getAttributesMapping(){}",
+  "methodSignature": "getAttributesMapping()",
+  "sourceCode": "public Map<QName, QName> getAttributesMapping() {\n            return attributesMapping;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Map<QName, QName> getAttributesMapping() {\n    return attributesMapping;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

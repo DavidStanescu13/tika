@@ -1,0 +1,22 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setCommandAppendOperator",
+  "brief": "public void setCommandAppendOperator(String commandAppendOperator){}",
+  "methodSignature": "setCommandAppendOperator(String)",
+  "sourceCode": "public void setCommandAppendOperator(String commandAppendOperator) {\n        this.commandAppendOperator = commandAppendOperator;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the operator to append rather than replace a value for the command\n * line tool, i.e. \"+=\".\n *\n * @param commandAppendOperator\n */\npublic void setCommandAppendOperator(String commandAppendOperator) {\n    this.commandAppendOperator = commandAppendOperator;\n}",
+  "method_comment": "\n     * Sets the operator to append rather than replace a value for the command\n     * line tool, i.e. \"+=\".\n     *\n     * @param commandAppendOperator\n     ",
+  "method_annotation": ""
+}

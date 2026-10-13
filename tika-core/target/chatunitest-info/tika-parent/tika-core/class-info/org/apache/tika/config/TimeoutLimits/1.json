@@ -1,0 +1,20 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "setTotalTaskTimeoutMillis",
+  "brief": "public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis){}",
+  "methodSignature": "setTotalTaskTimeoutMillis(long)",
+  "sourceCode": "public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum wall-clock time in milliseconds for a parse task.\n *\n * @param totalTaskTimeoutMillis total task timeout in milliseconds\n */\npublic void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis) {\n    this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n}",
+  "method_comment": "\n     * Sets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @param totalTaskTimeoutMillis total task timeout in milliseconds\n     ",
+  "method_annotation": ""
+}

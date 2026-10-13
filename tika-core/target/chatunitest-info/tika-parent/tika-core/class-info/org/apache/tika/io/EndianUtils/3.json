@@ -1,0 +1,24 @@
+{
+  "className": "EndianUtils",
+  "methodName": "readUShortBE",
+  "brief": "public static int readUShortBE(InputStream stream) throws IOException, BufferUnderrunException{}",
+  "methodSignature": "readUShortBE(InputStream)",
+  "sourceCode": "public static int readUShortBE(InputStream stream) throws IOException, BufferUnderrunException {\n        int ch1 = stream.read();\n        int ch2 = stream.read();\n        if ((ch1 | ch2) < 0) {\n            throw new BufferUnderrunException();\n        }\n        return (ch1 << 8) + (ch2);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read()"
+    ]
+  },
+  "full_method_info": "public static int readUShortBE(InputStream stream) throws IOException, BufferUnderrunException {\n    int ch1 = stream.read();\n    int ch2 = stream.read();\n    if ((ch1 | ch2) < 0) {\n        throw new BufferUnderrunException();\n    }\n    return (ch1 << 8) + (ch2);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

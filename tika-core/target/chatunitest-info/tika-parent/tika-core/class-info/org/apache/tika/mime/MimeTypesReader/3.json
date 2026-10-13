@@ -1,0 +1,31 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "newSAXParser",
+  "brief": "private static SAXParser newSAXParser() throws TikaException{}",
+  "methodSignature": "newSAXParser()",
+  "sourceCode": "private static SAXParser newSAXParser() throws TikaException {\n        SAXParserFactory factory = SAXParserFactory.newInstance();\n        factory.setNamespaceAware(false);\n        try {\n            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);\n        } catch (ParserConfigurationException | SAXException e) {\n            LOG.warn(\"can't set secure processing feature on: \" + factory.getClass() +\n                    \". User assumes responsibility for consequences.\");\n        }\n        try {\n            return factory.newSAXParser();\n        } catch (ParserConfigurationException | SAXException e) {\n            throw new TikaException(\"Can't create new sax parser\", e);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParserFactory": [
+      "newInstance()",
+      "newSAXParser()",
+      "setNamespaceAware(boolean)",
+      "setFeature(String, boolean)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "full_method_info": "private static SAXParser newSAXParser() throws TikaException {\n    SAXParserFactory factory = SAXParserFactory.newInstance();\n    factory.setNamespaceAware(false);\n    try {\n        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);\n    } catch (ParserConfigurationException | SAXException e) {\n        LOG.warn(\"can't set secure processing feature on: \" + factory.getClass() + \". User assumes responsibility for consequences.\");\n    }\n    try {\n        return factory.newSAXParser();\n    } catch (ParserConfigurationException | SAXException e) {\n        throw new TikaException(\"Can't create new sax parser\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

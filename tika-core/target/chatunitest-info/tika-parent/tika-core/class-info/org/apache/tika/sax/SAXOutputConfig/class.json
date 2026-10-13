@@ -1,0 +1,67 @@
+{
+  "fullClassName": "org.apache.tika.sax.SAXOutputConfig",
+  "className": "SAXOutputConfig",
+  "index": 299,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class SAXOutputConfig",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.apache.tika.annotation.TikaComponent;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "private boolean writeMetadataToHead = true;",
+    "private boolean includeTitle = true;",
+    "private boolean writeFileNameToContent = true;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "isWriteMetadataToHead()": "0",
+    "setWriteMetadataToHead(boolean)": "1",
+    "isIncludeTitle()": "2",
+    "setIncludeTitle(boolean)": "3",
+    "isWriteFileNameToContent()": "4",
+    "setWriteFileNameToContent(boolean)": "5",
+    "SAXOutputConfig()": "6"
+  },
+  "methodsBrief": [
+    "public boolean isWriteMetadataToHead(){}",
+    "public void setWriteMetadataToHead(boolean writeMetadataToHead){}",
+    "public boolean isIncludeTitle(){}",
+    "public void setIncludeTitle(boolean includeTitle){}",
+    "public boolean isWriteFileNameToContent(){}",
+    "public void setWriteFileNameToContent(boolean writeFileNameToContent){}",
+    "public SAXOutputConfig(){}"
+  ],
+  "constructorSigs": [
+    "SAXOutputConfig()"
+  ],
+  "constructorBrief": [
+    "public SAXOutputConfig(){}"
+  ],
+  "getterSetterSigs": [
+    "setWriteMetadataToHead(boolean)",
+    "setIncludeTitle(boolean)",
+    "setWriteFileNameToContent(boolean)"
+  ],
+  "getterSetterBrief": [
+    "public void setWriteMetadataToHead(boolean writeMetadataToHead){}",
+    "public void setIncludeTitle(boolean includeTitle){}",
+    "public void setWriteFileNameToContent(boolean writeFileNameToContent){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.Serializable;\nimport org.apache.tika.annotation.TikaComponent;\n\n/**\n * Configuration for SAX output behavior.\n * <p>\n * This can be stored in a {@link org.apache.tika.parser.ParseContext} to control\n * how content handlers and embedded document extractors generate output.\n * </p>\n */\n@TikaComponent(spi = false)\npublic class SAXOutputConfig implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    /**\n     * Whether to write metadata as &lt;meta&gt; elements in the XHTML head.\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean writeMetadataToHead = true;\n\n    /**\n     * Whether to include the &lt;title&gt; element in the XHTML head.\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean includeTitle = true;\n\n    /**\n     * Whether to write embedded file names to content (e.g., as &lt;h1&gt; elements).\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean writeFileNameToContent = true;\n\n    public SAXOutputConfig() {\n    }\n\n    public boolean isWriteMetadataToHead() {\n        return writeMetadataToHead;\n    }\n\n    public void setWriteMetadataToHead(boolean writeMetadataToHead) {\n        this.writeMetadataToHead = writeMetadataToHead;\n    }\n\n    public boolean isIncludeTitle() {\n        return includeTitle;\n    }\n\n    public void setIncludeTitle(boolean includeTitle) {\n        this.includeTitle = includeTitle;\n    }\n\n    public boolean isWriteFileNameToContent() {\n        return writeFileNameToContent;\n    }\n\n    public void setWriteFileNameToContent(boolean writeFileNameToContent) {\n        this.writeFileNameToContent = writeFileNameToContent;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for SAX output behavior.\n * <p>\n * This can be stored in a {@link org.apache.tika.parser.ParseContext} to control\n * how content handlers and embedded document extractors generate output.\n * </p>\n */\n@TikaComponent(spi = false)\npublic class SAXOutputConfig implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    /**\n     * Whether to write metadata as &lt;meta&gt; elements in the XHTML head.\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean writeMetadataToHead = true;\n\n    /**\n     * Whether to include the &lt;title&gt; element in the XHTML head.\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean includeTitle = true;\n\n    /**\n     * Whether to write embedded file names to content (e.g., as &lt;h1&gt; elements).\n     * Default is {@code true} for backward compatibility.\n     */\n    private boolean writeFileNameToContent = true;\n\n    public SAXOutputConfig() {\n    }\n\n    public boolean isWriteMetadataToHead() {\n        return writeMetadataToHead;\n    }\n\n    public void setWriteMetadataToHead(boolean writeMetadataToHead) {\n        this.writeMetadataToHead = writeMetadataToHead;\n    }\n\n    public boolean isIncludeTitle() {\n        return includeTitle;\n    }\n\n    public void setIncludeTitle(boolean includeTitle) {\n        this.includeTitle = includeTitle;\n    }\n\n    public boolean isWriteFileNameToContent() {\n        return writeFileNameToContent;\n    }\n\n    public void setWriteFileNameToContent(boolean writeFileNameToContent) {\n        this.writeFileNameToContent = writeFileNameToContent;\n    }\n}",
+  "subClasses": []
+}

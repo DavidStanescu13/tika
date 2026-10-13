@@ -1,0 +1,20 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "afterRead",
+  "brief": "@Override\r\n    protected void afterRead(int n) throws IOException{}",
+  "methodSignature": "afterRead(int)",
+  "sourceCode": "@Override\n    protected void afterRead(int n) throws IOException {\n        if (n != -1) {\n            position += n;\n            consecutiveEOFs = 0;\n        } else {\n            consecutiveEOFs++;\n            if (consecutiveEOFs > MAX_CONSECUTIVE_EOFS) {\n                throw new IOException(\"Read too many -1 (EOFs); there could be an infinite loop. \" +\n                        \"If you think your file is not corrupt, please open an issue on Tika's JIRA\");\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\nprotected void afterRead(int n) throws IOException {\n    if (n != -1) {\n        position += n;\n        consecutiveEOFs = 0;\n    } else {\n        consecutiveEOFs++;\n        if (consecutiveEOFs > MAX_CONSECUTIVE_EOFS) {\n            throw new IOException(\"Read too many -1 (EOFs); there could be an infinite loop. \" + \"If you think your file is not corrupt, please open an issue on Tika's JIRA\");\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

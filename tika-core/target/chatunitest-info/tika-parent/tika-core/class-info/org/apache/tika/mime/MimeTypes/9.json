@@ -1,0 +1,29 @@
+{
+  "className": "MimeTypes",
+  "methodName": "addAlias",
+  "brief": "synchronized void addAlias(MimeType type, MediaType alias){}",
+  "methodSignature": "addAlias(MimeType, MediaType)",
+  "sourceCode": "synchronized void addAlias(MimeType type, MediaType alias) {\n        registry.addAlias(type.getType(), alias);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [
+      "getType()"
+    ],
+    "org.apache.tika.mime.MediaType": [],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "addAlias(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds an alias for the given media type. This method should only\n * be called from {@link MimeType#addAlias(String)}.\n *\n * @param type  media type\n * @param alias media type alias (normalized to lower case)\n */\nsynchronized void addAlias(MimeType type, MediaType alias) {\n    registry.addAlias(type.getType(), alias);\n}",
+  "method_comment": "\n     * Adds an alias for the given media type. This method should only\n     * be called from {@link MimeType#addAlias(String)}.\n     *\n     * @param type  media type\n     * @param alias media type alias (normalized to lower case)\n     ",
+  "method_annotation": ""
+}

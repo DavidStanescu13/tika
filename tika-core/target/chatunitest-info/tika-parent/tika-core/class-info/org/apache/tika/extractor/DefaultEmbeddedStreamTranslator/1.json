@@ -1,0 +1,27 @@
+{
+  "className": "DefaultEmbeddedStreamTranslator",
+  "methodName": "shouldTranslate",
+  "brief": "@Override\r\n    public boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException{}",
+  "methodSignature": "shouldTranslate(TikaInputStream, Metadata)",
+  "sourceCode": "@Override\n    public boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException {\n        for (EmbeddedStreamTranslator translator : translators) {\n            if (translator.shouldTranslate(inputStream, metadata)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.extractor.EmbeddedStreamTranslator": [
+      "shouldTranslate(TikaInputStream, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * This should sniff the stream to determine if it needs to be translated.\n * The translator is responsible for resetting the stream if any bytes have been read.\n * @param inputStream\n * @param metadata\n * @return\n * @throws IOException\n */\n@Override\npublic boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException {\n    for (EmbeddedStreamTranslator translator : translators) {\n        if (translator.shouldTranslate(inputStream, metadata)) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "\n     * This should sniff the stream to determine if it needs to be translated.\n     * The translator is responsible for resetting the stream if any bytes have been read.\n     * @param inputStream\n     * @param metadata\n     * @return\n     * @throws IOException\n     ",
+  "method_annotation": "@Override\n"
+}

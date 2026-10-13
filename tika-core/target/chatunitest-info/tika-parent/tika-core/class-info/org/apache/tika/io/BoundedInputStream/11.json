@@ -1,0 +1,25 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "transferTo",
+  "brief": "@Override\r\n    public long transferTo(OutputStream out) throws IOException{}",
+  "methodSignature": "transferTo(OutputStream)",
+  "sourceCode": "@Override\n    public long transferTo(OutputStream out) throws IOException {\n        return IOUtils.copy(this, out);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OutputStream"
+  ],
+  "dependentMethods": {
+    "java.io.OutputStream": [],
+    "org.apache.commons.io.IOUtils": [
+      "copy(InputStream, OutputStream)"
+    ]
+  },
+  "full_method_info": "@Override\npublic long transferTo(OutputStream out) throws IOException {\n    return IOUtils.copy(this, out);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

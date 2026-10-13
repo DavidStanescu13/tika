@@ -1,0 +1,43 @@
+{
+  "className": "MagicDetector",
+  "methodName": "decodeString",
+  "brief": "private static byte[] decodeString(String value, String type){}",
+  "methodSignature": "decodeString(String, String)",
+  "sourceCode": "private static byte[] decodeString(String value, String type) {\n        if (value.startsWith(\"0x\")) {\n            byte[] vals = new byte[(value.length() - 2) / 2];\n            for (int i = 0; i < vals.length; i++) {\n                vals[i] = (byte) Integer.parseInt(value.substring(2 + i * 2, 4 + i * 2), 16);\n            }\n            return vals;\n        }\n\n        CharArrayWriter decoded = new CharArrayWriter();\n\n        for (int i = 0; i < value.length(); i++) {\n            if (value.charAt(i) == '\\\\') {\n                if (value.charAt(i + 1) == '\\\\') {\n                    decoded.write('\\\\');\n                    i++;\n                } else if (value.charAt(i + 1) == 'x') {\n                    decoded.write(Integer.parseInt(value.substring(i + 2, i + 4), 16));\n                    i += 3;\n                } else if (value.charAt(i + 1) == 'r') {\n                    decoded.write('\\r');\n                    i++;\n                } else if (value.charAt(i + 1) == 'n') {\n                    decoded.write('\\n');\n                    i++;\n                } else {\n                    int j = i + 1;\n                    while ((j < i + 4) && (j < value.length()) &&\n                            (Character.isDigit(value.charAt(j)))) {\n                        j++;\n                    }\n                    decoded.write(Short.decode(\"0\" + value.substring(i + 1, j)).byteValue());\n                    i = j - 1;\n                }\n            } else {\n                decoded.write(value.charAt(i));\n            }\n        }\n\n        // Now turn the chars into bytes\n        char[] chars = decoded.toCharArray();\n        byte[] bytes;\n        if (\"unicodeLE\".equals(type)) {\n            bytes = new byte[chars.length * 2];\n            for (int i = 0; i < chars.length; i++) {\n                bytes[i * 2] = (byte) (chars[i] & 0xff);\n                bytes[i * 2 + 1] = (byte) (chars[i] >> 8);\n            }\n        } else if (\"unicodeBE\".equals(type)) {\n            bytes = new byte[chars.length * 2];\n            for (int i = 0; i < chars.length; i++) {\n                bytes[i * 2] = (byte) (chars[i] >> 8);\n                bytes[i * 2 + 1] = (byte) (chars[i] & 0xff);\n            }\n        } else {\n            // Copy with truncation\n            bytes = new byte[chars.length];\n            for (int i = 0; i < bytes.length; i++) {\n                bytes[i] = (byte) chars[i];\n            }\n        }\n        return bytes;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "equals(Object)",
+      "substring(int, int)",
+      "length()",
+      "charAt(int)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String, int)"
+    ],
+    "java.io.CharArrayWriter": [
+      "toCharArray()",
+      "write(int)"
+    ],
+    "java.lang.Character": [
+      "isDigit(char)"
+    ],
+    "java.lang.Short": [
+      "decode(String)",
+      "byteValue()"
+    ]
+  },
+  "full_method_info": "private static byte[] decodeString(String value, String type) {\n    if (value.startsWith(\"0x\")) {\n        byte[] vals = new byte[(value.length() - 2) / 2];\n        for (int i = 0; i < vals.length; i++) {\n            vals[i] = (byte) Integer.parseInt(value.substring(2 + i * 2, 4 + i * 2), 16);\n        }\n        return vals;\n    }\n    CharArrayWriter decoded = new CharArrayWriter();\n    for (int i = 0; i < value.length(); i++) {\n        if (value.charAt(i) == '\\\\') {\n            if (value.charAt(i + 1) == '\\\\') {\n                decoded.write('\\\\');\n                i++;\n            } else if (value.charAt(i + 1) == 'x') {\n                decoded.write(Integer.parseInt(value.substring(i + 2, i + 4), 16));\n                i += 3;\n            } else if (value.charAt(i + 1) == 'r') {\n                decoded.write('\\r');\n                i++;\n            } else if (value.charAt(i + 1) == 'n') {\n                decoded.write('\\n');\n                i++;\n            } else {\n                int j = i + 1;\n                while ((j < i + 4) && (j < value.length()) && (Character.isDigit(value.charAt(j)))) {\n                    j++;\n                }\n                decoded.write(Short.decode(\"0\" + value.substring(i + 1, j)).byteValue());\n                i = j - 1;\n            }\n        } else {\n            decoded.write(value.charAt(i));\n        }\n    }\n    // Now turn the chars into bytes\n    char[] chars = decoded.toCharArray();\n    byte[] bytes;\n    if (\"unicodeLE\".equals(type)) {\n        bytes = new byte[chars.length * 2];\n        for (int i = 0; i < chars.length; i++) {\n            bytes[i * 2] = (byte) (chars[i] & 0xff);\n            bytes[i * 2 + 1] = (byte) (chars[i] >> 8);\n        }\n    } else if (\"unicodeBE\".equals(type)) {\n        bytes = new byte[chars.length * 2];\n        for (int i = 0; i < chars.length; i++) {\n            bytes[i * 2] = (byte) (chars[i] >> 8);\n            bytes[i * 2 + 1] = (byte) (chars[i] & 0xff);\n        }\n    } else {\n        // Copy with truncation\n        bytes = new byte[chars.length];\n        for (int i = 0; i < bytes.length; i++) {\n            bytes[i] = (byte) chars[i];\n        }\n    }\n    return bytes;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

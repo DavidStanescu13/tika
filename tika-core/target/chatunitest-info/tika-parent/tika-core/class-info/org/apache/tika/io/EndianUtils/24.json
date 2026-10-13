@@ -1,0 +1,25 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getUIntLE",
+  "brief": "public static long getUIntLE(byte[] data){}",
+  "methodSignature": "getUIntLE(byte[])",
+  "sourceCode": "public static long getUIntLE(byte[] data) {\n        return getUIntLE(data, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.EndianUtils": [
+      "getUIntLE(byte[], int)"
+    ]
+  },
+  "full_method_info": "/**\n * Get a LE unsigned int value from a byte array\n *\n * @param data the byte array\n * @return the unsigned int (32-bit) value in a long\n */\npublic static long getUIntLE(byte[] data) {\n    return getUIntLE(data, 0);\n}",
+  "method_comment": "\n     * Get a LE unsigned int value from a byte array\n     *\n     * @param data the byte array\n     * @return the unsigned int (32-bit) value in a long\n     ",
+  "method_annotation": ""
+}

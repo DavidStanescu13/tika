@@ -1,0 +1,22 @@
+{
+  "className": "EncodingResult",
+  "methodName": "getDecodeAs",
+  "brief": "public Charset getDecodeAs(){}",
+  "methodSignature": "getDecodeAs()",
+  "sourceCode": "public Charset getDecodeAs() {\n        return CharsetSupersets.decodeAs(charset);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.CharsetSupersets": [
+      "decodeAs(Charset)"
+    ]
+  },
+  "full_method_info": "/**\n * The charset to decode with: {@link #getCharset()} widened to its superset when\n * one exists (e.g. GBK &rarr; GB18030), else the detected charset unchanged.\n *\n * @see CharsetSupersets\n */\npublic Charset getDecodeAs() {\n    return CharsetSupersets.decodeAs(charset);\n}",
+  "method_comment": "\n     * The charset to decode with: {@link #getCharset()} widened to its superset when\n     * one exists (e.g. GBK &rarr; GB18030), else the detected charset unchanged.\n     *\n     * @see CharsetSupersets\n     ",
+  "method_annotation": ""
+}

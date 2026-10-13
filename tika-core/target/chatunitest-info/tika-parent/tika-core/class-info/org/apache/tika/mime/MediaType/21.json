@@ -1,0 +1,56 @@
+{
+  "className": "MediaType",
+  "methodName": "MediaType",
+  "brief": "public MediaType(String type, String subtype, Map<String, String> parameters){}",
+  "methodSignature": "MediaType(String, String, Map)",
+  "sourceCode": "public MediaType(String type, String subtype, Map<String, String> parameters) {\n        type = type.trim().toLowerCase(Locale.ENGLISH);\n        subtype = subtype.trim().toLowerCase(Locale.ENGLISH);\n\n        this.slash = type.length();\n        this.semicolon = slash + 1 + subtype.length();\n\n        if (parameters.isEmpty()) {\n            this.parameters = Collections.emptyMap();\n            this.string = type + '/' + subtype;\n        } else {\n            StringBuilder builder = new StringBuilder();\n            builder.append(type);\n            builder.append('/');\n            builder.append(subtype);\n\n            SortedMap<String, String> map = new TreeMap<>();\n            for (Map.Entry<String, String> entry : parameters.entrySet()) {\n                String key = entry.getKey().trim().toLowerCase(Locale.ENGLISH);\n                map.put(key, entry.getValue());\n            }\n            for (Map.Entry<String, String> entry : map.entrySet()) {\n                builder.append(\"; \");\n                builder.append(entry.getKey());\n                builder.append(\"=\");\n                String value = entry.getValue();\n                if (SPECIAL_OR_WHITESPACE.matcher(value).find()) {\n                    builder.append('\"');\n                    builder.append(SPECIAL.matcher(value).replaceAll(\"\\\\\\\\$0\"));\n                    builder.append('\"');\n                } else {\n                    builder.append(value);\n                }\n            }\n\n            this.string = builder.toString();\n            this.parameters = Collections.unmodifiableSortedMap(map);\n        }\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Map<String,String>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "trim()",
+      "toLowerCase(Locale)",
+      "length()"
+    ],
+    "java.util.Map": [
+      "isEmpty()",
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Collections": [
+      "emptyMap()",
+      "unmodifiableSortedMap(SortedMap<K, ? extends V>)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.SortedMap": [
+      "entrySet()"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "replaceAll(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ]
+  },
+  "full_method_info": "public MediaType(String type, String subtype, Map<String, String> parameters) {\n    type = type.trim().toLowerCase(Locale.ENGLISH);\n    subtype = subtype.trim().toLowerCase(Locale.ENGLISH);\n    this.slash = type.length();\n    this.semicolon = slash + 1 + subtype.length();\n    if (parameters.isEmpty()) {\n        this.parameters = Collections.emptyMap();\n        this.string = type + '/' + subtype;\n    } else {\n        StringBuilder builder = new StringBuilder();\n        builder.append(type);\n        builder.append('/');\n        builder.append(subtype);\n        SortedMap<String, String> map = new TreeMap<>();\n        for (Map.Entry<String, String> entry : parameters.entrySet()) {\n            String key = entry.getKey().trim().toLowerCase(Locale.ENGLISH);\n            map.put(key, entry.getValue());\n        }\n        for (Map.Entry<String, String> entry : map.entrySet()) {\n            builder.append(\"; \");\n            builder.append(entry.getKey());\n            builder.append(\"=\");\n            String value = entry.getValue();\n            if (SPECIAL_OR_WHITESPACE.matcher(value).find()) {\n                builder.append('\"');\n                builder.append(SPECIAL.matcher(value).replaceAll(\"\\\\\\\\$0\"));\n                builder.append('\"');\n            } else {\n                builder.append(value);\n            }\n        }\n        this.string = builder.toString();\n        this.parameters = Collections.unmodifiableSortedMap(map);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

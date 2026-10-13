@@ -1,0 +1,28 @@
+{
+  "className": "WriteLimitReachedException",
+  "methodName": "throwIfWriteLimitReached",
+  "brief": "private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException{}",
+  "methodSignature": "throwIfWriteLimitReached(Throwable, int)",
+  "sourceCode": "private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException {\n        if (ex == null) {\n            return;\n        }\n        if (depth > MAX_DEPTH) {\n            return;\n        }\n        if (ex instanceof WriteLimitReachedException) {\n            throw (SAXException) ex;\n        } else {\n            throwIfWriteLimitReached(ex.getCause(), depth + 1);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [
+      "getCause()"
+    ],
+    "org.apache.tika.exception.WriteLimitReachedException": [
+      "throwIfWriteLimitReached(Throwable, int)"
+    ]
+  },
+  "full_method_info": "private static void throwIfWriteLimitReached(Throwable ex, int depth) throws SAXException {\n    if (ex == null) {\n        return;\n    }\n    if (depth > MAX_DEPTH) {\n        return;\n    }\n    if (ex instanceof WriteLimitReachedException) {\n        throw (SAXException) ex;\n    } else {\n        throwIfWriteLimitReached(ex.getCause(), depth + 1);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

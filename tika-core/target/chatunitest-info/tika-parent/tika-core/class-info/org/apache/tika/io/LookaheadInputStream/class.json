@@ -1,0 +1,70 @@
+{
+  "fullClassName": "org.apache.tika.io.LookaheadInputStream",
+  "className": "LookaheadInputStream",
+  "index": 103,
+  "modifier": "[public ]",
+  "extend": "[InputStream]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "public class LookaheadInputStream",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.InputStream;"
+  ],
+  "fields": [
+    "private final byte[] buffer;",
+    "private InputStream stream;",
+    "private int buffered = 0;",
+    "private int position = 0;",
+    "private int mark = 0;"
+  ],
+  "superClasses": [
+    "InputStream"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "close()": "0",
+    "fill()": "1",
+    "read()": "2",
+    "read(byte[], int, int)": "3",
+    "skip(long)": "4",
+    "available()": "5",
+    "markSupported()": "6",
+    "mark(int)": "7",
+    "reset()": "8",
+    "LookaheadInputStream(InputStream, int)": "9"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void close() throws IOException{}",
+    "private void fill() throws IOException{}",
+    "@Override\r\n    public int read() throws IOException{}",
+    "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+    "@Override\r\n    public long skip(long n) throws IOException{}",
+    "@Override\r\n    public int available(){}",
+    "@Override\r\n    public boolean markSupported(){}",
+    "@Override\r\n    public synchronized void mark(int readlimit){}",
+    "@Override\r\n    public synchronized void reset(){}",
+    "public LookaheadInputStream(InputStream stream, int n){}"
+  ],
+  "constructorSigs": [
+    "LookaheadInputStream(InputStream, int)"
+  ],
+  "constructorBrief": [
+    "public LookaheadInputStream(InputStream stream, int n){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.InputStream": [
+      "mark(int)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.IOException;\nimport java.io.InputStream;\n\n/**\n * Stream wrapper that make it easy to read up to n bytes ahead from\n * a stream that supports the mark feature. This class insulates the\n * underlying stream from things like possible mark(), reset() and close()\n * calls by external components that might otherwise invalidate the marked\n * state of a stream.\n * <p>\n * The recommended usage pattern of this class is:\n * <pre>\n *     try (InputStream lookahead = new LookaheadInputStream(stream, n)) {\n *         processStream(lookahead);\n *     }\n * </pre>\n * <p>\n * This usage pattern guarantees that only up to n bytes from the original\n * stream can ever be read, and that the stream will have been marked and\n * then reset to its original state once the above code block exits. No\n * code in the fictional processStream() method can affect the the state of\n * the original stream.\n *\n * @since Apache Tika 0.10\n */\npublic class LookaheadInputStream extends InputStream {\n\n    private final byte[] buffer;\n\n    private InputStream stream;\n\n    private int buffered = 0;\n\n    private int position = 0;\n\n    private int mark = 0;\n\n    public LookaheadInputStream(InputStream stream, int n) {\n        this.stream = stream;\n        this.buffer = new byte[n];\n        if (stream != null) {\n            stream.mark(n);\n        }\n    }\n\n    @Override\n    public void close() throws IOException {\n        if (stream != null) {\n            stream.reset();\n            stream = null;\n        }\n    }\n\n    private void fill() throws IOException {\n        if (available() == 0 && buffered < buffer.length && stream != null) {\n            int n = stream.read(buffer, buffered, buffer.length - buffered);\n            if (n != -1) {\n                buffered += n;\n            } else {\n                close();\n            }\n        }\n    }\n\n    @Override\n    public int read() throws IOException {\n        fill();\n        if (buffered > position) {\n            return 0xff & buffer[position++];\n        } else {\n            return -1;\n        }\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        fill();\n        if (buffered > position) {\n            len = Math.min(len, buffered - position);\n            System.arraycopy(buffer, position, b, off, len);\n            position += len;\n            return len;\n        } else {\n            return -1;\n        }\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        fill();\n        n = Math.min(n, available());\n        position += n;\n        return n;\n    }\n\n    @Override\n    public int available() {\n        return buffered - position;\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        mark = position;\n    }\n\n    @Override\n    public synchronized void reset() {\n        position = mark;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Stream wrapper that make it easy to read up to n bytes ahead from\n * a stream that supports the mark feature. This class insulates the\n * underlying stream from things like possible mark(), reset() and close()\n * calls by external components that might otherwise invalidate the marked\n * state of a stream.\n * <p>\n * The recommended usage pattern of this class is:\n * <pre>\n *     try (InputStream lookahead = new LookaheadInputStream(stream, n)) {\n *         processStream(lookahead);\n *     }\n * </pre>\n * <p>\n * This usage pattern guarantees that only up to n bytes from the original\n * stream can ever be read, and that the stream will have been marked and\n * then reset to its original state once the above code block exits. No\n * code in the fictional processStream() method can affect the the state of\n * the original stream.\n *\n * @since Apache Tika 0.10\n */\npublic class LookaheadInputStream extends InputStream {\n\n    private final byte[] buffer;\n\n    private InputStream stream;\n\n    private int buffered = 0;\n\n    private int position = 0;\n\n    private int mark = 0;\n\n    public LookaheadInputStream(InputStream stream, int n) {\n        this.stream = stream;\n        this.buffer = new byte[n];\n        if (stream != null) {\n            stream.mark(n);\n        }\n    }\n\n    @Override\n    public void close() throws IOException {\n        if (stream != null) {\n            stream.reset();\n            stream = null;\n        }\n    }\n\n    private void fill() throws IOException {\n        if (available() == 0 && buffered < buffer.length && stream != null) {\n            int n = stream.read(buffer, buffered, buffer.length - buffered);\n            if (n != -1) {\n                buffered += n;\n            } else {\n                close();\n            }\n        }\n    }\n\n    @Override\n    public int read() throws IOException {\n        fill();\n        if (buffered > position) {\n            return 0xff & buffer[position++];\n        } else {\n            return -1;\n        }\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        fill();\n        if (buffered > position) {\n            len = Math.min(len, buffered - position);\n            System.arraycopy(buffer, position, b, off, len);\n            position += len;\n            return len;\n        } else {\n            return -1;\n        }\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        fill();\n        n = Math.min(n, available());\n        position += n;\n        return n;\n    }\n\n    @Override\n    public int available() {\n        return buffered - position;\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        mark = position;\n    }\n\n    @Override\n    public synchronized void reset() {\n        position = mark;\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,34 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "releaseParser",
+  "brief": "private static void releaseParser(SAXParser parser){}",
+  "methodSignature": "releaseParser(SAXParser)",
+  "sourceCode": "private static void releaseParser(SAXParser parser) {\n        try {\n            parser.reset();\n        } catch (UnsupportedOperationException e) {\n            //ignore\n        }\n        try {\n            READ_WRITE_LOCK.readLock().lock();\n            //if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n            // this parser will not be added and will then be gc'd\n            SAX_PARSERS.offer(parser);\n        } finally {\n            READ_WRITE_LOCK.readLock().unlock();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXParser"
+  ],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParser": [
+      "reset()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "offer(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Return parser to the pool for reuse\n *\n * @param parser parser to return\n */\nprivate static void releaseParser(SAXParser parser) {\n    try {\n        parser.reset();\n    } catch (UnsupportedOperationException e) {\n        // ignore\n    }\n    try {\n        READ_WRITE_LOCK.readLock().lock();\n        // if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n        // this parser will not be added and will then be gc'd\n        SAX_PARSERS.offer(parser);\n    } finally {\n        READ_WRITE_LOCK.readLock().unlock();\n    }\n}",
+  "method_comment": "\n     * Return parser to the pool for reuse\n     *\n     * @param parser parser to return\n     ",
+  "method_annotation": ""
+}

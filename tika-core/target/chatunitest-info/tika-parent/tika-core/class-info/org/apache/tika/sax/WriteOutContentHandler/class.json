@@ -1,0 +1,87 @@
+{
+  "fullClassName": "org.apache.tika.sax.WriteOutContentHandler",
+  "className": "WriteOutContentHandler",
+  "index": 322,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class WriteOutContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.StringWriter;",
+    "import java.io.Writer;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.config.OutputLimits;",
+    "import org.apache.tika.exception.WriteLimitReachedException;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.parser.ParseRecord;"
+  ],
+  "fields": [
+    "private final int writeLimit;",
+    "private int writeCount = 0;",
+    "private boolean throwOnWriteLimitReached = true;",
+    "private ParseContext parseContext = null;",
+    "private boolean writeLimitReached;"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "newInstance(ContentHandler, ParseContext)": "0",
+    "characters(char[], int, int)": "1",
+    "ignorableWhitespace(char[], int, int)": "2",
+    "handleWriteLimitReached()": "3",
+    "WriteOutContentHandler(ContentHandler, int)": "4",
+    "WriteOutContentHandler(Writer, int)": "5",
+    "WriteOutContentHandler(Writer)": "6",
+    "WriteOutContentHandler(int)": "7",
+    "WriteOutContentHandler()": "8",
+    "WriteOutContentHandler(ContentHandler, int, boolean, ParseContext)": "9"
+  },
+  "methodsBrief": [
+    "public static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context){}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "private void handleWriteLimitReached() throws WriteLimitReachedException{}",
+    "public WriteOutContentHandler(ContentHandler handler, int writeLimit){}",
+    "public WriteOutContentHandler(Writer writer, int writeLimit){}",
+    "public WriteOutContentHandler(Writer writer){}",
+    "public WriteOutContentHandler(int writeLimit){}",
+    "public WriteOutContentHandler(){}",
+    "public WriteOutContentHandler(ContentHandler handler,\r\n                                  int writeLimit, boolean throwOnWriteLimitReached,\r\n                                  ParseContext parseContext){}"
+  ],
+  "constructorSigs": [
+    "WriteOutContentHandler(ContentHandler, int)",
+    "WriteOutContentHandler(Writer, int)",
+    "WriteOutContentHandler(Writer)",
+    "WriteOutContentHandler(int)",
+    "WriteOutContentHandler()",
+    "WriteOutContentHandler(ContentHandler, int, boolean, ParseContext)"
+  ],
+  "constructorBrief": [
+    "public WriteOutContentHandler(ContentHandler handler, int writeLimit){}",
+    "public WriteOutContentHandler(Writer writer, int writeLimit){}",
+    "public WriteOutContentHandler(Writer writer){}",
+    "public WriteOutContentHandler(int writeLimit){}",
+    "public WriteOutContentHandler(){}",
+    "public WriteOutContentHandler(ContentHandler handler,\r\n                                  int writeLimit, boolean throwOnWriteLimitReached,\r\n                                  ParseContext parseContext){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.Writer": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.StringWriter;\nimport java.io.Writer;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.config.OutputLimits;\nimport org.apache.tika.exception.WriteLimitReachedException;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.parser.ParseRecord;\n\n/**\n * SAX event handler that writes content up to an optional write\n * limit out to a character stream or other decorated handler.\n */\npublic class WriteOutContentHandler extends ContentHandlerDecorator {\n\n    /**\n     * The maximum number of characters to write to the character stream.\n     * Set to -1 for no limit.\n     */\n    private final int writeLimit;\n\n    /**\n     * Number of characters written so far.\n     */\n    private int writeCount = 0;\n\n    private boolean throwOnWriteLimitReached = true;\n\n    private ParseContext parseContext = null;\n\n    private boolean writeLimitReached;\n\n    public WriteOutContentHandler(ContentHandler handler, int writeLimit) {\n        super(handler);\n        this.writeLimit = writeLimit;\n    }\n\n    public WriteOutContentHandler(Writer writer, int writeLimit) {\n        this(new ToTextContentHandler(writer), writeLimit);\n    }\n\n    public WriteOutContentHandler(Writer writer) {\n        this(writer, -1);\n    }\n\n    public WriteOutContentHandler(int writeLimit) {\n        this(new StringWriter(), writeLimit);\n    }\n\n    public WriteOutContentHandler() {\n        this(100 * 1000);\n    }\n\n    public WriteOutContentHandler(ContentHandler handler, int writeLimit, boolean throwOnWriteLimitReached, ParseContext parseContext) {\n        super(handler);\n        this.writeLimit = writeLimit;\n        this.throwOnWriteLimitReached = throwOnWriteLimitReached;\n        this.parseContext = parseContext;\n    }\n\n    /**\n     * Creates a new WriteOutContentHandler configured from OutputLimits in the ParseContext.\n     * <p>\n     * If OutputLimits is present in the context, the handler will be configured with those\n     * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used (-1 for\n     * unlimited, true for throwOnWriteLimitReached).\n     *\n     * @param handler the content handler to decorate\n     * @param context the ParseContext (may be null)\n     * @return a configured WriteOutContentHandler\n     */\n    public static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context) {\n        OutputLimits limits = OutputLimits.get(context);\n        return new WriteOutContentHandler(handler, limits.getWriteLimit(), limits.isThrowOnWriteLimit(), context);\n    }\n\n    /**\n     * Writes the given characters to the given character stream.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.characters(ch, start, length);\n            writeCount += length;\n        } else {\n            super.characters(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.ignorableWhitespace(ch, start, length);\n            writeCount += length;\n        } else {\n            super.ignorableWhitespace(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }\n\n    private void handleWriteLimitReached() throws WriteLimitReachedException {\n        writeLimitReached = true;\n        writeCount = writeLimit;\n        if (throwOnWriteLimitReached) {\n            throw new WriteLimitReachedException(writeLimit);\n        } else {\n            ParseRecord parseRecord = parseContext.get(ParseRecord.class);\n            if (parseRecord != null) {\n                parseRecord.setWriteLimitReached(true);\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * SAX event handler that writes content up to an optional write\n * limit out to a character stream or other decorated handler.\n */\npublic class WriteOutContentHandler extends ContentHandlerDecorator {\n\n    /**\n     * The maximum number of characters to write to the character stream.\n     * Set to -1 for no limit.\n     */\n    private final int writeLimit;\n\n    /**\n     * Number of characters written so far.\n     */\n    private int writeCount = 0;\n\n    private boolean throwOnWriteLimitReached = true;\n\n    private ParseContext parseContext = null;\n\n    private boolean writeLimitReached;\n\n    public WriteOutContentHandler(ContentHandler handler, int writeLimit) {\n        super(handler);\n        this.writeLimit = writeLimit;\n    }\n\n    public WriteOutContentHandler(Writer writer, int writeLimit) {\n        this(new ToTextContentHandler(writer), writeLimit);\n    }\n\n    public WriteOutContentHandler(Writer writer) {\n        this(writer, -1);\n    }\n\n    public WriteOutContentHandler(int writeLimit) {\n        this(new StringWriter(), writeLimit);\n    }\n\n    public WriteOutContentHandler() {\n        this(100 * 1000);\n    }\n\n    public WriteOutContentHandler(ContentHandler handler, int writeLimit, boolean throwOnWriteLimitReached, ParseContext parseContext) {\n        super(handler);\n        this.writeLimit = writeLimit;\n        this.throwOnWriteLimitReached = throwOnWriteLimitReached;\n        this.parseContext = parseContext;\n    }\n\n    /**\n     * Creates a new WriteOutContentHandler configured from OutputLimits in the ParseContext.\n     * <p>\n     * If OutputLimits is present in the context, the handler will be configured with those\n     * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used (-1 for\n     * unlimited, true for throwOnWriteLimitReached).\n     *\n     * @param handler the content handler to decorate\n     * @param context the ParseContext (may be null)\n     * @return a configured WriteOutContentHandler\n     */\n    public static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context) {\n        OutputLimits limits = OutputLimits.get(context);\n        return new WriteOutContentHandler(handler, limits.getWriteLimit(), limits.isThrowOnWriteLimit(), context);\n    }\n\n    /**\n     * Writes the given characters to the given character stream.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.characters(ch, start, length);\n            writeCount += length;\n        } else {\n            super.characters(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (writeLimitReached) {\n            return;\n        }\n        if (writeLimit == -1 || writeCount + length <= writeLimit) {\n            super.ignorableWhitespace(ch, start, length);\n            writeCount += length;\n        } else {\n            super.ignorableWhitespace(ch, start, writeLimit - writeCount);\n            handleWriteLimitReached();\n        }\n    }\n\n    private void handleWriteLimitReached() throws WriteLimitReachedException {\n        writeLimitReached = true;\n        writeCount = writeLimit;\n        if (throwOnWriteLimitReached) {\n            throw new WriteLimitReachedException(writeLimit);\n        } else {\n            ParseRecord parseRecord = parseContext.get(ParseRecord.class);\n            if (parseRecord != null) {\n                parseRecord.setWriteLimitReached(true);\n            }\n        }\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.RichTextContentHandler"
+  ]
+}

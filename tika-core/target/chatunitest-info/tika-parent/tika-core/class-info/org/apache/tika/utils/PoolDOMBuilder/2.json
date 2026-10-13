@@ -1,0 +1,23 @@
+{
+  "className": "PoolDOMBuilder",
+  "methodName": "reset",
+  "brief": "public void reset(){}",
+  "methodSignature": "reset()",
+  "sourceCode": "public void reset() {\n            documentBuilder.reset();\n            documentBuilder.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n            documentBuilder.setErrorHandler(null);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.DocumentBuilder": [
+      "reset()",
+      "setErrorHandler(ErrorHandler)"
+    ]
+  },
+  "full_method_info": "public void reset() {\n    documentBuilder.reset();\n    documentBuilder.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n    documentBuilder.setErrorHandler(null);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

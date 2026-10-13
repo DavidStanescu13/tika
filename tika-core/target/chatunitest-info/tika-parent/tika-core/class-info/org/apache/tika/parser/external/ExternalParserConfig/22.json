@@ -1,0 +1,18 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "getMaxStdErr",
+  "brief": "public int getMaxStdErr(){}",
+  "methodSignature": "getMaxStdErr()",
+  "sourceCode": "public int getMaxStdErr() {\n        return maxStdErr;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public int getMaxStdErr() {\n    return maxStdErr;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

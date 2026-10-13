@@ -1,0 +1,18 @@
+{
+  "className": "TaggedSAXException",
+  "methodName": "getTag",
+  "brief": "public Object getTag(){}",
+  "methodSignature": "getTag()",
+  "sourceCode": "public Object getTag() {\n        return tag;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the object reference used as the tag this exception.\n *\n * @return tag object\n */\npublic Object getTag() {\n    return tag;\n}",
+  "method_comment": "\n     * Returns the object reference used as the tag this exception.\n     *\n     * @return tag object\n     ",
+  "method_annotation": ""
+}

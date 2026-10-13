@@ -1,0 +1,18 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "getMaximumDepth",
+  "brief": "public int getMaximumDepth(){}",
+  "methodSignature": "getMaximumDepth()",
+  "sourceCode": "public int getMaximumDepth() {\n        return maxDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the maximum XML element nesting level.\n *\n * @return maximum XML element nesting level\n */\npublic int getMaximumDepth() {\n    return maxDepth;\n}",
+  "method_comment": "\n     * Returns the maximum XML element nesting level.\n     *\n     * @return maximum XML element nesting level\n     ",
+  "method_annotation": ""
+}

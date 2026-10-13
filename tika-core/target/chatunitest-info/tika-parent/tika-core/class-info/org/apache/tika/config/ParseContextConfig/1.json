@@ -1,0 +1,26 @@
+{
+  "className": "ParseContextConfig",
+  "methodName": "hasConfig",
+  "brief": "public static boolean hasConfig(ParseContext context, String configKey){}",
+  "methodSignature": "hasConfig(ParseContext, String)",
+  "sourceCode": "public static boolean hasConfig(ParseContext context, String configKey) {\n        if (context == null) {\n            return false;\n        }\n        return context.hasJsonConfig(configKey);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "hasJsonConfig(String)"
+    ],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Checks if runtime configuration exists for the given key.\n * <p>\n * Unlike {@link #getConfig}, this method does NOT throw if ConfigDeserializer\n * is missing - it only checks for the presence of config.\n *\n * @param context the parse context\n * @param configKey the configuration key\n * @return true if JSON config exists for this key\n */\npublic static boolean hasConfig(ParseContext context, String configKey) {\n    if (context == null) {\n        return false;\n    }\n    return context.hasJsonConfig(configKey);\n}",
+  "method_comment": "\n     * Checks if runtime configuration exists for the given key.\n     * <p>\n     * Unlike {@link #getConfig}, this method does NOT throw if ConfigDeserializer\n     * is missing - it only checks for the presence of config.\n     *\n     * @param context the parse context\n     * @param configKey the configuration key\n     * @return true if JSON config exists for this key\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,55 @@
+{
+  "className": "RecursiveParserWrapper",
+  "methodName": "parse",
+  "brief": "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler recursiveParserWrapperHandler,\r\n                      Metadata metadata, ParseContext context)\r\n            throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public void parse(TikaInputStream tis, ContentHandler recursiveParserWrapperHandler,\n                      Metadata metadata, ParseContext context)\n            throws IOException, SAXException, TikaException {\n        //this tracks the state of the parent parser, per call to #parse\n        ParserState parserState;\n        if (recursiveParserWrapperHandler instanceof AbstractRecursiveParserWrapperHandler) {\n            parserState = new ParserState(\n                    (AbstractRecursiveParserWrapperHandler) recursiveParserWrapperHandler);\n        } else {\n            throw new IllegalStateException(\n                    \"ContentHandler must implement RecursiveParserWrapperHandler\");\n        }\n        EmbeddedParserDecorator decorator =\n                new EmbeddedParserDecorator(getWrappedParser(), \"/\", \"/\", parserState);\n        context.set(Parser.class, decorator);\n        ContentHandler localHandler =\n                parserState.recursiveParserWrapperHandler.createHandler();\n        long started = System.currentTimeMillis();\n        parserState.recursiveParserWrapperHandler.startDocument();\n        int writeLimit = -1;\n        boolean throwOnWriteLimitReached = true;\n\n        if (recursiveParserWrapperHandler instanceof AbstractRecursiveParserWrapperHandler) {\n            ContentHandlerFactory factory =\n                    ((AbstractRecursiveParserWrapperHandler)recursiveParserWrapperHandler).getContentHandlerFactory();\n            if (factory instanceof WriteLimiter) {\n                writeLimit = ((WriteLimiter)factory).getWriteLimit();\n                throwOnWriteLimitReached = ((WriteLimiter)factory).isThrowOnWriteLimitReached();\n            }\n        }\n        try {\n            RecursivelySecureContentHandler secureContentHandler =\n                    new RecursivelySecureContentHandler(localHandler, tis, new SecureHandlerCounter(writeLimit),\n                            throwOnWriteLimitReached, context);\n            context.set(RecursivelySecureContentHandler.class, secureContentHandler);\n            getWrappedParser().parse(tis, secureContentHandler, metadata, context);\n        } catch (Throwable e) {\n            if (e instanceof EncryptedDocumentException) {\n                metadata.set(TikaCoreProperties.IS_ENCRYPTED, \"true\");\n            }\n            if (WriteLimitReachedException.isWriteLimitReached(e)) {\n                metadata.set(TikaCoreProperties.WRITE_LIMIT_REACHED, \"true\");\n            } else {\n                String stackTrace = ExceptionUtils.getFilteredStackTrace(e);\n                metadata.add(TikaCoreProperties.CONTAINER_EXCEPTION, stackTrace);\n                throw e;\n            }\n        } finally {\n            long elapsedMillis = System.currentTimeMillis() - started;\n            metadata.set(TikaCoreProperties.PARSE_TIME_MILLIS, Long.toString(elapsedMillis));\n            parserState.recursiveParserWrapperHandler.endDocument(localHandler, metadata);\n            parserState.recursiveParserWrapperHandler.endDocument();\n            context.set(RecursivelySecureContentHandler.class, null);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "set(Property, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ],
+    "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler": [
+      "getContentHandlerFactory()",
+      "createHandler()"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ],
+    "org.apache.tika.sax.WriteLimiter": [
+      "isThrowOnWriteLimitReached()",
+      "getWriteLimit()"
+    ],
+    "org.apache.tika.exception.WriteLimitReachedException": [
+      "isWriteLimitReached(Throwable)"
+    ],
+    "org.apache.tika.utils.ExceptionUtils": [
+      "getFilteredStackTrace(Throwable)"
+    ],
+    "java.lang.Long": [
+      "toString(long)"
+    ]
+  },
+  "full_method_info": "/**\n * @param stream\n * @param recursiveParserWrapperHandler -- handler must implement\n * {@link RecursiveParserWrapperHandler}\n * @param metadata\n * @param context\n * @throws IOException\n * @throws SAXException\n * @throws TikaException\n * @throws IllegalStateException if the handler is not a {@link RecursiveParserWrapperHandler}\n */\n@Override\npublic void parse(TikaInputStream tis, ContentHandler recursiveParserWrapperHandler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    // this tracks the state of the parent parser, per call to #parse\n    ParserState parserState;\n    if (recursiveParserWrapperHandler instanceof AbstractRecursiveParserWrapperHandler) {\n        parserState = new ParserState((AbstractRecursiveParserWrapperHandler) recursiveParserWrapperHandler);\n    } else {\n        throw new IllegalStateException(\"ContentHandler must implement RecursiveParserWrapperHandler\");\n    }\n    EmbeddedParserDecorator decorator = new EmbeddedParserDecorator(getWrappedParser(), \"/\", \"/\", parserState);\n    context.set(Parser.class, decorator);\n    ContentHandler localHandler = parserState.recursiveParserWrapperHandler.createHandler();\n    long started = System.currentTimeMillis();\n    parserState.recursiveParserWrapperHandler.startDocument();\n    int writeLimit = -1;\n    boolean throwOnWriteLimitReached = true;\n    if (recursiveParserWrapperHandler instanceof AbstractRecursiveParserWrapperHandler) {\n        ContentHandlerFactory factory = ((AbstractRecursiveParserWrapperHandler) recursiveParserWrapperHandler).getContentHandlerFactory();\n        if (factory instanceof WriteLimiter) {\n            writeLimit = ((WriteLimiter) factory).getWriteLimit();\n            throwOnWriteLimitReached = ((WriteLimiter) factory).isThrowOnWriteLimitReached();\n        }\n    }\n    try {\n        RecursivelySecureContentHandler secureContentHandler = new RecursivelySecureContentHandler(localHandler, tis, new SecureHandlerCounter(writeLimit), throwOnWriteLimitReached, context);\n        context.set(RecursivelySecureContentHandler.class, secureContentHandler);\n        getWrappedParser().parse(tis, secureContentHandler, metadata, context);\n    } catch (Throwable e) {\n        if (e instanceof EncryptedDocumentException) {\n            metadata.set(TikaCoreProperties.IS_ENCRYPTED, \"true\");\n        }\n        if (WriteLimitReachedException.isWriteLimitReached(e)) {\n            metadata.set(TikaCoreProperties.WRITE_LIMIT_REACHED, \"true\");\n        } else {\n            String stackTrace = ExceptionUtils.getFilteredStackTrace(e);\n            metadata.add(TikaCoreProperties.CONTAINER_EXCEPTION, stackTrace);\n            throw e;\n        }\n    } finally {\n        long elapsedMillis = System.currentTimeMillis() - started;\n        metadata.set(TikaCoreProperties.PARSE_TIME_MILLIS, Long.toString(elapsedMillis));\n        parserState.recursiveParserWrapperHandler.endDocument(localHandler, metadata);\n        parserState.recursiveParserWrapperHandler.endDocument();\n        context.set(RecursivelySecureContentHandler.class, null);\n    }\n}",
+  "method_comment": "\n     * @param stream\n     * @param recursiveParserWrapperHandler -- handler must implement\n     * {@link RecursiveParserWrapperHandler}\n     * @param metadata\n     * @param context\n     * @throws IOException\n     * @throws SAXException\n     * @throws TikaException\n     * @throws IllegalStateException if the handler is not a {@link RecursiveParserWrapperHandler}\n     ",
+  "method_annotation": "@Override\n"
+}

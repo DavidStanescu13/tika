@@ -1,0 +1,20 @@
+{
+  "className": "TaggedContentHandler",
+  "methodName": "handleException",
+  "brief": "@Override\r\n    protected void handleException(SAXException e) throws SAXException{}",
+  "methodSignature": "handleException(SAXException)",
+  "sourceCode": "@Override\n    protected void handleException(SAXException e) throws SAXException {\n        throw new TaggedSAXException(e, this);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXException"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tags any {@link SAXException}s thrown, wrapping and re-throwing.\n *\n * @param e The SAXException thrown\n * @throws SAXException if an XML error occurs\n */\n@Override\nprotected void handleException(SAXException e) throws SAXException {\n    throw new TaggedSAXException(e, this);\n}",
+  "method_comment": "\n     * Tags any {@link SAXException}s thrown, wrapping and re-throwing.\n     *\n     * @param e The SAXException thrown\n     * @throws SAXException if an XML error occurs\n     ",
+  "method_annotation": "@Override\n"
+}

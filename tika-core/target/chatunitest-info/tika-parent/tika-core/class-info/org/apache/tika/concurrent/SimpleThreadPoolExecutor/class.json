@@ -1,0 +1,45 @@
+{
+  "fullClassName": "org.apache.tika.concurrent.SimpleThreadPoolExecutor",
+  "className": "SimpleThreadPoolExecutor",
+  "index": 1,
+  "modifier": "[public ]",
+  "extend": "[ThreadPoolExecutor]",
+  "implement": "[ConfigurableThreadPoolExecutor]",
+  "packageName": "org.apache.tika.concurrent",
+  "packageDeclaration": "package org.apache.tika.concurrent;",
+  "classSignature": "public class SimpleThreadPoolExecutor",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.concurrent.LinkedBlockingQueue;",
+    "import java.util.concurrent.ThreadPoolExecutor;",
+    "import java.util.concurrent.TimeUnit;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "ThreadPoolExecutor"
+  ],
+  "implementedTypes": [
+    "ConfigurableThreadPoolExecutor"
+  ],
+  "methodSigs": {
+    "SimpleThreadPoolExecutor()": "0"
+  },
+  "methodsBrief": [
+    "public SimpleThreadPoolExecutor(){}"
+  ],
+  "constructorSigs": [
+    "SimpleThreadPoolExecutor()"
+  ],
+  "constructorBrief": [
+    "public SimpleThreadPoolExecutor(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.concurrent;\n\nimport java.util.concurrent.LinkedBlockingQueue;\nimport java.util.concurrent.ThreadPoolExecutor;\nimport java.util.concurrent.TimeUnit;\n\n/**\n * Simple Thread Pool Executor\n *\n * @since Apache Tika 1.11\n */\npublic class SimpleThreadPoolExecutor extends ThreadPoolExecutor implements ConfigurableThreadPoolExecutor {\n\n    public SimpleThreadPoolExecutor() {\n        super(1, 2, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), r -> new Thread(r, \"Tika Executor Thread\"));\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Simple Thread Pool Executor\n *\n * @since Apache Tika 1.11\n */\npublic class SimpleThreadPoolExecutor extends ThreadPoolExecutor implements ConfigurableThreadPoolExecutor {\n\n    public SimpleThreadPoolExecutor() {\n        super(1, 2, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), r -> new Thread(r, \"Tika Executor Thread\"));\n    }\n}",
+  "subClasses": []
+}

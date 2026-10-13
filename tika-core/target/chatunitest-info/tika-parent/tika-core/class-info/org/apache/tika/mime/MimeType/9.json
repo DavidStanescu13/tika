@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "getLinks",
+  "brief": "public List<URI> getLinks(){}",
+  "methodSignature": "getLinks()",
+  "sourceCode": "public List<URI> getLinks() {\n        return links; // this is already unmodifiable\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get a list of links to help document this mime type\n *\n * @return an array of links (will never be null)\n */\npublic List<URI> getLinks() {\n    // this is already unmodifiable\n    return links;\n}",
+  "method_comment": "\n     * Get a list of links to help document this mime type\n     *\n     * @return an array of links (will never be null)\n     ",
+  "method_annotation": ""
+}

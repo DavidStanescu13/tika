@@ -1,0 +1,28 @@
+{
+  "className": "WriteLimitReachedException",
+  "methodName": "isWriteLimitReached",
+  "brief": "private static boolean isWriteLimitReached(Throwable t, int depth){}",
+  "methodSignature": "isWriteLimitReached(Throwable, int)",
+  "sourceCode": "private static boolean isWriteLimitReached(Throwable t, int depth) {\n        if (t == null) {\n            return false;\n        }\n        if (depth > MAX_DEPTH) {\n            return false;\n        }\n        if (t instanceof WriteLimitReachedException) {\n            return true;\n        } else {\n            return isWriteLimitReached(t.getCause(), depth + 1);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [
+      "getCause()"
+    ],
+    "org.apache.tika.exception.WriteLimitReachedException": [
+      "isWriteLimitReached(Throwable, int)"
+    ]
+  },
+  "full_method_info": "private static boolean isWriteLimitReached(Throwable t, int depth) {\n    if (t == null) {\n        return false;\n    }\n    if (depth > MAX_DEPTH) {\n        return false;\n    }\n    if (t instanceof WriteLimitReachedException) {\n        return true;\n    } else {\n        return isWriteLimitReached(t.getCause(), depth + 1);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

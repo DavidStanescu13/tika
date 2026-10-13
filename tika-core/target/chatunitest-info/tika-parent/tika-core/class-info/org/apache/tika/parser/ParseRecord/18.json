@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "incrementEmbeddedCount",
+  "brief": "public void incrementEmbeddedCount(){}",
+  "methodSignature": "incrementEmbeddedCount()",
+  "sourceCode": "public void incrementEmbeddedCount() {\n        embeddedCount++;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Increments the embedded document count. Should be called when an embedded\n * document is about to be parsed.\n */\npublic void incrementEmbeddedCount() {\n    embeddedCount++;\n}",
+  "method_comment": "\n     * Increments the embedded document count. Should be called when an embedded\n     * document is about to be parsed.\n     ",
+  "method_annotation": ""
+}

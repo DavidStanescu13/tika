@@ -1,0 +1,22 @@
+{
+  "className": "XHTMLBalancingHandler",
+  "methodName": "openElementCount",
+  "brief": "public int openElementCount(){}",
+  "methodSignature": "openElementCount()",
+  "sourceCode": "public int openElementCount() {\n        return openElements.size();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Deque": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Number of elements currently open through this handler. Exposed for\n * tests and for callers that want to know whether\n * {@link #drainOpenElements()} would emit anything.\n */\npublic int openElementCount() {\n    return openElements.size();\n}",
+  "method_comment": "\n     * Number of elements currently open through this handler. Exposed for\n     * tests and for callers that want to know whether\n     * {@link #drainOpenElements()} would emit anything.\n     ",
+  "method_annotation": ""
+}

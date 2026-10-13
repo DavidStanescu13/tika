@@ -1,0 +1,26 @@
+{
+  "className": "CompositeMetadataFilter",
+  "methodName": "doFilter",
+  "brief": "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException{}",
+  "methodSignature": "doFilter(List, ParseContext)",
+  "sourceCode": "@Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        for (MetadataFilter filter : filters) {\n            filter.filter(metadataList, parseContext);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Metadata>",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.metadata.filter.MetadataFilter": [
+      "filter(Metadata>, ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n    for (MetadataFilter filter : filters) {\n        filter.filter(metadataList, parseContext);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

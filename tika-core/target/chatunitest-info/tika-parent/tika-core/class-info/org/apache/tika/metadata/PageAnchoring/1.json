@@ -1,0 +1,26 @@
+{
+  "className": "PageAnchoring",
+  "methodName": "applySheetMetadata",
+  "brief": "public static void applySheetMetadata(Metadata target, Collection<Integer> sheets){}",
+  "methodSignature": "applySheetMetadata(Metadata, Collection)",
+  "sourceCode": "public static void applySheetMetadata(Metadata target, Collection<Integer> sheets) {\n        applyAnchorMetadata(target, sheets,\n                Office.SHEET_NUMBER, Office.SHEET_NUMBERS,\n                Office.UNLINKED_SHEET);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "Collection<Integer>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.metadata.PageAnchoring": [
+      "applyAnchorMetadata(Metadata, Integer>, Property, Property, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Apply {@link Office#SHEET_NUMBER} / {@link Office#SHEET_NUMBERS} to\n * {@code target}, per the same convention as\n * {@link #applyPageMetadata}.  Used by spreadsheet parsers (HSSF,\n * XSSF) when tagging an embedded resource with the sheets it appears\n * on.\n *\n * @param target metadata to write to\n * @param sheets 1-based sheet numbers, an empty collection for\n *               \"known unlinked\", or {@code null} for unknown\n */\npublic static void applySheetMetadata(Metadata target, Collection<Integer> sheets) {\n    applyAnchorMetadata(target, sheets, Office.SHEET_NUMBER, Office.SHEET_NUMBERS, Office.UNLINKED_SHEET);\n}",
+  "method_comment": "\n     * Apply {@link Office#SHEET_NUMBER} / {@link Office#SHEET_NUMBERS} to\n     * {@code target}, per the same convention as\n     * {@link #applyPageMetadata}.  Used by spreadsheet parsers (HSSF,\n     * XSSF) when tagging an embedded resource with the sheets it appears\n     * on.\n     *\n     * @param target metadata to write to\n     * @param sheets 1-based sheet numbers, an empty collection for\n     *               \"known unlinked\", or {@code null} for unknown\n     ",
+  "method_annotation": ""
+}

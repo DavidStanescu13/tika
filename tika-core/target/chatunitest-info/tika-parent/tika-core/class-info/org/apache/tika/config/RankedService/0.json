@@ -1,0 +1,27 @@
+{
+  "className": "RankedService",
+  "methodName": "isInstanceOf",
+  "brief": "public boolean isInstanceOf(Class<?> iface){}",
+  "methodSignature": "isInstanceOf(Class)",
+  "sourceCode": "public boolean isInstanceOf(Class<?> iface) {\n            return iface.isAssignableFrom(service.getClass());\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<?>"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "isAssignableFrom(Object>)"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "full_method_info": "public boolean isInstanceOf(Class<?> iface) {\n    return iface.isAssignableFrom(service.getClass());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

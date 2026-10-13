@@ -1,0 +1,30 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "peek",
+  "brief": "public int peek(byte[] buffer) throws IOException{}",
+  "methodSignature": "peek(byte[])",
+  "sourceCode": "public int peek(byte[] buffer) throws IOException {\n        int n = 0;\n        mark(buffer.length);\n\n        int m = read(buffer);\n        while (m != -1) {\n            n += m;\n            if (n < buffer.length) {\n                m = read(buffer, n, buffer.length - n);\n            } else {\n                m = -1;\n            }\n        }\n\n        reset();\n        return n;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "read(byte[], int, int)",
+      "read(byte[])"
+    ]
+  },
+  "full_method_info": "// ========== TikaInputStream-specific Methods ==========\npublic int peek(byte[] buffer) throws IOException {\n    int n = 0;\n    mark(buffer.length);\n    int m = read(buffer);\n    while (m != -1) {\n        n += m;\n        if (n < buffer.length) {\n            m = read(buffer, n, buffer.length - n);\n        } else {\n            m = -1;\n        }\n    }\n    reset();\n    return n;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

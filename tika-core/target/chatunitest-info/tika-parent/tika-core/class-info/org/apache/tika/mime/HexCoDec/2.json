@@ -1,0 +1,27 @@
+{
+  "className": "HexCoDec",
+  "methodName": "decode",
+  "brief": "public static byte[] decode(char[] hexChars, int startIndex, int length){}",
+  "methodSignature": "decode(char[], int, int)",
+  "sourceCode": "public static byte[] decode(char[] hexChars, int startIndex, int length) {\n        if ((length & 1) != 0) {\n            throw new IllegalArgumentException(\"Length must be even\");\n        }\n\n        byte[] result = new byte[length / 2];\n        for (int j = 0; j < result.length; j++) {\n            result[j] = (byte) (hexCharToNibble(hexChars[startIndex++]) * 16 +\n                    hexCharToNibble(hexChars[startIndex++]));\n        }\n        return result;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.mime.HexCoDec": [
+      "hexCharToNibble(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Decode an array of hex chars.\n *\n * @param hexChars   an array of hex characters.\n * @param startIndex the index of the first character to decode\n * @param length     the number of characters to decode.\n * @return the decode hex chars as bytes.\n */\npublic static byte[] decode(char[] hexChars, int startIndex, int length) {\n    if ((length & 1) != 0) {\n        throw new IllegalArgumentException(\"Length must be even\");\n    }\n    byte[] result = new byte[length / 2];\n    for (int j = 0; j < result.length; j++) {\n        result[j] = (byte) (hexCharToNibble(hexChars[startIndex++]) * 16 + hexCharToNibble(hexChars[startIndex++]));\n    }\n    return result;\n}",
+  "method_comment": "\n     * Decode an array of hex chars.\n     *\n     * @param hexChars   an array of hex characters.\n     * @param startIndex the index of the first character to decode\n     * @param length     the number of characters to decode.\n     * @return the decode hex chars as bytes.\n     ",
+  "method_annotation": ""
+}

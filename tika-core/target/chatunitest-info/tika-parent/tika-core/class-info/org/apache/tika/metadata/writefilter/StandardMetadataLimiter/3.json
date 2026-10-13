@@ -1,0 +1,28 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "maxAllowedToSet",
+  "brief": "private int maxAllowedToSet(StringSizePair filterKey){}",
+  "methodSignature": "maxAllowedToSet(StringSizePair)",
+  "sourceCode": "private int maxAllowedToSet(StringSizePair filterKey) {\n        Integer existingSizeInt = fieldSizes.get(filterKey.string);\n        int existingSize = existingSizeInt == null ? 0 : existingSizeInt;\n\n        //this is how much is allowed by the overall total limit\n        int allowedByMaxTotal = maxTotalEstimatedSize - estimatedSize;\n\n        //if we're overwriting a value, that value's data size is now available\n        allowedByMaxTotal += existingSize;\n\n        //if we're adding a key, we need to subtract that value\n        allowedByMaxTotal -= existingSizeInt == null ? filterKey.size : 0;\n\n        return Math.min(maxFieldSize, allowedByMaxTotal);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringSizePair"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter.StringSizePair": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "// calculate the max field length allowed if we are\n// setting a value\nprivate int maxAllowedToSet(StringSizePair filterKey) {\n    Integer existingSizeInt = fieldSizes.get(filterKey.string);\n    int existingSize = existingSizeInt == null ? 0 : existingSizeInt;\n    // this is how much is allowed by the overall total limit\n    int allowedByMaxTotal = maxTotalEstimatedSize - estimatedSize;\n    // if we're overwriting a value, that value's data size is now available\n    allowedByMaxTotal += existingSize;\n    // if we're adding a key, we need to subtract that value\n    allowedByMaxTotal -= existingSizeInt == null ? filterKey.size : 0;\n    return Math.min(maxFieldSize, allowedByMaxTotal);\n}",
+  "method_comment": "setting a value",
+  "method_annotation": ""
+}

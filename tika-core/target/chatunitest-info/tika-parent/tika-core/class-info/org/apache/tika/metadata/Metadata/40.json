@@ -1,0 +1,30 @@
+{
+  "className": "Metadata",
+  "methodName": "equals",
+  "brief": "public boolean equals(Object o){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "public boolean equals(Object o) {\n\n        if (!(o instanceof Metadata)) {\n            return false;\n        }\n\n        Metadata other = (Metadata) o;\n\n        if (other.size() != size()) {\n            return false;\n        }\n\n        String[] names = names();\n        for (String name : names) {\n            String[] otherValues = other._getValues(name);\n            String[] thisValues = _getValues(name);\n            if (otherValues.length != thisValues.length) {\n                return false;\n            }\n            for (int j = 0; j < otherValues.length; j++) {\n                if (!otherValues[j].equals(thisValues[j])) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "org.apache.tika.metadata.Metadata": [
+      "_getValues(String)",
+      "names()",
+      "size()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public boolean equals(Object o) {\n    if (!(o instanceof Metadata)) {\n        return false;\n    }\n    Metadata other = (Metadata) o;\n    if (other.size() != size()) {\n        return false;\n    }\n    String[] names = names();\n    for (String name : names) {\n        String[] otherValues = other._getValues(name);\n        String[] thisValues = _getValues(name);\n        if (otherValues.length != thisValues.length) {\n            return false;\n        }\n        for (int j = 0; j < otherValues.length; j++) {\n            if (!otherValues[j].equals(thisValues[j])) {\n                return false;\n            }\n        }\n    }\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

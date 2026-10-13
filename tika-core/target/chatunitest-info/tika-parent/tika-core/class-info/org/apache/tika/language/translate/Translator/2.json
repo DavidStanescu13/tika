@@ -1,0 +1,18 @@
+{
+  "className": "Translator",
+  "methodName": "isAvailable",
+  "brief": "boolean isAvailable();",
+  "methodSignature": "isAvailable()",
+  "sourceCode": "boolean isAvailable();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return true if this Translator is probably able to translate right now.\n * @since Tika 1.6\n */\nboolean isAvailable();",
+  "method_comment": "\n     * @return true if this Translator is probably able to translate right now.\n     * @since Tika 1.6\n     ",
+  "method_annotation": ""
+}

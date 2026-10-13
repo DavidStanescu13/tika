@@ -1,0 +1,22 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "checkHasFile",
+  "brief": "public static boolean checkHasFile(){}",
+  "methodSignature": "checkHasFile()",
+  "sourceCode": "public static boolean checkHasFile() {\n        return checkHasFile(DEFAULT_FILE_COMMAND_PATH);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.FileCommandDetector": [
+      "checkHasFile(String)"
+    ]
+  },
+  "full_method_info": "public static boolean checkHasFile() {\n    return checkHasFile(DEFAULT_FILE_COMMAND_PATH);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

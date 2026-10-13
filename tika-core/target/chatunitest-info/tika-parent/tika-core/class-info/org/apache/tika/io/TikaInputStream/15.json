@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(URL url) throws IOException{}",
+  "methodSignature": "get(URL)",
+  "sourceCode": "public static TikaInputStream get(URL url) throws IOException {\n        return get(url, new Metadata());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL"
+  ],
+  "dependentMethods": {
+    "java.net.URL": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(URL, Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(URL url) throws IOException {\n    return get(url, new Metadata());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

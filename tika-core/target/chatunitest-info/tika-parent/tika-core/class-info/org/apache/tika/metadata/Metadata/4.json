@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "isMultiValued",
+  "brief": "public boolean isMultiValued(final String name){}",
+  "methodSignature": "isMultiValued(String)",
+  "sourceCode": "public boolean isMultiValued(final String name) {\n        return metadata.get(name) != null && metadata.get(name).length > 1;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns true if named value is multivalued.\n *\n * @param name name of metadata\n * @return true is named value is multivalued, false if single value or null\n */\npublic boolean isMultiValued(final String name) {\n    return metadata.get(name) != null && metadata.get(name).length > 1;\n}",
+  "method_comment": "\n     * Returns true if named value is multivalued.\n     *\n     * @param name name of metadata\n     * @return true is named value is multivalued, false if single value or null\n     ",
+  "method_annotation": ""
+}

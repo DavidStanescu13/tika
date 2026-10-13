@@ -1,0 +1,28 @@
+{
+  "className": "CompositeDetector",
+  "methodName": "isExcluded",
+  "brief": "private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors,\r\n                               Class<? extends Detector> d){}",
+  "methodSignature": "isExcluded(Collection, Class)",
+  "sourceCode": "private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors,\n                               Class<? extends Detector> d) {\n        return excludeDetectors.contains(d) || assignableFrom(excludeDetectors, d);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<Class<? extends Detector>>",
+    "Class<? extends Detector>"
+  ],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "contains(Object)"
+    ],
+    "org.apache.tika.detect.CompositeDetector": [
+      "assignableFrom(Detector>>, Detector>)"
+    ]
+  },
+  "full_method_info": "private boolean isExcluded(Collection<Class<? extends Detector>> excludeDetectors, Class<? extends Detector> d) {\n    return excludeDetectors.contains(d) || assignableFrom(excludeDetectors, d);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "DateUtils",
+  "methodName": "tryToParse",
+  "brief": "public Date tryToParse(String dateString){}",
+  "methodSignature": "tryToParse(String)",
+  "sourceCode": "public Date tryToParse(String dateString) {\n        if (dateString == null || dateString.length() < 6) {\n            return null;\n        }\n        // Java doesn't like timezones in the form ss+hh:mm\n        // It only likes the hhmm form, without the colon\n        int n = dateString.length();\n        if (dateString.charAt(n - 3) == ':' &&\n                (dateString.charAt(n - 6) == '+' || dateString.charAt(n - 6) == '-')) {\n            dateString = dateString.substring(0, n - 3) + dateString.substring(n - 2);\n        }\n\n        for (DateFormat df : iso8601InputFormats) {\n            try {\n                return df.parse(dateString);\n            } catch (java.text.ParseException e) {\n                //swallow\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "length()",
+      "charAt(int)"
+    ],
+    "java.text.DateFormat": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tries to parse the date string; returns null if no parse was possible.\n * <p>\n * This is not thread safe!  Wrap in synchronized or create new {@link DateUtils}\n * for each class.\n *\n * @param dateString\n * @return\n */\npublic Date tryToParse(String dateString) {\n    if (dateString == null || dateString.length() < 6) {\n        return null;\n    }\n    // Java doesn't like timezones in the form ss+hh:mm\n    // It only likes the hhmm form, without the colon\n    int n = dateString.length();\n    if (dateString.charAt(n - 3) == ':' && (dateString.charAt(n - 6) == '+' || dateString.charAt(n - 6) == '-')) {\n        dateString = dateString.substring(0, n - 3) + dateString.substring(n - 2);\n    }\n    for (DateFormat df : iso8601InputFormats) {\n        try {\n            return df.parse(dateString);\n        } catch (java.text.ParseException e) {\n            // swallow\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * Tries to parse the date string; returns null if no parse was possible.\n     * <p>\n     * This is not thread safe!  Wrap in synchronized or create new {@link DateUtils}\n     * for each class.\n     *\n     * @param dateString\n     * @return\n     ",
+  "method_annotation": ""
+}

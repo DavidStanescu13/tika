@@ -1,0 +1,70 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.CompositeMetadataFilter",
+  "className": "CompositeMetadataFilter",
+  "index": 133,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilter]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "public class CompositeMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private List<MetadataFilter> filters;"
+  ],
+  "superClasses": [
+    "MetadataFilter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setFilters(List)": "0",
+    "getFilters()": "1",
+    "doFilter(List, ParseContext)": "2",
+    "close()": "3",
+    "toString()": "4",
+    "CompositeMetadataFilter()": "5",
+    "CompositeMetadataFilter(List)": "6"
+  },
+  "methodsBrief": [
+    "public void setFilters(List<MetadataFilter> filters){}",
+    "public List<MetadataFilter> getFilters(){}",
+    "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException{}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "@Override\r\n    public String toString(){}",
+    "public CompositeMetadataFilter(){}",
+    "public CompositeMetadataFilter(List<MetadataFilter> filters){}"
+  ],
+  "constructorSigs": [
+    "CompositeMetadataFilter()",
+    "CompositeMetadataFilter(List)"
+  ],
+  "constructorBrief": [
+    "public CompositeMetadataFilter(){}",
+    "public CompositeMetadataFilter(List<MetadataFilter> filters){}"
+  ],
+  "getterSetterSigs": [
+    "setFilters(List)",
+    "getFilters()"
+  ],
+  "getterSetterBrief": [
+    "public void setFilters(List<MetadataFilter> filters){}",
+    "public List<MetadataFilter> getFilters(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.parser.ParseContext;\n\npublic class CompositeMetadataFilter extends MetadataFilter {\n\n    // no longer final to allow for no arg initialization during serialization\n    private List<MetadataFilter> filters;\n\n    public CompositeMetadataFilter() {\n        filters = new ArrayList<>();\n    }\n\n    public CompositeMetadataFilter(List<MetadataFilter> filters) {\n        this.filters = filters;\n    }\n\n    public void setFilters(List<MetadataFilter> filters) {\n        this.filters.clear();\n        this.filters.addAll(filters);\n    }\n\n    public List<MetadataFilter> getFilters() {\n        return filters;\n    }\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        for (MetadataFilter filter : filters) {\n            filter.filter(metadataList, parseContext);\n        }\n    }\n\n    @Override\n    public void close() throws IOException {\n        for (MetadataFilter filter : filters) {\n            filter.close();\n        }\n    }\n\n    @Override\n    public String toString() {\n        return \"CompositeMetadataListFilter{\" + \"filters=\" + filters + '}';\n    }\n}\n",
+  "classDeclarationCode": "public class CompositeMetadataFilter extends MetadataFilter {\n\n    // no longer final to allow for no arg initialization during serialization\n    private List<MetadataFilter> filters;\n\n    public CompositeMetadataFilter() {\n        filters = new ArrayList<>();\n    }\n\n    public CompositeMetadataFilter(List<MetadataFilter> filters) {\n        this.filters = filters;\n    }\n\n    public void setFilters(List<MetadataFilter> filters) {\n        this.filters.clear();\n        this.filters.addAll(filters);\n    }\n\n    public List<MetadataFilter> getFilters() {\n        return filters;\n    }\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        for (MetadataFilter filter : filters) {\n            filter.filter(metadataList, parseContext);\n        }\n    }\n\n    @Override\n    public void close() throws IOException {\n        for (MetadataFilter filter : filters) {\n            filter.close();\n        }\n    }\n\n    @Override\n    public String toString() {\n        return \"CompositeMetadataListFilter{\" + \"filters=\" + filters + '}';\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.metadata.filter.DefaultMetadataFilter"
+  ]
+}

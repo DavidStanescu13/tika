@@ -1,0 +1,18 @@
+{
+  "className": "MetadataWriteLimiterFactory",
+  "methodName": "newInstance",
+  "brief": "MetadataWriteLimiter newInstance();",
+  "methodSignature": "newInstance()",
+  "sourceCode": "MetadataWriteLimiter newInstance();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Creates a new limiter instance.\n * Each call should return a fresh instance since limiters are stateful.\n *\n * @return a new MetadataWriteLimiter instance\n */\nMetadataWriteLimiter newInstance();",
+  "method_comment": "\n     * Creates a new limiter instance.\n     * Each call should return a fresh instance since limiters are stateful.\n     *\n     * @return a new MetadataWriteLimiter instance\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "Magic",
+  "methodName": "compareTo",
+  "brief": "public int compareTo(Magic o){}",
+  "methodSignature": "compareTo(Magic)",
+  "sourceCode": "public int compareTo(Magic o) {\n        int diff = o.priority - priority;\n        if (diff == 0) {\n            diff = o.size() - size();\n        }\n        if (diff == 0) {\n            diff = o.type.compareTo(type);\n        }\n        if (diff == 0) {\n            diff = o.string.compareTo(string);\n        }\n        return diff;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Magic"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.Magic": [
+      "size()"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "compareTo(MimeType)"
+    ],
+    "java.lang.String": [
+      "compareTo(String)"
+    ]
+  },
+  "full_method_info": "public int compareTo(Magic o) {\n    int diff = o.priority - priority;\n    if (diff == 0) {\n        diff = o.size() - size();\n    }\n    if (diff == 0) {\n        diff = o.type.compareTo(type);\n    }\n    if (diff == 0) {\n        diff = o.string.compareTo(string);\n    }\n    return diff;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

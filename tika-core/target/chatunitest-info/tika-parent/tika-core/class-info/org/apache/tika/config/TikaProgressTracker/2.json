@@ -1,0 +1,22 @@
+{
+  "className": "TikaProgressTracker",
+  "methodName": "getLastProgressMillis",
+  "brief": "public long getLastProgressMillis(){}",
+  "methodSignature": "getLastProgressMillis()",
+  "sourceCode": "public long getLastProgressMillis() {\n        return lastProgressMillis.get();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.concurrent.atomic.AtomicLong": [
+      "get()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the epoch millis of the last progress update.\n *\n * @return epoch millis of last progress\n */\npublic long getLastProgressMillis() {\n    return lastProgressMillis.get();\n}",
+  "method_comment": "\n     * Returns the epoch millis of the last progress update.\n     *\n     * @return epoch millis of last progress\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,21 @@
+{
+  "className": "StringUtils",
+  "methodName": "repeat",
+  "brief": "public static String repeat(final char ch, final int repeat){}",
+  "methodSignature": "repeat(char, int)",
+  "sourceCode": "public static String repeat(final char ch, final int repeat) {\n        if (repeat <= 0) {\n            return EMPTY;\n        }\n        final char[] buf = new char[repeat];\n        for (int i = repeat - 1; i >= 0; i--) {\n            buf[i] = ch;\n        }\n        return new String(buf);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char",
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * <p>Returns padding using the specified delimiter repeated\n * to a given length.</p>\n *\n * <pre>\n * StringUtils.repeat('e', 0)  = \"\"\n * StringUtils.repeat('e', 3)  = \"eee\"\n * StringUtils.repeat('e', -2) = \"\"\n * </pre>\n *\n * <p>Note: this method does not support padding with\n * <a href=\"http://www.unicode.org/glossary/#supplementary_character\">Unicode Supplementary Characters</a>\n * as they require a pair of {@code char}s to be represented.\n * If you are needing to support full I18N of your applications\n * consider using {@link #repeat(String, int)} instead.\n * </p>\n *\n * @param ch     character to repeat\n * @param repeat number of times to repeat char, negative treated as zero\n * @return String with repeated character\n * @see #repeat(String, int)\n */\npublic static String repeat(final char ch, final int repeat) {\n    if (repeat <= 0) {\n        return EMPTY;\n    }\n    final char[] buf = new char[repeat];\n    for (int i = repeat - 1; i >= 0; i--) {\n        buf[i] = ch;\n    }\n    return new String(buf);\n}",
+  "method_comment": "\n     * <p>Returns padding using the specified delimiter repeated\n     * to a given length.</p>\n     *\n     * <pre>\n     * StringUtils.repeat('e', 0)  = \"\"\n     * StringUtils.repeat('e', 3)  = \"eee\"\n     * StringUtils.repeat('e', -2) = \"\"\n     * </pre>\n     *\n     * <p>Note: this method does not support padding with\n     * <a href=\"http://www.unicode.org/glossary/#supplementary_character\">Unicode Supplementary Characters</a>\n     * as they require a pair of {@code char}s to be represented.\n     * If you are needing to support full I18N of your applications\n     * consider using {@link #repeat(String, int)} instead.\n     * </p>\n     *\n     * @param ch     character to repeat\n     * @param repeat number of times to repeat char, negative treated as zero\n     * @return String with repeated character\n     * @see #repeat(String, int)\n     ",
+  "method_annotation": ""
+}

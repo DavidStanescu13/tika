@@ -1,0 +1,36 @@
+{
+  "className": "MatchingContentHandler",
+  "methodName": "endElement",
+  "brief": "public void endElement(String uri, String localName, String name) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "public void endElement(String uri, String localName, String name) throws SAXException {\n        if (matcher.matchesElement()) {\n            super.endElement(uri, localName, name);\n        }\n        // this was originally added for tagsoup, but we need it generally\n        if (!matchers.isEmpty()) {\n            matcher = matchers.removeFirst();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesElement()"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endElement(String, String, String)"
+    ],
+    "java.util.AbstractCollection": [
+      "isEmpty()"
+    ],
+    "java.util.LinkedList": [
+      "removeFirst()"
+    ]
+  },
+  "full_method_info": "public void endElement(String uri, String localName, String name) throws SAXException {\n    if (matcher.matchesElement()) {\n        super.endElement(uri, localName, name);\n    }\n    // this was originally added for tagsoup, but we need it generally\n    if (!matchers.isEmpty()) {\n        matcher = matchers.removeFirst();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

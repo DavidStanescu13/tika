@@ -1,0 +1,40 @@
+{
+  "className": "ParserPostProcessor",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        ContentHandler body = new BodyContentHandler();\n        ContentHandler tee = new TeeContentHandler(handler, body);\n        super.parse(tis, tee, metadata, context);\n\n        String content = body.toString();\n        metadata.set(\"fulltext\", content);\n\n        int length = Math.min(content.length(), 500);\n        metadata.set(\"summary\", content.substring(0, length));\n\n        for (String link : RegexUtils.extractLinks(content)) {\n            metadata.add(\"outlinks\", link);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(String, String)",
+      "add(String, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()"
+    ],
+    "org.apache.tika.utils.RegexUtils": [
+      "extractLinks(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Forwards the call to the delegated parser and post-processes the\n * results as described above.\n */\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    ContentHandler body = new BodyContentHandler();\n    ContentHandler tee = new TeeContentHandler(handler, body);\n    super.parse(tis, tee, metadata, context);\n    String content = body.toString();\n    metadata.set(\"fulltext\", content);\n    int length = Math.min(content.length(), 500);\n    metadata.set(\"summary\", content.substring(0, length));\n    for (String link : RegexUtils.extractLinks(content)) {\n        metadata.add(\"outlinks\", link);\n    }\n}",
+  "method_comment": "\n     * Forwards the call to the delegated parser and post-processes the\n     * results as described above.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "TrainedModelDetector",
+  "brief": "public TrainedModelDetector(){}",
+  "methodSignature": "TrainedModelDetector()",
+  "sourceCode": "public TrainedModelDetector() {\n        loadDefaultModels(getClass().getClassLoader());\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(ClassLoader)"
+    ],
+    "java.lang.Class": [
+      "getClassLoader()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "full_method_info": "public TrainedModelDetector() {\n    loadDefaultModels(getClass().getClassLoader());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

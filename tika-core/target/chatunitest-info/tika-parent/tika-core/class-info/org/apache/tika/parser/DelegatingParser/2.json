@@ -1,0 +1,30 @@
+{
+  "className": "DelegatingParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws SAXException, IOException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws SAXException, IOException, TikaException {\n        getDelegateParser(context).parse(tis, handler, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.DelegatingParser": [
+      "getDelegateParser(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Looks up the delegate parser from the parsing context and\n * delegates the parse operation to it. If a delegate parser is not\n * found, then an empty XHTML document is returned.\n * <p>\n * Subclasses should override this method to parse the top level\n * structure of the given document stream. Parsed sub-streams can\n * be passed to this base class method to be parsed by the configured\n * delegate parser.\n */\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws SAXException, IOException, TikaException {\n    getDelegateParser(context).parse(tis, handler, metadata, context);\n}",
+  "method_comment": "\n     * Looks up the delegate parser from the parsing context and\n     * delegates the parse operation to it. If a delegate parser is not\n     * found, then an empty XHTML document is returned.\n     * <p>\n     * Subclasses should override this method to parse the top level\n     * structure of the given document stream. Parsed sub-streams can\n     * be passed to this base class method to be parsed by the configured\n     * delegate parser.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "generateResourceName",
+  "brief": "public static String generateResourceName(EmbeddedResourcePrefix type, int count,\r\n                                               String mediaType){}",
+  "methodSignature": "generateResourceName(EmbeddedResourcePrefix, int, String)",
+  "sourceCode": "public static String generateResourceName(EmbeddedResourcePrefix type, int count,\n                                               String mediaType) {\n        return type.getPrefix() + \"-\" + count + getExtensionForMediaType(mediaType);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "EmbeddedResourcePrefix",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.extractor.EmbeddedDocumentUtil.EmbeddedResourcePrefix": [
+      "getPrefix()"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "getExtensionForMediaType(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Generates a canonical resource name from a type, counter, and media type.\n * For example: {@code generateResourceName(EmbeddedResourcePrefix.EMBEDDED, 0, \"image/png\")}\n * returns {@code \"embedded-0.png\"}.\n *\n * @param type      the embedded resource type\n * @param count     the counter value\n * @param mediaType the media type string, or null if unknown\n * @return the generated resource name with extension\n */\npublic static String generateResourceName(EmbeddedResourcePrefix type, int count, String mediaType) {\n    return type.getPrefix() + \"-\" + count + getExtensionForMediaType(mediaType);\n}",
+  "method_comment": "\n     * Generates a canonical resource name from a type, counter, and media type.\n     * For example: {@code generateResourceName(EmbeddedResourcePrefix.EMBEDDED, 0, \"image/png\")}\n     * returns {@code \"embedded-0.png\"}.\n     *\n     * @param type      the embedded resource type\n     * @param count     the counter value\n     * @param mediaType the media type string, or null if unknown\n     * @return the generated resource name with extension\n     ",
+  "method_annotation": ""
+}

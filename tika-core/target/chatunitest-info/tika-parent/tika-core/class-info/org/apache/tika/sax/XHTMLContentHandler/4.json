@@ -1,0 +1,18 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        lazyEndHead(useFrameset);\n\n        if (useFrameset) {\n            super.endElement(XHTML, \"frameset\", \"frameset\");\n        } else {\n            super.endElement(XHTML, \"body\", \"body\");\n        }\n\n        super.endElement(XHTML, \"html\", \"html\");\n\n        endPrefixMapping(\"\");\n        super.endDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Ends the XHTML document by writing the following footer and\n * clearing the namespace mappings:\n * <pre>\n *   &lt;/body&gt;\n * &lt;/html&gt;\n * </pre>\n */\n@Override\npublic void endDocument() throws SAXException {\n    lazyEndHead(useFrameset);\n    if (useFrameset) {\n        super.endElement(XHTML, \"frameset\", \"frameset\");\n    } else {\n        super.endElement(XHTML, \"body\", \"body\");\n    }\n    super.endElement(XHTML, \"html\", \"html\");\n    endPrefixMapping(\"\");\n    super.endDocument();\n}",
+  "method_comment": "\n     * Ends the XHTML document by writing the following footer and\n     * clearing the namespace mappings:\n     * <pre>\n     *   &lt;/body&gt;\n     * &lt;/html&gt;\n     * </pre>\n     ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,26 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "addSuperType",
+  "brief": "public void addSuperType(MediaType type, MediaType supertype){}",
+  "methodSignature": "addSuperType(MediaType, MediaType)",
+  "sourceCode": "public void addSuperType(MediaType type, MediaType supertype) {\n        inheritance.put(type, supertype);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "public void addSuperType(MediaType type, MediaType supertype) {\n    inheritance.put(type, supertype);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

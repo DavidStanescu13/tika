@@ -1,0 +1,29 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "getProcessTimeoutMillis",
+  "brief": "public static long getProcessTimeoutMillis(ParseContext context, long defaultMs){}",
+  "methodSignature": "getProcessTimeoutMillis(ParseContext, long)",
+  "sourceCode": "public static long getProcessTimeoutMillis(ParseContext context, long defaultMs) {\n        if (context == null) {\n            return defaultMs;\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        if (limits == null) {\n            return defaultMs;\n        }\n        return Math.max(0, Math.min(defaultMs, limits.progressTimeoutMillis - 100));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext",
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "java.lang.Math": [
+      "max(long, long)",
+      "min(long, long)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the per-process timeout to use for external process execution.\n * <p>\n * External processes must not outlive the progress watchdog: a parser only\n * reports progress once its process has finished, so a process allowed to run\n * past {@code progressTimeoutMillis} would be killed as a hang. This caps the\n * caller's timeout at {@code progressTimeoutMillis - 100}, leaving the monitoring\n * loop a small window to observe the process exit first.\n * <p>\n * The cap is a ceiling, not a replacement: a caller asking for less than the cap\n * keeps its own shorter value. Falls back to {@code defaultMs} when no\n * TimeoutLimits is in the context.\n *\n * @param context   the ParseContext (may be null)\n * @param defaultMs the caller's configured timeout; also used if no TimeoutLimits\n *                  is in the context\n * @return timeout in milliseconds for external process execution\n */\npublic static long getProcessTimeoutMillis(ParseContext context, long defaultMs) {\n    if (context == null) {\n        return defaultMs;\n    }\n    TimeoutLimits limits = context.get(TimeoutLimits.class);\n    if (limits == null) {\n        return defaultMs;\n    }\n    return Math.max(0, Math.min(defaultMs, limits.progressTimeoutMillis - 100));\n}",
+  "method_comment": "\n     * Returns the per-process timeout to use for external process execution.\n     * <p>\n     * External processes must not outlive the progress watchdog: a parser only\n     * reports progress once its process has finished, so a process allowed to run\n     * past {@code progressTimeoutMillis} would be killed as a hang. This caps the\n     * caller's timeout at {@code progressTimeoutMillis - 100}, leaving the monitoring\n     * loop a small window to observe the process exit first.\n     * <p>\n     * The cap is a ceiling, not a replacement: a caller asking for less than the cap\n     * keeps its own shorter value. Falls back to {@code defaultMs} when no\n     * TimeoutLimits is in the context.\n     *\n     * @param context   the ParseContext (may be null)\n     * @param defaultMs the caller's configured timeout; also used if no TimeoutLimits\n     *                  is in the context\n     * @return timeout in milliseconds for external process execution\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,38 @@
+{
+  "className": "CompositeParser",
+  "methodName": "setParsers",
+  "brief": "public void setParsers(Map<MediaType, Parser> parsers){}",
+  "methodSignature": "setParsers(Map)",
+  "sourceCode": "public void setParsers(Map<MediaType, Parser> parsers) {\n        this.parsers = new ArrayList<>(parsers.size());\n        for (Map.Entry<MediaType, Parser> entry : parsers.entrySet()) {\n            this.parsers.add(ParserDecorator\n                    .withTypes(entry.getValue(), Collections.singleton(entry.getKey())));\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<MediaType,Parser>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "entrySet()",
+      "size()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "withTypes(Parser, MediaType>)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.Collections": [
+      "singleton(T)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the component parsers.\n *\n * @param parsers component parsers, keyed by media type\n */\npublic void setParsers(Map<MediaType, Parser> parsers) {\n    this.parsers = new ArrayList<>(parsers.size());\n    for (Map.Entry<MediaType, Parser> entry : parsers.entrySet()) {\n        this.parsers.add(ParserDecorator.withTypes(entry.getValue(), Collections.singleton(entry.getKey())));\n    }\n}",
+  "method_comment": "\n     * Sets the component parsers.\n     *\n     * @param parsers component parsers, keyed by media type\n     ",
+  "method_annotation": ""
+}

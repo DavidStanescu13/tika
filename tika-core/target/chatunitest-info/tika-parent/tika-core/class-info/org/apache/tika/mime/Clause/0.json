@@ -1,0 +1,22 @@
+{
+  "className": "Clause",
+  "methodName": "eval",
+  "brief": "boolean eval(byte[] data);",
+  "methodSignature": "eval(byte[])",
+  "sourceCode": "boolean eval(byte[] data);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Evaluates this clause with the specified chunk of data.\n */\nboolean eval(byte[] data);",
+  "method_comment": "\n     * Evaluates this clause with the specified chunk of data.\n     ",
+  "method_annotation": ""
+}

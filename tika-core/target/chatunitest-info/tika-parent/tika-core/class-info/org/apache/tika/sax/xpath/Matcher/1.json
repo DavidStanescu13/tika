@@ -1,0 +1,18 @@
+{
+  "className": "Matcher",
+  "methodName": "matchesElement",
+  "brief": "public boolean matchesElement(){}",
+  "methodSignature": "matchesElement()",
+  "sourceCode": "public boolean matchesElement() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns <code>true</code> if the XPath expression matches\n * the element associated with this evaluation state.\n *\n * @return XPath evaluation state for this element\n */\npublic boolean matchesElement() {\n    return false;\n}",
+  "method_comment": "\n     * Returns <code>true</code> if the XPath expression matches\n     * the element associated with this evaluation state.\n     *\n     * @return XPath evaluation state for this element\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "AttributeMatcher",
+  "methodName": "matchesAttribute",
+  "brief": "public boolean matchesAttribute(String namespace, String name){}",
+  "methodSignature": "matchesAttribute(String, String)",
+  "sourceCode": "public boolean matchesAttribute(String namespace, String name) {\n        return true;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public boolean matchesAttribute(String namespace, String name) {\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "DIFContentHandler",
+  "methodName": "setDocumentLocator",
+  "brief": "@Override\r\n    public void setDocumentLocator(org.xml.sax.Locator locator){}",
+  "methodSignature": "setDocumentLocator(org.xml.sax.Locator)",
+  "sourceCode": "@Override\n    public void setDocumentLocator(org.xml.sax.Locator locator) {\n        delegate.setDocumentLocator(locator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "org.xml.sax.Locator"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void setDocumentLocator(org.xml.sax.Locator locator) {\n    delegate.setDocumentLocator(locator);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.config.TikaActivator",
+  "className": "TikaActivator",
+  "index": 12,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[BundleActivator, ServiceTrackerCustomizer]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "public class TikaActivator",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "import org.osgi.framework.BundleActivator;",
+    "import org.osgi.framework.BundleContext;",
+    "import org.osgi.framework.Constants;",
+    "import org.osgi.framework.ServiceReference;",
+    "import org.osgi.util.tracker.ServiceTracker;",
+    "import org.osgi.util.tracker.ServiceTrackerCustomizer;",
+    "import org.apache.tika.detect.Detector;",
+    "import org.apache.tika.detect.EncodingDetector;",
+    "import org.apache.tika.language.detect.LanguageDetector;",
+    "import org.apache.tika.metadata.filter.MetadataFilter;",
+    "import org.apache.tika.parser.Parser;"
+  ],
+  "fields": [
+    "private final List<ServiceTracker> trackers = new ArrayList<>();",
+    "private BundleContext bundleContext;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "BundleActivator",
+    "ServiceTrackerCustomizer"
+  ],
+  "methodSigs": {
+    "start(BundleContext)": "0",
+    "trackService(BundleContext, Class)": "1",
+    "stop(BundleContext)": "2",
+    "addingService(ServiceReference)": "3",
+    "modifiedService(ServiceReference, Object)": "4",
+    "removedService(ServiceReference, Object)": "5"
+  },
+  "methodsBrief": [
+    "public void start(final BundleContext context) throws Exception{}",
+    "private void trackService(BundleContext context, Class<?> iface){}",
+    "public void stop(BundleContext context) throws Exception{}",
+    "public Object addingService(ServiceReference reference){}",
+    "public void modifiedService(ServiceReference reference, Object service){}",
+    "public void removedService(ServiceReference reference, Object service){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.osgi.framework.BundleActivator;\nimport org.osgi.framework.BundleContext;\nimport org.osgi.framework.Constants;\nimport org.osgi.framework.ServiceReference;\nimport org.osgi.util.tracker.ServiceTracker;\nimport org.osgi.util.tracker.ServiceTrackerCustomizer;\nimport org.apache.tika.detect.Detector;\nimport org.apache.tika.detect.EncodingDetector;\nimport org.apache.tika.language.detect.LanguageDetector;\nimport org.apache.tika.metadata.filter.MetadataFilter;\nimport org.apache.tika.parser.Parser;\n\n/**\n * Bundle activator that adjust the class loading mechanism of the\n * {@link ServiceLoader} class to work correctly in an OSGi environment.\n * <p>\n * Note that you should <strong>not</strong> access this class directly.\n * Instead the OSGi environment (if present) will automatically invoke the\n * methods of this class based on the Bundle-Activator setting in the bundle\n * manifest.\n *\n * @since Apache Tika 0.9\n */\npublic class TikaActivator implements BundleActivator, ServiceTrackerCustomizer {\n\n    private final List<ServiceTracker> trackers = new ArrayList<>();\n\n    private BundleContext bundleContext;\n\n    public void start(final BundleContext context) throws Exception {\n        bundleContext = context;\n        trackService(context, Detector.class);\n        trackService(context, Parser.class);\n        trackService(context, EncodingDetector.class);\n        trackService(context, LanguageDetector.class);\n        trackService(context, MetadataFilter.class);\n    }\n\n    private void trackService(BundleContext context, Class<?> iface) {\n        ServiceTracker tracker = new ServiceTracker(context, iface.getName(), this);\n        trackers.add(tracker);\n        tracker.open();\n    }\n\n    public void stop(BundleContext context) throws Exception {\n        for (ServiceTracker tracker : trackers) {\n            tracker.close();\n        }\n        trackers.clear();\n    }\n\n    public Object addingService(ServiceReference reference) {\n        int rank = 0;\n        Object property = reference.getProperty(Constants.SERVICE_RANKING);\n        if (property instanceof Integer) {\n            rank = (Integer) property;\n        }\n        Object service = bundleContext.getService(reference);\n        ServiceLoader.addService(reference, service, rank);\n        return service;\n    }\n\n    public void modifiedService(ServiceReference reference, Object service) {\n    }\n\n    public void removedService(ServiceReference reference, Object service) {\n        ServiceLoader.removeService(reference);\n        bundleContext.ungetService(reference);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Bundle activator that adjust the class loading mechanism of the\n * {@link ServiceLoader} class to work correctly in an OSGi environment.\n * <p>\n * Note that you should <strong>not</strong> access this class directly.\n * Instead the OSGi environment (if present) will automatically invoke the\n * methods of this class based on the Bundle-Activator setting in the bundle\n * manifest.\n *\n * @since Apache Tika 0.9\n */\npublic class TikaActivator implements BundleActivator, ServiceTrackerCustomizer {\n\n    private final List<ServiceTracker> trackers = new ArrayList<>();\n\n    private BundleContext bundleContext;\n\n    public void start(final BundleContext context) throws Exception {\n        bundleContext = context;\n        trackService(context, Detector.class);\n        trackService(context, Parser.class);\n        trackService(context, EncodingDetector.class);\n        trackService(context, LanguageDetector.class);\n        trackService(context, MetadataFilter.class);\n    }\n\n    private void trackService(BundleContext context, Class<?> iface) {\n        ServiceTracker tracker = new ServiceTracker(context, iface.getName(), this);\n        trackers.add(tracker);\n        tracker.open();\n    }\n\n    public void stop(BundleContext context) throws Exception {\n        for (ServiceTracker tracker : trackers) {\n            tracker.close();\n        }\n        trackers.clear();\n    }\n\n    public Object addingService(ServiceReference reference) {\n        int rank = 0;\n        Object property = reference.getProperty(Constants.SERVICE_RANKING);\n        if (property instanceof Integer) {\n            rank = (Integer) property;\n        }\n        Object service = bundleContext.getService(reference);\n        ServiceLoader.addService(reference, service, rank);\n        return service;\n    }\n\n    public void modifiedService(ServiceReference reference, Object service) {\n    }\n\n    public void removedService(ServiceReference reference, Object service) {\n        ServiceLoader.removeService(reference);\n        bundleContext.ungetService(reference);\n    }\n}",
+  "subClasses": []
+}

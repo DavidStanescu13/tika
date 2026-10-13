@@ -1,0 +1,85 @@
+{
+  "fullClassName": "org.apache.tika.io.ByteArraySource",
+  "className": "ByteArraySource",
+  "index": 96,
+  "modifier": "[]",
+  "extend": "[InputStream]",
+  "implement": "[TikaInputSource]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "class ByteArraySource",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.OutputStream;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;"
+  ],
+  "fields": [
+    "private final byte[] data;",
+    "private final int length;",
+    "private final TemporaryResources tmp;",
+    "private int position;",
+    "private Path spilledPath;",
+    "private int markPosition = -1;"
+  ],
+  "superClasses": [
+    "InputStream"
+  ],
+  "implementedTypes": [
+    "TikaInputSource"
+  ],
+  "methodSigs": {
+    "read()": "0",
+    "read(byte[], int, int)": "1",
+    "skip(long)": "2",
+    "available()": "3",
+    "seekTo(long)": "4",
+    "hasPath()": "5",
+    "getPath(String)": "6",
+    "getLength()": "7",
+    "enableRewind()": "8",
+    "mark(int)": "9",
+    "reset()": "10",
+    "markSupported()": "11",
+    "ByteArraySource(byte[], TemporaryResources)": "12"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public int read(){}",
+    "@Override\r\n    public int read(byte[] b, int off, int len){}",
+    "@Override\r\n    public long skip(long n){}",
+    "@Override\r\n    public int available(){}",
+    "@Override\r\n    public void seekTo(long newPosition) throws IOException{}",
+    "@Override\r\n    public boolean hasPath(){}",
+    "@Override\r\n    public Path getPath(String suffix) throws IOException{}",
+    "@Override\r\n    public long getLength(){}",
+    "@Override\r\n    public void enableRewind(){}",
+    "@Override\r\n    public synchronized void mark(int readlimit){}",
+    "@Override\r\n    public synchronized void reset() throws IOException{}",
+    "@Override\r\n    public boolean markSupported(){}",
+    "ByteArraySource(byte[] data, TemporaryResources tmp){}"
+  ],
+  "constructorSigs": [
+    "ByteArraySource(byte[], TemporaryResources)"
+  ],
+  "constructorBrief": [
+    "ByteArraySource(byte[] data, TemporaryResources tmp){}"
+  ],
+  "getterSetterSigs": [
+    "getLength()"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public long getLength(){}"
+  ],
+  "constructorDeps": {
+    "byte": [],
+    "org.apache.tika.io.TemporaryResources": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\n\n/**\n * Input source backed by a byte array.\n * <p>\n * Data is already in memory and natively seekable via array indexing.\n * No caching is needed. A temp file is only created if {@link #getPath}\n * is explicitly called.\n * <p>\n * Would prefer to extend UnsynchronizedByteArrayInputStream, but we need direct\n * access to the internals.\n */\nclass ByteArraySource extends InputStream implements TikaInputSource {\n\n    private final byte[] data;\n\n    private final int length;\n\n    private final TemporaryResources tmp;\n\n    private int position;\n\n    private Path spilledPath;\n\n    ByteArraySource(byte[] data, TemporaryResources tmp) {\n        this.data = data;\n        this.length = data.length;\n        this.tmp = tmp;\n        this.position = 0;\n        this.spilledPath = null;\n    }\n\n    @Override\n    public int read() {\n        if (position >= length) {\n            return -1;\n        }\n        return data[position++] & 0xFF;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) {\n        if (position >= length) {\n            return -1;\n        }\n        int available = length - position;\n        int toRead = Math.min(len, available);\n        System.arraycopy(data, position, b, off, toRead);\n        position += toRead;\n        return toRead;\n    }\n\n    @Override\n    public long skip(long n) {\n        if (n <= 0) {\n            return 0;\n        }\n        int available = length - position;\n        int toSkip = (int) Math.min(n, available);\n        position += toSkip;\n        return toSkip;\n    }\n\n    @Override\n    public int available() {\n        return length - position;\n    }\n\n    @Override\n    public void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0 || newPosition > length) {\n            throw new IOException(\"Invalid seek position: \" + newPosition + \" (length: \" + length + \")\");\n        }\n        this.position = (int) newPosition;\n    }\n\n    @Override\n    public boolean hasPath() {\n        return spilledPath != null;\n    }\n\n    @Override\n    public Path getPath(String suffix) throws IOException {\n        if (spilledPath == null) {\n            // Spill to temp file on first call\n            spilledPath = tmp.createTempFile(suffix);\n            try (OutputStream out = Files.newOutputStream(spilledPath)) {\n                out.write(data, 0, length);\n            }\n        }\n        return spilledPath;\n    }\n\n    @Override\n    public long getLength() {\n        return length;\n    }\n\n    @Override\n    public void enableRewind() {\n        // No-op: byte array is always rewindable\n    }\n\n    // Mark/reset support using position tracking\n    private int markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        position = markPosition;\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Input source backed by a byte array.\n * <p>\n * Data is already in memory and natively seekable via array indexing.\n * No caching is needed. A temp file is only created if {@link #getPath}\n * is explicitly called.\n * <p>\n * Would prefer to extend UnsynchronizedByteArrayInputStream, but we need direct\n * access to the internals.\n */\nclass ByteArraySource extends InputStream implements TikaInputSource {\n\n    private final byte[] data;\n\n    private final int length;\n\n    private final TemporaryResources tmp;\n\n    private int position;\n\n    private Path spilledPath;\n\n    ByteArraySource(byte[] data, TemporaryResources tmp) {\n        this.data = data;\n        this.length = data.length;\n        this.tmp = tmp;\n        this.position = 0;\n        this.spilledPath = null;\n    }\n\n    @Override\n    public int read() {\n        if (position >= length) {\n            return -1;\n        }\n        return data[position++] & 0xFF;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) {\n        if (position >= length) {\n            return -1;\n        }\n        int available = length - position;\n        int toRead = Math.min(len, available);\n        System.arraycopy(data, position, b, off, toRead);\n        position += toRead;\n        return toRead;\n    }\n\n    @Override\n    public long skip(long n) {\n        if (n <= 0) {\n            return 0;\n        }\n        int available = length - position;\n        int toSkip = (int) Math.min(n, available);\n        position += toSkip;\n        return toSkip;\n    }\n\n    @Override\n    public int available() {\n        return length - position;\n    }\n\n    @Override\n    public void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0 || newPosition > length) {\n            throw new IOException(\"Invalid seek position: \" + newPosition + \" (length: \" + length + \")\");\n        }\n        this.position = (int) newPosition;\n    }\n\n    @Override\n    public boolean hasPath() {\n        return spilledPath != null;\n    }\n\n    @Override\n    public Path getPath(String suffix) throws IOException {\n        if (spilledPath == null) {\n            // Spill to temp file on first call\n            spilledPath = tmp.createTempFile(suffix);\n            try (OutputStream out = Files.newOutputStream(spilledPath)) {\n                out.write(data, 0, length);\n            }\n        }\n        return spilledPath;\n    }\n\n    @Override\n    public long getLength() {\n        return length;\n    }\n\n    @Override\n    public void enableRewind() {\n        // No-op: byte array is always rewindable\n    }\n\n    // Mark/reset support using position tracking\n    private int markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        position = markPosition;\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}",
+  "subClasses": []
+}

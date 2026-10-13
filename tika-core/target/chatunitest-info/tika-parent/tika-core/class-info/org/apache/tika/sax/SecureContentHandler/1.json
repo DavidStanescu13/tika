@@ -1,0 +1,18 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "getOutputThreshold",
+  "brief": "public long getOutputThreshold(){}",
+  "methodSignature": "getOutputThreshold()",
+  "sourceCode": "public long getOutputThreshold() {\n        return threshold;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the configured output threshold.\n *\n * @return output threshold\n */\npublic long getOutputThreshold() {\n    return threshold;\n}",
+  "method_comment": "\n     * Returns the configured output threshold.\n     *\n     * @return output threshold\n     ",
+  "method_annotation": ""
+}

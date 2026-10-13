@@ -1,0 +1,56 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(URL url, Metadata metadata) throws IOException{}",
+  "methodSignature": "get(URL, Metadata)",
+  "sourceCode": "public static TikaInputStream get(URL url, Metadata metadata) throws IOException {\n        if (\"file\".equalsIgnoreCase(url.getProtocol())) {\n            try {\n                Path path = Paths.get(url.toURI());\n                if (Files.isRegularFile(path)) {\n                    return get(path, metadata);\n                }\n            } catch (URISyntaxException e) {\n                // fall through\n            }\n        }\n\n        URLConnection connection = url.openConnection();\n\n        String urlPath = url.getPath();\n        int slash = urlPath.lastIndexOf('/');\n        if (slash + 1 < urlPath.length()) {\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, urlPath.substring(slash + 1));\n        }\n\n        String type = connection.getContentType();\n        if (type != null) {\n            metadata.set(Metadata.CONTENT_TYPE, type);\n        }\n\n        String encoding = connection.getContentEncoding();\n        if (encoding != null) {\n            metadata.set(Metadata.CONTENT_ENCODING, encoding);\n        }\n\n        int length = connection.getContentLength();\n        if (length >= 0) {\n            metadata.set(Metadata.CONTENT_LENGTH, Integer.toString(length));\n        }\n\n        String ext = getExtension(metadata);\n        TemporaryResources tmp = new TemporaryResources();\n        TikaInputSource inputSource = new CachingSource(\n                new BufferedInputStream(connection.getInputStream()), tmp, length, metadata);\n        return new TikaInputStream(inputSource, tmp, ext);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.net.URL": [
+      "toURI()",
+      "getProtocol()",
+      "openConnection()",
+      "getPath()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "java.lang.String": [
+      "substring(int)",
+      "lastIndexOf(int)",
+      "length()",
+      "equalsIgnoreCase(String)"
+    ],
+    "java.nio.file.Paths": [
+      "get(URI)"
+    ],
+    "java.nio.file.Files": [
+      "isRegularFile(Path, LinkOption[])"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "getExtension(Metadata)",
+      "get(Path, Metadata)"
+    ],
+    "java.net.URLConnection": [
+      "getContentType()",
+      "getContentLength()",
+      "getInputStream()",
+      "getContentEncoding()"
+    ],
+    "java.lang.Integer": [
+      "toString(int)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(URL url, Metadata metadata) throws IOException {\n    if (\"file\".equalsIgnoreCase(url.getProtocol())) {\n        try {\n            Path path = Paths.get(url.toURI());\n            if (Files.isRegularFile(path)) {\n                return get(path, metadata);\n            }\n        } catch (URISyntaxException e) {\n            // fall through\n        }\n    }\n    URLConnection connection = url.openConnection();\n    String urlPath = url.getPath();\n    int slash = urlPath.lastIndexOf('/');\n    if (slash + 1 < urlPath.length()) {\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, urlPath.substring(slash + 1));\n    }\n    String type = connection.getContentType();\n    if (type != null) {\n        metadata.set(Metadata.CONTENT_TYPE, type);\n    }\n    String encoding = connection.getContentEncoding();\n    if (encoding != null) {\n        metadata.set(Metadata.CONTENT_ENCODING, encoding);\n    }\n    int length = connection.getContentLength();\n    if (length >= 0) {\n        metadata.set(Metadata.CONTENT_LENGTH, Integer.toString(length));\n    }\n    String ext = getExtension(metadata);\n    TemporaryResources tmp = new TemporaryResources();\n    TikaInputSource inputSource = new CachingSource(new BufferedInputStream(connection.getInputStream()), tmp, length, metadata);\n    return new TikaInputStream(inputSource, tmp, ext);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "EncodingResult",
+  "methodName": "getResultType",
+  "brief": "public ResultType getResultType(){}",
+  "methodSignature": "getResultType()",
+  "sourceCode": "public ResultType getResultType() {\n        return resultType;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The nature of the evidence that produced this result.\n *\n * @see ResultType\n */\npublic ResultType getResultType() {\n    return resultType;\n}",
+  "method_comment": "\n     * The nature of the evidence that produced this result.\n     *\n     * @see ResultType\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "isThrowOnWriteLimitReached",
+  "brief": "@Override\r\n    public boolean isThrowOnWriteLimitReached(){}",
+  "methodSignature": "isThrowOnWriteLimitReached()",
+  "sourceCode": "@Override\n    public boolean isThrowOnWriteLimitReached() {\n        return throwOnWriteLimitReached;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic boolean isThrowOnWriteLimitReached() {\n    return throwOnWriteLimitReached;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

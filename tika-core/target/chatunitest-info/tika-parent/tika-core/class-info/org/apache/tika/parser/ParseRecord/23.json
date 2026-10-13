@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "getMaxEmbeddedCount",
+  "brief": "public int getMaxEmbeddedCount(){}",
+  "methodSignature": "getMaxEmbeddedCount()",
+  "sourceCode": "public int getMaxEmbeddedCount() {\n        return maxEmbeddedCount;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum number of embedded documents to parse.\n *\n * @return the maximum embedded count, or -1 if unlimited\n */\npublic int getMaxEmbeddedCount() {\n    return maxEmbeddedCount;\n}",
+  "method_comment": "\n     * Gets the maximum number of embedded documents to parse.\n     *\n     * @return the maximum embedded count, or -1 if unlimited\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ByteArraySource",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(){}",
+  "methodSignature": "read()",
+  "sourceCode": "@Override\n    public int read() {\n        if (position >= length) {\n            return -1;\n        }\n        return data[position++] & 0xFF;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic int read() {\n    if (position >= length) {\n        return -1;\n    }\n    return data[position++] & 0xFF;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

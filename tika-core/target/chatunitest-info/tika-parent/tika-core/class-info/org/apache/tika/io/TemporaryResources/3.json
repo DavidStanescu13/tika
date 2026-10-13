@@ -1,0 +1,22 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "createTempFile",
+  "brief": "public Path createTempFile() throws IOException{}",
+  "methodSignature": "createTempFile()",
+  "sourceCode": "public Path createTempFile() throws IOException {\n        return createTempFile(StringUtils.EMPTY);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile(String)"
+    ]
+  },
+  "full_method_info": "public Path createTempFile() throws IOException {\n    return createTempFile(StringUtils.EMPTY);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

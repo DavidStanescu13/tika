@@ -1,0 +1,32 @@
+{
+  "fullClassName": "org.apache.tika.metadata.Video",
+  "className": "Video",
+  "index": 183,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata",
+  "packageDeclaration": "package org.apache.tika.metadata;",
+  "classSignature": "public interface Video",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "Property FRAME_RATE = Property.internalReal(\"video:frame-rate\");",
+    "Property BITRATE = Property.internalInteger(\"video:bitrate\");"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {},
+  "methodsBrief": [],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata;\n\n/**\n * Video metadata properties that have no suitable XMPDM equivalent.\n * See TIKA-4800.\n *\n * @since Apache Tika 4.0.0\n */\npublic interface Video {\n\n    /**\n     * Frame rate in frames per second. {@link XMPDM#VIDEO_FRAME_RATE} is a\n     * closed-choice text field (24, NTSC, PAL) and cannot carry an arbitrary\n     * measured rate.\n     */\n    Property FRAME_RATE = Property.internalReal(\"video:frame-rate\");\n\n    /**\n     * Average bitrate in bits per second, from the video track's BitRateBox\n     * ('btrt'). A per-stream value: in a file with several video tracks it\n     * reflects the last one.\n     */\n    Property BITRATE = Property.internalInteger(\"video:bitrate\");\n}\n",
+  "classDeclarationCode": "/**\n * Video metadata properties that have no suitable XMPDM equivalent.\n * See TIKA-4800.\n *\n * @since Apache Tika 4.0.0\n */\npublic interface Video {\n\n    /**\n     * Frame rate in frames per second. {@link XMPDM#VIDEO_FRAME_RATE} is a\n     * closed-choice text field (24, NTSC, PAL) and cannot carry an arbitrary\n     * measured rate.\n     */\n    Property FRAME_RATE = Property.internalReal(\"video:frame-rate\");\n\n    /**\n     * Average bitrate in bits per second, from the video track's BitRateBox\n     * ('btrt'). A per-stream value: in a file with several video tracks it\n     * reflects the last one.\n     */\n    Property BITRATE = Property.internalInteger(\"video:bitrate\");\n}",
+  "subClasses": []
+}

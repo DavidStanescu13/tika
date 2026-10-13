@@ -1,0 +1,31 @@
+{
+  "fullClassName": "org.apache.tika.metadata.QuickTime",
+  "className": "QuickTime",
+  "index": 175,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata",
+  "packageDeclaration": "package org.apache.tika.metadata;",
+  "classSignature": "public interface QuickTime",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "Property STILL_IMAGE_TIME = Property.internalReal(\"quicktime:still-image-time\");"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {},
+  "methodsBrief": [],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata;\n\n/**\n * Metadata properties specific to the QuickTime container family (.mov,\n * .mp4, .m4a and friends). The container's com.apple.quicktime.* item-list\n * keys pass through under their own names; the properties defined here are\n * values Tika derives from structures beyond that key list.\n */\npublic interface QuickTime {\n\n    /**\n     * Presentation start of the com.apple.quicktime.still-image-time timed\n     * metadata track, in microseconds. In an Apple Live Photo video this is\n     * the moment the paired still image was captured. A value of 0 means the\n     * still is the very first frame; the property is absent when the file\n     * declares no such track. Only set when the track holds exactly one\n     * sample (the Live Photo shape): the sample marks a point in time, its\n     * own one-tick duration is filler, so there is deliberately no\n     * corresponding end property.\n     */\n    Property STILL_IMAGE_TIME = Property.internalReal(\"quicktime:still-image-time\");\n}\n",
+  "classDeclarationCode": "/**\n * Metadata properties specific to the QuickTime container family (.mov,\n * .mp4, .m4a and friends). The container's com.apple.quicktime.* item-list\n * keys pass through under their own names; the properties defined here are\n * values Tika derives from structures beyond that key list.\n */\npublic interface QuickTime {\n\n    /**\n     * Presentation start of the com.apple.quicktime.still-image-time timed\n     * metadata track, in microseconds. In an Apple Live Photo video this is\n     * the moment the paired still image was captured. A value of 0 means the\n     * still is the very first frame; the property is absent when the file\n     * declares no such track. Only set when the track holds exactly one\n     * sample (the Live Photo shape): the sample marks a point in time, its\n     * own one-tick duration is filler, so there is deliberately no\n     * corresponding end property.\n     */\n    Property STILL_IMAGE_TIME = Property.internalReal(\"quicktime:still-image-time\");\n}",
+  "subClasses": []
+}

@@ -1,0 +1,18 @@
+{
+  "className": "XMPContentHandler",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument() throws SAXException{}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() throws SAXException {\n        super.startDocument();\n\n        startPrefixMapping(\"rdf\", RDF);\n        startPrefixMapping(\"xmp\", XMP);\n\n        startElement(RDF, \"RDF\", \"rdf:RDF\", EMPTY_ATTRIBUTES);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "// ------------------------------------------< public convenience methods >\n/**\n * Starts an XMP document by setting up the namespace mappings and\n * writing out the following header:\n * <pre>\n * &lt;rdf:RDF&gt;\n * </pre>\n */\n@Override\npublic void startDocument() throws SAXException {\n    super.startDocument();\n    startPrefixMapping(\"rdf\", RDF);\n    startPrefixMapping(\"xmp\", XMP);\n    startElement(RDF, \"RDF\", \"rdf:RDF\", EMPTY_ATTRIBUTES);\n}",
+  "method_comment": "\n     * Starts an XMP document by setting up the namespace mappings and\n     * writing out the following header:\n     * <pre>\n     * &lt;rdf:RDF&gt;\n     * </pre>\n     ",
+  "method_annotation": "@Override\n"
+}

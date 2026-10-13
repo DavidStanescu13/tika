@@ -1,0 +1,18 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "isShortText",
+  "brief": "public boolean isShortText(){}",
+  "methodSignature": "isShortText()",
+  "sourceCode": "public boolean isShortText() {\n        return shortText;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isShortText() {\n    return shortText;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "RemoveByMimeMetadataFilter",
+  "methodName": "doFilter",
+  "brief": "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException{}",
+  "methodSignature": "doFilter(List, ParseContext)",
+  "sourceCode": "@Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        metadataList.removeIf(this::shouldRemove);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Metadata>",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.Collection": [
+      "removeIf(Predicate<? super E>)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n    metadataList.removeIf(this::shouldRemove);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

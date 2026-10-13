@@ -1,0 +1,22 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "reset",
+  "brief": "@Override\r\n    public void reset() throws IOException{}",
+  "methodSignature": "reset()",
+  "sourceCode": "@Override\n    public void reset() throws IOException {\n        if (mark < 0) {\n            throw new IOException(\"Resetting to invalid mark\");\n        }\n\n        // Delegate to underlying stream's reset (handles passthrough and caching modes)\n        super.reset();\n\n        position = mark;\n        // Don't invalidate mark - allow multiple reset() calls to same mark\n        consecutiveEOFs = 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "reset()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void reset() throws IOException {\n    if (mark < 0) {\n        throw new IOException(\"Resetting to invalid mark\");\n    }\n    // Delegate to underlying stream's reset (handles passthrough and caching modes)\n    super.reset();\n    position = mark;\n    // Don't invalidate mark - allow multiple reset() calls to same mark\n    consecutiveEOFs = 0;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

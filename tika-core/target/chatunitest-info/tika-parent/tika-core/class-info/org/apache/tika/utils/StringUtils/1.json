@@ -1,0 +1,24 @@
+{
+  "className": "StringUtils",
+  "methodName": "isBlank",
+  "brief": "public static boolean isBlank(final String s){}",
+  "methodSignature": "isBlank(String)",
+  "sourceCode": "public static boolean isBlank(final String s) {\n        return s == null || s.isBlank();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isBlank()"
+    ]
+  },
+  "full_method_info": "public static boolean isBlank(final String s) {\n    return s == null || s.isBlank();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getEmbeddedDocumentExtractor",
+  "brief": "public static EmbeddedDocumentExtractor getEmbeddedDocumentExtractor(ParseContext context){}",
+  "methodSignature": "getEmbeddedDocumentExtractor(ParseContext)",
+  "sourceCode": "public static EmbeddedDocumentExtractor getEmbeddedDocumentExtractor(ParseContext context) {\n        EmbeddedDocumentExtractor extractor = context.get(EmbeddedDocumentExtractor.class);\n        if (extractor != null) {\n            return extractor;\n        }\n        //ensure that an AutoDetectParser is\n        //available for parsing embedded docs TIKA-2096\n        Parser embeddedParser = context.get(Parser.class);\n        if (embeddedParser == null) {\n            context.set(Parser.class, new AutoDetectParser());\n        }\n        EmbeddedDocumentExtractor ex = new ParsingEmbeddedDocumentExtractor(context);\n        context.set(EmbeddedDocumentExtractor.class, ex);\n        return ex;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)",
+      "get(Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * This offers a uniform way to get an EmbeddedDocumentExtractor from a ParseContext.\n * As of Tika 1.15, an AutoDetectParser will automatically be added to parse\n * embedded documents if no Parser.class is specified in the ParseContext.\n * <p/>\n * If you'd prefer not to parse embedded documents, set Parser.class\n * to {@link org.apache.tika.parser.EmptyParser} in the ParseContext.\n *\n * @param context\n * @return EmbeddedDocumentExtractor\n */\npublic static EmbeddedDocumentExtractor getEmbeddedDocumentExtractor(ParseContext context) {\n    EmbeddedDocumentExtractor extractor = context.get(EmbeddedDocumentExtractor.class);\n    if (extractor != null) {\n        return extractor;\n    }\n    // ensure that an AutoDetectParser is\n    // available for parsing embedded docs TIKA-2096\n    Parser embeddedParser = context.get(Parser.class);\n    if (embeddedParser == null) {\n        context.set(Parser.class, new AutoDetectParser());\n    }\n    EmbeddedDocumentExtractor ex = new ParsingEmbeddedDocumentExtractor(context);\n    context.set(EmbeddedDocumentExtractor.class, ex);\n    return ex;\n}",
+  "method_comment": "\n     * This offers a uniform way to get an EmbeddedDocumentExtractor from a ParseContext.\n     * As of Tika 1.15, an AutoDetectParser will automatically be added to parse\n     * embedded documents if no Parser.class is specified in the ParseContext.\n     * <p/>\n     * If you'd prefer not to parse embedded documents, set Parser.class\n     * to {@link org.apache.tika.parser.EmptyParser} in the ParseContext.\n     *\n     * @param context\n     * @return EmbeddedDocumentExtractor\n     ",
+  "method_annotation": ""
+}

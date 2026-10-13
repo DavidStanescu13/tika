@@ -1,0 +1,25 @@
+{
+  "className": "SystemUtils",
+  "methodName": "getOSContainsVersion",
+  "brief": "private static boolean getOSContainsVersion(String osVersionSearch){}",
+  "methodSignature": "getOSContainsVersion(String)",
+  "sourceCode": "private static boolean getOSContainsVersion(String osVersionSearch) {\n        return doesOSVersionContain(OS_VERSION, osVersionSearch);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.SystemUtils": [
+      "doesOSVersionContain(String, String)"
+    ]
+  },
+  "full_method_info": "private static boolean getOSContainsVersion(String osVersionSearch) {\n    return doesOSVersionContain(OS_VERSION, osVersionSearch);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

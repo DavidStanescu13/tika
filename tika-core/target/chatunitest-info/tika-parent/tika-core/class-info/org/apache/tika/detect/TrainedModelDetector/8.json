@@ -1,0 +1,27 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "registerModels",
+  "brief": "protected void registerModels(MediaType type, TrainedModel model){}",
+  "methodSignature": "registerModels(MediaType, TrainedModel)",
+  "sourceCode": "protected void registerModels(MediaType type, TrainedModel model) {\n        MODEL_MAP.put(type, model);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "TrainedModel"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "org.apache.tika.detect.TrainedModel": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "protected void registerModels(MediaType type, TrainedModel model) {\n    MODEL_MAP.put(type, model);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

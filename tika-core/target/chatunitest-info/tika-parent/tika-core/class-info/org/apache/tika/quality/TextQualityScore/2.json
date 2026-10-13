@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "getCiLow",
+  "brief": "public float getCiLow(){}",
+  "methodSignature": "getCiLow()",
+  "sourceCode": "public float getCiLow() {\n        return ciLow;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Lower bound of the 95% confidence interval on zScore.\n */\npublic float getCiLow() {\n    return ciLow;\n}",
+  "method_comment": " Lower bound of the 95% confidence interval on zScore. ",
+  "method_annotation": ""
+}

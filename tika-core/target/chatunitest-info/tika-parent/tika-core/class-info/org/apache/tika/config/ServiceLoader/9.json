@@ -1,0 +1,39 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "loadServiceProviders",
+  "brief": "public <T> List<T> loadServiceProviders(Class<T> iface){}",
+  "methodSignature": "loadServiceProviders(Class)",
+  "sourceCode": "public <T> List<T> loadServiceProviders(Class<T> iface) {\n        List<T> tmp = new ArrayList<>();\n        tmp.addAll(loadDynamicServiceProviders(iface));\n        tmp.addAll(loadStaticServiceProviders(iface));\n\n        List<T> providers = new ArrayList<>();\n        Set<String> seen = new HashSet<>();\n        for (T provider : tmp) {\n            if (! seen.contains(provider.getClass().getCanonicalName())) {\n                providers.add(provider);\n                seen.add(provider.getClass().getCanonicalName());\n            }\n        }\n        return providers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>)",
+      "loadDynamicServiceProviders(Class<T>)"
+    ],
+    "java.util.Set": [
+      "contains(Object)",
+      "add(E)"
+    ],
+    "java.lang.Class": [
+      "getCanonicalName()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns all the available service providers of the given type.\n *\n * As of versions after 2.4.1, this removes duplicate classes\n *\n * @param iface service provider interface\n * @return available service providers\n */\npublic <T> List<T> loadServiceProviders(Class<T> iface) {\n    List<T> tmp = new ArrayList<>();\n    tmp.addAll(loadDynamicServiceProviders(iface));\n    tmp.addAll(loadStaticServiceProviders(iface));\n    List<T> providers = new ArrayList<>();\n    Set<String> seen = new HashSet<>();\n    for (T provider : tmp) {\n        if (!seen.contains(provider.getClass().getCanonicalName())) {\n            providers.add(provider);\n            seen.add(provider.getClass().getCanonicalName());\n        }\n    }\n    return providers;\n}",
+  "method_comment": "\n     * Returns all the available service providers of the given type.\n     *\n     * As of versions after 2.4.1, this removes duplicate classes\n     *\n     * @param iface service provider interface\n     * @return available service providers\n     ",
+  "method_annotation": ""
+}

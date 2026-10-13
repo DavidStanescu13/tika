@@ -1,0 +1,24 @@
+{
+  "className": "DefaultParser",
+  "methodName": "DefaultParser",
+  "brief": "public DefaultParser(MediaTypeRegistry registry, ClassLoader loader){}",
+  "methodSignature": "DefaultParser(MediaTypeRegistry, ClassLoader)",
+  "sourceCode": "public DefaultParser(MediaTypeRegistry registry, ClassLoader loader) {\n        this(registry, new ServiceLoader(loader));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaTypeRegistry",
+    "ClassLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "java.lang.ClassLoader": []
+  },
+  "full_method_info": "public DefaultParser(MediaTypeRegistry registry, ClassLoader loader) {\n    this(registry, new ServiceLoader(loader));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

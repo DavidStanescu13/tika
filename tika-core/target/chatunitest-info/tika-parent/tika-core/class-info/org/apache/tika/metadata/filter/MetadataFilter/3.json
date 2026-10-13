@@ -1,0 +1,18 @@
+{
+  "className": "MetadataFilter",
+  "methodName": "close",
+  "brief": "@Override\r\n    public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "@Override\n    public void close() throws IOException {\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Releases any resources held by this filter (e.g. HTTP connection pools,\n * thread pools). The default implementation is a no-op; filters that hold\n * long-lived resources should override this.\n * <p>\n * Callers that control the filter lifecycle (e.g. {@code PipesServer},\n * try-with-resources blocks) should call this when the filter is no longer\n * needed.\n */\n@Override\npublic void close() throws IOException {\n}",
+  "method_comment": "\n     * Releases any resources held by this filter (e.g. HTTP connection pools,\n     * thread pools). The default implementation is a no-op; filters that hold\n     * long-lived resources should override this.\n     * <p>\n     * Callers that control the filter lifecycle (e.g. {@code PipesServer},\n     * try-with-resources blocks) should call this when the filter is no longer\n     * needed.\n     ",
+  "method_annotation": "@Override\n"
+}

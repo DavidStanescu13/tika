@@ -1,0 +1,43 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (suppressDepth > 0) {\n            return;\n        }\n        if (codeBlockText != null) {\n            codeBlockText.append(ch, start, length);\n            return;\n        }\n        if (inlineCodeText != null) {\n            inlineCodeText.append(ch, start, length);\n            return;\n        }\n\n        String text = new String(ch, start, length);\n        if (text.trim().isEmpty()) {\n            // Inter-element whitespace: drop between blocks, collapse within inline runs.\n            if (!isBlockContainer(stack.peek())) {\n                stack.peek().appendChild(new Text(\" \"));\n            }\n            return;\n        }\n\n        if (isStructuralOnly(stack.peek())) {\n            // Stray text inside a list/table wrapper — not a valid inline position; drop.\n            return;\n        }\n        ensureInlineContainer();\n        // Newlines inside prose would otherwise survive as literal line breaks.\n        stack.peek().appendChild(new Text(collapseLineBreaks(text)));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.lang.StringBuilder": [
+      "append(char[], int, int)"
+    ],
+    "java.lang.String": [
+      "isEmpty()",
+      "trim()"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "collapseLineBreaks(String)",
+      "isStructuralOnly(Node)",
+      "isBlockContainer(Node)",
+      "ensureInlineContainer()"
+    ],
+    "java.util.Deque": [
+      "peek()"
+    ],
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    if (suppressDepth > 0) {\n        return;\n    }\n    if (codeBlockText != null) {\n        codeBlockText.append(ch, start, length);\n        return;\n    }\n    if (inlineCodeText != null) {\n        inlineCodeText.append(ch, start, length);\n        return;\n    }\n    String text = new String(ch, start, length);\n    if (text.trim().isEmpty()) {\n        // Inter-element whitespace: drop between blocks, collapse within inline runs.\n        if (!isBlockContainer(stack.peek())) {\n            stack.peek().appendChild(new Text(\" \"));\n        }\n        return;\n    }\n    if (isStructuralOnly(stack.peek())) {\n        // Stray text inside a list/table wrapper — not a valid inline position; drop.\n        return;\n    }\n    ensureInlineContainer();\n    // Newlines inside prose would otherwise survive as literal line breaks.\n    stack.peek().appendChild(new Text(collapseLineBreaks(text)));\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

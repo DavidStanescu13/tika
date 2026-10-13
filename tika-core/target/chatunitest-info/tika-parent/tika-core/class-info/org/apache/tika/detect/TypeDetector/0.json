@@ -1,0 +1,31 @@
+{
+  "className": "TypeDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context){}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) {\n        // Look for a type hint in the input metadata\n        String hint = metadata.get(Metadata.CONTENT_TYPE);\n        if (hint != null) {\n            MediaType type = MediaType.parse(hint);\n            if (type != null) {\n                return type;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the content type of an input document based on a type hint\n * given in the input metadata. The CONTENT_TYPE attribute of the given\n * input metadata is expected to contain the type of the input document.\n * If that attribute exists and contains a valid type name, then that\n * type is returned.\n *\n * @param tis      ignored\n * @param metadata input metadata, possibly with a CONTENT_TYPE value\n * @param context the parse context\n * @return detected media type, or <code>application/octet-stream</code>\n */\n@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) {\n    // Look for a type hint in the input metadata\n    String hint = metadata.get(Metadata.CONTENT_TYPE);\n    if (hint != null) {\n        MediaType type = MediaType.parse(hint);\n        if (type != null) {\n            return type;\n        }\n    }\n    return MediaType.OCTET_STREAM;\n}",
+  "method_comment": "\n     * Detects the content type of an input document based on a type hint\n     * given in the input metadata. The CONTENT_TYPE attribute of the given\n     * input metadata is expected to contain the type of the input document.\n     * If that attribute exists and contains a valid type name, then that\n     * type is returned.\n     *\n     * @param tis      ignored\n     * @param metadata input metadata, possibly with a CONTENT_TYPE value\n     * @param context the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     ",
+  "method_annotation": "@Override\n"
+}

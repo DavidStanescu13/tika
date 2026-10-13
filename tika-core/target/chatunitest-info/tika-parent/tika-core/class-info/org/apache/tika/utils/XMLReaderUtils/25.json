@@ -1,0 +1,49 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "releaseParser",
+  "brief": "private static void releaseParser(PoolSAXParser parser){}",
+  "methodSignature": "releaseParser(PoolSAXParser)",
+  "sourceCode": "private static void releaseParser(PoolSAXParser parser) {\n        if (parser == null) {\n            return;\n        }\n        try {\n            parser.reset();\n        } catch (UnsupportedOperationException e) {\n            //TIKA-3009 -- we really shouldn't have to do this... :(\n        }\n        //if this is a different generation, don't put it back\n        //in the pool\n        if (parser.getGeneration() != POOL_GENERATION.get()) {\n            return;\n        }\n        SAX_POOL_LOCK\n                .readLock().lock();\n        try {\n            parser.incrementUses();\n            if (parser.numUses >= MAX_NUM_REUSES) {\n                try {\n                    parser = buildPoolParser(parser.getGeneration(), getSAXParserFactory().newSAXParser());\n                } catch (SAXException | ParserConfigurationException e) {\n                    LOG.warn(\"Couldn't build new SAXParser after hitting max reuses\", e);\n                    return;\n                }\n            }\n            //if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n            // this parser will not be added and will then be gc'd\n            boolean success = SAX_PARSERS.offer(parser);\n            if (!success) {\n                LOG.warn(\n                        \"SAXParser not taken back into pool.  If you haven't resized the pool \" +\n                                \"this could be a sign that there are more calls to 'acquire' \" +\n                                \"than to 'release'\");\n            }\n        } finally {\n            SAX_POOL_LOCK\n                    .readLock().unlock();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PoolSAXParser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.utils.XMLReaderUtils.PoolSAXParser": [
+      "reset()",
+      "getGeneration()",
+      "incrementUses()"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "get()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "buildPoolParser(int, SAXParser)",
+      "getSAXParserFactory()"
+    ],
+    "javax.xml.parsers.SAXParserFactory": [
+      "newSAXParser()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "offer(E)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Return parser to the pool for reuse\n *\n * @param parser parser to return\n */\nprivate static void releaseParser(PoolSAXParser parser) {\n    if (parser == null) {\n        return;\n    }\n    try {\n        parser.reset();\n    } catch (UnsupportedOperationException e) {\n        // TIKA-3009 -- we really shouldn't have to do this... :(\n    }\n    // if this is a different generation, don't put it back\n    // in the pool\n    if (parser.getGeneration() != POOL_GENERATION.get()) {\n        return;\n    }\n    SAX_POOL_LOCK.readLock().lock();\n    try {\n        parser.incrementUses();\n        if (parser.numUses >= MAX_NUM_REUSES) {\n            try {\n                parser = buildPoolParser(parser.getGeneration(), getSAXParserFactory().newSAXParser());\n            } catch (SAXException | ParserConfigurationException e) {\n                LOG.warn(\"Couldn't build new SAXParser after hitting max reuses\", e);\n                return;\n            }\n        }\n        // if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n        // this parser will not be added and will then be gc'd\n        boolean success = SAX_PARSERS.offer(parser);\n        if (!success) {\n            LOG.warn(\"SAXParser not taken back into pool.  If you haven't resized the pool \" + \"this could be a sign that there are more calls to 'acquire' \" + \"than to 'release'\");\n        }\n    } finally {\n        SAX_POOL_LOCK.readLock().unlock();\n    }\n}",
+  "method_comment": "\n     * Return parser to the pool for reuse\n     *\n     * @param parser parser to return\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "StreamCache",
+  "methodName": "StreamCache",
+  "brief": "StreamCache(TemporaryResources tmp, int memoryThreshold){}",
+  "methodSignature": "StreamCache(TemporaryResources, int)",
+  "sourceCode": "StreamCache(TemporaryResources tmp, int memoryThreshold) {\n        this.tmp = tmp;\n        this.memoryThreshold = memoryThreshold;\n        this.memoryBuffer = new byte[Math.min(memoryThreshold, 8192)];\n        this.memorySize = 0;\n        this.totalSize = 0;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TemporaryResources",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": [],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "StreamCache(TemporaryResources tmp, int memoryThreshold) {\n    this.tmp = tmp;\n    this.memoryThreshold = memoryThreshold;\n    this.memoryBuffer = new byte[Math.min(memoryThreshold, 8192)];\n    this.memorySize = 0;\n    this.totalSize = 0;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,36 @@
+{
+  "className": "DateUtils",
+  "methodName": "formatDateUnknownTimezone",
+  "brief": "public static String formatDateUnknownTimezone(Date date){}",
+  "methodSignature": "formatDateUnknownTimezone(Date)",
+  "sourceCode": "public static String formatDateUnknownTimezone(Date date) {\n        // Create the Calendar object in the system timezone\n        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getDefault(), Locale.US);\n        calendar.setTime(date);\n        // Have it formatted\n        String formatted = formatDate(calendar);\n        // Strip the timezone details before returning\n        return formatted.substring(0, formatted.length() - 1);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Date"
+  ],
+  "dependentMethods": {
+    "java.util.Date": [],
+    "java.util.Calendar": [
+      "setTime(Date)",
+      "getInstance(TimeZone, Locale)"
+    ],
+    "java.util.TimeZone": [
+      "getDefault()"
+    ],
+    "org.apache.tika.utils.DateUtils": [
+      "formatDate(Calendar)"
+    ],
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a ISO 8601 representation of the given date in UTC,\n * truncated to the seconds unit. This method is thread safe and non-blocking.\n *\n * @param date given date\n * @return ISO 8601 date string in UTC, truncated to the seconds unit\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n */\npublic static String formatDateUnknownTimezone(Date date) {\n    // Create the Calendar object in the system timezone\n    Calendar calendar = GregorianCalendar.getInstance(TimeZone.getDefault(), Locale.US);\n    calendar.setTime(date);\n    // Have it formatted\n    String formatted = formatDate(calendar);\n    // Strip the timezone details before returning\n    return formatted.substring(0, formatted.length() - 1);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

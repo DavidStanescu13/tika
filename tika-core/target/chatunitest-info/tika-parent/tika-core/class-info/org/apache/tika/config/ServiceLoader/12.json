@@ -1,0 +1,24 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "loadStaticServiceProviders",
+  "brief": "public <T> List<T> loadStaticServiceProviders(Class<T> iface){}",
+  "methodSignature": "loadStaticServiceProviders(Class)",
+  "sourceCode": "public <T> List<T> loadStaticServiceProviders(Class<T> iface) {\n        return loadStaticServiceProviders(iface, Collections.EMPTY_SET);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>, Class<? extends T>>)"
+    ]
+  },
+  "full_method_info": "public <T> List<T> loadStaticServiceProviders(Class<T> iface) {\n    return loadStaticServiceProviders(iface, Collections.EMPTY_SET);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

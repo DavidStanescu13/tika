@@ -1,0 +1,24 @@
+{
+  "className": "EndianUtils",
+  "methodName": "readIntLE",
+  "brief": "public static int readIntLE(InputStream stream) throws IOException, BufferUnderrunException{}",
+  "methodSignature": "readIntLE(InputStream)",
+  "sourceCode": "public static int readIntLE(InputStream stream) throws IOException, BufferUnderrunException {\n        int ch1 = stream.read();\n        int ch2 = stream.read();\n        int ch3 = stream.read();\n        int ch4 = stream.read();\n        if ((ch1 | ch2 | ch3 | ch4) < 0) {\n            throw new BufferUnderrunException();\n        }\n        return (ch4 << 24) + (ch3 << 16) + (ch2 << 8) + (ch1);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read()"
+    ]
+  },
+  "full_method_info": "/**\n * Get a LE int value from an InputStream\n *\n * @param stream the InputStream from which the int is to be read\n * @return the int (32-bit) value\n * @throws IOException             will be propagated back to the caller\n * @throws BufferUnderrunException if the stream cannot provide enough bytes\n */\npublic static int readIntLE(InputStream stream) throws IOException, BufferUnderrunException {\n    int ch1 = stream.read();\n    int ch2 = stream.read();\n    int ch3 = stream.read();\n    int ch4 = stream.read();\n    if ((ch1 | ch2 | ch3 | ch4) < 0) {\n        throw new BufferUnderrunException();\n    }\n    return (ch4 << 24) + (ch3 << 16) + (ch2 << 8) + (ch1);\n}",
+  "method_comment": "\n     * Get a LE int value from an InputStream\n     *\n     * @param stream the InputStream from which the int is to be read\n     * @return the int (32-bit) value\n     * @throws IOException             will be propagated back to the caller\n     * @throws BufferUnderrunException if the stream cannot provide enough bytes\n     ",
+  "method_annotation": ""
+}

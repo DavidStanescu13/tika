@@ -1,0 +1,37 @@
+{
+  "fullClassName": "org.apache.tika.utils.DurationFormatUtils",
+  "className": "DurationFormatUtils",
+  "index": 344,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class DurationFormatUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "formatMillis(long)": "0",
+    "addUnitString(StringBuilder, long, String)": "1",
+    "addComma(StringBuilder)": "2"
+  },
+  "methodsBrief": [
+    "public static String formatMillis(long duration){}",
+    "private static void addUnitString(StringBuilder sb, long unit, String unitString){}",
+    "private static void addComma(StringBuilder sb){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\n/**\n * Functionality and naming conventions (roughly) copied from org.apache.commons.lang3\n * so that we didn't have to add another dependency.\n */\npublic class DurationFormatUtils {\n\n    public static String formatMillis(long duration) {\n        duration = Math.abs(duration);\n        StringBuilder sb = new StringBuilder();\n        int secs = (int) (duration / 1000) % 60;\n        int mins = (int) ((duration / (1000 * 60)) % 60);\n        int hrs = (int) ((duration / (1000 * 60 * 60)) % 24);\n        int days = (int) ((duration / (1000 * 60 * 60 * 24)) % 7);\n        // sb.append(millis + \" milliseconds\");\n        addUnitString(sb, days, \"day\");\n        addUnitString(sb, hrs, \"hour\");\n        addUnitString(sb, mins, \"minute\");\n        addUnitString(sb, secs, \"second\");\n        if (duration < 1000) {\n            addUnitString(sb, duration, \"millisecond\");\n        }\n        return sb.toString();\n    }\n\n    private static void addUnitString(StringBuilder sb, long unit, String unitString) {\n        // only add unit if >= 1\n        if (unit == 1) {\n            addComma(sb);\n            sb.append(\"1 \");\n            sb.append(unitString);\n        } else if (unit > 1) {\n            addComma(sb);\n            sb.append(unit);\n            sb.append(\" \");\n            sb.append(unitString);\n            sb.append(\"s\");\n        }\n    }\n\n    private static void addComma(StringBuilder sb) {\n        if (sb.length() > 0) {\n            sb.append(\", \");\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Functionality and naming conventions (roughly) copied from org.apache.commons.lang3\n * so that we didn't have to add another dependency.\n */\npublic class DurationFormatUtils {\n\n    public static String formatMillis(long duration) {\n        duration = Math.abs(duration);\n        StringBuilder sb = new StringBuilder();\n        int secs = (int) (duration / 1000) % 60;\n        int mins = (int) ((duration / (1000 * 60)) % 60);\n        int hrs = (int) ((duration / (1000 * 60 * 60)) % 24);\n        int days = (int) ((duration / (1000 * 60 * 60 * 24)) % 7);\n        // sb.append(millis + \" milliseconds\");\n        addUnitString(sb, days, \"day\");\n        addUnitString(sb, hrs, \"hour\");\n        addUnitString(sb, mins, \"minute\");\n        addUnitString(sb, secs, \"second\");\n        if (duration < 1000) {\n            addUnitString(sb, duration, \"millisecond\");\n        }\n        return sb.toString();\n    }\n\n    private static void addUnitString(StringBuilder sb, long unit, String unitString) {\n        // only add unit if >= 1\n        if (unit == 1) {\n            addComma(sb);\n            sb.append(\"1 \");\n            sb.append(unitString);\n        } else if (unit > 1) {\n            addComma(sb);\n            sb.append(unit);\n            sb.append(\" \");\n            sb.append(unitString);\n            sb.append(\"s\");\n        }\n    }\n\n    private static void addComma(StringBuilder sb) {\n        if (sb.length() > 0) {\n            sb.append(\", \");\n        }\n    }\n}",
+  "subClasses": []
+}

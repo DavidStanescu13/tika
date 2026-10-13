@@ -1,0 +1,32 @@
+{
+  "className": "DefaultProbDetector",
+  "methodName": "getDefaultDetectors",
+  "brief": "private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel,\r\n                                                      ServiceLoader loader){}",
+  "methodSignature": "getDefaultDetectors(ProbabilisticMimeDetectionSelector, ServiceLoader)",
+  "sourceCode": "private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel,\n                                                      ServiceLoader loader) {\n        List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class);\n        ServiceLoaderUtils.sortLoadedClasses(detectors);\n        detectors.add(sel);\n        return detectors;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ProbabilisticMimeDetectionSelector",
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.ProbabilisticMimeDetectionSelector": [],
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "sortLoadedClasses(List<T>)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private static List<Detector> getDefaultDetectors(ProbabilisticMimeDetectionSelector sel, ServiceLoader loader) {\n    List<Detector> detectors = loader.loadStaticServiceProviders(Detector.class);\n    ServiceLoaderUtils.sortLoadedClasses(detectors);\n    detectors.add(sel);\n    return detectors;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

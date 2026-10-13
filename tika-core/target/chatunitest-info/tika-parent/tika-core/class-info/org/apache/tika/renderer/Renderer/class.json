@@ -1,0 +1,48 @@
+{
+  "fullClassName": "org.apache.tika.renderer.Renderer",
+  "className": "Renderer",
+  "index": 269,
+  "modifier": "[public ]",
+  "extend": "[Serializable, SelfConfiguring]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.renderer",
+  "packageDeclaration": "package org.apache.tika.renderer;",
+  "classSignature": "public interface Renderer",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import java.util.Set;",
+    "import org.apache.tika.config.SelfConfiguring;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable",
+    "SelfConfiguring"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "render(TikaInputStream, Metadata, ParseContext, RenderRequest[])": "1"
+  },
+  "methodsBrief": [
+    "Set<MediaType> getSupportedTypes(ParseContext context);",
+    "RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext,\r\n                         RenderRequest ... requests) throws IOException,\r\n            TikaException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.renderer;\n\nimport java.io.IOException;\nimport java.io.Serializable;\nimport java.util.Set;\nimport org.apache.tika.config.SelfConfiguring;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Interface for a renderer.  This should be flexible enough to run on the initial design: PDF pages\n * but also on portions of PDF pages as well as on other document types.\n */\npublic interface Renderer extends Serializable, SelfConfiguring {\n\n    /**\n     * Returns the set of media types supported by this renderer when used\n     * with the given parse context.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     * @since Apache Tika 2.5.0\n     */\n    Set<MediaType> getSupportedTypes(ParseContext context);\n\n    RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext, RenderRequest... requests) throws IOException, TikaException;\n    /*\n    At some point, we might need/want to add something like this, where for a given\n    page the requestor or the parser determines that they only want to render e.g. a\n    box within a page.\n\n    RenderResults render(TikaInputStream tis, int page, Coordinates coordinates, Metadata metadata,\n                         ParseContext parseContext) throws IOException,\n            TikaException;\n\n     */\n}\n",
+  "classDeclarationCode": "/**\n * Interface for a renderer.  This should be flexible enough to run on the initial design: PDF pages\n * but also on portions of PDF pages as well as on other document types.\n */\npublic interface Renderer extends Serializable, SelfConfiguring {\n\n    /**\n     * Returns the set of media types supported by this renderer when used\n     * with the given parse context.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     * @since Apache Tika 2.5.0\n     */\n    Set<MediaType> getSupportedTypes(ParseContext context);\n\n    RenderResults render(TikaInputStream tis, Metadata metadata, ParseContext parseContext, RenderRequest... requests) throws IOException, TikaException;\n    /*\n    At some point, we might need/want to add something like this, where for a given\n    page the requestor or the parser determines that they only want to render e.g. a\n    box within a page.\n\n    RenderResults render(TikaInputStream tis, int page, Coordinates coordinates, Metadata metadata,\n                         ParseContext parseContext) throws IOException,\n            TikaException;\n\n     */\n}",
+  "subClasses": []
+}

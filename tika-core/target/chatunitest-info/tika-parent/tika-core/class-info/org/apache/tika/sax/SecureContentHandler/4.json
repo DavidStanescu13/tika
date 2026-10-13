@@ -1,0 +1,20 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "setMaximumCompressionRatio",
+  "brief": "public void setMaximumCompressionRatio(long ratio){}",
+  "methodSignature": "setMaximumCompressionRatio(long)",
+  "sourceCode": "public void setMaximumCompressionRatio(long ratio) {\n        this.ratio = ratio;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the ratio between output characters and input bytes. If this\n * ratio is exceeded (after the output threshold has been reached) then\n * an exception gets thrown.\n *\n * @param ratio new maximum compression ratio\n */\npublic void setMaximumCompressionRatio(long ratio) {\n    this.ratio = ratio;\n}",
+  "method_comment": "\n     * Sets the ratio between output characters and input bytes. If this\n     * ratio is exceeded (after the output threshold has been reached) then\n     * an exception gets thrown.\n     *\n     * @param ratio new maximum compression ratio\n     ",
+  "method_annotation": ""
+}

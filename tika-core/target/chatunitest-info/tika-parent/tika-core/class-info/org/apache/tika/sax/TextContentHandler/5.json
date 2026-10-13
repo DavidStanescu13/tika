@@ -1,0 +1,18 @@
+{
+  "className": "TextContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        delegate.endDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void endDocument() throws SAXException {\n    delegate.endDocument();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

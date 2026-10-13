@@ -1,0 +1,20 @@
+{
+  "className": "ByteArraySource",
+  "methodName": "seekTo",
+  "brief": "@Override\r\n    public void seekTo(long newPosition) throws IOException{}",
+  "methodSignature": "seekTo(long)",
+  "sourceCode": "@Override\n    public void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0 || newPosition > length) {\n            throw new IOException(\"Invalid seek position: \" + newPosition +\n                    \" (length: \" + length + \")\");\n        }\n        this.position = (int) newPosition;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void seekTo(long newPosition) throws IOException {\n    if (newPosition < 0 || newPosition > length) {\n        throw new IOException(\"Invalid seek position: \" + newPosition + \" (length: \" + length + \")\");\n    }\n    this.position = (int) newPosition;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

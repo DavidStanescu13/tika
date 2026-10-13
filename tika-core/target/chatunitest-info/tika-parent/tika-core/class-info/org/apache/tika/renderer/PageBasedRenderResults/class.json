@@ -1,0 +1,54 @@
+{
+  "fullClassName": "org.apache.tika.renderer.PageBasedRenderResults",
+  "className": "PageBasedRenderResults",
+  "index": 267,
+  "modifier": "[public ]",
+  "extend": "[RenderResults]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.renderer",
+  "packageDeclaration": "package org.apache.tika.renderer;",
+  "classSignature": "public class PageBasedRenderResults",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.HashMap;",
+    "import java.util.List;",
+    "import java.util.Map;",
+    "import org.apache.tika.io.TemporaryResources;",
+    "import org.apache.tika.metadata.TikaPagedText;"
+  ],
+  "fields": [
+    "Map<Integer, List<RenderResult>> results = new HashMap<>();"
+  ],
+  "superClasses": [
+    "RenderResults"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "add(RenderResult)": "0",
+    "getPage(int)": "1",
+    "PageBasedRenderResults(TemporaryResources)": "2"
+  },
+  "methodsBrief": [
+    "public void add(RenderResult result){}",
+    "public List<RenderResult> getPage(int pageNumber){}",
+    "public PageBasedRenderResults(TemporaryResources tmp){}"
+  ],
+  "constructorSigs": [
+    "PageBasedRenderResults(TemporaryResources)"
+  ],
+  "constructorBrief": [
+    "public PageBasedRenderResults(TemporaryResources tmp){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.io.TemporaryResources": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.renderer;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\nimport org.apache.tika.io.TemporaryResources;\nimport org.apache.tika.metadata.TikaPagedText;\n\npublic class PageBasedRenderResults extends RenderResults {\n\n    Map<Integer, List<RenderResult>> results = new HashMap<>();\n\n    public PageBasedRenderResults(TemporaryResources tmp) {\n        super(tmp);\n    }\n\n    public void add(RenderResult result) {\n        Integer page = result.getMetadata().getInt(TikaPagedText.PAGE_NUMBER);\n        if (page != null) {\n            List<RenderResult> pageResults = results.get(page);\n            if (pageResults == null) {\n                pageResults = new ArrayList<>();\n                results.put(page, pageResults);\n            }\n            pageResults.add(result);\n        }\n        super.add(result);\n    }\n\n    public List<RenderResult> getPage(int pageNumber) {\n        return results.get(pageNumber);\n    }\n}\n",
+  "classDeclarationCode": "public class PageBasedRenderResults extends RenderResults {\n\n    Map<Integer, List<RenderResult>> results = new HashMap<>();\n\n    public PageBasedRenderResults(TemporaryResources tmp) {\n        super(tmp);\n    }\n\n    public void add(RenderResult result) {\n        Integer page = result.getMetadata().getInt(TikaPagedText.PAGE_NUMBER);\n        if (page != null) {\n            List<RenderResult> pageResults = results.get(page);\n            if (pageResults == null) {\n                pageResults = new ArrayList<>();\n                results.put(page, pageResults);\n            }\n            pageResults.add(result);\n        }\n        super.add(result);\n    }\n\n    public List<RenderResult> getPage(int pageNumber) {\n        return results.get(pageNumber);\n    }\n}",
+  "subClasses": []
+}

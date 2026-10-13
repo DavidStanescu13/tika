@@ -1,0 +1,26 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "parseHandlerType",
+  "brief": "public static HANDLER_TYPE parseHandlerType(String handlerTypeName, HANDLER_TYPE defaultType){}",
+  "methodSignature": "parseHandlerType(String, HANDLER_TYPE)",
+  "sourceCode": "public static HANDLER_TYPE parseHandlerType(String handlerTypeName, HANDLER_TYPE defaultType) {\n        if (handlerTypeName == null) {\n            return defaultType;\n        }\n\n        String lcHandlerTypeName = handlerTypeName.toLowerCase(Locale.ROOT);\n        switch (lcHandlerTypeName) {\n            case \"xml\":\n                return HANDLER_TYPE.XML;\n            case \"text\":\n                return HANDLER_TYPE.TEXT;\n            case \"txt\":\n                return HANDLER_TYPE.TEXT;\n            case \"html\":\n                return HANDLER_TYPE.HTML;\n            case \"body\":\n                return HANDLER_TYPE.BODY;\n            case \"ignore\":\n                return HANDLER_TYPE.IGNORE;\n            case \"markdown\":\n            case \"md\":\n                return HANDLER_TYPE.MARKDOWN;\n            default:\n                return defaultType;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "HANDLER_TYPE"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toLowerCase(Locale)"
+    ],
+    "org.apache.tika.sax.BasicContentHandlerFactory.HANDLER_TYPE": []
+  },
+  "full_method_info": "/**\n * Tries to parse string into handler type.  Returns default if string is null or\n * parse fails.\n * <p/>\n * Options: xml, html, text, body, ignore (no content), markdown/md\n *\n * @param handlerTypeName string to parse\n * @param defaultType     type to return if parse fails\n * @return handler type\n */\npublic static HANDLER_TYPE parseHandlerType(String handlerTypeName, HANDLER_TYPE defaultType) {\n    if (handlerTypeName == null) {\n        return defaultType;\n    }\n    String lcHandlerTypeName = handlerTypeName.toLowerCase(Locale.ROOT);\n    switch(lcHandlerTypeName) {\n        case \"xml\":\n            return HANDLER_TYPE.XML;\n        case \"text\":\n            return HANDLER_TYPE.TEXT;\n        case \"txt\":\n            return HANDLER_TYPE.TEXT;\n        case \"html\":\n            return HANDLER_TYPE.HTML;\n        case \"body\":\n            return HANDLER_TYPE.BODY;\n        case \"ignore\":\n            return HANDLER_TYPE.IGNORE;\n        case \"markdown\":\n        case \"md\":\n            return HANDLER_TYPE.MARKDOWN;\n        default:\n            return defaultType;\n    }\n}",
+  "method_comment": "\n     * Tries to parse string into handler type.  Returns default if string is null or\n     * parse fails.\n     * <p/>\n     * Options: xml, html, text, body, ignore (no content), markdown/md\n     *\n     * @param handlerTypeName string to parse\n     * @param defaultType     type to return if parse fails\n     * @return handler type\n     ",
+  "method_annotation": ""
+}

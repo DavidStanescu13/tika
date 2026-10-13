@@ -1,0 +1,24 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(Document document) throws MimeTypeException{}",
+  "methodSignature": "create(Document)",
+  "sourceCode": "public static MimeTypes create(Document document) throws MimeTypeException {\n        MimeTypes mimeTypes = new MimeTypes();\n        new MimeTypesReader(mimeTypes).read(document);\n        mimeTypes.init();\n        return mimeTypes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Document"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypes": [
+      "init()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates and returns a MimeTypes instance from the specified document.\n *\n * @throws MimeTypeException if the type configuration is invalid\n */\npublic static MimeTypes create(Document document) throws MimeTypeException {\n    MimeTypes mimeTypes = new MimeTypes();\n    new MimeTypesReader(mimeTypes).read(document);\n    mimeTypes.init();\n    return mimeTypes;\n}",
+  "method_comment": "\n     * Creates and returns a MimeTypes instance from the specified document.\n     *\n     * @throws MimeTypeException if the type configuration is invalid\n     ",
+  "method_annotation": ""
+}

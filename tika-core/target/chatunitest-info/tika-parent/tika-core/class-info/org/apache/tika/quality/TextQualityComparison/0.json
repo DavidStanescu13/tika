@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "winner",
+  "brief": "public String winner(){}",
+  "methodSignature": "winner()",
+  "sourceCode": "public String winner() {\n        return winner;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the label of the cleaner candidate ({@link #labelA()} or\n * {@link #labelB()}).  Check {@link #delta()} to gauge confidence.\n */\npublic String winner() {\n    return winner;\n}",
+  "method_comment": "\n     * Returns the label of the cleaner candidate ({@link #labelA()} or\n     * {@link #labelB()}).  Check {@link #delta()} to gauge confidence.\n     ",
+  "method_annotation": ""
+}

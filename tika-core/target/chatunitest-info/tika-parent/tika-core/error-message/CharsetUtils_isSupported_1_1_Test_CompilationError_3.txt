@@ -1,0 +1,101 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+public class CharsetUtils_isSupported_1_1_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Method getCharsetICU;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testIsSupportedWithSupportedCharset() throws Exception {
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
+        assertTrue(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedWithUnsupportedCharset() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenReturn(false);
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalCharsetNameException() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new IllegalCharsetNameException("INVALID-CHARSET"));
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalArgumentException() throws Exception {
+        when(isSupportedICU.invoke(null, null)).thenThrow(new IllegalArgumentException("null"));
+        assertFalse(charsetUtils.isSupported(null));
+    }
+
+    @Test
+    public void testIsSupportedWithUnexpectedException() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new Exception("Unexpected exception"));
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupport() throws Exception {
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(false);
+        assertTrue(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupportAndUnsupportedCharset() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenReturn(false);
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupportAndIllegalCharsetNameException() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new IllegalCharsetNameException("INVALID-CHARSET"));
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupportAndIllegalArgumentException() throws Exception {
+        when(isSupportedICU.invoke(null, null)).thenThrow(new IllegalArgumentException("null"));
+        assertFalse(charsetUtils.isSupported(null));
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupportAndUnexpectedException() throws Exception {
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new Exception("Unexpected exception"));
+        assertFalse(charsetUtils.isSupported("INVALID-CHARSET"));
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_isSupported_1_1_Test: line 15 : package org.mockito does not exist
+Error in CharsetUtils_isSupported_1_1_Test: line 18 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_isSupported_1_1_Test: line 13 : package org.mockito does not exist

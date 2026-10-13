@@ -1,0 +1,31 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "getTopConfidenceFor",
+  "brief": "public float getTopConfidenceFor(Charset charset){}",
+  "methodSignature": "getTopConfidenceFor(Charset)",
+  "sourceCode": "public float getTopConfidenceFor(Charset charset) {\n        float best = 0f;\n        for (Result r : results) {\n            for (EncodingResult er : r.getEncodingResults()) {\n                if (er.getCharset().equals(charset) && er.getConfidence() > best) {\n                    best = er.getConfidence();\n                }\n            }\n        }\n        return best;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.detect.EncodingDetectorContext.Result": [
+      "getEncodingResults()"
+    ],
+    "org.apache.tika.detect.EncodingResult": [
+      "getCharset()",
+      "getConfidence()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the highest confidence seen for the given charset across all\n * detector results (not just top results). Useful for arbitrators that\n * want to propagate the base detector's confidence for the winning charset.\n */\npublic float getTopConfidenceFor(Charset charset) {\n    float best = 0f;\n    for (Result r : results) {\n        for (EncodingResult er : r.getEncodingResults()) {\n            if (er.getCharset().equals(charset) && er.getConfidence() > best) {\n                best = er.getConfidence();\n            }\n        }\n    }\n    return best;\n}",
+  "method_comment": "\n     * Returns the highest confidence seen for the given charset across all\n     * detector results (not just top results). Useful for arbitrators that\n     * want to propagate the base detector's confidence for the winning charset.\n     ",
+  "method_annotation": ""
+}

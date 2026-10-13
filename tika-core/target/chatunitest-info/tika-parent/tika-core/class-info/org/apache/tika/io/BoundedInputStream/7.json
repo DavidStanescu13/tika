@@ -1,0 +1,24 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "readNBytes",
+  "brief": "@Override\r\n    public byte[] readNBytes(int len) throws IOException{}",
+  "methodSignature": "readNBytes(int)",
+  "sourceCode": "@Override\n    public byte[] readNBytes(int len) throws IOException {\n        return in.readNBytes(len);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "readNBytes(int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic byte[] readNBytes(int len) throws IOException {\n    return in.readNBytes(len);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

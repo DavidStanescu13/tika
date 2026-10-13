@@ -1,0 +1,24 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "get",
+  "brief": "public static TimeoutLimits get(ParseContext context){}",
+  "methodSignature": "get(ParseContext)",
+  "sourceCode": "public static TimeoutLimits get(ParseContext context) {\n        if (context == null) {\n            return new TimeoutLimits();\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        return limits != null ? limits : new TimeoutLimits();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Helper method to get TimeoutLimits from ParseContext with defaults.\n *\n * @param context the ParseContext (may be null)\n * @return the TimeoutLimits from context, or a new instance with defaults if not found\n */\npublic static TimeoutLimits get(ParseContext context) {\n    if (context == null) {\n        return new TimeoutLimits();\n    }\n    TimeoutLimits limits = context.get(TimeoutLimits.class);\n    return limits != null ? limits : new TimeoutLimits();\n}",
+  "method_comment": "\n     * Helper method to get TimeoutLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the TimeoutLimits from context, or a new instance with defaults if not found\n     ",
+  "method_annotation": ""
+}

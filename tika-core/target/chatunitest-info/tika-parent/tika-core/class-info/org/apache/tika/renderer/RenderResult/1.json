@@ -1,0 +1,18 @@
+{
+  "className": "RenderResult",
+  "methodName": "getMetadata",
+  "brief": "public Metadata getMetadata(){}",
+  "methodSignature": "getMetadata()",
+  "sourceCode": "public Metadata getMetadata() {\n        return metadata;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Metadata getMetadata() {\n    return metadata;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

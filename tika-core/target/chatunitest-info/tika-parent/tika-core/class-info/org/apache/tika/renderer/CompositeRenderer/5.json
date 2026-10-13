@@ -1,0 +1,30 @@
+{
+  "className": "CompositeRenderer",
+  "methodName": "CompositeRenderer",
+  "brief": "public CompositeRenderer(List<Renderer> renderers){}",
+  "methodSignature": "CompositeRenderer(List)",
+  "sourceCode": "public CompositeRenderer(List<Renderer> renderers) {\n        Map<MediaType, Renderer> tmp = new ConcurrentHashMap<>();\n        ParseContext empty = new ParseContext();\n        for (Renderer renderer : renderers) {\n            for (MediaType mt : renderer.getSupportedTypes(empty)) {\n                tmp.put(mt, renderer);\n            }\n        }\n        rendererMap = Collections.unmodifiableMap(tmp);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Renderer>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.renderer.Renderer": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "java.util.Collections": [
+      "unmodifiableMap(Map<? extends K, ? extends V>)"
+    ]
+  },
+  "full_method_info": "public CompositeRenderer(List<Renderer> renderers) {\n    Map<MediaType, Renderer> tmp = new ConcurrentHashMap<>();\n    ParseContext empty = new ParseContext();\n    for (Renderer renderer : renderers) {\n        for (MediaType mt : renderer.getSupportedTypes(empty)) {\n            tmp.put(mt, renderer);\n        }\n    }\n    rendererMap = Collections.unmodifiableMap(tmp);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

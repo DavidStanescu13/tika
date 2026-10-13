@@ -1,0 +1,80 @@
+package org.apache.tika.utils;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.lang.reflect.Method;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+public class ProcessUtils_escapeCommandLine_2_4_Test {
+
+    @Test
+    public void testEscapeCommandLine_NullInput() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, null);
+        assertEquals(null, result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_NoSpaces() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, "test");
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_Windows() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, "test arg");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_Windows() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, "\"test arg\"");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_NoWindows() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, "\"test arg\"");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_NoWindows() throws Exception {
+        ProcessUtils processUtils = new ProcessUtils();
+        Method method = processUtils.getClass().getDeclaredMethod("escapeCommandLine", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(processUtils, "test arg");
+        assertEquals("test arg", result);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_escapeCommandLine_2_4_Test: line 15 : package org.mockito does not exist
+Error in ProcessUtils_escapeCommandLine_2_4_Test: line 18 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_escapeCommandLine_2_4_Test: line 13 : package org.mockito does not exist

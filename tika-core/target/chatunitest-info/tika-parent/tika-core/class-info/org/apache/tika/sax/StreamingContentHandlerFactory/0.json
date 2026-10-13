@@ -1,0 +1,24 @@
+{
+  "className": "StreamingContentHandlerFactory",
+  "methodName": "createHandler",
+  "brief": "ContentHandler createHandler(OutputStream os, Charset charset);",
+  "methodSignature": "createHandler(OutputStream, Charset)",
+  "sourceCode": "ContentHandler createHandler(OutputStream os, Charset charset);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OutputStream",
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.io.OutputStream": [],
+    "java.nio.charset.Charset": []
+  },
+  "full_method_info": "/**\n * Creates a new ContentHandler that writes output directly to the given OutputStream.\n *\n * @param os      the output stream to write to\n * @param charset the character encoding to use\n * @return a new ContentHandler instance that writes to the stream\n */\nContentHandler createHandler(OutputStream os, Charset charset);",
+  "method_comment": "\n     * Creates a new ContentHandler that writes output directly to the given OutputStream.\n     *\n     * @param os      the output stream to write to\n     * @param charset the character encoding to use\n     * @return a new ContentHandler instance that writes to the stream\n     ",
+  "method_annotation": ""
+}

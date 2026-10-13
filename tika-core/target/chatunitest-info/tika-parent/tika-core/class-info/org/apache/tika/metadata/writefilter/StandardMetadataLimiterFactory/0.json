@@ -1,0 +1,18 @@
+{
+  "className": "StandardMetadataLimiterFactory",
+  "methodName": "newInstance",
+  "brief": "@Override\r\n    public MetadataWriteLimiter newInstance(){}",
+  "methodSignature": "newInstance()",
+  "sourceCode": "@Override\n    public MetadataWriteLimiter newInstance() {\n        if (maxFieldSize < 0) {\n            throw new IllegalArgumentException(\"maxFieldSize must be > 0\");\n        }\n\n        if (maxValuesPerField < 1) {\n            throw new IllegalArgumentException(\"maxValuesPerField must be > 0\");\n        }\n\n        if (maxTotalBytes < 0) {\n            throw new IllegalArgumentException(\"maxTotalBytes must be > 0\");\n        }\n\n        return new StandardMetadataLimiter(maxKeySize, maxFieldSize,\n                maxTotalBytes, maxValuesPerField, includeFields,\n                excludeFields, includeEmpty);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic MetadataWriteLimiter newInstance() {\n    if (maxFieldSize < 0) {\n        throw new IllegalArgumentException(\"maxFieldSize must be > 0\");\n    }\n    if (maxValuesPerField < 1) {\n        throw new IllegalArgumentException(\"maxValuesPerField must be > 0\");\n    }\n    if (maxTotalBytes < 0) {\n        throw new IllegalArgumentException(\"maxTotalBytes must be > 0\");\n    }\n    return new StandardMetadataLimiter(maxKeySize, maxFieldSize, maxTotalBytes, maxValuesPerField, includeFields, excludeFields, includeEmpty);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

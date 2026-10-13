@@ -1,0 +1,99 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Locale.ENGLISH;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_forName_3_4_Test {
+
+    @Mock
+    private Method getCharsetICU;
+
+    @Mock
+    private Method isSupportedICU;
+
+    private CharsetUtils charsetUtils;
+
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        charsetUtils = new CharsetUtils();
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(Charset.forName("UTF-8"));
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
+    }
+
+    @Test
+    public void testForNameWithValidName() throws Exception {
+        Charset charset = charsetUtils.forName("UTF-8");
+        assertEquals(Charset.forName("UTF-8"), charset);
+    }
+
+    @Test
+    public void testForNameWithNullName() {
+        assertThrows(IllegalArgumentException.class, () -> charsetUtils.forName(null));
+    }
+
+    @Test
+    public void testForNameWithInvalidName() {
+        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("INVALID"));
+    }
+
+    @Test
+    public void testForNameWithISOName() throws Exception {
+        Charset charset = charsetUtils.forName("ISO-8859-1");
+        assertEquals(Charset.forName("ISO-8859-1"), charset);
+    }
+
+    @Test
+    public void testForNameWithCPName() throws Exception {
+        Charset charset = charsetUtils.forName("CP1252");
+        assertEquals(Charset.forName("CP1252"), charset);
+    }
+
+    @Test
+    public void testForNameWithWinName() throws Exception {
+        Charset charset = charsetUtils.forName("WIN1252");
+        assertEquals(Charset.forName("Windows-1252"), charset);
+    }
+
+    @Test
+    public void testForNameWithICUCharset() throws Exception {
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(Charset.forName("UTF-8"));
+        Charset charset = charsetUtils.forName("UTF-8");
+        assertEquals(Charset.forName("UTF-8"), charset);
+    }
+
+    @Test
+    public void testForNameWithICUUnsupportedCharset() throws Exception {
+        when(getCharsetICU.invoke(null, "INVALID")).thenReturn(null);
+        when(isSupportedICU.invoke(null, "INVALID")).thenReturn(false);
+        Charset charset = charsetUtils.forName("INVALID");
+        assertEquals(Charset.forName("INVALID"), charset);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_forName_3_4_Test: line 4 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_forName_3_4_Test: line 16 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_4_Test: line 14 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_4_Test: line 20 : cannot find symbol
+  symbol: class MockitoExtension
+Error in CharsetUtils_forName_3_4_Test: line 23 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.CharsetUtils_forName_3_4_Test
+Error in CharsetUtils_forName_3_4_Test: line 26 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.CharsetUtils_forName_3_4_Test

@@ -1,0 +1,24 @@
+{
+  "className": "TeeContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String name) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String name) throws SAXException {\n        for (ContentHandler handler : handlers) {\n            handler.endElement(uri, localName, name);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String name) throws SAXException {\n    for (ContentHandler handler : handlers) {\n        handler.endElement(uri, localName, name);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

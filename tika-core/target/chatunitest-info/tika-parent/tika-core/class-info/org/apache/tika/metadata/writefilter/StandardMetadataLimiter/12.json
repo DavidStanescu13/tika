@@ -1,0 +1,25 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "includeValue",
+  "brief": "private boolean includeValue(String value){}",
+  "methodSignature": "includeValue(String)",
+  "sourceCode": "private boolean includeValue(String value) {\n        if (includeEmpty) {\n            return true;\n        }\n        if (StringUtils.isBlank(value)) {\n            return false;\n        }\n        return true;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests for null or empty. Does not check for length\n * @param value\n * @return\n */\nprivate boolean includeValue(String value) {\n    if (includeEmpty) {\n        return true;\n    }\n    if (StringUtils.isBlank(value)) {\n        return false;\n    }\n    return true;\n}",
+  "method_comment": "\n     * Tests for null or empty. Does not check for length\n     * @param value\n     * @return\n     ",
+  "method_annotation": ""
+}

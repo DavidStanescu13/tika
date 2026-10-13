@@ -1,0 +1,42 @@
+{
+  "className": "MediaType",
+  "methodName": "parse",
+  "brief": "public static MediaType parse(String string){}",
+  "methodSignature": "parse(String)",
+  "sourceCode": "public static MediaType parse(String string) {\n        if (string == null) {\n            return null;\n        }\n\n        // Optimization for the common cases\n        synchronized (SIMPLE_TYPES) {\n            MediaType type = SIMPLE_TYPES.get(string);\n            if (type == null) {\n                int slash = string.indexOf('/');\n                if (slash == -1) {\n                    return null;\n                } else if (SIMPLE_TYPES.size() < 10000 &&\n                        isSimpleName(string.substring(0, slash)) &&\n                        isSimpleName(string.substring(slash + 1))) {\n                    type = new MediaType(string, slash);\n                    SIMPLE_TYPES.put(string, type);\n                }\n            }\n            if (type != null) {\n                return type;\n            }\n        }\n\n        Matcher matcher;\n        matcher = TYPE_PATTERN.matcher(string);\n        if (matcher.matches()) {\n            return new MediaType(matcher.group(1), matcher.group(2),\n                    parseParameters(matcher.group(3)));\n        }\n        matcher = CHARSET_FIRST_PATTERN.matcher(string);\n        if (matcher.matches()) {\n            return new MediaType(matcher.group(2), matcher.group(3),\n                    parseParameters(matcher.group(1)));\n        }\n\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "size()"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parseParameters(String)",
+      "isSimpleName(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "matches()",
+      "group(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given string to a media type. The string is expected\n * to be of the form \"type/subtype(; parameter=...)*\" as defined in\n * RFC 2045, though we also handle \"charset=xxx; type/subtype\" for\n * broken web servers.\n *\n * @param string media type string to be parsed\n * @return parsed media type, or <code>null</code> if parsing fails\n */\npublic static MediaType parse(String string) {\n    if (string == null) {\n        return null;\n    }\n    // Optimization for the common cases\n    synchronized (SIMPLE_TYPES) {\n        MediaType type = SIMPLE_TYPES.get(string);\n        if (type == null) {\n            int slash = string.indexOf('/');\n            if (slash == -1) {\n                return null;\n            } else if (SIMPLE_TYPES.size() < 10000 && isSimpleName(string.substring(0, slash)) && isSimpleName(string.substring(slash + 1))) {\n                type = new MediaType(string, slash);\n                SIMPLE_TYPES.put(string, type);\n            }\n        }\n        if (type != null) {\n            return type;\n        }\n    }\n    Matcher matcher;\n    matcher = TYPE_PATTERN.matcher(string);\n    if (matcher.matches()) {\n        return new MediaType(matcher.group(1), matcher.group(2), parseParameters(matcher.group(3)));\n    }\n    matcher = CHARSET_FIRST_PATTERN.matcher(string);\n    if (matcher.matches()) {\n        return new MediaType(matcher.group(2), matcher.group(3), parseParameters(matcher.group(1)));\n    }\n    return null;\n}",
+  "method_comment": "\n     * Parses the given string to a media type. The string is expected\n     * to be of the form \"type/subtype(; parameter=...)*\" as defined in\n     * RFC 2045, though we also handle \"charset=xxx; type/subtype\" for\n     * broken web servers.\n     *\n     * @param string media type string to be parsed\n     * @return parsed media type, or <code>null</code> if parsing fails\n     ",
+  "method_annotation": ""
+}

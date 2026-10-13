@@ -1,0 +1,27 @@
+{
+  "className": "LanguageWriter",
+  "methodName": "write",
+  "brief": "@Override\r\n    public void write(char[] cbuf, int off, int len){}",
+  "methodSignature": "write(char[], int, int)",
+  "sourceCode": "@Override\n    public void write(char[] cbuf, int off, int len) {\n        detector.addText(cbuf, off, len);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "addText(char[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void write(char[] cbuf, int off, int len) {\n    detector.addText(cbuf, off, len);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

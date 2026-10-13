@@ -1,0 +1,22 @@
+{
+  "className": "Encoder",
+  "methodName": "encode",
+  "brief": "String encode(byte[] bytes);",
+  "methodSignature": "encode(byte[])",
+  "sourceCode": "String encode(byte[] bytes);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Encode a byte array to a string representation.\n *\n * @param bytes the bytes to encode (typically from MessageDigest.digest())\n * @return the encoded string representation\n */\nString encode(byte[] bytes);",
+  "method_comment": "\n     * Encode a byte array to a string representation.\n     *\n     * @param bytes the bytes to encode (typically from MessageDigest.digest())\n     * @return the encoded string representation\n     ",
+  "method_annotation": ""
+}

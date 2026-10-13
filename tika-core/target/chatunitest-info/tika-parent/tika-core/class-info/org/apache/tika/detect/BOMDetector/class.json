@@ -1,0 +1,54 @@
+{
+  "fullClassName": "org.apache.tika.detect.BOMDetector",
+  "className": "BOMDetector",
+  "index": 17,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[EncodingDetector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class BOMDetector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.nio.charset.Charset;",
+    "import java.nio.charset.UnsupportedCharsetException;",
+    "import java.util.Collections;",
+    "import java.util.List;",
+    "import org.apache.commons.io.ByteOrderMark;",
+    "import org.apache.commons.io.IOUtils;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final ByteOrderMark[] BOMS =\n            //order matters -- have to try the 32 before the 16\n            new ByteOrderMark[] {\n                    ByteOrderMark.UTF_8,\n                    ByteOrderMark.UTF_32BE,\n                    ByteOrderMark.UTF_32LE,\n                    ByteOrderMark.UTF_16BE,\n                    ByteOrderMark.UTF_16LE\n            };",
+    "private static final Charset[] CHARSETS = new Charset[BOMS.length];",
+    "private static final int MIN_BYTES = 2;",
+    "private static final int MAX_BYTES = 4;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "EncodingDetector"
+  ],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0",
+    "startsWith(ByteOrderMark, byte[])": "1"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\r\n                                       ParseContext parseContext) throws IOException{}",
+    "private boolean startsWith(ByteOrderMark bom, byte[] bytes){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.nio.charset.Charset;\nimport java.nio.charset.UnsupportedCharsetException;\nimport java.util.Collections;\nimport java.util.List;\nimport org.apache.commons.io.ByteOrderMark;\nimport org.apache.commons.io.IOUtils;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Encoding detector that identifies the character set from a byte-order mark\n * (BOM) at the start of the stream.  Returns a single {@link EncodingResult.ResultType#DECLARATIVE}\n * result when a BOM is found — a BOM is an explicit in-band declaration of encoding\n * and takes priority over all statistical or structural inference.\n *\n * <p>SPI-loaded first in the default encoding-detector chain so that BOM evidence\n * reaches the meta arbiter ({@code JunkFilterEncodingDetector}) before any\n * statistical detector runs.  {@code MojibusterEncodingDetector} strips the BOM\n * from its own probe independently to ensure consistent model inference (BOMs are\n * excluded from training data).</p>\n *\n * @since Apache Tika 0.x (moved to org.apache.tika.detect in 4.0)\n */\n@TikaComponent(spi = false)\npublic class BOMDetector implements EncodingDetector {\n\n    private static final ByteOrderMark[] BOMS = // order matters -- have to try the 32 before the 16\n    new ByteOrderMark[] { ByteOrderMark.UTF_8, ByteOrderMark.UTF_32BE, ByteOrderMark.UTF_32LE, ByteOrderMark.UTF_16BE, ByteOrderMark.UTF_16LE };\n\n    private static final Charset[] CHARSETS = new Charset[BOMS.length];\n\n    private static final int MIN_BYTES = 2;\n\n    private static final int MAX_BYTES = 4;\n\n    static {\n        for (int i = 0; i < BOMS.length; i++) {\n            try {\n                CHARSETS[i] = Charset.forName(BOMS[i].getCharsetName());\n            } catch (UnsupportedCharsetException e) {\n                // log it\n            }\n        }\n    }\n\n    @Override\n    public List<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        tis.mark(MAX_BYTES);\n        byte[] bytes = new byte[MAX_BYTES];\n        try {\n            int numRead = IOUtils.read(tis, bytes);\n            if (numRead < MIN_BYTES) {\n                return Collections.emptyList();\n            } else if (numRead < MAX_BYTES) {\n                byte[] tmpBytes = new byte[numRead];\n                System.arraycopy(bytes, 0, tmpBytes, 0, numRead);\n                bytes = tmpBytes;\n            }\n        } finally {\n            tis.reset();\n        }\n        for (int i = 0; i < BOMS.length; i++) {\n            ByteOrderMark bom = BOMS[i];\n            if (startsWith(bom, bytes) && CHARSETS[i] != null) {\n                return List.of(new EncodingResult(CHARSETS[i], 1.0f, CHARSETS[i].name(), EncodingResult.ResultType.DECLARATIVE));\n            }\n        }\n        return Collections.emptyList();\n    }\n\n    private boolean startsWith(ByteOrderMark bom, byte[] bytes) {\n        byte[] bomBytes = bom.getBytes();\n        if (bytes.length < bomBytes.length) {\n            return false;\n        }\n        for (int i = 0; i < bomBytes.length; i++) {\n            if (bomBytes[i] != bytes[i]) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Encoding detector that identifies the character set from a byte-order mark\n * (BOM) at the start of the stream.  Returns a single {@link EncodingResult.ResultType#DECLARATIVE}\n * result when a BOM is found — a BOM is an explicit in-band declaration of encoding\n * and takes priority over all statistical or structural inference.\n *\n * <p>SPI-loaded first in the default encoding-detector chain so that BOM evidence\n * reaches the meta arbiter ({@code JunkFilterEncodingDetector}) before any\n * statistical detector runs.  {@code MojibusterEncodingDetector} strips the BOM\n * from its own probe independently to ensure consistent model inference (BOMs are\n * excluded from training data).</p>\n *\n * @since Apache Tika 0.x (moved to org.apache.tika.detect in 4.0)\n */\n@TikaComponent(spi = false)\npublic class BOMDetector implements EncodingDetector {\n\n    private static final ByteOrderMark[] BOMS = // order matters -- have to try the 32 before the 16\n    new ByteOrderMark[] { ByteOrderMark.UTF_8, ByteOrderMark.UTF_32BE, ByteOrderMark.UTF_32LE, ByteOrderMark.UTF_16BE, ByteOrderMark.UTF_16LE };\n\n    private static final Charset[] CHARSETS = new Charset[BOMS.length];\n\n    private static final int MIN_BYTES = 2;\n\n    private static final int MAX_BYTES = 4;\n\n    static {\n        for (int i = 0; i < BOMS.length; i++) {\n            try {\n                CHARSETS[i] = Charset.forName(BOMS[i].getCharsetName());\n            } catch (UnsupportedCharsetException e) {\n                // log it\n            }\n        }\n    }\n\n    @Override\n    public List<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        tis.mark(MAX_BYTES);\n        byte[] bytes = new byte[MAX_BYTES];\n        try {\n            int numRead = IOUtils.read(tis, bytes);\n            if (numRead < MIN_BYTES) {\n                return Collections.emptyList();\n            } else if (numRead < MAX_BYTES) {\n                byte[] tmpBytes = new byte[numRead];\n                System.arraycopy(bytes, 0, tmpBytes, 0, numRead);\n                bytes = tmpBytes;\n            }\n        } finally {\n            tis.reset();\n        }\n        for (int i = 0; i < BOMS.length; i++) {\n            ByteOrderMark bom = BOMS[i];\n            if (startsWith(bom, bytes) && CHARSETS[i] != null) {\n                return List.of(new EncodingResult(CHARSETS[i], 1.0f, CHARSETS[i].name(), EncodingResult.ResultType.DECLARATIVE));\n            }\n        }\n        return Collections.emptyList();\n    }\n\n    private boolean startsWith(ByteOrderMark bom, byte[] bytes) {\n        byte[] bomBytes = bom.getBytes();\n        if (bytes.length < bomBytes.length) {\n            return false;\n        }\n        for (int i = 0; i < bomBytes.length; i++) {\n            if (bomBytes[i] != bytes[i]) {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+  "subClasses": []
+}

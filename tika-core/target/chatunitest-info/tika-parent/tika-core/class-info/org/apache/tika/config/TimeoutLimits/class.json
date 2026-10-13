@@ -1,0 +1,82 @@
+{
+  "fullClassName": "org.apache.tika.config.TimeoutLimits",
+  "className": "TimeoutLimits",
+  "index": 15,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class TimeoutLimits",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import java.util.Objects;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 2L;",
+    "public static final long DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS = 3_600_000L;",
+    "public static final long DEFAULT_PROGRESS_TIMEOUT_MILLIS = 120_000L;",
+    "private long totalTaskTimeoutMillis = DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS;",
+    "private long progressTimeoutMillis = DEFAULT_PROGRESS_TIMEOUT_MILLIS;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "getTotalTaskTimeoutMillis()": "0",
+    "setTotalTaskTimeoutMillis(long)": "1",
+    "getProgressTimeoutMillis()": "2",
+    "setProgressTimeoutMillis(long)": "3",
+    "get(ParseContext)": "4",
+    "getProcessTimeoutMillis(ParseContext, long)": "5",
+    "toString()": "6",
+    "equals(Object)": "7",
+    "hashCode()": "8",
+    "TimeoutLimits()": "9",
+    "TimeoutLimits(long, long)": "10"
+  },
+  "methodsBrief": [
+    "public long getTotalTaskTimeoutMillis(){}",
+    "public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis){}",
+    "public long getProgressTimeoutMillis(){}",
+    "public void setProgressTimeoutMillis(long progressTimeoutMillis){}",
+    "public static TimeoutLimits get(ParseContext context){}",
+    "public static long getProcessTimeoutMillis(ParseContext context, long defaultMs){}",
+    "@Override\r\n    public String toString(){}",
+    "@Override\r\n    public boolean equals(Object o){}",
+    "@Override\r\n    public int hashCode(){}",
+    "public TimeoutLimits(){}",
+    "public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis){}"
+  ],
+  "constructorSigs": [
+    "TimeoutLimits()",
+    "TimeoutLimits(long, long)"
+  ],
+  "constructorBrief": [
+    "public TimeoutLimits(){}",
+    "public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis){}"
+  ],
+  "getterSetterSigs": [
+    "getTotalTaskTimeoutMillis()",
+    "setTotalTaskTimeoutMillis(long)",
+    "getProgressTimeoutMillis()",
+    "setProgressTimeoutMillis(long)"
+  ],
+  "getterSetterBrief": [
+    "public long getTotalTaskTimeoutMillis(){}",
+    "public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis){}",
+    "public long getProgressTimeoutMillis(){}",
+    "public void setProgressTimeoutMillis(long progressTimeoutMillis){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.io.Serializable;\nimport java.util.Objects;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Configuration for the two-tier task timeout system.\n * <p>\n * <ul>\n *   <li>{@code totalTaskTimeoutMillis} — bounds entire task wall-clock time\n *       (default: 3,600,000 ms = 1 hour)</li>\n *   <li>{@code progressTimeoutMillis} — bounds time since the last progress update;\n *       catches infinite loops and hung processes (default: 120,000 ms = 2 minutes)</li>\n * </ul>\n * <p>\n * Parsers that never call {@link TikaProgressTracker#update()} effectively get\n * {@code progressTimeoutMillis} as their total timeout (same as the old single-timeout\n * behavior). Parsers that <em>do</em> update progress can run up to\n * {@code totalTaskTimeoutMillis}.\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"timeout-limits\": {\n *       \"totalTaskTimeoutMillis\": 3600000,\n *       \"progressTimeoutMillis\": 60000\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(spi = false)\npublic class TimeoutLimits implements Serializable {\n\n    private static final long serialVersionUID = 2L;\n\n    public static final long DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS = 3_600_000L;\n\n    /**\n     * Also caps how long a single external process may run (see\n     * {@link #getProcessTimeoutMillis(ParseContext, long)}), so this must not be\n     * shorter than the per-process timeouts the bundled process-spawning parsers\n     * default to, or those defaults become unreachable.\n     */\n    public static final long DEFAULT_PROGRESS_TIMEOUT_MILLIS = 120_000L;\n\n    private long totalTaskTimeoutMillis = DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS;\n\n    private long progressTimeoutMillis = DEFAULT_PROGRESS_TIMEOUT_MILLIS;\n\n    public TimeoutLimits() {\n    }\n\n    public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }\n\n    /**\n     * Gets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @return total task timeout in milliseconds\n     */\n    public long getTotalTaskTimeoutMillis() {\n        return totalTaskTimeoutMillis;\n    }\n\n    /**\n     * Sets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @param totalTaskTimeoutMillis total task timeout in milliseconds\n     */\n    public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n    }\n\n    /**\n     * Gets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @return progress timeout in milliseconds\n     */\n    public long getProgressTimeoutMillis() {\n        return progressTimeoutMillis;\n    }\n\n    /**\n     * Sets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @param progressTimeoutMillis progress timeout in milliseconds\n     */\n    public void setProgressTimeoutMillis(long progressTimeoutMillis) {\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }\n\n    /**\n     * Helper method to get TimeoutLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the TimeoutLimits from context, or a new instance with defaults if not found\n     */\n    public static TimeoutLimits get(ParseContext context) {\n        if (context == null) {\n            return new TimeoutLimits();\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        return limits != null ? limits : new TimeoutLimits();\n    }\n\n    /**\n     * Returns the per-process timeout to use for external process execution.\n     * <p>\n     * External processes must not outlive the progress watchdog: a parser only\n     * reports progress once its process has finished, so a process allowed to run\n     * past {@code progressTimeoutMillis} would be killed as a hang. This caps the\n     * caller's timeout at {@code progressTimeoutMillis - 100}, leaving the monitoring\n     * loop a small window to observe the process exit first.\n     * <p>\n     * The cap is a ceiling, not a replacement: a caller asking for less than the cap\n     * keeps its own shorter value. Falls back to {@code defaultMs} when no\n     * TimeoutLimits is in the context.\n     *\n     * @param context   the ParseContext (may be null)\n     * @param defaultMs the caller's configured timeout; also used if no TimeoutLimits\n     *                  is in the context\n     * @return timeout in milliseconds for external process execution\n     */\n    public static long getProcessTimeoutMillis(ParseContext context, long defaultMs) {\n        if (context == null) {\n            return defaultMs;\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        if (limits == null) {\n            return defaultMs;\n        }\n        return Math.max(0, Math.min(defaultMs, limits.progressTimeoutMillis - 100));\n    }\n\n    @Override\n    public String toString() {\n        return \"TimeoutLimits{\" + \"totalTaskTimeoutMillis=\" + totalTaskTimeoutMillis + \", progressTimeoutMillis=\" + progressTimeoutMillis + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        TimeoutLimits that = (TimeoutLimits) o;\n        return totalTaskTimeoutMillis == that.totalTaskTimeoutMillis && progressTimeoutMillis == that.progressTimeoutMillis;\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(totalTaskTimeoutMillis, progressTimeoutMillis);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for the two-tier task timeout system.\n * <p>\n * <ul>\n *   <li>{@code totalTaskTimeoutMillis} — bounds entire task wall-clock time\n *       (default: 3,600,000 ms = 1 hour)</li>\n *   <li>{@code progressTimeoutMillis} — bounds time since the last progress update;\n *       catches infinite loops and hung processes (default: 120,000 ms = 2 minutes)</li>\n * </ul>\n * <p>\n * Parsers that never call {@link TikaProgressTracker#update()} effectively get\n * {@code progressTimeoutMillis} as their total timeout (same as the old single-timeout\n * behavior). Parsers that <em>do</em> update progress can run up to\n * {@code totalTaskTimeoutMillis}.\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"timeout-limits\": {\n *       \"totalTaskTimeoutMillis\": 3600000,\n *       \"progressTimeoutMillis\": 60000\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(spi = false)\npublic class TimeoutLimits implements Serializable {\n\n    private static final long serialVersionUID = 2L;\n\n    public static final long DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS = 3_600_000L;\n\n    /**\n     * Also caps how long a single external process may run (see\n     * {@link #getProcessTimeoutMillis(ParseContext, long)}), so this must not be\n     * shorter than the per-process timeouts the bundled process-spawning parsers\n     * default to, or those defaults become unreachable.\n     */\n    public static final long DEFAULT_PROGRESS_TIMEOUT_MILLIS = 120_000L;\n\n    private long totalTaskTimeoutMillis = DEFAULT_TOTAL_TASK_TIMEOUT_MILLIS;\n\n    private long progressTimeoutMillis = DEFAULT_PROGRESS_TIMEOUT_MILLIS;\n\n    public TimeoutLimits() {\n    }\n\n    public TimeoutLimits(long totalTaskTimeoutMillis, long progressTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }\n\n    /**\n     * Gets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @return total task timeout in milliseconds\n     */\n    public long getTotalTaskTimeoutMillis() {\n        return totalTaskTimeoutMillis;\n    }\n\n    /**\n     * Sets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @param totalTaskTimeoutMillis total task timeout in milliseconds\n     */\n    public void setTotalTaskTimeoutMillis(long totalTaskTimeoutMillis) {\n        this.totalTaskTimeoutMillis = totalTaskTimeoutMillis;\n    }\n\n    /**\n     * Gets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @return progress timeout in milliseconds\n     */\n    public long getProgressTimeoutMillis() {\n        return progressTimeoutMillis;\n    }\n\n    /**\n     * Sets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @param progressTimeoutMillis progress timeout in milliseconds\n     */\n    public void setProgressTimeoutMillis(long progressTimeoutMillis) {\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }\n\n    /**\n     * Helper method to get TimeoutLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the TimeoutLimits from context, or a new instance with defaults if not found\n     */\n    public static TimeoutLimits get(ParseContext context) {\n        if (context == null) {\n            return new TimeoutLimits();\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        return limits != null ? limits : new TimeoutLimits();\n    }\n\n    /**\n     * Returns the per-process timeout to use for external process execution.\n     * <p>\n     * External processes must not outlive the progress watchdog: a parser only\n     * reports progress once its process has finished, so a process allowed to run\n     * past {@code progressTimeoutMillis} would be killed as a hang. This caps the\n     * caller's timeout at {@code progressTimeoutMillis - 100}, leaving the monitoring\n     * loop a small window to observe the process exit first.\n     * <p>\n     * The cap is a ceiling, not a replacement: a caller asking for less than the cap\n     * keeps its own shorter value. Falls back to {@code defaultMs} when no\n     * TimeoutLimits is in the context.\n     *\n     * @param context   the ParseContext (may be null)\n     * @param defaultMs the caller's configured timeout; also used if no TimeoutLimits\n     *                  is in the context\n     * @return timeout in milliseconds for external process execution\n     */\n    public static long getProcessTimeoutMillis(ParseContext context, long defaultMs) {\n        if (context == null) {\n            return defaultMs;\n        }\n        TimeoutLimits limits = context.get(TimeoutLimits.class);\n        if (limits == null) {\n            return defaultMs;\n        }\n        return Math.max(0, Math.min(defaultMs, limits.progressTimeoutMillis - 100));\n    }\n\n    @Override\n    public String toString() {\n        return \"TimeoutLimits{\" + \"totalTaskTimeoutMillis=\" + totalTaskTimeoutMillis + \", progressTimeoutMillis=\" + progressTimeoutMillis + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        TimeoutLimits that = (TimeoutLimits) o;\n        return totalTaskTimeoutMillis == that.totalTaskTimeoutMillis && progressTimeoutMillis == that.progressTimeoutMillis;\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(totalTaskTimeoutMillis, progressTimeoutMillis);\n    }\n}",
+  "subClasses": []
+}

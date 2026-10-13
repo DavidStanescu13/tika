@@ -1,0 +1,22 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        return String.format(java.util.Locale.ROOT,\n                \"TextQualityComparison[winner=%s delta=%.3f A=%s(%s) B=%s(%s)]\",\n                winner, delta, labelA, scoreA, labelB, scoreB);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "format(Locale, String, Object[])"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    return String.format(java.util.Locale.ROOT, \"TextQualityComparison[winner=%s delta=%.3f A=%s(%s) B=%s(%s)]\", winner, delta, labelA, scoreA, labelB, scoreB);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,20 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "handleException",
+  "brief": "protected void handleException(SAXException exception) throws SAXException{}",
+  "methodSignature": "handleException(SAXException)",
+  "sourceCode": "protected void handleException(SAXException exception) throws SAXException {\n        if (handler instanceof ContentHandlerDecorator) {\n            ((ContentHandlerDecorator)handler).handleException(exception);\n        } else {\n            throw exception;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXException"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Handle any exceptions thrown by methods in this class. This method\n * provides a single place to implement custom exception handling. The\n * default behaviour is simply to re-throw the given exception, but\n * subclasses can also provide alternative ways of handling the situation.\n *\n * If the wrapped handler is itself a ContentHandlerDecorator, the call\n * is delegated to the wrapped handler's {@link ContentHandlerDecorator#handleException(SAXException)}\n *\n * @param exception the exception that was thrown\n * @throws SAXException the exception (if any) thrown to the client\n */\nprotected void handleException(SAXException exception) throws SAXException {\n    if (handler instanceof ContentHandlerDecorator) {\n        ((ContentHandlerDecorator) handler).handleException(exception);\n    } else {\n        throw exception;\n    }\n}",
+  "method_comment": "\n     * Handle any exceptions thrown by methods in this class. This method\n     * provides a single place to implement custom exception handling. The\n     * default behaviour is simply to re-throw the given exception, but\n     * subclasses can also provide alternative ways of handling the situation.\n     * \n     * If the wrapped handler is itself a ContentHandlerDecorator, the call\n     * is delegated to the wrapped handler's {@link ContentHandlerDecorator#handleException(SAXException)}\n     *\n     * @param exception the exception that was thrown\n     * @throws SAXException the exception (if any) thrown to the client\n     ",
+  "method_annotation": ""
+}

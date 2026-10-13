@@ -1,0 +1,28 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "available",
+  "brief": "@Override\r\n    public int available() throws IOException{}",
+  "methodSignature": "available()",
+  "sourceCode": "@Override\n    public int available() throws IOException {\n        // Return cached bytes available from current position\n        long cachedAvailable = cache.size() - position;\n        if (cachedAvailable > 0) {\n            return (int) Math.min(cachedAvailable, Integer.MAX_VALUE);\n        }\n        return source.available();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "size()"
+    ],
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.io.InputStream": [
+      "available()"
+    ]
+  },
+  "full_method_info": "@Override\npublic int available() throws IOException {\n    // Return cached bytes available from current position\n    long cachedAvailable = cache.size() - position;\n    if (cachedAvailable > 0) {\n        return (int) Math.min(cachedAvailable, Integer.MAX_VALUE);\n    }\n    return source.available();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

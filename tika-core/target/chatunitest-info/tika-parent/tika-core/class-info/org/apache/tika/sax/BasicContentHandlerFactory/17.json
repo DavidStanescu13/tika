@@ -1,0 +1,22 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "setParseContext",
+  "brief": "public void setParseContext(ParseContext parseContext){}",
+  "methodSignature": "setParseContext(ParseContext)",
+  "sourceCode": "public void setParseContext(ParseContext parseContext) {\n        this.parseContext = parseContext;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Sets the parse context for storing warnings when throwOnWriteLimitReached is false.\n * @param parseContext the parse context\n */\npublic void setParseContext(ParseContext parseContext) {\n    this.parseContext = parseContext;\n}",
+  "method_comment": "\n     * Sets the parse context for storing warnings when throwOnWriteLimitReached is false.\n     * @param parseContext the parse context\n     ",
+  "method_annotation": ""
+}

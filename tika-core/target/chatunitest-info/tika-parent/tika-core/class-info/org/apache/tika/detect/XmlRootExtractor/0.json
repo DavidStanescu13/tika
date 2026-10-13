@@ -1,0 +1,35 @@
+{
+  "className": "XmlRootExtractor",
+  "methodName": "extractRootElement",
+  "brief": "public QName extractRootElement(byte[] data){}",
+  "methodSignature": "extractRootElement(byte[])",
+  "sourceCode": "public QName extractRootElement(byte[] data) {\n        // this loop should be very rare\n        while (true) {\n            try {\n                UnsynchronizedByteArrayInputStream is = UnsynchronizedByteArrayInputStream.builder().setByteArray(data).get();\n                return extractRootElement(is, true);\n            } catch (IOException e) {\n                // doesn't happen, the implementation of get() doesn't throw an IOException.\n            } catch (MalformedCharException e) {\n                // see TIKA-3596, try to handle truncated/bad encoded XML files\n                int newLen = data.length / 2;\n                if (newLen % 2 == 1) {\n                    newLen--;\n                }\n                if (newLen > 0) {\n                    data = Arrays.copyOf(data, newLen);\n                } else {\n                    break;\n                }\n            }\n        }\n        return null;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.commons.io.input.UnsynchronizedByteArrayInputStream.Builder": [
+      "setByteArray(byte[])",
+      "get()"
+    ],
+    "org.apache.commons.io.input.UnsynchronizedByteArrayInputStream": [
+      "builder()"
+    ],
+    "org.apache.tika.detect.XmlRootExtractor": [
+      "extractRootElement(InputStream, boolean)"
+    ],
+    "java.util.Arrays": [
+      "copyOf(byte[], int)"
+    ]
+  },
+  "full_method_info": "public QName extractRootElement(byte[] data) {\n    // this loop should be very rare\n    while (true) {\n        try {\n            UnsynchronizedByteArrayInputStream is = UnsynchronizedByteArrayInputStream.builder().setByteArray(data).get();\n            return extractRootElement(is, true);\n        } catch (IOException e) {\n            // doesn't happen, the implementation of get() doesn't throw an IOException.\n        } catch (MalformedCharException e) {\n            // see TIKA-3596, try to handle truncated/bad encoded XML files\n            int newLen = data.length / 2;\n            if (newLen % 2 == 1) {\n                newLen--;\n            }\n            if (newLen > 0) {\n                data = Arrays.copyOf(data, newLen);\n            } else {\n                break;\n            }\n        }\n    }\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

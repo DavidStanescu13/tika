@@ -1,0 +1,68 @@
+{
+  "fullClassName": "org.apache.tika.language.detect.LanguageHandler",
+  "className": "LanguageHandler",
+  "index": 112,
+  "modifier": "[public ]",
+  "extend": "[WriteOutContentHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.language.detect",
+  "packageDeclaration": "package org.apache.tika.language.detect;",
+  "classSignature": "public class LanguageHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import org.apache.tika.sax.WriteOutContentHandler;"
+  ],
+  "fields": [
+    "private final LanguageWriter writer;"
+  ],
+  "superClasses": [
+    "WriteOutContentHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDetector()": "0",
+    "getLanguage()": "1",
+    "LanguageHandler()": "2",
+    "LanguageHandler(LanguageWriter)": "3",
+    "LanguageHandler(LanguageDetector)": "4"
+  },
+  "methodsBrief": [
+    "public LanguageDetector getDetector(){}",
+    "public LanguageResult getLanguage(){}",
+    "public LanguageHandler() throws IOException{}",
+    "public LanguageHandler(LanguageWriter writer){}",
+    "public LanguageHandler(LanguageDetector detector){}"
+  ],
+  "constructorSigs": [
+    "LanguageHandler()",
+    "LanguageHandler(LanguageWriter)",
+    "LanguageHandler(LanguageDetector)"
+  ],
+  "constructorBrief": [
+    "public LanguageHandler() throws IOException{}",
+    "public LanguageHandler(LanguageWriter writer){}",
+    "public LanguageHandler(LanguageDetector detector){}"
+  ],
+  "getterSetterSigs": [
+    "getDetector()",
+    "getLanguage()"
+  ],
+  "getterSetterBrief": [
+    "public LanguageDetector getDetector(){}",
+    "public LanguageResult getLanguage(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "getDefaultLanguageDetector()",
+      "loadModels()"
+    ],
+    "org.apache.tika.language.detect.LanguageWriter": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.language.detect;\n\nimport java.io.IOException;\nimport org.apache.tika.sax.WriteOutContentHandler;\n\n/**\n * SAX content handler that updates a language detector based on all the\n * received character content.\n *\n * @since Apache Tika 0.10\n */\npublic class LanguageHandler extends WriteOutContentHandler {\n\n    private final LanguageWriter writer;\n\n    public LanguageHandler() throws IOException {\n        this(new LanguageWriter(LanguageDetector.getDefaultLanguageDetector().loadModels()));\n    }\n\n    public LanguageHandler(LanguageWriter writer) {\n        super(writer);\n        this.writer = writer;\n    }\n\n    public LanguageHandler(LanguageDetector detector) {\n        this(new LanguageWriter(detector));\n    }\n\n    /**\n     * Returns the language detector used by this content handler.\n     * Note that the returned detector gets updated whenever new SAX events\n     * are received by this content handler.\n     *\n     * @return language detector\n     */\n    public LanguageDetector getDetector() {\n        return writer.getDetector();\n    }\n\n    /**\n     * Returns the detected language based on text handled thus far.\n     *\n     * @return LanguageResult\n     */\n    public LanguageResult getLanguage() {\n        return writer.getLanguage();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * SAX content handler that updates a language detector based on all the\n * received character content.\n *\n * @since Apache Tika 0.10\n */\npublic class LanguageHandler extends WriteOutContentHandler {\n\n    private final LanguageWriter writer;\n\n    public LanguageHandler() throws IOException {\n        this(new LanguageWriter(LanguageDetector.getDefaultLanguageDetector().loadModels()));\n    }\n\n    public LanguageHandler(LanguageWriter writer) {\n        super(writer);\n        this.writer = writer;\n    }\n\n    public LanguageHandler(LanguageDetector detector) {\n        this(new LanguageWriter(detector));\n    }\n\n    /**\n     * Returns the language detector used by this content handler.\n     * Note that the returned detector gets updated whenever new SAX events\n     * are received by this content handler.\n     *\n     * @return language detector\n     */\n    public LanguageDetector getDetector() {\n        return writer.getDetector();\n    }\n\n    /**\n     * Returns the detected language based on text handled thus far.\n     *\n     * @return LanguageResult\n     */\n    public LanguageResult getLanguage() {\n        return writer.getLanguage();\n    }\n}",
+  "subClasses": []
+}

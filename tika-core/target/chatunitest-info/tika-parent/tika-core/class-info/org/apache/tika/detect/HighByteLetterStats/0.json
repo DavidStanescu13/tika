@@ -1,0 +1,22 @@
+{
+  "className": "HighByteLetterStats",
+  "methodName": "countHighBytes",
+  "brief": "public static int countHighBytes(byte[] probe){}",
+  "methodSignature": "countHighBytes(byte[])",
+  "sourceCode": "public static int countHighBytes(byte[] probe) {\n        if (probe == null) {\n            return 0;\n        }\n        int n = 0;\n        for (byte b : probe) {\n            if ((b & 0xFF) >= 0x80) {\n                n++;\n            }\n        }\n        return n;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Count of bytes &ge; 0x80 in the probe.\n */\npublic static int countHighBytes(byte[] probe) {\n    if (probe == null) {\n        return 0;\n    }\n    int n = 0;\n    for (byte b : probe) {\n        if ((b & 0xFF) >= 0x80) {\n            n++;\n        }\n    }\n    return n;\n}",
+  "method_comment": " Count of bytes &ge; 0x80 in the probe. ",
+  "method_annotation": ""
+}

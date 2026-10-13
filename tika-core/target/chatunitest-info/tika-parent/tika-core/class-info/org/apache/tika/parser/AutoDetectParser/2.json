@@ -1,0 +1,18 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "getDetector",
+  "brief": "public Detector getDetector(){}",
+  "methodSignature": "getDetector()",
+  "sourceCode": "public Detector getDetector() {\n        return detector;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the type detector used by this parser to auto-detect the type\n * of a document.\n *\n * @return type detector\n * @since Apache Tika 0.4\n */\npublic Detector getDetector() {\n    return detector;\n}",
+  "method_comment": "\n     * Returns the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @return type detector\n     * @since Apache Tika 0.4\n     ",
+  "method_annotation": ""
+}

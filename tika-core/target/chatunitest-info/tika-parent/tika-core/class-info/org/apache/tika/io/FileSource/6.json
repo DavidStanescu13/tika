@@ -1,0 +1,22 @@
+{
+  "className": "FileSource",
+  "methodName": "getPath",
+  "brief": "@Override\r\n    public Path getPath(String suffix) throws IOException{}",
+  "methodSignature": "getPath(String)",
+  "sourceCode": "@Override\n    public Path getPath(String suffix) throws IOException {\n        // Already file-backed, just return the path\n        return path;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic Path getPath(String suffix) throws IOException {\n    // Already file-backed, just return the path\n    return path;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

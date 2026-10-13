@@ -1,0 +1,25 @@
+{
+  "className": "Property",
+  "methodName": "get",
+  "brief": "public static Property get(String key){}",
+  "methodSignature": "get(String)",
+  "sourceCode": "public static Property get(String key) {\n        return PROPERTIES.get(key);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Retrieve the property object that corresponds to the given key\n *\n * @param key the property key or name\n * @return the Property object\n */\npublic static Property get(String key) {\n    return PROPERTIES.get(key);\n}",
+  "method_comment": "\n     * Retrieve the property object that corresponds to the given key\n     *\n     * @param key the property key or name\n     * @return the Property object\n     ",
+  "method_annotation": ""
+}

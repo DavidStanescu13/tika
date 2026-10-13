@@ -1,0 +1,44 @@
+{
+  "fullClassName": "org.apache.tika.metadata.writefilter.MetadataWriteLimiter",
+  "className": "MetadataWriteLimiter",
+  "index": 186,
+  "modifier": "[public ]",
+  "extend": "[Serializable]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.writefilter",
+  "packageDeclaration": "package org.apache.tika.metadata.writefilter;",
+  "classSignature": "public interface MetadataWriteLimiter",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import java.util.Map;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "add(String, String, Map)": "0",
+    "set(String, String, Map)": "1"
+  },
+  "methodsBrief": [
+    "void add(String field, String value, Map<String, String[]> data);",
+    "void set(String field, String value, Map<String, String[]> data);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "set(String, String, Map)"
+  ],
+  "getterSetterBrief": [
+    "void set(String field, String value, Map<String, String[]> data);"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.writefilter;\n\nimport java.io.Serializable;\nimport java.util.Map;\n\npublic interface MetadataWriteLimiter extends Serializable {\n\n    /**\n     * Based on the field and value, this limiter modifies the field\n     * and/or the value to something that should be added to the Metadata object.\n     *\n     * If the value is <code>null</code>, no value is set or added.\n     *\n     * Status updates (e.g. write limit reached) can be added directly to the\n     * underlying metadata.\n     *\n     * @param field the metadata field name\n     * @param value the value to add\n     * @param data the metadata map to modify\n     */\n    void add(String field, String value, Map<String, String[]> data);\n\n    /**\n     * Based on the field and the value, this limiter modifies\n     * the field and/or the value to something that should be set in the\n     * Metadata object.\n     *\n     * @param field the metadata field name\n     * @param value the value to set\n     * @param data the metadata map to modify\n     */\n    void set(String field, String value, Map<String, String[]> data);\n}\n",
+  "classDeclarationCode": "public interface MetadataWriteLimiter extends Serializable {\n\n    /**\n     * Based on the field and value, this limiter modifies the field\n     * and/or the value to something that should be added to the Metadata object.\n     *\n     * If the value is <code>null</code>, no value is set or added.\n     *\n     * Status updates (e.g. write limit reached) can be added directly to the\n     * underlying metadata.\n     *\n     * @param field the metadata field name\n     * @param value the value to add\n     * @param data the metadata map to modify\n     */\n    void add(String field, String value, Map<String, String[]> data);\n\n    /**\n     * Based on the field and the value, this limiter modifies\n     * the field and/or the value to something that should be set in the\n     * Metadata object.\n     *\n     * @param field the metadata field name\n     * @param value the value to set\n     * @param data the metadata map to modify\n     */\n    void set(String field, String value, Map<String, String[]> data);\n}",
+  "subClasses": []
+}

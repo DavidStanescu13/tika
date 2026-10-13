@@ -1,0 +1,29 @@
+{
+  "className": "CompositeDigester",
+  "methodName": "digest",
+  "brief": "@Override\r\n    public void digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException{}",
+  "methodSignature": "digest(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public void digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException {\n        for (Digester digester : digesters) {\n            digester.digest(tis, m, parseContext);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.digest.Digester": [
+      "digest(TikaInputStream, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void digest(TikaInputStream tis, Metadata m, ParseContext parseContext) throws IOException {\n    for (Digester digester : digesters) {\n        digester.digest(tis, m, parseContext);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

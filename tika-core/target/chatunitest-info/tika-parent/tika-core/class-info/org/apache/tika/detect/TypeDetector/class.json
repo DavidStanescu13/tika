@@ -1,0 +1,40 @@
+{
+  "fullClassName": "org.apache.tika.detect.TypeDetector",
+  "className": "TypeDetector",
+  "index": 48,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Detector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class TypeDetector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "Detector"
+  ],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Content type detection based on a content type hint. This detector simply\n * trusts any valid content type hint given in the input metadata, and returns\n * that as the likely type of the input document.\n *\n * @since Apache Tika 0.3\n */\npublic class TypeDetector implements Detector {\n\n    /**\n     * Detects the content type of an input document based on a type hint\n     * given in the input metadata. The CONTENT_TYPE attribute of the given\n     * input metadata is expected to contain the type of the input document.\n     * If that attribute exists and contains a valid type name, then that\n     * type is returned.\n     *\n     * @param tis      ignored\n     * @param metadata input metadata, possibly with a CONTENT_TYPE value\n     * @param context the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     */\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) {\n        // Look for a type hint in the input metadata\n        String hint = metadata.get(Metadata.CONTENT_TYPE);\n        if (hint != null) {\n            MediaType type = MediaType.parse(hint);\n            if (type != null) {\n                return type;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content type detection based on a content type hint. This detector simply\n * trusts any valid content type hint given in the input metadata, and returns\n * that as the likely type of the input document.\n *\n * @since Apache Tika 0.3\n */\npublic class TypeDetector implements Detector {\n\n    /**\n     * Detects the content type of an input document based on a type hint\n     * given in the input metadata. The CONTENT_TYPE attribute of the given\n     * input metadata is expected to contain the type of the input document.\n     * If that attribute exists and contains a valid type name, then that\n     * type is returned.\n     *\n     * @param tis      ignored\n     * @param metadata input metadata, possibly with a CONTENT_TYPE value\n     * @param context the parse context\n     * @return detected media type, or <code>application/octet-stream</code>\n     */\n    @Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) {\n        // Look for a type hint in the input metadata\n        String hint = metadata.get(Metadata.CONTENT_TYPE);\n        if (hint != null) {\n            MediaType type = MediaType.parse(hint);\n            if (type != null) {\n                return type;\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }\n}",
+  "subClasses": []
+}

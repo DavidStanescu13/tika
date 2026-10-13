@@ -1,0 +1,59 @@
+{
+  "className": "EmbeddedParserDecorator",
+  "methodName": "parse",
+  "brief": "@Override\r\n        public void parse(TikaInputStream tis, ContentHandler ignore, Metadata metadata,\r\n                          ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n        public void parse(TikaInputStream tis, ContentHandler ignore, Metadata metadata,\n                          ParseContext context) throws IOException, SAXException, TikaException {\n\n            // Work out what this thing is\n            String objectName = getResourceName(metadata, parserState.unknownCount);\n            String objectLocation = this.location + objectName;\n\n            metadata.add(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, objectLocation);\n\n            String idPath =\n                    this.embeddedIdPath.equals(\"/\") ?\n                            this.embeddedIdPath + ++parserState.embeddedCount :\n                            this.embeddedIdPath + \"/\" + ++parserState.embeddedCount;\n            metadata.add(TikaCoreProperties.EMBEDDED_ID_PATH, idPath);\n            metadata.set(TikaCoreProperties.EMBEDDED_ID, parserState.embeddedCount);\n            //get a fresh handler\n            ContentHandler localHandler =\n                    parserState.recursiveParserWrapperHandler.createHandler();\n            parserState.recursiveParserWrapperHandler.startEmbeddedDocument(localHandler, metadata);\n\n            Parser preContextParser = context.get(Parser.class);\n            context.set(Parser.class,\n                    new EmbeddedParserDecorator(getWrappedParser(), objectLocation,\n                            idPath, parserState));\n            long started = System.currentTimeMillis();\n            //store the handler that was used before this parse\n            //so that you can return it back to its state at the end of this parse\n            RecursivelySecureContentHandler preParseHandler = context.get(RecursivelySecureContentHandler.class);\n\n            ParentContentHandler preParseParentHandler = context.get(ParentContentHandler.class);\n            context.set(ParentContentHandler.class, new ParentContentHandler(preParseHandler));\n            ContentHandler secureContentHandler =\n                    new RecursivelySecureContentHandler(localHandler, tis, preParseHandler.handlerCounter,\n                    preParseHandler.throwOnWriteLimitReached, context);\n\n            try {\n                tis.setCloseShield();\n                super.parse(tis, secureContentHandler, metadata, context);\n            } catch (SAXException e) {\n                if (WriteLimitReachedException.isWriteLimitReached(e)) {\n                    metadata.add(TikaCoreProperties.WRITE_LIMIT_REACHED, \"true\");\n                    throw e;\n                } else {\n                    if (catchEmbeddedExceptions) {\n                        ParserUtils.recordParserFailure(this, e, metadata);\n                    } else {\n                        throw e;\n                    }\n                }\n            } catch (CorruptedFileException e) {\n                throw e;\n            } catch (TikaException e) {\n                if (e instanceof EncryptedDocumentException) {\n                    metadata.set(TikaCoreProperties.IS_ENCRYPTED, true);\n                }\n                if (context.get(ZeroByteFileException.IgnoreZeroByteFileException.class) != null &&\n                        e instanceof ZeroByteFileException) {\n                    //do nothing\n                } else if (catchEmbeddedExceptions) {\n                    ParserUtils.recordParserFailure(this, e, metadata);\n                } else {\n                    throw e;\n                }\n            } finally {\n                tis.removeCloseShield();\n                context.set(Parser.class, preContextParser);\n                context.set(RecursivelySecureContentHandler.class, preParseHandler);\n                context.set(ParentContentHandler.class, preParseParentHandler);\n                long elapsedMillis = System.currentTimeMillis() - started;\n                metadata.set(TikaCoreProperties.PARSE_TIME_MILLIS, Long.toString(elapsedMillis));\n                parserState.recursiveParserWrapperHandler\n                        .endEmbeddedDocument(localHandler, metadata);\n            }\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "removeCloseShield()",
+      "setCloseShield()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "set(Property, String)",
+      "set(Property, boolean)",
+      "set(Property, int)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)",
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.RecursiveParserWrapper": [
+      "getResourceName(Metadata, AtomicInteger)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler": [
+      "createHandler()"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ],
+    "org.apache.tika.utils.ParserUtils": [
+      "recordParserFailure(Parser, Throwable, Metadata)"
+    ],
+    "java.lang.Long": [
+      "toString(long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void parse(TikaInputStream tis, ContentHandler ignore, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    // Work out what this thing is\n    String objectName = getResourceName(metadata, parserState.unknownCount);\n    String objectLocation = this.location + objectName;\n    metadata.add(TikaCoreProperties.EMBEDDED_RESOURCE_PATH, objectLocation);\n    String idPath = this.embeddedIdPath.equals(\"/\") ? this.embeddedIdPath + ++parserState.embeddedCount : this.embeddedIdPath + \"/\" + ++parserState.embeddedCount;\n    metadata.add(TikaCoreProperties.EMBEDDED_ID_PATH, idPath);\n    metadata.set(TikaCoreProperties.EMBEDDED_ID, parserState.embeddedCount);\n    // get a fresh handler\n    ContentHandler localHandler = parserState.recursiveParserWrapperHandler.createHandler();\n    parserState.recursiveParserWrapperHandler.startEmbeddedDocument(localHandler, metadata);\n    Parser preContextParser = context.get(Parser.class);\n    context.set(Parser.class, new EmbeddedParserDecorator(getWrappedParser(), objectLocation, idPath, parserState));\n    long started = System.currentTimeMillis();\n    // store the handler that was used before this parse\n    // so that you can return it back to its state at the end of this parse\n    RecursivelySecureContentHandler preParseHandler = context.get(RecursivelySecureContentHandler.class);\n    ParentContentHandler preParseParentHandler = context.get(ParentContentHandler.class);\n    context.set(ParentContentHandler.class, new ParentContentHandler(preParseHandler));\n    ContentHandler secureContentHandler = new RecursivelySecureContentHandler(localHandler, tis, preParseHandler.handlerCounter, preParseHandler.throwOnWriteLimitReached, context);\n    try {\n        tis.setCloseShield();\n        super.parse(tis, secureContentHandler, metadata, context);\n    } catch (SAXException e) {\n        if (WriteLimitReachedException.isWriteLimitReached(e)) {\n            metadata.add(TikaCoreProperties.WRITE_LIMIT_REACHED, \"true\");\n            throw e;\n        } else {\n            if (catchEmbeddedExceptions) {\n                ParserUtils.recordParserFailure(this, e, metadata);\n            } else {\n                throw e;\n            }\n        }\n    } catch (CorruptedFileException e) {\n        throw e;\n    } catch (TikaException e) {\n        if (e instanceof EncryptedDocumentException) {\n            metadata.set(TikaCoreProperties.IS_ENCRYPTED, true);\n        }\n        if (context.get(ZeroByteFileException.IgnoreZeroByteFileException.class) != null && e instanceof ZeroByteFileException) {\n            // do nothing\n        } else if (catchEmbeddedExceptions) {\n            ParserUtils.recordParserFailure(this, e, metadata);\n        } else {\n            throw e;\n        }\n    } finally {\n        tis.removeCloseShield();\n        context.set(Parser.class, preContextParser);\n        context.set(RecursivelySecureContentHandler.class, preParseHandler);\n        context.set(ParentContentHandler.class, preParseParentHandler);\n        long elapsedMillis = System.currentTimeMillis() - started;\n        metadata.set(TikaCoreProperties.PARSE_TIME_MILLIS, Long.toString(elapsedMillis));\n        parserState.recursiveParserWrapperHandler.endEmbeddedDocument(localHandler, metadata);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,32 @@
+{
+  "className": "Metadata",
+  "methodName": "getIntValues",
+  "brief": "public int[] getIntValues(Property property){}",
+  "methodSignature": "getIntValues(Property)",
+  "sourceCode": "public int[] getIntValues(Property property) {\n        if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n            throw new PropertyTypeException(PropertyType.SEQ,\n                    property.getPrimaryProperty().getPropertyType());\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n            throw new PropertyTypeException(Property.ValueType.INTEGER,\n                    property.getPrimaryProperty().getValueType());\n        }\n        String[] vals = getValues(property);\n        int[] ret = new int[vals.length];\n        for (int i = 0; i < vals.length; i++) {\n            ret[i] = Integer.parseInt(vals[i]);\n        }\n        return ret;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "getValues(Property)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the array of ints of the identified \"seq\" integer metadata property.\n *\n * @param property seq integer property definition\n * @return array of ints\n * @since Apache Tika 1.21\n */\npublic int[] getIntValues(Property property) {\n    if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n        throw new PropertyTypeException(PropertyType.SEQ, property.getPrimaryProperty().getPropertyType());\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n        throw new PropertyTypeException(Property.ValueType.INTEGER, property.getPrimaryProperty().getValueType());\n    }\n    String[] vals = getValues(property);\n    int[] ret = new int[vals.length];\n    for (int i = 0; i < vals.length; i++) {\n        ret[i] = Integer.parseInt(vals[i]);\n    }\n    return ret;\n}",
+  "method_comment": "\n     * Gets the array of ints of the identified \"seq\" integer metadata property.\n     *\n     * @param property seq integer property definition\n     * @return array of ints\n     * @since Apache Tika 1.21\n     ",
+  "method_annotation": ""
+}

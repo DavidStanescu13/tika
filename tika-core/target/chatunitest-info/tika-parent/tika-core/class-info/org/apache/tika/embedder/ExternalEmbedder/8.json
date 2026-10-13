@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getCommandAssignmentOperator",
+  "brief": "public String getCommandAssignmentOperator(){}",
+  "methodSignature": "getCommandAssignmentOperator()",
+  "sourceCode": "public String getCommandAssignmentOperator() {\n        return commandAssignmentOperator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the assignment operator for the command line tool, i.e. \"=\".\n *\n * @return the assignment operator\n */\npublic String getCommandAssignmentOperator() {\n    return commandAssignmentOperator;\n}",
+  "method_comment": "\n     * Gets the assignment operator for the command line tool, i.e. \"=\".\n     *\n     * @return the assignment operator\n     ",
+  "method_annotation": ""
+}

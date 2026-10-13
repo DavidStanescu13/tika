@@ -1,0 +1,20 @@
+{
+  "className": "RegexCaptureParserConfig",
+  "methodName": "setCaptureMap",
+  "brief": "public void setCaptureMap(Map<String, String> captureMap){}",
+  "methodSignature": "setCaptureMap(Map)",
+  "sourceCode": "public void setCaptureMap(Map<String, String> captureMap) {\n        this.captureMap = captureMap;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<String,String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setCaptureMap(Map<String, String> captureMap) {\n    this.captureMap = captureMap;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

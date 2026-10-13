@@ -1,0 +1,24 @@
+{
+  "className": "MetadataWriteLimiter",
+  "methodName": "set",
+  "brief": "void set(String field, String value, Map<String, String[]> data);",
+  "methodSignature": "set(String, String, Map)",
+  "sourceCode": "void set(String field, String value, Map<String, String[]> data);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Map<String,String[]>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Based on the field and the value, this limiter modifies\n * the field and/or the value to something that should be set in the\n * Metadata object.\n *\n * @param field the metadata field name\n * @param value the value to set\n * @param data the metadata map to modify\n */\nvoid set(String field, String value, Map<String, String[]> data);",
+  "method_comment": "\n     * Based on the field and the value, this limiter modifies\n     * the field and/or the value to something that should be set in the\n     * Metadata object.\n     *\n     * @param field the metadata field name\n     * @param value the value to set\n     * @param data the metadata map to modify\n     ",
+  "method_annotation": ""
+}

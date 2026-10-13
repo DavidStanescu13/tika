@@ -1,0 +1,44 @@
+{
+  "fullClassName": "org.apache.tika.parser.AbstractParser",
+  "className": "AbstractParser",
+  "index": 225,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@Deprecated\r\npublic abstract class AbstractParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.io.IOException;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 7186985395903074255L;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "parse(TikaInputStream, ContentHandler, Metadata)": "0"
+  },
+  "methodsBrief": [
+    "@Deprecated\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\r\n            throws IOException, SAXException, TikaException{}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.IOException;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\n\n/**\n * Abstract base class for new parsers. This method implements the old\n * deprecated parse method so subclasses won't have to.\n *\n * @deprecated for removal in 4.x\n * @since Apache Tika 0.10\n */\n@Deprecated\npublic abstract class AbstractParser implements Parser {\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 7186985395903074255L;\n\n    /**\n     * Calls the\n     * {@link Parser#parse(TikaInputStream, ContentHandler, Metadata, ParseContext)}\n     * method with an empty {@link ParseContext}. This method exists as a\n     * leftover from Tika 0.x when the three-argument parse() method still\n     * existed in the {@link Parser} interface. No new code should call this\n     * method anymore, it's only here for backwards compatibility.\n     *\n     * @deprecated use the {@link Parser#parse(TikaInputStream, ContentHandler,\n     * Metadata, ParseContext)} method instead\n     */\n    @Deprecated\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n        parse(tis, handler, metadata, new ParseContext());\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Abstract base class for new parsers. This method implements the old\n * deprecated parse method so subclasses won't have to.\n *\n * @deprecated for removal in 4.x\n * @since Apache Tika 0.10\n */\n@Deprecated\npublic abstract class AbstractParser implements Parser {\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 7186985395903074255L;\n\n    /**\n     * Calls the\n     * {@link Parser#parse(TikaInputStream, ContentHandler, Metadata, ParseContext)}\n     * method with an empty {@link ParseContext}. This method exists as a\n     * leftover from Tika 0.x when the three-argument parse() method still\n     * existed in the {@link Parser} interface. No new code should call this\n     * method anymore, it's only here for backwards compatibility.\n     *\n     * @deprecated use the {@link Parser#parse(TikaInputStream, ContentHandler,\n     * Metadata, ParseContext)} method instead\n     */\n    @Deprecated\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n        parse(tis, handler, metadata, new ParseContext());\n    }\n}",
+  "subClasses": []
+}

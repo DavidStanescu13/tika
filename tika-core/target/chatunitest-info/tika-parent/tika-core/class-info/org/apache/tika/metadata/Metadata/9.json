@@ -1,0 +1,30 @@
+{
+  "className": "Metadata",
+  "methodName": "getDate",
+  "brief": "public Date getDate(Property property){}",
+  "methodSignature": "getDate(Property)",
+  "sourceCode": "public Date getDate(Property property) {\n        if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n            return null;\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n            return null;\n        }\n\n        String v = get(property);\n        if (v != null) {\n            return parseDate(v);\n        } else {\n            return null;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)",
+      "parseDate(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the value of the identified Date based metadata property. If many values are\n * associated to the specified property, then the first one is returned.\n *\n * @param property simple date property definition\n * @return property value as a Date, or <code>null</code> if the property is not set, or not\n * a valid Date\n * @since Apache Tika 0.8\n */\npublic Date getDate(Property property) {\n    if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n        return null;\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n        return null;\n    }\n    String v = get(property);\n    if (v != null) {\n        return parseDate(v);\n    } else {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Returns the value of the identified Date based metadata property. If many values are\n     * associated to the specified property, then the first one is returned.\n     *\n     * @param property simple date property definition\n     * @return property value as a Date, or <code>null</code> if the property is not set, or not\n     * a valid Date\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

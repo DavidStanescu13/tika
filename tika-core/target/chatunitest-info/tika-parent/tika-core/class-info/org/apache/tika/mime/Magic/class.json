@@ -1,0 +1,70 @@
+{
+  "fullClassName": "org.apache.tika.mime.Magic",
+  "className": "Magic",
+  "index": 204,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[Clause, Comparable<Magic>]",
+  "packageName": "org.apache.tika.mime",
+  "packageDeclaration": "package org.apache.tika.mime;",
+  "classSignature": "class Magic",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final MimeType type;",
+    "private final int priority;",
+    "private final Clause clause;",
+    "private final String string;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Clause",
+    "Comparable"
+  ],
+  "methodSigs": {
+    "getType()": "0",
+    "getPriority()": "1",
+    "eval(byte[])": "2",
+    "size()": "3",
+    "toString()": "4",
+    "compareTo(Magic)": "5",
+    "equals(Object)": "6",
+    "hashCode()": "7",
+    "Magic(MimeType, int, Clause)": "8"
+  },
+  "methodsBrief": [
+    "MimeType getType(){}",
+    "int getPriority(){}",
+    "public boolean eval(byte[] data){}",
+    "public int size(){}",
+    "public String toString(){}",
+    "public int compareTo(Magic o){}",
+    "public boolean equals(Object o){}",
+    "public int hashCode(){}",
+    "Magic(MimeType type, int priority, Clause clause){}"
+  ],
+  "constructorSigs": [
+    "Magic(MimeType, int, Clause)"
+  ],
+  "constructorBrief": [
+    "Magic(MimeType type, int priority, Clause clause){}"
+  ],
+  "getterSetterSigs": [
+    "getType()",
+    "getPriority()"
+  ],
+  "getterSetterBrief": [
+    "MimeType getType(){}",
+    "int getPriority(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.MimeType": [],
+    "org.apache.tika.mime.Clause": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.mime;\n\n/**\n * Defines a magic for a MimeType. A magic is made of one or several\n * MagicClause.\n */\nclass Magic implements Clause, Comparable<Magic> {\n\n    private final MimeType type;\n\n    private final int priority;\n\n    private final Clause clause;\n\n    private final String string;\n\n    Magic(MimeType type, int priority, Clause clause) {\n        this.type = type;\n        this.priority = priority;\n        this.clause = clause;\n        this.string = \"[\" + priority + \"/\" + clause + \"]\";\n    }\n\n    MimeType getType() {\n        return type;\n    }\n\n    int getPriority() {\n        return priority;\n    }\n\n    public boolean eval(byte[] data) {\n        return clause.eval(data);\n    }\n\n    public int size() {\n        return clause.size();\n    }\n\n    public String toString() {\n        return string;\n    }\n\n    public int compareTo(Magic o) {\n        int diff = o.priority - priority;\n        if (diff == 0) {\n            diff = o.size() - size();\n        }\n        if (diff == 0) {\n            diff = o.type.compareTo(type);\n        }\n        if (diff == 0) {\n            diff = o.string.compareTo(string);\n        }\n        return diff;\n    }\n\n    public boolean equals(Object o) {\n        if (o instanceof Magic) {\n            Magic that = (Magic) o;\n            return type.equals(that.type) && string.equals(that.string);\n        }\n        return false;\n    }\n\n    public int hashCode() {\n        return type.hashCode() ^ string.hashCode();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Defines a magic for a MimeType. A magic is made of one or several\n * MagicClause.\n */\nclass Magic implements Clause, Comparable<Magic> {\n\n    private final MimeType type;\n\n    private final int priority;\n\n    private final Clause clause;\n\n    private final String string;\n\n    Magic(MimeType type, int priority, Clause clause) {\n        this.type = type;\n        this.priority = priority;\n        this.clause = clause;\n        this.string = \"[\" + priority + \"/\" + clause + \"]\";\n    }\n\n    MimeType getType() {\n        return type;\n    }\n\n    int getPriority() {\n        return priority;\n    }\n\n    public boolean eval(byte[] data) {\n        return clause.eval(data);\n    }\n\n    public int size() {\n        return clause.size();\n    }\n\n    public String toString() {\n        return string;\n    }\n\n    public int compareTo(Magic o) {\n        int diff = o.priority - priority;\n        if (diff == 0) {\n            diff = o.size() - size();\n        }\n        if (diff == 0) {\n            diff = o.type.compareTo(type);\n        }\n        if (diff == 0) {\n            diff = o.string.compareTo(string);\n        }\n        return diff;\n    }\n\n    public boolean equals(Object o) {\n        if (o instanceof Magic) {\n            Magic that = (Magic) o;\n            return type.equals(that.type) && string.equals(that.string);\n        }\n        return false;\n    }\n\n    public int hashCode() {\n        return type.hashCode() ^ string.hashCode();\n    }\n}",
+  "subClasses": []
+}

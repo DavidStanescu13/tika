@@ -1,0 +1,33 @@
+{
+  "className": "ParserUtils",
+  "methodName": "recordParserDetails",
+  "brief": "public static void recordParserDetails(String parserClassName, Metadata metadata){}",
+  "methodSignature": "recordParserDetails(String, Metadata)",
+  "sourceCode": "public static void recordParserDetails(String parserClassName, Metadata metadata) {\n        String[] parsedBys = metadata.getValues(TikaCoreProperties.TIKA_PARSED_BY);\n        if (parsedBys == null || parsedBys.length == 0) {\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        } else if (Arrays.stream(parsedBys).noneMatch(parserClassName::equals)) {\n            //only add parser once\n            metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "getValues(Property)"
+    ],
+    "java.util.stream.Stream": [
+      "noneMatch(Predicate<? super T>)"
+    ],
+    "java.util.Arrays": [
+      "stream(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Records details of the {@link Parser} used to the {@link Metadata},\n * typically wanted where multiple parsers could be picked between\n * or used.\n */\npublic static void recordParserDetails(String parserClassName, Metadata metadata) {\n    String[] parsedBys = metadata.getValues(TikaCoreProperties.TIKA_PARSED_BY);\n    if (parsedBys == null || parsedBys.length == 0) {\n        metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n    } else if (Arrays.stream(parsedBys).noneMatch(parserClassName::equals)) {\n        // only add parser once\n        metadata.add(TikaCoreProperties.TIKA_PARSED_BY, parserClassName);\n    }\n}",
+  "method_comment": "\n     * Records details of the {@link Parser} used to the {@link Metadata},\n     * typically wanted where multiple parsers could be picked between\n     * or used.\n     ",
+  "method_annotation": ""
+}

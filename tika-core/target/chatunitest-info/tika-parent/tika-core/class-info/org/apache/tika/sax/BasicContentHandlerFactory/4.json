@@ -1,0 +1,22 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "createHandler",
+  "brief": "@Override\r\n    public ContentHandler createHandler(){}",
+  "methodSignature": "createHandler()",
+  "sourceCode": "@Override\n    public ContentHandler createHandler() {\n        return maybeValidate(createHandlerInner());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.BasicContentHandlerFactory": [
+      "createHandlerInner()"
+    ]
+  },
+  "full_method_info": "@Override\npublic ContentHandler createHandler() {\n    return maybeValidate(createHandlerInner());\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

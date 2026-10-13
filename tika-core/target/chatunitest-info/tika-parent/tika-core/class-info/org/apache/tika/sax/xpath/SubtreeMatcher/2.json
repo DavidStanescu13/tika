@@ -1,0 +1,26 @@
+{
+  "className": "SubtreeMatcher",
+  "methodName": "matchesAttribute",
+  "brief": "@Override\r\n    public boolean matchesAttribute(String namespace, String name){}",
+  "methodSignature": "matchesAttribute(String, String)",
+  "sourceCode": "@Override\n    public boolean matchesAttribute(String namespace, String name) {\n        return then.matchesAttribute(namespace, name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesAttribute(String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic boolean matchesAttribute(String namespace, String name) {\n    return then.matchesAttribute(namespace, name);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,18 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getMediaTypeRegistry",
+  "brief": "public MediaTypeRegistry getMediaTypeRegistry(){}",
+  "methodSignature": "getMediaTypeRegistry()",
+  "sourceCode": "public MediaTypeRegistry getMediaTypeRegistry() {\n        return registry;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the media type registry used to infer type relationships.\n *\n * @return media type registry\n * @since Apache Tika 0.8\n */\npublic MediaTypeRegistry getMediaTypeRegistry() {\n    return registry;\n}",
+  "method_comment": "\n     * Returns the media type registry used to infer type relationships.\n     *\n     * @return media type registry\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

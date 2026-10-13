@@ -1,0 +1,22 @@
+{
+  "className": "ParserState",
+  "methodName": "ParserState",
+  "brief": "private ParserState(AbstractRecursiveParserWrapperHandler handler){}",
+  "methodSignature": "ParserState(AbstractRecursiveParserWrapperHandler)",
+  "sourceCode": "private ParserState(AbstractRecursiveParserWrapperHandler handler) {\n            this.recursiveParserWrapperHandler = handler;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "AbstractRecursiveParserWrapperHandler"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler": []
+  },
+  "full_method_info": "private ParserState(AbstractRecursiveParserWrapperHandler handler) {\n    this.recursiveParserWrapperHandler = handler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "methodName": "endEmbeddedDocument",
+  "brief": "public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+  "methodSignature": "endEmbeddedDocument(ContentHandler, Metadata)",
+  "sourceCode": "public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\n            throws SAXException {\n        decrementEmbeddedDepth();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler": [
+      "decrementEmbeddedDepth()"
+    ]
+  },
+  "full_method_info": "/**\n * This is called after parsing each embedded document.  Override this\n * for custom behavior.  This is currently a no-op aside from tracking embedded depth.\n * <p>\n * When overriding, make sure to call {@link #decrementEmbeddedDepth()}\n *\n * @param contentHandler content handler that was used on this embedded document\n * @param metadata       metadata for this embedded document\n * @throws SAXException\n */\npublic void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n    decrementEmbeddedDepth();\n}",
+  "method_comment": "\n     * This is called after parsing each embedded document.  Override this\n     * for custom behavior.  This is currently a no-op aside from tracking embedded depth.\n     * <p>\n     * When overriding, make sure to call {@link #decrementEmbeddedDepth()}\n     *\n     * @param contentHandler content handler that was used on this embedded document\n     * @param metadata       metadata for this embedded document\n     * @throws SAXException\n     ",
+  "method_annotation": ""
+}

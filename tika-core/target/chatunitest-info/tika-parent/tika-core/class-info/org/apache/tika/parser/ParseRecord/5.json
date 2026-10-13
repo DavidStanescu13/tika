@@ -1,0 +1,26 @@
+{
+  "className": "ParseRecord",
+  "methodName": "addParserClass",
+  "brief": "void addParserClass(String parserClass){}",
+  "methodSignature": "addParserClass(String)",
+  "sourceCode": "void addParserClass(String parserClass) {\n        if (parsers.size() < MAX_PARSERS) {\n            parsers.add(parserClass);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Set": [
+      "add(E)",
+      "size()"
+    ]
+  },
+  "full_method_info": "void addParserClass(String parserClass) {\n    if (parsers.size() < MAX_PARSERS) {\n        parsers.add(parserClass);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

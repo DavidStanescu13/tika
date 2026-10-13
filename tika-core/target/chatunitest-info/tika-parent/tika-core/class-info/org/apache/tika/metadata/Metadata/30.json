@@ -1,0 +1,32 @@
+{
+  "className": "Metadata",
+  "methodName": "getLongValues",
+  "brief": "public long[] getLongValues(Property property){}",
+  "methodSignature": "getLongValues(Property)",
+  "sourceCode": "public long[] getLongValues(Property property) {\n        if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n            throw new PropertyTypeException(PropertyType.SEQ,\n                    property.getPrimaryProperty().getPropertyType());\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.REAL) {\n            throw new PropertyTypeException(Property.ValueType.REAL,\n                    property.getPrimaryProperty().getValueType());\n        }\n        String[] vals = getValues(property);\n        long[] ret = new long[vals.length];\n        for (int i = 0; i < vals.length; i++) {\n            ret[i] = Long.parseLong(vals[i]);\n        }\n        return ret;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "getValues(Property)"
+    ],
+    "java.lang.Long": [
+      "parseLong(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the array of ints of the identified \"seq\" integer metadata property.\n *\n * @param property seq integer property definition\n * @return array of ints\n * @since Apache Tika 1.21\n */\npublic long[] getLongValues(Property property) {\n    if (property.getPrimaryProperty().getPropertyType() != PropertyType.SEQ) {\n        throw new PropertyTypeException(PropertyType.SEQ, property.getPrimaryProperty().getPropertyType());\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.REAL) {\n        throw new PropertyTypeException(Property.ValueType.REAL, property.getPrimaryProperty().getValueType());\n    }\n    String[] vals = getValues(property);\n    long[] ret = new long[vals.length];\n    for (int i = 0; i < vals.length; i++) {\n        ret[i] = Long.parseLong(vals[i]);\n    }\n    return ret;\n}",
+  "method_comment": "\n     * Gets the array of ints of the identified \"seq\" integer metadata property.\n     *\n     * @param property seq integer property definition\n     * @return array of ints\n     * @since Apache Tika 1.21\n     ",
+  "method_annotation": ""
+}

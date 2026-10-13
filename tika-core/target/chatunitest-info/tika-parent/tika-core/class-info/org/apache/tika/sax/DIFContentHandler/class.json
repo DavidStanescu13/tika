@@ -1,0 +1,78 @@
+{
+  "fullClassName": "org.apache.tika.sax.DIFContentHandler",
+  "className": "DIFContentHandler",
+  "index": 283,
+  "modifier": "[public ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class DIFContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Stack;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.AttributesImpl;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private static final char[] NEWLINE = new char[]{'\\n'};",
+    "private static final char[] TABSPACE = new char[]{'\\t'};",
+    "private static final Attributes EMPTY_ATTRIBUTES = new AttributesImpl();",
+    "private final Stack<String> treeStack;",
+    "private final Stack<String> dataStack;",
+    "private final ContentHandler delegate;",
+    "private final Metadata metadata;",
+    "private boolean isLeaf;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setDocumentLocator(org.xml.sax.Locator)": "0",
+    "characters(char[], int, int)": "1",
+    "ignorableWhitespace(char[], int, int)": "2",
+    "startElement(String, String, String, Attributes)": "3",
+    "endElement(String, String, String)": "4",
+    "startDocument()": "5",
+    "endDocument()": "6",
+    "toString()": "7",
+    "DIFContentHandler(ContentHandler, Metadata)": "8"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void setDocumentLocator(org.xml.sax.Locator locator){}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+    "@Override\r\n    public void startDocument() throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "@Override\r\n    public String toString(){}",
+    "public DIFContentHandler(ContentHandler delegate, Metadata metadata){}"
+  ],
+  "constructorSigs": [
+    "DIFContentHandler(ContentHandler, Metadata)"
+  ],
+  "constructorBrief": [
+    "public DIFContentHandler(ContentHandler delegate, Metadata metadata){}"
+  ],
+  "getterSetterSigs": [
+    "setDocumentLocator(org.xml.sax.Locator)"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public void setDocumentLocator(org.xml.sax.Locator locator){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.Stack;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.AttributesImpl;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.metadata.Metadata;\n\npublic class DIFContentHandler extends DefaultHandler {\n\n    private static final char[] NEWLINE = new char[] { '\\n' };\n\n    private static final char[] TABSPACE = new char[] { '\\t' };\n\n    private static final Attributes EMPTY_ATTRIBUTES = new AttributesImpl();\n\n    private final Stack<String> treeStack;\n\n    private final Stack<String> dataStack;\n\n    private final ContentHandler delegate;\n\n    private final Metadata metadata;\n\n    private boolean isLeaf;\n\n    public DIFContentHandler(ContentHandler delegate, Metadata metadata) {\n        this.delegate = delegate;\n        this.isLeaf = false;\n        this.metadata = metadata;\n        this.treeStack = new Stack<>();\n        this.dataStack = new Stack<>();\n    }\n\n    @Override\n    public void setDocumentLocator(org.xml.sax.Locator locator) {\n        delegate.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        String value = new String(ch, start, length);\n        this.dataStack.push(value);\n        if (this.treeStack.peek().equals(\"Entry_Title\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n            String title = \"Title: \";\n            title = title + value;\n            this.delegate.characters(title.toCharArray(), 0, title.length());\n            this.delegate.endElement(\"\", \"h3\", \"h3\");\n        }\n        if (this.treeStack.peek().equals(\"Southernmost_Latitude\") || this.treeStack.peek().equals(\"Northernmost_Latitude\") || this.treeStack.peek().equals(\"Westernmost_Longitude\") || this.treeStack.peek().equals(\"Easternmost_Longitude\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"tr\", \"tr\", EMPTY_ATTRIBUTES);\n            this.delegate.startElement(\"\", \"td\", \"td\", EMPTY_ATTRIBUTES);\n            String key = this.treeStack.peek() + \" : \";\n            this.delegate.characters(key.toCharArray(), 0, key.length());\n            this.delegate.endElement(\"\", \"td\", \"td\");\n            this.delegate.startElement(\"\", \"td\", \"td\", EMPTY_ATTRIBUTES);\n            this.delegate.characters(value.toCharArray(), 0, value.length());\n            this.delegate.endElement(\"\", \"td\", \"td\");\n            this.delegate.endElement(\"\", \"tr\", \"tr\");\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        delegate.ignorableWhitespace(ch, start, length);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        this.isLeaf = true;\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n            String value = \"Geographic Data: \";\n            this.delegate.characters(value.toCharArray(), 0, value.length());\n            this.delegate.endElement(\"\", \"h3\", \"h3\");\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"table\", \"table\", EMPTY_ATTRIBUTES);\n        }\n        this.treeStack.push(localName);\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.endElement(\"\", \"table\", \"table\");\n        }\n        if (this.isLeaf) {\n            Stack<String> tempStack = (Stack<String>) this.treeStack.clone();\n            StringBuilder key = new StringBuilder();\n            while (!tempStack.isEmpty()) {\n                if (key.isEmpty()) {\n                    key = new StringBuilder(tempStack.pop());\n                } else {\n                    key.insert(0, tempStack.pop() + \"-\");\n                }\n            }\n            String value = this.dataStack.peek();\n            this.metadata.add(key.toString(), value);\n            this.isLeaf = false;\n        }\n        this.treeStack.pop();\n        this.dataStack.pop();\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        delegate.startDocument();\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        delegate.endDocument();\n    }\n\n    @Override\n    public String toString() {\n        return delegate.toString();\n    }\n}\n",
+  "classDeclarationCode": "public class DIFContentHandler extends DefaultHandler {\n\n    private static final char[] NEWLINE = new char[] { '\\n' };\n\n    private static final char[] TABSPACE = new char[] { '\\t' };\n\n    private static final Attributes EMPTY_ATTRIBUTES = new AttributesImpl();\n\n    private final Stack<String> treeStack;\n\n    private final Stack<String> dataStack;\n\n    private final ContentHandler delegate;\n\n    private final Metadata metadata;\n\n    private boolean isLeaf;\n\n    public DIFContentHandler(ContentHandler delegate, Metadata metadata) {\n        this.delegate = delegate;\n        this.isLeaf = false;\n        this.metadata = metadata;\n        this.treeStack = new Stack<>();\n        this.dataStack = new Stack<>();\n    }\n\n    @Override\n    public void setDocumentLocator(org.xml.sax.Locator locator) {\n        delegate.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        String value = new String(ch, start, length);\n        this.dataStack.push(value);\n        if (this.treeStack.peek().equals(\"Entry_Title\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n            String title = \"Title: \";\n            title = title + value;\n            this.delegate.characters(title.toCharArray(), 0, title.length());\n            this.delegate.endElement(\"\", \"h3\", \"h3\");\n        }\n        if (this.treeStack.peek().equals(\"Southernmost_Latitude\") || this.treeStack.peek().equals(\"Northernmost_Latitude\") || this.treeStack.peek().equals(\"Westernmost_Longitude\") || this.treeStack.peek().equals(\"Easternmost_Longitude\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"tr\", \"tr\", EMPTY_ATTRIBUTES);\n            this.delegate.startElement(\"\", \"td\", \"td\", EMPTY_ATTRIBUTES);\n            String key = this.treeStack.peek() + \" : \";\n            this.delegate.characters(key.toCharArray(), 0, key.length());\n            this.delegate.endElement(\"\", \"td\", \"td\");\n            this.delegate.startElement(\"\", \"td\", \"td\", EMPTY_ATTRIBUTES);\n            this.delegate.characters(value.toCharArray(), 0, value.length());\n            this.delegate.endElement(\"\", \"td\", \"td\");\n            this.delegate.endElement(\"\", \"tr\", \"tr\");\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        delegate.ignorableWhitespace(ch, start, length);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        this.isLeaf = true;\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n            String value = \"Geographic Data: \";\n            this.delegate.characters(value.toCharArray(), 0, value.length());\n            this.delegate.endElement(\"\", \"h3\", \"h3\");\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"table\", \"table\", EMPTY_ATTRIBUTES);\n        }\n        this.treeStack.push(localName);\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.endElement(\"\", \"table\", \"table\");\n        }\n        if (this.isLeaf) {\n            Stack<String> tempStack = (Stack<String>) this.treeStack.clone();\n            StringBuilder key = new StringBuilder();\n            while (!tempStack.isEmpty()) {\n                if (key.isEmpty()) {\n                    key = new StringBuilder(tempStack.pop());\n                } else {\n                    key.insert(0, tempStack.pop() + \"-\");\n                }\n            }\n            String value = this.dataStack.peek();\n            this.metadata.add(key.toString(), value);\n            this.isLeaf = false;\n        }\n        this.treeStack.pop();\n        this.dataStack.pop();\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        delegate.startDocument();\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        delegate.endDocument();\n    }\n\n    @Override\n    public String toString() {\n        return delegate.toString();\n    }\n}",
+  "subClasses": []
+}

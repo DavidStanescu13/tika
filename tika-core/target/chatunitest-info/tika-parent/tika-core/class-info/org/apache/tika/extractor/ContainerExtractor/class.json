@@ -1,0 +1,43 @@
+{
+  "fullClassName": "org.apache.tika.extractor.ContainerExtractor",
+  "className": "ContainerExtractor",
+  "index": 77,
+  "modifier": "[public ]",
+  "extend": "[Serializable]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.extractor",
+  "packageDeclaration": "package org.apache.tika.extractor;",
+  "classSignature": "public interface ContainerExtractor",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "isSupported(TikaInputStream, ParseContext)": "0",
+    "extract(TikaInputStream, ContainerExtractor, EmbeddedResourceHandler, ParseContext)": "1"
+  },
+  "methodsBrief": [
+    "boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;",
+    "void extract(TikaInputStream stream, ContainerExtractor recurseExtractor,\r\n            EmbeddedResourceHandler handler, ParseContext parseContext)\r\n            throws IOException, TikaException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.extractor;\n\nimport java.io.IOException;\nimport java.io.Serializable;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Tika container extractor interface.\n * Container Extractors provide access to the embedded\n * resources within container formats such as .zip and .doc\n */\npublic interface ContainerExtractor extends Serializable {\n\n    /**\n     * Is this Container Extractor able to process the\n     * supplied container?\n     *\n     * @param input the input stream\n     * @param parseContext the parse context\n     * @since Apache Tika 0.8\n     */\n    boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;\n\n    /**\n     * Processes a container file, and extracts all the embedded\n     * resources from within it.\n     * <p>\n     * The {@link EmbeddedResourceHandler} you supply will\n     * be called for each embedded resource in the container. It is\n     * up to you whether you process the contents of the resource or not.\n     * <p>\n     * The given document stream is consumed but not closed by this method.\n     * The responsibility to close the stream remains on the caller.\n     * <p>\n     * If required, nested containers (such as a .docx within a .zip)\n     * can automatically be recursed into, and processed inline. If\n     * no recurseExtractor is given, the nested containers will be\n     * treated as with any other embedded resources.\n     *\n     * @param stream           the document stream (input)\n     * @param recurseExtractor the extractor to use on any embedded containers\n     * @param handler          handler for the embedded files (output)\n     * @param parseContext     the parse context\n     * @throws IOException   if the document stream could not be read\n     * @throws TikaException if the container could not be parsed\n     * @since Apache Tika 0.8\n     */\n    void extract(TikaInputStream stream, ContainerExtractor recurseExtractor, EmbeddedResourceHandler handler, ParseContext parseContext) throws IOException, TikaException;\n}\n",
+  "classDeclarationCode": "/**\n * Tika container extractor interface.\n * Container Extractors provide access to the embedded\n * resources within container formats such as .zip and .doc\n */\npublic interface ContainerExtractor extends Serializable {\n\n    /**\n     * Is this Container Extractor able to process the\n     * supplied container?\n     *\n     * @param input the input stream\n     * @param parseContext the parse context\n     * @since Apache Tika 0.8\n     */\n    boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;\n\n    /**\n     * Processes a container file, and extracts all the embedded\n     * resources from within it.\n     * <p>\n     * The {@link EmbeddedResourceHandler} you supply will\n     * be called for each embedded resource in the container. It is\n     * up to you whether you process the contents of the resource or not.\n     * <p>\n     * The given document stream is consumed but not closed by this method.\n     * The responsibility to close the stream remains on the caller.\n     * <p>\n     * If required, nested containers (such as a .docx within a .zip)\n     * can automatically be recursed into, and processed inline. If\n     * no recurseExtractor is given, the nested containers will be\n     * treated as with any other embedded resources.\n     *\n     * @param stream           the document stream (input)\n     * @param recurseExtractor the extractor to use on any embedded containers\n     * @param handler          handler for the embedded files (output)\n     * @param parseContext     the parse context\n     * @throws IOException   if the document stream could not be read\n     * @throws TikaException if the container could not be parsed\n     * @since Apache Tika 0.8\n     */\n    void extract(TikaInputStream stream, ContainerExtractor recurseExtractor, EmbeddedResourceHandler handler, ParseContext parseContext) throws IOException, TikaException;\n}",
+  "subClasses": []
+}

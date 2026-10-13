@@ -1,0 +1,22 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument() throws SAXException{}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() throws SAXException {\n        if (documentStarted) {\n            throw new SAXException(\"StrictXHTMLValidator: startDocument called twice\");\n        }\n        if (documentEnded) {\n            throw new SAXException(\n                    \"StrictXHTMLValidator: startDocument after endDocument\");\n        }\n        documentStarted = true;\n        super.startDocument();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "startDocument()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startDocument() throws SAXException {\n    if (documentStarted) {\n        throw new SAXException(\"StrictXHTMLValidator: startDocument called twice\");\n    }\n    if (documentEnded) {\n        throw new SAXException(\"StrictXHTMLValidator: startDocument after endDocument\");\n    }\n    documentStarted = true;\n    super.startDocument();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

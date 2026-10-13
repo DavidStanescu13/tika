@@ -1,0 +1,23 @@
+{
+  "className": "TextStatistics",
+  "methodName": "looksLikeUTF8",
+  "brief": "public boolean looksLikeUTF8(){}",
+  "methodSignature": "looksLikeUTF8()",
+  "sourceCode": "public boolean looksLikeUTF8() {\n        int control = count(0, 0x20);\n        int utf8 = count(0x20, 0x80);\n        int safe = countSafeControl();\n\n        int expectedContinuation = 0;\n        int[] leading = new int[]{count(0xc0, 0xe0), count(0xe0, 0xf0), count(0xf0, 0xf8)};\n        for (int i = 0; i < leading.length; i++) {\n            utf8 += leading[i];\n            expectedContinuation += (i + 1) * leading[i];\n        }\n\n        int continuation = count(0x80, 0xc0);\n        return utf8 > 0 && continuation <= expectedContinuation &&\n                continuation >= expectedContinuation - 3 && count(0xf8, 0x100) == 0 &&\n                (control - safe) * 100 < utf8 * 2;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TextStatistics": [
+      "count(int, int)",
+      "countSafeControl()"
+    ]
+  },
+  "full_method_info": "/**\n * Checks whether the observed byte stream looks like UTF-8 encoded text.\n *\n * @return <code>true</code> if the seen bytes look like UTF-8,\n * <code>false</code> otherwise\n * @since Apache Tika 1.3\n */\npublic boolean looksLikeUTF8() {\n    int control = count(0, 0x20);\n    int utf8 = count(0x20, 0x80);\n    int safe = countSafeControl();\n    int expectedContinuation = 0;\n    int[] leading = new int[] { count(0xc0, 0xe0), count(0xe0, 0xf0), count(0xf0, 0xf8) };\n    for (int i = 0; i < leading.length; i++) {\n        utf8 += leading[i];\n        expectedContinuation += (i + 1) * leading[i];\n    }\n    int continuation = count(0x80, 0xc0);\n    return utf8 > 0 && continuation <= expectedContinuation && continuation >= expectedContinuation - 3 && count(0xf8, 0x100) == 0 && (control - safe) * 100 < utf8 * 2;\n}",
+  "method_comment": "\n     * Checks whether the observed byte stream looks like UTF-8 encoded text.\n     *\n     * @return <code>true</code> if the seen bytes look like UTF-8,\n     * <code>false</code> otherwise\n     * @since Apache Tika 1.3\n     ",
+  "method_annotation": ""
+}

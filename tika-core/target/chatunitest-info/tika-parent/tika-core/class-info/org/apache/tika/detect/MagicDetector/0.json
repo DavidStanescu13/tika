@@ -1,0 +1,38 @@
+{
+  "className": "MagicDetector",
+  "methodName": "parse",
+  "brief": "public static MagicDetector parse(MediaType mediaType, String type, String offset, String value,\r\n                                      String mask){}",
+  "methodSignature": "parse(MediaType, String, String, String, String)",
+  "sourceCode": "public static MagicDetector parse(MediaType mediaType, String type, String offset, String value,\n                                      String mask) {\n        int start = 0;\n        int end = 0;\n        if (offset != null) {\n            int colon = offset.indexOf(':');\n            if (colon == -1) {\n                start = Integer.parseInt(offset);\n                end = start;\n            } else {\n                start = Integer.parseInt(offset.substring(0, colon));\n                end = Integer.parseInt(offset.substring(colon + 1));\n            }\n        }\n\n        byte[] patternBytes = decodeValue(value, type);\n        byte[] maskBytes = null;\n        if (mask != null) {\n            maskBytes = decodeValue(mask, type);\n        }\n\n        return new MagicDetector(mediaType, patternBytes, maskBytes, type.equals(\"regex\"),\n                type.equals(\"stringignorecase\"), start, end);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "String",
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.lang.String": [
+      "equals(Object)",
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String)"
+    ],
+    "org.apache.tika.detect.MagicDetector": [
+      "decodeValue(String, String)"
+    ]
+  },
+  "full_method_info": "public static MagicDetector parse(MediaType mediaType, String type, String offset, String value, String mask) {\n    int start = 0;\n    int end = 0;\n    if (offset != null) {\n        int colon = offset.indexOf(':');\n        if (colon == -1) {\n            start = Integer.parseInt(offset);\n            end = start;\n        } else {\n            start = Integer.parseInt(offset.substring(0, colon));\n            end = Integer.parseInt(offset.substring(colon + 1));\n        }\n    }\n    byte[] patternBytes = decodeValue(value, type);\n    byte[] maskBytes = null;\n    if (mask != null) {\n        maskBytes = decodeValue(mask, type);\n    }\n    return new MagicDetector(mediaType, patternBytes, maskBytes, type.equals(\"regex\"), type.equals(\"stringignorecase\"), start, end);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

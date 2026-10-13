@@ -1,0 +1,92 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "embed",
+  "brief": "@Override\r\n    public void embed(final Metadata metadata, final InputStream inputStream,\r\n                      final OutputStream outputStream, final ParseContext context)\r\n            throws IOException, TikaException{}",
+  "methodSignature": "embed(Metadata, InputStream, OutputStream, ParseContext)",
+  "sourceCode": "@Override\n    public void embed(final Metadata metadata, final InputStream inputStream,\n                      final OutputStream outputStream, final ParseContext context)\n            throws IOException, TikaException {\n\n        boolean inputToStdIn = true;\n        boolean outputFromStdOut = true;\n        boolean hasMetadataCommandArguments =\n                (metadataCommandArguments != null && !metadataCommandArguments.isEmpty());\n        boolean serializeMetadataCommandArgumentsToken = false;\n        boolean replacedMetadataCommandArgumentsToken = false;\n\n        TikaInputStream tikaInputStream = TikaInputStream.get(inputStream);\n        File tempOutputFile = null;\n\n        List<String> commandMetadataSegments = null;\n        if (hasMetadataCommandArguments) {\n            commandMetadataSegments = getCommandMetadataSegments(metadata);\n        }\n\n        // Build our command\n        String[] origCmd = command;\n        List<String> cmd = new ArrayList<>();\n        for (String commandSegment : origCmd) {\n            if (commandSegment.contains(INPUT_FILE_TOKEN)) {\n                commandSegment = commandSegment.replace(INPUT_FILE_TOKEN,\n                        tikaInputStream.getFile().toString());\n                inputToStdIn = false;\n            }\n            if (commandSegment.contains(OUTPUT_FILE_TOKEN)) {\n                tempOutputFile = tmp.createTemporaryFile();\n                commandSegment = commandSegment\n                        .replace(OUTPUT_FILE_TOKEN, tempOutputFile.toString());\n                outputFromStdOut = false;\n            }\n            if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN)) {\n                serializeMetadataCommandArgumentsToken = true;\n            }\n            if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_TOKEN)) {\n                if (hasMetadataCommandArguments) {\n                    cmd.addAll(commandMetadataSegments);\n                }\n                replacedMetadataCommandArgumentsToken = true;\n            } else {\n                cmd.add(commandSegment);\n            }\n        }\n        if (hasMetadataCommandArguments) {\n            if (serializeMetadataCommandArgumentsToken) {\n                // Find all metadata tokens and replace with encapsulated metadata\n                int i = 0;\n                for (String commandSegment : cmd) {\n                    if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN)) {\n                        commandSegment = commandSegment\n                                .replace(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN,\n                                        serializeMetadata(commandMetadataSegments));\n                        cmd.set(i, commandSegment);\n                    }\n                    i++;\n                }\n            } else if (!replacedMetadataCommandArgumentsToken &&\n                    !serializeMetadataCommandArgumentsToken) {\n                // Tack metadata onto the end of the cmd as arguments\n                cmd.addAll(commandMetadataSegments);\n            }\n        }\n\n        // Execute\n        Process process;\n        if (cmd.toArray().length == 1) {\n            process = Runtime.getRuntime().exec(cmd.toArray(String[]::new)[0]);\n        } else {\n            process = Runtime.getRuntime().exec(cmd.toArray(String[]::new));\n        }\n\n        UnsynchronizedByteArrayOutputStream stdErrOutputStream = UnsynchronizedByteArrayOutputStream.builder().get();\n\n        try {\n            sendStdErrToOutputStream(process, stdErrOutputStream);\n\n            if (inputToStdIn) {\n                sendInputStreamToStdIn(inputStream, process);\n            } else {\n                // We're not writing to std in this case so close\n                process.getOutputStream().close();\n            }\n\n            if (outputFromStdOut) {\n                sendStdOutToOutputStream(process, outputStream);\n            } else {\n                tmp.dispose();\n                try {\n                    process.waitFor();\n                } catch (InterruptedException ignore) {\n                }\n                // The command is finished, read the output file into the given output stream\n                InputStream tempOutputFileInputStream = TikaInputStream.get(tempOutputFile.toPath());\n                IOUtils.copy(tempOutputFileInputStream, outputStream);\n            }\n        } finally {\n            if (outputFromStdOut) {\n                try {\n                    process.waitFor();\n                } catch (InterruptedException ignore) {\n                }\n            } else {\n                try {\n                    // Clean up temp output files\n                    tempOutputFile.delete();\n                } catch (Exception e) {\n                    //swallow\n                }\n            }\n            if (!inputToStdIn) {\n                // Close input file (and delete if created by up\n                // TemporaryResources.createTemporaryFile)\n                IOUtils.closeQuietly(tikaInputStream);\n            }\n            IOUtils.closeQuietly(outputStream);\n            IOUtils.closeQuietly(stdErrOutputStream);\n            if (process.exitValue() != 0) {\n                throw new TikaException(\"There was an error executing the command line\" +\n                        \"\\nExecutable Command:\\n\\n\" + cmd + \"\\nExecutable Error:\\n\\n\" +\n                        stdErrOutputStream.toString(UTF_8.name()));\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "InputStream",
+    "OutputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "java.io.InputStream": [],
+    "java.io.OutputStream": [
+      "close()"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.Map": [
+      "isEmpty()"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream)",
+      "get(Path)",
+      "getFile()"
+    ],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "sendStdOutToOutputStream(Process, OutputStream)",
+      "getCommandMetadataSegments(Metadata)",
+      "serializeMetadata(String>)",
+      "sendStdErrToOutputStream(Process, OutputStream)",
+      "sendInputStreamToStdIn(InputStream, Process)"
+    ],
+    "java.lang.String": [
+      "contains(CharSequence)",
+      "replace(CharSequence, CharSequence)"
+    ],
+    "java.io.File": [
+      "toString()",
+      "delete()",
+      "toPath()"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "dispose()",
+      "createTemporaryFile()"
+    ],
+    "java.util.List": [
+      "set(int, E)",
+      "toArray()",
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ],
+    "java.lang.Runtime": [
+      "getRuntime()"
+    ],
+    "java.util.Collection": [
+      "toArray(IntFunction<T[]>)"
+    ],
+    "org.apache.commons.io.output.UnsynchronizedByteArrayOutputStream.Builder": [
+      "get()"
+    ],
+    "org.apache.commons.io.output.UnsynchronizedByteArrayOutputStream": [
+      "builder()"
+    ],
+    "java.lang.Process": [
+      "exitValue()",
+      "waitFor()",
+      "getOutputStream()"
+    ],
+    "org.apache.commons.io.IOUtils": [
+      "closeQuietly(OutputStream)",
+      "copy(InputStream, OutputStream)",
+      "closeQuietly(InputStream)"
+    ],
+    "org.apache.commons.io.output.AbstractByteArrayOutputStream": [
+      "toString(String)"
+    ],
+    "java.nio.charset.Charset": [
+      "name()"
+    ]
+  },
+  "full_method_info": "/**\n * Executes the configured external command and passes the given document\n * stream as a simple XHTML document to the given SAX content handler.\n * Metadata is only extracted if {@link #setMetadataCommandArguments(Map)}\n * has been called to set arguments.\n */\n@Override\npublic void embed(final Metadata metadata, final InputStream inputStream, final OutputStream outputStream, final ParseContext context) throws IOException, TikaException {\n    boolean inputToStdIn = true;\n    boolean outputFromStdOut = true;\n    boolean hasMetadataCommandArguments = (metadataCommandArguments != null && !metadataCommandArguments.isEmpty());\n    boolean serializeMetadataCommandArgumentsToken = false;\n    boolean replacedMetadataCommandArgumentsToken = false;\n    TikaInputStream tikaInputStream = TikaInputStream.get(inputStream);\n    File tempOutputFile = null;\n    List<String> commandMetadataSegments = null;\n    if (hasMetadataCommandArguments) {\n        commandMetadataSegments = getCommandMetadataSegments(metadata);\n    }\n    // Build our command\n    String[] origCmd = command;\n    List<String> cmd = new ArrayList<>();\n    for (String commandSegment : origCmd) {\n        if (commandSegment.contains(INPUT_FILE_TOKEN)) {\n            commandSegment = commandSegment.replace(INPUT_FILE_TOKEN, tikaInputStream.getFile().toString());\n            inputToStdIn = false;\n        }\n        if (commandSegment.contains(OUTPUT_FILE_TOKEN)) {\n            tempOutputFile = tmp.createTemporaryFile();\n            commandSegment = commandSegment.replace(OUTPUT_FILE_TOKEN, tempOutputFile.toString());\n            outputFromStdOut = false;\n        }\n        if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN)) {\n            serializeMetadataCommandArgumentsToken = true;\n        }\n        if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_TOKEN)) {\n            if (hasMetadataCommandArguments) {\n                cmd.addAll(commandMetadataSegments);\n            }\n            replacedMetadataCommandArgumentsToken = true;\n        } else {\n            cmd.add(commandSegment);\n        }\n    }\n    if (hasMetadataCommandArguments) {\n        if (serializeMetadataCommandArgumentsToken) {\n            // Find all metadata tokens and replace with encapsulated metadata\n            int i = 0;\n            for (String commandSegment : cmd) {\n                if (commandSegment.contains(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN)) {\n                    commandSegment = commandSegment.replace(METADATA_COMMAND_ARGUMENTS_SERIALIZED_TOKEN, serializeMetadata(commandMetadataSegments));\n                    cmd.set(i, commandSegment);\n                }\n                i++;\n            }\n        } else if (!replacedMetadataCommandArgumentsToken && !serializeMetadataCommandArgumentsToken) {\n            // Tack metadata onto the end of the cmd as arguments\n            cmd.addAll(commandMetadataSegments);\n        }\n    }\n    // Execute\n    Process process;\n    if (cmd.toArray().length == 1) {\n        process = Runtime.getRuntime().exec(cmd.toArray(String[]::new)[0]);\n    } else {\n        process = Runtime.getRuntime().exec(cmd.toArray(String[]::new));\n    }\n    UnsynchronizedByteArrayOutputStream stdErrOutputStream = UnsynchronizedByteArrayOutputStream.builder().get();\n    try {\n        sendStdErrToOutputStream(process, stdErrOutputStream);\n        if (inputToStdIn) {\n            sendInputStreamToStdIn(inputStream, process);\n        } else {\n            // We're not writing to std in this case so close\n            process.getOutputStream().close();\n        }\n        if (outputFromStdOut) {\n            sendStdOutToOutputStream(process, outputStream);\n        } else {\n            tmp.dispose();\n            try {\n                process.waitFor();\n            } catch (InterruptedException ignore) {\n            }\n            // The command is finished, read the output file into the given output stream\n            InputStream tempOutputFileInputStream = TikaInputStream.get(tempOutputFile.toPath());\n            IOUtils.copy(tempOutputFileInputStream, outputStream);\n        }\n    } finally {\n        if (outputFromStdOut) {\n            try {\n                process.waitFor();\n            } catch (InterruptedException ignore) {\n            }\n        } else {\n            try {\n                // Clean up temp output files\n                tempOutputFile.delete();\n            } catch (Exception e) {\n                // swallow\n            }\n        }\n        if (!inputToStdIn) {\n            // Close input file (and delete if created by up\n            // TemporaryResources.createTemporaryFile)\n            IOUtils.closeQuietly(tikaInputStream);\n        }\n        IOUtils.closeQuietly(outputStream);\n        IOUtils.closeQuietly(stdErrOutputStream);\n        if (process.exitValue() != 0) {\n            throw new TikaException(\"There was an error executing the command line\" + \"\\nExecutable Command:\\n\\n\" + cmd + \"\\nExecutable Error:\\n\\n\" + stdErrOutputStream.toString(UTF_8.name()));\n        }\n    }\n}",
+  "method_comment": "\n     * Executes the configured external command and passes the given document\n     * stream as a simple XHTML document to the given SAX content handler.\n     * Metadata is only extracted if {@link #setMetadataCommandArguments(Map)}\n     * has been called to set arguments.\n     ",
+  "method_annotation": "@Override\n"
+}

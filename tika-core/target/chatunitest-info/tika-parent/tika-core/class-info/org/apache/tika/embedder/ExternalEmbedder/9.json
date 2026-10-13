@@ -1,0 +1,22 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setCommandAssignmentOperator",
+  "brief": "public void setCommandAssignmentOperator(String commandAssignmentOperator){}",
+  "methodSignature": "setCommandAssignmentOperator(String)",
+  "sourceCode": "public void setCommandAssignmentOperator(String commandAssignmentOperator) {\n        this.commandAssignmentOperator = commandAssignmentOperator;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the assignment operator for the command line tool, i.e. \"=\".\n *\n * @param commandAssignmentOperator\n */\npublic void setCommandAssignmentOperator(String commandAssignmentOperator) {\n    this.commandAssignmentOperator = commandAssignmentOperator;\n}",
+  "method_comment": "\n     * Sets the assignment operator for the command line tool, i.e. \"=\".\n     *\n     * @param commandAssignmentOperator\n     ",
+  "method_annotation": ""
+}

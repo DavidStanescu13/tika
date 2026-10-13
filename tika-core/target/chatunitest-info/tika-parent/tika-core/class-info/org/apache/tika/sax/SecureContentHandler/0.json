@@ -1,0 +1,32 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "newInstance",
+  "brief": "public static SecureContentHandler newInstance(ContentHandler handler, TikaInputStream stream,\r\n                                                    ParseContext context){}",
+  "methodSignature": "newInstance(ContentHandler, TikaInputStream, ParseContext)",
+  "sourceCode": "public static SecureContentHandler newInstance(ContentHandler handler, TikaInputStream stream,\n                                                    ParseContext context) {\n        SecureContentHandler sch = new SecureContentHandler(handler, stream);\n        OutputLimits limits = OutputLimits.get(context);\n        sch.setOutputThreshold(limits.getZipBombThreshold());\n        sch.setMaximumCompressionRatio(limits.getZipBombRatio());\n        sch.setMaximumDepth(limits.getMaxXmlDepth());\n        sch.setMaximumPackageEntryDepth(limits.getMaxPackageEntryDepth());\n        return sch;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "TikaInputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.config.OutputLimits": [
+      "get(ParseContext)",
+      "getZipBombRatio()",
+      "getMaxXmlDepth()",
+      "getZipBombThreshold()",
+      "getMaxPackageEntryDepth()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new SecureContentHandler configured from OutputLimits in the ParseContext.\n * <p>\n * If OutputLimits is present in the context, the handler will be configured with those\n * limits. Otherwise, default values are used.\n *\n * @param handler the content handler to decorate\n * @param stream the input stream being parsed\n * @param context the ParseContext (may be null)\n * @return a configured SecureContentHandler\n */\npublic static SecureContentHandler newInstance(ContentHandler handler, TikaInputStream stream, ParseContext context) {\n    SecureContentHandler sch = new SecureContentHandler(handler, stream);\n    OutputLimits limits = OutputLimits.get(context);\n    sch.setOutputThreshold(limits.getZipBombThreshold());\n    sch.setMaximumCompressionRatio(limits.getZipBombRatio());\n    sch.setMaximumDepth(limits.getMaxXmlDepth());\n    sch.setMaximumPackageEntryDepth(limits.getMaxPackageEntryDepth());\n    return sch;\n}",
+  "method_comment": "\n     * Creates a new SecureContentHandler configured from OutputLimits in the ParseContext.\n     * <p>\n     * If OutputLimits is present in the context, the handler will be configured with those\n     * limits. Otherwise, default values are used.\n     *\n     * @param handler the content handler to decorate\n     * @param stream the input stream being parsed\n     * @param context the ParseContext (may be null)\n     * @return a configured SecureContentHandler\n     ",
+  "method_annotation": ""
+}

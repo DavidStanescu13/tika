@@ -1,0 +1,18 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "newline",
+  "brief": "public void newline() throws SAXException{}",
+  "methodSignature": "newline()",
+  "sourceCode": "public void newline() throws SAXException {\n        ignorableWhitespace(NL, 0, NL.length);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public void newline() throws SAXException {\n    ignorableWhitespace(NL, 0, NL.length);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

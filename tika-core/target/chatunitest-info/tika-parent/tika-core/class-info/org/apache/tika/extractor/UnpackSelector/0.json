@@ -1,0 +1,22 @@
+{
+  "className": "UnpackSelector",
+  "methodName": "select",
+  "brief": "boolean select(Metadata metadata);",
+  "methodSignature": "select(Metadata)",
+  "sourceCode": "boolean select(Metadata metadata);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "boolean select(Metadata metadata);",
+  "method_comment": "",
+  "method_annotation": ""
+}

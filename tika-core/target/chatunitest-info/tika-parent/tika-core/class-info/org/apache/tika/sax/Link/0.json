@@ -1,0 +1,22 @@
+{
+  "className": "Link",
+  "methodName": "isAnchor",
+  "brief": "public boolean isAnchor(){}",
+  "methodSignature": "isAnchor()",
+  "sourceCode": "public boolean isAnchor() {\n        return \"a\".equals(type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public boolean isAnchor() {\n    return \"a\".equals(type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "openBlock",
+  "brief": "private void openBlock(Node block){}",
+  "methodSignature": "openBlock(Node)",
+  "sourceCode": "private void openBlock(Node block) {\n        popToBlockHost();\n        stack.peek().appendChild(block);\n        stack.push(block);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Node"
+  ],
+  "dependentMethods": {
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "popToBlockHost()"
+    ],
+    "java.util.Deque": [
+      "peek()",
+      "push(E)"
+    ]
+  },
+  "full_method_info": "// --- tree construction helpers ---\n/**\n * Append a block-level node at a structurally valid point and descend into\n * it. commonmark requires a block's parent to be a block, so any inline (or\n * other non-hosting) nodes left open are closed first.\n */\nprivate void openBlock(Node block) {\n    popToBlockHost();\n    stack.peek().appendChild(block);\n    stack.push(block);\n}",
+  "method_comment": "\n     * Append a block-level node at a structurally valid point and descend into\n     * it. commonmark requires a block's parent to be a block, so any inline (or\n     * other non-hosting) nodes left open are closed first.\n     ",
+  "method_annotation": ""
+}

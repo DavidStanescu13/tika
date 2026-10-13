@@ -1,0 +1,18 @@
+{
+  "className": "LinkContentHandler",
+  "methodName": "getLinks",
+  "brief": "public List<Link> getLinks(){}",
+  "methodSignature": "getLinks()",
+  "sourceCode": "public List<Link> getLinks() {\n        return links;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the list of collected links.\n *\n * @return collected links\n */\npublic List<Link> getLinks() {\n    return links;\n}",
+  "method_comment": "\n     * Returns the list of collected links.\n     *\n     * @return collected links\n     ",
+  "method_annotation": ""
+}

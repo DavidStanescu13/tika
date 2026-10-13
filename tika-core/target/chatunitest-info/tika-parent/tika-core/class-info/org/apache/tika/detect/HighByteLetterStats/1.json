@@ -1,0 +1,34 @@
+{
+  "className": "HighByteLetterStats",
+  "methodName": "countCasedHighByteLetters",
+  "brief": "public static int countCasedHighByteLetters(byte[] probe, Charset cs){}",
+  "methodSignature": "countCasedHighByteLetters(byte[], Charset)",
+  "sourceCode": "public static int countCasedHighByteLetters(byte[] probe, Charset cs) {\n        if (probe == null) {\n            return 0;\n        }\n        String decoded;\n        try {\n            decoded = new String(probe, cs);\n        } catch (Exception e) {\n            return 0;\n        }\n        int count = 0;\n        for (int i = 0; i < decoded.length(); ) {\n            int cp = decoded.codePointAt(i);\n            if (cp >= 0x80 && isCasedLatinishLetter(cp)) {\n                count++;\n            }\n            i += Character.charCount(cp);\n        }\n        return count;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "Charset"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.nio.charset.Charset": [],
+    "java.lang.String": [
+      "codePointAt(int)",
+      "length()"
+    ],
+    "org.apache.tika.detect.HighByteLetterStats": [
+      "isCasedLatinishLetter(int)"
+    ],
+    "java.lang.Character": [
+      "charCount(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Decode {@code probe} under {@code cs} and count codepoints &ge; 0x80 that\n * are Unicode cased letters (Lu/Ll/Lt).  Excludes the ordinal / superscript\n * indicators ª (U+00AA), º (U+00BA), ⁿ (U+207F): MacRoman's 0xBB/0xBC are\n * ª/º while windows-1252's 0xBB is » (punctuation), so without the exclusion\n * MacRoman's letter count would beat windows-1252's wherever » appears.\n * Lo (CJK / other-letter) is excluded by counting cased categories only.\n */\npublic static int countCasedHighByteLetters(byte[] probe, Charset cs) {\n    if (probe == null) {\n        return 0;\n    }\n    String decoded;\n    try {\n        decoded = new String(probe, cs);\n    } catch (Exception e) {\n        return 0;\n    }\n    int count = 0;\n    for (int i = 0; i < decoded.length(); ) {\n        int cp = decoded.codePointAt(i);\n        if (cp >= 0x80 && isCasedLatinishLetter(cp)) {\n            count++;\n        }\n        i += Character.charCount(cp);\n    }\n    return count;\n}",
+  "method_comment": "\n     * Decode {@code probe} under {@code cs} and count codepoints &ge; 0x80 that\n     * are Unicode cased letters (Lu/Ll/Lt).  Excludes the ordinal / superscript\n     * indicators ª (U+00AA), º (U+00BA), ⁿ (U+207F): MacRoman's 0xBB/0xBC are\n     * ª/º while windows-1252's 0xBB is » (punctuation), so without the exclusion\n     * MacRoman's letter count would beat windows-1252's wherever » appears.\n     * Lo (CJK / other-letter) is excluded by counting cased categories only.\n     ",
+  "method_annotation": ""
+}

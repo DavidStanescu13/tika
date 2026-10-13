@@ -1,0 +1,18 @@
+{
+  "className": "LanguageWriter",
+  "methodName": "close",
+  "brief": "@Override\r\n    public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "@Override\n    public void close() throws IOException {\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Ignored.\n */\n@Override\npublic void close() throws IOException {\n}",
+  "method_comment": "\n     * Ignored.\n     ",
+  "method_annotation": "@Override\n"
+}

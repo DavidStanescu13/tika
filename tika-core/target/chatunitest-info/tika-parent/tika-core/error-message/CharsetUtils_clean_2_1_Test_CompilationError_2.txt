@@ -1,0 +1,144 @@
+package org.apache.tika.utils;
+
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_clean_2_1_Test {
+
+    @Mock
+    private Method getCharsetICU;
+
+    @Mock
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        // Mock the static methods
+        when(CharsetUtils.getCharsetICU).thenReturn(getCharsetICU);
+        when(CharsetUtils.isSupportedICU).thenReturn(isSupportedICU);
+    }
+
+    @Test
+    public void testCleanWithValidCharset() throws Exception {
+        // Mock the forName method to return a valid Charset
+        when(Charset.forName("UTF-8")).thenReturn(Charset.forName("UTF-8"));
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "UTF-8");
+        // Verify the result
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithInvalidCharset() throws Exception {
+        // Mock the forName method to throw an exception
+        when(Charset.forName("INVALID")).thenThrow(new IllegalArgumentException());
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "INVALID");
+        // Verify the result
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithNullInput() throws Exception {
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, null);
+        // Verify the result
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithWhitespace() throws Exception {
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "  UTF-8  ");
+        // Verify the result
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithISONamePattern() throws Exception {
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "iso 8859-1");
+        // Verify the result
+        assertEquals("ISO-8859-1", result);
+    }
+
+    @Test
+    public void testCleanWithCPNamePattern() throws Exception {
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "cp-1252");
+        // Verify the result
+        assertEquals("CP1252", result);
+    }
+
+    @Test
+    public void testCleanWithWINNamePattern() throws Exception {
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "win-1252");
+        // Verify the result
+        assertEquals("WINDOWS-1252", result);
+    }
+
+    @Test
+    public void testCleanWithICUCharset() throws Exception {
+        // Mock the getCharsetICU method to return a valid Charset
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(Charset.forName("UTF-8"));
+        // Invoke the clean method using reflection
+        Method method = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        method.setAccessible(true);
+        String result = (String) method.invoke(null, "UTF-8");
+        // Verify the result
+        assertEquals("UTF-8", result);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_clean_2_1_Test: line 14 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_clean_2_1_Test: line 27 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_1_Test: line 25 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_1_Test: line 30 : cannot find symbol
+  symbol: class MockitoExtension
+Error in CharsetUtils_clean_2_1_Test: line 33 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.CharsetUtils_clean_2_1_Test
+Error in CharsetUtils_clean_2_1_Test: line 36 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.CharsetUtils_clean_2_1_Test

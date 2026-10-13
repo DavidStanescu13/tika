@@ -1,0 +1,18 @@
+{
+  "className": "GeoPointMetadataFilter",
+  "methodName": "getGeoPointFieldName",
+  "brief": "public String getGeoPointFieldName(){}",
+  "methodSignature": "getGeoPointFieldName()",
+  "sourceCode": "public String getGeoPointFieldName() {\n        return geoPointFieldName;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public String getGeoPointFieldName() {\n    return geoPointFieldName;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

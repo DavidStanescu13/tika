@@ -1,0 +1,57 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        // Compute digests before type detection if configured\n        // DigesterFactory is retrieved from ParseContext (configured via parse-context)\n        DigestHelper.maybeDigest(tis, metadata, context);\n\n        // Signal to detectors that parsing will follow - allows them to prepare\n        // (e.g., salvage corrupted ZIP files for parser reuse)\n        context.set(ParsingIntent.class, ParsingIntent.WILL_PARSE);\n\n        // Automatically detect the MIME type of the document\n        MediaType type = detector.detect(tis, metadata, context);\n        // Normalize OCR routing types (e.g., image/ocr-png -> image/png) so they\n        // don't leak into CONTENT_TYPE\n        metadata.set(Metadata.CONTENT_TYPE,\n                EmbeddedDocumentUtil.normalizeMediaType(type.toString()));\n        // Metadata-only pseudo-parse: register the entry, skip the content parse.\n        if (context.get(MetadataOnlyParse.class) != null) {\n            return;\n        }\n        //check for zero-byte inputstream\n        if (tis.getOpenContainer() == null) {\n            if (autoDetectParserConfig.getThrowOnZeroBytes()) {\n                tis.mark(1);\n                if (tis.read() == -1) {\n                    throw new ZeroByteFileException(\"InputStream must have > 0 bytes\");\n                }\n                tis.reset();\n            }\n        }\n        handler = decorateHandler(handler, metadata, context, autoDetectParserConfig);\n        // TIKA-216: Zip bomb prevention\n        SecureContentHandler sch = handler != null ?\n                createSecureContentHandler(handler, tis, context) : null;\n\n        initializeEmbeddedDocumentExtractor(metadata, context);\n        try {\n            // Parse the document\n            super.parse(tis, sch, metadata, context);\n        } catch (SAXException e) {\n            // Convert zip bomb exceptions to TikaExceptions\n            sch.throwIfCauseOf(e);\n            throw e;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()",
+      "getOpenContainer()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)",
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.digest.DigestHelper": [
+      "maybeDigest(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "normalizeMediaType(String)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ],
+    "org.apache.tika.parser.AutoDetectParserConfig": [
+      "getThrowOnZeroBytes()"
+    ],
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "read()"
+    ],
+    "org.apache.tika.parser.AutoDetectParser": [
+      "initializeEmbeddedDocumentExtractor(Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    // Compute digests before type detection if configured\n    // DigesterFactory is retrieved from ParseContext (configured via parse-context)\n    DigestHelper.maybeDigest(tis, metadata, context);\n    // Signal to detectors that parsing will follow - allows them to prepare\n    // (e.g., salvage corrupted ZIP files for parser reuse)\n    context.set(ParsingIntent.class, ParsingIntent.WILL_PARSE);\n    // Automatically detect the MIME type of the document\n    MediaType type = detector.detect(tis, metadata, context);\n    // Normalize OCR routing types (e.g., image/ocr-png -> image/png) so they\n    // don't leak into CONTENT_TYPE\n    metadata.set(Metadata.CONTENT_TYPE, EmbeddedDocumentUtil.normalizeMediaType(type.toString()));\n    // Metadata-only pseudo-parse: register the entry, skip the content parse.\n    if (context.get(MetadataOnlyParse.class) != null) {\n        return;\n    }\n    // check for zero-byte inputstream\n    if (tis.getOpenContainer() == null) {\n        if (autoDetectParserConfig.getThrowOnZeroBytes()) {\n            tis.mark(1);\n            if (tis.read() == -1) {\n                throw new ZeroByteFileException(\"InputStream must have > 0 bytes\");\n            }\n            tis.reset();\n        }\n    }\n    handler = decorateHandler(handler, metadata, context, autoDetectParserConfig);\n    // TIKA-216: Zip bomb prevention\n    SecureContentHandler sch = handler != null ? createSecureContentHandler(handler, tis, context) : null;\n    initializeEmbeddedDocumentExtractor(metadata, context);\n    try {\n        // Parse the document\n        super.parse(tis, sch, metadata, context);\n    } catch (SAXException e) {\n        // Convert zip bomb exceptions to TikaExceptions\n        sch.throwIfCauseOf(e);\n        throw e;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

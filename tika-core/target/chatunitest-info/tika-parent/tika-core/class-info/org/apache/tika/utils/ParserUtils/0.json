@@ -1,0 +1,28 @@
+{
+  "className": "ParserUtils",
+  "methodName": "cloneMetadata",
+  "brief": "public static Metadata cloneMetadata(Metadata m){}",
+  "methodSignature": "cloneMetadata(Metadata)",
+  "sourceCode": "public static Metadata cloneMetadata(Metadata m) {\n        Metadata clone = new Metadata();\n\n        for (String n : m.names()) {\n            if (!m.isMultiValued(n)) {\n                clone.reconstruct(n, m.get(n), false);\n            } else {\n                for (String val : m.getValues(n)) {\n                    clone.reconstruct(n, val, true);\n                }\n            }\n        }\n        return clone;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(String)",
+      "names()",
+      "isMultiValued(String)",
+      "getValues(String)",
+      "reconstruct(String, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Does a deep clone of a Metadata object.\n */\npublic static Metadata cloneMetadata(Metadata m) {\n    Metadata clone = new Metadata();\n    for (String n : m.names()) {\n        if (!m.isMultiValued(n)) {\n            clone.reconstruct(n, m.get(n), false);\n        } else {\n            for (String val : m.getValues(n)) {\n                clone.reconstruct(n, val, true);\n            }\n        }\n    }\n    return clone;\n}",
+  "method_comment": "\n     * Does a deep clone of a Metadata object.\n     ",
+  "method_annotation": ""
+}

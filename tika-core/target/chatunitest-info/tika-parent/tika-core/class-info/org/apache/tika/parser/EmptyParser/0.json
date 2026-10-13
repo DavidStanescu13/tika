@@ -1,0 +1,25 @@
+{
+  "className": "EmptyParser",
+  "methodName": "getSupportedTypes",
+  "brief": "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return Collections.emptySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.Collections": [
+      "emptySet()"
+    ]
+  },
+  "full_method_info": "public Set<MediaType> getSupportedTypes(ParseContext context) {\n    return Collections.emptySet();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

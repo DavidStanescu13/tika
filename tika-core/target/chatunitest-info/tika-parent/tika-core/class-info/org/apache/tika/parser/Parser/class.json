@@ -1,0 +1,49 @@
+{
+  "fullClassName": "org.apache.tika.parser.Parser",
+  "className": "Parser",
+  "index": 244,
+  "modifier": "[public ]",
+  "extend": "[Serializable, SelfConfiguring]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public interface Parser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import java.util.Set;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.config.SelfConfiguring;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable",
+    "SelfConfiguring"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "1"
+  },
+  "methodsBrief": [
+    "Set<MediaType> getSupportedTypes(ParseContext context);",
+    "void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context)\r\n            throws IOException, SAXException, TikaException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.IOException;\nimport java.io.Serializable;\nimport java.util.Set;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.config.SelfConfiguring;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\n\n/**\n * Tika parser interface.\n */\npublic interface Parser extends Serializable, SelfConfiguring {\n\n    /**\n     * Returns the set of media types supported by this parser when used\n     * with the given parse context.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     * @since Apache Tika 0.7\n     */\n    Set<MediaType> getSupportedTypes(ParseContext context);\n\n    /**\n     * Parses a document stream into a sequence of XHTML SAX events.\n     * Fills in related document metadata in the given metadata object.\n     * <p>\n     * The given document stream is consumed but not closed by this method.\n     * The responsibility to close the stream remains on the caller.\n     * <p>\n     * Information about the parsing context can be passed in the context\n     * parameter. See the parser implementations for the kinds of context\n     * information they expect.\n     *\n     * @param stream   the document stream (input)\n     * @param handler  handler for the XHTML SAX events (output)\n     * @param metadata document metadata (input and output)\n     * @param context  parse context\n     * @throws IOException   if the document stream could not be read\n     * @throws SAXException  if the SAX events could not be processed\n     * @throws TikaException if the document could not be parsed\n     * @since Apache Tika 0.5\n     */\n    void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException;\n}\n",
+  "classDeclarationCode": "/**\n * Tika parser interface.\n */\npublic interface Parser extends Serializable, SelfConfiguring {\n\n    /**\n     * Returns the set of media types supported by this parser when used\n     * with the given parse context.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     * @since Apache Tika 0.7\n     */\n    Set<MediaType> getSupportedTypes(ParseContext context);\n\n    /**\n     * Parses a document stream into a sequence of XHTML SAX events.\n     * Fills in related document metadata in the given metadata object.\n     * <p>\n     * The given document stream is consumed but not closed by this method.\n     * The responsibility to close the stream remains on the caller.\n     * <p>\n     * Information about the parsing context can be passed in the context\n     * parameter. See the parser implementations for the kinds of context\n     * information they expect.\n     *\n     * @param stream   the document stream (input)\n     * @param handler  handler for the XHTML SAX events (output)\n     * @param metadata document metadata (input and output)\n     * @param context  parse context\n     * @throws IOException   if the document stream could not be read\n     * @throws SAXException  if the SAX events could not be processed\n     * @throws TikaException if the document could not be parsed\n     * @since Apache Tika 0.5\n     */\n    void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException;\n}",
+  "subClasses": []
+}

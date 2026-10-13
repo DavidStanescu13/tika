@@ -1,0 +1,27 @@
+{
+  "className": "ParsingReader",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(char[] cbuf, int off, int len) throws IOException{}",
+  "methodSignature": "read(char[], int, int)",
+  "sourceCode": "@Override\n    public int read(char[] cbuf, int off, int len) throws IOException {\n        if (throwable instanceof ZeroByteFileException) {\n            return -1;\n        } else if (throwable instanceof IOException) {\n            throw (IOException) throwable;\n        } else if (throwable != null) {\n            throw new IOException(\"\", throwable);\n        }\n        return reader.read(cbuf, off, len);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.io.Reader": [
+      "read(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Reads parsed text from the pipe connected to the parsing thread.\n * Fails if the parsing thread has thrown an exception.\n *\n * @param cbuf character buffer\n * @param off  start offset within the buffer\n * @param len  maximum number of characters to read\n * @throws IOException if the parsing thread has failed or\n *                     if for some reason the pipe does not work properly\n */\n@Override\npublic int read(char[] cbuf, int off, int len) throws IOException {\n    if (throwable instanceof ZeroByteFileException) {\n        return -1;\n    } else if (throwable instanceof IOException) {\n        throw (IOException) throwable;\n    } else if (throwable != null) {\n        throw new IOException(\"\", throwable);\n    }\n    return reader.read(cbuf, off, len);\n}",
+  "method_comment": "\n     * Reads parsed text from the pipe connected to the parsing thread.\n     * Fails if the parsing thread has thrown an exception.\n     *\n     * @param cbuf character buffer\n     * @param off  start offset within the buffer\n     * @param len  maximum number of characters to read\n     * @throws IOException if the parsing thread has failed or\n     *                     if for some reason the pipe does not work properly\n     ",
+  "method_annotation": "@Override\n"
+}

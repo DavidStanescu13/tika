@@ -1,0 +1,28 @@
+{
+  "className": "ExternalParser",
+  "methodName": "getSupportedTypes",
+  "brief": "@Override\r\n    public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "@Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        if (checkResult == null) {\n            synchronized (this) {\n                if (checkResult == null) {\n                    checkResult = ProcessUtils.checkCommand(checkCmd, checkErrorCodes);\n                }\n            }\n        }\n        return checkResult ? supportedTypes : Collections.emptySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.utils.ProcessUtils": [
+      "checkCommand(String[], int[])"
+    ],
+    "java.util.Collections": [
+      "emptySet()"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<MediaType> getSupportedTypes(ParseContext context) {\n    if (checkResult == null) {\n        synchronized (this) {\n            if (checkResult == null) {\n                checkResult = ProcessUtils.checkCommand(checkCmd, checkErrorCodes);\n            }\n        }\n    }\n    return checkResult ? supportedTypes : Collections.emptySet();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

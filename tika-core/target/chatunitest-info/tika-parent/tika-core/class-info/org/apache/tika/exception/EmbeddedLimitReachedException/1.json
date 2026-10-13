@@ -1,0 +1,18 @@
+{
+  "className": "EmbeddedLimitReachedException",
+  "methodName": "getLimitType",
+  "brief": "public LimitType getLimitType(){}",
+  "methodSignature": "getLimitType()",
+  "sourceCode": "public LimitType getLimitType() {\n        return limitType;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public LimitType getLimitType() {\n    return limitType;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

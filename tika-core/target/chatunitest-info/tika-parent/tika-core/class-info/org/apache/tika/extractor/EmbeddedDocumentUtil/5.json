@@ -1,0 +1,42 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getExtension",
+  "brief": "public String getExtension(TikaInputStream is, Metadata metadata){}",
+  "methodSignature": "getExtension(TikaInputStream, Metadata)",
+  "sourceCode": "public String getExtension(TikaInputStream is, Metadata metadata) {\n        String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n\n        //use the buffered mimetypes as default\n        MimeTypes localMimeTypes = getMimeTypes();\n\n        //a parseable declared type wins, even if we have no glob for it. Don't\n        //detect just because the registry lookup came back empty -- that would\n        //overwrite a type the calling parser set deliberately.\n        if (mimeString != null && MediaType.parse(mimeString) != null) {\n            return extensionOf(getRegisteredMimeType(localMimeTypes, mimeString));\n        }\n        try {\n            MediaType mediaType = getDetector().detect(is, metadata, context);\n            is.reset();\n            //set or correct the mime type. Record what was detected, not the\n            //registry match, which may have fallen back to the base type.\n            metadata.set(Metadata.CONTENT_TYPE, mediaType.toString());\n            return extensionOf(getRegisteredMimeType(localMimeTypes, mediaType.toString()));\n        } catch (IOException e) {\n            //swallow\n        }\n        return \".bin\";\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "get(Property)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "getRegisteredMimeType(MimeTypes, String)",
+      "getDetector()",
+      "getMimeTypes()",
+      "extensionOf(MimeType)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)",
+      "toString()"
+    ],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "public String getExtension(TikaInputStream is, Metadata metadata) {\n    String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n    // use the buffered mimetypes as default\n    MimeTypes localMimeTypes = getMimeTypes();\n    // a parseable declared type wins, even if we have no glob for it. Don't\n    // detect just because the registry lookup came back empty -- that would\n    // overwrite a type the calling parser set deliberately.\n    if (mimeString != null && MediaType.parse(mimeString) != null) {\n        return extensionOf(getRegisteredMimeType(localMimeTypes, mimeString));\n    }\n    try {\n        MediaType mediaType = getDetector().detect(is, metadata, context);\n        is.reset();\n        // set or correct the mime type. Record what was detected, not the\n        // registry match, which may have fallen back to the base type.\n        metadata.set(Metadata.CONTENT_TYPE, mediaType.toString());\n        return extensionOf(getRegisteredMimeType(localMimeTypes, mediaType.toString()));\n    } catch (IOException e) {\n        // swallow\n    }\n    return \".bin\";\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

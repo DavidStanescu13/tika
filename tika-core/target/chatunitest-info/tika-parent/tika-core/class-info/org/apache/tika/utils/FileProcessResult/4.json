@@ -1,0 +1,18 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "isTimeout",
+  "brief": "public boolean isTimeout(){}",
+  "methodSignature": "isTimeout()",
+  "sourceCode": "public boolean isTimeout() {\n        return isTimeout;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isTimeout() {\n    return isTimeout;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

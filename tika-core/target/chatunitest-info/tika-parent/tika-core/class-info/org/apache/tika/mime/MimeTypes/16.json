@@ -1,0 +1,57 @@
+{
+  "className": "MimeTypes",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        List<MimeType> possibleTypes = null;\n\n        // Get type based on magic prefix\n        if (tis != null) {\n            tis.mark(getMinLength());\n            try {\n                byte[] prefix = readMagicHeader(tis);\n                possibleTypes = getMimeType(prefix);\n            } finally {\n                tis.reset();\n            }\n        }\n\n        // Get type based on resourceName hint (if available)\n        String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (resourceName != null) {\n            String name = null;\n            boolean isHttp = false;\n\n            // Deal with a URI or a path name in as the resource  name\n            try {\n                URI uri = new URI(resourceName);\n                String scheme = uri.getScheme();\n                isHttp = scheme != null && scheme.startsWith(\"http\"); // http or https\n                String path = uri.getPath();\n                if (path != null) {\n                    int slash = path.lastIndexOf('/');\n                    if (slash + 1 < path.length()) {\n                        name = path.substring(slash + 1);\n                    }\n                }\n            } catch (URISyntaxException e) {\n                name = resourceName;\n            }\n\n            if (name != null) {\n                MimeType hint = getMimeType(name);\n\n                // For server-side scripting languages, we cannot rely on the filename to detect\n                // the mime type\n                if (!(isHttp && hint.isInterpreted())) {\n                    // If we have some types based on mime magic, try to specialise\n                    //  and/or select the type based on that\n                    // Otherwise, use the type identified from the name\n                    possibleTypes = applyHint(possibleTypes, hint);\n                }\n            }\n        }\n\n        // Get type based on metadata hint (if available)\n        String typeName = metadata.get(Metadata.CONTENT_TYPE);\n        if (typeName != null) {\n            try {\n                MimeType hint = forName(typeName);\n                possibleTypes = applyHint(possibleTypes, hint);\n            } catch (MimeTypeException e) {\n                // Malformed type name, ignore\n            }\n        }\n\n        if (possibleTypes == null || possibleTypes.isEmpty()) {\n            // Report that we don't know what it is\n            return MediaType.OCTET_STREAM;\n        } else {\n            return possibleTypes.get(0).getType();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "getMinLength()",
+      "getMimeType(String)",
+      "readMagicHeader(InputStream)",
+      "applyHint(MimeType>, MimeType)",
+      "forName(String)",
+      "getMimeType(byte[])"
+    ],
+    "java.net.URI": [
+      "getScheme()",
+      "getPath()"
+    ],
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "lastIndexOf(int)",
+      "length()"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "getType()",
+      "isInterpreted()"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "get(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Automatically detects the MIME type of a document based on magic\n * markers in the stream prefix and any given metadata hints.\n * <p>\n * The given stream is expected to support marks, so that this method\n * can reset the stream to the position it was in before this method\n * was called.\n *\n * @param input    document stream, or <code>null</code>\n * @param metadata metadata hints\n * @return MIME type of the document\n * @throws IOException if the document stream could not be read\n */\n@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    List<MimeType> possibleTypes = null;\n    // Get type based on magic prefix\n    if (tis != null) {\n        tis.mark(getMinLength());\n        try {\n            byte[] prefix = readMagicHeader(tis);\n            possibleTypes = getMimeType(prefix);\n        } finally {\n            tis.reset();\n        }\n    }\n    // Get type based on resourceName hint (if available)\n    String resourceName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    if (resourceName != null) {\n        String name = null;\n        boolean isHttp = false;\n        // Deal with a URI or a path name in as the resource  name\n        try {\n            URI uri = new URI(resourceName);\n            String scheme = uri.getScheme();\n            // http or https\n            isHttp = scheme != null && scheme.startsWith(\"http\");\n            String path = uri.getPath();\n            if (path != null) {\n                int slash = path.lastIndexOf('/');\n                if (slash + 1 < path.length()) {\n                    name = path.substring(slash + 1);\n                }\n            }\n        } catch (URISyntaxException e) {\n            name = resourceName;\n        }\n        if (name != null) {\n            MimeType hint = getMimeType(name);\n            // For server-side scripting languages, we cannot rely on the filename to detect\n            // the mime type\n            if (!(isHttp && hint.isInterpreted())) {\n                // If we have some types based on mime magic, try to specialise\n                // and/or select the type based on that\n                // Otherwise, use the type identified from the name\n                possibleTypes = applyHint(possibleTypes, hint);\n            }\n        }\n    }\n    // Get type based on metadata hint (if available)\n    String typeName = metadata.get(Metadata.CONTENT_TYPE);\n    if (typeName != null) {\n        try {\n            MimeType hint = forName(typeName);\n            possibleTypes = applyHint(possibleTypes, hint);\n        } catch (MimeTypeException e) {\n            // Malformed type name, ignore\n        }\n    }\n    if (possibleTypes == null || possibleTypes.isEmpty()) {\n        // Report that we don't know what it is\n        return MediaType.OCTET_STREAM;\n    } else {\n        return possibleTypes.get(0).getType();\n    }\n}",
+  "method_comment": "\n     * Automatically detects the MIME type of a document based on magic\n     * markers in the stream prefix and any given metadata hints.\n     * <p>\n     * The given stream is expected to support marks, so that this method\n     * can reset the stream to the position it was in before this method\n     * was called.\n     *\n     * @param input    document stream, or <code>null</code>\n     * @param metadata metadata hints\n     * @return MIME type of the document\n     * @throws IOException if the document stream could not be read\n     ",
+  "method_annotation": "@Override\n"
+}

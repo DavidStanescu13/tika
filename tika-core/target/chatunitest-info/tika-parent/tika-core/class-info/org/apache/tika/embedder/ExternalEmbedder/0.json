@@ -1,0 +1,27 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "serializeMetadata",
+  "brief": "protected static String serializeMetadata(List<String> metadataCommandArguments){}",
+  "methodSignature": "serializeMetadata(List)",
+  "sourceCode": "protected static String serializeMetadata(List<String> metadataCommandArguments) {\n        if (metadataCommandArguments != null) {\n            return Arrays.toString(metadataCommandArguments.toArray());\n        }\n        return \"\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "toString(Object[])"
+    ],
+    "java.util.List": [
+      "toArray()"
+    ]
+  },
+  "full_method_info": "/**\n * Serializes a collection of metadata command line arguments into a single\n * string.\n *\n * @param metadataCommandArguments\n * @return the serialized metadata arguments string\n */\nprotected static String serializeMetadata(List<String> metadataCommandArguments) {\n    if (metadataCommandArguments != null) {\n        return Arrays.toString(metadataCommandArguments.toArray());\n    }\n    return \"\";\n}",
+  "method_comment": "\n     * Serializes a collection of metadata command line arguments into a single\n     * string.\n     *\n     * @param metadataCommandArguments\n     * @return the serialized metadata arguments string\n     ",
+  "method_annotation": ""
+}

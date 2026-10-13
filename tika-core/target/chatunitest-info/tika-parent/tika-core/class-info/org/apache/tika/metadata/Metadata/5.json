@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "names",
+  "brief": "public String[] names(){}",
+  "methodSignature": "names()",
+  "sourceCode": "public String[] names() {\n        return metadata.keySet().toArray(new String[0]);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Set": [
+      "toArray(T[])"
+    ],
+    "java.util.Map": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns an array of the names contained in the metadata.\n *\n * @return Metadata names\n */\npublic String[] names() {\n    return metadata.keySet().toArray(new String[0]);\n}",
+  "method_comment": "\n     * Returns an array of the names contained in the metadata.\n     *\n     * @return Metadata names\n     ",
+  "method_annotation": ""
+}

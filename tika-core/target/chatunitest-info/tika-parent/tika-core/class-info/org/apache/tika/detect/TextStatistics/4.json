@@ -1,0 +1,20 @@
+{
+  "className": "TextStatistics",
+  "methodName": "count",
+  "brief": "public int count(int b){}",
+  "methodSignature": "count(int)",
+  "sourceCode": "public int count(int b) {\n        return counts[b & 0xff];\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the number of occurrences of the given byte.\n *\n * @param b byte\n * @return count of the given byte\n */\npublic int count(int b) {\n    return counts[b & 0xff];\n}",
+  "method_comment": "\n     * Returns the number of occurrences of the given byte.\n     *\n     * @param b byte\n     * @return count of the given byte\n     ",
+  "method_annotation": ""
+}

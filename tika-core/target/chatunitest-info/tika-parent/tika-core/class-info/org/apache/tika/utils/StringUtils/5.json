@@ -1,0 +1,33 @@
+{
+  "className": "StringUtils",
+  "methodName": "repeat",
+  "brief": "public static String repeat(final String str, final int repeat){}",
+  "methodSignature": "repeat(String, int)",
+  "sourceCode": "public static String repeat(final String str, final int repeat) {\n        // Performance tuned for 2.0 (JDK1.4)\n\n        if (str == null) {\n            return null;\n        }\n        if (repeat <= 0) {\n            return EMPTY;\n        }\n        final int inputLength = str.length();\n        if (repeat == 1 || inputLength == 0) {\n            return str;\n        }\n        if (inputLength == 1 && repeat <= PAD_LIMIT) {\n            return repeat(str.charAt(0), repeat);\n        }\n\n        final int outputLength = inputLength * repeat;\n        switch (inputLength) {\n            case 1:\n                return repeat(str.charAt(0), repeat);\n            case 2:\n                final char ch0 = str.charAt(0);\n                final char ch1 = str.charAt(1);\n                final char[] output2 = new char[outputLength];\n                for (int i = repeat * 2 - 2; i >= 0; i--, i--) {\n                    output2[i] = ch0;\n                    output2[i + 1] = ch1;\n                }\n                return new String(output2);\n            default:\n                final StringBuilder buf = new StringBuilder(outputLength);\n                for (int i = 0; i < repeat; i++) {\n                    buf.append(str);\n                }\n                return buf.toString();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()",
+      "charAt(int)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "repeat(char, int)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "// Padding\n// -----------------------------------------------------------------------\n/**\n * <p>Repeat a String {@code repeat} times to form a\n * new String.</p>\n *\n * <pre>\n * StringUtils.repeat(null, 2) = null\n * StringUtils.repeat(\"\", 0)   = \"\"\n * StringUtils.repeat(\"\", 2)   = \"\"\n * StringUtils.repeat(\"a\", 3)  = \"aaa\"\n * StringUtils.repeat(\"ab\", 2) = \"abab\"\n * StringUtils.repeat(\"a\", -2) = \"\"\n * </pre>\n *\n * @param str    the String to repeat, may be null\n * @param repeat number of times to repeat str, negative treated as zero\n * @return a new String consisting of the original String repeated,\n * {@code null} if null String input\n */\npublic static String repeat(final String str, final int repeat) {\n    // Performance tuned for 2.0 (JDK1.4)\n    if (str == null) {\n        return null;\n    }\n    if (repeat <= 0) {\n        return EMPTY;\n    }\n    final int inputLength = str.length();\n    if (repeat == 1 || inputLength == 0) {\n        return str;\n    }\n    if (inputLength == 1 && repeat <= PAD_LIMIT) {\n        return repeat(str.charAt(0), repeat);\n    }\n    final int outputLength = inputLength * repeat;\n    switch(inputLength) {\n        case 1:\n            return repeat(str.charAt(0), repeat);\n        case 2:\n            final char ch0 = str.charAt(0);\n            final char ch1 = str.charAt(1);\n            final char[] output2 = new char[outputLength];\n            for (int i = repeat * 2 - 2; i >= 0; i--, i--) {\n                output2[i] = ch0;\n                output2[i + 1] = ch1;\n            }\n            return new String(output2);\n        default:\n            final StringBuilder buf = new StringBuilder(outputLength);\n            for (int i = 0; i < repeat; i++) {\n                buf.append(str);\n            }\n            return buf.toString();\n    }\n}",
+  "method_comment": "\n     * <p>Repeat a String {@code repeat} times to form a\n     * new String.</p>\n     *\n     * <pre>\n     * StringUtils.repeat(null, 2) = null\n     * StringUtils.repeat(\"\", 0)   = \"\"\n     * StringUtils.repeat(\"\", 2)   = \"\"\n     * StringUtils.repeat(\"a\", 3)  = \"aaa\"\n     * StringUtils.repeat(\"ab\", 2) = \"abab\"\n     * StringUtils.repeat(\"a\", -2) = \"\"\n     * </pre>\n     *\n     * @param str    the String to repeat, may be null\n     * @param repeat number of times to repeat str, negative treated as zero\n     * @return a new String consisting of the original String repeated,\n     * {@code null} if null String input\n     ",
+  "method_annotation": ""
+}

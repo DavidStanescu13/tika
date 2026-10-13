@@ -1,0 +1,36 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "normalize",
+  "brief": "public static String normalize(final String name){}",
+  "methodSignature": "normalize(String)",
+  "sourceCode": "public static String normalize(final String name) {\n        if (name == null) {\n            throw new IllegalArgumentException(\"name cannot be null\");\n        }\n\n        StringBuilder sb = new StringBuilder();\n\n        for (char c : name.toCharArray()) {\n            if (RESERVED.contains(c)) {\n                sb.append('%').append((c < 16) ? \"0\" : \"\")\n                        .append(Integer.toHexString(c).toUpperCase(Locale.ROOT));\n            } else {\n                sb.append(c);\n            }\n        }\n\n        return sb.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toUpperCase(Locale)",
+      "toCharArray()"
+    ],
+    "java.util.HashSet": [
+      "contains(Object)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "java.lang.Integer": [
+      "toHexString(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Scans the given file name for reserved characters on different OSs and\n * file systems and returns a sanitized version of the name with the\n * reserved chars replaced by their hexadecimal value.\n * <p>\n * For example <code>why?.zip</code> will be converted into <code>why%3F.zip</code>\n *\n * @param name the file name to be normalized - NOT NULL\n * @return the normalized file name\n * @throws IllegalArgumentException if name is null\n */\npublic static String normalize(final String name) {\n    if (name == null) {\n        throw new IllegalArgumentException(\"name cannot be null\");\n    }\n    StringBuilder sb = new StringBuilder();\n    for (char c : name.toCharArray()) {\n        if (RESERVED.contains(c)) {\n            sb.append('%').append((c < 16) ? \"0\" : \"\").append(Integer.toHexString(c).toUpperCase(Locale.ROOT));\n        } else {\n            sb.append(c);\n        }\n    }\n    return sb.toString();\n}",
+  "method_comment": "\n     * Scans the given file name for reserved characters on different OSs and\n     * file systems and returns a sanitized version of the name with the\n     * reserved chars replaced by their hexadecimal value.\n     * <p>\n     * For example <code>why?.zip</code> will be converted into <code>why%3F.zip</code>\n     *\n     * @param name the file name to be normalized - NOT NULL\n     * @return the normalized file name\n     * @throws IllegalArgumentException if name is null\n     ",
+  "method_annotation": ""
+}

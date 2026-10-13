@@ -1,0 +1,20 @@
+{
+  "className": "FieldNameMappingFilter",
+  "methodName": "setExcludeUnmapped",
+  "brief": "public void setExcludeUnmapped(boolean excludeUnmapped){}",
+  "methodSignature": "setExcludeUnmapped(boolean)",
+  "sourceCode": "public void setExcludeUnmapped(boolean excludeUnmapped) {\n        this.excludeUnmapped = excludeUnmapped;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * If this is <code>true</code> (default), this means that only the fields that\n * have a \"from\" value in the mapper will be passed through.  Otherwise,\n * this will pass through all keys/values and mutate the keys\n * that exist in the mappings.\n *\n * @param excludeUnmapped\n */\npublic void setExcludeUnmapped(boolean excludeUnmapped) {\n    this.excludeUnmapped = excludeUnmapped;\n}",
+  "method_comment": "\n     * If this is <code>true</code> (default), this means that only the fields that\n     * have a \"from\" value in the mapper will be passed through.  Otherwise,\n     * this will pass through all keys/values and mutate the keys\n     * that exist in the mappings.\n     *\n     * @param excludeUnmapped\n     ",
+  "method_annotation": ""
+}

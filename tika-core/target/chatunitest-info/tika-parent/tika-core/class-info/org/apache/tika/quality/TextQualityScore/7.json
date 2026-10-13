@@ -1,0 +1,26 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "TextQualityScore",
+  "brief": "public TextQualityScore(float zScore, float pClean,\r\n                            float ciLow, float ciHigh,\r\n                            String dominantScript){}",
+  "methodSignature": "TextQualityScore(float, float, float, float, String)",
+  "sourceCode": "public TextQualityScore(float zScore, float pClean,\n                            float ciLow, float ciHigh,\n                            String dominantScript) {\n        this.zScore = zScore;\n        this.pClean = pClean;\n        this.ciLow = ciLow;\n        this.ciHigh = ciHigh;\n        this.dominantScript = dominantScript;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float",
+    "float",
+    "float",
+    "float",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public TextQualityScore(float zScore, float pClean, float ciLow, float ciHigh, String dominantScript) {\n    this.zScore = zScore;\n    this.pClean = pClean;\n    this.ciLow = ciLow;\n    this.ciHigh = ciHigh;\n    this.dominantScript = dominantScript;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

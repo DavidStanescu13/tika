@@ -1,0 +1,36 @@
+{
+  "className": "CompositeDetector",
+  "methodName": "detect",
+  "brief": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        MediaType override = detectOverrides(metadata);\n        if (override != null) {\n            return override;\n        }\n        MediaType type = MediaType.OCTET_STREAM;\n\n        //we have to iterate through all detectors because the override detector may\n        //be within a CompositeDetector\n        for (Detector detector : getDetectors()) {\n            MediaType detected = detector.detect(tis, metadata, parseContext);\n            if (registry.isSpecializationOf(detected, type)) {\n                type = detected;\n            }\n        }\n        return type;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.detect.CompositeDetector": [
+      "getDetectors()",
+      "detectOverrides(Metadata)"
+    ],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    MediaType override = detectOverrides(metadata);\n    if (override != null) {\n        return override;\n    }\n    MediaType type = MediaType.OCTET_STREAM;\n    // we have to iterate through all detectors because the override detector may\n    // be within a CompositeDetector\n    for (Detector detector : getDetectors()) {\n        MediaType detected = detector.detect(tis, metadata, parseContext);\n        if (registry.isSpecializationOf(detected, type)) {\n            type = detected;\n        }\n    }\n    return type;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

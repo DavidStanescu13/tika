@@ -1,0 +1,126 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.CharsetUtils;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CharsetUtils_clean_2_2_Test {
+
+    private static Method cleanMethod;
+
+    @BeforeAll
+    public static void setUp() throws NoSuchMethodException {
+        cleanMethod = CharsetUtils.class.getDeclaredMethod("clean", String.class);
+        cleanMethod.setAccessible(true);
+    }
+
+    @Test
+    public void testCleanWithValidCharset() throws Exception {
+        String charsetName = "UTF-8";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithInvalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithWhitespace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithTrailingComma() throws Exception {
+        String charsetName = "UTF-8,";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithLeadingComma() throws Exception {
+        String charsetName = ",UTF-8";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithIgnoreCase() throws Exception {
+        String charsetName = "utf-8";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithNone() throws Exception {
+        String charsetName = "none";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithNo() throws Exception {
+        String charsetName = "no";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithNull() throws Exception {
+        String charsetName = null;
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithEmptyString() throws Exception {
+        String charsetName = "";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithWhitespaceAndComma() throws Exception {
+        String charsetName = "  UTF-8,  ";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithTrailingCommaAndWhitespace() throws Exception {
+        String charsetName = "UTF-8,  ";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanWithLeadingCommaAndWhitespace() throws Exception {
+        String charsetName = ",  UTF-8";
+        String result = (String) cleanMethod.invoke(null, charsetName);
+        assertEquals("UTF-8", result);
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_clean_2_2_Test: line 14 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_clean_2_2_Test: line 18 : package org.mockito does not exist
+Error in CharsetUtils_clean_2_2_Test: line 16 : package org.mockito does not exist

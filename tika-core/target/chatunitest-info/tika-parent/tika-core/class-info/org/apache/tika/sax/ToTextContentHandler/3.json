@@ -1,0 +1,28 @@
+{
+  "className": "ToTextContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes atts)\n            throws SAXException {\n        String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n        if (uc.equals(STYLE)) {\n            styleDepth++;\n        }\n        if (uc.equals(SCRIPT)) {\n            scriptDepth++;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toUpperCase(Locale)",
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n    String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n    if (uc.equals(STYLE)) {\n        styleDepth++;\n    }\n    if (uc.equals(SCRIPT)) {\n        scriptDepth++;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

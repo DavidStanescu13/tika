@@ -1,0 +1,30 @@
+{
+  "className": "ParseContext",
+  "methodName": "set",
+  "brief": "public <T> void set(Class<T> key, T value){}",
+  "methodSignature": "set(Class, T)",
+  "sourceCode": "public <T> void set(Class<T> key, T value) {\n        if (value != null) {\n            context.put(key.getName(), value);\n        } else {\n            context.remove(key.getName());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>",
+    "T"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.Map": [
+      "remove(Object)",
+      "put(K, V)"
+    ],
+    "java.lang.Class": [
+      "getName()"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the given value to the context as an implementation of the given\n * interface.\n *\n * @param key   the interface implemented by the given value\n * @param value the value to be added, or <code>null</code> to remove\n */\npublic <T> void set(Class<T> key, T value) {\n    if (value != null) {\n        context.put(key.getName(), value);\n    } else {\n        context.remove(key.getName());\n    }\n}",
+  "method_comment": "\n     * Adds the given value to the context as an implementation of the given\n     * interface.\n     *\n     * @param key   the interface implemented by the given value\n     * @param value the value to be added, or <code>null</code> to remove\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,37 @@
+{
+  "className": "PageBasedRenderResults",
+  "methodName": "add",
+  "brief": "public void add(RenderResult result){}",
+  "methodSignature": "add(RenderResult)",
+  "sourceCode": "public void add(RenderResult result) {\n        Integer page = result.getMetadata().getInt(TikaPagedText.PAGE_NUMBER);\n        if (page != null) {\n            List<RenderResult> pageResults = results.get(page);\n            if (pageResults == null) {\n                pageResults = new ArrayList<>();\n                results.put(page, pageResults);\n            }\n            pageResults.add(result);\n        }\n        super.add(result);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "RenderResult"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.renderer.RenderResult": [
+      "getMetadata()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "getInt(Property)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.tika.renderer.RenderResults": [
+      "add(RenderResult)"
+    ]
+  },
+  "full_method_info": "public void add(RenderResult result) {\n    Integer page = result.getMetadata().getInt(TikaPagedText.PAGE_NUMBER);\n    if (page != null) {\n        List<RenderResult> pageResults = results.get(page);\n        if (pageResults == null) {\n            pageResults = new ArrayList<>();\n            results.put(page, pageResults);\n        }\n        pageResults.add(result);\n    }\n    super.add(result);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

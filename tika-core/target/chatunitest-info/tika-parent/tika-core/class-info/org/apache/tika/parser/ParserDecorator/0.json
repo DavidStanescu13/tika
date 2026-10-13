@@ -1,0 +1,23 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "withTypes",
+  "brief": "public static Parser withTypes(Parser parser, Set<MediaType> types){}",
+  "methodSignature": "withTypes(Parser, Set)",
+  "sourceCode": "public static Parser withTypes(Parser parser, Set<MediaType> types) {\n        return new MimeFilteringDecorator(parser, types, null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Set<MediaType>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "full_method_info": "/**\n * Decorates the given parser so that it always claims to support\n * parsing of the given media types.\n *\n * @param parser the parser to be decorated\n * @param types  supported media types\n * @return the decorated parser\n */\npublic static Parser withTypes(Parser parser, Set<MediaType> types) {\n    return new MimeFilteringDecorator(parser, types, null);\n}",
+  "method_comment": "\n     * Decorates the given parser so that it always claims to support\n     * parsing of the given media types.\n     *\n     * @param parser the parser to be decorated\n     * @param types  supported media types\n     * @return the decorated parser\n     ",
+  "method_annotation": ""
+}

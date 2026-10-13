@@ -1,0 +1,33 @@
+{
+  "className": "CachingSource",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+  "methodSignature": "read(byte[], int, int)",
+  "sourceCode": "@Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        if (fileStream != null) {\n            int n = fileStream.read(b, off, len);\n            if (n > 0) {\n                filePosition += n;\n            }\n            return n;\n        }\n        if (cachingStream != null) {\n            return cachingStream.read(b, off, len);\n        }\n        int n = passthroughStream.read(b, off, len);\n        if (n > 0) {\n            passthroughPosition += n;\n        }\n        return n;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.io.InputStream": [
+      "read(byte[], int, int)"
+    ],
+    "org.apache.tika.io.CachingInputStream": [
+      "read(byte[], int, int)"
+    ],
+    "java.io.BufferedInputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic int read(byte[] b, int off, int len) throws IOException {\n    if (fileStream != null) {\n        int n = fileStream.read(b, off, len);\n        if (n > 0) {\n            filePosition += n;\n        }\n        return n;\n    }\n    if (cachingStream != null) {\n        return cachingStream.read(b, off, len);\n    }\n    int n = passthroughStream.read(b, off, len);\n    if (n > 0) {\n        passthroughPosition += n;\n    }\n    return n;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

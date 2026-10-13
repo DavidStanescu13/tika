@@ -1,0 +1,18 @@
+{
+  "className": "StandardsExtractingContentHandler",
+  "methodName": "getThreshold",
+  "brief": "public double getThreshold(){}",
+  "methodSignature": "getThreshold()",
+  "sourceCode": "public double getThreshold() {\n        return threshold;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the threshold to be used for selecting the standard references found\n * within the text based on their score.\n *\n * @return the threshold to be used for selecting the standard references\n * found within the text based on their score.\n */\npublic double getThreshold() {\n    return threshold;\n}",
+  "method_comment": "\n     * Gets the threshold to be used for selecting the standard references found\n     * within the text based on their score.\n     *\n     * @return the threshold to be used for selecting the standard references\n     * found within the text based on their score.\n     ",
+  "method_annotation": ""
+}

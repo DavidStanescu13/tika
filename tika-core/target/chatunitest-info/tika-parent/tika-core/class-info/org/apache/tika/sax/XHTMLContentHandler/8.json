@@ -1,0 +1,22 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "startElement",
+  "brief": "public void startElement(String name) throws SAXException{}",
+  "methodSignature": "startElement(String)",
+  "sourceCode": "public void startElement(String name) throws SAXException {\n        startElement(XHTML, name, name, EMPTY_ATTRIBUTES);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "// ------------------------------------------< public convenience methods >\npublic void startElement(String name) throws SAXException {\n    startElement(XHTML, name, name, EMPTY_ATTRIBUTES);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

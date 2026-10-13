@@ -1,0 +1,25 @@
+{
+  "className": "PassthroughPrefix",
+  "methodName": "registered",
+  "brief": "public static Collection<PassthroughPrefix> registered(){}",
+  "methodSignature": "registered()",
+  "sourceCode": "public static Collection<PassthroughPrefix> registered() {\n        return Collections.unmodifiableCollection(REGISTRY.values());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableCollection(Collection<? extends T>)"
+    ],
+    "java.util.Map": [
+      "values()"
+    ]
+  },
+  "full_method_info": "/**\n * Declared prefixes, from loaded classes only.\n */\npublic static Collection<PassthroughPrefix> registered() {\n    return Collections.unmodifiableCollection(REGISTRY.values());\n}",
+  "method_comment": " Declared prefixes, from loaded classes only. ",
+  "method_annotation": ""
+}

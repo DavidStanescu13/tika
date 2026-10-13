@@ -1,0 +1,26 @@
+{
+  "className": "InputStreamDigester",
+  "methodName": "newMessageDigest",
+  "brief": "private MessageDigest newMessageDigest(){}",
+  "methodSignature": "newMessageDigest()",
+  "sourceCode": "private MessageDigest newMessageDigest() {\n        try {\n            Provider provider = getProvider();\n            if (provider == null) {\n                return MessageDigest.getInstance(algorithm);\n            } else {\n                return MessageDigest.getInstance(algorithm, provider);\n            }\n        } catch (NoSuchAlgorithmException e) {\n            throw new IllegalArgumentException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.digest.InputStreamDigester": [
+      "getProvider()"
+    ],
+    "java.security.MessageDigest": [
+      "getInstance(String)",
+      "getInstance(String, Provider)"
+    ]
+  },
+  "full_method_info": "private MessageDigest newMessageDigest() {\n    try {\n        Provider provider = getProvider();\n        if (provider == null) {\n            return MessageDigest.getInstance(algorithm);\n        } else {\n            return MessageDigest.getInstance(algorithm, provider);\n        }\n    } catch (NoSuchAlgorithmException e) {\n        throw new IllegalArgumentException(e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "setPriors",
+  "brief": "public abstract LanguageDetector setPriors(Map<String, Float> languageProbabilities)\r\n            throws IOException;",
+  "methodSignature": "setPriors(Map)",
+  "sourceCode": "public abstract LanguageDetector setPriors(Map<String, Float> languageProbabilities)\n            throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Map<String,Float>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Set the a-priori probabilities for these languages. The provided map uses the language\n * as the key, and the probability (0.0 > probability < 1.0) of text being in that language.\n * Note that if the probabilities don't sum to 1.0, these values will be normalized.\n * <p>\n * If hasModel() returns false for any of the languages, an IllegalArgumentException is thrown.\n * <p>\n * Use of these probabilities is detector-specific, and thus might not impact the results  at\n * all. As such, these should be viewed as a hint.\n *\n * @param languageProbabilities Map from language to probability\n * @return this\n */\npublic abstract LanguageDetector setPriors(Map<String, Float> languageProbabilities) throws IOException;",
+  "method_comment": "\n     * Set the a-priori probabilities for these languages. The provided map uses the language\n     * as the key, and the probability (0.0 > probability < 1.0) of text being in that language.\n     * Note that if the probabilities don't sum to 1.0, these values will be normalized.\n     * <p>\n     * If hasModel() returns false for any of the languages, an IllegalArgumentException is thrown.\n     * <p>\n     * Use of these probabilities is detector-specific, and thus might not impact the results  at\n     * all. As such, these should be viewed as a hint.\n     *\n     * @param languageProbabilities Map from language to probability\n     * @return this\n     ",
+  "method_annotation": ""
+}

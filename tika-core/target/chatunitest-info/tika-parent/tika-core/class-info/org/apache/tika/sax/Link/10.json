@@ -1,0 +1,29 @@
+{
+  "className": "Link",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        StringBuilder builder = new StringBuilder();\n        if (isImage()) {\n            builder.append(\"<img src=\\\"\");\n            builder.append(uri);\n            if (title != null && title.length() > 0) {\n                builder.append(\"\\\" title=\\\"\");\n                builder.append(title);\n            }\n            if (text != null && text.length() > 0) {\n                builder.append(\"\\\" alt=\\\"\");\n                builder.append(text);\n            }\n            builder.append(\"\\\"/>\");\n        } else {\n            builder.append(\"<\");\n            builder.append(type);\n            builder.append(\" href=\\\"\");\n            builder.append(uri);\n            if (title != null && title.length() > 0) {\n                builder.append(\"\\\" title=\\\"\");\n                builder.append(title);\n            }\n            if (rel != null && rel.length() > 0) {\n                builder.append(\"\\\" rel=\\\"\");\n                builder.append(rel);\n            }\n            builder.append(\"\\\">\");\n            builder.append(text);\n            builder.append(\"</\");\n            builder.append(type);\n            builder.append(\">\");\n        }\n        return builder.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.Link": [
+      "isImage()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "java.lang.String": [
+      "length()"
+    ]
+  },
+  "full_method_info": "public String toString() {\n    StringBuilder builder = new StringBuilder();\n    if (isImage()) {\n        builder.append(\"<img src=\\\"\");\n        builder.append(uri);\n        if (title != null && title.length() > 0) {\n            builder.append(\"\\\" title=\\\"\");\n            builder.append(title);\n        }\n        if (text != null && text.length() > 0) {\n            builder.append(\"\\\" alt=\\\"\");\n            builder.append(text);\n        }\n        builder.append(\"\\\"/>\");\n    } else {\n        builder.append(\"<\");\n        builder.append(type);\n        builder.append(\" href=\\\"\");\n        builder.append(uri);\n        if (title != null && title.length() > 0) {\n            builder.append(\"\\\" title=\\\"\");\n            builder.append(title);\n        }\n        if (rel != null && rel.length() > 0) {\n            builder.append(\"\\\" rel=\\\"\");\n            builder.append(rel);\n        }\n        builder.append(\"\\\">\");\n        builder.append(text);\n        builder.append(\"</\");\n        builder.append(type);\n        builder.append(\">\");\n    }\n    return builder.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

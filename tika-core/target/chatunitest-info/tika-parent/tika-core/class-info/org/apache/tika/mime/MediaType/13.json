@@ -1,0 +1,22 @@
+{
+  "className": "MediaType",
+  "methodName": "getType",
+  "brief": "public String getType(){}",
+  "methodSignature": "getType()",
+  "sourceCode": "public String getType() {\n        return string.substring(0, slash);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Return the Type of the MediaType, such as\n * \"text\" for \"text/plain\"\n */\npublic String getType() {\n    return string.substring(0, slash);\n}",
+  "method_comment": "\n     * Return the Type of the MediaType, such as\n     * \"text\" for \"text/plain\"\n     ",
+  "method_annotation": ""
+}

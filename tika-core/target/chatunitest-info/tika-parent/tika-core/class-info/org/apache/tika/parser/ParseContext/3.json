@@ -1,0 +1,28 @@
+{
+  "className": "ParseContext",
+  "methodName": "setJsonConfig",
+  "brief": "public void setJsonConfig(String name, JsonConfig config){}",
+  "methodSignature": "setJsonConfig(String, JsonConfig)",
+  "sourceCode": "public void setJsonConfig(String name, JsonConfig config) {\n        if (config != null) {\n            jsonConfigs.put(name, config);\n        } else {\n            jsonConfigs.remove(name);\n            if (resolvedConfigs != null) {\n                resolvedConfigs.remove(name);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "JsonConfig"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.config.JsonConfig": [],
+    "java.util.Map": [
+      "remove(Object)",
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets a JSON configuration by component name.\n * <p>\n * This stores the JSON config for later resolution. The JSON will be\n * deserialized when requested via the component registry in tika-serialization.\n * <p>\n * Example:\n * <pre>\n * parseContext.setJsonConfig(\"pdf-parser\", () -&gt; \"{\\\"ocr\\\": {\\\"strategy\\\": \\\"AUTO\\\"}}\");\n * parseContext.setJsonConfig(\"handler-config\", () -&gt; \"{\\\"type\\\": \\\"XML\\\"}\");\n * </pre>\n *\n * @param name   the component name (e.g., \"pdf-parser\", \"handler-config\")\n * @param config the JSON configuration\n * @since Apache Tika 4.0\n */\npublic void setJsonConfig(String name, JsonConfig config) {\n    if (config != null) {\n        jsonConfigs.put(name, config);\n    } else {\n        jsonConfigs.remove(name);\n        if (resolvedConfigs != null) {\n            resolvedConfigs.remove(name);\n        }\n    }\n}",
+  "method_comment": "\n     * Sets a JSON configuration by component name.\n     * <p>\n     * This stores the JSON config for later resolution. The JSON will be\n     * deserialized when requested via the component registry in tika-serialization.\n     * <p>\n     * Example:\n     * <pre>\n     * parseContext.setJsonConfig(\"pdf-parser\", () -&gt; \"{\\\"ocr\\\": {\\\"strategy\\\": \\\"AUTO\\\"}}\");\n     * parseContext.setJsonConfig(\"handler-config\", () -&gt; \"{\\\"type\\\": \\\"XML\\\"}\");\n     * </pre>\n     *\n     * @param name   the component name (e.g., \"pdf-parser\", \"handler-config\")\n     * @param config the JSON configuration\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

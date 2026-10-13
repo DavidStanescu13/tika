@@ -1,0 +1,28 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "maxAllowedToAdd",
+  "brief": "private int maxAllowedToAdd(StringSizePair filterKey){}",
+  "methodSignature": "maxAllowedToAdd(StringSizePair)",
+  "sourceCode": "private int maxAllowedToAdd(StringSizePair filterKey) {\n        Integer existingSizeInt = fieldSizes.get(filterKey.string);\n        int existingSize = existingSizeInt == null ? 0 : existingSizeInt;\n        //how much can we add to this field\n        int allowedByMaxField = maxFieldSize - existingSize;\n\n        //this is how much is allowed by the overall total limit\n        int allowedByMaxTotal = maxTotalEstimatedSize - estimatedSize - 1;\n\n        //if we're adding a new key, we need to subtract that value\n        allowedByMaxTotal -= existingSizeInt == null ? filterKey.size : 0;\n\n        return Math.min(allowedByMaxField, allowedByMaxTotal);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringSizePair"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter.StringSizePair": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "// calculate the max field length allowed if we are\n// adding a value\nprivate int maxAllowedToAdd(StringSizePair filterKey) {\n    Integer existingSizeInt = fieldSizes.get(filterKey.string);\n    int existingSize = existingSizeInt == null ? 0 : existingSizeInt;\n    // how much can we add to this field\n    int allowedByMaxField = maxFieldSize - existingSize;\n    // this is how much is allowed by the overall total limit\n    int allowedByMaxTotal = maxTotalEstimatedSize - estimatedSize - 1;\n    // if we're adding a new key, we need to subtract that value\n    allowedByMaxTotal -= existingSizeInt == null ? filterKey.size : 0;\n    return Math.min(allowedByMaxField, allowedByMaxTotal);\n}",
+  "method_comment": "adding a value",
+  "method_annotation": ""
+}

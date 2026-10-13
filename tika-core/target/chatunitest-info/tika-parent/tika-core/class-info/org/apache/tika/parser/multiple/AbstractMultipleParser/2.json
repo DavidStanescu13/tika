@@ -1,0 +1,22 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "setMediaTypeRegistry",
+  "brief": "public void setMediaTypeRegistry(MediaTypeRegistry registry){}",
+  "methodSignature": "setMediaTypeRegistry(MediaTypeRegistry)",
+  "sourceCode": "public void setMediaTypeRegistry(MediaTypeRegistry registry) {\n        this.registry = registry;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaTypeRegistry"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaTypeRegistry": []
+  },
+  "full_method_info": "/**\n * Sets the media type registry used to infer type relationships.\n *\n * @param registry media type registry\n */\npublic void setMediaTypeRegistry(MediaTypeRegistry registry) {\n    this.registry = registry;\n}",
+  "method_comment": "\n     * Sets the media type registry used to infer type relationships.\n     *\n     * @param registry media type registry\n     ",
+  "method_annotation": ""
+}

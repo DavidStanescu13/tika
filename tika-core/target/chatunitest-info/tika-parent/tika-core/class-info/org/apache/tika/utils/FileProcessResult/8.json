@@ -1,0 +1,18 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "isStdoutTruncated",
+  "brief": "public boolean isStdoutTruncated(){}",
+  "methodSignature": "isStdoutTruncated()",
+  "sourceCode": "public boolean isStdoutTruncated() {\n        return stdoutTruncated;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isStdoutTruncated() {\n    return stdoutTruncated;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,40 @@
+{
+  "className": "LinkContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String local, String name){}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String local, String name) {\n        if (!builderStack.isEmpty() && XHTML.equals(uri)) {\n            if (\"a\".equals(local) || \"img\".equals(local) || \"link\".equals(local) ||\n                    \"script\".equals(local) || \"iframe\".equals(local)) {\n                // ensure this is the correct builder. not all </script> tags correspond\n                // to a LinkBuilder, e.g. for embedded scripts\n                if (builderStack.getFirst().getType().equals(local)) {\n                    LinkBuilder builder = builderStack.removeFirst();\n                    links.add(builder.getLink(collapseWhitespaceInAnchor));\n                }\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.AbstractCollection": [
+      "isEmpty()"
+    ],
+    "org.apache.tika.sax.LinkBuilder": [
+      "getLink(boolean)",
+      "getType()"
+    ],
+    "java.util.LinkedList": [
+      "getFirst()",
+      "removeFirst()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String local, String name) {\n    if (!builderStack.isEmpty() && XHTML.equals(uri)) {\n        if (\"a\".equals(local) || \"img\".equals(local) || \"link\".equals(local) || \"script\".equals(local) || \"iframe\".equals(local)) {\n            // ensure this is the correct builder. not all </script> tags correspond\n            // to a LinkBuilder, e.g. for embedded scripts\n            if (builderStack.getFirst().getType().equals(local)) {\n                LinkBuilder builder = builderStack.removeFirst();\n                links.add(builder.getLink(collapseWhitespaceInAnchor));\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

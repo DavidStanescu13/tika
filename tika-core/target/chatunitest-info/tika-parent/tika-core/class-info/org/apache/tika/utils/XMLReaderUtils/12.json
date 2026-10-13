@@ -1,0 +1,25 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getTransformer",
+  "brief": "public static Transformer getTransformer() throws TikaException{}",
+  "methodSignature": "getTransformer()",
+  "sourceCode": "public static Transformer getTransformer() throws TikaException {\n        TransformerFactory transformerFactory = getTransformerFactory();\n        try {\n            return transformerFactory.newTransformer();\n        } catch (TransformerConfigurationException e) {\n            throw new TikaException(\"Transformer not available\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getTransformerFactory()"
+    ],
+    "javax.xml.transform.TransformerFactory": [
+      "newTransformer()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a new transformer\n * <p>\n * The transformer instance is configured to to use\n * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n *\n * @return Transformer\n * @throws TikaException when the transformer can not be created\n * @since Apache Tika 1.17\n */\npublic static Transformer getTransformer() throws TikaException {\n    TransformerFactory transformerFactory = getTransformerFactory();\n    try {\n        return transformerFactory.newTransformer();\n    } catch (TransformerConfigurationException e) {\n        throw new TikaException(\"Transformer not available\", e);\n    }\n}",
+  "method_comment": "\n     * Returns a new transformer\n     * <p>\n     * The transformer instance is configured to to use\n     * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n     *\n     * @return Transformer\n     * @throws TikaException when the transformer can not be created\n     * @since Apache Tika 1.17\n     ",
+  "method_annotation": ""
+}

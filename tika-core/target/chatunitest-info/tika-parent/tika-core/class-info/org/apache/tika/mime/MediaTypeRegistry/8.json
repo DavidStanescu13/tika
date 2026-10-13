@@ -1,0 +1,27 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "isSpecializationOf",
+  "brief": "public boolean isSpecializationOf(MediaType a, MediaType b){}",
+  "methodSignature": "isSpecializationOf(MediaType, MediaType)",
+  "sourceCode": "public boolean isSpecializationOf(MediaType a, MediaType b) {\n        return isInstanceOf(getSupertype(a), b);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isInstanceOf(MediaType, MediaType)",
+      "getSupertype(MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Checks whether the given media type a is a specialization of a more\n * generic type b. Both types should be already normalised.\n *\n * @param a media type, normalised\n * @param b suspected supertype, normalised\n * @return <code>true</code> if b is a supertype of a,\n * <code>false</code> otherwise\n * @since Apache Tika 0.8\n */\npublic boolean isSpecializationOf(MediaType a, MediaType b) {\n    return isInstanceOf(getSupertype(a), b);\n}",
+  "method_comment": "\n     * Checks whether the given media type a is a specialization of a more\n     * generic type b. Both types should be already normalised.\n     *\n     * @param a media type, normalised\n     * @param b suspected supertype, normalised\n     * @return <code>true</code> if b is a supertype of a,\n     * <code>false</code> otherwise\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

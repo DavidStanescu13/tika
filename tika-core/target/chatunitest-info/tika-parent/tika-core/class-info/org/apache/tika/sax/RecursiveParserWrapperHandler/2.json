@@ -1,0 +1,31 @@
+{
+  "className": "RecursiveParserWrapperHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException{}",
+  "methodSignature": "endDocument(ContentHandler, Metadata)",
+  "sourceCode": "@Override\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.endDocument(contentHandler, metadata);\n        addContent(contentHandler, metadata);\n        if (metadata.size() > 0) {\n            metadataList.add(0, ParserUtils.cloneMetadata(metadata));\n        }\n        writeFinalEmbeddedPaths();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "size()"
+    ],
+    "java.util.List": [
+      "add(int, E)"
+    ],
+    "org.apache.tika.utils.ParserUtils": [
+      "cloneMetadata(Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * @param contentHandler content handler used on the main document\n * @param metadata       metadata from the main document\n * @throws SAXException\n */\n@Override\npublic void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n    super.endDocument(contentHandler, metadata);\n    addContent(contentHandler, metadata);\n    if (metadata.size() > 0) {\n        metadataList.add(0, ParserUtils.cloneMetadata(metadata));\n    }\n    writeFinalEmbeddedPaths();\n}",
+  "method_comment": "\n     * @param contentHandler content handler used on the main document\n     * @param metadata       metadata from the main document\n     * @throws SAXException\n     ",
+  "method_annotation": "@Override\n"
+}

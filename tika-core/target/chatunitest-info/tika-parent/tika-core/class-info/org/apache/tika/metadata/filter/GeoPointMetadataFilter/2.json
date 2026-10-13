@@ -1,0 +1,28 @@
+{
+  "className": "GeoPointMetadataFilter",
+  "methodName": "filter",
+  "brief": "@Override\r\n    protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "@Override\n    protected void filter(Metadata metadata) {\n        String lat = metadata.get(TikaCoreProperties.LATITUDE);\n        if (StringUtils.isEmpty(lat)) {\n            return;\n        }\n        String lng = metadata.get(TikaCoreProperties.LONGITUDE);\n        if (StringUtils.isEmpty(lng)) {\n            return;\n        }\n        // target field name is operator-configured; may legitimately be a reserved key\n        metadata.setTrusted(geoPointFieldName, lat + \",\" + lng);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)",
+      "setTrusted(String, String)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void filter(Metadata metadata) {\n    String lat = metadata.get(TikaCoreProperties.LATITUDE);\n    if (StringUtils.isEmpty(lat)) {\n        return;\n    }\n    String lng = metadata.get(TikaCoreProperties.LONGITUDE);\n    if (StringUtils.isEmpty(lng)) {\n        return;\n    }\n    // target field name is operator-configured; may legitimately be a reserved key\n    metadata.setTrusted(geoPointFieldName, lat + \",\" + lng);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,25 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(final byte[] b) throws IOException{}",
+  "methodSignature": "read(byte[])",
+  "sourceCode": "@Override\n    public int read(final byte[] b) throws IOException {\n        return this.read(b, 0, b.length);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.BoundedInputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Invokes the delegate's <code>read(byte[])</code> method.\n *\n * @param b the buffer to read the bytes into\n * @return the number of bytes read or -1 if the end of stream or\n * the limit has been reached.\n * @throws IOException if an I/O error occurs\n */\n@Override\npublic int read(final byte[] b) throws IOException {\n    return this.read(b, 0, b.length);\n}",
+  "method_comment": "\n     * Invokes the delegate's <code>read(byte[])</code> method.\n     *\n     * @param b the buffer to read the bytes into\n     * @return the number of bytes read or -1 if the end of stream or\n     * the limit has been reached.\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": "@Override\n"
+}

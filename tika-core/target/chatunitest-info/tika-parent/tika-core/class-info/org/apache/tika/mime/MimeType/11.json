@@ -1,0 +1,26 @@
+{
+  "className": "MimeType",
+  "methodName": "addRootXML",
+  "brief": "void addRootXML(String namespaceURI, String localName){}",
+  "methodSignature": "addRootXML(String, String)",
+  "sourceCode": "void addRootXML(String namespaceURI, String localName) {\n        if (rootXML == null) {\n            rootXML = new ArrayList<>();\n        }\n        rootXML.add(new RootXML(this, namespaceURI, localName));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Add some rootXML info to this mime-type\n *\n * @param namespaceURI\n * @param localName\n */\nvoid addRootXML(String namespaceURI, String localName) {\n    if (rootXML == null) {\n        rootXML = new ArrayList<>();\n    }\n    rootXML.add(new RootXML(this, namespaceURI, localName));\n}",
+  "method_comment": "\n     * Add some rootXML info to this mime-type\n     *\n     * @param namespaceURI\n     * @param localName\n     ",
+  "method_annotation": ""
+}

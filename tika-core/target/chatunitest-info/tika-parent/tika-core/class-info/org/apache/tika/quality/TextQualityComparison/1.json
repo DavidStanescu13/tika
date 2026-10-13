@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "delta",
+  "brief": "public float delta(){}",
+  "methodSignature": "delta()",
+  "sourceCode": "public float delta() {\n        return delta;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Absolute difference in z-scores between the two candidates.\n * Small delta = uncertain; large delta = confident.\n */\npublic float delta() {\n    return delta;\n}",
+  "method_comment": "\n     * Absolute difference in z-scores between the two candidates.\n     * Small delta = uncertain; large delta = confident.\n     ",
+  "method_annotation": ""
+}

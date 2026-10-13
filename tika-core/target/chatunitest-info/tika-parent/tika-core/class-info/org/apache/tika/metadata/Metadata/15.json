@@ -1,0 +1,28 @@
+{
+  "className": "Metadata",
+  "methodName": "blockReservedKeyWrite",
+  "brief": "private boolean blockReservedKeyWrite(String name){}",
+  "methodSignature": "blockReservedKeyWrite(String)",
+  "sourceCode": "private boolean blockReservedKeyWrite(String name) {\n        if (ReservedNamespaces.isTikaNative(name)) {\n            LOG.debug(\"Dropping String write to reserved metadata key '{}'; use its Property.\", name);\n            return true;\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.ReservedNamespaces": [
+      "isTikaNative(String)"
+    ],
+    "org.slf4j.Logger": [
+      "debug(String, Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Drop String writes to reserved Tika-native keys; use their Property or {@link #addTrusted}/{@link #setTrusted(String, String)}.\n */\nprivate boolean blockReservedKeyWrite(String name) {\n    if (ReservedNamespaces.isTikaNative(name)) {\n        LOG.debug(\"Dropping String write to reserved metadata key '{}'; use its Property.\", name);\n        return true;\n    }\n    return false;\n}",
+  "method_comment": " Drop String writes to reserved Tika-native keys; use their Property or {@link #addTrusted}/{@link #setTrusted(String, String)}. ",
+  "method_annotation": ""
+}

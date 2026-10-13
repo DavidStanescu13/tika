@@ -1,0 +1,20 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setCheckCommandLine",
+  "brief": "public void setCheckCommandLine(List<String> checkCommandLine){}",
+  "methodSignature": "setCheckCommandLine(List)",
+  "sourceCode": "public void setCheckCommandLine(List<String> checkCommandLine) {\n        this.checkCommandLine = checkCommandLine;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setCheckCommandLine(List<String> checkCommandLine) {\n    this.checkCommandLine = checkCommandLine;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

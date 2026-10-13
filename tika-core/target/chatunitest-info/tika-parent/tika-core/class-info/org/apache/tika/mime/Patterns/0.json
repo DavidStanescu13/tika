@@ -1,0 +1,27 @@
+{
+  "className": "Patterns",
+  "methodName": "add",
+  "brief": "public void add(String pattern, MimeType type) throws MimeTypeException{}",
+  "methodSignature": "add(String, MimeType)",
+  "sourceCode": "public void add(String pattern, MimeType type) throws MimeTypeException {\n        this.add(pattern, false, type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MimeType": [],
+    "org.apache.tika.mime.Patterns": [
+      "add(String, boolean, MimeType)"
+    ]
+  },
+  "full_method_info": "public void add(String pattern, MimeType type) throws MimeTypeException {\n    this.add(pattern, false, type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,71 @@
+{
+  "fullClassName": "org.apache.tika.sax.RecursiveParserWrapperHandler",
+  "className": "RecursiveParserWrapperHandler",
+  "index": 294,
+  "modifier": "[public ]",
+  "extend": "[AbstractRecursiveParserWrapperHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class RecursiveParserWrapperHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.HashMap;",
+    "import java.util.LinkedList;",
+    "import java.util.List;",
+    "import java.util.Map;",
+    "import java.util.concurrent.atomic.AtomicInteger;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.TikaCoreProperties;",
+    "import org.apache.tika.parser.RecursiveParserWrapper;",
+    "import org.apache.tika.utils.ParserUtils;"
+  ],
+  "fields": [
+    "protected final List<Metadata> metadataList = new LinkedList<>();"
+  ],
+  "superClasses": [
+    "AbstractRecursiveParserWrapperHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startEmbeddedDocument(ContentHandler, Metadata)": "0",
+    "endEmbeddedDocument(ContentHandler, Metadata)": "1",
+    "endDocument(ContentHandler, Metadata)": "2",
+    "writeFinalEmbeddedPaths()": "3",
+    "getMetadataList()": "4",
+    "addContent(ContentHandler, Metadata)": "5",
+    "RecursiveParserWrapperHandler(ContentHandlerFactory)": "6"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException{}",
+    "private void writeFinalEmbeddedPaths(){}",
+    "public List<Metadata> getMetadataList(){}",
+    "void addContent(ContentHandler handler, Metadata metadata){}",
+    "public RecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory){}"
+  ],
+  "constructorSigs": [
+    "RecursiveParserWrapperHandler(ContentHandlerFactory)"
+  ],
+  "constructorBrief": [
+    "public RecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory){}"
+  ],
+  "getterSetterSigs": [
+    "getMetadataList()"
+  ],
+  "getterSetterBrief": [
+    "public List<Metadata> getMetadataList(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.sax.ContentHandlerFactory": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.HashMap;\nimport java.util.LinkedList;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.concurrent.atomic.AtomicInteger;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.TikaCoreProperties;\nimport org.apache.tika.parser.RecursiveParserWrapper;\nimport org.apache.tika.utils.ParserUtils;\n\n/**\n * This is the default implementation of {@link AbstractRecursiveParserWrapperHandler}.\n * See its documentation for more details.\n * <p>\n * This caches the a metadata object for each embedded file and for the container file.\n * It places the extracted content in the metadata object, with this key:\n * {@link TikaCoreProperties#TIKA_CONTENT}\n * If memory is a concern, subclass AbstractRecursiveParserWrapperHandler to handle each\n * embedded document.\n * <p>\n * <b>NOTE: This handler must only be used with the {@link\n * org.apache.tika.parser.RecursiveParserWrapper}</b>\n * </p>\n */\npublic class RecursiveParserWrapperHandler extends AbstractRecursiveParserWrapperHandler {\n\n    protected final List<Metadata> metadataList = new LinkedList<>();\n\n    public RecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory) {\n        super(contentHandlerFactory);\n    }\n\n    /**\n     * This is called before parsing an embedded document\n     *\n     * @param contentHandler - local content handler to use on the embedded document\n     * @param metadata       metadata to use for the embedded document\n     * @throws SAXException\n     */\n    @Override\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.startEmbeddedDocument(contentHandler, metadata);\n    }\n\n    /**\n     * This is called after parsing an embedded document.\n     *\n     * @param contentHandler local contenthandler used on the embedded document\n     * @param metadata       metadata from the embedded document\n     * @throws SAXException\n     */\n    @Override\n    public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.endEmbeddedDocument(contentHandler, metadata);\n        addContent(contentHandler, metadata);\n        if (metadata.size() > 0) {\n            metadataList.add(ParserUtils.cloneMetadata(metadata));\n        }\n    }\n\n    /**\n     * @param contentHandler content handler used on the main document\n     * @param metadata       metadata from the main document\n     * @throws SAXException\n     */\n    @Override\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.endDocument(contentHandler, metadata);\n        addContent(contentHandler, metadata);\n        if (metadata.size() > 0) {\n            metadataList.add(0, ParserUtils.cloneMetadata(metadata));\n        }\n        writeFinalEmbeddedPaths();\n    }\n\n    private void writeFinalEmbeddedPaths() {\n        // for some file types, the file's \"name\" is not known before\n        // their attachments are parsed. This goes through the id paths\n        // and regenerates the path for the \"final embedded resource path\"\n        Map<String, String> idToName = new HashMap<>();\n        AtomicInteger unknownCount = new AtomicInteger(0);\n        for (Metadata metadata : metadataList) {\n            String id = metadata.get(TikaCoreProperties.EMBEDDED_ID);\n            if (id == null) {\n                continue;\n            }\n            String name = RecursiveParserWrapper.getResourceName(metadata, unknownCount);\n            idToName.put(id, name);\n        }\n        for (Metadata metadata : metadataList) {\n            String idPath = metadata.get(TikaCoreProperties.EMBEDDED_ID_PATH);\n            if (idPath == null) {\n                continue;\n            }\n            if (idPath.startsWith(\"/\")) {\n                idPath = idPath.substring(1);\n            }\n            String[] ids = idPath.split(\"/\");\n            StringBuilder sb = new StringBuilder();\n            for (String id : ids) {\n                sb.append(\"/\").append(idToName.get(id));\n            }\n            metadata.set(TikaCoreProperties.FINAL_EMBEDDED_RESOURCE_PATH, sb.toString());\n        }\n    }\n\n    /**\n     * @return a list of Metadata objects, one for the main document and one for each embedded\n     * document\n     */\n    public List<Metadata> getMetadataList() {\n        return metadataList;\n    }\n\n    void addContent(ContentHandler handler, Metadata metadata) {\n        // BasicContentHandlerFactory's \"ignore\" handler's toString() returns \"\" (not\n        // Object's default identity string), so a plain blank check is enough here --\n        // no need to special-case its class, which would break under decoration (e.g.\n        // StrictXHTMLValidator when validateXHTML is set): ContentHandlerDecorator\n        // delegates toString() to the wrapped handler, so \"\" still propagates through.\n        String content = handler.toString();\n        if (content != null && !content.isBlank()) {\n            metadata.add(TikaCoreProperties.TIKA_CONTENT, content);\n            metadata.add(TikaCoreProperties.TIKA_CONTENT_HANDLER, handler.getClass().getSimpleName());\n            metadata.set(TikaCoreProperties.TIKA_CONTENT_HANDLER_TYPE, getContentHandlerFactory().handlerTypeName());\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This is the default implementation of {@link AbstractRecursiveParserWrapperHandler}.\n * See its documentation for more details.\n * <p>\n * This caches the a metadata object for each embedded file and for the container file.\n * It places the extracted content in the metadata object, with this key:\n * {@link TikaCoreProperties#TIKA_CONTENT}\n * If memory is a concern, subclass AbstractRecursiveParserWrapperHandler to handle each\n * embedded document.\n * <p>\n * <b>NOTE: This handler must only be used with the {@link\n * org.apache.tika.parser.RecursiveParserWrapper}</b>\n * </p>\n */\npublic class RecursiveParserWrapperHandler extends AbstractRecursiveParserWrapperHandler {\n\n    protected final List<Metadata> metadataList = new LinkedList<>();\n\n    public RecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory) {\n        super(contentHandlerFactory);\n    }\n\n    /**\n     * This is called before parsing an embedded document\n     *\n     * @param contentHandler - local content handler to use on the embedded document\n     * @param metadata       metadata to use for the embedded document\n     * @throws SAXException\n     */\n    @Override\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.startEmbeddedDocument(contentHandler, metadata);\n    }\n\n    /**\n     * This is called after parsing an embedded document.\n     *\n     * @param contentHandler local contenthandler used on the embedded document\n     * @param metadata       metadata from the embedded document\n     * @throws SAXException\n     */\n    @Override\n    public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.endEmbeddedDocument(contentHandler, metadata);\n        addContent(contentHandler, metadata);\n        if (metadata.size() > 0) {\n            metadataList.add(ParserUtils.cloneMetadata(metadata));\n        }\n    }\n\n    /**\n     * @param contentHandler content handler used on the main document\n     * @param metadata       metadata from the main document\n     * @throws SAXException\n     */\n    @Override\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        super.endDocument(contentHandler, metadata);\n        addContent(contentHandler, metadata);\n        if (metadata.size() > 0) {\n            metadataList.add(0, ParserUtils.cloneMetadata(metadata));\n        }\n        writeFinalEmbeddedPaths();\n    }\n\n    private void writeFinalEmbeddedPaths() {\n        // for some file types, the file's \"name\" is not known before\n        // their attachments are parsed. This goes through the id paths\n        // and regenerates the path for the \"final embedded resource path\"\n        Map<String, String> idToName = new HashMap<>();\n        AtomicInteger unknownCount = new AtomicInteger(0);\n        for (Metadata metadata : metadataList) {\n            String id = metadata.get(TikaCoreProperties.EMBEDDED_ID);\n            if (id == null) {\n                continue;\n            }\n            String name = RecursiveParserWrapper.getResourceName(metadata, unknownCount);\n            idToName.put(id, name);\n        }\n        for (Metadata metadata : metadataList) {\n            String idPath = metadata.get(TikaCoreProperties.EMBEDDED_ID_PATH);\n            if (idPath == null) {\n                continue;\n            }\n            if (idPath.startsWith(\"/\")) {\n                idPath = idPath.substring(1);\n            }\n            String[] ids = idPath.split(\"/\");\n            StringBuilder sb = new StringBuilder();\n            for (String id : ids) {\n                sb.append(\"/\").append(idToName.get(id));\n            }\n            metadata.set(TikaCoreProperties.FINAL_EMBEDDED_RESOURCE_PATH, sb.toString());\n        }\n    }\n\n    /**\n     * @return a list of Metadata objects, one for the main document and one for each embedded\n     * document\n     */\n    public List<Metadata> getMetadataList() {\n        return metadataList;\n    }\n\n    void addContent(ContentHandler handler, Metadata metadata) {\n        // BasicContentHandlerFactory's \"ignore\" handler's toString() returns \"\" (not\n        // Object's default identity string), so a plain blank check is enough here --\n        // no need to special-case its class, which would break under decoration (e.g.\n        // StrictXHTMLValidator when validateXHTML is set): ContentHandlerDecorator\n        // delegates toString() to the wrapped handler, so \"\" still propagates through.\n        String content = handler.toString();\n        if (content != null && !content.isBlank()) {\n            metadata.add(TikaCoreProperties.TIKA_CONTENT, content);\n            metadata.add(TikaCoreProperties.TIKA_CONTENT_HANDLER, handler.getClass().getSimpleName());\n            metadata.set(TikaCoreProperties.TIKA_CONTENT_HANDLER_TYPE, getContentHandlerFactory().handlerTypeName());\n        }\n    }\n}",
+  "subClasses": []
+}

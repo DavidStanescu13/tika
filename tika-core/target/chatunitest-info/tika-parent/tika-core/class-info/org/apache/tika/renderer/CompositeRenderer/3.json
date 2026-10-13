@@ -1,0 +1,27 @@
+{
+  "className": "CompositeRenderer",
+  "methodName": "getDefaultRenderers",
+  "brief": "private static List<Renderer> getDefaultRenderers(ServiceLoader loader){}",
+  "methodSignature": "getDefaultRenderers(ServiceLoader)",
+  "sourceCode": "private static List<Renderer> getDefaultRenderers(ServiceLoader loader) {\n        List<Renderer> staticRenderers =\n                loader.loadStaticServiceProviders(Renderer.class);\n\n        ServiceLoaderUtils.sortLoadedClasses(staticRenderers);\n        return staticRenderers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "sortLoadedClasses(List<T>)"
+    ]
+  },
+  "full_method_info": "private static List<Renderer> getDefaultRenderers(ServiceLoader loader) {\n    List<Renderer> staticRenderers = loader.loadStaticServiceProviders(Renderer.class);\n    ServiceLoaderUtils.sortLoadedClasses(staticRenderers);\n    return staticRenderers;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "ParseContext",
+  "methodName": "newMetadata",
+  "brief": "public Metadata newMetadata(){}",
+  "methodSignature": "newMetadata()",
+  "sourceCode": "public Metadata newMetadata() {\n        return Metadata.newInstance(this);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new Metadata object with any configured limits applied.\n * <p>\n * If a {@link MetadataWriteLimiterFactory} is configured in this ParseContext, the returned\n * Metadata will have a write limiter that enforces those limits. Otherwise,\n * returns a plain Metadata object.\n * <p>\n * Parsers should use this method instead of {@code new Metadata()} when creating\n * metadata for embedded documents, to ensure limits are applied at creation time\n * rather than later during parsing.\n * <p>\n * Example usage:\n * <pre>\n * Metadata embeddedMetadata = Metadata.newInstance(context);\n * embeddedMetadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n * // limits are already applied, no data bypasses the limiter\n * </pre>\n *\n * @return a new Metadata object, with limits applied if configured\n * @since Apache Tika 4.0\n * @see Metadata#newInstance(ParseContext)\n */\npublic Metadata newMetadata() {\n    return Metadata.newInstance(this);\n}",
+  "method_comment": "\n     * Creates a new Metadata object with any configured limits applied.\n     * <p>\n     * If a {@link MetadataWriteLimiterFactory} is configured in this ParseContext, the returned\n     * Metadata will have a write limiter that enforces those limits. Otherwise,\n     * returns a plain Metadata object.\n     * <p>\n     * Parsers should use this method instead of {@code new Metadata()} when creating\n     * metadata for embedded documents, to ensure limits are applied at creation time\n     * rather than later during parsing.\n     * <p>\n     * Example usage:\n     * <pre>\n     * Metadata embeddedMetadata = Metadata.newInstance(context);\n     * embeddedMetadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n     * // limits are already applied, no data bypasses the limiter\n     * </pre>\n     *\n     * @return a new Metadata object, with limits applied if configured\n     * @since Apache Tika 4.0\n     * @see Metadata#newInstance(ParseContext)\n     ",
+  "method_annotation": ""
+}

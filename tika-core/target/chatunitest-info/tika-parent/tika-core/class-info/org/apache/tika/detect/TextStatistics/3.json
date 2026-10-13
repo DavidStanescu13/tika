@@ -1,0 +1,18 @@
+{
+  "className": "TextStatistics",
+  "methodName": "count",
+  "brief": "public int count(){}",
+  "methodSignature": "count()",
+  "sourceCode": "public int count() {\n        return total;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the total number of bytes seen so far.\n *\n * @return count of all bytes\n */\npublic int count() {\n    return total;\n}",
+  "method_comment": "\n     * Returns the total number of bytes seen so far.\n     *\n     * @return count of all bytes\n     ",
+  "method_annotation": ""
+}

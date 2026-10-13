@@ -1,0 +1,30 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "matchesSpoolType",
+  "brief": "private boolean matchesSpoolType(MediaType type){}",
+  "methodSignature": "matchesSpoolType(MediaType)",
+  "sourceCode": "private boolean matchesSpoolType(MediaType type) {\n        if (type == null) {\n            return false;\n        }\n        // Exact match\n        if (spoolTypes.contains(type)) {\n            return true;\n        }\n        // Base type match (without parameters)\n        MediaType baseType = type.getBaseType();\n        if (spoolTypes.contains(baseType)) {\n            return true;\n        }\n        // Check if type is a specialization of any spool type\n        if (mediaTypeRegistry != null) {\n            for (MediaType spoolType : spoolTypes) {\n                if (mediaTypeRegistry.isSpecializationOf(type, spoolType)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "getBaseType()"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "private boolean matchesSpoolType(MediaType type) {\n    if (type == null) {\n        return false;\n    }\n    // Exact match\n    if (spoolTypes.contains(type)) {\n        return true;\n    }\n    // Base type match (without parameters)\n    MediaType baseType = type.getBaseType();\n    if (spoolTypes.contains(baseType)) {\n        return true;\n    }\n    // Check if type is a specialization of any spool type\n    if (mediaTypeRegistry != null) {\n        for (MediaType spoolType : spoolTypes) {\n            if (mediaTypeRegistry.isSpecializationOf(type, spoolType)) {\n                return true;\n            }\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

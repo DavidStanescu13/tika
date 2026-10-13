@@ -1,0 +1,27 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "addResult",
+  "brief": "public void addResult(List<EncodingResult> encodingResults, String detectorName){}",
+  "methodSignature": "addResult(List, String)",
+  "sourceCode": "public void addResult(List<EncodingResult> encodingResults, String detectorName) {\n        if (encodingResults != null && !encodingResults.isEmpty()) {\n            results.add(new Result(encodingResults, detectorName));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<EncodingResult>",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "isEmpty()",
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Record the ranked results from a child detector.\n *\n * @param encodingResults ranked results, highest confidence first; must not be empty\n * @param detectorName    simple class name of the detector\n */\npublic void addResult(List<EncodingResult> encodingResults, String detectorName) {\n    if (encodingResults != null && !encodingResults.isEmpty()) {\n        results.add(new Result(encodingResults, detectorName));\n    }\n}",
+  "method_comment": "\n     * Record the ranked results from a child detector.\n     *\n     * @param encodingResults ranked results, highest confidence first; must not be empty\n     * @param detectorName    simple class name of the detector\n     ",
+  "method_annotation": ""
+}

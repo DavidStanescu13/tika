@@ -1,0 +1,29 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "recordException",
+  "brief": "public static void recordException(Throwable t, Metadata m){}",
+  "methodSignature": "recordException(Throwable, Metadata)",
+  "sourceCode": "public static void recordException(Throwable t, Metadata m) {\n        String ex = ExceptionUtils.getFilteredStackTrace(t);\n        m.add(TikaCoreProperties.TIKA_META_EXCEPTION_WARNING, ex);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)"
+    ],
+    "org.apache.tika.utils.ExceptionUtils": [
+      "getFilteredStackTrace(Throwable)"
+    ]
+  },
+  "full_method_info": "public static void recordException(Throwable t, Metadata m) {\n    String ex = ExceptionUtils.getFilteredStackTrace(t);\n    m.add(TikaCoreProperties.TIKA_META_EXCEPTION_WARNING, ex);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

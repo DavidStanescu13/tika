@@ -1,0 +1,30 @@
+{
+  "className": "TailStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(byte[] buf, int ofs, int length) throws IOException{}",
+  "methodSignature": "read(byte[], int, int)",
+  "sourceCode": "@Override\n    public int read(byte[] buf, int ofs, int length) throws IOException {\n        int read = super.read(buf, ofs, length);\n        if (read > 0) {\n            appendBuf(buf, ofs, read);\n        }\n        return read;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.io.FilterInputStream": [
+      "read(byte[], int, int)"
+    ],
+    "org.apache.tika.io.TailStream": [
+      "appendBuf(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * {@inheritDoc} This implementation delegates to the underlying stream and\n * then adds the correct portion of the read buffer to the internal tail\n * buffer.\n */\n@Override\npublic int read(byte[] buf, int ofs, int length) throws IOException {\n    int read = super.read(buf, ofs, length);\n    if (read > 0) {\n        appendBuf(buf, ofs, read);\n    }\n    return read;\n}",
+  "method_comment": "\n     * {@inheritDoc} This implementation delegates to the underlying stream and\n     * then adds the correct portion of the read buffer to the internal tail\n     * buffer.\n     ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "sendStdErrToOutputStream",
+  "brief": "private void sendStdErrToOutputStream(final Process process, final OutputStream outputStream){}",
+  "methodSignature": "sendStdErrToOutputStream(Process, OutputStream)",
+  "sourceCode": "private void sendStdErrToOutputStream(final Process process, final OutputStream outputStream) {\n        multiThreadedStreamCopy(process.getErrorStream(), outputStream);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Process",
+    "OutputStream"
+  ],
+  "dependentMethods": {
+    "java.lang.Process": [
+      "getErrorStream()"
+    ],
+    "java.io.OutputStream": [],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "multiThreadedStreamCopy(InputStream, OutputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * Starts a thread that reads and discards the contents of the standard\n * stream of the given process. Potential exceptions are ignored, and the\n * stream is closed once fully processed.\n *\n * @param process the process\n *                param outputStream the output stream to send to standard error of the process\n */\nprivate void sendStdErrToOutputStream(final Process process, final OutputStream outputStream) {\n    multiThreadedStreamCopy(process.getErrorStream(), outputStream);\n}",
+  "method_comment": "\n     * Starts a thread that reads and discards the contents of the standard\n     * stream of the given process. Potential exceptions are ignored, and the\n     * stream is closed once fully processed.\n     *\n     * @param process the process\n     *                param outputStream the output stream to send to standard error of the process\n     ",
+  "method_annotation": ""
+}

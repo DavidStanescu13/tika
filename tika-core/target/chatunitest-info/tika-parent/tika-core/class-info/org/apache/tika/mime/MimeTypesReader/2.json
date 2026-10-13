@@ -1,0 +1,34 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "setPoolSize",
+  "brief": "public static void setPoolSize(int poolSize) throws TikaException{}",
+  "methodSignature": "setPoolSize(int)",
+  "sourceCode": "public static void setPoolSize(int poolSize) throws TikaException {\n        try {\n            //stop the world with a write lock\n            //parsers that are currently in use will be offered, but not\n            //accepted and will be gc'd\n            READ_WRITE_LOCK.writeLock().lock();\n            SAX_PARSERS = new ArrayBlockingQueue<>(poolSize);\n            for (int i = 0; i < poolSize; i++) {\n                SAX_PARSERS.offer(newSAXParser());\n            }\n            POOL_SIZE = poolSize;\n        } finally {\n            READ_WRITE_LOCK.writeLock().unlock();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "writeLock()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "offer(E)"
+    ],
+    "org.apache.tika.mime.MimeTypesReader": [
+      "newSAXParser()"
+    ]
+  },
+  "full_method_info": "/**\n * Set the pool size for cached XML parsers.\n *\n * @param poolSize\n */\npublic static void setPoolSize(int poolSize) throws TikaException {\n    try {\n        // stop the world with a write lock\n        // parsers that are currently in use will be offered, but not\n        // accepted and will be gc'd\n        READ_WRITE_LOCK.writeLock().lock();\n        SAX_PARSERS = new ArrayBlockingQueue<>(poolSize);\n        for (int i = 0; i < poolSize; i++) {\n            SAX_PARSERS.offer(newSAXParser());\n        }\n        POOL_SIZE = poolSize;\n    } finally {\n        READ_WRITE_LOCK.writeLock().unlock();\n    }\n}",
+  "method_comment": "\n     * Set the pool size for cached XML parsers.\n     *\n     * @param poolSize\n     ",
+  "method_annotation": ""
+}

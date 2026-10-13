@@ -1,0 +1,25 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getDetector",
+  "brief": "public Detector getDetector(){}",
+  "methodSignature": "getDetector()",
+  "sourceCode": "public Detector getDetector() {\n        //be as lazy as possible and cache\n        Detector localDetector = context.get(Detector.class);\n        if (localDetector != null) {\n            return localDetector;\n        }\n        if (detector != null) {\n            return detector;\n        }\n\n        detector = new DefaultDetector(getMimeTypes());\n        return detector;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "getMimeTypes()"
+    ]
+  },
+  "full_method_info": "public Detector getDetector() {\n    // be as lazy as possible and cache\n    Detector localDetector = context.get(Detector.class);\n    if (localDetector != null) {\n        return localDetector;\n    }\n    if (detector != null) {\n        return detector;\n    }\n    detector = new DefaultDetector(getMimeTypes());\n    return detector;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,48 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\n            throws SAXException {\n        if (type == null) {\n            if (MIME_TYPE_TAG.equals(qName)) {\n                String name = attributes.getValue(MIME_TYPE_TYPE_ATTR);\n                String interpretedAttr = attributes.getValue(INTERPRETED_ATTR);\n                boolean interpreted = \"true\".equals(interpretedAttr);\n                try {\n                    type = types.forName(name);\n                    type.setInterpreted(interpreted);\n                } catch (MimeTypeException e) {\n                    handleMimeError(name, e, qName, attributes);\n                }\n            }\n        } else if (ALIAS_TAG.equals(qName)) {\n            String alias = attributes.getValue(ALIAS_TYPE_ATTR);\n            types.addAlias(type, MediaType.parse(alias));\n        } else if (SUB_CLASS_OF_TAG.equals(qName)) {\n            String parent = attributes.getValue(SUB_CLASS_TYPE_ATTR);\n            types.setSuperType(type, MediaType.parse(parent));\n        } else if (ACRONYM_TAG.equals(qName) || COMMENT_TAG.equals(qName) ||\n                TIKA_LINK_TAG.equals(qName) || TIKA_UTI_TAG.equals(qName)) {\n            characters = new StringBuilder();\n        } else if (GLOB_TAG.equals(qName)) {\n            String pattern = attributes.getValue(PATTERN_ATTR);\n            String isRegex = attributes.getValue(ISREGEX_ATTR);\n            if (pattern != null) {\n                try {\n                    types.addPattern(type, pattern, Boolean.parseBoolean(isRegex));\n                } catch (MimeTypeException e) {\n                    handleGlobError(type, pattern, e, qName, attributes);\n                }\n            }\n        } else if (ROOT_XML_TAG.equals(qName)) {\n            String namespace = attributes.getValue(NS_URI_ATTR);\n            String name = attributes.getValue(LOCAL_NAME_ATTR);\n            type.addRootXML(namespace, name);\n        } else if (MATCH_TAG.equals(qName)) {\n            if (attributes.getValue(MATCH_MINSHOULDMATCH_ATTR) != null) {\n                current = new ClauseRecord(new MinShouldMatchVal(\n                        Integer.parseInt(attributes.getValue(MATCH_MINSHOULDMATCH_ATTR))));\n            } else {\n                String kind = attributes.getValue(MATCH_TYPE_ATTR);\n                String offset = attributes.getValue(MATCH_OFFSET_ATTR);\n                String value = attributes.getValue(MATCH_VALUE_ATTR);\n                String mask = attributes.getValue(MATCH_MASK_ATTR);\n                if (kind == null) {\n                    kind = \"string\";\n                }\n                current =\n                        new ClauseRecord(new MagicMatch(type.getType(), kind, offset, value, mask));\n            }\n        } else if (MAGIC_TAG.equals(qName)) {\n            String value = attributes.getValue(MAGIC_PRIORITY_ATTR);\n            if (value != null && value.length() > 0) {\n                priority = Integer.parseInt(value);\n            } else {\n                priority = 50;\n            }\n            current = new ClauseRecord(null);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "length()"
+    ],
+    "org.apache.tika.mime.MimeTypes": [
+      "addPattern(MimeType, String, boolean)",
+      "addAlias(MimeType, MediaType)",
+      "setSuperType(MimeType, MediaType)",
+      "forName(String)"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "setInterpreted(boolean)",
+      "getType()",
+      "addRootXML(String, String)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.lang.Boolean": [
+      "parseBoolean(String)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n    if (type == null) {\n        if (MIME_TYPE_TAG.equals(qName)) {\n            String name = attributes.getValue(MIME_TYPE_TYPE_ATTR);\n            String interpretedAttr = attributes.getValue(INTERPRETED_ATTR);\n            boolean interpreted = \"true\".equals(interpretedAttr);\n            try {\n                type = types.forName(name);\n                type.setInterpreted(interpreted);\n            } catch (MimeTypeException e) {\n                handleMimeError(name, e, qName, attributes);\n            }\n        }\n    } else if (ALIAS_TAG.equals(qName)) {\n        String alias = attributes.getValue(ALIAS_TYPE_ATTR);\n        types.addAlias(type, MediaType.parse(alias));\n    } else if (SUB_CLASS_OF_TAG.equals(qName)) {\n        String parent = attributes.getValue(SUB_CLASS_TYPE_ATTR);\n        types.setSuperType(type, MediaType.parse(parent));\n    } else if (ACRONYM_TAG.equals(qName) || COMMENT_TAG.equals(qName) || TIKA_LINK_TAG.equals(qName) || TIKA_UTI_TAG.equals(qName)) {\n        characters = new StringBuilder();\n    } else if (GLOB_TAG.equals(qName)) {\n        String pattern = attributes.getValue(PATTERN_ATTR);\n        String isRegex = attributes.getValue(ISREGEX_ATTR);\n        if (pattern != null) {\n            try {\n                types.addPattern(type, pattern, Boolean.parseBoolean(isRegex));\n            } catch (MimeTypeException e) {\n                handleGlobError(type, pattern, e, qName, attributes);\n            }\n        }\n    } else if (ROOT_XML_TAG.equals(qName)) {\n        String namespace = attributes.getValue(NS_URI_ATTR);\n        String name = attributes.getValue(LOCAL_NAME_ATTR);\n        type.addRootXML(namespace, name);\n    } else if (MATCH_TAG.equals(qName)) {\n        if (attributes.getValue(MATCH_MINSHOULDMATCH_ATTR) != null) {\n            current = new ClauseRecord(new MinShouldMatchVal(Integer.parseInt(attributes.getValue(MATCH_MINSHOULDMATCH_ATTR))));\n        } else {\n            String kind = attributes.getValue(MATCH_TYPE_ATTR);\n            String offset = attributes.getValue(MATCH_OFFSET_ATTR);\n            String value = attributes.getValue(MATCH_VALUE_ATTR);\n            String mask = attributes.getValue(MATCH_MASK_ATTR);\n            if (kind == null) {\n                kind = \"string\";\n            }\n            current = new ClauseRecord(new MagicMatch(type.getType(), kind, offset, value, mask));\n        }\n    } else if (MAGIC_TAG.equals(qName)) {\n        String value = attributes.getValue(MAGIC_PRIORITY_ATTR);\n        if (value != null && value.length() > 0) {\n            priority = Integer.parseInt(value);\n        } else {\n            priority = 50;\n        }\n        current = new ClauseRecord(null);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

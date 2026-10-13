@@ -1,0 +1,30 @@
+{
+  "className": "MetaHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n        public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n                throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n        public void startElement(String uri, String localName, String qName, Attributes attributes)\n                throws SAXException {\n            if (\"http://www.w3.org/1999/xhtml\".equals(uri) && \"meta\".equals(localName)) {\n                String name = attributes.getValue(\"\", \"name\");\n                String content = attributes.getValue(\"\", \"content\");\n                if (name != null && content != null) {\n                    metadata.add(name, content);\n                }\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n    if (\"http://www.w3.org/1999/xhtml\".equals(uri) && \"meta\".equals(localName)) {\n        String name = attributes.getValue(\"\", \"name\");\n        String content = attributes.getValue(\"\", \"content\");\n        if (name != null && content != null) {\n            metadata.add(name, content);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

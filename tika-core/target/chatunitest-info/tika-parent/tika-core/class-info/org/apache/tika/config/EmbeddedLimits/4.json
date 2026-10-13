@@ -1,0 +1,18 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "getMaxCount",
+  "brief": "public int getMaxCount(){}",
+  "methodSignature": "getMaxCount()",
+  "sourceCode": "public int getMaxCount() {\n        return maxCount;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum number of embedded documents to process.\n *\n * @return maximum count, or -1 for unlimited\n */\npublic int getMaxCount() {\n    return maxCount;\n}",
+  "method_comment": "\n     * Gets the maximum number of embedded documents to process.\n     *\n     * @return maximum count, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

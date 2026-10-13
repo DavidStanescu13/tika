@@ -1,0 +1,18 @@
+{
+  "className": "Tika",
+  "methodName": "getParser",
+  "brief": "public Parser getParser(){}",
+  "methodSignature": "getParser()",
+  "sourceCode": "public Parser getParser() {\n        return parser;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the parser instance used by this facade.\n *\n * @return parser instance\n * @since Apache Tika 0.10\n */\npublic Parser getParser() {\n    return parser;\n}",
+  "method_comment": "\n     * Returns the parser instance used by this facade.\n     *\n     * @return parser instance\n     * @since Apache Tika 0.10\n     ",
+  "method_annotation": ""
+}

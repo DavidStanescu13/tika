@@ -1,0 +1,18 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "getStdout",
+  "brief": "public String getStdout(){}",
+  "methodSignature": "getStdout()",
+  "sourceCode": "public String getStdout() {\n        return stdout;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public String getStdout() {\n    return stdout;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

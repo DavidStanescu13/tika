@@ -1,0 +1,22 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "canHostBlocks",
+  "brief": "private static boolean canHostBlocks(Node n){}",
+  "methodSignature": "canHostBlocks(Node)",
+  "sourceCode": "private static boolean canHostBlocks(Node n) {\n        return n instanceof Document || n instanceof BlockQuote || n instanceof ListItem;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Node"
+  ],
+  "dependentMethods": {
+    "org.commonmark.node.Node": []
+  },
+  "full_method_info": "private static boolean canHostBlocks(Node n) {\n    return n instanceof Document || n instanceof BlockQuote || n instanceof ListItem;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "getFallbackFrom",
+  "brief": "private static Parser getFallbackFrom(Parser defaultParser){}",
+  "methodSignature": "getFallbackFrom(Parser)",
+  "sourceCode": "private static Parser getFallbackFrom(Parser defaultParser) {\n        if (defaultParser instanceof DefaultParser) {\n            return ((DefaultParser) defaultParser).getFallback();\n        }\n        return new EmptyParser();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.parser.CompositeParser": [
+      "getFallback()"
+    ]
+  },
+  "full_method_info": "private static Parser getFallbackFrom(Parser defaultParser) {\n    if (defaultParser instanceof DefaultParser) {\n        return ((DefaultParser) defaultParser).getFallback();\n    }\n    return new EmptyParser();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

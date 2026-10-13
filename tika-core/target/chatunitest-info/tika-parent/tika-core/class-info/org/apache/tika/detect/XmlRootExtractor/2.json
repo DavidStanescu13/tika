@@ -1,0 +1,29 @@
+{
+  "className": "XmlRootExtractor",
+  "methodName": "extractRootElement",
+  "brief": "private QName extractRootElement(InputStream stream, boolean throwMalformed){}",
+  "methodSignature": "extractRootElement(InputStream, boolean)",
+  "sourceCode": "private QName extractRootElement(InputStream stream, boolean throwMalformed) {\n        ExtractorHandler handler = new ExtractorHandler();\n        try {\n            XMLReaderUtils.parseSAX(CloseShieldInputStream.wrap(stream),\n                    handler, EMPTY_CONTEXT);\n        } catch (SecurityException e) {\n            throw e;\n        } catch (Exception e) {\n            if (throwMalformed && (e instanceof CharConversionException\n                    || e.getCause() instanceof CharConversionException)) {\n                throw new MalformedCharException(e);\n            }\n        }\n        return handler.rootElement;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.commons.io.input.CloseShieldInputStream": [
+      "wrap(InputStream)"
+    ],
+    "java.lang.Throwable": [
+      "getCause()"
+    ]
+  },
+  "full_method_info": "private QName extractRootElement(InputStream stream, boolean throwMalformed) {\n    ExtractorHandler handler = new ExtractorHandler();\n    try {\n        XMLReaderUtils.parseSAX(CloseShieldInputStream.wrap(stream), handler, EMPTY_CONTEXT);\n    } catch (SecurityException e) {\n        throw e;\n    } catch (Exception e) {\n        if (throwMalformed && (e instanceof CharConversionException || e.getCause() instanceof CharConversionException)) {\n            throw new MalformedCharException(e);\n        }\n    }\n    return handler.rootElement;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

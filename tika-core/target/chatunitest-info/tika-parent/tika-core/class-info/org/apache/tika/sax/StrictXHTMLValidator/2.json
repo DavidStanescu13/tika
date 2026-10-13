@@ -1,0 +1,28 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attrs)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes attrs)\n            throws SAXException {\n        ensureNotEnded(\"startElement <\" + display(qName, localName) + \">\");\n        checkAttributesUnique(qName, localName, attrs);\n        openElements.push(new QName(uri, localName, qName));\n        super.startElement(uri, localName, qName, attrs);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Deque": [
+      "push(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {\n    ensureNotEnded(\"startElement <\" + display(qName, localName) + \">\");\n    checkAttributesUnique(qName, localName, attrs);\n    openElements.push(new QName(uri, localName, qName));\n    super.startElement(uri, localName, qName, attrs);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

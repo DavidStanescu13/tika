@@ -1,0 +1,50 @@
+{
+  "fullClassName": "org.apache.tika.exception.TikaMemoryLimitException",
+  "className": "TikaMemoryLimitException",
+  "index": 71,
+  "modifier": "[public ]",
+  "extend": "[TikaException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class TikaMemoryLimitException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "TikaException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "msg(long, long)": "0",
+    "TikaMemoryLimitException(String)": "1",
+    "TikaMemoryLimitException(long, long)": "2"
+  },
+  "methodsBrief": [
+    "private static String msg(long triedToAllocate, long maxAllowable){}",
+    "public TikaMemoryLimitException(String msg){}",
+    "public TikaMemoryLimitException(long triedToAllocate, long maxAllowable){}"
+  ],
+  "constructorSigs": [
+    "TikaMemoryLimitException(String)",
+    "TikaMemoryLimitException(long, long)"
+  ],
+  "constructorBrief": [
+    "public TikaMemoryLimitException(String msg){}",
+    "public TikaMemoryLimitException(long triedToAllocate, long maxAllowable){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.tika.exception.TikaMemoryLimitException": [
+      "msg(long, long)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\n/*\n * Thrown when a parser is asked to allocate more memory than is allowable\n * for a given threshold.  For example, the ZCompressorInputStream might\n * be asked to create an array many gigabytes of length by a corrupt file.\n */\npublic class TikaMemoryLimitException extends TikaException {\n\n    public TikaMemoryLimitException(String msg) {\n        super(msg);\n    }\n\n    public TikaMemoryLimitException(long triedToAllocate, long maxAllowable) {\n        super(msg(triedToAllocate, maxAllowable));\n    }\n\n    private static String msg(long triedToAllocate, long maxAllowable) {\n        return \"Tried to allocate \" + triedToAllocate + \" bytes, but \" + maxAllowable + \" is the maximum allowed. Please open an issue https://issues.apache.org/jira/projects/TIKA\" + \" if you believe this file is not corrupt.\";\n    }\n}\n",
+  "classDeclarationCode": "/*\n * Thrown when a parser is asked to allocate more memory than is allowable\n * for a given threshold.  For example, the ZCompressorInputStream might\n * be asked to create an array many gigabytes of length by a corrupt file.\n */\npublic class TikaMemoryLimitException extends TikaException {\n\n    public TikaMemoryLimitException(String msg) {\n        super(msg);\n    }\n\n    public TikaMemoryLimitException(long triedToAllocate, long maxAllowable) {\n        super(msg(triedToAllocate, maxAllowable));\n    }\n\n    private static String msg(long triedToAllocate, long maxAllowable) {\n        return \"Tried to allocate \" + triedToAllocate + \" bytes, but \" + maxAllowable + \" is the maximum allowed. Please open an issue https://issues.apache.org/jira/projects/TIKA\" + \" if you believe this file is not corrupt.\";\n    }\n}",
+  "subClasses": []
+}

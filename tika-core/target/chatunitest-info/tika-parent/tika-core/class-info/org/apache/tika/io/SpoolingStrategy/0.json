@@ -1,0 +1,31 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "shouldSpool",
+  "brief": "public boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType){}",
+  "methodSignature": "shouldSpool(TikaInputStream, Metadata, MediaType)",
+  "sourceCode": "public boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType) {\n        // Already has file? No need to spool\n        if (tis != null && tis.hasFile()) {\n            return false;\n        }\n        // Check type against spoolTypes\n        return matchesSpoolType(mediaType);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "hasFile()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.mime.MediaType": [],
+    "org.apache.tika.io.SpoolingStrategy": [
+      "matchesSpoolType(MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Determines whether the stream should be spooled to disk.\n *\n * @param tis       the TikaInputStream (can check hasFile(), getLength())\n * @param metadata  metadata (can check content-type hints, filename)\n * @param mediaType the detected or declared media type\n * @return true if the stream should be spooled to disk\n */\npublic boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType) {\n    // Already has file? No need to spool\n    if (tis != null && tis.hasFile()) {\n        return false;\n    }\n    // Check type against spoolTypes\n    return matchesSpoolType(mediaType);\n}",
+  "method_comment": "\n     * Determines whether the stream should be spooled to disk.\n     *\n     * @param tis       the TikaInputStream (can check hasFile(), getLength())\n     * @param metadata  metadata (can check content-type hints, filename)\n     * @param mediaType the detected or declared media type\n     * @return true if the stream should be spooled to disk\n     ",
+  "method_annotation": ""
+}

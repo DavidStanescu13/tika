@@ -1,0 +1,25 @@
+{
+  "className": "TextContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\n            throws SAXException {\n        if (addSpaceBetweenElements) {\n            delegate.characters(SPACE, 0, SPACE.length);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n    if (addSpaceBetweenElements) {\n        delegate.characters(SPACE, 0, SPACE.length);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

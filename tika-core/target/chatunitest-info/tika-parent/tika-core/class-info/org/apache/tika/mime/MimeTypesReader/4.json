@@ -1,0 +1,26 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "read",
+  "brief": "public void read(InputStream stream) throws IOException, MimeTypeException{}",
+  "methodSignature": "read(InputStream)",
+  "sourceCode": "public void read(InputStream stream) throws IOException, MimeTypeException {\n        SAXParser parser = null;\n        try {\n\n            parser = acquireSAXParser();\n            parser.parse(stream, this);\n        } catch (TikaException e) {\n            throw new MimeTypeException(\"Unable to create an XML parser\", e);\n        } catch (SAXException e) {\n            throw new MimeTypeException(\"Invalid type configuration\", e);\n        } finally {\n            if (parser != null) {\n                releaseParser(parser);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.mime.MimeTypesReader": [
+      "acquireSAXParser()",
+      "releaseParser(SAXParser)"
+    ]
+  },
+  "full_method_info": "public void read(InputStream stream) throws IOException, MimeTypeException {\n    SAXParser parser = null;\n    try {\n        parser = acquireSAXParser();\n        parser.parse(stream, this);\n    } catch (TikaException e) {\n        throw new MimeTypeException(\"Unable to create an XML parser\", e);\n    } catch (SAXException e) {\n        throw new MimeTypeException(\"Invalid type configuration\", e);\n    } finally {\n        if (parser != null) {\n            releaseParser(parser);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

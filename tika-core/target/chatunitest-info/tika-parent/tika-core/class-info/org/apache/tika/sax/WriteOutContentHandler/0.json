@@ -1,0 +1,28 @@
+{
+  "className": "WriteOutContentHandler",
+  "methodName": "newInstance",
+  "brief": "public static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context){}",
+  "methodSignature": "newInstance(ContentHandler, ParseContext)",
+  "sourceCode": "public static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context) {\n        OutputLimits limits = OutputLimits.get(context);\n        return new WriteOutContentHandler(handler, limits.getWriteLimit(),\n                limits.isThrowOnWriteLimit(), context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.config.OutputLimits": [
+      "get(ParseContext)",
+      "isThrowOnWriteLimit()",
+      "getWriteLimit()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new WriteOutContentHandler configured from OutputLimits in the ParseContext.\n * <p>\n * If OutputLimits is present in the context, the handler will be configured with those\n * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used (-1 for\n * unlimited, true for throwOnWriteLimitReached).\n *\n * @param handler the content handler to decorate\n * @param context the ParseContext (may be null)\n * @return a configured WriteOutContentHandler\n */\npublic static WriteOutContentHandler newInstance(ContentHandler handler, ParseContext context) {\n    OutputLimits limits = OutputLimits.get(context);\n    return new WriteOutContentHandler(handler, limits.getWriteLimit(), limits.isThrowOnWriteLimit(), context);\n}",
+  "method_comment": "\n     * Creates a new WriteOutContentHandler configured from OutputLimits in the ParseContext.\n     * <p>\n     * If OutputLimits is present in the context, the handler will be configured with those\n     * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used (-1 for\n     * unlimited, true for throwOnWriteLimitReached).\n     *\n     * @param handler the content handler to decorate\n     * @param context the ParseContext (may be null)\n     * @return a configured WriteOutContentHandler\n     ",
+  "method_annotation": ""
+}

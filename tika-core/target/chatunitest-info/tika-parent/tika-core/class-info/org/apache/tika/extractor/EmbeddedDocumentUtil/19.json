@@ -1,0 +1,33 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "findInComposite",
+  "brief": "private static Parser findInComposite(CompositeParser p, Class clazz, ParseContext context){}",
+  "methodSignature": "findInComposite(CompositeParser, Class, ParseContext)",
+  "sourceCode": "private static Parser findInComposite(CompositeParser p, Class clazz, ParseContext context) {\n        for (Parser candidate : p.getAllComponentParsers()) {\n            if (equals(candidate, clazz)) {\n                return candidate;\n            }\n            if (candidate instanceof ParserDecorator) {\n                candidate = findInDecorated((ParserDecorator) candidate, clazz);\n            }\n            if (equals(candidate, clazz)) {\n                return candidate;\n            }\n            if (candidate instanceof CompositeParser) {\n                candidate = findInComposite((CompositeParser) candidate, clazz, context);\n            }\n            if (equals(candidate, clazz)) {\n                return candidate;\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CompositeParser",
+    "Class",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.CompositeParser": [
+      "getAllComponentParsers()"
+    ],
+    "java.lang.Class": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "findInDecorated(ParserDecorator, Class)",
+      "findInComposite(CompositeParser, Class, ParseContext)",
+      "equals(Parser, Class)"
+    ]
+  },
+  "full_method_info": "private static Parser findInComposite(CompositeParser p, Class clazz, ParseContext context) {\n    for (Parser candidate : p.getAllComponentParsers()) {\n        if (equals(candidate, clazz)) {\n            return candidate;\n        }\n        if (candidate instanceof ParserDecorator) {\n            candidate = findInDecorated((ParserDecorator) candidate, clazz);\n        }\n        if (equals(candidate, clazz)) {\n            return candidate;\n        }\n        if (candidate instanceof CompositeParser) {\n            candidate = findInComposite((CompositeParser) candidate, clazz, context);\n        }\n        if (equals(candidate, clazz)) {\n            return candidate;\n        }\n    }\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

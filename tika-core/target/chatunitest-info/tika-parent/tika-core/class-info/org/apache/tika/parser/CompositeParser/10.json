@@ -1,0 +1,22 @@
+{
+  "className": "CompositeParser",
+  "methodName": "setFallback",
+  "brief": "public void setFallback(Parser fallback){}",
+  "methodSignature": "setFallback(Parser)",
+  "sourceCode": "public void setFallback(Parser fallback) {\n        this.fallback = fallback;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "full_method_info": "/**\n * Sets the fallback parser.\n *\n * @param fallback fallback parser\n */\npublic void setFallback(Parser fallback) {\n    this.fallback = fallback;\n}",
+  "method_comment": "\n     * Sets the fallback parser.\n     *\n     * @param fallback fallback parser\n     ",
+  "method_annotation": ""
+}

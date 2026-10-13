@@ -1,0 +1,28 @@
+{
+  "className": "TargetElement",
+  "methodName": "mapAttributes",
+  "brief": "public Attributes mapAttributes(final Attributes atts){}",
+  "methodSignature": "mapAttributes(Attributes)",
+  "sourceCode": "public Attributes mapAttributes(final Attributes atts) {\n            AttributesImpl natts = new AttributesImpl();\n            for (int i = 0; i < atts.getLength(); i++) {\n                QName name = attributesMapping.get(new QName(atts.getURI(i), atts.getLocalName(i)));\n                if (name != null) {\n                    natts.addAttribute(name.getNamespaceURI(), name.getLocalPart(),\n                            getQNameAsString(name), atts.getType(i), atts.getValue(i));\n                }\n            }\n            return natts;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "javax.xml.namespace.QName": [
+      "getNamespaceURI()",
+      "getLocalPart()"
+    ]
+  },
+  "full_method_info": "public Attributes mapAttributes(final Attributes atts) {\n    AttributesImpl natts = new AttributesImpl();\n    for (int i = 0; i < atts.getLength(); i++) {\n        QName name = attributesMapping.get(new QName(atts.getURI(i), atts.getLocalName(i)));\n        if (name != null) {\n            natts.addAttribute(name.getNamespaceURI(), name.getLocalPart(), getQNameAsString(name), atts.getType(i), atts.getValue(i));\n        }\n    }\n    return natts;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "Property",
+  "methodName": "externalOpenChoise",
+  "brief": "public static Property externalOpenChoise(String name, String... choices){}",
+  "methodSignature": "externalOpenChoise(String, String[])",
+  "sourceCode": "public static Property externalOpenChoise(String name, String... choices) {\n        return new Property(name, false, ValueType.OPEN_CHOICE, choices);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.String...": []
+  },
+  "full_method_info": "public static Property externalOpenChoise(String name, String... choices) {\n    return new Property(name, false, ValueType.OPEN_CHOICE, choices);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

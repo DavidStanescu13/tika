@@ -1,0 +1,27 @@
+{
+  "className": "DefaultDetector",
+  "methodName": "DefaultDetector",
+  "brief": "public DefaultDetector(MimeTypes types, ServiceLoader loader){}",
+  "methodSignature": "DefaultDetector(MimeTypes, ServiceLoader)",
+  "sourceCode": "public DefaultDetector(MimeTypes types, ServiceLoader loader) {\n        this(types, loader, Collections.emptySet());\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeTypes",
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypes": [],
+    "org.apache.tika.config.ServiceLoader": [],
+    "java.util.Collections": [
+      "emptySet()"
+    ]
+  },
+  "full_method_info": "public DefaultDetector(MimeTypes types, ServiceLoader loader) {\n    this(types, loader, Collections.emptySet());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,108 @@
+{
+  "fullClassName": "org.apache.tika.sax.ContentHandlerDecorator",
+  "className": "ContentHandlerDecorator",
+  "index": 280,
+  "modifier": "[public ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class ContentHandlerDecorator",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.ErrorHandler;",
+    "import org.xml.sax.Locator;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.SAXParseException;",
+    "import org.xml.sax.helpers.DefaultHandler;"
+  ],
+  "fields": [
+    "private ContentHandler handler;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setContentHandler(ContentHandler)": "0",
+    "startPrefixMapping(String, String)": "1",
+    "endPrefixMapping(String)": "2",
+    "processingInstruction(String, String)": "3",
+    "setDocumentLocator(Locator)": "4",
+    "startDocument()": "5",
+    "endDocument()": "6",
+    "startElement(String, String, String, Attributes)": "7",
+    "endElement(String, String, String)": "8",
+    "characters(char[], int, int)": "9",
+    "ignorableWhitespace(char[], int, int)": "10",
+    "skippedEntity(String)": "11",
+    "toString()": "12",
+    "handleException(SAXException)": "13",
+    "warning(SAXParseException)": "14",
+    "error(SAXParseException)": "15",
+    "fatalError(SAXParseException)": "16",
+    "ContentHandlerDecorator(ContentHandler)": "17",
+    "ContentHandlerDecorator()": "18"
+  },
+  "methodsBrief": [
+    "protected void setContentHandler(ContentHandler handler){}",
+    "@Override\r\n    public void startPrefixMapping(String prefix, String uri) throws SAXException{}",
+    "@Override\r\n    public void endPrefixMapping(String prefix) throws SAXException{}",
+    "@Override\r\n    public void processingInstruction(String target, String data) throws SAXException{}",
+    "@Override\r\n    public void setDocumentLocator(Locator locator){}",
+    "@Override\r\n    public void startDocument() throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "@Override\r\n    public void startElement(String uri, String localName, String name, Attributes atts)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endElement(String uri, String localName, String name) throws SAXException{}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void skippedEntity(String name) throws SAXException{}",
+    "@Override\r\n    public String toString(){}",
+    "protected void handleException(SAXException exception) throws SAXException{}",
+    "@Override\r\n    public void warning (SAXParseException exception) throws SAXException{}",
+    "@Override\r\n    public void error (SAXParseException exception) throws SAXException{}",
+    "@Override\r\n    public void fatalError (SAXParseException exception)\r\n            throws SAXException{}",
+    "public ContentHandlerDecorator(ContentHandler handler){}",
+    "protected ContentHandlerDecorator(){}"
+  ],
+  "constructorSigs": [
+    "ContentHandlerDecorator(ContentHandler)",
+    "ContentHandlerDecorator()"
+  ],
+  "constructorBrief": [
+    "public ContentHandlerDecorator(ContentHandler handler){}",
+    "protected ContentHandlerDecorator(){}"
+  ],
+  "getterSetterSigs": [
+    "setContentHandler(ContentHandler)",
+    "setDocumentLocator(Locator)"
+  ],
+  "getterSetterBrief": [
+    "protected void setContentHandler(ContentHandler handler){}",
+    "@Override\r\n    public void setDocumentLocator(Locator locator){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.ErrorHandler;\nimport org.xml.sax.Locator;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.SAXParseException;\nimport org.xml.sax.helpers.DefaultHandler;\n\n/**\n * Decorator base class for the {@link ContentHandler} interface. This class\n * simply delegates all SAX events calls to an underlying decorated handler\n * instance. Subclasses can provide extra decoration by overriding one or more\n * of the SAX event methods.\n */\npublic class ContentHandlerDecorator extends DefaultHandler {\n\n    /**\n     * Decorated SAX event handler.\n     */\n    private ContentHandler handler;\n\n    public ContentHandlerDecorator(ContentHandler handler) {\n        assert handler != null;\n        this.handler = handler;\n    }\n\n    protected ContentHandlerDecorator() {\n        this(new DefaultHandler());\n    }\n\n    /**\n     * Sets the underlying content handler. All future SAX events will be\n     * directed to this handler instead of the one that was previously used.\n     *\n     * @param handler content handler\n     */\n    protected void setContentHandler(ContentHandler handler) {\n        assert handler != null;\n        this.handler = handler;\n    }\n\n    @Override\n    public void startPrefixMapping(String prefix, String uri) throws SAXException {\n        try {\n            handler.startPrefixMapping(prefix, uri);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endPrefixMapping(String prefix) throws SAXException {\n        try {\n            handler.endPrefixMapping(prefix);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void processingInstruction(String target, String data) throws SAXException {\n        try {\n            handler.processingInstruction(target, data);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void setDocumentLocator(Locator locator) {\n        handler.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        try {\n            handler.startDocument();\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        try {\n            handler.endDocument();\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {\n        try {\n            handler.startElement(uri, localName, name, atts);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String name) throws SAXException {\n        try {\n            handler.endElement(uri, localName, name);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            handler.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        try {\n            handler.ignorableWhitespace(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void skippedEntity(String name) throws SAXException {\n        try {\n            handler.skippedEntity(name);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public String toString() {\n        return handler.toString();\n    }\n\n    /**\n     * Handle any exceptions thrown by methods in this class. This method\n     * provides a single place to implement custom exception handling. The\n     * default behaviour is simply to re-throw the given exception, but\n     * subclasses can also provide alternative ways of handling the situation.\n     *\n     * If the wrapped handler is itself a ContentHandlerDecorator, the call\n     * is delegated to the wrapped handler's {@link ContentHandlerDecorator#handleException(SAXException)}\n     *\n     * @param exception the exception that was thrown\n     * @throws SAXException the exception (if any) thrown to the client\n     */\n    protected void handleException(SAXException exception) throws SAXException {\n        if (handler instanceof ContentHandlerDecorator) {\n            ((ContentHandlerDecorator) handler).handleException(exception);\n        } else {\n            throw exception;\n        }\n    }\n\n    @Override\n    public void warning(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).warning(exception);\n        } else {\n            super.warning(exception);\n        }\n    }\n\n    @Override\n    public void error(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).error(exception);\n        } else {\n            super.error(exception);\n        }\n    }\n\n    @Override\n    public void fatalError(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).fatalError(exception);\n        } else {\n            super.fatalError(exception);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Decorator base class for the {@link ContentHandler} interface. This class\n * simply delegates all SAX events calls to an underlying decorated handler\n * instance. Subclasses can provide extra decoration by overriding one or more\n * of the SAX event methods.\n */\npublic class ContentHandlerDecorator extends DefaultHandler {\n\n    /**\n     * Decorated SAX event handler.\n     */\n    private ContentHandler handler;\n\n    public ContentHandlerDecorator(ContentHandler handler) {\n        assert handler != null;\n        this.handler = handler;\n    }\n\n    protected ContentHandlerDecorator() {\n        this(new DefaultHandler());\n    }\n\n    /**\n     * Sets the underlying content handler. All future SAX events will be\n     * directed to this handler instead of the one that was previously used.\n     *\n     * @param handler content handler\n     */\n    protected void setContentHandler(ContentHandler handler) {\n        assert handler != null;\n        this.handler = handler;\n    }\n\n    @Override\n    public void startPrefixMapping(String prefix, String uri) throws SAXException {\n        try {\n            handler.startPrefixMapping(prefix, uri);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endPrefixMapping(String prefix) throws SAXException {\n        try {\n            handler.endPrefixMapping(prefix);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void processingInstruction(String target, String data) throws SAXException {\n        try {\n            handler.processingInstruction(target, data);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void setDocumentLocator(Locator locator) {\n        handler.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        try {\n            handler.startDocument();\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        try {\n            handler.endDocument();\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {\n        try {\n            handler.startElement(uri, localName, name, atts);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String name) throws SAXException {\n        try {\n            handler.endElement(uri, localName, name);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            handler.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        try {\n            handler.ignorableWhitespace(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public void skippedEntity(String name) throws SAXException {\n        try {\n            handler.skippedEntity(name);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    @Override\n    public String toString() {\n        return handler.toString();\n    }\n\n    /**\n     * Handle any exceptions thrown by methods in this class. This method\n     * provides a single place to implement custom exception handling. The\n     * default behaviour is simply to re-throw the given exception, but\n     * subclasses can also provide alternative ways of handling the situation.\n     *\n     * If the wrapped handler is itself a ContentHandlerDecorator, the call\n     * is delegated to the wrapped handler's {@link ContentHandlerDecorator#handleException(SAXException)}\n     *\n     * @param exception the exception that was thrown\n     * @throws SAXException the exception (if any) thrown to the client\n     */\n    protected void handleException(SAXException exception) throws SAXException {\n        if (handler instanceof ContentHandlerDecorator) {\n            ((ContentHandlerDecorator) handler).handleException(exception);\n        } else {\n            throw exception;\n        }\n    }\n\n    @Override\n    public void warning(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).warning(exception);\n        } else {\n            super.warning(exception);\n        }\n    }\n\n    @Override\n    public void error(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).error(exception);\n        } else {\n            super.error(exception);\n        }\n    }\n\n    @Override\n    public void fatalError(SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler) handler).fatalError(exception);\n        } else {\n            super.fatalError(exception);\n        }\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.BodyContentHandler",
+    "org.apache.tika.sax.ElementMappingContentHandler",
+    "org.apache.tika.sax.EmbeddedContentHandler",
+    "org.apache.tika.sax.EndDocumentShieldingContentHandler",
+    "org.apache.tika.sax.ExpandedTitleContentHandler",
+    "org.apache.tika.sax.OfflineContentHandler",
+    "org.apache.tika.sax.PhoneExtractingContentHandler",
+    "org.apache.tika.sax.SafeContentHandler",
+    "org.apache.tika.sax.SecureContentHandler",
+    "org.apache.tika.sax.StandardsExtractingContentHandler",
+    "org.apache.tika.sax.StrictXHTMLValidator",
+    "org.apache.tika.sax.TaggedContentHandler",
+    "org.apache.tika.sax.WriteOutContentHandler",
+    "org.apache.tika.sax.XHTMLBalancingHandler"
+  ]
+}

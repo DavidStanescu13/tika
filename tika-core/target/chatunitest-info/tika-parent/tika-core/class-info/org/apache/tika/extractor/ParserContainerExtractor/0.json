@@ -1,0 +1,36 @@
+{
+  "className": "ParserContainerExtractor",
+  "methodName": "isSupported",
+  "brief": "@Override\r\n    public boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException{}",
+  "methodSignature": "isSupported(TikaInputStream, ParseContext)",
+  "sourceCode": "@Override\n    public boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException {\n        MediaType type = detector.detect(input, Metadata.newInstance(parseContext), parseContext);\n        return parser.getSupportedTypes(parseContext).contains(type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.detect.Detector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ]
+  },
+  "full_method_info": "@Override\npublic boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException {\n    MediaType type = detector.detect(input, Metadata.newInstance(parseContext), parseContext);\n    return parser.getSupportedTypes(parseContext).contains(type);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

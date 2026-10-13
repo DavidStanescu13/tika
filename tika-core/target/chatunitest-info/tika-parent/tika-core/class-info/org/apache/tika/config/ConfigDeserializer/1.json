@@ -1,0 +1,18 @@
+{
+  "className": "ConfigDeserializer",
+  "methodName": "isJacksonAvailable",
+  "brief": "public static boolean isJacksonAvailable(){}",
+  "methodSignature": "isJacksonAvailable()",
+  "sourceCode": "public static boolean isJacksonAvailable() {\n        return OBJECT_MAPPER_CLASS != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Checks if Jackson ObjectMapper is available on the classpath.\n *\n * @return true if Jackson is available for JSON deserialization\n */\npublic static boolean isJacksonAvailable() {\n    return OBJECT_MAPPER_CLASS != null;\n}",
+  "method_comment": "\n     * Checks if Jackson ObjectMapper is available on the classpath.\n     *\n     * @return true if Jackson is available for JSON deserialization\n     ",
+  "method_annotation": ""
+}

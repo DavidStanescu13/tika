@@ -1,0 +1,30 @@
+{
+  "className": "ClauseRecord",
+  "methodName": "stop",
+  "brief": "public void stop(){}",
+  "methodSignature": "stop()",
+  "sourceCode": "public void stop() {\n            if (clause instanceof MinShouldMatchVal) {\n                clause =\n                        new MinShouldMatchClause(((MinShouldMatchVal) clause).getVal(), subclauses);\n            } else if (subclauses != null) {\n                Clause subclause;\n                if (subclauses.size() == 1) {\n                    subclause = subclauses.get(0);\n                } else {\n                    subclause = new OrClause(subclauses);\n                }\n                clause = new AndClause(clause, subclause);\n            }\n\n            if (parent.subclauses == null) {\n                parent.subclauses = Collections.singletonList(clause);\n            } else {\n                if (parent.subclauses.size() == 1) {\n                    parent.subclauses = new ArrayList<>(parent.subclauses);\n                }\n                parent.subclauses.add(clause);\n            }\n\n            current = current.parent;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeTypesReader.MinShouldMatchVal": [
+      "getVal()"
+    ],
+    "java.util.List": [
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.Collections": [
+      "singletonList(T)"
+    ]
+  },
+  "full_method_info": "public void stop() {\n    if (clause instanceof MinShouldMatchVal) {\n        clause = new MinShouldMatchClause(((MinShouldMatchVal) clause).getVal(), subclauses);\n    } else if (subclauses != null) {\n        Clause subclause;\n        if (subclauses.size() == 1) {\n            subclause = subclauses.get(0);\n        } else {\n            subclause = new OrClause(subclauses);\n        }\n        clause = new AndClause(clause, subclause);\n    }\n    if (parent.subclauses == null) {\n        parent.subclauses = Collections.singletonList(clause);\n    } else {\n        if (parent.subclauses.size() == 1) {\n            parent.subclauses = new ArrayList<>(parent.subclauses);\n        }\n        parent.subclauses.add(clause);\n    }\n    current = current.parent;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

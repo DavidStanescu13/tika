@@ -1,0 +1,34 @@
+{
+  "className": "CompositeEncodingDetector",
+  "methodName": "partition",
+  "brief": "private static MetaEncodingDetector partition(\r\n            List<EncodingDetector> all, List<EncodingDetector> base){}",
+  "methodSignature": "partition(List, List)",
+  "sourceCode": "private static MetaEncodingDetector partition(\n            List<EncodingDetector> all, List<EncodingDetector> base) {\n        MetaEncodingDetector meta = null;\n        for (EncodingDetector d : all) {\n            if (d instanceof MetaEncodingDetector) {\n                if (meta == null) {\n                    meta = (MetaEncodingDetector) d;\n                } else {\n                    LOG.warn(\"Multiple MetaEncodingDetectors found; ignoring {}\",\n                            d.getClass().getName());\n                }\n            } else {\n                base.add(d);\n            }\n        }\n        return meta;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<EncodingDetector>",
+    "List<EncodingDetector>"
+  ],
+  "dependentMethods": {
+    "org.slf4j.Logger": [
+      "warn(String, Object)"
+    ],
+    "java.lang.Class": [
+      "getName()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private static MetaEncodingDetector partition(List<EncodingDetector> all, List<EncodingDetector> base) {\n    MetaEncodingDetector meta = null;\n    for (EncodingDetector d : all) {\n        if (d instanceof MetaEncodingDetector) {\n            if (meta == null) {\n                meta = (MetaEncodingDetector) d;\n            } else {\n                LOG.warn(\"Multiple MetaEncodingDetectors found; ignoring {}\", d.getClass().getName());\n            }\n        } else {\n            base.add(d);\n        }\n    }\n    return meta;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

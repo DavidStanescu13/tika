@@ -1,0 +1,23 @@
+{
+  "className": "StreamCache",
+  "methodName": "toFile",
+  "brief": "Path toFile() throws IOException{}",
+  "methodSignature": "toFile()",
+  "sourceCode": "Path toFile() throws IOException {\n        if (spillFile == null) {\n            spillToFile();\n        }\n        flushSpillStream();\n        return spillFile;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "spillToFile()",
+      "flushSpillStream()"
+    ]
+  },
+  "full_method_info": "/**\n * Force all content to a file and return the path.\n * After this call, the cache is in file-backed mode.\n */\nPath toFile() throws IOException {\n    if (spillFile == null) {\n        spillToFile();\n    }\n    flushSpillStream();\n    return spillFile;\n}",
+  "method_comment": "\n     * Force all content to a file and return the path.\n     * After this call, the cache is in file-backed mode.\n     ",
+  "method_annotation": ""
+}

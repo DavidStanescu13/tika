@@ -1,0 +1,32 @@
+{
+  "className": "Metadata",
+  "methodName": "getInt",
+  "brief": "public Integer getInt(Property property){}",
+  "methodSignature": "getInt(Property)",
+  "sourceCode": "public Integer getInt(Property property) {\n        if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n            return null;\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n            return null;\n        }\n\n        String v = get(property);\n        if (v == null) {\n            return null;\n        }\n        try {\n            return Integer.valueOf(v);\n        } catch (NumberFormatException e) {\n            return null;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "java.lang.Integer": [
+      "valueOf(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the value of the identified Integer based metadata property. If many values are\n * associated to the specified property, then the first one is returned.\n *\n * @param property simple integer property definition\n * @return property value as a Integer, or <code>null</code> if the property is not set, or\n * not a valid Integer\n * @since Apache Tika 0.8\n */\npublic Integer getInt(Property property) {\n    if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n        return null;\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n        return null;\n    }\n    String v = get(property);\n    if (v == null) {\n        return null;\n    }\n    try {\n        return Integer.valueOf(v);\n    } catch (NumberFormatException e) {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Returns the value of the identified Integer based metadata property. If many values are\n     * associated to the specified property, then the first one is returned.\n     *\n     * @param property simple integer property definition\n     * @return property value as a Integer, or <code>null</code> if the property is not set, or\n     * not a valid Integer\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

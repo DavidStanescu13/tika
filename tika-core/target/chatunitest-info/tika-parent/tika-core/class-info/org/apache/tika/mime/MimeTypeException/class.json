@@ -1,0 +1,48 @@
+{
+  "fullClassName": "org.apache.tika.mime.MimeTypeException",
+  "className": "MimeTypeException",
+  "index": 210,
+  "modifier": "[public ]",
+  "extend": "[TikaException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.mime",
+  "packageDeclaration": "package org.apache.tika.mime;",
+  "classSignature": "public class MimeTypeException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.exception.TikaException;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "TikaException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "MimeTypeException(String)": "0",
+    "MimeTypeException(String, Throwable)": "1"
+  },
+  "methodsBrief": [
+    "public MimeTypeException(String message){}",
+    "public MimeTypeException(String message, Throwable cause){}"
+  ],
+  "constructorSigs": [
+    "MimeTypeException(String)",
+    "MimeTypeException(String, Throwable)"
+  ],
+  "constructorBrief": [
+    "public MimeTypeException(String message){}",
+    "public MimeTypeException(String message, Throwable cause){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "java.lang.Throwable": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.mime;\n\nimport org.apache.tika.exception.TikaException;\n\n/**\n * A class to encapsulate MimeType related exceptions.\n */\npublic class MimeTypeException extends TikaException {\n\n    public MimeTypeException(String message) {\n        super(message);\n    }\n\n    public MimeTypeException(String message, Throwable cause) {\n        super(message, cause);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A class to encapsulate MimeType related exceptions.\n */\npublic class MimeTypeException extends TikaException {\n\n    public MimeTypeException(String message) {\n        super(message);\n    }\n\n    public MimeTypeException(String message, Throwable cause) {\n        super(message, cause);\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,25 @@
+{
+  "className": "WriteLimitReachedException",
+  "methodName": "throwIfWriteLimitReached",
+  "brief": "public static void throwIfWriteLimitReached(Exception ex) throws SAXException{}",
+  "methodSignature": "throwIfWriteLimitReached(Exception)",
+  "sourceCode": "public static void throwIfWriteLimitReached(Exception ex) throws SAXException {\n        throwIfWriteLimitReached(ex, 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Exception"
+  ],
+  "dependentMethods": {
+    "java.lang.Exception": [],
+    "org.apache.tika.exception.WriteLimitReachedException": [
+      "throwIfWriteLimitReached(Throwable, int)"
+    ]
+  },
+  "full_method_info": "public static void throwIfWriteLimitReached(Exception ex) throws SAXException {\n    throwIfWriteLimitReached(ex, 0);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

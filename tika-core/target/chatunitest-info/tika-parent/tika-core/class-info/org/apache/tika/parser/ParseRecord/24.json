@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "isEmbeddedDepthLimitReached",
+  "brief": "public boolean isEmbeddedDepthLimitReached(){}",
+  "methodSignature": "isEmbeddedDepthLimitReached()",
+  "sourceCode": "public boolean isEmbeddedDepthLimitReached() {\n        return embeddedDepthLimitReached;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns whether the embedded depth limit was reached during parsing.\n *\n * @return true if the depth limit was reached\n */\npublic boolean isEmbeddedDepthLimitReached() {\n    return embeddedDepthLimitReached;\n}",
+  "method_comment": "\n     * Returns whether the embedded depth limit was reached during parsing.\n     *\n     * @return true if the depth limit was reached\n     ",
+  "method_annotation": ""
+}

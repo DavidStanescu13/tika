@@ -1,0 +1,22 @@
+{
+  "className": "RenderResult",
+  "methodName": "close",
+  "brief": "@Override\r\n    public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "@Override\n    public void close() throws IOException {\n        tmp.close();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": [
+      "close()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void close() throws IOException {\n    tmp.close();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

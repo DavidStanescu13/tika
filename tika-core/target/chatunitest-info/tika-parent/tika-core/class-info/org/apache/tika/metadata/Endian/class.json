@@ -1,0 +1,56 @@
+{
+  "fullClassName": "org.apache.tika.metadata.Endian",
+  "className": "Endian",
+  "index": 159,
+  "modifier": "[final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata",
+  "packageDeclaration": "package org.apache.tika.metadata;",
+  "classSignature": "final class Endian",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "public static final Endian LITTLE = new Endian(\"Little\", false);",
+    "public static final Endian BIG = new Endian(\"Big\", true);",
+    "private final String name;",
+    "private final boolean msb;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getName()": "0",
+    "isMSB()": "1",
+    "getMSB()": "2",
+    "Endian(String, boolean)": "3"
+  },
+  "methodsBrief": [
+    "public String getName(){}",
+    "@SuppressWarnings(\"unused\")\r\n        public boolean isMSB(){}",
+    "@SuppressWarnings(\"unused\")\r\n        public String getMSB(){}",
+    "private Endian(String name, boolean msb){}"
+  ],
+  "constructorSigs": [
+    "Endian(String, boolean)"
+  ],
+  "constructorBrief": [
+    "private Endian(String name, boolean msb){}"
+  ],
+  "getterSetterSigs": [
+    "getName()",
+    "getMSB()"
+  ],
+  "getterSetterBrief": [
+    "public String getName(){}",
+    "@SuppressWarnings(\"unused\")\r\n        public String getMSB(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata;\n\n/**\n * Metadata for describing machines, such as their\n * architecture, type and endian-ness\n */\npublic interface MachineMetadata {\n\n    String PREFIX = \"machine:\";\n\n    Property ARCHITECTURE_BITS = Property.internalClosedChoise(PREFIX + \"architectureBits\", \"8\", \"16\", \"32\", \"64\");\n\n    String PLATFORM_SYSV = \"System V\";\n\n    String PLATFORM_HPUX = \"HP-UX\";\n\n    String PLATFORM_NETBSD = \"NetBSD\";\n\n    String PLATFORM_LINUX = \"Linux\";\n\n    String PLATFORM_SOLARIS = \"Solaris\";\n\n    String PLATFORM_AIX = \"AIX\";\n\n    String PLATFORM_IRIX = \"IRIX\";\n\n    String PLATFORM_FREEBSD = \"FreeBSD\";\n\n    String PLATFORM_TRU64 = \"Tru64\";\n\n    // ARM architecture ABI\n    String PLATFORM_ARM = \"ARM\";\n\n    // Stand-alone (embedded) ABI\n    String PLATFORM_EMBEDDED = \"Embedded\";\n\n    String PLATFORM_WINDOWS = \"Windows\";\n\n    Property PLATFORM = Property.internalClosedChoise(PREFIX + \"platform\", PLATFORM_SYSV, PLATFORM_HPUX, PLATFORM_NETBSD, PLATFORM_LINUX, PLATFORM_SOLARIS, PLATFORM_AIX, PLATFORM_IRIX, PLATFORM_FREEBSD, PLATFORM_TRU64, PLATFORM_ARM, PLATFORM_EMBEDDED, PLATFORM_WINDOWS);\n\n    String MACHINE_x86_32 = \"x86-32\";\n\n    String MACHINE_x86_64 = \"x86-64\";\n\n    String MACHINE_IA_64 = \"IA-64\";\n\n    String MACHINE_SPARC = \"SPARC\";\n\n    String MACHINE_M68K = \"Motorola-68000\";\n\n    String MACHINE_M88K = \"Motorola-88000\";\n\n    String MACHINE_MIPS = \"MIPS\";\n\n    String MACHINE_PPC = \"PPC\";\n\n    String MACHINE_S370 = \"S370\";\n\n    String MACHINE_S390 = \"S390\";\n\n    String MACHINE_ARM = \"ARM\";\n\n    String MACHINE_VAX = \"Vax\";\n\n    String MACHINE_ALPHA = \"Alpha\";\n\n    // EFI ByteCode\n    String MACHINE_EFI = \"EFI\";\n\n    String MACHINE_M32R = \"M32R\";\n\n    String MACHINE_SH3 = \"SH3\";\n\n    String MACHINE_SH4 = \"SH4\";\n\n    String MACHINE_SH5 = \"SH5\";\n\n    String MACHINE_UNKNOWN = \"Unknown\";\n\n    Property MACHINE_TYPE = Property.internalClosedChoise(PREFIX + \"machineType\", MACHINE_x86_32, MACHINE_x86_64, MACHINE_IA_64, MACHINE_SPARC, MACHINE_M68K, MACHINE_M88K, MACHINE_MIPS, MACHINE_PPC, MACHINE_S370, MACHINE_S390, MACHINE_ARM, MACHINE_VAX, MACHINE_ALPHA, MACHINE_EFI, MACHINE_M32R, MACHINE_SH3, MACHINE_SH4, MACHINE_SH5, MACHINE_UNKNOWN);\n\n    Property ENDIAN = Property.internalClosedChoise(PREFIX + \"endian\", Endian.LITTLE.name, Endian.BIG.name);\n\n    final class Endian {\n\n        public static final Endian LITTLE = new Endian(\"Little\", false);\n\n        public static final Endian BIG = new Endian(\"Big\", true);\n\n        private final String name;\n\n        private final boolean msb;\n\n        private Endian(String name, boolean msb) {\n            this.name = name;\n            this.msb = msb;\n        }\n\n        public String getName() {\n            return name;\n        }\n\n        @SuppressWarnings(\"unused\")\n        public boolean isMSB() {\n            return msb;\n        }\n\n        @SuppressWarnings(\"unused\")\n        public String getMSB() {\n            if (msb) {\n                return \"MSB\";\n            } else {\n                return \"LSB\";\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "final class Endian {\n\n    public static final Endian LITTLE = new Endian(\"Little\", false);\n\n    public static final Endian BIG = new Endian(\"Big\", true);\n\n    private final String name;\n\n    private final boolean msb;\n\n    private Endian(String name, boolean msb) {\n        this.name = name;\n        this.msb = msb;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    @SuppressWarnings(\"unused\")\n    public boolean isMSB() {\n        return msb;\n    }\n\n    @SuppressWarnings(\"unused\")\n    public String getMSB() {\n        if (msb) {\n            return \"MSB\";\n        } else {\n            return \"LSB\";\n        }\n    }\n}",
+  "subClasses": []
+}

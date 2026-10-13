@@ -1,0 +1,50 @@
+{
+  "fullClassName": "org.apache.tika.parser.DelegatingParser",
+  "className": "DelegatingParser",
+  "index": 231,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class DelegatingParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.Set;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getDelegateParser(ParseContext)": "0",
+    "getSupportedTypes(ParseContext)": "1",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "2"
+  },
+  "methodsBrief": [
+    "protected Parser getDelegateParser(ParseContext context){}",
+    "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws SAXException, IOException, TikaException{}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.IOException;\nimport java.util.Set;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\n\n/**\n * Base class for parser implementations that want to delegate parts of the\n * task of parsing an input document to another parser. The delegate parser\n * is looked up from the parsing context using the {@link Parser} class as\n * the key.\n *\n * @since Apache Tika 0.4, major changes in Tika 0.5\n */\npublic class DelegatingParser implements Parser {\n\n    /**\n     * Returns the parser instance to which parsing tasks should be delegated.\n     * The default implementation looks up the delegate parser from the given\n     * parse context, and uses an {@link EmptyParser} instance as a fallback.\n     * Subclasses can override this method to implement alternative delegation\n     * strategies.\n     *\n     * @param context parse context\n     * @return delegate parser\n     * @since Apache Tika 0.7\n     */\n    protected Parser getDelegateParser(ParseContext context) {\n        return context.get(Parser.class, EmptyParser.INSTANCE);\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return getDelegateParser(context).getSupportedTypes(context);\n    }\n\n    /**\n     * Looks up the delegate parser from the parsing context and\n     * delegates the parse operation to it. If a delegate parser is not\n     * found, then an empty XHTML document is returned.\n     * <p>\n     * Subclasses should override this method to parse the top level\n     * structure of the given document stream. Parsed sub-streams can\n     * be passed to this base class method to be parsed by the configured\n     * delegate parser.\n     */\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws SAXException, IOException, TikaException {\n        getDelegateParser(context).parse(tis, handler, metadata, context);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Base class for parser implementations that want to delegate parts of the\n * task of parsing an input document to another parser. The delegate parser\n * is looked up from the parsing context using the {@link Parser} class as\n * the key.\n *\n * @since Apache Tika 0.4, major changes in Tika 0.5\n */\npublic class DelegatingParser implements Parser {\n\n    /**\n     * Returns the parser instance to which parsing tasks should be delegated.\n     * The default implementation looks up the delegate parser from the given\n     * parse context, and uses an {@link EmptyParser} instance as a fallback.\n     * Subclasses can override this method to implement alternative delegation\n     * strategies.\n     *\n     * @param context parse context\n     * @return delegate parser\n     * @since Apache Tika 0.7\n     */\n    protected Parser getDelegateParser(ParseContext context) {\n        return context.get(Parser.class, EmptyParser.INSTANCE);\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return getDelegateParser(context).getSupportedTypes(context);\n    }\n\n    /**\n     * Looks up the delegate parser from the parsing context and\n     * delegates the parse operation to it. If a delegate parser is not\n     * found, then an empty XHTML document is returned.\n     * <p>\n     * Subclasses should override this method to parse the top level\n     * structure of the given document stream. Parsed sub-streams can\n     * be passed to this base class method to be parsed by the configured\n     * delegate parser.\n     */\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws SAXException, IOException, TikaException {\n        getDelegateParser(context).parse(tis, handler, metadata, context);\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.parser.CryptoParser"
+  ]
+}

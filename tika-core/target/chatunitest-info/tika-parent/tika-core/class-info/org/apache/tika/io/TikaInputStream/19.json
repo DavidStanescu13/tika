@@ -1,0 +1,24 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(long n) throws IOException{}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(long n) throws IOException {\n        long skipped = IOUtils.skip(in, n);\n        position += skipped;\n        return skipped;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.io.IOUtils": [
+      "skip(InputStream, long)"
+    ]
+  },
+  "full_method_info": "// ========== InputStream Methods ==========\n/**\n * Skips up to {@code n} bytes. Returns the actual number of bytes skipped,\n * which may be less than requested if the end of stream is reached.\n * <p>\n * This method does NOT throw {@link java.io.EOFException} if fewer bytes\n * are available. Callers must check the return value to determine how many\n * bytes were actually skipped.\n *\n * @param n the number of bytes to skip\n * @return the actual number of bytes skipped (may be less than {@code n})\n */\n@Override\npublic long skip(long n) throws IOException {\n    long skipped = IOUtils.skip(in, n);\n    position += skipped;\n    return skipped;\n}",
+  "method_comment": "\n     * Skips up to {@code n} bytes. Returns the actual number of bytes skipped,\n     * which may be less than requested if the end of stream is reached.\n     * <p>\n     * This method does NOT throw {@link java.io.EOFException} if fewer bytes\n     * are available. Callers must check the return value to determine how many\n     * bytes were actually skipped.\n     *\n     * @param n the number of bytes to skip\n     * @return the actual number of bytes skipped (may be less than {@code n})\n     ",
+  "method_annotation": "@Override\n"
+}

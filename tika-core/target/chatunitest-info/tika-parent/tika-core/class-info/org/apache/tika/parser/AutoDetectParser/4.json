@@ -1,0 +1,22 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "setAutoDetectParserConfig",
+  "brief": "public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig){}",
+  "methodSignature": "setAutoDetectParserConfig(AutoDetectParserConfig)",
+  "sourceCode": "public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig) {\n        this.autoDetectParserConfig = autoDetectParserConfig;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "AutoDetectParserConfig"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.AutoDetectParserConfig": []
+  },
+  "full_method_info": "/**\n * Sets the configuration that will be used to create SecureContentHandlers\n * that will be used for parsing.\n *\n * @param autoDetectParserConfig type SecureContentHandlerConfig\n * @since Apache Tika 2.1.1\n */\npublic void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig) {\n    this.autoDetectParserConfig = autoDetectParserConfig;\n}",
+  "method_comment": "\n     * Sets the configuration that will be used to create SecureContentHandlers\n     * that will be used for parsing.\n     *\n     * @param autoDetectParserConfig type SecureContentHandlerConfig\n     * @since Apache Tika 2.1.1\n     ",
+  "method_annotation": ""
+}

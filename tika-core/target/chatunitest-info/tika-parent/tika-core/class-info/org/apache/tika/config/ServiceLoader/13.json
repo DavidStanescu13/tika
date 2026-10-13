@@ -1,0 +1,40 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "loadStaticServiceProviders",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public <T> List<T> loadStaticServiceProviders(Class<T> iface,\r\n                                                  Collection<Class<? extends T>> excludes){}",
+  "methodSignature": "loadStaticServiceProviders(Class, Collection)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> List<T> loadStaticServiceProviders(Class<T> iface,\n                                                  Collection<Class<? extends T>> excludes) {\n        List<T> providers = new ArrayList<>();\n\n        if (loader != null) {\n            List<String> names = identifyStaticServiceProviders(iface);\n            for (String name : names) {\n                try {\n                    Class<?> klass = loader.loadClass(name);\n                    if (iface.isAssignableFrom(klass)) {\n                        boolean shouldExclude = false;\n                        for (Class<? extends T> ex : excludes) {\n                            if (ex.isAssignableFrom(klass)) {\n                                shouldExclude = true;\n                                break;\n                            }\n                        }\n                        if (!shouldExclude) {\n                            T instance = ServiceLoaderUtils.newInstance(klass, this);\n                            providers.add(instance);\n                        }\n                    } else {\n                        throw new TikaConfigException(\n                                \"Class \" + name + \" is not of type: \" + iface);\n                    }\n                } catch (Throwable t) {\n                    // Swallowed so one bad provider cannot break loading of the rest,\n                    // but logged: an SPI class that silently fails to load looks exactly\n                    // like one that was never registered.\n                    LOG.warn(\"failed to load service provider {} for {}\", name, iface, t);\n                }\n            }\n        }\n        return providers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>",
+    "Collection<Class<? extends T>>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "identifyStaticServiceProviders(Class<T>)"
+    ],
+    "java.lang.ClassLoader": [
+      "loadClass(String)"
+    ],
+    "java.lang.Class": [
+      "isAssignableFrom(Object>)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "newInstance(Class, ServiceLoader)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Object[])"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the available static service providers of the given type.\n * The providers are loaded using the service provider mechanism using\n * the configured class loader (if any). The returned list is newly\n * allocated and may be freely modified by the caller.\n *\n * @param iface    service provider interface\n * @param excludes -- do not load these classes\n * @return static service providers\n * @since Apache Tika 1.2\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> List<T> loadStaticServiceProviders(Class<T> iface, Collection<Class<? extends T>> excludes) {\n    List<T> providers = new ArrayList<>();\n    if (loader != null) {\n        List<String> names = identifyStaticServiceProviders(iface);\n        for (String name : names) {\n            try {\n                Class<?> klass = loader.loadClass(name);\n                if (iface.isAssignableFrom(klass)) {\n                    boolean shouldExclude = false;\n                    for (Class<? extends T> ex : excludes) {\n                        if (ex.isAssignableFrom(klass)) {\n                            shouldExclude = true;\n                            break;\n                        }\n                    }\n                    if (!shouldExclude) {\n                        T instance = ServiceLoaderUtils.newInstance(klass, this);\n                        providers.add(instance);\n                    }\n                } else {\n                    throw new TikaConfigException(\"Class \" + name + \" is not of type: \" + iface);\n                }\n            } catch (Throwable t) {\n                // Swallowed so one bad provider cannot break loading of the rest,\n                // but logged: an SPI class that silently fails to load looks exactly\n                // like one that was never registered.\n                LOG.warn(\"failed to load service provider {} for {}\", name, iface, t);\n            }\n        }\n    }\n    return providers;\n}",
+  "method_comment": "\n     * Returns the available static service providers of the given type.\n     * The providers are loaded using the service provider mechanism using\n     * the configured class loader (if any). The returned list is newly\n     * allocated and may be freely modified by the caller.\n     *\n     * @param iface    service provider interface\n     * @param excludes -- do not load these classes\n     * @return static service providers\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

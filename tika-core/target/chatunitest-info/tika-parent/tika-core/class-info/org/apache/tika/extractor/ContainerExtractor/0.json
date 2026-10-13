@@ -1,0 +1,24 @@
+{
+  "className": "ContainerExtractor",
+  "methodName": "isSupported",
+  "brief": "boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;",
+  "methodSignature": "isSupported(TikaInputStream, ParseContext)",
+  "sourceCode": "boolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Is this Container Extractor able to process the\n * supplied container?\n *\n * @param input the input stream\n * @param parseContext the parse context\n * @since Apache Tika 0.8\n */\nboolean isSupported(TikaInputStream input, ParseContext parseContext) throws IOException;",
+  "method_comment": "\n     * Is this Container Extractor able to process the\n     * supplied container?\n     *\n     * @param input the input stream\n     * @param parseContext the parse context\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

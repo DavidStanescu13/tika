@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "meta_trust",
+  "brief": "public synchronized Builder meta_trust(final float trust){}",
+  "methodSignature": "meta_trust(float)",
+  "sourceCode": "public synchronized Builder meta_trust(final float trust) {\n            this.meta_trust = trust;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public synchronized Builder meta_trust(final float trust) {\n    this.meta_trust = trust;\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

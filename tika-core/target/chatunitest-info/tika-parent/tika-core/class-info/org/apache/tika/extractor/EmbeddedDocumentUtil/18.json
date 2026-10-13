@@ -1,0 +1,30 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "findInDecorated",
+  "brief": "private static Parser findInDecorated(ParserDecorator p, Class clazz){}",
+  "methodSignature": "findInDecorated(ParserDecorator, Class)",
+  "sourceCode": "private static Parser findInDecorated(ParserDecorator p, Class clazz) {\n        Parser candidate = p.getWrappedParser();\n        if (equals(candidate, clazz)) {\n            return candidate;\n        }\n        if (candidate instanceof ParserDecorator) {\n            candidate = findInDecorated((ParserDecorator) candidate, clazz);\n        }\n        return candidate;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParserDecorator",
+    "Class"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ],
+    "java.lang.Class": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "findInDecorated(ParserDecorator, Class)",
+      "equals(Parser, Class)"
+    ]
+  },
+  "full_method_info": "private static Parser findInDecorated(ParserDecorator p, Class clazz) {\n    Parser candidate = p.getWrappedParser();\n    if (equals(candidate, clazz)) {\n        return candidate;\n    }\n    if (candidate instanceof ParserDecorator) {\n        candidate = findInDecorated((ParserDecorator) candidate, clazz);\n    }\n    return candidate;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

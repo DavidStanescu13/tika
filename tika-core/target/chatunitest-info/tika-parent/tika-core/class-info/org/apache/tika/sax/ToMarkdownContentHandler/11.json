@@ -1,0 +1,31 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "openInline",
+  "brief": "private void openInline(Node node){}",
+  "methodSignature": "openInline(Node)",
+  "sourceCode": "private void openInline(Node node) {\n        ensureInlineContainer();\n        stack.peek().appendChild(node);\n        stack.push(node);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Node"
+  ],
+  "dependentMethods": {
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "ensureInlineContainer()"
+    ],
+    "java.util.Deque": [
+      "peek()",
+      "push(E)"
+    ]
+  },
+  "full_method_info": "private void openInline(Node node) {\n    ensureInlineContainer();\n    stack.peek().appendChild(node);\n    stack.push(node);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "SystemUtils",
+  "methodName": "isOSNameMatch",
+  "brief": "static boolean isOSNameMatch(String osName, String osNamePrefix){}",
+  "methodSignature": "isOSNameMatch(String, String)",
+  "sourceCode": "static boolean isOSNameMatch(String osName, String osNamePrefix) {\n        return osName != null && osName.startsWith(osNamePrefix);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)"
+    ]
+  },
+  "full_method_info": "static boolean isOSNameMatch(String osName, String osNamePrefix) {\n    return osName != null && osName.startsWith(osNamePrefix);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

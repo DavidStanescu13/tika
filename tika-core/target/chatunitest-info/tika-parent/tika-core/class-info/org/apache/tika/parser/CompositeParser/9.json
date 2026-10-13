@@ -1,0 +1,18 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getFallback",
+  "brief": "public Parser getFallback(){}",
+  "methodSignature": "getFallback()",
+  "sourceCode": "public Parser getFallback() {\n        return fallback;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the fallback parser.\n *\n * @return fallback parser\n */\npublic Parser getFallback() {\n    return fallback;\n}",
+  "method_comment": "\n     * Returns the fallback parser.\n     *\n     * @return fallback parser\n     ",
+  "method_annotation": ""
+}

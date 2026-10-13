@@ -1,0 +1,33 @@
+{
+  "className": "CompositeDetector",
+  "methodName": "CompositeDetector",
+  "brief": "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors,\r\n                             Collection<Class<? extends Detector>> excludeDetectors){}",
+  "methodSignature": "CompositeDetector(MediaTypeRegistry, List, Collection)",
+  "sourceCode": "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors,\n                             Collection<Class<? extends Detector>> excludeDetectors) {\n        if (excludeDetectors == null || excludeDetectors.isEmpty()) {\n            this.detectors = detectors;\n        } else {\n            this.detectors = new ArrayList<>();\n            for (Detector d : detectors) {\n                if (!isExcluded(excludeDetectors, d.getClass())) {\n                    this.detectors.add(d);\n                }\n            }\n        }\n        this.registry = registry;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaTypeRegistry",
+    "List<Detector>",
+    "Collection<Class<? extends Detector>>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "public CompositeDetector(MediaTypeRegistry registry, List<Detector> detectors, Collection<Class<? extends Detector>> excludeDetectors) {\n    if (excludeDetectors == null || excludeDetectors.isEmpty()) {\n        this.detectors = detectors;\n    } else {\n        this.detectors = new ArrayList<>();\n        for (Detector d : detectors) {\n            if (!isExcluded(excludeDetectors, d.getClass())) {\n                this.detectors.add(d);\n            }\n        }\n    }\n    this.registry = registry;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

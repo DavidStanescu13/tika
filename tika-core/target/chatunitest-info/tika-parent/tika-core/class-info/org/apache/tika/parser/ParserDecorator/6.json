@@ -1,0 +1,18 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "getDecorationName",
+  "brief": "public String getDecorationName(){}",
+  "methodSignature": "getDecorationName()",
+  "sourceCode": "public String getDecorationName() {\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return A name/description of the decoration, or null if none available\n */\npublic String getDecorationName() {\n    return null;\n}",
+  "method_comment": "\n     * @return A name/description of the decoration, or null if none available\n     ",
+  "method_annotation": ""
+}

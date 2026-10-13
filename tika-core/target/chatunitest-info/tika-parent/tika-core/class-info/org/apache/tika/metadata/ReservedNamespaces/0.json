@@ -1,0 +1,24 @@
+{
+  "className": "ReservedNamespaces",
+  "methodName": "isTikaNative",
+  "brief": "public static boolean isTikaNative(String name){}",
+  "methodSignature": "isTikaNative(String)",
+  "sourceCode": "public static boolean isTikaNative(String name) {\n        return name != null\n                && (name.startsWith(TikaCoreProperties.TIKA_META_PREFIX)\n                        || name.startsWith(TikaCoreProperties.LEGACY_TIKA_META_PREFIX));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Is {@code name} in the Tika-native namespace? True for the current {@code tk:} prefix and\n * the pre-4.0.0 {@code X-TIKA:} prefix — the legacy prefix stays reserved so a crafted file\n * cannot forge it during the 4.x window even though Tika no longer writes it.\n *\n * @param name a metadata key name (may be {@code null})\n * @return {@code true} if the key belongs to the reserved Tika-native namespace\n */\npublic static boolean isTikaNative(String name) {\n    return name != null && (name.startsWith(TikaCoreProperties.TIKA_META_PREFIX) || name.startsWith(TikaCoreProperties.LEGACY_TIKA_META_PREFIX));\n}",
+  "method_comment": "\n     * Is {@code name} in the Tika-native namespace? True for the current {@code tk:} prefix and\n     * the pre-4.0.0 {@code X-TIKA:} prefix — the legacy prefix stays reserved so a crafted file\n     * cannot forge it during the 4.x window even though Tika no longer writes it.\n     *\n     * @param name a metadata key name (may be {@code null})\n     * @return {@code true} if the key belongs to the reserved Tika-native namespace\n     ",
+  "method_annotation": ""
+}

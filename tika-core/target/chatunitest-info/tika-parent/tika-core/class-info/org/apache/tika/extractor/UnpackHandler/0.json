@@ -1,0 +1,25 @@
+{
+  "className": "UnpackHandler",
+  "methodName": "add",
+  "brief": "void add(int id, Metadata metadata, InputStream inputStream) throws IOException;",
+  "methodSignature": "add(int, Metadata, InputStream)",
+  "sourceCode": "void add(int id, Metadata metadata, InputStream inputStream) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "Metadata",
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "java.io.InputStream": []
+  },
+  "full_method_info": "// we need metadata for the emitter store...can we get away without it?\nvoid add(int id, Metadata metadata, InputStream inputStream) throws IOException;",
+  "method_comment": "we need metadata for the emitter store...can we get away without it?",
+  "method_annotation": ""
+}

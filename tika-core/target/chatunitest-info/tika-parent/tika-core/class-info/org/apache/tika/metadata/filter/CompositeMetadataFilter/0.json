@@ -1,0 +1,25 @@
+{
+  "className": "CompositeMetadataFilter",
+  "methodName": "setFilters",
+  "brief": "public void setFilters(List<MetadataFilter> filters){}",
+  "methodSignature": "setFilters(List)",
+  "sourceCode": "public void setFilters(List<MetadataFilter> filters) {\n        this.filters.clear();\n        this.filters.addAll(filters);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<MetadataFilter>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "addAll(Collection<? extends E>)",
+      "clear()"
+    ]
+  },
+  "full_method_info": "public void setFilters(List<MetadataFilter> filters) {\n    this.filters.clear();\n    this.filters.addAll(filters);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "Tika",
+  "methodName": "parse",
+  "brief": "public Reader parse(URL url) throws IOException{}",
+  "methodSignature": "parse(URL)",
+  "sourceCode": "public Reader parse(URL url) throws IOException {\n        ParseContext context = new ParseContext();\n        Metadata metadata = Metadata.newInstance(context);\n        InputStream stream = TikaInputStream.get(url, metadata);\n        return parse(stream, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL"
+  ],
+  "dependentMethods": {
+    "java.net.URL": [],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(URL, Metadata)"
+    ],
+    "org.apache.tika.Tika": [
+      "parse(InputStream, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the resource at the given URL and returns the extracted\n * text content.\n *\n * @param url the URL of the resource to be parsed\n * @return extracted text content\n * @throws IOException if the resource can not be read or parsed\n */\npublic Reader parse(URL url) throws IOException {\n    ParseContext context = new ParseContext();\n    Metadata metadata = Metadata.newInstance(context);\n    InputStream stream = TikaInputStream.get(url, metadata);\n    return parse(stream, metadata, context);\n}",
+  "method_comment": "\n     * Parses the resource at the given URL and returns the extracted\n     * text content.\n     *\n     * @param url the URL of the resource to be parsed\n     * @return extracted text content\n     * @throws IOException if the resource can not be read or parsed\n     ",
+  "method_annotation": ""
+}

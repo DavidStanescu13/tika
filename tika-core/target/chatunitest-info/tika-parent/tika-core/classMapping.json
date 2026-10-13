@@ -1,0 +1,2529 @@
+{
+  "class207": {
+    "className": "MediaTypeRegistry",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class328": {
+    "className": "ChildMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class206": {
+    "className": "MediaType",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[Comparable<MediaType>, Serializable]"
+  },
+  "class327": {
+    "className": "AttributeMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class209": {
+    "className": "RootXML",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[static ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class208": {
+    "className": "MimeType",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[Comparable<MimeType>, Serializable]"
+  },
+  "class329": {
+    "className": "CompositeMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class214": {
+    "className": "MinShouldMatchVal",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[Clause]"
+  },
+  "class335": {
+    "className": "NodeMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class213": {
+    "className": "MimeTypesReader",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[MimeTypesReaderMetKeys]"
+  },
+  "class334": {
+    "className": "NamedElementMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[ChildMatcher]",
+    "implement": "[]"
+  },
+  "class216": {
+    "className": "MimeTypesReaderMetKeys",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class337": {
+    "className": "TextMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class215": {
+    "className": "ClauseRecord",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[private ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class336": {
+    "className": "SubtreeMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class210": {
+    "className": "MimeTypeException",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class331": {
+    "className": "Matcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class330": {
+    "className": "ElementMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class212": {
+    "className": "MimeTypesFactory",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class333": {
+    "className": "NamedAttributeMatcher",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[Matcher]",
+    "implement": "[]"
+  },
+  "class211": {
+    "className": "MimeTypes",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[Detector, Serializable]"
+  },
+  "class332": {
+    "className": "MatchingContentHandler",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class218": {
+    "className": "OrClause",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Clause]"
+  },
+  "class339": {
+    "className": "Tika",
+    "packageName": "org.apache.tika",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class217": {
+    "className": "MinShouldMatchClause",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Clause]"
+  },
+  "class338": {
+    "className": "XPathParser",
+    "packageName": "org.apache.tika.sax.xpath",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class219": {
+    "className": "Patterns",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class340": {
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class104": {
+    "className": "SpoolingStrategy",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class225": {
+    "className": "AbstractParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class346": {
+    "className": "FileProcessResult",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class103": {
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[InputStream]",
+    "implement": "[]"
+  },
+  "class224": {
+    "className": "AbstractExternalProcessParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class345": {
+    "className": "ExceptionUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class106": {
+    "className": "CacheInputStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[private ]",
+    "extend": "[InputStream]",
+    "implement": "[]"
+  },
+  "class227": {
+    "className": "AutoDetectParserConfig",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class348": {
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class105": {
+    "className": "StreamCache",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Closeable]"
+  },
+  "class226": {
+    "className": "AutoDetectParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[CompositeParser]",
+    "implement": "[]"
+  },
+  "class347": {
+    "className": "ParserUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class100": {
+    "className": "BufferUnderrunException",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public , static ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class221": {
+    "className": "ProbabilisticMimeDetectionSelector",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class342": {
+    "className": "ConcurrentUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class220": {
+    "className": "LengthComparator",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[private , static , final ]",
+    "extend": "[]",
+    "implement": "[Comparator<String>, Serializable]"
+  },
+  "class341": {
+    "className": "CompareUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class102": {
+    "className": "FileSource",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[InputStream]",
+    "implement": "[TikaInputSource]"
+  },
+  "class223": {
+    "className": "AbstractEncodingDetectorParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class344": {
+    "className": "DurationFormatUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class101": {
+    "className": "FilenameUtils",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class222": {
+    "className": "Builder",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class343": {
+    "className": "DateUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class309": {
+    "className": "StrictXHTMLValidator",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class306": {
+    "className": "StandardsText",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class305": {
+    "className": "StandardsExtractingContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class308": {
+    "className": "StreamingContentHandlerFactory",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerFactory]",
+    "implement": "[]"
+  },
+  "class307": {
+    "className": "StoppingEarlyException",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[SAXException]",
+    "implement": "[]"
+  },
+  "class313": {
+    "className": "TeeContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class312": {
+    "className": "TaggedSAXException",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[SAXException]",
+    "implement": "[]"
+  },
+  "class315": {
+    "className": "TextContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class314": {
+    "className": "TextAndAttributeContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[TextContentHandler]",
+    "implement": "[]"
+  },
+  "class311": {
+    "className": "TaggedContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class310": {
+    "className": "QName",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private , static , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class317": {
+    "className": "ToMarkdownContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class316": {
+    "className": "ToHTMLContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ToXMLContentHandler]",
+    "implement": "[]"
+  },
+  "class319": {
+    "className": "ToXMLContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ToTextContentHandler]",
+    "implement": "[]"
+  },
+  "class318": {
+    "className": "ToTextContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class90": {
+    "className": "SkipEmbeddedDocumentSelector",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[DocumentSelector]"
+  },
+  "class92": {
+    "className": "UnpackHandler",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[Closeable]",
+    "implement": "[]"
+  },
+  "class91": {
+    "className": "StandardExtractorFactory",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EmbeddedDocumentExtractorFactory]"
+  },
+  "class94": {
+    "className": "AcceptAll",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[UnpackSelector]"
+  },
+  "class93": {
+    "className": "UnpackSelector",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class96": {
+    "className": "ByteArraySource",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[InputStream]",
+    "implement": "[TikaInputSource]"
+  },
+  "class95": {
+    "className": "BoundedInputStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[InputStream]",
+    "implement": "[]"
+  },
+  "class98": {
+    "className": "CachingSource",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[InputStream]",
+    "implement": "[TikaInputSource]"
+  },
+  "class97": {
+    "className": "CachingInputStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[InputStream]",
+    "implement": "[]"
+  },
+  "class203": {
+    "className": "HexCoDec",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class324": {
+    "className": "QName",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private , static , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class99": {
+    "className": "EndianUtils",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class202": {
+    "className": "Clause",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class323": {
+    "className": "XHTMLBalancingHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class205": {
+    "className": "MagicMatch",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Clause]"
+  },
+  "class326": {
+    "className": "XMPContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[SafeContentHandler]",
+    "implement": "[]"
+  },
+  "class204": {
+    "className": "Magic",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Clause, Comparable<Magic>]"
+  },
+  "class325": {
+    "className": "XHTMLContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[SafeContentHandler]",
+    "implement": "[]"
+  },
+  "class320": {
+    "className": "ElementInfo",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class201": {
+    "className": "AndClause",
+    "packageName": "org.apache.tika.mime",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[Clause]"
+  },
+  "class322": {
+    "className": "WriteOutContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class200": {
+    "className": "Zip",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class321": {
+    "className": "WriteLimiter",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class129": {
+    "className": "CaptureGroupMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[Initializable]"
+  },
+  "class81": {
+    "className": "EmbeddedDocumentExtractor",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class250": {
+    "className": "ParsingReader",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[Reader]",
+    "implement": "[]"
+  },
+  "class80": {
+    "className": "EmbeddedDocumentByteStoreExtractorFactory",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[EmbeddedDocumentExtractorFactory]",
+    "implement": "[]"
+  },
+  "class83": {
+    "className": "EmbeddedDocumentUtil",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class131": {
+    "className": "ClearByAttachmentTypeMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class252": {
+    "className": "PasswordProvider",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class82": {
+    "className": "EmbeddedDocumentExtractorFactory",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class130": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class251": {
+    "className": "ParsingTask",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[private ]",
+    "extend": "[]",
+    "implement": "[Runnable]"
+  },
+  "class85": {
+    "className": "EmbeddedStreamTranslator",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class84": {
+    "className": "EmbeddedResourceHandler",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class87": {
+    "className": "ParserContainerExtractor",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[ContainerExtractor]"
+  },
+  "class86": {
+    "className": "ParentContentHandler",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class89": {
+    "className": "ParsingEmbeddedDocumentExtractor",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EmbeddedDocumentExtractor]"
+  },
+  "class137": {
+    "className": "ExcludeFieldMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class258": {
+    "className": "RegexCaptureParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class88": {
+    "className": "RecursiveParser",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[private ]",
+    "extend": "[StatefulParser]",
+    "implement": "[]"
+  },
+  "class136": {
+    "className": "DefaultMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[CompositeMetadataFilter]",
+    "implement": "[]"
+  },
+  "class257": {
+    "className": "RecursivelySecureContentHandler",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[static ]",
+    "extend": "[SecureContentHandler]",
+    "implement": "[]"
+  },
+  "class139": {
+    "className": "FieldNameMappingFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class138": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class259": {
+    "className": "RegexCaptureParserConfig",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class133": {
+    "className": "CompositeMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilter]",
+    "implement": "[]"
+  },
+  "class254": {
+    "className": "EmbeddedParserDecorator",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[private ]",
+    "extend": "[StatefulParser]",
+    "implement": "[]"
+  },
+  "class132": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class253": {
+    "className": "RecursiveParserWrapper",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[ParserDecorator]",
+    "implement": "[]"
+  },
+  "class135": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class256": {
+    "className": "SecureHandlerCounter",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class134": {
+    "className": "DateNormalizingMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class255": {
+    "className": "ParserState",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class7": {
+    "className": "OutputLimits",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class70": {
+    "className": "TikaException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[Exception]",
+    "implement": "[]"
+  },
+  "class140": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class261": {
+    "className": "SimplePasswordProvider",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[PasswordProvider]"
+  },
+  "class6": {
+    "className": "JsonConfig",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class260": {
+    "className": "RenderingParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class5": {
+    "className": "Initializable",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class72": {
+    "className": "TikaTimeoutException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[RuntimeException]",
+    "implement": "[]"
+  },
+  "class142": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class263": {
+    "className": "TextQualityComparison",
+    "packageName": "org.apache.tika.quality",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class4": {
+    "className": "EmbeddedLimits",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class71": {
+    "className": "TikaMemoryLimitException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class141": {
+    "className": "GeoPointMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class262": {
+    "className": "StatefulParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[ParserDecorator]",
+    "implement": "[]"
+  },
+  "class3": {
+    "className": "ConfigValidator",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class74": {
+    "className": "WriteLimitReachedException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[SAXException]",
+    "implement": "[]"
+  },
+  "class2": {
+    "className": "ConfigDeserializer",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class73": {
+    "className": "UnsupportedFormatException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class1": {
+    "className": "SimpleThreadPoolExecutor",
+    "packageName": "org.apache.tika.concurrent",
+    "modifier": "[public ]",
+    "extend": "[ThreadPoolExecutor]",
+    "implement": "[ConfigurableThreadPoolExecutor]"
+  },
+  "class76": {
+    "className": "IgnoreZeroByteFileException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class0": {
+    "className": "ConfigurableThreadPoolExecutor",
+    "packageName": "org.apache.tika.concurrent",
+    "modifier": "[public ]",
+    "extend": "[ExecutorService]",
+    "implement": "[]"
+  },
+  "class75": {
+    "className": "ZeroByteFileException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class78": {
+    "className": "DefaultEmbeddedStreamTranslator",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EmbeddedStreamTranslator]"
+  },
+  "class148": {
+    "className": "MetadataFilterBase",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , abstract ]",
+    "extend": "[MetadataFilter]",
+    "implement": "[]"
+  },
+  "class269": {
+    "className": "Renderer",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[Serializable, SelfConfiguring]",
+    "implement": "[]"
+  },
+  "class77": {
+    "className": "ContainerExtractor",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class147": {
+    "className": "MetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Serializable, Closeable]"
+  },
+  "class268": {
+    "className": "PageRangeRequest",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[RenderRequest]"
+  },
+  "class79": {
+    "className": "DocumentSelector",
+    "packageName": "org.apache.tika.extractor",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class149": {
+    "className": "NoOpFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilter]",
+    "implement": "[]"
+  },
+  "class144": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class265": {
+    "className": "TextQualityScore",
+    "packageName": "org.apache.tika.quality",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class143": {
+    "className": "IncludeFieldMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class264": {
+    "className": "TextQualityDetector",
+    "packageName": "org.apache.tika.quality",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class146": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class267": {
+    "className": "PageBasedRenderResults",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[RenderResults]",
+    "implement": "[]"
+  },
+  "class145": {
+    "className": "LegacyKeyMigrationFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilterBase]",
+    "implement": "[]"
+  },
+  "class266": {
+    "className": "CompositeRenderer",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Renderer]"
+  },
+  "class108": {
+    "className": "TemporaryResources",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Closeable]"
+  },
+  "class229": {
+    "className": "CryptoParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , abstract ]",
+    "extend": "[DelegatingParser]",
+    "implement": "[]"
+  },
+  "class107": {
+    "className": "TailStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[FilterInputStream]",
+    "implement": "[]"
+  },
+  "class228": {
+    "className": "CompositeParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class349": {
+    "className": "RegexUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class109": {
+    "className": "TikaInputSource",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[]",
+    "extend": "[Closeable]",
+    "implement": "[]"
+  },
+  "class9": {
+    "className": "SelfConfiguring",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class8": {
+    "className": "ParseContextConfig",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class61": {
+    "className": "Embedder",
+    "packageName": "org.apache.tika.embedder",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class230": {
+    "className": "DefaultParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[CompositeParser]",
+    "implement": "[]"
+  },
+  "class351": {
+    "className": "StreamGobbler",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Runnable]"
+  },
+  "class60": {
+    "className": "SkipContainerDocumentDigest",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class350": {
+    "className": "ServiceLoaderUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class63": {
+    "className": "AccessPermissionException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class62": {
+    "className": "ExternalEmbedder",
+    "packageName": "org.apache.tika.embedder",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Embedder]"
+  },
+  "class65": {
+    "className": "EmbeddedLimitReachedException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[RuntimeException]",
+    "implement": "[]"
+  },
+  "class64": {
+    "className": "CorruptedFileException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class67": {
+    "className": "FileTooLongException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[IOException]",
+    "implement": "[]"
+  },
+  "class115": {
+    "className": "LanguageWriter",
+    "packageName": "org.apache.tika.language.detect",
+    "modifier": "[public ]",
+    "extend": "[Writer]",
+    "implement": "[]"
+  },
+  "class236": {
+    "className": "MetadataOnlyParse",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class357": {
+    "className": "XercesPoolSAXParser",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , static ]",
+    "extend": "[PoolSAXParser]",
+    "implement": "[]"
+  },
+  "class66": {
+    "className": "EncryptedDocumentException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class114": {
+    "className": "LanguageResult",
+    "packageName": "org.apache.tika.language.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class235": {
+    "className": "ExternalParserConfig",
+    "packageName": "org.apache.tika.parser.external",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class356": {
+    "className": "PoolSAXParser",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , abstract , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class69": {
+    "className": "TikaConfigException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[TikaException]",
+    "implement": "[]"
+  },
+  "class117": {
+    "className": "EmptyTranslator",
+    "packageName": "org.apache.tika.language.translate",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Translator]"
+  },
+  "class238": {
+    "className": "FallbackParser",
+    "packageName": "org.apache.tika.parser.multiple",
+    "modifier": "[public ]",
+    "extend": "[AbstractMultipleParser]",
+    "implement": "[]"
+  },
+  "class359": {
+    "className": "BuiltInPoolSAXParser",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , static ]",
+    "extend": "[PoolSAXParser]",
+    "implement": "[]"
+  },
+  "class68": {
+    "className": "RuntimeSAXException",
+    "packageName": "org.apache.tika.exception",
+    "modifier": "[public ]",
+    "extend": "[RuntimeException]",
+    "implement": "[]"
+  },
+  "class116": {
+    "className": "DefaultTranslator",
+    "packageName": "org.apache.tika.language.translate",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Translator]"
+  },
+  "class237": {
+    "className": "AbstractMultipleParser",
+    "packageName": "org.apache.tika.parser.multiple",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class358": {
+    "className": "Xerces2PoolSAXParser",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , static ]",
+    "extend": "[PoolSAXParser]",
+    "implement": "[]"
+  },
+  "class111": {
+    "className": "LanguageDetector",
+    "packageName": "org.apache.tika.language.detect",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class232": {
+    "className": "EmptyParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class353": {
+    "className": "SystemUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class110": {
+    "className": "TikaInputStream",
+    "packageName": "org.apache.tika.io",
+    "modifier": "[public ]",
+    "extend": "[TaggedInputStream]",
+    "implement": "[]"
+  },
+  "class231": {
+    "className": "DelegatingParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class352": {
+    "className": "StringUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class113": {
+    "className": "LanguageNames",
+    "packageName": "org.apache.tika.language.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class234": {
+    "className": "ExternalParser",
+    "packageName": "org.apache.tika.parser.external",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class355": {
+    "className": "PoolDOMBuilder",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class112": {
+    "className": "LanguageHandler",
+    "packageName": "org.apache.tika.language.detect",
+    "modifier": "[public ]",
+    "extend": "[WriteOutContentHandler]",
+    "implement": "[]"
+  },
+  "class233": {
+    "className": "ErrorParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class354": {
+    "className": "XMLReaderUtils",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class119": {
+    "className": "AccessPermissions",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class118": {
+    "className": "Translator",
+    "packageName": "org.apache.tika.language.translate",
+    "modifier": "[public ]",
+    "extend": "[SelfConfiguring]",
+    "implement": "[]"
+  },
+  "class239": {
+    "className": "SupplementingParser",
+    "packageName": "org.apache.tika.parser.multiple",
+    "modifier": "[public ]",
+    "extend": "[AbstractMultipleParser]",
+    "implement": "[]"
+  },
+  "class360": {
+    "className": "UnrecognizedPoolSAXParser",
+    "packageName": "org.apache.tika.utils",
+    "modifier": "[private , static ]",
+    "extend": "[PoolSAXParser]",
+    "implement": "[]"
+  },
+  "class50": {
+    "className": "ExtractorHandler",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[private , static ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class120": {
+    "className": "Audio",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class241": {
+    "className": "ParsingTask",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[Runnable]"
+  },
+  "class240": {
+    "className": "NetworkParser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class52": {
+    "className": "ZeroSizeFileDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class51": {
+    "className": "MalformedCharException",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[private , static ]",
+    "extend": "[RuntimeException]",
+    "implement": "[]"
+  },
+  "class54": {
+    "className": "DigestDef",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class53": {
+    "className": "CompositeDigester",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Digester]"
+  },
+  "class56": {
+    "className": "DigesterFactory",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class126": {
+    "className": "Epub",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class247": {
+    "className": "ParseRecord",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class55": {
+    "className": "Digester",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class125": {
+    "className": "DWG",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class246": {
+    "className": "MimeFilteringDecorator",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , static ]",
+    "extend": "[ParserDecorator]",
+    "implement": "[]"
+  },
+  "class58": {
+    "className": "Encoder",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class128": {
+    "className": "FileSystem",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class249": {
+    "className": "ParsingIntent",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class57": {
+    "className": "DigestHelper",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class127": {
+    "className": "ExternalProcess",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class248": {
+    "className": "ParserPostProcessor",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[ParserDecorator]",
+    "implement": "[]"
+  },
+  "class122": {
+    "className": "CreativeCommons",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class243": {
+    "className": "ParseContext",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class59": {
+    "className": "InputStreamDigester",
+    "packageName": "org.apache.tika.digest",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Digester]"
+  },
+  "class121": {
+    "className": "ClimateForcast",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class242": {
+    "className": "MetaHandler",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[private , static ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class124": {
+    "className": "DublinCore",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class245": {
+    "className": "ParserDecorator",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Parser]"
+  },
+  "class123": {
+    "className": "Database",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class244": {
+    "className": "Parser",
+    "packageName": "org.apache.tika.parser",
+    "modifier": "[public ]",
+    "extend": "[Serializable, SelfConfiguring]",
+    "implement": "[]"
+  },
+  "class173": {
+    "className": "PST",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class294": {
+    "className": "RecursiveParserWrapperHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[AbstractRecursiveParserWrapperHandler]",
+    "implement": "[]"
+  },
+  "class172": {
+    "className": "PropertyTypeException",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public , final ]",
+    "extend": "[IllegalArgumentException]",
+    "implement": "[]"
+  },
+  "class293": {
+    "className": "PhoneExtractingContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class175": {
+    "className": "QuickTime",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class296": {
+    "className": "SafeContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class174": {
+    "className": "QuattroPro",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class295": {
+    "className": "RichTextContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[WriteOutContentHandler]",
+    "implement": "[]"
+  },
+  "class41": {
+    "className": "OverrideDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class290": {
+    "className": "LinkBuilder",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class40": {
+    "className": "NNTrainedModelBuilder",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class43": {
+    "className": "Config",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class171": {
+    "className": "Property",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[Comparable<Property>]"
+  },
+  "class292": {
+    "className": "OfflineContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class42": {
+    "className": "OverrideEncodingDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EncodingDetector]"
+  },
+  "class170": {
+    "className": "Photoshop",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class291": {
+    "className": "LinkContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class45": {
+    "className": "TextStatistics",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class44": {
+    "className": "TextDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class47": {
+    "className": "TrainedModelDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class46": {
+    "className": "TrainedModel",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class49": {
+    "className": "XmlRootExtractor",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class177": {
+    "className": "ReservedNamespaces",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class298": {
+    "className": "StringOutput",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[Output]"
+  },
+  "class48": {
+    "className": "TypeDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class176": {
+    "className": "Rendering",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class297": {
+    "className": "Output",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[protected ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class179": {
+    "className": "TIFF",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class178": {
+    "className": "RTFMetadata",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class299": {
+    "className": "SAXOutputConfig",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class184": {
+    "className": "WARC",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class183": {
+    "className": "Video",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class186": {
+    "className": "MetadataWriteLimiter",
+    "packageName": "org.apache.tika.metadata.writefilter",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class185": {
+    "className": "WordPerfect",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class30": {
+    "className": "EncodingProbeCache",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class180": {
+    "className": "TikaCoreProperties",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class32": {
+    "className": "FileCommandDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class182": {
+    "className": "TikaPagedText",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class31": {
+    "className": "EncodingResult",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class181": {
+    "className": "TikaMimeKeys",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class34": {
+    "className": "MagicDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class33": {
+    "className": "HighByteLetterStats",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class36": {
+    "className": "MetaEncodingDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[EncodingDetector]",
+    "implement": "[]"
+  },
+  "class35": {
+    "className": "MetadataCharsetDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EncodingDetector]"
+  },
+  "class38": {
+    "className": "NNExampleModelDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[TrainedModelDetector]",
+    "implement": "[]"
+  },
+  "class188": {
+    "className": "StandardMetadataLimiter",
+    "packageName": "org.apache.tika.metadata.writefilter",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[MetadataWriteLimiter, Serializable]"
+  },
+  "class37": {
+    "className": "NameDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class187": {
+    "className": "MetadataWriteLimiterFactory",
+    "packageName": "org.apache.tika.metadata.writefilter",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class39": {
+    "className": "NNTrainedModel",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[TrainedModel]",
+    "implement": "[]"
+  },
+  "class189": {
+    "className": "StringSizePair",
+    "packageName": "org.apache.tika.metadata.writefilter",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class19": {
+    "className": "CompositeDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class151": {
+    "className": "Config",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class272": {
+    "className": "RenderRequest",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class150": {
+    "className": "RemoveByMimeMetadataFilter",
+    "packageName": "org.apache.tika.metadata.filter",
+    "modifier": "[public ]",
+    "extend": "[MetadataFilter]",
+    "implement": "[]"
+  },
+  "class271": {
+    "className": "RenderingTracker",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class153": {
+    "className": "Geographic",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class274": {
+    "className": "RenderResults",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Closeable]"
+  },
+  "class152": {
+    "className": "Font",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class273": {
+    "className": "RenderResult",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Closeable]"
+  },
+  "class21": {
+    "className": "DefaultDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[CompositeDetector]",
+    "implement": "[]"
+  },
+  "class270": {
+    "className": "RenderingState",
+    "packageName": "org.apache.tika.renderer",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class20": {
+    "className": "CompositeEncodingDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EncodingDetector, Serializable]"
+  },
+  "class23": {
+    "className": "DefaultProbDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[CompositeDetector]",
+    "implement": "[]"
+  },
+  "class159": {
+    "className": "Endian",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class22": {
+    "className": "DefaultEncodingDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[CompositeEncodingDetector]",
+    "implement": "[]"
+  },
+  "class158": {
+    "className": "MachineMetadata",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class279": {
+    "className": "CleanPhoneText",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class25": {
+    "className": "Detector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[Serializable, SelfConfiguring]",
+    "implement": "[]"
+  },
+  "class24": {
+    "className": "DetectHelper",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class27": {
+    "className": "EncodingDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[Serializable, SelfConfiguring]",
+    "implement": "[]"
+  },
+  "class155": {
+    "className": "HTML",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class276": {
+    "className": "BasicContentHandlerFactory",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[StreamingContentHandlerFactory, WriteLimiter]"
+  },
+  "class26": {
+    "className": "EmptyDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Detector]"
+  },
+  "class154": {
+    "className": "Google",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class275": {
+    "className": "AbstractRecursiveParserWrapperHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public , abstract ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[Serializable]"
+  },
+  "class29": {
+    "className": "Result",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class157": {
+    "className": "IPTC",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class278": {
+    "className": "BodyContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class28": {
+    "className": "EncodingDetectorContext",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class156": {
+    "className": "HttpHeaders",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class277": {
+    "className": "NoOpContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private , static , final ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class162": {
+    "className": "Metadata",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[CreativeCommons, Geographic, HttpHeaders, Message, ClimateForcast, TIFF, TikaMimeKeys, Serializable]"
+  },
+  "class283": {
+    "className": "DIFContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class161": {
+    "className": "Message",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class282": {
+    "className": "ContentHandlerFactory",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class164": {
+    "className": "OfficeOpenXMLCore",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class285": {
+    "className": "TargetElement",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class163": {
+    "className": "Office",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class284": {
+    "className": "ElementMappingContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class10": {
+    "className": "ServiceLoader",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class160": {
+    "className": "MAPI",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class281": {
+    "className": "ContentHandlerDecoratorFactory",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[Serializable]",
+    "implement": "[]"
+  },
+  "class280": {
+    "className": "ContentHandlerDecorator",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[DefaultHandler]",
+    "implement": "[]"
+  },
+  "class12": {
+    "className": "TikaActivator",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[BundleActivator, ServiceTrackerCustomizer]"
+  },
+  "class11": {
+    "className": "RankedService",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[private , static ]",
+    "extend": "[]",
+    "implement": "[Comparable<RankedService>]"
+  },
+  "class169": {
+    "className": "PDF",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class14": {
+    "className": "TikaProgressTracker",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class13": {
+    "className": "TikaExtras",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class16": {
+    "className": "AutoDetectReader",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[BufferedReader]",
+    "implement": "[]"
+  },
+  "class166": {
+    "className": "PageAnchoring",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class287": {
+    "className": "EndDocumentShieldingContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class15": {
+    "className": "TimeoutLimits",
+    "packageName": "org.apache.tika.config",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class165": {
+    "className": "OfficeOpenXMLExtended",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class286": {
+    "className": "EmbeddedContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class18": {
+    "className": "CharsetSupersets",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class168": {
+    "className": "PassthroughPrefix",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class289": {
+    "className": "Link",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class17": {
+    "className": "BOMDetector",
+    "packageName": "org.apache.tika.detect",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[EncodingDetector]"
+  },
+  "class167": {
+    "className": "PagedText",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class288": {
+    "className": "ExpandedTitleContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class302": {
+    "className": "StandardOrganizations",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class301": {
+    "className": "SecureSAXException",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[private ]",
+    "extend": "[SAXException]",
+    "implement": "[]"
+  },
+  "class304": {
+    "className": "StandardReferenceBuilder",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class303": {
+    "className": "StandardReference",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class300": {
+    "className": "SecureContentHandler",
+    "packageName": "org.apache.tika.sax",
+    "modifier": "[public ]",
+    "extend": "[ContentHandlerDecorator]",
+    "implement": "[]"
+  },
+  "class195": {
+    "className": "XMPIdq",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class194": {
+    "className": "ChannelTypePropertyConverter",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class197": {
+    "className": "XMPPDF",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class196": {
+    "className": "XMPMM",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class191": {
+    "className": "XMP",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class190": {
+    "className": "StandardMetadataLimiterFactory",
+    "packageName": "org.apache.tika.metadata.writefilter",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[MetadataWriteLimiterFactory]"
+  },
+  "class193": {
+    "className": "XMPDM",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class192": {
+    "className": "XMPDC",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class199": {
+    "className": "XMPTIFF",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class198": {
+    "className": "XMPRights",
+    "packageName": "org.apache.tika.metadata",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  }
+}

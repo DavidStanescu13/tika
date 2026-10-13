@@ -1,0 +1,30 @@
+{
+  "className": "Metadata",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        StringBuilder stringBuilder = new StringBuilder();\n        String[] names = names();\n        for (String name : names) {\n            String[] values = _getValues(name);\n            for (String value : values) {\n                if (stringBuilder.length() > 0) {\n                    stringBuilder.append(\" \");\n                }\n                stringBuilder.append(name).append(\"=\").append(value);\n            }\n        }\n        return stringBuilder.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "_getValues(String)",
+      "names()"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "public String toString() {\n    StringBuilder stringBuilder = new StringBuilder();\n    String[] names = names();\n    for (String name : names) {\n        String[] values = _getValues(name);\n        for (String value : values) {\n            if (stringBuilder.length() > 0) {\n                stringBuilder.append(\" \");\n            }\n            stringBuilder.append(name).append(\"=\").append(value);\n        }\n    }\n    return stringBuilder.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

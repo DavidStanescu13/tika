@@ -1,0 +1,20 @@
+{
+  "className": "TextDetector",
+  "methodName": "TextDetector",
+  "brief": "public TextDetector(int bytesToTest){}",
+  "methodSignature": "TextDetector(int)",
+  "sourceCode": "public TextDetector(int bytesToTest) {\n        this.bytesToTest = bytesToTest;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public TextDetector(int bytesToTest) {\n    this.bytesToTest = bytesToTest;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

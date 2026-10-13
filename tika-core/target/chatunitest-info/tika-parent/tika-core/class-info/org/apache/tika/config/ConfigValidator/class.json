@@ -1,0 +1,45 @@
+{
+  "fullClassName": "org.apache.tika.config.ConfigValidator",
+  "className": "ConfigValidator",
+  "index": 3,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "public class ConfigValidator",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.file.Path;",
+    "import org.apache.tika.exception.TikaConfigException;",
+    "import org.apache.tika.utils.StringUtils;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "mustNotBeEmpty(String, String)": "0",
+    "mustNotBeEmpty(String, Path)": "1",
+    "ConfigValidator()": "2"
+  },
+  "methodsBrief": [
+    "public static void mustNotBeEmpty(String paramName, String paramValue)\r\n            throws TikaConfigException{}",
+    "public static void mustNotBeEmpty(String paramName, Path paramValue)\r\n            throws TikaConfigException{}",
+    "private ConfigValidator(){}"
+  ],
+  "constructorSigs": [
+    "ConfigValidator()"
+  ],
+  "constructorBrief": [
+    "private ConfigValidator(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.nio.file.Path;\nimport org.apache.tika.exception.TikaConfigException;\nimport org.apache.tika.utils.StringUtils;\n\n/**\n * Utility class for validating configuration parameters.\n */\npublic class ConfigValidator {\n\n    private ConfigValidator() {\n        // utility class\n    }\n\n    /**\n     * Validates that a string parameter is not null or blank.\n     *\n     * @param paramName the name of the parameter (for error messages)\n     * @param paramValue the value to validate\n     * @throws TikaConfigException if the value is null or blank\n     */\n    public static void mustNotBeEmpty(String paramName, String paramValue) throws TikaConfigException {\n        if (StringUtils.isBlank(paramValue)) {\n            throw new TikaConfigException(\"parameter '\" + paramName + \"' must be set in the config file\");\n        }\n    }\n\n    /**\n     * Validates that a Path parameter is not null.\n     *\n     * @param paramName the name of the parameter (for error messages)\n     * @param paramValue the value to validate\n     * @throws TikaConfigException if the value is null\n     */\n    public static void mustNotBeEmpty(String paramName, Path paramValue) throws TikaConfigException {\n        if (paramValue == null) {\n            throw new TikaConfigException(\"parameter '\" + paramName + \"' must be set in the config file\");\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Utility class for validating configuration parameters.\n */\npublic class ConfigValidator {\n\n    private ConfigValidator() {\n        // utility class\n    }\n\n    /**\n     * Validates that a string parameter is not null or blank.\n     *\n     * @param paramName the name of the parameter (for error messages)\n     * @param paramValue the value to validate\n     * @throws TikaConfigException if the value is null or blank\n     */\n    public static void mustNotBeEmpty(String paramName, String paramValue) throws TikaConfigException {\n        if (StringUtils.isBlank(paramValue)) {\n            throw new TikaConfigException(\"parameter '\" + paramName + \"' must be set in the config file\");\n        }\n    }\n\n    /**\n     * Validates that a Path parameter is not null.\n     *\n     * @param paramName the name of the parameter (for error messages)\n     * @param paramValue the value to validate\n     * @throws TikaConfigException if the value is null\n     */\n    public static void mustNotBeEmpty(String paramName, Path paramValue) throws TikaConfigException {\n        if (paramValue == null) {\n            throw new TikaConfigException(\"parameter '\" + paramName + \"' must be set in the config file\");\n        }\n    }\n}",
+  "subClasses": []
+}

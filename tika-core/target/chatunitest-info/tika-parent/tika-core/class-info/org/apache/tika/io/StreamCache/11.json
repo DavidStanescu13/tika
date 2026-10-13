@@ -1,0 +1,18 @@
+{
+  "className": "StreamCache",
+  "methodName": "isFileBacked",
+  "brief": "boolean isFileBacked(){}",
+  "methodSignature": "isFileBacked()",
+  "sourceCode": "boolean isFileBacked() {\n        return spillFile != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Whether the cache has spilled to a file.\n */\nboolean isFileBacked() {\n    return spillFile != null;\n}",
+  "method_comment": "\n     * Whether the cache has spilled to a file.\n     ",
+  "method_annotation": ""
+}

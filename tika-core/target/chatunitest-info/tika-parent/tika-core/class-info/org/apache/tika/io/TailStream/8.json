@@ -1,0 +1,28 @@
+{
+  "className": "TailStream",
+  "methodName": "appendBuf",
+  "brief": "private void appendBuf(byte[] buf, int ofs, int length){}",
+  "methodSignature": "appendBuf(byte[], int, int)",
+  "sourceCode": "private void appendBuf(byte[] buf, int ofs, int length) {\n        if (length >= tailSize) {\n            replaceTailBuffer(buf, ofs, length);\n        } else {\n            copyToTailBuffer(buf, ofs, length);\n        }\n\n        bytesRead += length;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.TailStream": [
+      "replaceTailBuffer(byte[], int, int)",
+      "copyToTailBuffer(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the content of the given buffer to the internal tail buffer.\n *\n * @param buf    the buffer\n * @param ofs    the start offset in the buffer\n * @param length the number of bytes to be copied\n */\nprivate void appendBuf(byte[] buf, int ofs, int length) {\n    if (length >= tailSize) {\n        replaceTailBuffer(buf, ofs, length);\n    } else {\n        copyToTailBuffer(buf, ofs, length);\n    }\n    bytesRead += length;\n}",
+  "method_comment": "\n     * Adds the content of the given buffer to the internal tail buffer.\n     *\n     * @param buf    the buffer\n     * @param ofs    the start offset in the buffer\n     * @param length the number of bytes to be copied\n     ",
+  "method_annotation": ""
+}

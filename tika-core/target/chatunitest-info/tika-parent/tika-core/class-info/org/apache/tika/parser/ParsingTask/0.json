@@ -1,0 +1,25 @@
+{
+  "className": "ParsingTask",
+  "methodName": "run",
+  "brief": "public void run(){}",
+  "methodSignature": "run()",
+  "sourceCode": "public void run() {\n            try (TikaInputStream tis = TikaInputStream.get(stream)) {\n                ContentHandler handler = new BodyContentHandler(writer);\n                parser.parse(tis, handler, metadata, context);\n            } catch (Throwable t) {\n                throwable = t;\n            }\n\n            try {\n                writer.close();\n            } catch (Throwable t) {\n                if (throwable == null) {\n                    throwable = t;\n                }\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream)"
+    ],
+    "java.io.Writer": [
+      "close()"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given binary stream and writes the text content\n * to the write end of the pipe. Potential exceptions (including\n * the one caused if the read end is closed unexpectedly) are\n * stored before the input stream is closed and processing is stopped.\n */\npublic void run() {\n    try (TikaInputStream tis = TikaInputStream.get(stream)) {\n        ContentHandler handler = new BodyContentHandler(writer);\n        parser.parse(tis, handler, metadata, context);\n    } catch (Throwable t) {\n        throwable = t;\n    }\n    try {\n        writer.close();\n    } catch (Throwable t) {\n        if (throwable == null) {\n            throwable = t;\n        }\n    }\n}",
+  "method_comment": "\n         * Parses the given binary stream and writes the text content\n         * to the write end of the pipe. Potential exceptions (including\n         * the one caused if the read end is closed unexpectedly) are\n         * stored before the input stream is closed and processing is stopped.\n         ",
+  "method_annotation": ""
+}

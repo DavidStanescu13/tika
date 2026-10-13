@@ -1,0 +1,25 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "skippedEntity",
+  "brief": "@Override\r\n    public void skippedEntity(String name) throws SAXException{}",
+  "methodSignature": "skippedEntity(String)",
+  "sourceCode": "@Override\n    public void skippedEntity(String name) throws SAXException {\n        ensureNotEnded(\"skippedEntity\");\n        super.skippedEntity(name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "skippedEntity(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void skippedEntity(String name) throws SAXException {\n    ensureNotEnded(\"skippedEntity\");\n    super.skippedEntity(name);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,23 @@
+{
+  "className": "Matcher",
+  "methodName": "descend",
+  "brief": "public Matcher descend(String namespace, String name){}",
+  "methodSignature": "descend(String, String)",
+  "sourceCode": "public Matcher descend(String namespace, String name) {\n        return FAIL;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Returns the XPath evaluation state that results from descending\n * to a child element with the given name.\n *\n * @param namespace element namespace or <code>null</code>\n * @param name      element name\n * @return next XPath evaluation state\n */\npublic Matcher descend(String namespace, String name) {\n    return FAIL;\n}",
+  "method_comment": "\n     * Returns the XPath evaluation state that results from descending\n     * to a child element with the given name.\n     *\n     * @param namespace element namespace or <code>null</code>\n     * @param name      element name\n     * @return next XPath evaluation state\n     ",
+  "method_annotation": ""
+}

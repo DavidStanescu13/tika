@@ -1,0 +1,35 @@
+{
+  "className": "RecursiveParserWrapper",
+  "methodName": "getResourceName",
+  "brief": "public static String getResourceName(Metadata metadata, AtomicInteger counter){}",
+  "methodSignature": "getResourceName(Metadata, AtomicInteger)",
+  "sourceCode": "public static String getResourceName(Metadata metadata, AtomicInteger counter) {\n        String objectName = \"\";\n        if (metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY) != null) {\n            objectName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        } else if (metadata.get(TikaCoreProperties.INTERNAL_PATH) != null) {\n            objectName = FilenameUtils.getName(metadata.get(TikaCoreProperties.INTERNAL_PATH));\n        } else if (metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID) != null) {\n            objectName = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n        } else if (metadata.get(TikaCoreProperties.VERSION_NUMBER) != null) {\n            objectName = \"version-number-\" + metadata.get(TikaCoreProperties.VERSION_NUMBER);\n        } else {\n            objectName = EmbeddedDocumentUtil.generateResourceName(\n                    EmbeddedDocumentUtil.EmbeddedResourcePrefix.EMBEDDED,\n                    counter.incrementAndGet(),\n                    metadata.get(Metadata.CONTENT_TYPE));\n            metadata.set(TikaCoreProperties.RESOURCE_NAME_EXTENSION_INFERRED, true);\n        }\n        //make sure that there isn't any path info in the objectName\n        //some parsers can return paths, not just file names\n        objectName = FilenameUtils.getName(objectName);\n        return objectName;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "AtomicInteger"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, boolean)",
+      "get(Property)"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "incrementAndGet()"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "getName(String)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "generateResourceName(EmbeddedResourcePrefix, int, String)"
+    ]
+  },
+  "full_method_info": "public static String getResourceName(Metadata metadata, AtomicInteger counter) {\n    String objectName = \"\";\n    if (metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY) != null) {\n        objectName = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    } else if (metadata.get(TikaCoreProperties.INTERNAL_PATH) != null) {\n        objectName = FilenameUtils.getName(metadata.get(TikaCoreProperties.INTERNAL_PATH));\n    } else if (metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID) != null) {\n        objectName = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n    } else if (metadata.get(TikaCoreProperties.VERSION_NUMBER) != null) {\n        objectName = \"version-number-\" + metadata.get(TikaCoreProperties.VERSION_NUMBER);\n    } else {\n        objectName = EmbeddedDocumentUtil.generateResourceName(EmbeddedDocumentUtil.EmbeddedResourcePrefix.EMBEDDED, counter.incrementAndGet(), metadata.get(Metadata.CONTENT_TYPE));\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_EXTENSION_INFERRED, true);\n    }\n    // make sure that there isn't any path info in the objectName\n    // some parsers can return paths, not just file names\n    objectName = FilenameUtils.getName(objectName);\n    return objectName;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

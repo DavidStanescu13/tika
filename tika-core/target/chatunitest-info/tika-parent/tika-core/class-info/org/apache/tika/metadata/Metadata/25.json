@@ -1,0 +1,33 @@
+{
+  "className": "Metadata",
+  "methodName": "set",
+  "brief": "public void set(Property property, int value){}",
+  "methodSignature": "set(Property, int)",
+  "sourceCode": "public void set(Property property, int value) {\n        if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n            throw new PropertyTypeException(Property.PropertyType.SIMPLE,\n                    property.getPrimaryProperty().getPropertyType());\n        }\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n            throw new PropertyTypeException(Property.ValueType.INTEGER,\n                    property.getPrimaryProperty().getValueType());\n        }\n        set(property, Integer.toString(value));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()",
+      "getPropertyType()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "java.lang.Integer": [
+      "toString(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the integer value of the identified metadata property.\n *\n * @param property simple integer property definition\n * @param value    property value\n * @since Apache Tika 0.8\n */\npublic void set(Property property, int value) {\n    if (property.getPrimaryProperty().getPropertyType() != Property.PropertyType.SIMPLE) {\n        throw new PropertyTypeException(Property.PropertyType.SIMPLE, property.getPrimaryProperty().getPropertyType());\n    }\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.INTEGER) {\n        throw new PropertyTypeException(Property.ValueType.INTEGER, property.getPrimaryProperty().getValueType());\n    }\n    set(property, Integer.toString(value));\n}",
+  "method_comment": "\n     * Sets the integer value of the identified metadata property.\n     *\n     * @param property simple integer property definition\n     * @param value    property value\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

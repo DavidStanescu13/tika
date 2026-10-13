@@ -1,0 +1,25 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "addResource",
+  "brief": "public void addResource(Closeable resource){}",
+  "methodSignature": "addResource(Closeable)",
+  "sourceCode": "public void addResource(Closeable resource) {\n        resources.addFirst(resource);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Closeable"
+  ],
+  "dependentMethods": {
+    "java.io.Closeable": [],
+    "java.util.LinkedList": [
+      "addFirst(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds a new resource to the set of tracked resources that will all be\n * closed when the {@link #close()} method is called.\n *\n * @param resource resource to be tracked\n */\npublic void addResource(Closeable resource) {\n    resources.addFirst(resource);\n}",
+  "method_comment": "\n     * Adds a new resource to the set of tracked resources that will all be\n     * closed when the {@link #close()} method is called.\n     *\n     * @param resource resource to be tracked\n     ",
+  "method_annotation": ""
+}

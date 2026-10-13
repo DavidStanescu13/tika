@@ -1,0 +1,20 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "setValidateXHTML",
+  "brief": "public void setValidateXHTML(boolean validateXHTML){}",
+  "methodSignature": "setValidateXHTML(boolean)",
+  "sourceCode": "public void setValidateXHTML(boolean validateXHTML) {\n        this.validateXHTML = validateXHTML;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * When true, every handler produced by this factory is wrapped in a\n * {@link StrictXHTMLValidator} so that any malformed XHTML event sequence\n * emitted by a parser throws a {@link org.xml.sax.SAXException} at the\n * offending event. Defaults to false. Intended for catching parser bugs\n * in development / corpus scans; off in production for performance and\n * because not every caller wants validation failures to surface as\n * parser exceptions.\n */\npublic void setValidateXHTML(boolean validateXHTML) {\n    this.validateXHTML = validateXHTML;\n}",
+  "method_comment": "\n     * When true, every handler produced by this factory is wrapped in a\n     * {@link StrictXHTMLValidator} so that any malformed XHTML event sequence\n     * emitted by a parser throws a {@link org.xml.sax.SAXException} at the\n     * offending event. Defaults to false. Intended for catching parser bugs\n     * in development / corpus scans; off in production for performance and\n     * because not every caller wants validation failures to surface as\n     * parser exceptions.\n     ",
+  "method_annotation": ""
+}

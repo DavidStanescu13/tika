@@ -1,0 +1,25 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "getSupportedTypes",
+  "brief": "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return parser.getSupportedTypes(context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Delegates the method call to the decorated parser. Subclasses should\n * override this method (and use <code>super.getSupportedTypes()</code>\n * to invoke the decorated parser) to implement extra decoration.\n */\npublic Set<MediaType> getSupportedTypes(ParseContext context) {\n    return parser.getSupportedTypes(context);\n}",
+  "method_comment": "\n     * Delegates the method call to the decorated parser. Subclasses should\n     * override this method (and use <code>super.getSupportedTypes()</code>\n     * to invoke the decorated parser) to implement extra decoration.\n     ",
+  "method_annotation": ""
+}

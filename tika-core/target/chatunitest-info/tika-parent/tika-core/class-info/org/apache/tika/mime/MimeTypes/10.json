@@ -1,0 +1,27 @@
+{
+  "className": "MimeTypes",
+  "methodName": "addPattern",
+  "brief": "public void addPattern(MimeType type, String pattern) throws MimeTypeException{}",
+  "methodSignature": "addPattern(MimeType, String)",
+  "sourceCode": "public void addPattern(MimeType type, String pattern) throws MimeTypeException {\n        this.addPattern(type, pattern, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [],
+    "java.lang.String": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "addPattern(MimeType, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds a file name pattern for the given media type. Assumes that the\n * pattern being added is <b>not</b> a JDK standard regular expression.\n *\n * @param type    media type\n * @param pattern file name pattern\n * @throws MimeTypeException if the pattern conflicts with existing ones\n */\npublic void addPattern(MimeType type, String pattern) throws MimeTypeException {\n    this.addPattern(type, pattern, false);\n}",
+  "method_comment": "\n     * Adds a file name pattern for the given media type. Assumes that the\n     * pattern being added is <b>not</b> a JDK standard regular expression.\n     *\n     * @param type    media type\n     * @param pattern file name pattern\n     * @throws MimeTypeException if the pattern conflicts with existing ones\n     ",
+  "method_annotation": ""
+}

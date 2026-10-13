@@ -1,0 +1,56 @@
+{
+  "className": "RegexCaptureParser",
+  "methodName": "parse",
+  "brief": "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        try (BufferedReader reader = new BufferedReader(new InputStreamReader(tis,\n                StandardCharsets.UTF_8))) {\n            String line = reader.readLine();\n            Map<String, Matcher> localCaptureMap = new HashMap();\n            for (Map.Entry<String, Pattern> e : captureMap.entrySet()) {\n                localCaptureMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n            Map<String, Matcher> localMatchMap = new HashMap<>();\n            for (Map.Entry<String, Pattern> e : matchMap.entrySet()) {\n                localMatchMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n\n            Map<String, Set<String>> keyVals = new HashMap<>();\n            while (line != null) {\n                for (Map.Entry<String, Matcher> e : localCaptureMap.entrySet()) {\n                    Matcher m = e.getValue();\n                    if (m.reset(line).find()) {\n                        String val = m.group(1);\n                        Set<String> vals = keyVals.get(e.getKey());\n                        if (vals == null) {\n                            vals = new LinkedHashSet<>();\n                            keyVals.put(e.getKey(), vals);\n                        }\n                        vals.add(val);\n                    }\n                }\n                for (Map.Entry<String, Matcher> e : localMatchMap.entrySet()) {\n                    if (e.getValue().reset(line).find()) {\n                        metadata.set(e.getKey(), \"true\");\n                    }\n                }\n                if (writeContent) {\n                    char[] chars = line.toCharArray();\n                    handler.characters(chars, 0, chars.length);\n                }\n                line = reader.readLine();\n            }\n            for (Map.Entry<String, Set<String>> e : keyVals.entrySet()) {\n                for (String val : e.getValue()) {\n                    metadata.add(e.getKey(), val);\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(String, String)",
+      "add(String, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.io.BufferedReader": [
+      "readLine()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "reset(CharSequence)",
+      "group(int)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "java.lang.String": [
+      "toCharArray()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    try (BufferedReader reader = new BufferedReader(new InputStreamReader(tis, StandardCharsets.UTF_8))) {\n        String line = reader.readLine();\n        Map<String, Matcher> localCaptureMap = new HashMap();\n        for (Map.Entry<String, Pattern> e : captureMap.entrySet()) {\n            localCaptureMap.put(e.getKey(), e.getValue().matcher(\"\"));\n        }\n        Map<String, Matcher> localMatchMap = new HashMap<>();\n        for (Map.Entry<String, Pattern> e : matchMap.entrySet()) {\n            localMatchMap.put(e.getKey(), e.getValue().matcher(\"\"));\n        }\n        Map<String, Set<String>> keyVals = new HashMap<>();\n        while (line != null) {\n            for (Map.Entry<String, Matcher> e : localCaptureMap.entrySet()) {\n                Matcher m = e.getValue();\n                if (m.reset(line).find()) {\n                    String val = m.group(1);\n                    Set<String> vals = keyVals.get(e.getKey());\n                    if (vals == null) {\n                        vals = new LinkedHashSet<>();\n                        keyVals.put(e.getKey(), vals);\n                    }\n                    vals.add(val);\n                }\n            }\n            for (Map.Entry<String, Matcher> e : localMatchMap.entrySet()) {\n                if (e.getValue().reset(line).find()) {\n                    metadata.set(e.getKey(), \"true\");\n                }\n            }\n            if (writeContent) {\n                char[] chars = line.toCharArray();\n                handler.characters(chars, 0, chars.length);\n            }\n            line = reader.readLine();\n        }\n        for (Map.Entry<String, Set<String>> e : keyVals.entrySet()) {\n            for (String val : e.getValue()) {\n                metadata.add(e.getKey(), val);\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

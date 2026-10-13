@@ -1,0 +1,22 @@
+{
+  "className": "ToTextContentHandler",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        return writer.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Object": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the contents of the internal string buffer where\n * all the received characters have been collected. Only works\n * when this object was constructed using the empty default\n * constructor or by passing a {@link StringWriter} to the\n * other constructor.\n */\n@Override\npublic String toString() {\n    return writer.toString();\n}",
+  "method_comment": "\n     * Returns the contents of the internal string buffer where\n     * all the received characters have been collected. Only works\n     * when this object was constructed using the empty default\n     * constructor or by passing a {@link StringWriter} to the\n     * other constructor.\n     ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,32 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "getExtensionForMediaType",
+  "brief": "public static String getExtensionForMediaType(String mediaType){}",
+  "methodSignature": "getExtensionForMediaType(String)",
+  "sourceCode": "public static String getExtensionForMediaType(String mediaType) {\n        if (mediaType == null) {\n            return \"\";\n        }\n        MimeType mimeType =\n                getRegisteredMimeType(MimeTypes.getDefaultMimeTypes(),\n                        normalizeMediaType(mediaType));\n        return mimeType == null ? \"\" : mimeType.getExtension();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "normalizeMediaType(String)",
+      "getRegisteredMimeType(MimeTypes, String)"
+    ],
+    "org.apache.tika.mime.MimeTypes": [
+      "getDefaultMimeTypes()"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "getExtension()"
+    ]
+  },
+  "full_method_info": "/**\n * Looks up the file extension for a given media type string.\n *\n * @param mediaType the media type string (e.g., \"image/png\"), parameters allowed\n * @return the extension including the dot (e.g., \".png\"), or empty string if unknown\n */\npublic static String getExtensionForMediaType(String mediaType) {\n    if (mediaType == null) {\n        return \"\";\n    }\n    MimeType mimeType = getRegisteredMimeType(MimeTypes.getDefaultMimeTypes(), normalizeMediaType(mediaType));\n    return mimeType == null ? \"\" : mimeType.getExtension();\n}",
+  "method_comment": "\n     * Looks up the file extension for a given media type string.\n     *\n     * @param mediaType the media type string (e.g., \"image/png\"), parameters allowed\n     * @return the extension including the dot (e.g., \".png\"), or empty string if unknown\n     ",
+  "method_annotation": ""
+}

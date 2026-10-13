@@ -1,0 +1,20 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "setThrowOnMaxDepth",
+  "brief": "public void setThrowOnMaxDepth(boolean throwOnMaxDepth){}",
+  "methodSignature": "setThrowOnMaxDepth(boolean)",
+  "sourceCode": "public void setThrowOnMaxDepth(boolean throwOnMaxDepth) {\n        this.throwOnMaxDepth = throwOnMaxDepth;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether to throw an exception when maxDepth is reached.\n *\n * @param throwOnMaxDepth true to throw an exception\n */\npublic void setThrowOnMaxDepth(boolean throwOnMaxDepth) {\n    this.throwOnMaxDepth = throwOnMaxDepth;\n}",
+  "method_comment": "\n     * Sets whether to throw an exception when maxDepth is reached.\n     *\n     * @param throwOnMaxDepth true to throw an exception\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,72 @@
+{
+  "fullClassName": "org.apache.tika.sax.TextContentHandler",
+  "className": "TextContentHandler",
+  "index": 315,
+  "modifier": "[public ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class TextContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;"
+  ],
+  "fields": [
+    "private static final char[] SPACE = new char[]{' '};",
+    "private final ContentHandler delegate;",
+    "private final boolean addSpaceBetweenElements;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setDocumentLocator(org.xml.sax.Locator)": "0",
+    "characters(char[], int, int)": "1",
+    "ignorableWhitespace(char[], int, int)": "2",
+    "startElement(String, String, String, Attributes)": "3",
+    "startDocument()": "4",
+    "endDocument()": "5",
+    "toString()": "6",
+    "TextContentHandler(ContentHandler)": "7",
+    "TextContentHandler(ContentHandler, boolean)": "8"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void setDocumentLocator(org.xml.sax.Locator locator){}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+    "@Override\r\n    public void startDocument() throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "@Override\r\n    public String toString(){}",
+    "public TextContentHandler(ContentHandler delegate){}",
+    "public TextContentHandler(ContentHandler delegate, boolean addSpaceBetweenElements){}"
+  ],
+  "constructorSigs": [
+    "TextContentHandler(ContentHandler)",
+    "TextContentHandler(ContentHandler, boolean)"
+  ],
+  "constructorBrief": [
+    "public TextContentHandler(ContentHandler delegate){}",
+    "public TextContentHandler(ContentHandler delegate, boolean addSpaceBetweenElements){}"
+  ],
+  "getterSetterSigs": [
+    "setDocumentLocator(org.xml.sax.Locator)"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public void setDocumentLocator(org.xml.sax.Locator locator){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\n\n/**\n * Content handler decorator that only passes the\n * {@link #characters(char[], int, int)} and\n * (@link {@link #ignorableWhitespace(char[], int, int)}\n * (plus {@link #startDocument()} and {@link #endDocument()} events to\n * the decorated content handler.\n */\npublic class TextContentHandler extends DefaultHandler {\n\n    private static final char[] SPACE = new char[] { ' ' };\n\n    private final ContentHandler delegate;\n\n    private final boolean addSpaceBetweenElements;\n\n    public TextContentHandler(ContentHandler delegate) {\n        this(delegate, false);\n    }\n\n    public TextContentHandler(ContentHandler delegate, boolean addSpaceBetweenElements) {\n        this.delegate = delegate;\n        this.addSpaceBetweenElements = addSpaceBetweenElements;\n    }\n\n    @Override\n    public void setDocumentLocator(org.xml.sax.Locator locator) {\n        delegate.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        delegate.characters(ch, start, length);\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        delegate.ignorableWhitespace(ch, start, length);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        if (addSpaceBetweenElements) {\n            delegate.characters(SPACE, 0, SPACE.length);\n        }\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        delegate.startDocument();\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        delegate.endDocument();\n    }\n\n    @Override\n    public String toString() {\n        return delegate.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content handler decorator that only passes the\n * {@link #characters(char[], int, int)} and\n * (@link {@link #ignorableWhitespace(char[], int, int)}\n * (plus {@link #startDocument()} and {@link #endDocument()} events to\n * the decorated content handler.\n */\npublic class TextContentHandler extends DefaultHandler {\n\n    private static final char[] SPACE = new char[] { ' ' };\n\n    private final ContentHandler delegate;\n\n    private final boolean addSpaceBetweenElements;\n\n    public TextContentHandler(ContentHandler delegate) {\n        this(delegate, false);\n    }\n\n    public TextContentHandler(ContentHandler delegate, boolean addSpaceBetweenElements) {\n        this.delegate = delegate;\n        this.addSpaceBetweenElements = addSpaceBetweenElements;\n    }\n\n    @Override\n    public void setDocumentLocator(org.xml.sax.Locator locator) {\n        delegate.setDocumentLocator(locator);\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        delegate.characters(ch, start, length);\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        delegate.ignorableWhitespace(ch, start, length);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        if (addSpaceBetweenElements) {\n            delegate.characters(SPACE, 0, SPACE.length);\n        }\n    }\n\n    @Override\n    public void startDocument() throws SAXException {\n        delegate.startDocument();\n    }\n\n    @Override\n    public void endDocument() throws SAXException {\n        delegate.endDocument();\n    }\n\n    @Override\n    public String toString() {\n        return delegate.toString();\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.TextAndAttributeContentHandler"
+  ]
+}

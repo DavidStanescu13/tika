@@ -1,0 +1,28 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getPrefixLength",
+  "brief": "private static int getPrefixLength(String path){}",
+  "methodSignature": "getPrefixLength(String)",
+  "sourceCode": "private static int getPrefixLength(String path) {\n        int prefixLength = org.apache.commons.io.FilenameUtils.getPrefixLength(path);\n        if (prefixLength > 0) {\n            return prefixLength;\n        }\n        if (path.length() == 2 && path.charAt(0) >= 'A' && path.charAt(0) <= 'Z' && path.charAt(1) == ':') {\n            return 2;\n        }\n        return 0;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()",
+      "charAt(int)"
+    ],
+    "org.apache.commons.io.FilenameUtils": [
+      "getPrefixLength(String)"
+    ]
+  },
+  "full_method_info": "private static int getPrefixLength(String path) {\n    int prefixLength = org.apache.commons.io.FilenameUtils.getPrefixLength(path);\n    if (prefixLength > 0) {\n        return prefixLength;\n    }\n    if (path.length() == 2 && path.charAt(0) >= 'A' && path.charAt(0) <= 'Z' && path.charAt(1) == ':') {\n        return 2;\n    }\n    return 0;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "EndianUtils",
+  "methodName": "readUE7",
+  "brief": "public static long readUE7(InputStream stream) throws IOException{}",
+  "methodSignature": "readUE7(InputStream)",
+  "sourceCode": "public static long readUE7(InputStream stream) throws IOException {\n        int i;\n        long v = 0;\n        int max = 6;\n        int read = 0;\n        while ((i = stream.read()) >= 0 && read++ < max) {\n            v = v << 7;\n            if ((i & 128) == 128) {\n                // Continues\n                v += (i & 127);\n            } else {\n                // Last value\n                v += i;\n                break;\n            }\n        }\n        if (i < 0) {\n            throw new IOException(\"Buffer underun; expected one more byte\");\n        }\n        return v;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the integer value that is stored in UTF-8 like fashion, in Big Endian\n * but with the high bit on each number indicating if it continues or not\n */\npublic static long readUE7(InputStream stream) throws IOException {\n    int i;\n    long v = 0;\n    int max = 6;\n    int read = 0;\n    while ((i = stream.read()) >= 0 && read++ < max) {\n        v = v << 7;\n        if ((i & 128) == 128) {\n            // Continues\n            v += (i & 127);\n        } else {\n            // Last value\n            v += i;\n            break;\n        }\n    }\n    if (i < 0) {\n        throw new IOException(\"Buffer underun; expected one more byte\");\n    }\n    return v;\n}",
+  "method_comment": "\n     * Gets the integer value that is stored in UTF-8 like fashion, in Big Endian\n     * but with the high bit on each number indicating if it continues or not\n     ",
+  "method_annotation": ""
+}

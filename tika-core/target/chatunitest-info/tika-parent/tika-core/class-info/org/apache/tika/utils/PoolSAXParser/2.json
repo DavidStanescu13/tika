@@ -1,0 +1,18 @@
+{
+  "className": "PoolSAXParser",
+  "methodName": "getSAXParser",
+  "brief": "public SAXParser getSAXParser(){}",
+  "methodSignature": "getSAXParser()",
+  "sourceCode": "public SAXParser getSAXParser() {\n            return saxParser;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public SAXParser getSAXParser() {\n    return saxParser;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,27 @@
+{
+  "className": "DurationFormatUtils",
+  "methodName": "addComma",
+  "brief": "private static void addComma(StringBuilder sb){}",
+  "methodSignature": "addComma(StringBuilder)",
+  "sourceCode": "private static void addComma(StringBuilder sb) {\n        if (sb.length() > 0) {\n            sb.append(\", \");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringBuilder"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "append(String)"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ]
+  },
+  "full_method_info": "private static void addComma(StringBuilder sb) {\n    if (sb.length() > 0) {\n        sb.append(\", \");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

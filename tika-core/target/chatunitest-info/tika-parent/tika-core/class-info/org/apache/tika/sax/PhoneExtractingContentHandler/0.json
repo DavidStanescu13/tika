@@ -1,0 +1,33 @@
+{
+  "className": "PhoneExtractingContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.util.Arrays": [
+      "copyOfRange(char[], int, int)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(String)"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * The characters method is called whenever a Parser wants to pass raw...\n * characters to the ContentHandler. But, sometimes, phone numbers are split\n * accross different calls to characters, depending on the specific Parser\n * used. So, we simply add all characters to a StringBuilder and analyze it\n * once the document is finished.\n */\n@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    try {\n        String text = new String(Arrays.copyOfRange(ch, start, start + length));\n        stringBuilder.append(text);\n        super.characters(ch, start, length);\n    } catch (SAXException e) {\n        handleException(e);\n    }\n}",
+  "method_comment": "\n     * The characters method is called whenever a Parser wants to pass raw...\n     * characters to the ContentHandler. But, sometimes, phone numbers are split\n     * accross different calls to characters, depending on the specific Parser\n     * used. So, we simply add all characters to a StringBuilder and analyze it\n     * once the document is finished.\n     ",
+  "method_annotation": "@Override\n"
+}

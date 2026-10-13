@@ -1,0 +1,30 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "isInstanceOf",
+  "brief": "public boolean isInstanceOf(String a, MediaType b){}",
+  "methodSignature": "isInstanceOf(String, MediaType)",
+  "sourceCode": "public boolean isInstanceOf(String a, MediaType b) {\n        return isInstanceOf(normalize(MediaType.parse(a)), b);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isInstanceOf(MediaType, MediaType)",
+      "normalize(MediaType)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses and normalises the given media type string and checks whether\n * the result equals the given base type or is a specialization of it.\n * The given base type should already be normalised.\n *\n * @param a media type\n * @param b base type, normalised\n * @return <code>true</code> if b equals a or is a specialization of it,\n * <code>false</code> otherwise\n * @since Apache Tika 1.2\n */\npublic boolean isInstanceOf(String a, MediaType b) {\n    return isInstanceOf(normalize(MediaType.parse(a)), b);\n}",
+  "method_comment": "\n     * Parses and normalises the given media type string and checks whether\n     * the result equals the given base type or is a specialization of it.\n     * The given base type should already be normalised.\n     *\n     * @param a media type\n     * @param b base type, normalised\n     * @return <code>true</code> if b equals a or is a specialization of it,\n     * <code>false</code> otherwise\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": ""
+}

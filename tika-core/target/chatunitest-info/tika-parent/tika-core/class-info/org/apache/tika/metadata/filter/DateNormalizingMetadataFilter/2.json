@@ -1,0 +1,25 @@
+{
+  "className": "DateNormalizingMetadataFilter",
+  "methodName": "getDefaultTimeZone",
+  "brief": "public String getDefaultTimeZone(){}",
+  "methodSignature": "getDefaultTimeZone()",
+  "sourceCode": "public String getDefaultTimeZone() {\n        return this.defaultTimeZone.toZoneId().toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.time.ZoneId": [
+      "toString()"
+    ],
+    "java.util.TimeZone": [
+      "toZoneId()"
+    ]
+  },
+  "full_method_info": "public String getDefaultTimeZone() {\n    return this.defaultTimeZone.toZoneId().toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

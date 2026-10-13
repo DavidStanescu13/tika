@@ -1,0 +1,124 @@
+{
+  "fullClassName": "org.apache.tika.parser.AutoDetectParser",
+  "className": "AutoDetectParser",
+  "index": 226,
+  "modifier": "[public ]",
+  "extend": "[CompositeParser]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class AutoDetectParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.detect.DefaultDetector;",
+    "import org.apache.tika.detect.Detector;",
+    "import org.apache.tika.digest.DigestHelper;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.exception.ZeroByteFileException;",
+    "import org.apache.tika.extractor.EmbeddedDocumentExtractor;",
+    "import org.apache.tika.extractor.EmbeddedDocumentExtractorFactory;",
+    "import org.apache.tika.extractor.EmbeddedDocumentUtil;",
+    "import org.apache.tika.extractor.StandardExtractorFactory;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.sax.SecureContentHandler;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 6110455808615143122L;",
+    "private Detector detector;",
+    "private AutoDetectParserConfig autoDetectParserConfig;"
+  ],
+  "superClasses": [
+    "CompositeParser"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "build(CompositeParser, Detector, AutoDetectParserConfig)": "0",
+    "getFallbackFrom(Parser)": "1",
+    "getDetector()": "2",
+    "setDetector(Detector)": "3",
+    "setAutoDetectParserConfig(AutoDetectParserConfig)": "4",
+    "getAutoDetectParserConfig()": "5",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "6",
+    "decorateHandler(ContentHandler, Metadata, ParseContext, AutoDetectParserConfig)": "7",
+    "initializeEmbeddedDocumentExtractor(Metadata, ParseContext)": "8",
+    "parse(TikaInputStream, ContentHandler, Metadata)": "9",
+    "createSecureContentHandler(ContentHandler, TikaInputStream, ParseContext)": "10",
+    "AutoDetectParser()": "11",
+    "AutoDetectParser(Detector)": "12",
+    "AutoDetectParser(Parser[])": "13",
+    "AutoDetectParser(Detector, Parser[])": "14",
+    "AutoDetectParser(MediaTypeRegistry, Parser, Detector, AutoDetectParserConfig)": "15"
+  },
+  "methodsBrief": [
+    "public static Parser build(CompositeParser parser, Detector detector,\r\n                               AutoDetectParserConfig autoDetectParserConfig){}",
+    "private static Parser getFallbackFrom(Parser defaultParser){}",
+    "public Detector getDetector(){}",
+    "public void setDetector(Detector detector){}",
+    "public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig){}",
+    "public AutoDetectParserConfig getAutoDetectParserConfig(){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+    "private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata,\r\n                                           ParseContext context,\r\n                                           AutoDetectParserConfig autoDetectParserConfig){}",
+    "private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\r\n            throws IOException, SAXException, TikaException{}",
+    "private SecureContentHandler createSecureContentHandler(ContentHandler handler,\r\n                                                            TikaInputStream tis,\r\n                                                            ParseContext context){}",
+    "public AutoDetectParser(){}",
+    "public AutoDetectParser(Detector detector){}",
+    "public AutoDetectParser(Parser... parsers){}",
+    "public AutoDetectParser(Detector detector, Parser... parsers){}",
+    "public AutoDetectParser(MediaTypeRegistry mediaTypeRegistry, Parser parser, Detector detector,\r\n                             AutoDetectParserConfig autoDetectParserConfig){}"
+  ],
+  "constructorSigs": [
+    "AutoDetectParser()",
+    "AutoDetectParser(Detector)",
+    "AutoDetectParser(Parser[])",
+    "AutoDetectParser(Detector, Parser[])",
+    "AutoDetectParser(MediaTypeRegistry, Parser, Detector, AutoDetectParserConfig)"
+  ],
+  "constructorBrief": [
+    "public AutoDetectParser(){}",
+    "public AutoDetectParser(Detector detector){}",
+    "public AutoDetectParser(Parser... parsers){}",
+    "public AutoDetectParser(Detector detector, Parser... parsers){}",
+    "public AutoDetectParser(MediaTypeRegistry mediaTypeRegistry, Parser parser, Detector detector,\r\n                             AutoDetectParserConfig autoDetectParserConfig){}"
+  ],
+  "getterSetterSigs": [
+    "getDetector()",
+    "setDetector(Detector)",
+    "setAutoDetectParserConfig(AutoDetectParserConfig)",
+    "getAutoDetectParserConfig()"
+  ],
+  "getterSetterBrief": [
+    "public Detector getDetector(){}",
+    "public void setDetector(Detector detector){}",
+    "public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig){}",
+    "public AutoDetectParserConfig getAutoDetectParserConfig(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.detect.Detector": [],
+    "org.apache.tika.parser.Parser...": [],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "getDefaultRegistry()"
+    ],
+    "org.apache.tika.parser.AutoDetectParser": [
+      "setDetector(Detector)",
+      "setAutoDetectParserConfig(AutoDetectParserConfig)"
+    ],
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.parser.AutoDetectParserConfig": [],
+    "org.apache.tika.parser.CompositeParser": [
+      "setFallback(Parser)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.IOException;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.detect.DefaultDetector;\nimport org.apache.tika.detect.Detector;\nimport org.apache.tika.digest.DigestHelper;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.exception.ZeroByteFileException;\nimport org.apache.tika.extractor.EmbeddedDocumentExtractor;\nimport org.apache.tika.extractor.EmbeddedDocumentExtractorFactory;\nimport org.apache.tika.extractor.EmbeddedDocumentUtil;\nimport org.apache.tika.extractor.StandardExtractorFactory;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.sax.SecureContentHandler;\n\npublic class AutoDetectParser extends CompositeParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 6110455808615143122L;\n\n    // private final TikaConfig config;\n    /**\n     * The type detector used by this parser to auto-detect the type\n     * of a document.\n     */\n    // always set in the constructor\n    private Detector detector;\n\n    /**\n     * Configuration used when initializing a SecureContentHandler\n     * and the TikaInputStream.\n     */\n    private AutoDetectParserConfig autoDetectParserConfig;\n\n    public AutoDetectParser() {\n        this(new DefaultDetector(), new DefaultParser());\n    }\n\n    public AutoDetectParser(Detector detector) {\n        this(detector, new DefaultParser());\n    }\n\n    public AutoDetectParser(Parser... parsers) {\n        this(new DefaultDetector(), parsers);\n    }\n\n    public AutoDetectParser(Detector detector, Parser... parsers) {\n        super(MediaTypeRegistry.getDefaultRegistry(), parsers);\n        setDetector(detector);\n        setAutoDetectParserConfig(AutoDetectParserConfig.DEFAULT);\n    }\n\n    public AutoDetectParser(MediaTypeRegistry mediaTypeRegistry, Parser parser, Detector detector, AutoDetectParserConfig autoDetectParserConfig) {\n        super(mediaTypeRegistry, parser);\n        setFallback(getFallbackFrom(parser));\n        setDetector(detector);\n        setAutoDetectParserConfig(autoDetectParserConfig);\n    }\n\n    public static Parser build(CompositeParser parser, Detector detector, AutoDetectParserConfig autoDetectParserConfig) {\n        return new AutoDetectParser(parser.getMediaTypeRegistry(), parser, detector, autoDetectParserConfig);\n    }\n\n    private static Parser getFallbackFrom(Parser defaultParser) {\n        if (defaultParser instanceof DefaultParser) {\n            return ((DefaultParser) defaultParser).getFallback();\n        }\n        return new EmptyParser();\n    }\n\n    /**\n     * Returns the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @return type detector\n     * @since Apache Tika 0.4\n     */\n    public Detector getDetector() {\n        return detector;\n    }\n\n    /**\n     * Sets the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @param detector type detector\n     * @since Apache Tika 0.4\n     */\n    public void setDetector(Detector detector) {\n        this.detector = detector;\n    }\n\n    /**\n     * Sets the configuration that will be used to create SecureContentHandlers\n     * that will be used for parsing.\n     *\n     * @param autoDetectParserConfig type SecureContentHandlerConfig\n     * @since Apache Tika 2.1.1\n     */\n    public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig) {\n        this.autoDetectParserConfig = autoDetectParserConfig;\n    }\n\n    public AutoDetectParserConfig getAutoDetectParserConfig() {\n        return this.autoDetectParserConfig;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        // Compute digests before type detection if configured\n        // DigesterFactory is retrieved from ParseContext (configured via parse-context)\n        DigestHelper.maybeDigest(tis, metadata, context);\n        // Signal to detectors that parsing will follow - allows them to prepare\n        // (e.g., salvage corrupted ZIP files for parser reuse)\n        context.set(ParsingIntent.class, ParsingIntent.WILL_PARSE);\n        // Automatically detect the MIME type of the document\n        MediaType type = detector.detect(tis, metadata, context);\n        // Normalize OCR routing types (e.g., image/ocr-png -> image/png) so they\n        // don't leak into CONTENT_TYPE\n        metadata.set(Metadata.CONTENT_TYPE, EmbeddedDocumentUtil.normalizeMediaType(type.toString()));\n        // Metadata-only pseudo-parse: register the entry, skip the content parse.\n        if (context.get(MetadataOnlyParse.class) != null) {\n            return;\n        }\n        // check for zero-byte inputstream\n        if (tis.getOpenContainer() == null) {\n            if (autoDetectParserConfig.getThrowOnZeroBytes()) {\n                tis.mark(1);\n                if (tis.read() == -1) {\n                    throw new ZeroByteFileException(\"InputStream must have > 0 bytes\");\n                }\n                tis.reset();\n            }\n        }\n        handler = decorateHandler(handler, metadata, context, autoDetectParserConfig);\n        // TIKA-216: Zip bomb prevention\n        SecureContentHandler sch = handler != null ? createSecureContentHandler(handler, tis, context) : null;\n        initializeEmbeddedDocumentExtractor(metadata, context);\n        try {\n            // Parse the document\n            super.parse(tis, sch, metadata, context);\n        } catch (SAXException e) {\n            // Convert zip bomb exceptions to TikaExceptions\n            sch.throwIfCauseOf(e);\n            throw e;\n        }\n    }\n\n    private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata, ParseContext context, AutoDetectParserConfig autoDetectParserConfig) {\n        if (context.get(RecursiveParserWrapper.RecursivelySecureContentHandler.class) != null) {\n            // using the recursiveparserwrapper. we should decorate this handler\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n        }\n        ParseRecord parseRecord = context.get(ParseRecord.class);\n        if (parseRecord == null || parseRecord.getDepth() == 0) {\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n        }\n        // else do not decorate\n        return handler;\n    }\n\n    private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context) {\n        if (context.get(EmbeddedDocumentExtractor.class) != null) {\n            return;\n        }\n        // pass in self for embedded documents unless\n        // the caller has specified a parser\n        Parser p = context.get(Parser.class);\n        if (p == null) {\n            context.set(Parser.class, this);\n        }\n        // pass in own detector for embedded documents unless\n        // the caller has specified one\n        Detector d = context.get(Detector.class);\n        if (d == null) {\n            context.set(Detector.class, getDetector());\n        }\n        EmbeddedDocumentExtractorFactory edxf = context.get(EmbeddedDocumentExtractorFactory.class);\n        if (edxf == null) {\n            edxf = new StandardExtractorFactory();\n        }\n        EmbeddedDocumentExtractor edx = edxf.newInstance(metadata, context);\n        context.set(EmbeddedDocumentExtractor.class, edx);\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n        ParseContext context = new ParseContext();\n        context.set(Parser.class, this);\n        parse(tis, handler, metadata, context);\n    }\n\n    private SecureContentHandler createSecureContentHandler(ContentHandler handler, TikaInputStream tis, ParseContext context) {\n        // SecureContentHandler reads limits from OutputLimits in ParseContext\n        return SecureContentHandler.newInstance(handler, tis, context);\n    }\n}\n",
+  "classDeclarationCode": "public class AutoDetectParser extends CompositeParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 6110455808615143122L;\n\n    // private final TikaConfig config;\n    /**\n     * The type detector used by this parser to auto-detect the type\n     * of a document.\n     */\n    // always set in the constructor\n    private Detector detector;\n\n    /**\n     * Configuration used when initializing a SecureContentHandler\n     * and the TikaInputStream.\n     */\n    private AutoDetectParserConfig autoDetectParserConfig;\n\n    public AutoDetectParser() {\n        this(new DefaultDetector(), new DefaultParser());\n    }\n\n    public AutoDetectParser(Detector detector) {\n        this(detector, new DefaultParser());\n    }\n\n    public AutoDetectParser(Parser... parsers) {\n        this(new DefaultDetector(), parsers);\n    }\n\n    public AutoDetectParser(Detector detector, Parser... parsers) {\n        super(MediaTypeRegistry.getDefaultRegistry(), parsers);\n        setDetector(detector);\n        setAutoDetectParserConfig(AutoDetectParserConfig.DEFAULT);\n    }\n\n    public AutoDetectParser(MediaTypeRegistry mediaTypeRegistry, Parser parser, Detector detector, AutoDetectParserConfig autoDetectParserConfig) {\n        super(mediaTypeRegistry, parser);\n        setFallback(getFallbackFrom(parser));\n        setDetector(detector);\n        setAutoDetectParserConfig(autoDetectParserConfig);\n    }\n\n    public static Parser build(CompositeParser parser, Detector detector, AutoDetectParserConfig autoDetectParserConfig) {\n        return new AutoDetectParser(parser.getMediaTypeRegistry(), parser, detector, autoDetectParserConfig);\n    }\n\n    private static Parser getFallbackFrom(Parser defaultParser) {\n        if (defaultParser instanceof DefaultParser) {\n            return ((DefaultParser) defaultParser).getFallback();\n        }\n        return new EmptyParser();\n    }\n\n    /**\n     * Returns the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @return type detector\n     * @since Apache Tika 0.4\n     */\n    public Detector getDetector() {\n        return detector;\n    }\n\n    /**\n     * Sets the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @param detector type detector\n     * @since Apache Tika 0.4\n     */\n    public void setDetector(Detector detector) {\n        this.detector = detector;\n    }\n\n    /**\n     * Sets the configuration that will be used to create SecureContentHandlers\n     * that will be used for parsing.\n     *\n     * @param autoDetectParserConfig type SecureContentHandlerConfig\n     * @since Apache Tika 2.1.1\n     */\n    public void setAutoDetectParserConfig(AutoDetectParserConfig autoDetectParserConfig) {\n        this.autoDetectParserConfig = autoDetectParserConfig;\n    }\n\n    public AutoDetectParserConfig getAutoDetectParserConfig() {\n        return this.autoDetectParserConfig;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        // Compute digests before type detection if configured\n        // DigesterFactory is retrieved from ParseContext (configured via parse-context)\n        DigestHelper.maybeDigest(tis, metadata, context);\n        // Signal to detectors that parsing will follow - allows them to prepare\n        // (e.g., salvage corrupted ZIP files for parser reuse)\n        context.set(ParsingIntent.class, ParsingIntent.WILL_PARSE);\n        // Automatically detect the MIME type of the document\n        MediaType type = detector.detect(tis, metadata, context);\n        // Normalize OCR routing types (e.g., image/ocr-png -> image/png) so they\n        // don't leak into CONTENT_TYPE\n        metadata.set(Metadata.CONTENT_TYPE, EmbeddedDocumentUtil.normalizeMediaType(type.toString()));\n        // Metadata-only pseudo-parse: register the entry, skip the content parse.\n        if (context.get(MetadataOnlyParse.class) != null) {\n            return;\n        }\n        // check for zero-byte inputstream\n        if (tis.getOpenContainer() == null) {\n            if (autoDetectParserConfig.getThrowOnZeroBytes()) {\n                tis.mark(1);\n                if (tis.read() == -1) {\n                    throw new ZeroByteFileException(\"InputStream must have > 0 bytes\");\n                }\n                tis.reset();\n            }\n        }\n        handler = decorateHandler(handler, metadata, context, autoDetectParserConfig);\n        // TIKA-216: Zip bomb prevention\n        SecureContentHandler sch = handler != null ? createSecureContentHandler(handler, tis, context) : null;\n        initializeEmbeddedDocumentExtractor(metadata, context);\n        try {\n            // Parse the document\n            super.parse(tis, sch, metadata, context);\n        } catch (SAXException e) {\n            // Convert zip bomb exceptions to TikaExceptions\n            sch.throwIfCauseOf(e);\n            throw e;\n        }\n    }\n\n    private ContentHandler decorateHandler(ContentHandler handler, Metadata metadata, ParseContext context, AutoDetectParserConfig autoDetectParserConfig) {\n        if (context.get(RecursiveParserWrapper.RecursivelySecureContentHandler.class) != null) {\n            // using the recursiveparserwrapper. we should decorate this handler\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n        }\n        ParseRecord parseRecord = context.get(ParseRecord.class);\n        if (parseRecord == null || parseRecord.getDepth() == 0) {\n            return autoDetectParserConfig.getContentHandlerDecoratorFactory().decorate(handler, metadata, context);\n        }\n        // else do not decorate\n        return handler;\n    }\n\n    private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context) {\n        if (context.get(EmbeddedDocumentExtractor.class) != null) {\n            return;\n        }\n        // pass in self for embedded documents unless\n        // the caller has specified a parser\n        Parser p = context.get(Parser.class);\n        if (p == null) {\n            context.set(Parser.class, this);\n        }\n        // pass in own detector for embedded documents unless\n        // the caller has specified one\n        Detector d = context.get(Detector.class);\n        if (d == null) {\n            context.set(Detector.class, getDetector());\n        }\n        EmbeddedDocumentExtractorFactory edxf = context.get(EmbeddedDocumentExtractorFactory.class);\n        if (edxf == null) {\n            edxf = new StandardExtractorFactory();\n        }\n        EmbeddedDocumentExtractor edx = edxf.newInstance(metadata, context);\n        context.set(EmbeddedDocumentExtractor.class, edx);\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n        ParseContext context = new ParseContext();\n        context.set(Parser.class, this);\n        parse(tis, handler, metadata, context);\n    }\n\n    private SecureContentHandler createSecureContentHandler(ContentHandler handler, TikaInputStream tis, ParseContext context) {\n        // SecureContentHandler reads limits from OutputLimits in ParseContext\n        return SecureContentHandler.newInstance(handler, tis, context);\n    }\n}",
+  "subClasses": []
+}

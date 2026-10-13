@@ -1,0 +1,28 @@
+{
+  "className": "XHTMLBalancingHandler",
+  "methodName": "drainOpenElements",
+  "brief": "public void drainOpenElements() throws SAXException{}",
+  "methodSignature": "drainOpenElements()",
+  "sourceCode": "public void drainOpenElements() throws SAXException {\n        while (!openElements.isEmpty()) {\n            QName q = openElements.pop();\n            super.endElement(q.uri, q.localName, q.qName);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.util.Deque": [
+      "pop()"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endElement(String, String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Emits a matching {@code endElement} for every element still on the open\n * stack, in reverse open order. After this call the stack is empty.\n * <p>\n * Intended for the catch arm of a caller that swallowed a\n * {@link SAXException} from an inner SAX parser: the inner parser may have\n * left one or more elements open mid-stream, and downstream serialization\n * needs matching closers before any further events.\n * <p>\n * Does NOT emit {@code endDocument} -- document lifecycle stays with the\n * caller.\n */\npublic void drainOpenElements() throws SAXException {\n    while (!openElements.isEmpty()) {\n        QName q = openElements.pop();\n        super.endElement(q.uri, q.localName, q.qName);\n    }\n}",
+  "method_comment": "\n     * Emits a matching {@code endElement} for every element still on the open\n     * stack, in reverse open order. After this call the stack is empty.\n     * <p>\n     * Intended for the catch arm of a caller that swallowed a\n     * {@link SAXException} from an inner SAX parser: the inner parser may have\n     * left one or more elements open mid-stream, and downstream serialization\n     * needs matching closers before any further events.\n     * <p>\n     * Does NOT emit {@code endDocument} -- document lifecycle stays with the\n     * caller.\n     ",
+  "method_annotation": ""
+}

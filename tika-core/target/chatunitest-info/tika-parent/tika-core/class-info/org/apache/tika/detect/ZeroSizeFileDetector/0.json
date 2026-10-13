@@ -1,0 +1,32 @@
+{
+  "className": "ZeroSizeFileDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        if (tis != null) {\n            try {\n                tis.mark(1);\n                if (tis.read() == -1) {\n                    return MediaType.EMPTY;\n                }\n            } finally {\n                tis.reset();\n            }\n        }\n        return MediaType.OCTET_STREAM;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "mark(int)",
+      "reset()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.commons.io.input.ProxyInputStream": [
+      "read()"
+    ]
+  },
+  "full_method_info": "@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    if (tis != null) {\n        try {\n            tis.mark(1);\n            if (tis.read() == -1) {\n                return MediaType.EMPTY;\n            }\n        } finally {\n            tis.reset();\n        }\n    }\n    return MediaType.OCTET_STREAM;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

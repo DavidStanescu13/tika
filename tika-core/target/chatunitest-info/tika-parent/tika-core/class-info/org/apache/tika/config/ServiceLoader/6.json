@@ -1,0 +1,18 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "getLoader",
+  "brief": "public ClassLoader getLoader(){}",
+  "methodSignature": "getLoader()",
+  "sourceCode": "public ClassLoader getLoader() {\n        return loader;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return ClassLoader used by this ServiceLoader\n * @see #getContextClassLoader() for the context's ClassLoader\n * @since Apache Tika 1.15.1\n */\npublic ClassLoader getLoader() {\n    return loader;\n}",
+  "method_comment": "\n     * @return ClassLoader used by this ServiceLoader\n     * @see #getContextClassLoader() for the context's ClassLoader\n     * @since Apache Tika 1.15.1\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,32 @@
+{
+  "className": "StringUtils",
+  "methodName": "leftPad",
+  "brief": "public static String leftPad(final String str, final int size, final char padChar){}",
+  "methodSignature": "leftPad(String, int, char)",
+  "sourceCode": "public static String leftPad(final String str, final int size, final char padChar) {\n        if (str == null) {\n            return null;\n        }\n        final int pads = size - str.length();\n        if (pads <= 0) {\n            return str; // returns original String when possible\n        }\n        if (pads > PAD_LIMIT) {\n            return leftPad(str, size, String.valueOf(padChar));\n        }\n        return repeat(padChar, pads).concat(str);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int",
+    "char"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "concat(String)",
+      "length()",
+      "valueOf(char)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "leftPad(String, int, String)",
+      "repeat(char, int)"
+    ]
+  },
+  "full_method_info": "public static String leftPad(final String str, final int size, final char padChar) {\n    if (str == null) {\n        return null;\n    }\n    final int pads = size - str.length();\n    if (pads <= 0) {\n        // returns original String when possible\n        return str;\n    }\n    if (pads > PAD_LIMIT) {\n        return leftPad(str, size, String.valueOf(padChar));\n    }\n    return repeat(padChar, pads).concat(str);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

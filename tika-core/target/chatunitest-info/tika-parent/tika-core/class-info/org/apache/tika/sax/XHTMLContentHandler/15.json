@@ -1,0 +1,20 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "isInvalid",
+  "brief": "@Override\r\n    protected boolean isInvalid(int ch){}",
+  "methodSignature": "isInvalid(int)",
+  "sourceCode": "@Override\n    protected boolean isInvalid(int ch) {\n        if (super.isInvalid(ch)) {\n            return true;\n        }\n        // These control chars are  invalid in XHTML.\n        return 0x7F <= ch && ch <= 0x9F;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\nprotected boolean isInvalid(int ch) {\n    if (super.isInvalid(ch)) {\n        return true;\n    }\n    // These control chars are  invalid in XHTML.\n    return 0x7F <= ch && ch <= 0x9F;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

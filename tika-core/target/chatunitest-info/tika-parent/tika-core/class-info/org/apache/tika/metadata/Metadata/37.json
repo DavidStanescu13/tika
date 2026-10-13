@@ -1,0 +1,22 @@
+{
+  "className": "Metadata",
+  "methodName": "size",
+  "brief": "public int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "public int size() {\n        return metadata.size();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the number of metadata names in this metadata.\n *\n * @return number of metadata names\n */\npublic int size() {\n    return metadata.size();\n}",
+  "method_comment": "\n     * Returns the number of metadata names in this metadata.\n     *\n     * @return number of metadata names\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,85 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.RemoveByMimeMetadataFilter",
+  "className": "RemoveByMimeMetadataFilter",
+  "index": 150,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilter]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class RemoveByMimeMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Set;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private final Set<String> mimes;"
+  ],
+  "superClasses": [
+    "MetadataFilter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "doFilter(List, ParseContext)": "0",
+    "shouldRemove(Metadata)": "1",
+    "setMimes(List)": "2",
+    "getMimes()": "3",
+    "RemoveByMimeMetadataFilter()": "4",
+    "RemoveByMimeMetadataFilter(Set)": "5",
+    "RemoveByMimeMetadataFilter(Config)": "6",
+    "RemoveByMimeMetadataFilter(JsonConfig)": "7"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException{}",
+    "private boolean shouldRemove(Metadata metadata){}",
+    "public void setMimes(List<String> mimes){}",
+    "public List<String> getMimes(){}",
+    "public RemoveByMimeMetadataFilter(){}",
+    "public RemoveByMimeMetadataFilter(Set<String> mimes){}",
+    "public RemoveByMimeMetadataFilter(Config config){}",
+    "public RemoveByMimeMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "RemoveByMimeMetadataFilter()",
+    "RemoveByMimeMetadataFilter(Set)",
+    "RemoveByMimeMetadataFilter(Config)",
+    "RemoveByMimeMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public RemoveByMimeMetadataFilter(){}",
+    "public RemoveByMimeMetadataFilter(Set<String> mimes){}",
+    "public RemoveByMimeMetadataFilter(Config config){}",
+    "public RemoveByMimeMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "setMimes(List)",
+    "getMimes()"
+  ],
+  "getterSetterBrief": [
+    "public void setMimes(List<String> mimes){}",
+    "public List<String> getMimes(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.RemoveByMimeMetadataFilter.Config": [],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Set;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * This class removes the entire metadata object if the\n * mime matches the mime filter.  The idea is that you might not want\n * to store/transmit metadata for images or specific file types.\n */\n@TikaComponent\npublic class RemoveByMimeMetadataFilter extends MetadataFilter {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> mimes = new ArrayList<>();\n    }\n\n    private final Set<String> mimes;\n\n    public RemoveByMimeMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public RemoveByMimeMetadataFilter(Set<String> mimes) {\n        this.mimes = mimes;\n    }\n\n    public RemoveByMimeMetadataFilter(Config config) {\n        this.mimes = new HashSet<>(config.mimes);\n    }\n\n    public RemoveByMimeMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        metadataList.removeIf(this::shouldRemove);\n    }\n\n    private boolean shouldRemove(Metadata metadata) {\n        String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n        if (mimeString == null) {\n            return false;\n        }\n        MediaType mt = MediaType.parse(mimeString);\n        if (mt == null) {\n            return false;\n        }\n        mimeString = mt.getBaseType().toString();\n        return mimes.contains(mimeString);\n    }\n\n    /**\n     * @param mimes list of mimes that will trigger complete removal of metadata\n     */\n    public void setMimes(List<String> mimes) {\n        this.mimes.addAll(mimes);\n    }\n\n    public List<String> getMimes() {\n        return new ArrayList<>(mimes);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This class removes the entire metadata object if the\n * mime matches the mime filter.  The idea is that you might not want\n * to store/transmit metadata for images or specific file types.\n */\n@TikaComponent\npublic class RemoveByMimeMetadataFilter extends MetadataFilter {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> mimes = new ArrayList<>();\n    }\n\n    private final Set<String> mimes;\n\n    public RemoveByMimeMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public RemoveByMimeMetadataFilter(Set<String> mimes) {\n        this.mimes = mimes;\n    }\n\n    public RemoveByMimeMetadataFilter(Config config) {\n        this.mimes = new HashSet<>(config.mimes);\n    }\n\n    public RemoveByMimeMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n        metadataList.removeIf(this::shouldRemove);\n    }\n\n    private boolean shouldRemove(Metadata metadata) {\n        String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n        if (mimeString == null) {\n            return false;\n        }\n        MediaType mt = MediaType.parse(mimeString);\n        if (mt == null) {\n            return false;\n        }\n        mimeString = mt.getBaseType().toString();\n        return mimes.contains(mimeString);\n    }\n\n    /**\n     * @param mimes list of mimes that will trigger complete removal of metadata\n     */\n    public void setMimes(List<String> mimes) {\n        this.mimes.addAll(mimes);\n    }\n\n    public List<String> getMimes() {\n        return new ArrayList<>(mimes);\n    }\n}",
+  "subClasses": []
+}

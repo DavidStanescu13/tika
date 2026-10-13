@@ -1,0 +1,20 @@
+{
+  "className": "OutputLimits",
+  "methodName": "setMaxXmlDepth",
+  "brief": "public void setMaxXmlDepth(int maxXmlDepth){}",
+  "methodSignature": "setMaxXmlDepth(int)",
+  "sourceCode": "public void setMaxXmlDepth(int maxXmlDepth) {\n        this.maxXmlDepth = maxXmlDepth;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum XML element nesting depth.\n *\n * @param maxXmlDepth maximum XML depth\n */\npublic void setMaxXmlDepth(int maxXmlDepth) {\n    this.maxXmlDepth = maxXmlDepth;\n}",
+  "method_comment": "\n     * Sets the maximum XML element nesting depth.\n     *\n     * @param maxXmlDepth maximum XML depth\n     ",
+  "method_annotation": ""
+}

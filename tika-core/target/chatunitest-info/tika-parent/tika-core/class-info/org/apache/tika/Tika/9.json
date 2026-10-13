@@ -1,0 +1,27 @@
+{
+  "className": "Tika",
+  "methodName": "translate",
+  "brief": "public String translate(String text, String sourceLanguage, String targetLanguage){}",
+  "methodSignature": "translate(String, String, String)",
+  "sourceCode": "public String translate(String text, String sourceLanguage, String targetLanguage) {\n        try {\n            return translator.translate(text, sourceLanguage, targetLanguage);\n        } catch (Exception e) {\n            throw new IllegalStateException(\"Error translating data.\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.language.translate.Translator": [
+      "translate(String, String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Translate the given text String to and from the given languages.\n *\n * @param text           The text to translate.\n * @param sourceLanguage The input text language (for example, \"hi\").\n * @param targetLanguage The desired output language (for example, \"fr\").\n * @return The translated text. If translation is unavailable (client keys not set),  returns\n * the same text back.\n * @see org.apache.tika.language.translate.Translator\n */\npublic String translate(String text, String sourceLanguage, String targetLanguage) {\n    try {\n        return translator.translate(text, sourceLanguage, targetLanguage);\n    } catch (Exception e) {\n        throw new IllegalStateException(\"Error translating data.\", e);\n    }\n}",
+  "method_comment": "\n     * Translate the given text String to and from the given languages.\n     *\n     * @param text           The text to translate.\n     * @param sourceLanguage The input text language (for example, \"hi\").\n     * @param targetLanguage The desired output language (for example, \"fr\").\n     * @return The translated text. If translation is unavailable (client keys not set),  returns\n     * the same text back.\n     * @see org.apache.tika.language.translate.Translator\n     ",
+  "method_annotation": ""
+}

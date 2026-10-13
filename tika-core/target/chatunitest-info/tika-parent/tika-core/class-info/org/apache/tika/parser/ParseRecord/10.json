@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "getExceptions",
+  "brief": "public List<Exception> getExceptions(){}",
+  "methodSignature": "getExceptions()",
+  "sourceCode": "public List<Exception> getExceptions() {\n        return exceptions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public List<Exception> getExceptions() {\n    return exceptions;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

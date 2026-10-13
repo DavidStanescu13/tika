@@ -1,0 +1,18 @@
+{
+  "className": "TargetElement",
+  "methodName": "getMappedTagName",
+  "brief": "public QName getMappedTagName(){}",
+  "methodSignature": "getMappedTagName()",
+  "sourceCode": "public QName getMappedTagName() {\n            return mappedTagName;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public QName getMappedTagName() {\n    return mappedTagName;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

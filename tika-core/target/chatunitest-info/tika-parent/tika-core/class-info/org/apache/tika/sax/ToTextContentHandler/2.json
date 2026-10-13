@@ -1,0 +1,22 @@
+{
+  "className": "ToTextContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        try {\n            writer.flush();\n        } catch (IOException e) {\n            throw new SAXException(\"Error flushing character output\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.io.Writer": [
+      "flush()"
+    ]
+  },
+  "full_method_info": "/**\n * Flushes the character stream so that no characters are forgotten\n * in internal buffers.\n *\n * @throws SAXException if the stream can not be flushed\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-179\">TIKA-179</a>\n */\n@Override\npublic void endDocument() throws SAXException {\n    try {\n        writer.flush();\n    } catch (IOException e) {\n        throw new SAXException(\"Error flushing character output\", e);\n    }\n}",
+  "method_comment": "\n     * Flushes the character stream so that no characters are forgotten\n     * in internal buffers.\n     *\n     * @throws SAXException if the stream can not be flushed\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-179\">TIKA-179</a>\n     ",
+  "method_annotation": "@Override\n"
+}

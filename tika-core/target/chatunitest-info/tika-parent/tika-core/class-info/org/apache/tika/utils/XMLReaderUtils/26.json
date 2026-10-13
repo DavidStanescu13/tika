@@ -1,0 +1,47 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "trySetXercesSecurityManager",
+  "brief": "private static void trySetXercesSecurityManager(DocumentBuilderFactory factory){}",
+  "methodSignature": "trySetXercesSecurityManager(DocumentBuilderFactory)",
+  "sourceCode": "private static void trySetXercesSecurityManager(DocumentBuilderFactory factory) {\n        //from POI\n        // Try built-in JVM one first, standalone if not\n        for (String securityManagerClassName : new String[]{\n                //\"com.sun.org.apache.xerces.internal.util.SecurityManager\",\n                XERCES_SECURITY_MANAGER}) {\n            try {\n                Object mgr =\n                        Class.forName(securityManagerClassName).getDeclaredConstructor().newInstance();\n                Method setLimit = mgr.getClass().getMethod(\"setEntityExpansionLimit\",\n                        Integer.TYPE);\n                setLimit.invoke(mgr, MAX_ENTITY_EXPANSIONS);\n                factory.setAttribute(XERCES_SECURITY_MANAGER_PROPERTY, mgr);\n                // Stop once one can be setup without error\n                return;\n            } catch (ClassNotFoundException e) {\n                // continue without log, this is expected in some setups\n            } catch (Throwable e) {     // NOSONAR - also catch things like NoClassDefError here\n                // throttle the log somewhat as it can spam the log otherwise\n                if (System.currentTimeMillis() > LAST_LOG + TimeUnit.MINUTES.toMillis(5)) {\n                    LOG.warn(\n                            \"SAX Security Manager could not be setup [log suppressed for 5 \" +\n                                    \"minutes]\",\n                            e);\n                    LAST_LOG = System.currentTimeMillis();\n                }\n            }\n        }\n\n        // separate old version of Xerces not found => use the builtin way of setting the property\n        try {\n            factory.setAttribute(\"http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit\",\n                    MAX_ENTITY_EXPANSIONS);\n        } catch (IllegalArgumentException e) {\n            // NOSONAR - also catch things like NoClassDefError here\n            // throttle the log somewhat as it can spam the log otherwise\n            if (System.currentTimeMillis() > LAST_LOG + TimeUnit.MINUTES.toMillis(5)) {\n                LOG.warn(\"SAX Security Manager could not be setup [log suppressed for 5 minutes]\",\n                        e);\n                LAST_LOG = System.currentTimeMillis();\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "DocumentBuilderFactory"
+  ],
+  "dependentMethods": {
+    "javax.xml.parsers.DocumentBuilderFactory": [
+      "setAttribute(String, Object)"
+    ],
+    "java.lang.reflect.Constructor": [
+      "newInstance(Object[])"
+    ],
+    "java.lang.Class": [
+      "getDeclaredConstructor(Object>[])",
+      "getMethod(String, Object>[])",
+      "forName(String)"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "java.lang.reflect.Method": [
+      "invoke(Object, Object[])"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ],
+    "java.util.concurrent.TimeUnit": [
+      "toMillis(long)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Throwable)"
+    ]
+  },
+  "full_method_info": "private static void trySetXercesSecurityManager(DocumentBuilderFactory factory) {\n    // from POI\n    // Try built-in JVM one first, standalone if not\n    for (String securityManagerClassName : new String[] { // \"com.sun.org.apache.xerces.internal.util.SecurityManager\",\n    XERCES_SECURITY_MANAGER }) {\n        try {\n            Object mgr = Class.forName(securityManagerClassName).getDeclaredConstructor().newInstance();\n            Method setLimit = mgr.getClass().getMethod(\"setEntityExpansionLimit\", Integer.TYPE);\n            setLimit.invoke(mgr, MAX_ENTITY_EXPANSIONS);\n            factory.setAttribute(XERCES_SECURITY_MANAGER_PROPERTY, mgr);\n            // Stop once one can be setup without error\n            return;\n        } catch (ClassNotFoundException e) {\n            // continue without log, this is expected in some setups\n        } catch (Throwable e) {\n            // NOSONAR - also catch things like NoClassDefError here\n            // throttle the log somewhat as it can spam the log otherwise\n            if (System.currentTimeMillis() > LAST_LOG + TimeUnit.MINUTES.toMillis(5)) {\n                LOG.warn(\"SAX Security Manager could not be setup [log suppressed for 5 \" + \"minutes]\", e);\n                LAST_LOG = System.currentTimeMillis();\n            }\n        }\n    }\n    // separate old version of Xerces not found => use the builtin way of setting the property\n    try {\n        factory.setAttribute(\"http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit\", MAX_ENTITY_EXPANSIONS);\n    } catch (IllegalArgumentException e) {\n        // NOSONAR - also catch things like NoClassDefError here\n        // throttle the log somewhat as it can spam the log otherwise\n        if (System.currentTimeMillis() > LAST_LOG + TimeUnit.MINUTES.toMillis(5)) {\n            LOG.warn(\"SAX Security Manager could not be setup [log suppressed for 5 minutes]\", e);\n            LAST_LOG = System.currentTimeMillis();\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "EmbeddedContentHandler",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument(){}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() {\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Ignored.\n */\n@Override\npublic void startDocument() {\n}",
+  "method_comment": "\n     * Ignored.\n     ",
+  "method_annotation": "@Override\n"
+}

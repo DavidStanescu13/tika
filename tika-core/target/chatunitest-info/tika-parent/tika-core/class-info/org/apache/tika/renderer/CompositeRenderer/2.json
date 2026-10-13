@@ -1,0 +1,25 @@
+{
+  "className": "CompositeRenderer",
+  "methodName": "getLeafRenderer",
+  "brief": "public Renderer getLeafRenderer(MediaType mt){}",
+  "methodSignature": "getLeafRenderer(MediaType)",
+  "sourceCode": "public Renderer getLeafRenderer(MediaType mt) {\n        return rendererMap.get(mt);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "public Renderer getLeafRenderer(MediaType mt) {\n    return rendererMap.get(mt);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "MimeType",
+  "methodName": "matches",
+  "brief": "public boolean matches(byte[] data){}",
+  "methodSignature": "matches(byte[])",
+  "sourceCode": "public boolean matches(byte[] data) {\n        return matchesMagic(data);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.mime.MimeType": [
+      "matchesMagic(byte[])"
+    ]
+  },
+  "full_method_info": "public boolean matches(byte[] data) {\n    return matchesMagic(data);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "parseCharset",
+  "brief": "private static Charset parseCharset(String label){}",
+  "methodSignature": "parseCharset(String)",
+  "sourceCode": "private static Charset parseCharset(String label) {\n        if (label == null || label.isBlank()) {\n            return null;\n        }\n        Charset cs;\n        try {\n            cs = Charset.forName(label.trim());\n        } catch (IllegalArgumentException e) {\n            return null;\n        }\n        return normalizeWhatwg(cs);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isBlank()",
+      "trim()"
+    ],
+    "java.nio.charset.Charset": [
+      "forName(String)"
+    ],
+    "org.apache.tika.detect.MetadataCharsetDetector": [
+      "normalizeWhatwg(Charset)"
+    ]
+  },
+  "full_method_info": "private static Charset parseCharset(String label) {\n    if (label == null || label.isBlank()) {\n        return null;\n    }\n    Charset cs;\n    try {\n        cs = Charset.forName(label.trim());\n    } catch (IllegalArgumentException e) {\n        return null;\n    }\n    return normalizeWhatwg(cs);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

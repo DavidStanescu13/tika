@@ -1,0 +1,22 @@
+{
+  "className": "Renderer",
+  "methodName": "getSupportedTypes",
+  "brief": "Set<MediaType> getSupportedTypes(ParseContext context);",
+  "methodSignature": "getSupportedTypes(ParseContext)",
+  "sourceCode": "Set<MediaType> getSupportedTypes(ParseContext context);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Returns the set of media types supported by this renderer when used\n * with the given parse context.\n *\n * @param context parse context\n * @return immutable set of media types\n * @since Apache Tika 2.5.0\n */\nSet<MediaType> getSupportedTypes(ParseContext context);",
+  "method_comment": "\n     * Returns the set of media types supported by this renderer when used\n     * with the given parse context.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     * @since Apache Tika 2.5.0\n     ",
+  "method_annotation": ""
+}

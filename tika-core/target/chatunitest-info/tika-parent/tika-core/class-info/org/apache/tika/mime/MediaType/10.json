@@ -1,0 +1,28 @@
+{
+  "className": "MediaType",
+  "methodName": "unquote",
+  "brief": "private static String unquote(String s){}",
+  "methodSignature": "unquote(String)",
+  "sourceCode": "private static String unquote(String s) {\n        while (s.startsWith(\"\\\"\") || s.startsWith(\"'\")) {\n            s = s.substring(1);\n        }\n        while (s.endsWith(\"\\\"\") || s.endsWith(\"'\")) {\n            s = s.substring(0, s.length() - 1);\n        }\n        return s;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "substring(int, int)",
+      "length()",
+      "endsWith(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Fuzzy unquoting mechanism that works also with somewhat malformed\n * quotes.\n *\n * @param s string to unquote\n * @return unquoted string\n */\nprivate static String unquote(String s) {\n    while (s.startsWith(\"\\\"\") || s.startsWith(\"'\")) {\n        s = s.substring(1);\n    }\n    while (s.endsWith(\"\\\"\") || s.endsWith(\"'\")) {\n        s = s.substring(0, s.length() - 1);\n    }\n    return s;\n}",
+  "method_comment": "\n     * Fuzzy unquoting mechanism that works also with somewhat malformed\n     * quotes.\n     *\n     * @param s string to unquote\n     * @return unquoted string\n     ",
+  "method_annotation": ""
+}

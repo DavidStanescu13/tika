@@ -1,0 +1,20 @@
+{
+  "className": "SpoolingStrategy",
+  "methodName": "setSpoolTypes",
+  "brief": "public void setSpoolTypes(Set<MediaType> spoolTypes){}",
+  "methodSignature": "setSpoolTypes(Set)",
+  "sourceCode": "public void setSpoolTypes(Set<MediaType> spoolTypes) {\n        this.spoolTypes = spoolTypes != null ? new HashSet<>(spoolTypes) : new HashSet<>();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<MediaType>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the media types that should be spooled to disk.\n * Specializations of these types are also included.\n *\n * @param spoolTypes set of media types to spool\n */\npublic void setSpoolTypes(Set<MediaType> spoolTypes) {\n    this.spoolTypes = spoolTypes != null ? new HashSet<>(spoolTypes) : new HashSet<>();\n}",
+  "method_comment": "\n     * Sets the media types that should be spooled to disk.\n     * Specializations of these types are also included.\n     *\n     * @param spoolTypes set of media types to spool\n     ",
+  "method_annotation": ""
+}

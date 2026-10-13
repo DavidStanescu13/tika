@@ -1,0 +1,42 @@
+{
+  "className": "CleanPhoneText",
+  "methodName": "extractPhoneNumbers",
+  "brief": "public static ArrayList<String> extractPhoneNumbers(String text){}",
+  "methodSignature": "extractPhoneNumbers(String)",
+  "sourceCode": "public static ArrayList<String> extractPhoneNumbers(String text) {\n        text = clean(text);\n        int idx = 0;\n        Pattern p = Pattern.compile(cleanPhoneRegex);\n        Matcher m = p.matcher(text);\n        ArrayList<String> phoneNumbers = new ArrayList<>();\n        while (m.find(idx)) {\n            String digits = m.group(1);\n            int start = m.start(1);\n            int end = m.end(1);\n            String prefix = \"\";\n            if (start > 0) {\n                prefix = text.substring(start - 1, start);\n            }\n            if (digits.startsWith(\"82\") && prefix.equals(\"*\")) {\n                // this number overlaps with a *82 sequence\n                idx += 2;\n            } else {\n                // seems good\n                phoneNumbers.add(digits);\n                idx = end;\n            }\n        }\n        return phoneNumbers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "equals(Object)",
+      "substring(int, int)"
+    ],
+    "org.apache.tika.sax.CleanPhoneText": [
+      "clean(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)",
+      "compile(String)"
+    ],
+    "java.util.regex.Matcher": [
+      "group(int)",
+      "end(int)",
+      "find(int)",
+      "start(int)"
+    ],
+    "java.util.ArrayList": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "public static ArrayList<String> extractPhoneNumbers(String text) {\n    text = clean(text);\n    int idx = 0;\n    Pattern p = Pattern.compile(cleanPhoneRegex);\n    Matcher m = p.matcher(text);\n    ArrayList<String> phoneNumbers = new ArrayList<>();\n    while (m.find(idx)) {\n        String digits = m.group(1);\n        int start = m.start(1);\n        int end = m.end(1);\n        String prefix = \"\";\n        if (start > 0) {\n            prefix = text.substring(start - 1, start);\n        }\n        if (digits.startsWith(\"82\") && prefix.equals(\"*\")) {\n            // this number overlaps with a *82 sequence\n            idx += 2;\n        } else {\n            // seems good\n            phoneNumbers.add(digits);\n            idx = end;\n        }\n    }\n    return phoneNumbers;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

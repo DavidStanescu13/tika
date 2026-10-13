@@ -1,0 +1,86 @@
+{
+  "fullClassName": "org.apache.tika.io.CachingInputStream",
+  "className": "CachingInputStream",
+  "index": 97,
+  "modifier": "[]",
+  "extend": "[InputStream]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "class CachingInputStream",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.nio.file.Path;"
+  ],
+  "fields": [
+    "private final InputStream source;",
+    "private final StreamCache cache;",
+    "private long position;",
+    "private boolean sourceExhausted;",
+    "private long markPosition = -1;"
+  ],
+  "superClasses": [
+    "InputStream"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "read()": "0",
+    "read(byte[], int, int)": "1",
+    "skip(long)": "2",
+    "seekTo(long)": "3",
+    "getPosition()": "4",
+    "getCachedSize()": "5",
+    "spillToFile(String)": "6",
+    "isFileBacked()": "7",
+    "close()": "8",
+    "closeCacheOnly()": "9",
+    "available()": "10",
+    "mark(int)": "11",
+    "reset()": "12",
+    "markSupported()": "13",
+    "CachingInputStream(InputStream, StreamCache)": "14"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public int read() throws IOException{}",
+    "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+    "@Override\r\n    public long skip(long n) throws IOException{}",
+    "void seekTo(long newPosition) throws IOException{}",
+    "long getPosition(){}",
+    "long getCachedSize(){}",
+    "Path spillToFile(String suffix) throws IOException{}",
+    "boolean isFileBacked(){}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "void closeCacheOnly() throws IOException{}",
+    "@Override\r\n    public int available() throws IOException{}",
+    "@Override\r\n    public synchronized void mark(int readlimit){}",
+    "@Override\r\n    public synchronized void reset() throws IOException{}",
+    "@Override\r\n    public boolean markSupported(){}",
+    "CachingInputStream(InputStream source, StreamCache cache){}"
+  ],
+  "constructorSigs": [
+    "CachingInputStream(InputStream, StreamCache)"
+  ],
+  "constructorBrief": [
+    "CachingInputStream(InputStream source, StreamCache cache){}"
+  ],
+  "getterSetterSigs": [
+    "getPosition()",
+    "getCachedSize()"
+  ],
+  "getterSetterBrief": [
+    "long getPosition(){}",
+    "long getCachedSize(){}"
+  ],
+  "constructorDeps": {
+    "java.io.InputStream": [],
+    "org.apache.tika.io.StreamCache": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.nio.file.Path;\n\n/**\n * Package-private InputStream wrapper that caches all bytes read,\n * allowing seeking back to any previously-read position.\n * <p>\n * Bytes are cached in a {@link StreamCache} which stores them in memory\n * up to a threshold, then spills to a temporary file.\n */\nclass CachingInputStream extends InputStream {\n\n    private final InputStream source;\n\n    private final StreamCache cache;\n\n    // Current logical position in the stream\n    private long position;\n\n    private boolean sourceExhausted;\n\n    CachingInputStream(InputStream source, StreamCache cache) {\n        this.source = source;\n        this.cache = cache;\n        this.position = 0;\n        this.sourceExhausted = false;\n    }\n\n    @Override\n    public int read() throws IOException {\n        if (position < cache.size()) {\n            // Reading from cache (replay mode)\n            int b = cache.readAt(position);\n            if (b != -1) {\n                position++;\n            }\n            return b;\n        }\n        if (sourceExhausted) {\n            return -1;\n        }\n        // Reading new byte from source\n        int b = source.read();\n        if (b == -1) {\n            sourceExhausted = true;\n            return -1;\n        }\n        cache.append(b);\n        position++;\n        return b;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        if (len == 0) {\n            return 0;\n        }\n        int totalRead = 0;\n        // First, read any available bytes from cache\n        long cacheSize = cache.size();\n        if (position < cacheSize) {\n            int availableInCache = (int) Math.min(len, cacheSize - position);\n            int n = cache.readAt(position, b, off, availableInCache);\n            if (n > 0) {\n                position += n;\n                totalRead += n;\n                off += n;\n                len -= n;\n            }\n        }\n        // If we need more bytes and source isn't exhausted, read from source\n        if (len > 0 && !sourceExhausted) {\n            int n = source.read(b, off, len);\n            if (n == -1) {\n                sourceExhausted = true;\n            } else if (n > 0) {\n                cache.append(b, off, n);\n                position += n;\n                totalRead += n;\n            }\n        }\n        return totalRead > 0 ? totalRead : -1;\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        if (n <= 0) {\n            return 0;\n        }\n        // We need to actually read the bytes to cache them\n        long skipped = 0;\n        byte[] buffer = new byte[4096];\n        while (skipped < n) {\n            int toRead = (int) Math.min(buffer.length, n - skipped);\n            int read = read(buffer, 0, toRead);\n            if (read == -1) {\n                break;\n            }\n            skipped += read;\n        }\n        return skipped;\n    }\n\n    /**\n     * Seek to a specific position in the stream.\n     * Can only seek to positions that have already been read (cached).\n     */\n    void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0) {\n            throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n        }\n        if (newPosition > cache.size()) {\n            throw new IOException(\"Cannot seek past cached content. Position: \" + newPosition + \", cached: \" + cache.size());\n        }\n        this.position = newPosition;\n    }\n\n    /**\n     * Get the current position in the stream.\n     */\n    long getPosition() {\n        return position;\n    }\n\n    /**\n     * Get the number of bytes currently cached.\n     */\n    long getCachedSize() {\n        return cache.size();\n    }\n\n    /**\n     * Force all remaining content to be read and cached, then return the file path.\n     */\n    Path spillToFile(String suffix) throws IOException {\n        return cache.toFile(source, suffix);\n    }\n\n    /**\n     * Check if the cache has spilled to a file.\n     */\n    boolean isFileBacked() {\n        return cache.isFileBacked();\n    }\n\n    @Override\n    public void close() throws IOException {\n        source.close();\n        cache.close();\n    }\n\n    /**\n     * Close only the cache, not the underlying source stream.\n     * Used when TikaInputStream spills to file - the source stream\n     * (e.g., an archive stream) may need to remain open.\n     */\n    void closeCacheOnly() throws IOException {\n        cache.close();\n    }\n\n    @Override\n    public int available() throws IOException {\n        // Return cached bytes available from current position\n        long cachedAvailable = cache.size() - position;\n        if (cachedAvailable > 0) {\n            return (int) Math.min(cachedAvailable, Integer.MAX_VALUE);\n        }\n        return source.available();\n    }\n\n    // Mark/reset support using seekTo\n    private long markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        seekTo(markPosition);\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Package-private InputStream wrapper that caches all bytes read,\n * allowing seeking back to any previously-read position.\n * <p>\n * Bytes are cached in a {@link StreamCache} which stores them in memory\n * up to a threshold, then spills to a temporary file.\n */\nclass CachingInputStream extends InputStream {\n\n    private final InputStream source;\n\n    private final StreamCache cache;\n\n    // Current logical position in the stream\n    private long position;\n\n    private boolean sourceExhausted;\n\n    CachingInputStream(InputStream source, StreamCache cache) {\n        this.source = source;\n        this.cache = cache;\n        this.position = 0;\n        this.sourceExhausted = false;\n    }\n\n    @Override\n    public int read() throws IOException {\n        if (position < cache.size()) {\n            // Reading from cache (replay mode)\n            int b = cache.readAt(position);\n            if (b != -1) {\n                position++;\n            }\n            return b;\n        }\n        if (sourceExhausted) {\n            return -1;\n        }\n        // Reading new byte from source\n        int b = source.read();\n        if (b == -1) {\n            sourceExhausted = true;\n            return -1;\n        }\n        cache.append(b);\n        position++;\n        return b;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        if (len == 0) {\n            return 0;\n        }\n        int totalRead = 0;\n        // First, read any available bytes from cache\n        long cacheSize = cache.size();\n        if (position < cacheSize) {\n            int availableInCache = (int) Math.min(len, cacheSize - position);\n            int n = cache.readAt(position, b, off, availableInCache);\n            if (n > 0) {\n                position += n;\n                totalRead += n;\n                off += n;\n                len -= n;\n            }\n        }\n        // If we need more bytes and source isn't exhausted, read from source\n        if (len > 0 && !sourceExhausted) {\n            int n = source.read(b, off, len);\n            if (n == -1) {\n                sourceExhausted = true;\n            } else if (n > 0) {\n                cache.append(b, off, n);\n                position += n;\n                totalRead += n;\n            }\n        }\n        return totalRead > 0 ? totalRead : -1;\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        if (n <= 0) {\n            return 0;\n        }\n        // We need to actually read the bytes to cache them\n        long skipped = 0;\n        byte[] buffer = new byte[4096];\n        while (skipped < n) {\n            int toRead = (int) Math.min(buffer.length, n - skipped);\n            int read = read(buffer, 0, toRead);\n            if (read == -1) {\n                break;\n            }\n            skipped += read;\n        }\n        return skipped;\n    }\n\n    /**\n     * Seek to a specific position in the stream.\n     * Can only seek to positions that have already been read (cached).\n     */\n    void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0) {\n            throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n        }\n        if (newPosition > cache.size()) {\n            throw new IOException(\"Cannot seek past cached content. Position: \" + newPosition + \", cached: \" + cache.size());\n        }\n        this.position = newPosition;\n    }\n\n    /**\n     * Get the current position in the stream.\n     */\n    long getPosition() {\n        return position;\n    }\n\n    /**\n     * Get the number of bytes currently cached.\n     */\n    long getCachedSize() {\n        return cache.size();\n    }\n\n    /**\n     * Force all remaining content to be read and cached, then return the file path.\n     */\n    Path spillToFile(String suffix) throws IOException {\n        return cache.toFile(source, suffix);\n    }\n\n    /**\n     * Check if the cache has spilled to a file.\n     */\n    boolean isFileBacked() {\n        return cache.isFileBacked();\n    }\n\n    @Override\n    public void close() throws IOException {\n        source.close();\n        cache.close();\n    }\n\n    /**\n     * Close only the cache, not the underlying source stream.\n     * Used when TikaInputStream spills to file - the source stream\n     * (e.g., an archive stream) may need to remain open.\n     */\n    void closeCacheOnly() throws IOException {\n        cache.close();\n    }\n\n    @Override\n    public int available() throws IOException {\n        // Return cached bytes available from current position\n        long cachedAvailable = cache.size() - position;\n        if (cachedAvailable > 0) {\n            return (int) Math.min(cachedAvailable, Integer.MAX_VALUE);\n        }\n        return source.available();\n    }\n\n    // Mark/reset support using seekTo\n    private long markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        seekTo(markPosition);\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}",
+  "subClasses": []
+}

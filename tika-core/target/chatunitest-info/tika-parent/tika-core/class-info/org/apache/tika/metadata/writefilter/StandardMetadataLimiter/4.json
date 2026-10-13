@@ -1,0 +1,44 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "add",
+  "brief": "@Override\r\n    public void add(String field, String value, Map<String, String[]> data){}",
+  "methodSignature": "add(String, String, Map)",
+  "sourceCode": "@Override\n    public void add(String field, String value, Map<String, String[]> data) {\n        if (! include(field, value)) {\n            return;\n        }\n        if (ALWAYS_SET_FIELDS.contains(field)) {\n            setAlwaysInclude(field, value, data);\n            return;\n        } else if (ALWAYS_ADD_FIELDS.contains(field)) {\n            addAlwaysInclude(field, value, data);\n            return;\n        }\n        StringSizePair filterKey = filterKey(field, value, data);\n        if (! data.containsKey(filterKey.string)) {\n            setFilterKey(filterKey, value, data);\n            return;\n        }\n\n        String[] vals = data.get(filterKey.string);\n\n        if (vals != null && vals.length >= maxValuesPerField) {\n            setTruncated(data);\n            return;\n        }\n\n        Integer fieldSizeInteger = fieldSizes.get(filterKey.string);\n        int fieldSize = fieldSizeInteger == null ? 0 : fieldSizeInteger;\n        int maxAllowed = maxAllowedToAdd(filterKey);\n        // if == 1, then only one byte of two would be allowed, which lands us in \"\", so needs to be <=\n        if (maxAllowed <= 1) {\n            setTruncated(data);\n            return;\n        }\n        int valueLength = estimateSize(value);\n        String toAdd = value;\n        if (valueLength > maxAllowed) {\n            toAdd = truncate(value, maxAllowed, data);\n            valueLength = estimateSize(toAdd);\n            if (valueLength == 0) {\n                return;\n            }\n        }\n\n        int addedOverall = valueLength;\n        if (fieldSizeInteger == null) {\n            //if there was no value before, we're adding\n            //a key.  If there was a value before, do not\n            //add the key length.\n            addedOverall += filterKey.size;\n        }\n        estimatedSize += addedOverall;\n\n        fieldSizes.put(filterKey.string, valueLength + fieldSize);\n\n        data.put(filterKey.string, appendValue(data.get(filterKey.string), toAdd ));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Map<String,String[]>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter": [
+      "setFilterKey(StringSizePair, String, String[]>)",
+      "appendValue(String[], String)",
+      "include(String, String)",
+      "estimateSize(String)",
+      "setTruncated(String[]>)",
+      "filterKey(String, String, String[]>)",
+      "addAlwaysInclude(String, String, String[]>)",
+      "setAlwaysInclude(String, String, String[]>)",
+      "truncate(String, int, String[]>)",
+      "maxAllowedToAdd(StringSizePair)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "containsKey(Object)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void add(String field, String value, Map<String, String[]> data) {\n    if (!include(field, value)) {\n        return;\n    }\n    if (ALWAYS_SET_FIELDS.contains(field)) {\n        setAlwaysInclude(field, value, data);\n        return;\n    } else if (ALWAYS_ADD_FIELDS.contains(field)) {\n        addAlwaysInclude(field, value, data);\n        return;\n    }\n    StringSizePair filterKey = filterKey(field, value, data);\n    if (!data.containsKey(filterKey.string)) {\n        setFilterKey(filterKey, value, data);\n        return;\n    }\n    String[] vals = data.get(filterKey.string);\n    if (vals != null && vals.length >= maxValuesPerField) {\n        setTruncated(data);\n        return;\n    }\n    Integer fieldSizeInteger = fieldSizes.get(filterKey.string);\n    int fieldSize = fieldSizeInteger == null ? 0 : fieldSizeInteger;\n    int maxAllowed = maxAllowedToAdd(filterKey);\n    // if == 1, then only one byte of two would be allowed, which lands us in \"\", so needs to be <=\n    if (maxAllowed <= 1) {\n        setTruncated(data);\n        return;\n    }\n    int valueLength = estimateSize(value);\n    String toAdd = value;\n    if (valueLength > maxAllowed) {\n        toAdd = truncate(value, maxAllowed, data);\n        valueLength = estimateSize(toAdd);\n        if (valueLength == 0) {\n            return;\n        }\n    }\n    int addedOverall = valueLength;\n    if (fieldSizeInteger == null) {\n        // if there was no value before, we're adding\n        // a key.  If there was a value before, do not\n        // add the key length.\n        addedOverall += filterKey.size;\n    }\n    estimatedSize += addedOverall;\n    fieldSizes.put(filterKey.string, valueLength + fieldSize);\n    data.put(filterKey.string, appendValue(data.get(filterKey.string), toAdd));\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,25 @@
+{
+  "className": "AbstractParser",
+  "methodName": "parse",
+  "brief": "@Deprecated\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\r\n            throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata)",
+  "sourceCode": "@Deprecated\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata)\n            throws IOException, SAXException, TikaException {\n        parse(tis, handler, metadata, new ParseContext());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "/**\n * Calls the\n * {@link Parser#parse(TikaInputStream, ContentHandler, Metadata, ParseContext)}\n * method with an empty {@link ParseContext}. This method exists as a\n * leftover from Tika 0.x when the three-argument parse() method still\n * existed in the {@link Parser} interface. No new code should call this\n * method anymore, it's only here for backwards compatibility.\n *\n * @deprecated use the {@link Parser#parse(TikaInputStream, ContentHandler,\n * Metadata, ParseContext)} method instead\n */\n@Deprecated\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata) throws IOException, SAXException, TikaException {\n    parse(tis, handler, metadata, new ParseContext());\n}",
+  "method_comment": "\n     * Calls the\n     * {@link Parser#parse(TikaInputStream, ContentHandler, Metadata, ParseContext)}\n     * method with an empty {@link ParseContext}. This method exists as a\n     * leftover from Tika 0.x when the three-argument parse() method still\n     * existed in the {@link Parser} interface. No new code should call this\n     * method anymore, it's only here for backwards compatibility.\n     *\n     * @deprecated use the {@link Parser#parse(TikaInputStream, ContentHandler,\n     * Metadata, ParseContext)} method instead\n     ",
+  "method_annotation": "@Deprecated\n"
+}

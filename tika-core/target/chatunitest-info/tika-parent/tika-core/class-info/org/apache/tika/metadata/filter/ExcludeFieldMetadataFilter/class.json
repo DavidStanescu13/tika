@@ -1,0 +1,80 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.ExcludeFieldMetadataFilter",
+  "className": "ExcludeFieldMetadataFilter",
+  "index": 137,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class ExcludeFieldMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Set;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private final Set<String> excludeSet;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "setExclude(List)": "1",
+    "getExclude()": "2",
+    "ExcludeFieldMetadataFilter()": "3",
+    "ExcludeFieldMetadataFilter(Set)": "4",
+    "ExcludeFieldMetadataFilter(Config)": "5",
+    "ExcludeFieldMetadataFilter(JsonConfig)": "6"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void filter(Metadata metadata){}",
+    "public void setExclude(List<String> exclude){}",
+    "public List<String> getExclude(){}",
+    "public ExcludeFieldMetadataFilter(){}",
+    "public ExcludeFieldMetadataFilter(Set<String> exclude){}",
+    "public ExcludeFieldMetadataFilter(Config config){}",
+    "public ExcludeFieldMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "ExcludeFieldMetadataFilter()",
+    "ExcludeFieldMetadataFilter(Set)",
+    "ExcludeFieldMetadataFilter(Config)",
+    "ExcludeFieldMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public ExcludeFieldMetadataFilter(){}",
+    "public ExcludeFieldMetadataFilter(Set<String> exclude){}",
+    "public ExcludeFieldMetadataFilter(Config config){}",
+    "public ExcludeFieldMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "setExclude(List)",
+    "getExclude()"
+  ],
+  "getterSetterBrief": [
+    "public void setExclude(List<String> exclude){}",
+    "public List<String> getExclude(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.ExcludeFieldMetadataFilter.Config": [],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Set;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.metadata.Metadata;\n\n@TikaComponent\npublic class ExcludeFieldMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> exclude = new ArrayList<>();\n    }\n\n    private final Set<String> excludeSet;\n\n    public ExcludeFieldMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public ExcludeFieldMetadataFilter(Set<String> exclude) {\n        this.excludeSet = exclude;\n    }\n\n    public ExcludeFieldMetadataFilter(Config config) {\n        this.excludeSet = new HashSet<>(config.exclude);\n    }\n\n    public ExcludeFieldMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        for (String field : excludeSet) {\n            metadata.remove(field);\n        }\n    }\n\n    /**\n     * @param exclude list of fields to exclude\n     */\n    public void setExclude(List<String> exclude) {\n        this.excludeSet.addAll(exclude);\n    }\n\n    public List<String> getExclude() {\n        return new ArrayList<>(excludeSet);\n    }\n}\n",
+  "classDeclarationCode": "@TikaComponent\npublic class ExcludeFieldMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public List<String> exclude = new ArrayList<>();\n    }\n\n    private final Set<String> excludeSet;\n\n    public ExcludeFieldMetadataFilter() {\n        this(new HashSet<>());\n    }\n\n    public ExcludeFieldMetadataFilter(Set<String> exclude) {\n        this.excludeSet = exclude;\n    }\n\n    public ExcludeFieldMetadataFilter(Config config) {\n        this.excludeSet = new HashSet<>(config.exclude);\n    }\n\n    public ExcludeFieldMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        for (String field : excludeSet) {\n            metadata.remove(field);\n        }\n    }\n\n    /**\n     * @param exclude list of fields to exclude\n     */\n    public void setExclude(List<String> exclude) {\n        this.excludeSet.addAll(exclude);\n    }\n\n    public List<String> getExclude() {\n        return new ArrayList<>(excludeSet);\n    }\n}",
+  "subClasses": []
+}

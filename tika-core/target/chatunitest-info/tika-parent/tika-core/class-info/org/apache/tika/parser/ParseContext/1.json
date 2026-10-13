@@ -1,0 +1,27 @@
+{
+  "className": "ParseContext",
+  "methodName": "get",
+  "brief": "@SuppressWarnings(\"unchecked\")\r\n    public <T> T get(Class<T> key){}",
+  "methodSignature": "get(Class)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> T get(Class<T> key) {\n        return (T) context.get(key.getName());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.lang.Class": [
+      "getName()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the object in this context that implements the given interface.\n *\n * @param key the interface implemented by the requested object\n * @return the object that implements the given interface,\n * or <code>null</code> if not found\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> T get(Class<T> key) {\n    return (T) context.get(key.getName());\n}",
+  "method_comment": "\n     * Returns the object in this context that implements the given interface.\n     *\n     * @param key the interface implemented by the requested object\n     * @return the object that implements the given interface,\n     * or <code>null</code> if not found\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

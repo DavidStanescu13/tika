@@ -1,0 +1,29 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "sendInputStreamToStdIn",
+  "brief": "private void sendInputStreamToStdIn(final InputStream inputStream, final Process process){}",
+  "methodSignature": "sendInputStreamToStdIn(InputStream, Process)",
+  "sourceCode": "private void sendInputStreamToStdIn(final InputStream inputStream, final Process process) {\n        multiThreadedStreamCopy(inputStream, process.getOutputStream());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "Process"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "java.lang.Process": [
+      "getOutputStream()"
+    ],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "multiThreadedStreamCopy(InputStream, OutputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * Sends the contents of the given input stream to the\n * standard input of the given process. Potential exceptions are\n * ignored.\n * <p>\n * Note that the given input stream is <em>not</em> closed by this method.\n *\n * @param process     the process\n * @param inputStream the input stream to send to standard input of the process\n */\nprivate void sendInputStreamToStdIn(final InputStream inputStream, final Process process) {\n    multiThreadedStreamCopy(inputStream, process.getOutputStream());\n}",
+  "method_comment": "\n     * Sends the contents of the given input stream to the\n     * standard input of the given process. Potential exceptions are\n     * ignored.\n     * <p>\n     * Note that the given input stream is <em>not</em> closed by this method.\n     *\n     * @param process     the process\n     * @param inputStream the input stream to send to standard input of the process\n     ",
+  "method_annotation": ""
+}

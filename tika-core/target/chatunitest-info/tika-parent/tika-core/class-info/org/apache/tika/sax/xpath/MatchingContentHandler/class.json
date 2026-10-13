@@ -1,0 +1,63 @@
+{
+  "fullClassName": "org.apache.tika.sax.xpath.MatchingContentHandler",
+  "className": "MatchingContentHandler",
+  "index": 332,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax.xpath",
+  "packageDeclaration": "package org.apache.tika.sax.xpath;",
+  "classSignature": "public class MatchingContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.LinkedList;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.AttributesImpl;",
+    "import org.apache.tika.sax.ContentHandlerDecorator;"
+  ],
+  "fields": [
+    "private final LinkedList<Matcher> matchers = new LinkedList<>();",
+    "private Matcher matcher;"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startElement(String, String, String, Attributes)": "0",
+    "endElement(String, String, String)": "1",
+    "characters(char[], int, int)": "2",
+    "ignorableWhitespace(char[], int, int)": "3",
+    "processingInstruction(String, String)": "4",
+    "skippedEntity(String)": "5",
+    "MatchingContentHandler(ContentHandler, Matcher)": "6"
+  },
+  "methodsBrief": [
+    "public void startElement(String uri, String localName, String name, Attributes attributes)\r\n            throws SAXException{}",
+    "public void endElement(String uri, String localName, String name) throws SAXException{}",
+    "public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "public void processingInstruction(String target, String data){}",
+    "public void skippedEntity(String name) throws SAXException{}",
+    "public MatchingContentHandler(ContentHandler delegate, Matcher matcher){}"
+  ],
+  "constructorSigs": [
+    "MatchingContentHandler(ContentHandler, Matcher)"
+  ],
+  "constructorBrief": [
+    "public MatchingContentHandler(ContentHandler delegate, Matcher matcher){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.sax.xpath.Matcher": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax.xpath;\n\nimport java.util.LinkedList;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.AttributesImpl;\nimport org.apache.tika.sax.ContentHandlerDecorator;\n\n/**\n * Content handler decorator that only passes the elements, attributes,\n * and text nodes that match the given XPath expression.\n */\npublic class MatchingContentHandler extends ContentHandlerDecorator {\n\n    private final LinkedList<Matcher> matchers = new LinkedList<>();\n\n    private Matcher matcher;\n\n    public MatchingContentHandler(ContentHandler delegate, Matcher matcher) {\n        super(delegate);\n        this.matcher = matcher;\n    }\n\n    public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {\n        matchers.addFirst(matcher);\n        matcher = matcher.descend(uri, localName);\n        AttributesImpl matches = new AttributesImpl();\n        for (int i = 0; i < attributes.getLength(); i++) {\n            String attributeURI = attributes.getURI(i);\n            String attributeName = attributes.getLocalName(i);\n            if (matcher.matchesAttribute(attributeURI, attributeName)) {\n                matches.addAttribute(attributeURI, attributeName, attributes.getQName(i), attributes.getType(i), attributes.getValue(i));\n            }\n        }\n        if (matcher.matchesElement() || matches.getLength() > 0) {\n            super.startElement(uri, localName, name, matches);\n            if (!matcher.matchesElement()) {\n                // Force the matcher to match the current element, so the\n                // endElement method knows to emit the correct event\n                matcher = new CompositeMatcher(matcher, ElementMatcher.INSTANCE);\n            }\n        }\n    }\n\n    public void endElement(String uri, String localName, String name) throws SAXException {\n        if (matcher.matchesElement()) {\n            super.endElement(uri, localName, name);\n        }\n        // this was originally added for tagsoup, but we need it generally\n        if (!matchers.isEmpty()) {\n            matcher = matchers.removeFirst();\n        }\n    }\n\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (matcher.matchesText()) {\n            super.characters(ch, start, length);\n        }\n    }\n\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (matcher.matchesText()) {\n            super.ignorableWhitespace(ch, start, length);\n        }\n    }\n\n    public void processingInstruction(String target, String data) {\n        // TODO: Support for matching processing instructions\n    }\n\n    public void skippedEntity(String name) throws SAXException {\n        // TODO: Can skipped entities refer to more than text?\n        if (matcher.matchesText()) {\n            super.skippedEntity(name);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content handler decorator that only passes the elements, attributes,\n * and text nodes that match the given XPath expression.\n */\npublic class MatchingContentHandler extends ContentHandlerDecorator {\n\n    private final LinkedList<Matcher> matchers = new LinkedList<>();\n\n    private Matcher matcher;\n\n    public MatchingContentHandler(ContentHandler delegate, Matcher matcher) {\n        super(delegate);\n        this.matcher = matcher;\n    }\n\n    public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {\n        matchers.addFirst(matcher);\n        matcher = matcher.descend(uri, localName);\n        AttributesImpl matches = new AttributesImpl();\n        for (int i = 0; i < attributes.getLength(); i++) {\n            String attributeURI = attributes.getURI(i);\n            String attributeName = attributes.getLocalName(i);\n            if (matcher.matchesAttribute(attributeURI, attributeName)) {\n                matches.addAttribute(attributeURI, attributeName, attributes.getQName(i), attributes.getType(i), attributes.getValue(i));\n            }\n        }\n        if (matcher.matchesElement() || matches.getLength() > 0) {\n            super.startElement(uri, localName, name, matches);\n            if (!matcher.matchesElement()) {\n                // Force the matcher to match the current element, so the\n                // endElement method knows to emit the correct event\n                matcher = new CompositeMatcher(matcher, ElementMatcher.INSTANCE);\n            }\n        }\n    }\n\n    public void endElement(String uri, String localName, String name) throws SAXException {\n        if (matcher.matchesElement()) {\n            super.endElement(uri, localName, name);\n        }\n        // this was originally added for tagsoup, but we need it generally\n        if (!matchers.isEmpty()) {\n            matcher = matchers.removeFirst();\n        }\n    }\n\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (matcher.matchesText()) {\n            super.characters(ch, start, length);\n        }\n    }\n\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        if (matcher.matchesText()) {\n            super.ignorableWhitespace(ch, start, length);\n        }\n    }\n\n    public void processingInstruction(String target, String data) {\n        // TODO: Support for matching processing instructions\n    }\n\n    public void skippedEntity(String name) throws SAXException {\n        // TODO: Can skipped entities refer to more than text?\n        if (matcher.matchesText()) {\n            super.skippedEntity(name);\n        }\n    }\n}",
+  "subClasses": []
+}

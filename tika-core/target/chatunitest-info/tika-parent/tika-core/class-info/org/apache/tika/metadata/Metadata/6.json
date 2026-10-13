@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "get",
+  "brief": "public String get(final String name){}",
+  "methodSignature": "get(String)",
+  "sourceCode": "public String get(final String name) {\n        String[] values = metadata.get(name);\n        if (values == null) {\n            return null;\n        } else {\n            return values[0];\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the value associated to a metadata name. If many values are associated to the specified\n * name, then the first one is returned.\n *\n * @param name of the metadata.\n * @return the value associated to the specified metadata name.\n */\npublic String get(final String name) {\n    String[] values = metadata.get(name);\n    if (values == null) {\n        return null;\n    } else {\n        return values[0];\n    }\n}",
+  "method_comment": "\n     * Get the value associated to a metadata name. If many values are associated to the specified\n     * name, then the first one is returned.\n     *\n     * @param name of the metadata.\n     * @return the value associated to the specified metadata name.\n     ",
+  "method_annotation": ""
+}

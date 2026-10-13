@@ -1,0 +1,28 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "close",
+  "brief": "public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "public void close() throws IOException {\n        // Release all resources and keep track of any exceptions\n        IOException exception = null;\n        for (Closeable resource : resources) {\n            try {\n                resource.close();\n            } catch (IOException e) {\n                if (exception == null) {\n                    exception = e;\n                } else {\n                    exception.addSuppressed(e);\n                }\n            }\n        }\n        resources.clear();\n\n        // Throw any exceptions that were captured from above\n        if (exception != null) {\n            throw exception;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.io.Closeable": [
+      "close()"
+    ],
+    "java.lang.Throwable": [
+      "addSuppressed(Throwable)"
+    ],
+    "java.util.LinkedList": [
+      "clear()"
+    ]
+  },
+  "full_method_info": "/**\n * Closes all tracked resources. The resources are closed in reverse order\n * from how they were added.\n * <p>\n * Any suppressed exceptions from managed resources are collected and\n * then added to the first thrown exception, which is re-thrown once\n * all the resources have been closed.\n *\n * @throws IOException if one or more of the tracked resources\n *                     could not be closed\n */\npublic void close() throws IOException {\n    // Release all resources and keep track of any exceptions\n    IOException exception = null;\n    for (Closeable resource : resources) {\n        try {\n            resource.close();\n        } catch (IOException e) {\n            if (exception == null) {\n                exception = e;\n            } else {\n                exception.addSuppressed(e);\n            }\n        }\n    }\n    resources.clear();\n    // Throw any exceptions that were captured from above\n    if (exception != null) {\n        throw exception;\n    }\n}",
+  "method_comment": "\n     * Closes all tracked resources. The resources are closed in reverse order\n     * from how they were added.\n     * <p>\n     * Any suppressed exceptions from managed resources are collected and\n     * then added to the first thrown exception, which is re-thrown once\n     * all the resources have been closed.\n     *\n     * @throws IOException if one or more of the tracked resources\n     *                     could not be closed\n     ",
+  "method_annotation": ""
+}

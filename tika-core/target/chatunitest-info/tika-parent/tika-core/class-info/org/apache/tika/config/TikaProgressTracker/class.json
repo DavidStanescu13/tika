@@ -1,0 +1,56 @@
+{
+  "fullClassName": "org.apache.tika.config.TikaProgressTracker",
+  "className": "TikaProgressTracker",
+  "index": 14,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "public class TikaProgressTracker",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.concurrent.atomic.AtomicLong;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private final AtomicLong lastProgressMillis;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "update(ParseContext)": "0",
+    "update()": "1",
+    "getLastProgressMillis()": "2",
+    "TikaProgressTracker()": "3"
+  },
+  "methodsBrief": [
+    "public static void update(ParseContext context){}",
+    "public void update(){}",
+    "public long getLastProgressMillis(){}",
+    "public TikaProgressTracker(){}"
+  ],
+  "constructorSigs": [
+    "TikaProgressTracker()"
+  ],
+  "constructorBrief": [
+    "public TikaProgressTracker(){}"
+  ],
+  "getterSetterSigs": [
+    "getLastProgressMillis()"
+  ],
+  "getterSetterBrief": [
+    "public long getLastProgressMillis(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.util.concurrent.atomic.AtomicLong;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Tracks parse progress for the two-tier timeout system.\n * <p>\n * Parsers call {@link #update(ParseContext)} after completing a unit of work\n * (e.g., finishing an external process for one page of OCR). The monitoring loop\n * reads {@link #getLastProgressMillis()} to detect stalled parsers.\n * <p>\n * This is runtime-only state (NOT Serializable) — it is placed into\n * {@link ParseContext} on the server side before submitting a parse task\n * and is never sent over the wire.\n *\n * @since Apache Tika 4.0\n */\npublic class TikaProgressTracker {\n\n    private final AtomicLong lastProgressMillis;\n\n    public TikaProgressTracker() {\n        this.lastProgressMillis = new AtomicLong(System.currentTimeMillis());\n    }\n\n    /**\n     * Signals progress from a ParseContext. If no tracker is present, this is a no-op.\n     * <p>\n     * This is the preferred way for parsers to signal progress:\n     * <pre>\n     * TikaProgressTracker.update(context);\n     * </pre>\n     *\n     * @param context the ParseContext (may be null)\n     */\n    public static void update(ParseContext context) {\n        if (context == null) {\n            return;\n        }\n        TikaProgressTracker tracker = context.get(TikaProgressTracker.class);\n        if (tracker != null) {\n            tracker.update();\n        }\n    }\n\n    /**\n     * Signals progress directly on this tracker instance.\n     */\n    public void update() {\n        lastProgressMillis.set(System.currentTimeMillis());\n    }\n\n    /**\n     * Returns the epoch millis of the last progress update.\n     *\n     * @return epoch millis of last progress\n     */\n    public long getLastProgressMillis() {\n        return lastProgressMillis.get();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Tracks parse progress for the two-tier timeout system.\n * <p>\n * Parsers call {@link #update(ParseContext)} after completing a unit of work\n * (e.g., finishing an external process for one page of OCR). The monitoring loop\n * reads {@link #getLastProgressMillis()} to detect stalled parsers.\n * <p>\n * This is runtime-only state (NOT Serializable) — it is placed into\n * {@link ParseContext} on the server side before submitting a parse task\n * and is never sent over the wire.\n *\n * @since Apache Tika 4.0\n */\npublic class TikaProgressTracker {\n\n    private final AtomicLong lastProgressMillis;\n\n    public TikaProgressTracker() {\n        this.lastProgressMillis = new AtomicLong(System.currentTimeMillis());\n    }\n\n    /**\n     * Signals progress from a ParseContext. If no tracker is present, this is a no-op.\n     * <p>\n     * This is the preferred way for parsers to signal progress:\n     * <pre>\n     * TikaProgressTracker.update(context);\n     * </pre>\n     *\n     * @param context the ParseContext (may be null)\n     */\n    public static void update(ParseContext context) {\n        if (context == null) {\n            return;\n        }\n        TikaProgressTracker tracker = context.get(TikaProgressTracker.class);\n        if (tracker != null) {\n            tracker.update();\n        }\n    }\n\n    /**\n     * Signals progress directly on this tracker instance.\n     */\n    public void update() {\n        lastProgressMillis.set(System.currentTimeMillis());\n    }\n\n    /**\n     * Returns the epoch millis of the last progress update.\n     *\n     * @return epoch millis of last progress\n     */\n    public long getLastProgressMillis() {\n        return lastProgressMillis.get();\n    }\n}",
+  "subClasses": []
+}

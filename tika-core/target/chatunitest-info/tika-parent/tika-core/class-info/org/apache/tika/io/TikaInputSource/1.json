@@ -1,0 +1,18 @@
+{
+  "className": "TikaInputSource",
+  "methodName": "hasPath",
+  "brief": "boolean hasPath();",
+  "methodSignature": "hasPath()",
+  "sourceCode": "boolean hasPath();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns true if this source has a file path available.\n */\nboolean hasPath();",
+  "method_comment": "\n     * Returns true if this source has a file path available.\n     ",
+  "method_annotation": ""
+}

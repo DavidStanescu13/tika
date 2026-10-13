@@ -1,0 +1,25 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(String name){}",
+  "methodSignature": "detect(String)",
+  "sourceCode": "public String detect(String name) {\n        try {\n            return detect((InputStream) null, name);\n        } catch (IOException e) {\n            throw new IllegalStateException(\"Unexpected IOException\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.Tika": [
+      "detect(InputStream, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of a document with the given file name.\n * The type detection is based on known file name extensions.\n * <p>\n * The given name can also be a URL or a full file path. In such cases\n * only the file name part of the string is used for type detection.\n *\n * @param name the file name of the document\n * @return detected media type\n */\npublic String detect(String name) {\n    try {\n        return detect((InputStream) null, name);\n    } catch (IOException e) {\n        throw new IllegalStateException(\"Unexpected IOException\", e);\n    }\n}",
+  "method_comment": "\n     * Detects the media type of a document with the given file name.\n     * The type detection is based on known file name extensions.\n     * <p>\n     * The given name can also be a URL or a full file path. In such cases\n     * only the file name part of the string is used for type detection.\n     *\n     * @param name the file name of the document\n     * @return detected media type\n     ",
+  "method_annotation": ""
+}

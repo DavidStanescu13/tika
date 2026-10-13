@@ -1,0 +1,25 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "characters",
+  "brief": "public void characters(String characters) throws SAXException{}",
+  "methodSignature": "characters(String)",
+  "sourceCode": "public void characters(String characters) throws SAXException {\n        if (characters != null && characters.length() > 0) {\n            characters(characters.toCharArray(), 0, characters.length());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()",
+      "length()"
+    ]
+  },
+  "full_method_info": "public void characters(String characters) throws SAXException {\n    if (characters != null && characters.length() > 0) {\n        characters(characters.toCharArray(), 0, characters.length());\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

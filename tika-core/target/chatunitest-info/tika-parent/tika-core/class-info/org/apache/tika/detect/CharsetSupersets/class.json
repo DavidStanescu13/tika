@@ -1,0 +1,48 @@
+{
+  "fullClassName": "org.apache.tika.detect.CharsetSupersets",
+  "className": "CharsetSupersets",
+  "index": 18,
+  "modifier": "[public , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public final class CharsetSupersets",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.Charset;",
+    "import java.util.Collections;",
+    "import java.util.HashMap;",
+    "import java.util.Map;"
+  ],
+  "fields": [
+    "public static final Map<String, String> SUPERSET_MAP;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "supersetOf(Charset)": "0",
+    "decodeAs(Charset)": "1",
+    "CharsetSupersets()": "2"
+  },
+  "methodsBrief": [
+    "public static Charset supersetOf(Charset detected){}",
+    "public static Charset decodeAs(Charset detected){}",
+    "private CharsetSupersets(){}"
+  ],
+  "constructorSigs": [
+    "CharsetSupersets()"
+  ],
+  "constructorBrief": [
+    "private CharsetSupersets(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.nio.charset.Charset;\nimport java.util.Collections;\nimport java.util.HashMap;\nimport java.util.Map;\n\n/**\n * Maps detected charsets to safer superset charsets for decoding.\n *\n * <p>When Tika detects a charset that is a strict subset of a broader encoding,\n * it is safer to decode with the superset — the superset handles all byte\n * sequences the subset can produce, plus the extension characters the subset\n * cannot represent. Decoding with only the subset risks mojibake on any\n * extension characters present in the document.</p>\n *\n * <p>Policy: Content-Type and detected-encoding metadata report the <em>detected</em>\n * charset. Actual stream decoding uses the superset. The superset used is recorded\n * in {@link org.apache.tika.metadata.TikaCoreProperties#DECODED_CHARSET}.</p>\n *\n * <h3>Superset map</h3>\n * <ul>\n *   <li>EUC-KR → x-windows-949 (MS949 is a strict superset: all EUC-KR byte sequences\n *       decode identically, extension chars in x-windows-949 would mojibake under EUC-KR)</li>\n *   <li>Big5 → Big5-HKSCS (HKSCS adds Hong Kong Supplementary Characters)</li>\n *   <li>GB2312 → GB18030 (GB18030 is a strict superset of both GB2312 and GBK)</li>\n *   <li>GBK → GB18030 (GB18030 is a strict superset; enables 4-byte extension sequences)</li>\n *   <li>Shift_JIS → windows-31j (MS932 is a strict superset with NEC/IBM extensions)</li>\n *   <li>EUC-JP → x-eucJP-Open (EUC packing of the NEC/IBM vendor extensions)</li>\n * </ul>\n */\npublic final class CharsetSupersets {\n\n    /**\n     * Maps detected charset canonical names (case-sensitive, as returned by\n     * {@link Charset#name()}) to their superset charset canonical name.\n     */\n    public static final Map<String, String> SUPERSET_MAP;\n\n    static {\n        Map<String, String> m = new HashMap<>();\n        m.put(\"EUC-KR\", \"x-windows-949\");\n        m.put(\"Big5\", \"Big5-HKSCS\");\n        m.put(\"GB2312\", \"GB18030\");\n        m.put(\"GBK\", \"GB18030\");\n        m.put(\"Shift_JIS\", \"windows-31j\");\n        m.put(\"EUC-JP\", \"x-eucJP-Open\");\n        SUPERSET_MAP = Collections.unmodifiableMap(m);\n    }\n\n    private CharsetSupersets() {\n    }\n\n    /**\n     * Returns the superset charset to use for decoding, or {@code null} if\n     * {@code detected} has no superset override.\n     *\n     * @param detected the charset returned by the encoding detector\n     * @return superset charset, or {@code null} if none is defined\n     */\n    public static Charset supersetOf(Charset detected) {\n        if (detected == null) {\n            return null;\n        }\n        String supersetName = SUPERSET_MAP.get(detected.name());\n        if (supersetName == null) {\n            return null;\n        }\n        try {\n            return Charset.forName(supersetName);\n        } catch (IllegalArgumentException e) {\n            return null;\n        }\n    }\n\n    /**\n     * The charset to decode with: {@link #supersetOf(Charset) superset} of\n     * {@code detected} if one exists, else {@code detected} (null only if\n     * {@code detected} is null). For bare-{@link Charset} callers; detection\n     * results can use {@link EncodingResult#getDecodeAs()}.\n     */\n    public static Charset decodeAs(Charset detected) {\n        Charset superset = supersetOf(detected);\n        return superset != null ? superset : detected;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Maps detected charsets to safer superset charsets for decoding.\n *\n * <p>When Tika detects a charset that is a strict subset of a broader encoding,\n * it is safer to decode with the superset — the superset handles all byte\n * sequences the subset can produce, plus the extension characters the subset\n * cannot represent. Decoding with only the subset risks mojibake on any\n * extension characters present in the document.</p>\n *\n * <p>Policy: Content-Type and detected-encoding metadata report the <em>detected</em>\n * charset. Actual stream decoding uses the superset. The superset used is recorded\n * in {@link org.apache.tika.metadata.TikaCoreProperties#DECODED_CHARSET}.</p>\n *\n * <h3>Superset map</h3>\n * <ul>\n *   <li>EUC-KR → x-windows-949 (MS949 is a strict superset: all EUC-KR byte sequences\n *       decode identically, extension chars in x-windows-949 would mojibake under EUC-KR)</li>\n *   <li>Big5 → Big5-HKSCS (HKSCS adds Hong Kong Supplementary Characters)</li>\n *   <li>GB2312 → GB18030 (GB18030 is a strict superset of both GB2312 and GBK)</li>\n *   <li>GBK → GB18030 (GB18030 is a strict superset; enables 4-byte extension sequences)</li>\n *   <li>Shift_JIS → windows-31j (MS932 is a strict superset with NEC/IBM extensions)</li>\n *   <li>EUC-JP → x-eucJP-Open (EUC packing of the NEC/IBM vendor extensions)</li>\n * </ul>\n */\npublic final class CharsetSupersets {\n\n    /**\n     * Maps detected charset canonical names (case-sensitive, as returned by\n     * {@link Charset#name()}) to their superset charset canonical name.\n     */\n    public static final Map<String, String> SUPERSET_MAP;\n\n    static {\n        Map<String, String> m = new HashMap<>();\n        m.put(\"EUC-KR\", \"x-windows-949\");\n        m.put(\"Big5\", \"Big5-HKSCS\");\n        m.put(\"GB2312\", \"GB18030\");\n        m.put(\"GBK\", \"GB18030\");\n        m.put(\"Shift_JIS\", \"windows-31j\");\n        m.put(\"EUC-JP\", \"x-eucJP-Open\");\n        SUPERSET_MAP = Collections.unmodifiableMap(m);\n    }\n\n    private CharsetSupersets() {\n    }\n\n    /**\n     * Returns the superset charset to use for decoding, or {@code null} if\n     * {@code detected} has no superset override.\n     *\n     * @param detected the charset returned by the encoding detector\n     * @return superset charset, or {@code null} if none is defined\n     */\n    public static Charset supersetOf(Charset detected) {\n        if (detected == null) {\n            return null;\n        }\n        String supersetName = SUPERSET_MAP.get(detected.name());\n        if (supersetName == null) {\n            return null;\n        }\n        try {\n            return Charset.forName(supersetName);\n        } catch (IllegalArgumentException e) {\n            return null;\n        }\n    }\n\n    /**\n     * The charset to decode with: {@link #supersetOf(Charset) superset} of\n     * {@code detected} if one exists, else {@code detected} (null only if\n     * {@code detected} is null). For bare-{@link Charset} callers; detection\n     * results can use {@link EncodingResult#getDecodeAs()}.\n     */\n    public static Charset decodeAs(Charset detected) {\n        Charset superset = supersetOf(detected);\n        return superset != null ? superset : detected;\n    }\n}",
+  "subClasses": []
+}

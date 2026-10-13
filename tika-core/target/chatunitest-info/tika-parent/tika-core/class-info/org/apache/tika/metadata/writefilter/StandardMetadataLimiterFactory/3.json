@@ -1,0 +1,20 @@
+{
+  "className": "StandardMetadataLimiterFactory",
+  "methodName": "setMaxTotalBytes",
+  "brief": "public void setMaxTotalBytes(int maxTotalBytes){}",
+  "methodSignature": "setMaxTotalBytes(int)",
+  "sourceCode": "public void setMaxTotalBytes(int maxTotalBytes) {\n        this.maxTotalBytes = maxTotalBytes;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setMaxTotalBytes(int maxTotalBytes) {\n    this.maxTotalBytes = maxTotalBytes;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

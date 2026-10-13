@@ -1,0 +1,22 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setStderrHandler",
+  "brief": "public void setStderrHandler(Parser stderrHandler){}",
+  "methodSignature": "setStderrHandler(Parser)",
+  "sourceCode": "public void setStderrHandler(Parser stderrHandler) {\n        this.stderrHandler = stderrHandler;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "full_method_info": "public void setStderrHandler(Parser stderrHandler) {\n    this.stderrHandler = stderrHandler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

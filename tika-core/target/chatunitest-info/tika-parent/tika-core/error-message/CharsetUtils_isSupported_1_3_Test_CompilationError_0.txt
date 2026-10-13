@@ -1,0 +1,75 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.IllegalCharsetNameException;
+
+public class CharsetUtils_isSupported_1_3_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU", String.class);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testIsSupportedICUNotNullAndTrue() throws Exception {
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
+        assertTrue(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedICUNotNullAndFalse() throws Exception {
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(false);
+        assertFalse(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedICUNull() throws Exception {
+        isSupportedICU = null;
+        assertTrue(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedIllegalCharsetNameException() {
+        assertThrows(IllegalCharsetNameException.class, () -> {
+            charsetUtils.isSupported("Invalid-Charset-Name");
+        });
+    }
+
+    @Test
+    public void testIsSupportedIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            charsetUtils.isSupported(null);
+        });
+    }
+
+    @Test
+    public void testIsSupportedUnexpectedException() throws Exception {
+        when(isSupportedICU.invoke(null, "UTF-8")).thenThrow(new Exception());
+        assertFalse(charsetUtils.isSupported("UTF-8"));
+    }
+}
+
+--------------------------------------------
+Error in CharsetUtils_isSupported_1_3_Test: line 12 : package org.mockito does not exist
+Error in CharsetUtils_isSupported_1_3_Test: line 15 : package org.mockito.junit.jupiter does not exist
+Error in CharsetUtils_isSupported_1_3_Test: line 10 : package org.mockito does not exist

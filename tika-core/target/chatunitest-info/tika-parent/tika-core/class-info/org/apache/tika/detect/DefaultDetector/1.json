@@ -1,0 +1,44 @@
+{
+  "className": "DefaultDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        // 1. Magic detection via MimeTypes\n        MediaType magicType = mimeTypes.detect(tis, metadata, parseContext);\n        metadata.set(TikaCoreProperties.CONTENT_TYPE_MAGIC_DETECTED, magicType.toString());\n\n        // 2. Run other detectors (container detectors, etc.)\n        // Note: Container detectors that need random access handle their own spooling\n        MediaType detectedType = super.detect(tis, metadata, parseContext);\n\n        // 3. Text detection - only if still unknown\n        MediaType textType = null;\n        if (MediaType.OCTET_STREAM.equals(detectedType) &&\n                MediaType.OCTET_STREAM.equals(magicType)) {\n            textType = textDetector.detect(tis, metadata, parseContext);\n        }\n\n        // 4. Return most specific\n        return mostSpecific(magicType, detectedType, textType);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "equals(Object)",
+      "toString()"
+    ],
+    "org.apache.tika.detect.CompositeDetector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.detect.TextDetector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "org.apache.tika.detect.DefaultDetector": [
+      "mostSpecific(MediaType, MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    // 1. Magic detection via MimeTypes\n    MediaType magicType = mimeTypes.detect(tis, metadata, parseContext);\n    metadata.set(TikaCoreProperties.CONTENT_TYPE_MAGIC_DETECTED, magicType.toString());\n    // 2. Run other detectors (container detectors, etc.)\n    // Note: Container detectors that need random access handle their own spooling\n    MediaType detectedType = super.detect(tis, metadata, parseContext);\n    // 3. Text detection - only if still unknown\n    MediaType textType = null;\n    if (MediaType.OCTET_STREAM.equals(detectedType) && MediaType.OCTET_STREAM.equals(magicType)) {\n        textType = textDetector.detect(tis, metadata, parseContext);\n    }\n    // 4. Return most specific\n    return mostSpecific(magicType, detectedType, textType);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

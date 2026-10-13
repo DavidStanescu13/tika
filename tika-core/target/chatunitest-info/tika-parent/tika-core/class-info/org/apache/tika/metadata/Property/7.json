@@ -1,0 +1,22 @@
+{
+  "className": "Property",
+  "methodName": "internalInteger",
+  "brief": "public static Property internalInteger(String name){}",
+  "methodSignature": "internalInteger(String)",
+  "sourceCode": "public static Property internalInteger(String name) {\n        return new Property(name, true, ValueType.INTEGER);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static Property internalInteger(String name) {\n    return new Property(name, true, ValueType.INTEGER);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

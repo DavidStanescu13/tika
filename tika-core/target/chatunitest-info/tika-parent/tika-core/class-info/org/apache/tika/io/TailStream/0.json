@@ -1,0 +1,25 @@
+{
+  "className": "TailStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read() throws IOException{}",
+  "methodSignature": "read()",
+  "sourceCode": "@Override\n    public int read() throws IOException {\n        int c = super.read();\n        if (c != -1) {\n            appendByte((byte) c);\n        }\n        return c;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.io.FilterInputStream": [
+      "read()"
+    ],
+    "org.apache.tika.io.TailStream": [
+      "appendByte(byte)"
+    ]
+  },
+  "full_method_info": "/**\n * {@inheritDoc} This implementation adds the read byte to the internal tail\n * buffer.\n */\n@Override\npublic int read() throws IOException {\n    int c = super.read();\n    if (c != -1) {\n        appendByte((byte) c);\n    }\n    return c;\n}",
+  "method_comment": "\n     * {@inheritDoc} This implementation adds the read byte to the internal tail\n     * buffer.\n     ",
+  "method_annotation": "@Override\n"
+}

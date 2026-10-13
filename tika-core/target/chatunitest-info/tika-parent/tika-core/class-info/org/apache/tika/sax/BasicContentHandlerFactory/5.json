@@ -1,0 +1,22 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "createHandlerInner",
+  "brief": "private ContentHandler createHandlerInner(){}",
+  "methodSignature": "createHandlerInner()",
+  "sourceCode": "private ContentHandler createHandlerInner() {\n        if (type == HANDLER_TYPE.BODY) {\n            return new BodyContentHandler(\n                    new WriteOutContentHandler(new ToTextContentHandler(), writeLimit,\n                    throwOnWriteLimitReached, parseContext));\n        } else if (type == HANDLER_TYPE.IGNORE) {\n            return new NoOpContentHandler();\n        }\n        ContentHandler formatHandler = getFormatHandler();\n        if (writeLimit < 0) {\n            return formatHandler;\n        }\n        return new WriteOutContentHandler(formatHandler, writeLimit, throwOnWriteLimitReached,\n                parseContext);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.BasicContentHandlerFactory": [
+      "getFormatHandler()"
+    ]
+  },
+  "full_method_info": "private ContentHandler createHandlerInner() {\n    if (type == HANDLER_TYPE.BODY) {\n        return new BodyContentHandler(new WriteOutContentHandler(new ToTextContentHandler(), writeLimit, throwOnWriteLimitReached, parseContext));\n    } else if (type == HANDLER_TYPE.IGNORE) {\n        return new NoOpContentHandler();\n    }\n    ContentHandler formatHandler = getFormatHandler();\n    if (writeLimit < 0) {\n        return formatHandler;\n    }\n    return new WriteOutContentHandler(formatHandler, writeLimit, throwOnWriteLimitReached, parseContext);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

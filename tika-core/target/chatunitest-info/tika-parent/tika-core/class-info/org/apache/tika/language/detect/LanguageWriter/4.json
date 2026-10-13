@@ -1,0 +1,18 @@
+{
+  "className": "LanguageWriter",
+  "methodName": "flush",
+  "brief": "@Override\r\n    public void flush(){}",
+  "methodSignature": "flush()",
+  "sourceCode": "@Override\n    public void flush() {\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Ignored.\n */\n@Override\npublic void flush() {\n}",
+  "method_comment": "\n     * Ignored.\n     ",
+  "method_annotation": "@Override\n"
+}

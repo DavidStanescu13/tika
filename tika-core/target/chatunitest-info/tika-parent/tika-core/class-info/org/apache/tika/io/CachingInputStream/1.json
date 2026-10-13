@@ -1,0 +1,35 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+  "methodSignature": "read(byte[], int, int)",
+  "sourceCode": "@Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        if (len == 0) {\n            return 0;\n        }\n\n        int totalRead = 0;\n\n        // First, read any available bytes from cache\n        long cacheSize = cache.size();\n        if (position < cacheSize) {\n            int availableInCache = (int) Math.min(len, cacheSize - position);\n            int n = cache.readAt(position, b, off, availableInCache);\n            if (n > 0) {\n                position += n;\n                totalRead += n;\n                off += n;\n                len -= n;\n            }\n        }\n\n        // If we need more bytes and source isn't exhausted, read from source\n        if (len > 0 && !sourceExhausted) {\n            int n = source.read(b, off, len);\n            if (n == -1) {\n                sourceExhausted = true;\n            } else if (n > 0) {\n                cache.append(b, off, n);\n                position += n;\n                totalRead += n;\n            }\n        }\n\n        return totalRead > 0 ? totalRead : -1;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.io.StreamCache": [
+      "append(byte[], int, int)",
+      "readAt(long, byte[], int, int)",
+      "size()"
+    ],
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.io.InputStream": [
+      "read(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic int read(byte[] b, int off, int len) throws IOException {\n    if (len == 0) {\n        return 0;\n    }\n    int totalRead = 0;\n    // First, read any available bytes from cache\n    long cacheSize = cache.size();\n    if (position < cacheSize) {\n        int availableInCache = (int) Math.min(len, cacheSize - position);\n        int n = cache.readAt(position, b, off, availableInCache);\n        if (n > 0) {\n            position += n;\n            totalRead += n;\n            off += n;\n            len -= n;\n        }\n    }\n    // If we need more bytes and source isn't exhausted, read from source\n    if (len > 0 && !sourceExhausted) {\n        int n = source.read(b, off, len);\n        if (n == -1) {\n            sourceExhausted = true;\n        } else if (n > 0) {\n            cache.append(b, off, n);\n            position += n;\n            totalRead += n;\n        }\n    }\n    return totalRead > 0 ? totalRead : -1;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

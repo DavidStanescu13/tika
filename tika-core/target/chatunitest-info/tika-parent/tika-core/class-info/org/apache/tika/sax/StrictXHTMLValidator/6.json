@@ -1,0 +1,26 @@
+{
+  "className": "StrictXHTMLValidator",
+  "methodName": "processingInstruction",
+  "brief": "@Override\r\n    public void processingInstruction(String target, String data) throws SAXException{}",
+  "methodSignature": "processingInstruction(String, String)",
+  "sourceCode": "@Override\n    public void processingInstruction(String target, String data) throws SAXException {\n        ensureNotEnded(\"processingInstruction\");\n        super.processingInstruction(target, data);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "processingInstruction(String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void processingInstruction(String target, String data) throws SAXException {\n    ensureNotEnded(\"processingInstruction\");\n    super.processingInstruction(target, data);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

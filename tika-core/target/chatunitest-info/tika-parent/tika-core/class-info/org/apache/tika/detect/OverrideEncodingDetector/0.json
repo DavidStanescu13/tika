@@ -1,0 +1,32 @@
+{
+  "className": "OverrideEncodingDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\r\n                                       ParseContext parseContext) throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\n                                       ParseContext parseContext) throws IOException {\n        return List.of(new EncodingResult(charset, 1.0f, charset.name(),\n                EncodingResult.ResultType.DECLARATIVE));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.List": [
+      "of(E)"
+    ],
+    "java.nio.charset.Charset": [
+      "name()"
+    ]
+  },
+  "full_method_info": "@Override\npublic List<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    return List.of(new EncodingResult(charset, 1.0f, charset.name(), EncodingResult.ResultType.DECLARATIVE));\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

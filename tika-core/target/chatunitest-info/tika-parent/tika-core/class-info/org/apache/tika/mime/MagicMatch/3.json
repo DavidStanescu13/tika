@@ -1,0 +1,22 @@
+{
+  "className": "MagicMatch",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        return mediaType.toString() + \" \" + type + \" \" + offset + \" \" + value + \" \" + mask;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "public String toString() {\n    return mediaType.toString() + \" \" + type + \" \" + offset + \" \" + value + \" \" + mask;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

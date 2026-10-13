@@ -1,0 +1,29 @@
+{
+  "className": "EmbeddedParserDecorator",
+  "methodName": "EmbeddedParserDecorator",
+  "brief": "private EmbeddedParserDecorator(Parser parser, String location,\r\n                                        String embeddedIdPath, ParserState parseState){}",
+  "methodSignature": "EmbeddedParserDecorator(Parser, String, String, ParserState)",
+  "sourceCode": "private EmbeddedParserDecorator(Parser parser, String location,\n                                        String embeddedIdPath, ParserState parseState) {\n            super(parser);\n            this.location = location;\n            if (!this.location.endsWith(\"/\")) {\n                this.location += \"/\";\n            }\n            this.embeddedIdPath = embeddedIdPath;\n            this.parserState = parseState;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "String",
+    "String",
+    "ParserState"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.lang.String": [
+      "endsWith(String)"
+    ],
+    "org.apache.tika.parser.RecursiveParserWrapper.ParserState": []
+  },
+  "full_method_info": "private EmbeddedParserDecorator(Parser parser, String location, String embeddedIdPath, ParserState parseState) {\n    super(parser);\n    this.location = location;\n    if (!this.location.endsWith(\"/\")) {\n        this.location += \"/\";\n    }\n    this.embeddedIdPath = embeddedIdPath;\n    this.parserState = parseState;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

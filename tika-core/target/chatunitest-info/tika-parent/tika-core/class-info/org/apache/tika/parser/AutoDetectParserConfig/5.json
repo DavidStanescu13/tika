@@ -1,0 +1,18 @@
+{
+  "className": "AutoDetectParserConfig",
+  "methodName": "AutoDetectParserConfig",
+  "brief": "public AutoDetectParserConfig(){}",
+  "methodSignature": "AutoDetectParserConfig()",
+  "sourceCode": "public AutoDetectParserConfig() {\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public AutoDetectParserConfig() {\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

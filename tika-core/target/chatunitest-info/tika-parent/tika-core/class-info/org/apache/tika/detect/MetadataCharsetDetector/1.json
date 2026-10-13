@@ -1,0 +1,27 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "charsetFromContentType",
+  "brief": "public static Charset charsetFromContentType(Metadata metadata){}",
+  "methodSignature": "charsetFromContentType(Metadata)",
+  "sourceCode": "public static Charset charsetFromContentType(Metadata metadata) {\n        return charsetFromMediaType(metadata.get(Metadata.CONTENT_TYPE));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.detect.MetadataCharsetDetector": [
+      "charsetFromMediaType(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the charset named in the {@code charset} parameter of the\n * {@link Metadata#CONTENT_TYPE} value, or {@code null} if absent or unparseable.\n */\npublic static Charset charsetFromContentType(Metadata metadata) {\n    return charsetFromMediaType(metadata.get(Metadata.CONTENT_TYPE));\n}",
+  "method_comment": "\n     * Returns the charset named in the {@code charset} parameter of the\n     * {@link Metadata#CONTENT_TYPE} value, or {@code null} if absent or unparseable.\n     ",
+  "method_annotation": ""
+}

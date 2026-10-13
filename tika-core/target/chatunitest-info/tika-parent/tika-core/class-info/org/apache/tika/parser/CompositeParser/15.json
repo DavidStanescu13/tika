@@ -1,0 +1,43 @@
+{
+  "className": "CompositeParser",
+  "methodName": "recordEmbeddedMetadata",
+  "brief": "private void recordEmbeddedMetadata(Metadata metadata, ParseContext context){}",
+  "methodSignature": "recordEmbeddedMetadata(Metadata, ParseContext)",
+  "sourceCode": "private void recordEmbeddedMetadata(Metadata metadata, ParseContext context) {\n        ParseRecord record = context.get(ParseRecord.class);\n        if (record == null) {\n            //this should never happen\n            return;\n        }\n        for (Exception e : record.getExceptions()) {\n            metadata.add(TikaCoreProperties.EMBEDDED_EXCEPTION, ExceptionUtils.getStackTrace(e));\n        }\n        for (String msg : record.getWarnings()) {\n            metadata.add(TikaCoreProperties.EMBEDDED_WARNING, msg);\n        }\n        if (record.isWriteLimitReached()) {\n            metadata.set(TikaCoreProperties.WRITE_LIMIT_REACHED, true);\n        }\n        if (record.isEmbeddedCountLimitReached()) {\n            metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_LIMIT_REACHED, true);\n        }\n        if (record.isEmbeddedDepthLimitReached()) {\n            metadata.set(TikaCoreProperties.EMBEDDED_DEPTH_LIMIT_REACHED, true);\n        }\n\n        for (Metadata m : record.getMetadataList()) {\n            for (String n : m.names()) {\n                for (String v : m.getValues(n)) {\n                    metadata.reconstruct(n, v, true);\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "set(Property, boolean)",
+      "names()",
+      "getValues(String)",
+      "reconstruct(String, String, boolean)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.ParseRecord": [
+      "isEmbeddedDepthLimitReached()",
+      "isWriteLimitReached()",
+      "getMetadataList()",
+      "getExceptions()",
+      "isEmbeddedCountLimitReached()",
+      "getWarnings()"
+    ],
+    "org.apache.tika.utils.ExceptionUtils": [
+      "getStackTrace(Throwable)"
+    ]
+  },
+  "full_method_info": "private void recordEmbeddedMetadata(Metadata metadata, ParseContext context) {\n    ParseRecord record = context.get(ParseRecord.class);\n    if (record == null) {\n        // this should never happen\n        return;\n    }\n    for (Exception e : record.getExceptions()) {\n        metadata.add(TikaCoreProperties.EMBEDDED_EXCEPTION, ExceptionUtils.getStackTrace(e));\n    }\n    for (String msg : record.getWarnings()) {\n        metadata.add(TikaCoreProperties.EMBEDDED_WARNING, msg);\n    }\n    if (record.isWriteLimitReached()) {\n        metadata.set(TikaCoreProperties.WRITE_LIMIT_REACHED, true);\n    }\n    if (record.isEmbeddedCountLimitReached()) {\n        metadata.set(TikaCoreProperties.EMBEDDED_RESOURCE_LIMIT_REACHED, true);\n    }\n    if (record.isEmbeddedDepthLimitReached()) {\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH_LIMIT_REACHED, true);\n    }\n    for (Metadata m : record.getMetadataList()) {\n        for (String n : m.names()) {\n            for (String v : m.getValues(n)) {\n                metadata.reconstruct(n, v, true);\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "Tika",
+  "methodName": "parse",
+  "brief": "private Reader parse(InputStream stream, Metadata metadata, ParseContext context)\r\n            throws IOException{}",
+  "methodSignature": "parse(InputStream, Metadata, ParseContext)",
+  "sourceCode": "private Reader parse(InputStream stream, Metadata metadata, ParseContext context)\n            throws IOException {\n        context.set(Parser.class, parser);\n        return new ParsingReader(parser, stream, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)"
+    ]
+  },
+  "full_method_info": "private Reader parse(InputStream stream, Metadata metadata, ParseContext context) throws IOException {\n    context.set(Parser.class, parser);\n    return new ParsingReader(parser, stream, metadata, context);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

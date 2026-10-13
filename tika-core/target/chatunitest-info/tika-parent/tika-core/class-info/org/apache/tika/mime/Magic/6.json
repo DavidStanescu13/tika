@@ -1,0 +1,28 @@
+{
+  "className": "Magic",
+  "methodName": "equals",
+  "brief": "public boolean equals(Object o){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "public boolean equals(Object o) {\n        if (o instanceof Magic) {\n            Magic that = (Magic) o;\n            return type.equals(that.type) && string.equals(that.string);\n        }\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "org.apache.tika.mime.MimeType": [
+      "equals(Object)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public boolean equals(Object o) {\n    if (o instanceof Magic) {\n        Magic that = (Magic) o;\n        return type.equals(that.type) && string.equals(that.string);\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

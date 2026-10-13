@@ -1,0 +1,22 @@
+{
+  "className": "LinkBuilder",
+  "methodName": "setURI",
+  "brief": "public void setURI(String uri){}",
+  "methodSignature": "setURI(String)",
+  "sourceCode": "public void setURI(String uri) {\n        if (uri != null) {\n            this.uri = uri;\n        } else {\n            this.uri = \"\";\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void setURI(String uri) {\n    if (uri != null) {\n        this.uri = uri;\n    } else {\n        this.uri = \"\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

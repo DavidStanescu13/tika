@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "rewind",
+  "brief": "public void rewind() throws IOException{}",
+  "methodSignature": "rewind()",
+  "sourceCode": "public void rewind() throws IOException {\n        TikaInputSource source = inputSource();\n        if (source != null) {\n            source.seekTo(0);\n        } else {\n            throw new IOException(\"Cannot rewind: no TikaInputSource available\");\n        }\n        position = 0;\n        mark = -1;\n        consecutiveEOFs = 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "inputSource()"
+    ],
+    "org.apache.tika.io.TikaInputSource": [
+      "seekTo(long)"
+    ]
+  },
+  "full_method_info": "/**\n * Rewind the stream to the beginning.\n * <p>\n * For streams created from byte arrays or files, this always works.\n * For streams created from raw InputStreams, this requires\n * {@link #enableRewind()} to have been called first.\n */\npublic void rewind() throws IOException {\n    TikaInputSource source = inputSource();\n    if (source != null) {\n        source.seekTo(0);\n    } else {\n        throw new IOException(\"Cannot rewind: no TikaInputSource available\");\n    }\n    position = 0;\n    mark = -1;\n    consecutiveEOFs = 0;\n}",
+  "method_comment": "\n     * Rewind the stream to the beginning.\n     * <p>\n     * For streams created from byte arrays or files, this always works.\n     * For streams created from raw InputStreams, this requires\n     * {@link #enableRewind()} to have been called first.\n     ",
+  "method_annotation": ""
+}

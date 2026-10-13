@@ -1,0 +1,22 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "getTypes",
+  "brief": "public SortedSet<MediaType> getTypes(){}",
+  "methodSignature": "getTypes()",
+  "sourceCode": "public SortedSet<MediaType> getTypes() {\n        return new TreeSet<>(registry.values());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the set of all known canonical media types. Type aliases are\n * not included in the returned set.\n *\n * @return canonical media types\n * @since Apache Tika 0.8\n */\npublic SortedSet<MediaType> getTypes() {\n    return new TreeSet<>(registry.values());\n}",
+  "method_comment": "\n     * Returns the set of all known canonical media types. Type aliases are\n     * not included in the returned set.\n     *\n     * @return canonical media types\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

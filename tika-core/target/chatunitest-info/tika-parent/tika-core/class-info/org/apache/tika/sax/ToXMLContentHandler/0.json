@@ -1,0 +1,22 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument() throws SAXException{}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() throws SAXException {\n        if (encoding != null) {\n            write(\"<?xml version=\\\"1.0\\\" encoding=\\\"\");\n            write(encoding);\n            write(\"\\\"?>\\n\");\n        }\n\n        currentElement = null;\n        namespaces.clear();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "clear()"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the XML prefix.\n */\n@Override\npublic void startDocument() throws SAXException {\n    if (encoding != null) {\n        write(\"<?xml version=\\\"1.0\\\" encoding=\\\"\");\n        write(encoding);\n        write(\"\\\"?>\\n\");\n    }\n    currentElement = null;\n    namespaces.clear();\n}",
+  "method_comment": "\n     * Writes the XML prefix.\n     ",
+  "method_annotation": "@Override\n"
+}

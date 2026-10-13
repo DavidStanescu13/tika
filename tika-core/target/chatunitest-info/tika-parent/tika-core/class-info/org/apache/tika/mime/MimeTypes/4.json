@@ -1,0 +1,65 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getMimeType",
+  "brief": "List<MimeType> getMimeType(byte[] data){}",
+  "methodSignature": "getMimeType(byte[])",
+  "sourceCode": "List<MimeType> getMimeType(byte[] data) {\n        if (data == null) {\n            throw new IllegalArgumentException(\"Data is missing\");\n        } else if (data.length == 0) {\n            // See https://issues.apache.org/jira/browse/TIKA-483\n            return rootMimeTypeL;\n        }\n\n        // Then, check for magic bytes\n        List<MimeType> result = new ArrayList<>(1);\n        int currentPriority = -1;\n        for (Magic magic : magics) {\n            if (currentPriority > 0 && currentPriority > magic.getPriority()) {\n                break;\n            }\n            if (magic.eval(data)) {\n                result.add(magic.getType());\n                currentPriority = magic.getPriority();\n            }\n        }\n\n        if (!result.isEmpty()) {\n            for (int i = 0; i < result.size(); i++) {\n                final MimeType matched = result.get(i);\n\n                // When detecting generic XML (or possibly XHTML),\n                // extract the root element and match it against known types\n                if (\"application/xml\".equals(matched.getName()) ||\n                        \"text/html\".equals(matched.getName())) {\n                    XmlRootExtractor extractor = new XmlRootExtractor();\n\n                    QName rootElement = extractor.extractRootElement(data);\n                    if (rootElement != null) {\n                        for (MimeType type : xmls) {\n                            if (type.matchesXML(rootElement.getNamespaceURI(),\n                                    rootElement.getLocalPart())) {\n                                result.set(i, type);\n                                break;\n                            }\n                        }\n                    } else if (\"application/xml\".equals(matched.getName())) {\n                        // Our XML magic is higher than our HTML magic\n                        // So, if we got here, we might have a HTML file that's\n                        //  invalid XML. So, try our HTML magics explicitly (TIKA-2419)\n                        boolean isHTML = false;\n                        for (Magic magic : magics) {\n                            if (!magic.getType().equals(htmlMimeType)) {\n                                continue;\n                            }\n                            if (magic.eval(data)) {\n                                isHTML = true;\n                                break;\n                            }\n                        }\n\n                        // Otherwise, downgrade from application/xml to text/plain\n                        //  since the document seems not to be well-formed.\n                        if (isHTML) {\n                            result.set(i, htmlMimeType);\n                        } else {\n                            result.set(i, textMimeType);\n                        }\n                    }\n                }\n            }\n            return result;\n        }\n\n        // Finally, assume plain text if no control bytes are found\n        try {\n            TextDetector detector = new TextDetector(getMinLength());\n            try (TikaInputStream tis = TikaInputStream.get(data)) {\n                MimeType type = forName(detector.detect(tis, new Metadata(), new ParseContext()).toString());\n                return Collections.singletonList(type);\n            }\n        } catch (Exception e) {\n            return rootMimeTypeL;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.mime.Magic": [
+      "eval(byte[])",
+      "getType()",
+      "getPriority()"
+    ],
+    "java.util.List": [
+      "set(int, E)",
+      "isEmpty()",
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "equals(Object)",
+      "getName()",
+      "matchesXML(String, String)"
+    ],
+    "org.apache.tika.detect.XmlRootExtractor": [
+      "extractRootElement(byte[])"
+    ],
+    "javax.xml.namespace.QName": [
+      "getNamespaceURI()",
+      "getLocalPart()"
+    ],
+    "org.apache.tika.mime.MimeTypes": [
+      "getMinLength()",
+      "forName(String)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(byte[])"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ],
+    "org.apache.tika.detect.TextDetector": [
+      "detect(TikaInputStream, Metadata, ParseContext)"
+    ],
+    "java.util.Collections": [
+      "singletonList(T)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the MIME type that best matches the given first few bytes\n * of a document stream. Returns application/octet-stream if no better\n * match is found.\n * <p>\n * If multiple matches are found, the best (highest priority) matching\n * type is returned. If multiple matches are found with the same priority,\n * then all of these are returned.\n * <p>\n * The given byte array is expected to be at least {@link #getMinLength()}\n * long, or shorter only if the document stream itself is shorter.\n *\n * @param data first few bytes of a document stream\n * @return matching MIME type\n */\nList<MimeType> getMimeType(byte[] data) {\n    if (data == null) {\n        throw new IllegalArgumentException(\"Data is missing\");\n    } else if (data.length == 0) {\n        // See https://issues.apache.org/jira/browse/TIKA-483\n        return rootMimeTypeL;\n    }\n    // Then, check for magic bytes\n    List<MimeType> result = new ArrayList<>(1);\n    int currentPriority = -1;\n    for (Magic magic : magics) {\n        if (currentPriority > 0 && currentPriority > magic.getPriority()) {\n            break;\n        }\n        if (magic.eval(data)) {\n            result.add(magic.getType());\n            currentPriority = magic.getPriority();\n        }\n    }\n    if (!result.isEmpty()) {\n        for (int i = 0; i < result.size(); i++) {\n            final MimeType matched = result.get(i);\n            // When detecting generic XML (or possibly XHTML),\n            // extract the root element and match it against known types\n            if (\"application/xml\".equals(matched.getName()) || \"text/html\".equals(matched.getName())) {\n                XmlRootExtractor extractor = new XmlRootExtractor();\n                QName rootElement = extractor.extractRootElement(data);\n                if (rootElement != null) {\n                    for (MimeType type : xmls) {\n                        if (type.matchesXML(rootElement.getNamespaceURI(), rootElement.getLocalPart())) {\n                            result.set(i, type);\n                            break;\n                        }\n                    }\n                } else if (\"application/xml\".equals(matched.getName())) {\n                    // Our XML magic is higher than our HTML magic\n                    // So, if we got here, we might have a HTML file that's\n                    // invalid XML. So, try our HTML magics explicitly (TIKA-2419)\n                    boolean isHTML = false;\n                    for (Magic magic : magics) {\n                        if (!magic.getType().equals(htmlMimeType)) {\n                            continue;\n                        }\n                        if (magic.eval(data)) {\n                            isHTML = true;\n                            break;\n                        }\n                    }\n                    // Otherwise, downgrade from application/xml to text/plain\n                    // since the document seems not to be well-formed.\n                    if (isHTML) {\n                        result.set(i, htmlMimeType);\n                    } else {\n                        result.set(i, textMimeType);\n                    }\n                }\n            }\n        }\n        return result;\n    }\n    // Finally, assume plain text if no control bytes are found\n    try {\n        TextDetector detector = new TextDetector(getMinLength());\n        try (TikaInputStream tis = TikaInputStream.get(data)) {\n            MimeType type = forName(detector.detect(tis, new Metadata(), new ParseContext()).toString());\n            return Collections.singletonList(type);\n        }\n    } catch (Exception e) {\n        return rootMimeTypeL;\n    }\n}",
+  "method_comment": "\n     * Returns the MIME type that best matches the given first few bytes\n     * of a document stream. Returns application/octet-stream if no better\n     * match is found.\n     * <p>\n     * If multiple matches are found, the best (highest priority) matching\n     * type is returned. If multiple matches are found with the same priority,\n     * then all of these are returned.\n     * <p>\n     * The given byte array is expected to be at least {@link #getMinLength()}\n     * long, or shorter only if the document stream itself is shorter.\n     *\n     * @param data first few bytes of a document stream\n     * @return matching MIME type\n     ",
+  "method_annotation": ""
+}

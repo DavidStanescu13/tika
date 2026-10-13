@@ -1,0 +1,38 @@
+{
+  "fullClassName": "org.apache.tika.utils.ConcurrentUtils",
+  "className": "ConcurrentUtils",
+  "index": 342,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class ConcurrentUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.concurrent.ExecutorService;",
+    "import java.util.concurrent.Future;",
+    "import java.util.concurrent.FutureTask;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "execute(ParseContext, Runnable)": "0"
+  },
+  "methodsBrief": [
+    "public static Future execute(ParseContext context, Runnable runnable){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport java.util.concurrent.ExecutorService;\nimport java.util.concurrent.Future;\nimport java.util.concurrent.FutureTask;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Utility Class for Concurrency in Tika\n *\n * @since Apache Tika 1.11\n */\npublic class ConcurrentUtils {\n\n    /**\n     * Execute a runnable using an ExecutorService from the ParseContext if possible.\n     * Otherwise fallback to individual threads.\n     *\n     * @param context\n     * @param runnable\n     * @return\n     */\n    public static Future execute(ParseContext context, Runnable runnable) {\n        Future future = null;\n        ExecutorService executorService = context.get(ExecutorService.class);\n        if (executorService == null) {\n            FutureTask task = new FutureTask<>(runnable, null);\n            Thread thread = new Thread(task, \"Tika Thread\");\n            thread.start();\n            future = task;\n        } else {\n            future = executorService.submit(runnable);\n        }\n        return future;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Utility Class for Concurrency in Tika\n *\n * @since Apache Tika 1.11\n */\npublic class ConcurrentUtils {\n\n    /**\n     * Execute a runnable using an ExecutorService from the ParseContext if possible.\n     * Otherwise fallback to individual threads.\n     *\n     * @param context\n     * @param runnable\n     * @return\n     */\n    public static Future execute(ParseContext context, Runnable runnable) {\n        Future future = null;\n        ExecutorService executorService = context.get(ExecutorService.class);\n        if (executorService == null) {\n            FutureTask task = new FutureTask<>(runnable, null);\n            Thread thread = new Thread(task, \"Tika Thread\");\n            thread.start();\n            future = task;\n        } else {\n            future = executorService.submit(runnable);\n        }\n        return future;\n    }\n}",
+  "subClasses": []
+}

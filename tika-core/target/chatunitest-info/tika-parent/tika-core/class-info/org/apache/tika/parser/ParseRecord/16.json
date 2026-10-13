@@ -1,0 +1,20 @@
+{
+  "className": "ParseRecord",
+  "methodName": "setEmbeddedDepthLimitReached",
+  "brief": "public void setEmbeddedDepthLimitReached(boolean embeddedDepthLimitReached){}",
+  "methodSignature": "setEmbeddedDepthLimitReached(boolean)",
+  "sourceCode": "public void setEmbeddedDepthLimitReached(boolean embeddedDepthLimitReached) {\n        this.embeddedDepthLimitReached = embeddedDepthLimitReached;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the flag indicating the embedded depth limit was reached.\n *\n * @param embeddedDepthLimitReached true if depth limit was reached\n */\npublic void setEmbeddedDepthLimitReached(boolean embeddedDepthLimitReached) {\n    this.embeddedDepthLimitReached = embeddedDepthLimitReached;\n}",
+  "method_comment": "\n     * Sets the flag indicating the embedded depth limit was reached.\n     *\n     * @param embeddedDepthLimitReached true if depth limit was reached\n     ",
+  "method_annotation": ""
+}

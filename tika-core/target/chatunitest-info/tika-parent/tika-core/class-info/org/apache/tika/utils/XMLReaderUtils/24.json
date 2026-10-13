@@ -1,0 +1,32 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "acquireSAXParser",
+  "brief": "private static PoolSAXParser acquireSAXParser() throws TikaException{}",
+  "methodSignature": "acquireSAXParser()",
+  "sourceCode": "private static PoolSAXParser acquireSAXParser() throws TikaException {\n        PoolSAXParser parser = null;\n\n        //this locks around the pool so that there's\n        //no race condition with it being resized\n        SAX_POOL_LOCK\n                .readLock()\n                .lock();\n        try {\n            parser = SAX_PARSERS.poll();\n        } finally {\n            SAX_POOL_LOCK\n                    .readLock()\n                    .unlock();\n        }\n        if (parser == null) {\n            LOG.warn(\"Contention waiting for a SAXParser. \" +\n                    \"Consider increasing the XMLReaderUtils.POOL_SIZE\");\n        }\n        return parser;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "poll()"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Acquire a SAXParser from the pool.  Make sure to\n * {@link #releaseParser(PoolSAXParser)} in\n * a <code>finally</code> block every time you call this.\n *\n * @return a SAXParser or null if a parser is not available\n * @throws TikaException\n */\nprivate static PoolSAXParser acquireSAXParser() throws TikaException {\n    PoolSAXParser parser = null;\n    // this locks around the pool so that there's\n    // no race condition with it being resized\n    SAX_POOL_LOCK.readLock().lock();\n    try {\n        parser = SAX_PARSERS.poll();\n    } finally {\n        SAX_POOL_LOCK.readLock().unlock();\n    }\n    if (parser == null) {\n        LOG.warn(\"Contention waiting for a SAXParser. \" + \"Consider increasing the XMLReaderUtils.POOL_SIZE\");\n    }\n    return parser;\n}",
+  "method_comment": "\n     * Acquire a SAXParser from the pool.  Make sure to\n     * {@link #releaseParser(PoolSAXParser)} in\n     * a <code>finally</code> block every time you call this.\n     *\n     * @return a SAXParser or null if a parser is not available\n     * @throws TikaException\n     ",
+  "method_annotation": ""
+}

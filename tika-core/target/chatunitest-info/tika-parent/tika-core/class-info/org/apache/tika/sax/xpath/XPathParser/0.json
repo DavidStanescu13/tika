@@ -1,0 +1,26 @@
+{
+  "className": "XPathParser",
+  "methodName": "addPrefix",
+  "brief": "public void addPrefix(String prefix, String namespace){}",
+  "methodSignature": "addPrefix(String, String)",
+  "sourceCode": "public void addPrefix(String prefix, String namespace) {\n        prefixes.put(prefix, namespace);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "public void addPrefix(String prefix, String namespace) {\n    prefixes.put(prefix, namespace);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

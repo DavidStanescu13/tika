@@ -1,0 +1,34 @@
+{
+  "className": "StringUtils",
+  "methodName": "leftPad",
+  "brief": "public static String leftPad(final String str, final int size, String padStr){}",
+  "methodSignature": "leftPad(String, int, String)",
+  "sourceCode": "public static String leftPad(final String str, final int size, String padStr) {\n        if (str == null) {\n            return null;\n        }\n        if (isEmpty(padStr)) {\n            padStr = SPACE;\n        }\n        final int padLen = padStr.length();\n        final int strLen = str.length();\n        final int pads = size - strLen;\n        if (pads <= 0) {\n            return str; // returns original String when possible\n        }\n        if (padLen == 1 && pads <= PAD_LIMIT) {\n            return leftPad(str, size, padStr.charAt(0));\n        }\n\n        if (pads == padLen) {\n            return padStr.concat(str);\n        } else if (pads < padLen) {\n            return padStr.substring(0, pads).concat(str);\n        } else {\n            final char[] padding = new char[pads];\n            final char[] padChars = padStr.toCharArray();\n            for (int i = 0; i < pads; i++) {\n                padding[i] = padChars[i % padLen];\n            }\n            return new String(padding).concat(str);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int, int)",
+      "toCharArray()",
+      "concat(String)",
+      "length()",
+      "charAt(int)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "leftPad(String, int, char)",
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * <p>Left pad a String with a specified String.</p>\n *\n * <p>Pad to a size of {@code size}.</p>\n *\n * <pre>\n * StringUtils.leftPad(null, *, *)      = null\n * StringUtils.leftPad(\"\", 3, \"z\")      = \"zzz\"\n * StringUtils.leftPad(\"bat\", 3, \"yz\")  = \"bat\"\n * StringUtils.leftPad(\"bat\", 5, \"yz\")  = \"yzbat\"\n * StringUtils.leftPad(\"bat\", 8, \"yz\")  = \"yzyzybat\"\n * StringUtils.leftPad(\"bat\", 1, \"yz\")  = \"bat\"\n * StringUtils.leftPad(\"bat\", -1, \"yz\") = \"bat\"\n * StringUtils.leftPad(\"bat\", 5, null)  = \"  bat\"\n * StringUtils.leftPad(\"bat\", 5, \"\")    = \"  bat\"\n * </pre>\n *\n * @param str    the String to pad out, may be null\n * @param size   the size to pad to\n * @param padStr the String to pad with, null or empty treated as single space\n * @return left padded String or original String if no padding is necessary,\n * {@code null} if null String input\n */\npublic static String leftPad(final String str, final int size, String padStr) {\n    if (str == null) {\n        return null;\n    }\n    if (isEmpty(padStr)) {\n        padStr = SPACE;\n    }\n    final int padLen = padStr.length();\n    final int strLen = str.length();\n    final int pads = size - strLen;\n    if (pads <= 0) {\n        // returns original String when possible\n        return str;\n    }\n    if (padLen == 1 && pads <= PAD_LIMIT) {\n        return leftPad(str, size, padStr.charAt(0));\n    }\n    if (pads == padLen) {\n        return padStr.concat(str);\n    } else if (pads < padLen) {\n        return padStr.substring(0, pads).concat(str);\n    } else {\n        final char[] padding = new char[pads];\n        final char[] padChars = padStr.toCharArray();\n        for (int i = 0; i < pads; i++) {\n            padding[i] = padChars[i % padLen];\n        }\n        return new String(padding).concat(str);\n    }\n}",
+  "method_comment": "\n     * <p>Left pad a String with a specified String.</p>\n     *\n     * <p>Pad to a size of {@code size}.</p>\n     *\n     * <pre>\n     * StringUtils.leftPad(null, *, *)      = null\n     * StringUtils.leftPad(\"\", 3, \"z\")      = \"zzz\"\n     * StringUtils.leftPad(\"bat\", 3, \"yz\")  = \"bat\"\n     * StringUtils.leftPad(\"bat\", 5, \"yz\")  = \"yzbat\"\n     * StringUtils.leftPad(\"bat\", 8, \"yz\")  = \"yzyzybat\"\n     * StringUtils.leftPad(\"bat\", 1, \"yz\")  = \"bat\"\n     * StringUtils.leftPad(\"bat\", -1, \"yz\") = \"bat\"\n     * StringUtils.leftPad(\"bat\", 5, null)  = \"  bat\"\n     * StringUtils.leftPad(\"bat\", 5, \"\")    = \"  bat\"\n     * </pre>\n     *\n     * @param str    the String to pad out, may be null\n     * @param size   the size to pad to\n     * @param padStr the String to pad with, null or empty treated as single space\n     * @return left padded String or original String if no padding is necessary,\n     * {@code null} if null String input\n     ",
+  "method_annotation": ""
+}

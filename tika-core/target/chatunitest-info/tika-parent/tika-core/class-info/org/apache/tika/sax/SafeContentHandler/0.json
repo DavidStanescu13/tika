@@ -1,0 +1,32 @@
+{
+  "className": "SafeContentHandler",
+  "methodName": "filter",
+  "brief": "private void filter(char[] ch, int start, int length, Output output) throws SAXException{}",
+  "methodSignature": "filter(char[], int, int, Output)",
+  "sourceCode": "private void filter(char[] ch, int start, int length, Output output) throws SAXException {\n        int end = start + length;\n\n        int i = start;\n        while (i < end) {\n            int c = Character.codePointAt(ch, i, end);\n            int j = i + Character.charCount(c);\n\n            if (isInvalid(c)) {\n                // Output any preceding valid characters\n                if (i > start) {\n                    output.write(ch, start, i - start);\n                }\n\n                // Output the replacement for this invalid character\n                writeReplacement(output);\n\n                // Continue with the rest of the array\n                start = j;\n            }\n\n            i = j;\n        }\n\n        // Output any remaining valid characters\n        output.write(ch, start, end - start);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int",
+    "Output"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "org.apache.tika.sax.SafeContentHandler.Output": [
+      "write(char[], int, int)"
+    ],
+    "java.lang.Character": [
+      "charCount(int)",
+      "codePointAt(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Filters and outputs the contents of the given input buffer. Any\n * invalid characters in the input buffer area handled by sending a\n * replacement (a space character) to the given output. Any sequences\n * of valid characters are passed as-is to the given output.\n *\n * @param ch     input buffer\n * @param start  start offset within the buffer\n * @param length number of characters to read from the buffer\n * @param output output channel\n * @throws SAXException if the filtered characters could not be written out\n */\nprivate void filter(char[] ch, int start, int length, Output output) throws SAXException {\n    int end = start + length;\n    int i = start;\n    while (i < end) {\n        int c = Character.codePointAt(ch, i, end);\n        int j = i + Character.charCount(c);\n        if (isInvalid(c)) {\n            // Output any preceding valid characters\n            if (i > start) {\n                output.write(ch, start, i - start);\n            }\n            // Output the replacement for this invalid character\n            writeReplacement(output);\n            // Continue with the rest of the array\n            start = j;\n        }\n        i = j;\n    }\n    // Output any remaining valid characters\n    output.write(ch, start, end - start);\n}",
+  "method_comment": "\n     * Filters and outputs the contents of the given input buffer. Any\n     * invalid characters in the input buffer area handled by sending a\n     * replacement (a space character) to the given output. Any sequences\n     * of valid characters are passed as-is to the given output.\n     *\n     * @param ch     input buffer\n     * @param start  start offset within the buffer\n     * @param length number of characters to read from the buffer\n     * @param output output channel\n     * @throws SAXException if the filtered characters could not be written out\n     ",
+  "method_annotation": ""
+}

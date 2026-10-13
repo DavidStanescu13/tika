@@ -1,0 +1,20 @@
+{
+  "className": "OutputLimits",
+  "methodName": "setMaxPackageEntryDepth",
+  "brief": "public void setMaxPackageEntryDepth(int maxPackageEntryDepth){}",
+  "methodSignature": "setMaxPackageEntryDepth(int)",
+  "sourceCode": "public void setMaxPackageEntryDepth(int maxPackageEntryDepth) {\n        this.maxPackageEntryDepth = maxPackageEntryDepth;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum package entry nesting depth.\n *\n * @param maxPackageEntryDepth maximum package entry depth\n */\npublic void setMaxPackageEntryDepth(int maxPackageEntryDepth) {\n    this.maxPackageEntryDepth = maxPackageEntryDepth;\n}",
+  "method_comment": "\n     * Sets the maximum package entry nesting depth.\n     *\n     * @param maxPackageEntryDepth maximum package entry depth\n     ",
+  "method_annotation": ""
+}

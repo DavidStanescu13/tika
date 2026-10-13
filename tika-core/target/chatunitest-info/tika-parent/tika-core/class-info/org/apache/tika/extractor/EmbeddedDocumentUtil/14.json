@@ -1,0 +1,28 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "shouldParseEmbedded",
+  "brief": "public boolean shouldParseEmbedded(Metadata m){}",
+  "methodSignature": "shouldParseEmbedded(Metadata)",
+  "sourceCode": "public boolean shouldParseEmbedded(Metadata m) {\n        return getEmbeddedDocumentExtractor().shouldParseEmbedded(m);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.extractor.EmbeddedDocumentExtractor": [
+      "shouldParseEmbedded(Metadata)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "getEmbeddedDocumentExtractor()"
+    ]
+  },
+  "full_method_info": "public boolean shouldParseEmbedded(Metadata m) {\n    return getEmbeddedDocumentExtractor().shouldParseEmbedded(m);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

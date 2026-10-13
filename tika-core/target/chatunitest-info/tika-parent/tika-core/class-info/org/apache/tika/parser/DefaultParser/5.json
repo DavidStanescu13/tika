@@ -1,0 +1,18 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getExcludedClasses",
+  "brief": "public Collection<Class<? extends Parser>> getExcludedClasses(){}",
+  "methodSignature": "getExcludedClasses()",
+  "sourceCode": "public Collection<Class<? extends Parser>> getExcludedClasses() {\n        return excludedClasses;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the classes that were explicitly excluded when constructing this parser.\n * Used for round-trip serialization to preserve exclusion configuration.\n *\n * @return unmodifiable collection of excluded parser classes, never null\n */\npublic Collection<Class<? extends Parser>> getExcludedClasses() {\n    return excludedClasses;\n}",
+  "method_comment": "\n     * Returns the classes that were explicitly excluded when constructing this parser.\n     * Used for round-trip serialization to preserve exclusion configuration.\n     *\n     * @return unmodifiable collection of excluded parser classes, never null\n     ",
+  "method_annotation": ""
+}

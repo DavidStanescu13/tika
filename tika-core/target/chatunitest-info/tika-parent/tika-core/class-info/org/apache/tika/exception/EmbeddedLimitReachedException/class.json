@@ -1,0 +1,59 @@
+{
+  "fullClassName": "org.apache.tika.exception.EmbeddedLimitReachedException",
+  "className": "EmbeddedLimitReachedException",
+  "index": 65,
+  "modifier": "[public ]",
+  "extend": "[RuntimeException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class EmbeddedLimitReachedException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final LimitType limitType;",
+    "private final int limit;"
+  ],
+  "superClasses": [
+    "RuntimeException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "buildMessage(LimitType, int)": "0",
+    "getLimitType()": "1",
+    "getLimit()": "2",
+    "EmbeddedLimitReachedException(LimitType, int)": "3"
+  },
+  "methodsBrief": [
+    "private static String buildMessage(LimitType limitType, int limit){}",
+    "public LimitType getLimitType(){}",
+    "public int getLimit(){}",
+    "public EmbeddedLimitReachedException(LimitType limitType, int limit){}"
+  ],
+  "constructorSigs": [
+    "EmbeddedLimitReachedException(LimitType, int)"
+  ],
+  "constructorBrief": [
+    "public EmbeddedLimitReachedException(LimitType limitType, int limit){}"
+  ],
+  "getterSetterSigs": [
+    "getLimitType()",
+    "getLimit()"
+  ],
+  "getterSetterBrief": [
+    "public LimitType getLimitType(){}",
+    "public int getLimit(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.exception.EmbeddedLimitReachedException.LimitType": [],
+    "org.apache.tika.exception.EmbeddedLimitReachedException": [
+      "buildMessage(LimitType, int)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\n/**\n * Runtime exception thrown when an embedded document limit is reached\n * and the configuration specifies that parsing should stop with an exception.\n * <p>\n * This is a runtime exception to avoid polluting the {@code EmbeddedDocumentExtractor}\n * interface with checked exceptions, since most implementations don't need limit checking.\n *\n * @since Apache Tika 3.2\n */\npublic class EmbeddedLimitReachedException extends RuntimeException {\n\n    public enum LimitType {\n\n        MAX_DEPTH, MAX_COUNT\n    }\n\n    private final LimitType limitType;\n\n    private final int limit;\n\n    public EmbeddedLimitReachedException(LimitType limitType, int limit) {\n        super(buildMessage(limitType, limit));\n        this.limitType = limitType;\n        this.limit = limit;\n    }\n\n    private static String buildMessage(LimitType limitType, int limit) {\n        switch(limitType) {\n            case MAX_DEPTH:\n                return \"Max embedded depth reached: \" + limit;\n            case MAX_COUNT:\n                return \"Max embedded count reached: \" + limit;\n            default:\n                return \"Embedded limit reached: \" + limit;\n        }\n    }\n\n    public LimitType getLimitType() {\n        return limitType;\n    }\n\n    public int getLimit() {\n        return limit;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Runtime exception thrown when an embedded document limit is reached\n * and the configuration specifies that parsing should stop with an exception.\n * <p>\n * This is a runtime exception to avoid polluting the {@code EmbeddedDocumentExtractor}\n * interface with checked exceptions, since most implementations don't need limit checking.\n *\n * @since Apache Tika 3.2\n */\npublic class EmbeddedLimitReachedException extends RuntimeException {\n\n    public enum LimitType {\n\n        MAX_DEPTH, MAX_COUNT\n    }\n\n    private final LimitType limitType;\n\n    private final int limit;\n\n    public EmbeddedLimitReachedException(LimitType limitType, int limit) {\n        super(buildMessage(limitType, limit));\n        this.limitType = limitType;\n        this.limit = limit;\n    }\n\n    private static String buildMessage(LimitType limitType, int limit) {\n        switch(limitType) {\n            case MAX_DEPTH:\n                return \"Max embedded depth reached: \" + limit;\n            case MAX_COUNT:\n                return \"Max embedded count reached: \" + limit;\n            default:\n                return \"Embedded limit reached: \" + limit;\n        }\n    }\n\n    public LimitType getLimitType() {\n        return limitType;\n    }\n\n    public int getLimit() {\n        return limit;\n    }\n}",
+  "subClasses": []
+}

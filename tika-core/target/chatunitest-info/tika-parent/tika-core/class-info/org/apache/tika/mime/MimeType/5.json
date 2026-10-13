@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "getAcronym",
+  "brief": "public String getAcronym(){}",
+  "methodSignature": "getAcronym()",
+  "sourceCode": "public String getAcronym() {\n        return acronym;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns an acronym for this mime type.\n *\n * @return mime type acronym\n */\npublic String getAcronym() {\n    return acronym;\n}",
+  "method_comment": "\n     * Returns an acronym for this mime type.\n     *\n     * @return mime type acronym\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ServiceLoaderUtils",
+  "methodName": "newInstance",
+  "brief": "public static <T> T newInstance(Class klass, ServiceLoader loader){}",
+  "methodSignature": "newInstance(Class, ServiceLoader)",
+  "sourceCode": "public static <T> T newInstance(Class klass, ServiceLoader loader) {\n        try {\n            try {\n                Constructor<T> constructor = klass.getDeclaredConstructor(ServiceLoader.class);\n                return constructor.newInstance(loader);\n            } catch (NoSuchMethodException e) {\n                return (T)klass.getDeclaredConstructor().newInstance();\n            } catch (InvocationTargetException e) {\n                throw new RuntimeException(e);\n            }\n        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |\n                 InvocationTargetException e) {\n            throw new RuntimeException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class",
+    "ServiceLoader"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "getDeclaredConstructor(Object>[])"
+    ],
+    "org.apache.tika.config.ServiceLoader": [],
+    "java.lang.reflect.Constructor": [
+      "newInstance(Object[])"
+    ]
+  },
+  "full_method_info": "/**\n * Loads a class and instantiates it.  If the class can be initialized\n * with a ServiceLoader, the ServiceLoader constructor is used.\n * Otherwise, a zero arg newInstance() is called.\n *\n * @param klass     class to build\n * @param loader    service loader\n * @param <T>       service type\n * @return instance of service\n */\npublic static <T> T newInstance(Class klass, ServiceLoader loader) {\n    try {\n        try {\n            Constructor<T> constructor = klass.getDeclaredConstructor(ServiceLoader.class);\n            return constructor.newInstance(loader);\n        } catch (NoSuchMethodException e) {\n            return (T) klass.getDeclaredConstructor().newInstance();\n        } catch (InvocationTargetException e) {\n            throw new RuntimeException(e);\n        }\n    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {\n        throw new RuntimeException(e);\n    }\n}",
+  "method_comment": "\n     * Loads a class and instantiates it.  If the class can be initialized\n     * with a ServiceLoader, the ServiceLoader constructor is used.\n     * Otherwise, a zero arg newInstance() is called.\n     *\n     * @param klass     class to build\n     * @param loader    service loader\n     * @param <T>       service type\n     * @return instance of service\n     ",
+  "method_annotation": ""
+}

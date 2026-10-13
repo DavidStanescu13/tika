@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "newInstance",
+  "brief": "public static Metadata newInstance(ParseContext context){}",
+  "methodSignature": "newInstance(ParseContext)",
+  "sourceCode": "public static Metadata newInstance(ParseContext context) {\n        if (context == null) {\n            return new Metadata();\n        }\n        MetadataWriteLimiterFactory factory = context.get(MetadataWriteLimiterFactory.class);\n        return factory != null ? new Metadata(factory.newInstance()) : new Metadata();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.metadata.writefilter.MetadataWriteLimiterFactory": [
+      "newInstance()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new Metadata instance configured from the ParseContext.\n * <p>\n * If a {@link MetadataWriteLimiterFactory} is present in the context, the returned\n * Metadata will have a write limiter that enforces those limits. Otherwise,\n * returns a plain Metadata object with no limits.\n * <p>\n * Parsers should use this method instead of {@code new Metadata()} when creating\n * metadata for embedded documents, to ensure limits are applied at creation time.\n *\n * @param context the ParseContext (may be null)\n * @return a new Metadata instance configured from the context\n * @since Apache Tika 4.0\n */\npublic static Metadata newInstance(ParseContext context) {\n    if (context == null) {\n        return new Metadata();\n    }\n    MetadataWriteLimiterFactory factory = context.get(MetadataWriteLimiterFactory.class);\n    return factory != null ? new Metadata(factory.newInstance()) : new Metadata();\n}",
+  "method_comment": "\n     * Creates a new Metadata instance configured from the ParseContext.\n     * <p>\n     * If a {@link MetadataWriteLimiterFactory} is present in the context, the returned\n     * Metadata will have a write limiter that enforces those limits. Otherwise,\n     * returns a plain Metadata object with no limits.\n     * <p>\n     * Parsers should use this method instead of {@code new Metadata()} when creating\n     * metadata for embedded documents, to ensure limits are applied at creation time.\n     *\n     * @param context the ParseContext (may be null)\n     * @return a new Metadata instance configured from the context\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

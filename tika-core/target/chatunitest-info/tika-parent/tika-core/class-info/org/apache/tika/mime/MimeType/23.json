@@ -1,0 +1,25 @@
+{
+  "className": "MimeType",
+  "methodName": "equals",
+  "brief": "public boolean equals(Object o){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "public boolean equals(Object o) {\n        if (o instanceof MimeType) {\n            MimeType that = (MimeType) o;\n            return this.type.equals(that.type);\n        }\n\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "org.apache.tika.mime.MediaType": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "// ----------------------------------------------------------< Comparable >\npublic boolean equals(Object o) {\n    if (o instanceof MimeType) {\n        MimeType that = (MimeType) o;\n        return this.type.equals(that.type);\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

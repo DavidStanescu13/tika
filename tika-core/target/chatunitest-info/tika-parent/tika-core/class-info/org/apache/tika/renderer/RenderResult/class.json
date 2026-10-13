@@ -1,0 +1,83 @@
+{
+  "fullClassName": "org.apache.tika.renderer.RenderResult",
+  "className": "RenderResult",
+  "index": 273,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Closeable]",
+  "packageName": "org.apache.tika.renderer",
+  "packageDeclaration": "package org.apache.tika.renderer;",
+  "classSignature": "public class RenderResult",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Closeable;",
+    "import java.io.IOException;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import org.apache.tika.io.TemporaryResources;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private final STATUS status;",
+    "private final int id;",
+    "private final Object result;",
+    "private final Metadata metadata;",
+    "TemporaryResources tmp = new TemporaryResources();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Closeable"
+  ],
+  "methodSigs": {
+    "getInputStream()": "0",
+    "getMetadata()": "1",
+    "getStatus()": "2",
+    "getId()": "3",
+    "close()": "4",
+    "RenderResult(STATUS, int, Object, Metadata)": "5"
+  },
+  "methodsBrief": [
+    "public TikaInputStream getInputStream() throws IOException{}",
+    "public Metadata getMetadata(){}",
+    "public STATUS getStatus(){}",
+    "public int getId(){}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "public RenderResult(STATUS status, int id, Object result, Metadata metadata){}"
+  ],
+  "constructorSigs": [
+    "RenderResult(STATUS, int, Object, Metadata)"
+  ],
+  "constructorBrief": [
+    "public RenderResult(STATUS status, int id, Object result, Metadata metadata){}"
+  ],
+  "getterSetterSigs": [
+    "getInputStream()",
+    "getMetadata()",
+    "getStatus()",
+    "getId()"
+  ],
+  "getterSetterBrief": [
+    "public TikaInputStream getInputStream() throws IOException{}",
+    "public Metadata getMetadata(){}",
+    "public STATUS getStatus(){}",
+    "public int getId(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.renderer.RenderResult.STATUS": [],
+    "java.lang.Object": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.io.TemporaryResources": [
+      "addResource(Closeable)"
+    ],
+    "java.nio.file.Files": [
+      "delete(Path)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.renderer;\n\nimport java.io.Closeable;\nimport java.io.IOException;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport org.apache.tika.io.TemporaryResources;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\n\npublic class RenderResult implements Closeable {\n\n    public enum STATUS {\n\n        SUCCESS, EXCEPTION, TIMEOUT\n    }\n\n    private final STATUS status;\n\n    private final int id;\n\n    private final Object result;\n\n    // TODO: we're relying on metadata to bring in a bunch of info.\n    // Might be cleaner to add specific parameters for page number, embedded path, etc.?\n    private final Metadata metadata;\n\n    TemporaryResources tmp = new TemporaryResources();\n\n    public RenderResult(STATUS status, int id, Object result, Metadata metadata) {\n        this.status = status;\n        this.id = id;\n        this.result = result;\n        this.metadata = metadata;\n        if (result instanceof Path) {\n            tmp.addResource(new Closeable() {\n\n                @Override\n                public void close() throws IOException {\n                    Files.delete((Path) result);\n                }\n            });\n        } else if (result instanceof Closeable) {\n            tmp.addResource((Closeable) result);\n        }\n    }\n\n    public TikaInputStream getInputStream() throws IOException {\n        if (result instanceof Path) {\n            return TikaInputStream.get((Path) result, metadata);\n        } else {\n            TikaInputStream tis = TikaInputStream.get(new byte[0]);\n            tis.setOpenContainer(result);\n            return tis;\n        }\n    }\n\n    public Metadata getMetadata() {\n        return metadata;\n    }\n\n    public STATUS getStatus() {\n        return status;\n    }\n\n    public int getId() {\n        return id;\n    }\n\n    @Override\n    public void close() throws IOException {\n        tmp.close();\n    }\n}\n",
+  "classDeclarationCode": "public class RenderResult implements Closeable {\n\n    public enum STATUS {\n\n        SUCCESS, EXCEPTION, TIMEOUT\n    }\n\n    private final STATUS status;\n\n    private final int id;\n\n    private final Object result;\n\n    // TODO: we're relying on metadata to bring in a bunch of info.\n    // Might be cleaner to add specific parameters for page number, embedded path, etc.?\n    private final Metadata metadata;\n\n    TemporaryResources tmp = new TemporaryResources();\n\n    public RenderResult(STATUS status, int id, Object result, Metadata metadata) {\n        this.status = status;\n        this.id = id;\n        this.result = result;\n        this.metadata = metadata;\n        if (result instanceof Path) {\n            tmp.addResource(new Closeable() {\n\n                @Override\n                public void close() throws IOException {\n                    Files.delete((Path) result);\n                }\n            });\n        } else if (result instanceof Closeable) {\n            tmp.addResource((Closeable) result);\n        }\n    }\n\n    public TikaInputStream getInputStream() throws IOException {\n        if (result instanceof Path) {\n            return TikaInputStream.get((Path) result, metadata);\n        } else {\n            TikaInputStream tis = TikaInputStream.get(new byte[0]);\n            tis.setOpenContainer(result);\n            return tis;\n        }\n    }\n\n    public Metadata getMetadata() {\n        return metadata;\n    }\n\n    public STATUS getStatus() {\n        return status;\n    }\n\n    public int getId() {\n        return id;\n    }\n\n    @Override\n    public void close() throws IOException {\n        tmp.close();\n    }\n}",
+  "subClasses": []
+}

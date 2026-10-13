@@ -1,0 +1,28 @@
+{
+  "className": "CompositeParser",
+  "methodName": "isExcluded",
+  "brief": "private boolean isExcluded(Collection<Class<? extends Parser>> excludeParsers,\r\n                               Class<? extends Parser> p){}",
+  "methodSignature": "isExcluded(Collection, Class)",
+  "sourceCode": "private boolean isExcluded(Collection<Class<? extends Parser>> excludeParsers,\n                               Class<? extends Parser> p) {\n        return excludeParsers.contains(p) || assignableFrom(excludeParsers, p);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<Class<? extends Parser>>",
+    "Class<? extends Parser>"
+  ],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "contains(Object)"
+    ],
+    "org.apache.tika.parser.CompositeParser": [
+      "assignableFrom(Parser>>, Parser>)"
+    ]
+  },
+  "full_method_info": "private boolean isExcluded(Collection<Class<? extends Parser>> excludeParsers, Class<? extends Parser> p) {\n    return excludeParsers.contains(p) || assignableFrom(excludeParsers, p);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

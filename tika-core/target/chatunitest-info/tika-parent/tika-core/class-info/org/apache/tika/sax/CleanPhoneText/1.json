@@ -1,0 +1,25 @@
+{
+  "className": "CleanPhoneText",
+  "methodName": "clean",
+  "brief": "public static String clean(String text){}",
+  "methodSignature": "clean(String)",
+  "sourceCode": "public static String clean(String text) {\n        text = text.toLowerCase(Locale.ROOT);\n        for (String[][] group : cleanSubstitutions) {\n            for (String[] sub : group) {\n                text = text.replaceAll(sub[0], sub[1]);\n            }\n        }\n        // Delete all non-digits and white space.\n        text = text.replaceAll(\"[\\\\D+\\\\s]\", \"\");\n        return text;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "replaceAll(String, String)",
+      "toLowerCase(Locale)"
+    ]
+  },
+  "full_method_info": "public static String clean(String text) {\n    text = text.toLowerCase(Locale.ROOT);\n    for (String[][] group : cleanSubstitutions) {\n        for (String[] sub : group) {\n            text = text.replaceAll(sub[0], sub[1]);\n        }\n    }\n    // Delete all non-digits and white space.\n    text = text.replaceAll(\"[\\\\D+\\\\s]\", \"\");\n    return text;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

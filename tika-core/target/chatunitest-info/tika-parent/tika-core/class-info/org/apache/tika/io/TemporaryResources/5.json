@@ -1,0 +1,25 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "createTemporaryFile",
+  "brief": "public File createTemporaryFile() throws IOException{}",
+  "methodSignature": "createTemporaryFile()",
+  "sourceCode": "public File createTemporaryFile() throws IOException {\n        return createTempFile(StringUtils.EMPTY).toFile();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.nio.file.Path": [
+      "toFile()"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates and returns a temporary file that will automatically be\n * deleted when the {@link #close()} method is called.\n *\n * @return Created temporary file that'll be deleted after closing\n * @throws IOException\n * @see #createTempFile(String)\n */\npublic File createTemporaryFile() throws IOException {\n    return createTempFile(StringUtils.EMPTY).toFile();\n}",
+  "method_comment": "\n     * Creates and returns a temporary file that will automatically be\n     * deleted when the {@link #close()} method is called.\n     *\n     * @return Created temporary file that'll be deleted after closing\n     * @throws IOException\n     * @see #createTempFile(String)\n     ",
+  "method_annotation": ""
+}

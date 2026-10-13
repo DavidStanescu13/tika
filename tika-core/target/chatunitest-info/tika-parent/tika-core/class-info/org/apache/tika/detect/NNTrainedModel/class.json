@@ -1,0 +1,56 @@
+{
+  "fullClassName": "org.apache.tika.detect.NNTrainedModel",
+  "className": "NNTrainedModel",
+  "index": 39,
+  "modifier": "[public ]",
+  "extend": "[TrainedModel]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class NNTrainedModel",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final int numOfInputs;",
+    "private final int numOfHidden;",
+    "private final int numOfOutputs;",
+    "private final float[][] Theta1;",
+    "private final float[][] Theta2;"
+  ],
+  "superClasses": [
+    "TrainedModel"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "populateThetas(float[])": "0",
+    "predict(double[])": "1",
+    "predict(float[])": "2",
+    "NNTrainedModel(int, int, int, float[])": "3"
+  },
+  "methodsBrief": [
+    "private void populateThetas(final float[] nn_params){}",
+    "@Override\r\n    public double predict(double[] unseen){}",
+    "@Override\r\n    public float predict(float[] unseen){}",
+    "public NNTrainedModel(final int nInput, final int nHidden, final int nOutput,\r\n                          final float[] nn_params){}"
+  ],
+  "constructorSigs": [
+    "NNTrainedModel(int, int, int, float[])"
+  ],
+  "constructorBrief": [
+    "public NNTrainedModel(final int nInput, final int nHidden, final int nOutput,\r\n                          final float[] nn_params){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "float": [],
+    "org.apache.tika.detect.NNTrainedModel": [
+      "populateThetas(float[])"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\npublic class NNTrainedModel extends TrainedModel {\n\n    private final int numOfInputs;\n\n    private final int numOfHidden;\n\n    private final int numOfOutputs;\n\n    private final float[][] Theta1;\n\n    private final float[][] Theta2;\n\n    public NNTrainedModel(final int nInput, final int nHidden, final int nOutput, final float[] nn_params) {\n        this.numOfInputs = nInput;\n        this.numOfHidden = nHidden;\n        this.numOfOutputs = nOutput;\n        this.Theta1 = new float[numOfHidden][numOfInputs + 1];\n        this.Theta2 = new float[numOfOutputs][numOfHidden + 1];\n        populateThetas(nn_params);\n    }\n\n    // convert the vector params to the 2 thetas.\n    private void populateThetas(final float[] nn_params) {\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        int i, j, k = 0;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta1[j][i] = nn_params[k];\n                k++;\n            }\n        }\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta2[j][i] = nn_params[k];\n                k++;\n            }\n        }\n    }\n\n    @Override\n    public double predict(double[] unseen) {\n        // TODO Auto-generated method stub\n        return 0;\n    }\n\n    /**\n     * The given input vector of unseen is m=(256 + 1) * n= 1 this returns a\n     * prediction probability\n     */\n    @Override\n    public float predict(float[] unseen) {\n        // please ensure the unseen in size consistent with theta1\n        int i, j;\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        // hidden unit summation\n        float[] hh = new float[m + 1];\n        hh[0] = 1;\n        for (i = 0; i < m; i++) {\n            double h = 0;\n            for (j = 0; j < n; j++) {\n                h += this.Theta1[i][j] * unseen[j];\n            }\n            // apply sigmoid\n            h = 1.0 / (1.0 + Math.exp(-h));\n            hh[i + 1] = (float) h;\n        }\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        float[] oo = new float[m];\n        for (i = 0; i < m; i++) {\n            double o = 0;\n            for (j = 0; j < n; j++) {\n                o += this.Theta2[i][j] * hh[j];\n            }\n            // apply sigmoid\n            o = 1.0 / (1.0 + Math.exp(-o));\n            oo[i] = (float) o;\n        }\n        return oo[0];\n    }\n}\n",
+  "classDeclarationCode": "public class NNTrainedModel extends TrainedModel {\n\n    private final int numOfInputs;\n\n    private final int numOfHidden;\n\n    private final int numOfOutputs;\n\n    private final float[][] Theta1;\n\n    private final float[][] Theta2;\n\n    public NNTrainedModel(final int nInput, final int nHidden, final int nOutput, final float[] nn_params) {\n        this.numOfInputs = nInput;\n        this.numOfHidden = nHidden;\n        this.numOfOutputs = nOutput;\n        this.Theta1 = new float[numOfHidden][numOfInputs + 1];\n        this.Theta2 = new float[numOfOutputs][numOfHidden + 1];\n        populateThetas(nn_params);\n    }\n\n    // convert the vector params to the 2 thetas.\n    private void populateThetas(final float[] nn_params) {\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        int i, j, k = 0;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta1[j][i] = nn_params[k];\n                k++;\n            }\n        }\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        for (i = 0; i < n; i++) {\n            for (j = 0; j < m; j++) {\n                this.Theta2[j][i] = nn_params[k];\n                k++;\n            }\n        }\n    }\n\n    @Override\n    public double predict(double[] unseen) {\n        // TODO Auto-generated method stub\n        return 0;\n    }\n\n    /**\n     * The given input vector of unseen is m=(256 + 1) * n= 1 this returns a\n     * prediction probability\n     */\n    @Override\n    public float predict(float[] unseen) {\n        // please ensure the unseen in size consistent with theta1\n        int i, j;\n        int m = this.Theta1.length;\n        int n = this.Theta1[0].length;\n        // hidden unit summation\n        float[] hh = new float[m + 1];\n        hh[0] = 1;\n        for (i = 0; i < m; i++) {\n            double h = 0;\n            for (j = 0; j < n; j++) {\n                h += this.Theta1[i][j] * unseen[j];\n            }\n            // apply sigmoid\n            h = 1.0 / (1.0 + Math.exp(-h));\n            hh[i + 1] = (float) h;\n        }\n        m = this.Theta2.length;\n        n = this.Theta2[0].length;\n        float[] oo = new float[m];\n        for (i = 0; i < m; i++) {\n            double o = 0;\n            for (j = 0; j < n; j++) {\n                o += this.Theta2[i][j] * hh[j];\n            }\n            // apply sigmoid\n            o = 1.0 / (1.0 + Math.exp(-o));\n            oo[i] = (float) o;\n        }\n        return oo[0];\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,24 @@
+{
+  "className": "RenderResult",
+  "methodName": "getInputStream",
+  "brief": "public TikaInputStream getInputStream() throws IOException{}",
+  "methodSignature": "getInputStream()",
+  "sourceCode": "public TikaInputStream getInputStream() throws IOException {\n        if (result instanceof Path) {\n            return TikaInputStream.get((Path)result, metadata);\n        } else {\n            TikaInputStream tis = TikaInputStream.get(new byte[0]);\n            tis.setOpenContainer(result);\n            return tis;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "get(byte[])",
+      "setOpenContainer(Object)",
+      "get(Path, Metadata)"
+    ]
+  },
+  "full_method_info": "public TikaInputStream getInputStream() throws IOException {\n    if (result instanceof Path) {\n        return TikaInputStream.get((Path) result, metadata);\n    } else {\n        TikaInputStream tis = TikaInputStream.get(new byte[0]);\n        tis.setOpenContainer(result);\n        return tis;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

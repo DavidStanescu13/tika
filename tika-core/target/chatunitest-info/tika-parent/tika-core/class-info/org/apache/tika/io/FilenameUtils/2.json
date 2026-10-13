@@ -1,0 +1,35 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getSuffixFromPath",
+  "brief": "public static String getSuffixFromPath(String path){}",
+  "methodSignature": "getSuffixFromPath(String)",
+  "sourceCode": "public static String getSuffixFromPath(String path) {\n        String n = getName(path);\n        int i = n.lastIndexOf(\".\");\n        //arbitrarily sets max extension length\n        if (i > -1 && n.length() - i < 6) {\n            String suffix = n.substring(i);\n            if (ASCII_NUMERIC.matcher(suffix).matches()) {\n                return suffix;\n            }\n        }\n        return StringUtils.EMPTY;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "lastIndexOf(String)",
+      "substring(int)",
+      "length()"
+    ],
+    "org.apache.tika.io.FilenameUtils": [
+      "getName(String)"
+    ],
+    "java.util.regex.Matcher": [
+      "matches()"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * This includes the period, e.g. \".pdf\".\n * This requires that an extension contain only ascii alphanumerics\n * and it requires that an extension length be 5 or less.\n * @param path\n * @return the suffix or an empty string if one could not be found\n */\npublic static String getSuffixFromPath(String path) {\n    String n = getName(path);\n    int i = n.lastIndexOf(\".\");\n    // arbitrarily sets max extension length\n    if (i > -1 && n.length() - i < 6) {\n        String suffix = n.substring(i);\n        if (ASCII_NUMERIC.matcher(suffix).matches()) {\n            return suffix;\n        }\n    }\n    return StringUtils.EMPTY;\n}",
+  "method_comment": "\n     * This includes the period, e.g. \".pdf\".\n     * This requires that an extension contain only ascii alphanumerics\n     * and it requires that an extension length be 5 or less.\n     * @param path\n     * @return the suffix or an empty string if one could not be found\n     ",
+  "method_annotation": ""
+}

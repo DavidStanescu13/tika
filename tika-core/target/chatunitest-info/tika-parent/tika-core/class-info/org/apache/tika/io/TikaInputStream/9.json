@@ -1,0 +1,27 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(File file) throws IOException{}",
+  "methodSignature": "get(File)",
+  "sourceCode": "public static TikaInputStream get(File file) throws IOException {\n        return get(file.toPath(), new Metadata());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "File"
+  ],
+  "dependentMethods": {
+    "java.io.File": [
+      "toPath()"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Path, Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(File file) throws IOException {\n    return get(file.toPath(), new Metadata());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "LanguageHandler",
+  "methodName": "getDetector",
+  "brief": "public LanguageDetector getDetector(){}",
+  "methodSignature": "getDetector()",
+  "sourceCode": "public LanguageDetector getDetector() {\n        return writer.getDetector();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageWriter": [
+      "getDetector()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the language detector used by this content handler.\n * Note that the returned detector gets updated whenever new SAX events\n * are received by this content handler.\n *\n * @return language detector\n */\npublic LanguageDetector getDetector() {\n    return writer.getDetector();\n}",
+  "method_comment": "\n     * Returns the language detector used by this content handler.\n     * Note that the returned detector gets updated whenever new SAX events\n     * are received by this content handler.\n     *\n     * @return language detector\n     ",
+  "method_annotation": ""
+}

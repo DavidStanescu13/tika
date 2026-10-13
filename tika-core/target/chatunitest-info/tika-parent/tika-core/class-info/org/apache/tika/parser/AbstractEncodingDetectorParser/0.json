@@ -1,0 +1,27 @@
+{
+  "className": "AbstractEncodingDetectorParser",
+  "methodName": "getEncodingDetector",
+  "brief": "protected EncodingDetector getEncodingDetector(ParseContext parseContext){}",
+  "methodSignature": "getEncodingDetector(ParseContext)",
+  "sourceCode": "protected EncodingDetector getEncodingDetector(ParseContext parseContext) {\n\n        EncodingDetector fromParseContext = parseContext.get(EncodingDetector.class);\n        if (fromParseContext != null) {\n            return fromParseContext;\n        }\n\n        return getEncodingDetector();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.AbstractEncodingDetectorParser": [
+      "getEncodingDetector()"
+    ]
+  },
+  "full_method_info": "/**\n * Look for an EncodingDetetor in the ParseContext.  If it hasn't been\n * passed in, use the original EncodingDetector from initialization.\n *\n * @param parseContext\n * @return\n */\nprotected EncodingDetector getEncodingDetector(ParseContext parseContext) {\n    EncodingDetector fromParseContext = parseContext.get(EncodingDetector.class);\n    if (fromParseContext != null) {\n        return fromParseContext;\n    }\n    return getEncodingDetector();\n}",
+  "method_comment": "\n     * Look for an EncodingDetetor in the ParseContext.  If it hasn't been\n     * passed in, use the original EncodingDetector from initialization.\n     *\n     * @param parseContext\n     * @return\n     ",
+  "method_annotation": ""
+}

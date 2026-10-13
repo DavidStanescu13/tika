@@ -1,0 +1,32 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "acquireDOMBuilder",
+  "brief": "private static PoolDOMBuilder acquireDOMBuilder() throws TikaException{}",
+  "methodSignature": "acquireDOMBuilder()",
+  "sourceCode": "private static PoolDOMBuilder acquireDOMBuilder() throws TikaException {\n\n        PoolDOMBuilder builder = null;\n        DOM_POOL_LOCK\n                .readLock()\n                .lock();\n        try {\n            builder = DOM_BUILDERS.poll();\n        } finally {\n            DOM_POOL_LOCK\n                    .readLock()\n                    .unlock();\n        }\n        if (builder == null) {\n            LOG.warn(\"Contention waiting for a DOMBuilder. \" +\n                    \"Consider increasing the XMLReaderUtils.POOL_SIZE\");\n\n        }\n        return builder;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "poll()"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Acquire a DOMBuilder from the pool.  Make sure to\n * {@link #releaseDOMBuilder(PoolDOMBuilder)} in\n * a <code>finally</code> block every time you call this.\n *\n * @return a DocumentBuilder or null if no DOMBuilders are available\n * @throws TikaException\n */\nprivate static PoolDOMBuilder acquireDOMBuilder() throws TikaException {\n    PoolDOMBuilder builder = null;\n    DOM_POOL_LOCK.readLock().lock();\n    try {\n        builder = DOM_BUILDERS.poll();\n    } finally {\n        DOM_POOL_LOCK.readLock().unlock();\n    }\n    if (builder == null) {\n        LOG.warn(\"Contention waiting for a DOMBuilder. \" + \"Consider increasing the XMLReaderUtils.POOL_SIZE\");\n    }\n    return builder;\n}",
+  "method_comment": "\n     * Acquire a DOMBuilder from the pool.  Make sure to\n     * {@link #releaseDOMBuilder(PoolDOMBuilder)} in\n     * a <code>finally</code> block every time you call this.\n     *\n     * @return a DocumentBuilder or null if no DOMBuilders are available\n     * @throws TikaException\n     ",
+  "method_annotation": ""
+}

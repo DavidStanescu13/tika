@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "isThrowOnWriteLimit",
+  "brief": "public boolean isThrowOnWriteLimit(){}",
+  "methodSignature": "isThrowOnWriteLimit()",
+  "sourceCode": "public boolean isThrowOnWriteLimit() {\n        return throwOnWriteLimit;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets whether to throw an exception when writeLimit is reached.\n *\n * @return true if an exception should be thrown\n */\npublic boolean isThrowOnWriteLimit() {\n    return throwOnWriteLimit;\n}",
+  "method_comment": "\n     * Gets whether to throw an exception when writeLimit is reached.\n     *\n     * @return true if an exception should be thrown\n     ",
+  "method_annotation": ""
+}

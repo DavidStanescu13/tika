@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "getValues",
+  "brief": "public String[] getValues(final Property property){}",
+  "methodSignature": "getValues(Property)",
+  "sourceCode": "public String[] getValues(final Property property) {\n        return _getValues(property.getName());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "_getValues(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the values associated to a metadata name.\n *\n * @param property of the metadata.\n * @return the values associated to a metadata name.\n */\npublic String[] getValues(final Property property) {\n    return _getValues(property.getName());\n}",
+  "method_comment": "\n     * Get the values associated to a metadata name.\n     *\n     * @param property of the metadata.\n     * @return the values associated to a metadata name.\n     ",
+  "method_annotation": ""
+}

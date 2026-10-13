@@ -1,0 +1,54 @@
+{
+  "fullClassName": "org.apache.tika.exception.AccessPermissionException",
+  "className": "AccessPermissionException",
+  "index": 63,
+  "modifier": "[public ]",
+  "extend": "[TikaException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class AccessPermissionException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "TikaException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "AccessPermissionException()": "0",
+    "AccessPermissionException(Throwable)": "1",
+    "AccessPermissionException(String)": "2",
+    "AccessPermissionException(String, Throwable)": "3"
+  },
+  "methodsBrief": [
+    "public AccessPermissionException(){}",
+    "public AccessPermissionException(Throwable th){}",
+    "public AccessPermissionException(String info){}",
+    "public AccessPermissionException(String info, Throwable th){}"
+  ],
+  "constructorSigs": [
+    "AccessPermissionException()",
+    "AccessPermissionException(Throwable)",
+    "AccessPermissionException(String)",
+    "AccessPermissionException(String, Throwable)"
+  ],
+  "constructorBrief": [
+    "public AccessPermissionException(){}",
+    "public AccessPermissionException(Throwable th){}",
+    "public AccessPermissionException(String info){}",
+    "public AccessPermissionException(String info, Throwable th){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.Throwable": [],
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\n/**\n * Exception to be thrown when a document does not allow content extraction.\n * As of this writing, PDF documents are the only type of document that might\n * cause this type of exception.\n */\npublic class AccessPermissionException extends TikaException {\n\n    public AccessPermissionException() {\n        super(\"Unable to process: content extraction is not allowed\");\n    }\n\n    public AccessPermissionException(Throwable th) {\n        super(\"Unable to process: content extraction is not allowed\", th);\n    }\n\n    public AccessPermissionException(String info) {\n        super(info);\n    }\n\n    public AccessPermissionException(String info, Throwable th) {\n        super(info, th);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Exception to be thrown when a document does not allow content extraction.\n * As of this writing, PDF documents are the only type of document that might\n * cause this type of exception.\n */\npublic class AccessPermissionException extends TikaException {\n\n    public AccessPermissionException() {\n        super(\"Unable to process: content extraction is not allowed\");\n    }\n\n    public AccessPermissionException(Throwable th) {\n        super(\"Unable to process: content extraction is not allowed\", th);\n    }\n\n    public AccessPermissionException(String info) {\n        super(info);\n    }\n\n    public AccessPermissionException(String info, Throwable th) {\n        super(info, th);\n    }\n}",
+  "subClasses": []
+}

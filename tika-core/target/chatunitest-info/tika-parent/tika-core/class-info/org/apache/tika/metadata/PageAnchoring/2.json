@@ -1,0 +1,45 @@
+{
+  "className": "PageAnchoring",
+  "methodName": "applyAnchorMetadata",
+  "brief": "public static void applyAnchorMetadata(Metadata target, Collection<Integer> indices,\r\n                                           Property singleProperty,\r\n                                           Property sequenceProperty,\r\n                                           int unlinkedSentinel){}",
+  "methodSignature": "applyAnchorMetadata(Metadata, Collection, Property, Property, int)",
+  "sourceCode": "public static void applyAnchorMetadata(Metadata target, Collection<Integer> indices,\n                                           Property singleProperty,\n                                           Property sequenceProperty,\n                                           int unlinkedSentinel) {\n        if (target == null || indices == null) {\n            return;\n        }\n        int[] arr;\n        if (indices.isEmpty()) {\n            arr = new int[]{unlinkedSentinel};\n        } else {\n            arr = indices.stream()\n                    .filter(Objects::nonNull)\n                    .mapToInt(Integer::intValue)\n                    .sorted()\n                    .toArray();\n            if (arr.length == 0) {\n                arr = new int[]{unlinkedSentinel};\n            }\n        }\n        // Clear any previous value, then append each element.  Necessary\n        // because Metadata has no set-int[] overload; using add() builds\n        // the sequence one element at a time.  Clearing first guards\n        // against accidental double application.\n        target.remove(sequenceProperty.getName());\n        target.remove(singleProperty.getName());\n        for (int v : arr) {\n            target.add(sequenceProperty, v);\n        }\n        if (arr.length == 1 && arr[0] != unlinkedSentinel) {\n            target.set(singleProperty, arr[0]);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "Collection<Integer>",
+    "Property",
+    "Property",
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, int)",
+      "set(Property, int)",
+      "remove(String)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "java.util.Collection": [
+      "isEmpty()",
+      "stream()"
+    ],
+    "java.util.stream.IntStream": [
+      "toArray()",
+      "sorted()"
+    ],
+    "java.util.stream.Stream": [
+      "mapToInt(ToIntFunction<? super T>)",
+      "filter(Predicate<? super T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Shared core for {@link #applyPageMetadata} and {@link #applySheetMetadata}.\n * Exposed so future paginated-resource conventions (e.g. arbitrary\n * index spaces other than pages/sheets) can reuse the same logic\n * without copying it.\n *\n * @param target            metadata to write to (no-op if {@code null})\n * @param indices           the anchor indices, or {@code null} for \"unknown\"\n * @param singleProperty    {@code internalInteger} property set when there\n *                          is exactly one anchor index\n * @param sequenceProperty  {@code internalIntegerSequence} property\n *                          populated with all anchor indices\n * @param unlinkedSentinel  value used as the sole element of\n *                          {@code sequenceProperty} when {@code indices}\n *                          is empty (known unlinked)\n */\npublic static void applyAnchorMetadata(Metadata target, Collection<Integer> indices, Property singleProperty, Property sequenceProperty, int unlinkedSentinel) {\n    if (target == null || indices == null) {\n        return;\n    }\n    int[] arr;\n    if (indices.isEmpty()) {\n        arr = new int[] { unlinkedSentinel };\n    } else {\n        arr = indices.stream().filter(Objects::nonNull).mapToInt(Integer::intValue).sorted().toArray();\n        if (arr.length == 0) {\n            arr = new int[] { unlinkedSentinel };\n        }\n    }\n    // Clear any previous value, then append each element.  Necessary\n    // because Metadata has no set-int[] overload; using add() builds\n    // the sequence one element at a time.  Clearing first guards\n    // against accidental double application.\n    target.remove(sequenceProperty.getName());\n    target.remove(singleProperty.getName());\n    for (int v : arr) {\n        target.add(sequenceProperty, v);\n    }\n    if (arr.length == 1 && arr[0] != unlinkedSentinel) {\n        target.set(singleProperty, arr[0]);\n    }\n}",
+  "method_comment": "\n     * Shared core for {@link #applyPageMetadata} and {@link #applySheetMetadata}.\n     * Exposed so future paginated-resource conventions (e.g. arbitrary\n     * index spaces other than pages/sheets) can reuse the same logic\n     * without copying it.\n     *\n     * @param target            metadata to write to (no-op if {@code null})\n     * @param indices           the anchor indices, or {@code null} for \"unknown\"\n     * @param singleProperty    {@code internalInteger} property set when there\n     *                          is exactly one anchor index\n     * @param sequenceProperty  {@code internalIntegerSequence} property\n     *                          populated with all anchor indices\n     * @param unlinkedSentinel  value used as the sole element of\n     *                          {@code sequenceProperty} when {@code indices}\n     *                          is empty (known unlinked)\n     ",
+  "method_annotation": ""
+}

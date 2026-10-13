@@ -1,0 +1,20 @@
+{
+  "className": "TikaInputSource",
+  "methodName": "seekTo",
+  "brief": "void seekTo(long position) throws IOException;",
+  "methodSignature": "seekTo(long)",
+  "sourceCode": "void seekTo(long position) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Seeks to a specific position in the stream.\n * Can only seek to positions that have already been read (for CachingSource)\n * or any valid position (for ByteArraySource and FileSource).\n */\nvoid seekTo(long position) throws IOException;",
+  "method_comment": "\n     * Seeks to a specific position in the stream.\n     * Can only seek to positions that have already been read (for CachingSource)\n     * or any valid position (for ByteArraySource and FileSource).\n     ",
+  "method_annotation": ""
+}

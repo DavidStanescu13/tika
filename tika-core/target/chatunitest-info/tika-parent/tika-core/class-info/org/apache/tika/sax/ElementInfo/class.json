@@ -1,0 +1,60 @@
+{
+  "fullClassName": "org.apache.tika.sax.ElementInfo",
+  "className": "ElementInfo",
+  "index": 320,
+  "modifier": "[private , static ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "private static class ElementInfo",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.OutputStream;",
+    "import java.io.UnsupportedEncodingException;",
+    "import java.util.Collections;",
+    "import java.util.HashMap;",
+    "import java.util.Map;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [
+    "private final ElementInfo parent;",
+    "private final Map<String, String> namespaces;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getPrefix(String)": "0",
+    "getQName(String, String)": "1",
+    "ElementInfo(ElementInfo, Map)": "2"
+  },
+  "methodsBrief": [
+    "public String getPrefix(String uri) throws SAXException{}",
+    "public String getQName(String uri, String localName) throws SAXException{}",
+    "public ElementInfo(ElementInfo parent, Map<String, String> namespaces){}"
+  ],
+  "constructorSigs": [
+    "ElementInfo(ElementInfo, Map)"
+  ],
+  "constructorBrief": [
+    "public ElementInfo(ElementInfo parent, Map<String, String> namespaces){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.sax.ToXMLContentHandler.ElementInfo": [],
+    "java.util.Map": [
+      "isEmpty()"
+    ],
+    "java.util.Collections": [
+      "emptyMap()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.OutputStream;\nimport java.io.UnsupportedEncodingException;\nimport java.util.Collections;\nimport java.util.HashMap;\nimport java.util.Map;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.SAXException;\n\n/**\n * SAX event handler that serializes the XML document to a character stream.\n * The incoming SAX events are expected to be well-formed (properly nested,\n * etc.) and to explicitly include namespace declaration attributes and\n * corresponding namespace prefixes in element and attribute names.\n *\n * @since Apache Tika 0.10\n */\npublic class ToXMLContentHandler extends ToTextContentHandler {\n\n    protected final Map<String, String> namespaces = new HashMap<>();\n\n    private final String encoding;\n\n    protected boolean inStartElement = false;\n\n    private ElementInfo currentElement;\n\n    public ToXMLContentHandler(OutputStream stream, String encoding) throws UnsupportedEncodingException {\n        super(stream, encoding);\n        this.encoding = encoding;\n    }\n\n    public ToXMLContentHandler(String encoding) {\n        super();\n        this.encoding = encoding;\n    }\n\n    public ToXMLContentHandler() {\n        super();\n        this.encoding = null;\n    }\n\n    /**\n     * Writes the XML prefix.\n     */\n    @Override\n    public void startDocument() throws SAXException {\n        if (encoding != null) {\n            write(\"<?xml version=\\\"1.0\\\" encoding=\\\"\");\n            write(encoding);\n            write(\"\\\"?>\\n\");\n        }\n        currentElement = null;\n        namespaces.clear();\n    }\n\n    @Override\n    public void startPrefixMapping(String prefix, String uri) throws SAXException {\n        try {\n            if (currentElement != null && prefix.equals(currentElement.getPrefix(uri))) {\n                return;\n            }\n        } catch (SAXException ignore) {\n        }\n        namespaces.put(uri, prefix);\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n        lazyCloseStartElement();\n        currentElement = new ElementInfo(currentElement, namespaces);\n        write('<');\n        write(currentElement.getQName(uri, localName));\n        for (int i = 0; i < atts.getLength(); i++) {\n            write(' ');\n            write(currentElement.getQName(atts.getURI(i), atts.getLocalName(i)));\n            write('=');\n            write('\"');\n            char[] ch = atts.getValue(i).toCharArray();\n            writeEscaped(ch, 0, ch.length, true);\n            write('\"');\n        }\n        for (Map.Entry<String, String> entry : namespaces.entrySet()) {\n            write(' ');\n            write(\"xmlns\");\n            String prefix = entry.getValue();\n            if (prefix.length() > 0) {\n                write(':');\n                write(prefix);\n            }\n            write('=');\n            write('\"');\n            char[] ch = entry.getKey().toCharArray();\n            writeEscaped(ch, 0, ch.length, true);\n            write('\"');\n        }\n        namespaces.clear();\n        inStartElement = true;\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (inStartElement) {\n            write(\" />\");\n            inStartElement = false;\n        } else {\n            write(\"</\");\n            write(qName);\n            write('>');\n        }\n        namespaces.clear();\n        // Reset the position in the tree, to avoid endless stack overflow\n        // chains (see TIKA-1070)\n        currentElement = currentElement.parent;\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        lazyCloseStartElement();\n        writeEscaped(ch, start, start + length, false);\n    }\n\n    private void lazyCloseStartElement() throws SAXException {\n        if (inStartElement) {\n            write('>');\n            inStartElement = false;\n        }\n    }\n\n    /**\n     * Writes the given character as-is.\n     *\n     * @param ch character to be written\n     * @throws SAXException if the character could not be written\n     */\n    protected void write(char ch) throws SAXException {\n        super.characters(new char[] { ch }, 0, 1);\n    }\n\n    /**\n     * Writes the given string of character as-is.\n     *\n     * @param string string of character to be written\n     * @throws SAXException if the character string could not be written\n     */\n    protected void write(String string) throws SAXException {\n        super.characters(string.toCharArray(), 0, string.length());\n    }\n\n    /**\n     * Writes the given characters as-is followed by the given entity.\n     *\n     * @param ch     character array\n     * @param from   start position in the array\n     * @param to     end position in the array\n     * @param entity entity code\n     * @return next position in the array,\n     * after the characters plus one entity\n     * @throws SAXException if the characters could not be written\n     */\n    private int writeCharsAndEntity(char[] ch, int from, int to, String entity) throws SAXException {\n        super.characters(ch, from, to - from);\n        write('&');\n        write(entity);\n        write(';');\n        return to + 1;\n    }\n\n    /**\n     * Writes the given characters with XML meta characters escaped.\n     *\n     * @param ch        character array\n     * @param from      start position in the array\n     * @param to        end position in the array\n     * @param attribute whether the characters should be escaped as\n     *                  an attribute value or normal character content\n     * @throws SAXException if the characters could not be written\n     */\n    private void writeEscaped(char[] ch, int from, int to, boolean attribute) throws SAXException {\n        int pos = from;\n        while (pos < to) {\n            if (ch[pos] == '<') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"lt\");\n            } else if (ch[pos] == '>') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"gt\");\n            } else if (ch[pos] == '&') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"amp\");\n            } else if (attribute && ch[pos] == '\"') {\n                from = pos = writeCharsAndEntity(ch, from, pos, \"quot\");\n            } else {\n                pos++;\n            }\n        }\n        super.characters(ch, from, to - from);\n    }\n\n    private static class ElementInfo {\n\n        private final ElementInfo parent;\n\n        private final Map<String, String> namespaces;\n\n        public ElementInfo(ElementInfo parent, Map<String, String> namespaces) {\n            this.parent = parent;\n            if (namespaces.isEmpty()) {\n                this.namespaces = Collections.emptyMap();\n            } else {\n                this.namespaces = new HashMap<>(namespaces);\n            }\n        }\n\n        public String getPrefix(String uri) throws SAXException {\n            String prefix = namespaces.get(uri);\n            if (prefix != null) {\n                return prefix;\n            } else if (parent != null) {\n                return parent.getPrefix(uri);\n            } else if (uri == null || uri.isEmpty()) {\n                return \"\";\n            } else {\n                throw new SAXException(\"Namespace \" + uri + \" not declared\");\n            }\n        }\n\n        public String getQName(String uri, String localName) throws SAXException {\n            String prefix = getPrefix(uri);\n            if (prefix.length() > 0) {\n                return prefix + \":\" + localName;\n            } else {\n                return localName;\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "private static class ElementInfo {\n\n    private final ElementInfo parent;\n\n    private final Map<String, String> namespaces;\n\n    public ElementInfo(ElementInfo parent, Map<String, String> namespaces) {\n        this.parent = parent;\n        if (namespaces.isEmpty()) {\n            this.namespaces = Collections.emptyMap();\n        } else {\n            this.namespaces = new HashMap<>(namespaces);\n        }\n    }\n\n    public String getPrefix(String uri) throws SAXException {\n        String prefix = namespaces.get(uri);\n        if (prefix != null) {\n            return prefix;\n        } else if (parent != null) {\n            return parent.getPrefix(uri);\n        } else if (uri == null || uri.isEmpty()) {\n            return \"\";\n        } else {\n            throw new SAXException(\"Namespace \" + uri + \" not declared\");\n        }\n    }\n\n    public String getQName(String uri, String localName) throws SAXException {\n        String prefix = getPrefix(uri);\n        if (prefix.length() > 0) {\n            return prefix + \":\" + localName;\n        } else {\n            return localName;\n        }\n    }\n}",
+  "subClasses": []
+}

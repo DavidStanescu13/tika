@@ -1,0 +1,28 @@
+{
+  "className": "CharsetSupersets",
+  "methodName": "supersetOf",
+  "brief": "public static Charset supersetOf(Charset detected){}",
+  "methodSignature": "supersetOf(Charset)",
+  "sourceCode": "public static Charset supersetOf(Charset detected) {\n        if (detected == null) {\n            return null;\n        }\n        String supersetName = SUPERSET_MAP.get(detected.name());\n        if (supersetName == null) {\n            return null;\n        }\n        try {\n            return Charset.forName(supersetName);\n        } catch (IllegalArgumentException e) {\n            return null;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [
+      "name()",
+      "forName(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the superset charset to use for decoding, or {@code null} if\n * {@code detected} has no superset override.\n *\n * @param detected the charset returned by the encoding detector\n * @return superset charset, or {@code null} if none is defined\n */\npublic static Charset supersetOf(Charset detected) {\n    if (detected == null) {\n        return null;\n    }\n    String supersetName = SUPERSET_MAP.get(detected.name());\n    if (supersetName == null) {\n        return null;\n    }\n    try {\n        return Charset.forName(supersetName);\n    } catch (IllegalArgumentException e) {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Returns the superset charset to use for decoding, or {@code null} if\n     * {@code detected} has no superset override.\n     *\n     * @param detected the charset returned by the encoding detector\n     * @return superset charset, or {@code null} if none is defined\n     ",
+  "method_annotation": ""
+}

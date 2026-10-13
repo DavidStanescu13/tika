@@ -1,0 +1,47 @@
+{
+  "className": "CachingSource",
+  "methodName": "getPath",
+  "brief": "@Override\r\n    public Path getPath(String suffix) throws IOException{}",
+  "methodSignature": "getPath(String)",
+  "sourceCode": "@Override\n    public Path getPath(String suffix) throws IOException {\n        if (spilledPath == null) {\n            // If still in passthrough mode, enable caching first\n            if (cachingStream == null) {\n                if (passthroughPosition != 0) {\n                    throw new IOException(\n                            \"Cannot spill to file: position is \" + passthroughPosition +\n                                    \", must be 0. Call enableRewind() before reading if you need file access.\");\n                }\n                enableRewind();\n            }\n\n            // Spill to file and switch to file-backed mode\n            spilledPath = cachingStream.spillToFile(suffix);\n\n            // Get current position before closing cache\n            long currentPosition = cachingStream.getPosition();\n\n            // Close only the cache, not the source stream (for archive support)\n            cachingStream.closeCacheOnly();\n\n            // Open file stream at current position\n            fileStream = new BufferedInputStream(Files.newInputStream(spilledPath));\n            if (currentPosition > 0) {\n                IOUtils.skipFully(fileStream, currentPosition);\n            }\n            filePosition = currentPosition;\n\n            // Update length from file size\n            long fileSize = Files.size(spilledPath);\n            if (length == -1 || fileSize > 0) {\n                length = fileSize;\n            }\n\n            // Update metadata if not already set\n            if (metadata != null &&\n                    StringUtils.isBlank(metadata.get(Metadata.CONTENT_LENGTH))) {\n                metadata.set(Metadata.CONTENT_LENGTH, Long.toString(length));\n            }\n\n            cachingStream = null;\n        }\n        return spilledPath;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.io.CachingSource": [
+      "enableRewind()"
+    ],
+    "org.apache.tika.io.CachingInputStream": [
+      "spillToFile(String)",
+      "getPosition()",
+      "closeCacheOnly()"
+    ],
+    "java.nio.file.Files": [
+      "size(Path)",
+      "newInputStream(Path, OpenOption[])"
+    ],
+    "org.apache.commons.io.IOUtils": [
+      "skipFully(InputStream, long)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "get(Property)"
+    ],
+    "java.lang.Long": [
+      "toString(long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Path getPath(String suffix) throws IOException {\n    if (spilledPath == null) {\n        // If still in passthrough mode, enable caching first\n        if (cachingStream == null) {\n            if (passthroughPosition != 0) {\n                throw new IOException(\"Cannot spill to file: position is \" + passthroughPosition + \", must be 0. Call enableRewind() before reading if you need file access.\");\n            }\n            enableRewind();\n        }\n        // Spill to file and switch to file-backed mode\n        spilledPath = cachingStream.spillToFile(suffix);\n        // Get current position before closing cache\n        long currentPosition = cachingStream.getPosition();\n        // Close only the cache, not the source stream (for archive support)\n        cachingStream.closeCacheOnly();\n        // Open file stream at current position\n        fileStream = new BufferedInputStream(Files.newInputStream(spilledPath));\n        if (currentPosition > 0) {\n            IOUtils.skipFully(fileStream, currentPosition);\n        }\n        filePosition = currentPosition;\n        // Update length from file size\n        long fileSize = Files.size(spilledPath);\n        if (length == -1 || fileSize > 0) {\n            length = fileSize;\n        }\n        // Update metadata if not already set\n        if (metadata != null && StringUtils.isBlank(metadata.get(Metadata.CONTENT_LENGTH))) {\n            metadata.set(Metadata.CONTENT_LENGTH, Long.toString(length));\n        }\n        cachingStream = null;\n    }\n    return spilledPath;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

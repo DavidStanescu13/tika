@@ -1,0 +1,32 @@
+{
+  "className": "DefaultDetector",
+  "methodName": "mostSpecific",
+  "brief": "private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType){}",
+  "methodSignature": "mostSpecific(MediaType, MediaType, MediaType)",
+  "sourceCode": "private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType) {\n        MediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\n\n        // Collect non-null, non-octet-stream candidates\n        MediaType best = MediaType.OCTET_STREAM;\n\n        // Start with magic type as baseline if valid\n        if (magicType != null && !MediaType.OCTET_STREAM.equals(magicType)) {\n            best = magicType;\n        }\n\n        // Container detectors may find more specific types (e.g., OLE -> msword)\n        // or less specific (e.g., commons-compress tar vs magic gtar)\n        // Use the registry to determine which is more specific\n        if (detectedType != null && !MediaType.OCTET_STREAM.equals(detectedType)) {\n            if (MediaType.OCTET_STREAM.equals(best)) {\n                best = detectedType;\n            } else if (registry.isSpecializationOf(detectedType, best)) {\n                // detectedType is more specific than best\n                best = detectedType;\n            } else if (!registry.isSpecializationOf(best, detectedType)) {\n                // Neither is a specialization of the other - prefer container detection\n                // for unrelated types (e.g., different format families)\n                best = detectedType;\n            }\n            // else: best is already more specific than detectedType, keep best\n        }\n\n        // Text detection as fallback only if still unknown\n        if (MediaType.OCTET_STREAM.equals(best) && textType != null &&\n                !MediaType.OCTET_STREAM.equals(textType)) {\n            best = textType;\n        }\n\n        return best;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "MediaType",
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.mime.MimeTypes": [
+      "getMediaTypeRegistry()"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "private MediaType mostSpecific(MediaType magicType, MediaType detectedType, MediaType textType) {\n    MediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\n    // Collect non-null, non-octet-stream candidates\n    MediaType best = MediaType.OCTET_STREAM;\n    // Start with magic type as baseline if valid\n    if (magicType != null && !MediaType.OCTET_STREAM.equals(magicType)) {\n        best = magicType;\n    }\n    // Container detectors may find more specific types (e.g., OLE -> msword)\n    // or less specific (e.g., commons-compress tar vs magic gtar)\n    // Use the registry to determine which is more specific\n    if (detectedType != null && !MediaType.OCTET_STREAM.equals(detectedType)) {\n        if (MediaType.OCTET_STREAM.equals(best)) {\n            best = detectedType;\n        } else if (registry.isSpecializationOf(detectedType, best)) {\n            // detectedType is more specific than best\n            best = detectedType;\n        } else if (!registry.isSpecializationOf(best, detectedType)) {\n            // Neither is a specialization of the other - prefer container detection\n            // for unrelated types (e.g., different format families)\n            best = detectedType;\n        }\n        // else: best is already more specific than detectedType, keep best\n    }\n    // Text detection as fallback only if still unknown\n    if (MediaType.OCTET_STREAM.equals(best) && textType != null && !MediaType.OCTET_STREAM.equals(textType)) {\n        best = textType;\n    }\n    return best;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

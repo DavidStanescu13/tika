@@ -1,0 +1,18 @@
+{
+  "className": "MediaType",
+  "methodName": "getParameters",
+  "brief": "public Map<String, String> getParameters(){}",
+  "methodSignature": "getParameters()",
+  "sourceCode": "public Map<String, String> getParameters() {\n        return parameters;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns an immutable sorted map of the parameters of this media type.\n * The parameter names are guaranteed to be trimmed and in lower case.\n *\n * @return sorted map of parameters\n */\npublic Map<String, String> getParameters() {\n    return parameters;\n}",
+  "method_comment": "\n     * Returns an immutable sorted map of the parameters of this media type.\n     * The parameter names are guaranteed to be trimmed and in lower case.\n     *\n     * @return sorted map of parameters\n     ",
+  "method_annotation": ""
+}

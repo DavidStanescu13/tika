@@ -1,0 +1,43 @@
+{
+  "fullClassName": "org.apache.tika.language.translate.Translator",
+  "className": "Translator",
+  "index": 118,
+  "modifier": "[public ]",
+  "extend": "[SelfConfiguring]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.language.translate",
+  "packageDeclaration": "package org.apache.tika.language.translate;",
+  "classSignature": "public interface Translator",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import org.apache.tika.config.SelfConfiguring;",
+    "import org.apache.tika.exception.TikaException;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "SelfConfiguring"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "translate(String, String, String)": "0",
+    "translate(String, String)": "1",
+    "isAvailable()": "2"
+  },
+  "methodsBrief": [
+    "String translate(String text, String sourceLanguage, String targetLanguage)\r\n            throws TikaException, IOException;",
+    "String translate(String text, String targetLanguage) throws TikaException, IOException;",
+    "boolean isAvailable();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.language.translate;\n\nimport java.io.IOException;\nimport org.apache.tika.config.SelfConfiguring;\nimport org.apache.tika.exception.TikaException;\n\n/**\n * Interface for Translator services.\n *\n * @since Tika 1.6\n */\npublic interface Translator extends SelfConfiguring {\n\n    /**\n     * Translate text between given languages.\n     *\n     * @param text           The text to translate.\n     * @param sourceLanguage The input text language (for example, \"en\").\n     * @param targetLanguage The desired language to translate to (for example, \"fr\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     */\n    String translate(String text, String sourceLanguage, String targetLanguage) throws TikaException, IOException;\n\n    /**\n     * Translate text to the given language\n     * This method attempts to auto-detect the source language of the text.\n     *\n     * @param text           The text to translate.\n     * @param targetLanguage The desired language to translate to (for example, \"hi\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     */\n    String translate(String text, String targetLanguage) throws TikaException, IOException;\n\n    /**\n     * @return true if this Translator is probably able to translate right now.\n     * @since Tika 1.6\n     */\n    boolean isAvailable();\n}\n",
+  "classDeclarationCode": "/**\n * Interface for Translator services.\n *\n * @since Tika 1.6\n */\npublic interface Translator extends SelfConfiguring {\n\n    /**\n     * Translate text between given languages.\n     *\n     * @param text           The text to translate.\n     * @param sourceLanguage The input text language (for example, \"en\").\n     * @param targetLanguage The desired language to translate to (for example, \"fr\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     */\n    String translate(String text, String sourceLanguage, String targetLanguage) throws TikaException, IOException;\n\n    /**\n     * Translate text to the given language\n     * This method attempts to auto-detect the source language of the text.\n     *\n     * @param text           The text to translate.\n     * @param targetLanguage The desired language to translate to (for example, \"hi\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     */\n    String translate(String text, String targetLanguage) throws TikaException, IOException;\n\n    /**\n     * @return true if this Translator is probably able to translate right now.\n     * @since Tika 1.6\n     */\n    boolean isAvailable();\n}",
+  "subClasses": []
+}

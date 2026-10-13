@@ -1,0 +1,39 @@
+{
+  "className": "CryptoParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        try {\n            Cipher cipher;\n            if (provider != null) {\n                cipher = Cipher.getInstance(transformation, provider);\n            } else {\n                cipher = Cipher.getInstance(transformation);\n            }\n\n            Key key = context.get(Key.class);\n            if (key == null) {\n                throw new EncryptedDocumentException(\"No decryption key provided\");\n            }\n\n            AlgorithmParameters params = context.get(AlgorithmParameters.class);\n            SecureRandom random = context.get(SecureRandom.class);\n            if (params != null && random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params, random);\n            } else if (params != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params);\n            } else if (random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, random);\n            } else {\n                cipher.init(Cipher.DECRYPT_MODE, key);\n            }\n\n            try (TikaInputStream decrypted = TikaInputStream.get(\n                    new CipherInputStream(tis, cipher))) {\n                super.parse(decrypted, handler, metadata, context);\n            }\n        } catch (GeneralSecurityException e) {\n            throw new TikaException(\"Unable to decrypt document stream\", e);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream)"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "javax.crypto.Cipher": [
+      "init(int, Key, AlgorithmParameters)",
+      "getInstance(String)",
+      "init(int, Key)",
+      "init(int, Key, AlgorithmParameters, SecureRandom)",
+      "getInstance(String, Provider)",
+      "init(int, Key, SecureRandom)"
+    ]
+  },
+  "full_method_info": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    try {\n        Cipher cipher;\n        if (provider != null) {\n            cipher = Cipher.getInstance(transformation, provider);\n        } else {\n            cipher = Cipher.getInstance(transformation);\n        }\n        Key key = context.get(Key.class);\n        if (key == null) {\n            throw new EncryptedDocumentException(\"No decryption key provided\");\n        }\n        AlgorithmParameters params = context.get(AlgorithmParameters.class);\n        SecureRandom random = context.get(SecureRandom.class);\n        if (params != null && random != null) {\n            cipher.init(Cipher.DECRYPT_MODE, key, params, random);\n        } else if (params != null) {\n            cipher.init(Cipher.DECRYPT_MODE, key, params);\n        } else if (random != null) {\n            cipher.init(Cipher.DECRYPT_MODE, key, random);\n        } else {\n            cipher.init(Cipher.DECRYPT_MODE, key);\n        }\n        try (TikaInputStream decrypted = TikaInputStream.get(new CipherInputStream(tis, cipher))) {\n            super.parse(decrypted, handler, metadata, context);\n        }\n    } catch (GeneralSecurityException e) {\n        throw new TikaException(\"Unable to decrypt document stream\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

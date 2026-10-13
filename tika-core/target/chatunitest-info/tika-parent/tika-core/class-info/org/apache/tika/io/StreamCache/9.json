@@ -1,0 +1,30 @@
+{
+  "className": "StreamCache",
+  "methodName": "toFile",
+  "brief": "Path toFile(InputStream remainingSource, String suffix) throws IOException{}",
+  "methodSignature": "toFile(InputStream, String)",
+  "sourceCode": "Path toFile(InputStream remainingSource, String suffix) throws IOException {\n        this.suffix = suffix;\n        // Copy remaining bytes from source\n        byte[] buffer = new byte[8192];\n        int n;\n        while ((n = remainingSource.read(buffer)) != -1) {\n            append(buffer, 0, n);\n        }\n        return toFile();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [
+      "read(byte[])"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.io.StreamCache": [
+      "toFile()",
+      "append(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Finish writing (drain remaining source bytes) and return the file path.\n */\nPath toFile(InputStream remainingSource, String suffix) throws IOException {\n    this.suffix = suffix;\n    // Copy remaining bytes from source\n    byte[] buffer = new byte[8192];\n    int n;\n    while ((n = remainingSource.read(buffer)) != -1) {\n        append(buffer, 0, n);\n    }\n    return toFile();\n}",
+  "method_comment": "\n     * Finish writing (drain remaining source bytes) and return the file path.\n     ",
+  "method_annotation": ""
+}

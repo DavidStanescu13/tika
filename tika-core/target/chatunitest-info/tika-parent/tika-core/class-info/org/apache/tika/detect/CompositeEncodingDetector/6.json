@@ -1,0 +1,28 @@
+{
+  "className": "CompositeEncodingDetector",
+  "methodName": "isExcluded",
+  "brief": "private boolean isExcluded(\r\n            Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors,\r\n            Class<? extends EncodingDetector> encodingDetector){}",
+  "methodSignature": "isExcluded(Collection, Class)",
+  "sourceCode": "private boolean isExcluded(\n            Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors,\n            Class<? extends EncodingDetector> encodingDetector) {\n        return excludeEncodingDetectors.contains(encodingDetector) ||\n                assignableFrom(excludeEncodingDetectors, encodingDetector);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<Class<? extends EncodingDetector>>",
+    "Class<? extends EncodingDetector>"
+  ],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "contains(Object)"
+    ],
+    "org.apache.tika.detect.CompositeEncodingDetector": [
+      "assignableFrom(EncodingDetector>>, EncodingDetector>)"
+    ]
+  },
+  "full_method_info": "private boolean isExcluded(Collection<Class<? extends EncodingDetector>> excludeEncodingDetectors, Class<? extends EncodingDetector> encodingDetector) {\n    return excludeEncodingDetectors.contains(encodingDetector) || assignableFrom(excludeEncodingDetectors, encodingDetector);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

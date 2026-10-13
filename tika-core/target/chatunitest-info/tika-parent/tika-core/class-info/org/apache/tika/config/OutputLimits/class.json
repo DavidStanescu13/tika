@@ -1,0 +1,112 @@
+{
+  "fullClassName": "org.apache.tika.config.OutputLimits",
+  "className": "OutputLimits",
+  "index": 7,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class OutputLimits",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "public static final int UNLIMITED = -1;",
+    "private int writeLimit = UNLIMITED;",
+    "private boolean throwOnWriteLimit = false;",
+    "private int maxXmlDepth = 100;",
+    "private int maxPackageEntryDepth = 10;",
+    "private long zipBombThreshold = 1_000_000;",
+    "private long zipBombRatio = 100;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "getWriteLimit()": "0",
+    "setWriteLimit(int)": "1",
+    "isThrowOnWriteLimit()": "2",
+    "setThrowOnWriteLimit(boolean)": "3",
+    "getMaxXmlDepth()": "4",
+    "setMaxXmlDepth(int)": "5",
+    "getMaxPackageEntryDepth()": "6",
+    "setMaxPackageEntryDepth(int)": "7",
+    "getZipBombThreshold()": "8",
+    "setZipBombThreshold(long)": "9",
+    "getZipBombRatio()": "10",
+    "setZipBombRatio(long)": "11",
+    "get(ParseContext)": "12",
+    "toString()": "13",
+    "equals(Object)": "14",
+    "hashCode()": "15",
+    "OutputLimits()": "16",
+    "OutputLimits(int, boolean, int, int, long, long)": "17"
+  },
+  "methodsBrief": [
+    "public int getWriteLimit(){}",
+    "public void setWriteLimit(int writeLimit){}",
+    "public boolean isThrowOnWriteLimit(){}",
+    "public void setThrowOnWriteLimit(boolean throwOnWriteLimit){}",
+    "public int getMaxXmlDepth(){}",
+    "public void setMaxXmlDepth(int maxXmlDepth){}",
+    "public int getMaxPackageEntryDepth(){}",
+    "public void setMaxPackageEntryDepth(int maxPackageEntryDepth){}",
+    "public long getZipBombThreshold(){}",
+    "public void setZipBombThreshold(long zipBombThreshold){}",
+    "public long getZipBombRatio(){}",
+    "public void setZipBombRatio(long zipBombRatio){}",
+    "public static OutputLimits get(ParseContext context){}",
+    "@Override\r\n    public String toString(){}",
+    "@Override\r\n    public boolean equals(Object o){}",
+    "@Override\r\n    public int hashCode(){}",
+    "public OutputLimits(){}",
+    "public OutputLimits(int writeLimit, boolean throwOnWriteLimit,\r\n                        int maxXmlDepth, int maxPackageEntryDepth,\r\n                        long zipBombThreshold, long zipBombRatio){}"
+  ],
+  "constructorSigs": [
+    "OutputLimits()",
+    "OutputLimits(int, boolean, int, int, long, long)"
+  ],
+  "constructorBrief": [
+    "public OutputLimits(){}",
+    "public OutputLimits(int writeLimit, boolean throwOnWriteLimit,\r\n                        int maxXmlDepth, int maxPackageEntryDepth,\r\n                        long zipBombThreshold, long zipBombRatio){}"
+  ],
+  "getterSetterSigs": [
+    "getWriteLimit()",
+    "setWriteLimit(int)",
+    "setThrowOnWriteLimit(boolean)",
+    "getMaxXmlDepth()",
+    "setMaxXmlDepth(int)",
+    "getMaxPackageEntryDepth()",
+    "setMaxPackageEntryDepth(int)",
+    "getZipBombThreshold()",
+    "setZipBombThreshold(long)",
+    "getZipBombRatio()",
+    "setZipBombRatio(long)"
+  ],
+  "getterSetterBrief": [
+    "public int getWriteLimit(){}",
+    "public void setWriteLimit(int writeLimit){}",
+    "public void setThrowOnWriteLimit(boolean throwOnWriteLimit){}",
+    "public int getMaxXmlDepth(){}",
+    "public void setMaxXmlDepth(int maxXmlDepth){}",
+    "public int getMaxPackageEntryDepth(){}",
+    "public void setMaxPackageEntryDepth(int maxPackageEntryDepth){}",
+    "public long getZipBombThreshold(){}",
+    "public void setZipBombThreshold(long zipBombThreshold){}",
+    "public long getZipBombRatio(){}",
+    "public void setZipBombRatio(long zipBombRatio){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.io.Serializable;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Configuration for output and security limits.\n * <p>\n * This controls output size and various security thresholds:\n * <ul>\n *   <li>{@code writeLimit} - maximum characters to write (-1 = unlimited)</li>\n *   <li>{@code throwOnWriteLimit} - whether to throw an exception when writeLimit is reached</li>\n *   <li>{@code maxXmlDepth} - maximum XML element nesting depth (default: 100)</li>\n *   <li>{@code maxPackageEntryDepth} - maximum package entry nesting depth (default: 10)</li>\n *   <li>{@code zipBombThreshold} - characters before zip bomb check activates (default: 1,000,000)</li>\n *   <li>{@code zipBombRatio} - maximum output:input ratio for zip bomb detection (default: 100)</li>\n * </ul>\n * <p>\n * <b>writeLimit behavior:</b> The writeLimit is the TOTAL characters across all documents\n * (container + embedded). When the limit is reached:\n * <ul>\n *   <li>If {@code throwOnWriteLimit=false}: Output is truncated, {@code X-TIKA-writeLimitReached=true} is set</li>\n *   <li>If {@code throwOnWriteLimit=true}: {@code WriteLimitReachedException} is thrown</li>\n * </ul>\n * <p>\n * <b>Security limits:</b> maxXmlDepth, maxPackageEntryDepth, and zipBomb\n * limits always throw exceptions when exceeded (no silent truncation option).\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"output-limits\": {\n *       \"writeLimit\": 100000,\n *       \"throwOnWriteLimit\": false,\n *       \"maxXmlDepth\": 100,\n *       \"maxPackageEntryDepth\": 10,\n *       \"zipBombThreshold\": 1000000,\n *       \"zipBombRatio\": 100\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(spi = false)\npublic class OutputLimits implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    public static final int UNLIMITED = -1;\n\n    // Output limits\n    private int writeLimit = UNLIMITED;\n\n    private boolean throwOnWriteLimit = false;\n\n    // XML/Security limits\n    private int maxXmlDepth = 100;\n\n    private int maxPackageEntryDepth = 10;\n\n    private long zipBombThreshold = 1_000_000;\n\n    private long zipBombRatio = 100;\n\n    public OutputLimits() {\n    }\n\n    public OutputLimits(int writeLimit, boolean throwOnWriteLimit, int maxXmlDepth, int maxPackageEntryDepth, long zipBombThreshold, long zipBombRatio) {\n        this.writeLimit = writeLimit;\n        this.throwOnWriteLimit = throwOnWriteLimit;\n        this.maxXmlDepth = maxXmlDepth;\n        this.maxPackageEntryDepth = maxPackageEntryDepth;\n        this.zipBombThreshold = zipBombThreshold;\n        this.zipBombRatio = zipBombRatio;\n    }\n\n    /**\n     * Gets the maximum characters to write.\n     *\n     * @return maximum characters, or -1 for unlimited\n     */\n    public int getWriteLimit() {\n        return writeLimit;\n    }\n\n    /**\n     * Sets the maximum characters to write.\n     *\n     * @param writeLimit maximum characters, or -1 for unlimited\n     */\n    public void setWriteLimit(int writeLimit) {\n        this.writeLimit = writeLimit;\n    }\n\n    /**\n     * Gets whether to throw an exception when writeLimit is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnWriteLimit() {\n        return throwOnWriteLimit;\n    }\n\n    /**\n     * Sets whether to throw an exception when writeLimit is reached.\n     *\n     * @param throwOnWriteLimit true to throw an exception\n     */\n    public void setThrowOnWriteLimit(boolean throwOnWriteLimit) {\n        this.throwOnWriteLimit = throwOnWriteLimit;\n    }\n\n    /**\n     * Gets the maximum XML element nesting depth.\n     *\n     * @return maximum XML depth\n     */\n    public int getMaxXmlDepth() {\n        return maxXmlDepth;\n    }\n\n    /**\n     * Sets the maximum XML element nesting depth.\n     *\n     * @param maxXmlDepth maximum XML depth\n     */\n    public void setMaxXmlDepth(int maxXmlDepth) {\n        this.maxXmlDepth = maxXmlDepth;\n    }\n\n    /**\n     * Gets the maximum package entry nesting depth.\n     *\n     * @return maximum package entry depth\n     */\n    public int getMaxPackageEntryDepth() {\n        return maxPackageEntryDepth;\n    }\n\n    /**\n     * Sets the maximum package entry nesting depth.\n     *\n     * @param maxPackageEntryDepth maximum package entry depth\n     */\n    public void setMaxPackageEntryDepth(int maxPackageEntryDepth) {\n        this.maxPackageEntryDepth = maxPackageEntryDepth;\n    }\n\n    /**\n     * Gets the zip bomb threshold (characters before check activates).\n     *\n     * @return zip bomb threshold\n     */\n    public long getZipBombThreshold() {\n        return zipBombThreshold;\n    }\n\n    /**\n     * Sets the zip bomb threshold (characters before check activates).\n     *\n     * @param zipBombThreshold zip bomb threshold\n     */\n    public void setZipBombThreshold(long zipBombThreshold) {\n        this.zipBombThreshold = zipBombThreshold;\n    }\n\n    /**\n     * Gets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @return zip bomb ratio\n     */\n    public long getZipBombRatio() {\n        return zipBombRatio;\n    }\n\n    /**\n     * Sets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @param zipBombRatio zip bomb ratio\n     */\n    public void setZipBombRatio(long zipBombRatio) {\n        this.zipBombRatio = zipBombRatio;\n    }\n\n    /**\n     * Helper method to get OutputLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the OutputLimits from context, or a new instance with defaults if not found\n     */\n    public static OutputLimits get(ParseContext context) {\n        if (context == null) {\n            return new OutputLimits();\n        }\n        OutputLimits limits = context.get(OutputLimits.class);\n        return limits != null ? limits : new OutputLimits();\n    }\n\n    @Override\n    public String toString() {\n        return \"OutputLimits{\" + \"writeLimit=\" + writeLimit + \", throwOnWriteLimit=\" + throwOnWriteLimit + \", maxXmlDepth=\" + maxXmlDepth + \", maxPackageEntryDepth=\" + maxPackageEntryDepth + \", zipBombThreshold=\" + zipBombThreshold + \", zipBombRatio=\" + zipBombRatio + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        OutputLimits that = (OutputLimits) o;\n        return writeLimit == that.writeLimit && throwOnWriteLimit == that.throwOnWriteLimit && maxXmlDepth == that.maxXmlDepth && maxPackageEntryDepth == that.maxPackageEntryDepth && zipBombThreshold == that.zipBombThreshold && zipBombRatio == that.zipBombRatio;\n    }\n\n    @Override\n    public int hashCode() {\n        int result = writeLimit;\n        result = 31 * result + (throwOnWriteLimit ? 1 : 0);\n        result = 31 * result + maxXmlDepth;\n        result = 31 * result + maxPackageEntryDepth;\n        result = 31 * result + (int) (zipBombThreshold ^ (zipBombThreshold >>> 32));\n        result = 31 * result + (int) (zipBombRatio ^ (zipBombRatio >>> 32));\n        return result;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for output and security limits.\n * <p>\n * This controls output size and various security thresholds:\n * <ul>\n *   <li>{@code writeLimit} - maximum characters to write (-1 = unlimited)</li>\n *   <li>{@code throwOnWriteLimit} - whether to throw an exception when writeLimit is reached</li>\n *   <li>{@code maxXmlDepth} - maximum XML element nesting depth (default: 100)</li>\n *   <li>{@code maxPackageEntryDepth} - maximum package entry nesting depth (default: 10)</li>\n *   <li>{@code zipBombThreshold} - characters before zip bomb check activates (default: 1,000,000)</li>\n *   <li>{@code zipBombRatio} - maximum output:input ratio for zip bomb detection (default: 100)</li>\n * </ul>\n * <p>\n * <b>writeLimit behavior:</b> The writeLimit is the TOTAL characters across all documents\n * (container + embedded). When the limit is reached:\n * <ul>\n *   <li>If {@code throwOnWriteLimit=false}: Output is truncated, {@code X-TIKA-writeLimitReached=true} is set</li>\n *   <li>If {@code throwOnWriteLimit=true}: {@code WriteLimitReachedException} is thrown</li>\n * </ul>\n * <p>\n * <b>Security limits:</b> maxXmlDepth, maxPackageEntryDepth, and zipBomb\n * limits always throw exceptions when exceeded (no silent truncation option).\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"output-limits\": {\n *       \"writeLimit\": 100000,\n *       \"throwOnWriteLimit\": false,\n *       \"maxXmlDepth\": 100,\n *       \"maxPackageEntryDepth\": 10,\n *       \"zipBombThreshold\": 1000000,\n *       \"zipBombRatio\": 100\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(spi = false)\npublic class OutputLimits implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    public static final int UNLIMITED = -1;\n\n    // Output limits\n    private int writeLimit = UNLIMITED;\n\n    private boolean throwOnWriteLimit = false;\n\n    // XML/Security limits\n    private int maxXmlDepth = 100;\n\n    private int maxPackageEntryDepth = 10;\n\n    private long zipBombThreshold = 1_000_000;\n\n    private long zipBombRatio = 100;\n\n    public OutputLimits() {\n    }\n\n    public OutputLimits(int writeLimit, boolean throwOnWriteLimit, int maxXmlDepth, int maxPackageEntryDepth, long zipBombThreshold, long zipBombRatio) {\n        this.writeLimit = writeLimit;\n        this.throwOnWriteLimit = throwOnWriteLimit;\n        this.maxXmlDepth = maxXmlDepth;\n        this.maxPackageEntryDepth = maxPackageEntryDepth;\n        this.zipBombThreshold = zipBombThreshold;\n        this.zipBombRatio = zipBombRatio;\n    }\n\n    /**\n     * Gets the maximum characters to write.\n     *\n     * @return maximum characters, or -1 for unlimited\n     */\n    public int getWriteLimit() {\n        return writeLimit;\n    }\n\n    /**\n     * Sets the maximum characters to write.\n     *\n     * @param writeLimit maximum characters, or -1 for unlimited\n     */\n    public void setWriteLimit(int writeLimit) {\n        this.writeLimit = writeLimit;\n    }\n\n    /**\n     * Gets whether to throw an exception when writeLimit is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnWriteLimit() {\n        return throwOnWriteLimit;\n    }\n\n    /**\n     * Sets whether to throw an exception when writeLimit is reached.\n     *\n     * @param throwOnWriteLimit true to throw an exception\n     */\n    public void setThrowOnWriteLimit(boolean throwOnWriteLimit) {\n        this.throwOnWriteLimit = throwOnWriteLimit;\n    }\n\n    /**\n     * Gets the maximum XML element nesting depth.\n     *\n     * @return maximum XML depth\n     */\n    public int getMaxXmlDepth() {\n        return maxXmlDepth;\n    }\n\n    /**\n     * Sets the maximum XML element nesting depth.\n     *\n     * @param maxXmlDepth maximum XML depth\n     */\n    public void setMaxXmlDepth(int maxXmlDepth) {\n        this.maxXmlDepth = maxXmlDepth;\n    }\n\n    /**\n     * Gets the maximum package entry nesting depth.\n     *\n     * @return maximum package entry depth\n     */\n    public int getMaxPackageEntryDepth() {\n        return maxPackageEntryDepth;\n    }\n\n    /**\n     * Sets the maximum package entry nesting depth.\n     *\n     * @param maxPackageEntryDepth maximum package entry depth\n     */\n    public void setMaxPackageEntryDepth(int maxPackageEntryDepth) {\n        this.maxPackageEntryDepth = maxPackageEntryDepth;\n    }\n\n    /**\n     * Gets the zip bomb threshold (characters before check activates).\n     *\n     * @return zip bomb threshold\n     */\n    public long getZipBombThreshold() {\n        return zipBombThreshold;\n    }\n\n    /**\n     * Sets the zip bomb threshold (characters before check activates).\n     *\n     * @param zipBombThreshold zip bomb threshold\n     */\n    public void setZipBombThreshold(long zipBombThreshold) {\n        this.zipBombThreshold = zipBombThreshold;\n    }\n\n    /**\n     * Gets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @return zip bomb ratio\n     */\n    public long getZipBombRatio() {\n        return zipBombRatio;\n    }\n\n    /**\n     * Sets the zip bomb ratio (maximum output:input ratio).\n     *\n     * @param zipBombRatio zip bomb ratio\n     */\n    public void setZipBombRatio(long zipBombRatio) {\n        this.zipBombRatio = zipBombRatio;\n    }\n\n    /**\n     * Helper method to get OutputLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the OutputLimits from context, or a new instance with defaults if not found\n     */\n    public static OutputLimits get(ParseContext context) {\n        if (context == null) {\n            return new OutputLimits();\n        }\n        OutputLimits limits = context.get(OutputLimits.class);\n        return limits != null ? limits : new OutputLimits();\n    }\n\n    @Override\n    public String toString() {\n        return \"OutputLimits{\" + \"writeLimit=\" + writeLimit + \", throwOnWriteLimit=\" + throwOnWriteLimit + \", maxXmlDepth=\" + maxXmlDepth + \", maxPackageEntryDepth=\" + maxPackageEntryDepth + \", zipBombThreshold=\" + zipBombThreshold + \", zipBombRatio=\" + zipBombRatio + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        OutputLimits that = (OutputLimits) o;\n        return writeLimit == that.writeLimit && throwOnWriteLimit == that.throwOnWriteLimit && maxXmlDepth == that.maxXmlDepth && maxPackageEntryDepth == that.maxPackageEntryDepth && zipBombThreshold == that.zipBombThreshold && zipBombRatio == that.zipBombRatio;\n    }\n\n    @Override\n    public int hashCode() {\n        int result = writeLimit;\n        result = 31 * result + (throwOnWriteLimit ? 1 : 0);\n        result = 31 * result + maxXmlDepth;\n        result = 31 * result + maxPackageEntryDepth;\n        result = 31 * result + (int) (zipBombThreshold ^ (zipBombThreshold >>> 32));\n        result = 31 * result + (int) (zipBombRatio ^ (zipBombRatio >>> 32));\n        return result;\n    }\n}",
+  "subClasses": []
+}

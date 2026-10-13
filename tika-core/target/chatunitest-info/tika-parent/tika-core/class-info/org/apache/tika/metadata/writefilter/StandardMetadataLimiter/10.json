@@ -1,0 +1,47 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "truncate",
+  "brief": "private String truncate(String value, int length, Map<String, String[]> data){}",
+  "methodSignature": "truncate(String, int, Map)",
+  "sourceCode": "private String truncate(String value, int length, Map<String, String[]> data) {\n        setTruncated(data);\n\n        //correctly handle multibyte characters\n        byte[] bytes = value.getBytes(StandardCharsets.UTF_16BE);\n        ByteBuffer bb = ByteBuffer.wrap(bytes, 0, length);\n        CharBuffer cb = CharBuffer.allocate(length);\n        CharsetDecoder decoder = StandardCharsets.UTF_16BE.newDecoder();\n        // Ignore last (potentially) incomplete character\n        decoder.onMalformedInput(CodingErrorAction.IGNORE);\n        decoder.decode(bb, cb, true);\n        decoder.flush(cb);\n        return new String(cb.array(), 0, cb.position());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int",
+    "Map<String,String[]>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "getBytes(Charset)"
+    ],
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter": [
+      "setTruncated(String[]>)"
+    ],
+    "java.nio.ByteBuffer": [
+      "wrap(byte[], int, int)"
+    ],
+    "java.nio.CharBuffer": [
+      "allocate(int)",
+      "array()"
+    ],
+    "java.nio.charset.Charset": [
+      "newDecoder()"
+    ],
+    "java.nio.charset.CharsetDecoder": [
+      "decode(ByteBuffer, CharBuffer, boolean)",
+      "onMalformedInput(CodingErrorAction)",
+      "flush(CharBuffer)"
+    ],
+    "java.nio.Buffer": [
+      "position()"
+    ]
+  },
+  "full_method_info": "private String truncate(String value, int length, Map<String, String[]> data) {\n    setTruncated(data);\n    // correctly handle multibyte characters\n    byte[] bytes = value.getBytes(StandardCharsets.UTF_16BE);\n    ByteBuffer bb = ByteBuffer.wrap(bytes, 0, length);\n    CharBuffer cb = CharBuffer.allocate(length);\n    CharsetDecoder decoder = StandardCharsets.UTF_16BE.newDecoder();\n    // Ignore last (potentially) incomplete character\n    decoder.onMalformedInput(CodingErrorAction.IGNORE);\n    decoder.decode(bb, cb, true);\n    decoder.flush(cb);\n    return new String(cb.array(), 0, cb.position());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

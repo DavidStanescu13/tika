@@ -1,0 +1,33 @@
+{
+  "className": "MimeTypes",
+  "methodName": "init",
+  "brief": "void init(){}",
+  "methodSignature": "init()",
+  "sourceCode": "void init() {\n        for (MimeType type : types.values()) {\n            magics.addAll(type.getMagics());\n            if (type.hasRootXML()) {\n                xmls.add(type);\n            }\n        }\n        Collections.sort(magics);\n        Collections.sort(xmls);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ],
+    "java.util.List": [
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "hasRootXML()",
+      "getMagics()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Called after all configured types have been loaded.\n * Initializes the magics and xmls sets.\n */\nvoid init() {\n    for (MimeType type : types.values()) {\n        magics.addAll(type.getMagics());\n        if (type.hasRootXML()) {\n            xmls.add(type);\n        }\n    }\n    Collections.sort(magics);\n    Collections.sort(xmls);\n}",
+  "method_comment": "\n     * Called after all configured types have been loaded.\n     * Initializes the magics and xmls sets.\n     ",
+  "method_annotation": ""
+}

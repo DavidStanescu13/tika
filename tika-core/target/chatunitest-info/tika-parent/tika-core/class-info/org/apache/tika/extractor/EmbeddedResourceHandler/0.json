@@ -1,0 +1,28 @@
+{
+  "className": "EmbeddedResourceHandler",
+  "methodName": "handle",
+  "brief": "void handle(String filename, MediaType mediaType, TikaInputStream stream,\r\n            ParseContext parseContext);",
+  "methodSignature": "handle(String, MediaType, TikaInputStream, ParseContext)",
+  "sourceCode": "void handle(String filename, MediaType mediaType, TikaInputStream stream,\n            ParseContext parseContext);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MediaType",
+    "TikaInputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [],
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Called to process an embedded resource within the container.\n * This will be called once per embedded resource within the\n *  container, along with whatever details are available on\n *  the embedded resource.\n *\n * @since Apache Tika 0.8\n * @param filename The filename of the embedded resource, if known\n * @param mediaType The media type of the embedded resource, if known\n * @param stream The contents of the embedded resource\n * @param parseContext The parse context\n */\nvoid handle(String filename, MediaType mediaType, TikaInputStream stream, ParseContext parseContext);",
+  "method_comment": "\n     * Called to process an embedded resource within the container.\n     * This will be called once per embedded resource within the\n     *  container, along with whatever details are available on\n     *  the embedded resource.\n     *\n     * @since Apache Tika 0.8\n     * @param filename The filename of the embedded resource, if known\n     * @param mediaType The media type of the embedded resource, if known\n     * @param stream The contents of the embedded resource\n     * @param parseContext The parse context\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getTransformerFactory",
+  "brief": "public static TransformerFactory getTransformerFactory() throws TikaException{}",
+  "methodSignature": "getTransformerFactory()",
+  "sourceCode": "public static TransformerFactory getTransformerFactory() throws TikaException {\n        try {\n\n            TransformerFactory transformerFactory = TransformerFactory.newInstance();\n            transformerFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);\n            trySetTransformerAttribute(transformerFactory, XMLConstants.ACCESS_EXTERNAL_DTD, \"\");\n            trySetTransformerAttribute(transformerFactory, XMLConstants.ACCESS_EXTERNAL_STYLESHEET, \"\");\n            return transformerFactory;\n        } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {\n            throw new TikaException(\"Transformer not available\", e);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.transform.TransformerFactory": [
+      "newInstance()",
+      "setFeature(String, boolean)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "trySetTransformerAttribute(TransformerFactory, String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a TransformerFactory. The factory is configured with\n * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing} and other\n * settings to prevent XXE.\n *\n * @return TransformerFactory\n * @throws TikaException\n */\npublic static TransformerFactory getTransformerFactory() throws TikaException {\n    try {\n        TransformerFactory transformerFactory = TransformerFactory.newInstance();\n        transformerFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);\n        trySetTransformerAttribute(transformerFactory, XMLConstants.ACCESS_EXTERNAL_DTD, \"\");\n        trySetTransformerAttribute(transformerFactory, XMLConstants.ACCESS_EXTERNAL_STYLESHEET, \"\");\n        return transformerFactory;\n    } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {\n        throw new TikaException(\"Transformer not available\", e);\n    }\n}",
+  "method_comment": "\n     * Returns a TransformerFactory. The factory is configured with\n     * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing} and other\n     * settings to prevent XXE.\n     *\n     * @return TransformerFactory\n     * @throws TikaException\n     ",
+  "method_annotation": ""
+}

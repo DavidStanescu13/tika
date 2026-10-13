@@ -1,0 +1,30 @@
+{
+  "className": "MimeType",
+  "methodName": "addExtension",
+  "brief": "void addExtension(String extension){}",
+  "methodSignature": "addExtension(String)",
+  "sourceCode": "void addExtension(String extension) {\n        if (extensions == null) {\n            extensions = Collections.singletonList(extension);\n        } else if (extensions.size() == 1) {\n            extensions = new ArrayList<>(extensions);\n        }\n        if (!extensions.contains(extension)) {\n            extensions.add(extension);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singletonList(T)"
+    ],
+    "java.util.List": [
+      "contains(Object)",
+      "add(E)",
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Adds a known file extension to this type.\n *\n * @param extension file extension\n */\nvoid addExtension(String extension) {\n    if (extensions == null) {\n        extensions = Collections.singletonList(extension);\n    } else if (extensions.size() == 1) {\n        extensions = new ArrayList<>(extensions);\n    }\n    if (!extensions.contains(extension)) {\n        extensions.add(extension);\n    }\n}",
+  "method_comment": "\n     * Adds a known file extension to this type.\n     *\n     * @param extension file extension\n     ",
+  "method_annotation": ""
+}

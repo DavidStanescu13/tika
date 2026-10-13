@@ -1,0 +1,62 @@
+{
+  "fullClassName": "org.apache.tika.parser.AbstractEncodingDetectorParser",
+  "className": "AbstractEncodingDetectorParser",
+  "index": 223,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public abstract class AbstractEncodingDetectorParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import org.apache.tika.detect.DefaultEncodingDetector;",
+    "import org.apache.tika.detect.EncodingDetector;"
+  ],
+  "fields": [
+    "private EncodingDetector encodingDetector;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getEncodingDetector(ParseContext)": "0",
+    "getEncodingDetector()": "1",
+    "setEncodingDetector(EncodingDetector)": "2",
+    "AbstractEncodingDetectorParser()": "3",
+    "AbstractEncodingDetectorParser(EncodingDetector)": "4"
+  },
+  "methodsBrief": [
+    "protected EncodingDetector getEncodingDetector(ParseContext parseContext){}",
+    "public EncodingDetector getEncodingDetector(){}",
+    "public void setEncodingDetector(EncodingDetector encodingDetector){}",
+    "public AbstractEncodingDetectorParser(){}",
+    "public AbstractEncodingDetectorParser(EncodingDetector encodingDetector){}"
+  ],
+  "constructorSigs": [
+    "AbstractEncodingDetectorParser()",
+    "AbstractEncodingDetectorParser(EncodingDetector)"
+  ],
+  "constructorBrief": [
+    "public AbstractEncodingDetectorParser(){}",
+    "public AbstractEncodingDetectorParser(EncodingDetector encodingDetector){}"
+  ],
+  "getterSetterSigs": [
+    "getEncodingDetector()",
+    "setEncodingDetector(EncodingDetector)"
+  ],
+  "getterSetterBrief": [
+    "public EncodingDetector getEncodingDetector(){}",
+    "public void setEncodingDetector(EncodingDetector encodingDetector){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.detect.EncodingDetector": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport org.apache.tika.detect.DefaultEncodingDetector;\nimport org.apache.tika.detect.EncodingDetector;\n\n/**\n * Abstract base class for parsers that use the AutoDetectReader and need\n * to use an {@link EncodingDetector}.\n */\npublic abstract class AbstractEncodingDetectorParser implements Parser {\n\n    private EncodingDetector encodingDetector;\n\n    public AbstractEncodingDetectorParser() {\n        encodingDetector = new DefaultEncodingDetector();\n    }\n\n    public AbstractEncodingDetectorParser(EncodingDetector encodingDetector) {\n        this.encodingDetector = encodingDetector;\n    }\n\n    /**\n     * Look for an EncodingDetetor in the ParseContext.  If it hasn't been\n     * passed in, use the original EncodingDetector from initialization.\n     *\n     * @param parseContext\n     * @return\n     */\n    protected EncodingDetector getEncodingDetector(ParseContext parseContext) {\n        EncodingDetector fromParseContext = parseContext.get(EncodingDetector.class);\n        if (fromParseContext != null) {\n            return fromParseContext;\n        }\n        return getEncodingDetector();\n    }\n\n    public EncodingDetector getEncodingDetector() {\n        return encodingDetector;\n    }\n\n    public void setEncodingDetector(EncodingDetector encodingDetector) {\n        this.encodingDetector = encodingDetector;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Abstract base class for parsers that use the AutoDetectReader and need\n * to use an {@link EncodingDetector}.\n */\npublic abstract class AbstractEncodingDetectorParser implements Parser {\n\n    private EncodingDetector encodingDetector;\n\n    public AbstractEncodingDetectorParser() {\n        encodingDetector = new DefaultEncodingDetector();\n    }\n\n    public AbstractEncodingDetectorParser(EncodingDetector encodingDetector) {\n        this.encodingDetector = encodingDetector;\n    }\n\n    /**\n     * Look for an EncodingDetetor in the ParseContext.  If it hasn't been\n     * passed in, use the original EncodingDetector from initialization.\n     *\n     * @param parseContext\n     * @return\n     */\n    protected EncodingDetector getEncodingDetector(ParseContext parseContext) {\n        EncodingDetector fromParseContext = parseContext.get(EncodingDetector.class);\n        if (fromParseContext != null) {\n            return fromParseContext;\n        }\n        return getEncodingDetector();\n    }\n\n    public EncodingDetector getEncodingDetector() {\n        return encodingDetector;\n    }\n\n    public void setEncodingDetector(EncodingDetector encodingDetector) {\n        this.encodingDetector = encodingDetector;\n    }\n}",
+  "subClasses": []
+}

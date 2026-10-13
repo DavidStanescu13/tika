@@ -1,0 +1,18 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getMediaTypeRegistry",
+  "brief": "public MediaTypeRegistry getMediaTypeRegistry(){}",
+  "methodSignature": "getMediaTypeRegistry()",
+  "sourceCode": "public MediaTypeRegistry getMediaTypeRegistry() {\n        return registry;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public MediaTypeRegistry getMediaTypeRegistry() {\n    return registry;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

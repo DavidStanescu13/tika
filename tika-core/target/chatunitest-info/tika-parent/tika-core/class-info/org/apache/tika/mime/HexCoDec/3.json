@@ -1,0 +1,25 @@
+{
+  "className": "HexCoDec",
+  "methodName": "encode",
+  "brief": "public static char[] encode(byte[] bites){}",
+  "methodSignature": "encode(byte[])",
+  "sourceCode": "public static char[] encode(byte[] bites) {\n        return encode(bites, 0, bites.length);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.mime.HexCoDec": [
+      "encode(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Hex encode an array of bytes\n *\n * @param bites the array of bytes to encode.\n * @return the array of hex characters.\n */\npublic static char[] encode(byte[] bites) {\n    return encode(bites, 0, bites.length);\n}",
+  "method_comment": "\n     * Hex encode an array of bytes\n     *\n     * @param bites the array of bytes to encode.\n     * @return the array of hex characters.\n     ",
+  "method_annotation": ""
+}

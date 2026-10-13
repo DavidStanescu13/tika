@@ -1,0 +1,24 @@
+{
+  "className": "EmbeddedDocumentExtractorFactory",
+  "methodName": "newInstance",
+  "brief": "EmbeddedDocumentExtractor newInstance(Metadata metadata, ParseContext parseContext);",
+  "methodSignature": "newInstance(Metadata, ParseContext)",
+  "sourceCode": "EmbeddedDocumentExtractor newInstance(Metadata metadata, ParseContext parseContext);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "EmbeddedDocumentExtractor newInstance(Metadata metadata, ParseContext parseContext);",
+  "method_comment": "",
+  "method_annotation": ""
+}

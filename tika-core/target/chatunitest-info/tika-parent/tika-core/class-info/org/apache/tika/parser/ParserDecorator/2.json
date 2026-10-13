@@ -1,0 +1,27 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "withMimeFilters",
+  "brief": "public static Parser withMimeFilters(Parser parser, Set<MediaType> includeTypes,\r\n                                         Set<MediaType> excludeTypes){}",
+  "methodSignature": "withMimeFilters(Parser, Set, Set)",
+  "sourceCode": "public static Parser withMimeFilters(Parser parser, Set<MediaType> includeTypes,\n                                         Set<MediaType> excludeTypes) {\n        if ((includeTypes == null || includeTypes.isEmpty()) &&\n                (excludeTypes == null || excludeTypes.isEmpty())) {\n            return parser;\n        }\n        return new MimeFilteringDecorator(parser, includeTypes, excludeTypes);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Set<MediaType>",
+    "Set<MediaType>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.util.Set": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Decorates the given parser with mime type filtering.\n * Supports both include and exclude lists for round-trip serialization.\n *\n * @param parser the parser to be decorated\n * @param includeTypes types to include (if non-empty, only these types are supported)\n * @param excludeTypes types to exclude (removed from supported types)\n * @return the decorated parser, or the original parser if no filtering needed\n */\npublic static Parser withMimeFilters(Parser parser, Set<MediaType> includeTypes, Set<MediaType> excludeTypes) {\n    if ((includeTypes == null || includeTypes.isEmpty()) && (excludeTypes == null || excludeTypes.isEmpty())) {\n        return parser;\n    }\n    return new MimeFilteringDecorator(parser, includeTypes, excludeTypes);\n}",
+  "method_comment": "\n     * Decorates the given parser with mime type filtering.\n     * Supports both include and exclude lists for round-trip serialization.\n     *\n     * @param parser the parser to be decorated\n     * @param includeTypes types to include (if non-empty, only these types are supported)\n     * @param excludeTypes types to exclude (removed from supported types)\n     * @return the decorated parser, or the original parser if no filtering needed\n     ",
+  "method_annotation": ""
+}

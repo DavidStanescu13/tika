@@ -1,0 +1,27 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getEmbeddedPath",
+  "brief": "private static String getEmbeddedPath(Metadata metadata){}",
+  "methodSignature": "getEmbeddedPath(Metadata)",
+  "sourceCode": "private static String getEmbeddedPath(Metadata metadata) {\n        String path = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_PATH);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.INTERNAL_PATH);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        path = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n        if (! StringUtils.isBlank(path)) {\n            return path;\n        }\n        return metadata.get(TikaCoreProperties.ORIGINAL_RESOURCE_NAME);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ]
+  },
+  "full_method_info": "// may return null\nprivate static String getEmbeddedPath(Metadata metadata) {\n    String path = metadata.get(TikaCoreProperties.EMBEDDED_RESOURCE_PATH);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.INTERNAL_PATH);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    path = metadata.get(TikaCoreProperties.EMBEDDED_RELATIONSHIP_ID);\n    if (!StringUtils.isBlank(path)) {\n        return path;\n    }\n    return metadata.get(TikaCoreProperties.ORIGINAL_RESOURCE_NAME);\n}",
+  "method_comment": "may return null",
+  "method_annotation": ""
+}

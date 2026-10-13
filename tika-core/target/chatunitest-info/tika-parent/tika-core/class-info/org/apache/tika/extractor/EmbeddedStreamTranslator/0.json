@@ -1,0 +1,24 @@
+{
+  "className": "EmbeddedStreamTranslator",
+  "methodName": "shouldTranslate",
+  "brief": "boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException;",
+  "methodSignature": "shouldTranslate(TikaInputStream, Metadata)",
+  "sourceCode": "boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "boolean shouldTranslate(TikaInputStream inputStream, Metadata metadata) throws IOException;",
+  "method_comment": "",
+  "method_annotation": ""
+}

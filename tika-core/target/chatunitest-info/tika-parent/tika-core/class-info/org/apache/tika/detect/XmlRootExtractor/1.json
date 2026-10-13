@@ -1,0 +1,25 @@
+{
+  "className": "XmlRootExtractor",
+  "methodName": "extractRootElement",
+  "brief": "public QName extractRootElement(InputStream stream){}",
+  "methodSignature": "extractRootElement(InputStream)",
+  "sourceCode": "public QName extractRootElement(InputStream stream) {\n        return extractRootElement(stream, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.detect.XmlRootExtractor": [
+      "extractRootElement(InputStream, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * @since Apache Tika 0.9\n */\npublic QName extractRootElement(InputStream stream) {\n    return extractRootElement(stream, false);\n}",
+  "method_comment": "\n     * @since Apache Tika 0.9\n     ",
+  "method_annotation": ""
+}

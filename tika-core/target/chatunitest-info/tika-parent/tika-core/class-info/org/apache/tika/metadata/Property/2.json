@@ -1,0 +1,34 @@
+{
+  "className": "Property",
+  "methodName": "getProperties",
+  "brief": "public static SortedSet<Property> getProperties(String prefix){}",
+  "methodSignature": "getProperties(String)",
+  "sourceCode": "public static SortedSet<Property> getProperties(String prefix) {\n        SortedSet<Property> set = new TreeSet<>();\n        String p = prefix + \":\";\n        synchronized (PROPERTIES) {\n            for (Map.Entry<String, Property> entry : PROPERTIES.entrySet()) {\n                if (entry.getKey().startsWith(p)) {\n                    set.add(entry.getValue());\n                }\n            }\n        }\n        return set;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)"
+    ],
+    "java.util.Map": [
+      "entrySet()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "public static SortedSet<Property> getProperties(String prefix) {\n    SortedSet<Property> set = new TreeSet<>();\n    String p = prefix + \":\";\n    synchronized (PROPERTIES) {\n        for (Map.Entry<String, Property> entry : PROPERTIES.entrySet()) {\n            if (entry.getKey().startsWith(p)) {\n                set.add(entry.getValue());\n            }\n        }\n    }\n    return set;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

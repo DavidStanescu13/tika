@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getCommandAssignmentDelimeter",
+  "brief": "public String getCommandAssignmentDelimeter(){}",
+  "methodSignature": "getCommandAssignmentDelimeter()",
+  "sourceCode": "public String getCommandAssignmentDelimeter() {\n        return commandAssignmentDelimeter;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the delimiter for multiple assignments for the command line tool,\n * i.e. \", \".\n *\n * @return the assignment delimiter\n */\npublic String getCommandAssignmentDelimeter() {\n    return commandAssignmentDelimeter;\n}",
+  "method_comment": "\n     * Gets the delimiter for multiple assignments for the command line tool,\n     * i.e. \", \".\n     *\n     * @return the assignment delimiter\n     ",
+  "method_annotation": ""
+}

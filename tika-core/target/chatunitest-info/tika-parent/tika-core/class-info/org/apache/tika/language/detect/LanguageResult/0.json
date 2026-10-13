@@ -1,0 +1,18 @@
+{
+  "className": "LanguageResult",
+  "methodName": "getLanguage",
+  "brief": "public String getLanguage(){}",
+  "methodSignature": "getLanguage()",
+  "sourceCode": "public String getLanguage() {\n        return language;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The ISO 639-1 language code (plus optional country code)\n *\n * @return a string representation of the language code\n */\npublic String getLanguage() {\n    return language;\n}",
+  "method_comment": "\n     * The ISO 639-1 language code (plus optional country code)\n     *\n     * @return a string representation of the language code\n     ",
+  "method_annotation": ""
+}

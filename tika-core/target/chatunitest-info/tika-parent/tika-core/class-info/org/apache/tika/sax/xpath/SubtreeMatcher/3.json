@@ -1,0 +1,22 @@
+{
+  "className": "SubtreeMatcher",
+  "methodName": "matchesText",
+  "brief": "@Override\r\n    public boolean matchesText(){}",
+  "methodSignature": "matchesText()",
+  "sourceCode": "@Override\n    public boolean matchesText() {\n        return then.matchesText();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesText()"
+    ]
+  },
+  "full_method_info": "@Override\npublic boolean matchesText() {\n    return then.matchesText();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

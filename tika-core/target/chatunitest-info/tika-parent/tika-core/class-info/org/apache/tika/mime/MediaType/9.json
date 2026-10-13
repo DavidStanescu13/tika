@@ -1,0 +1,38 @@
+{
+  "className": "MediaType",
+  "methodName": "parseParameters",
+  "brief": "private static Map<String, String> parseParameters(String string){}",
+  "methodSignature": "parseParameters(String)",
+  "sourceCode": "private static Map<String, String> parseParameters(String string) {\n        if (string.isEmpty()) {\n            return Collections.emptyMap();\n        }\n\n        // Extracts k1=v1, k2=v2 from mime/type; k1=v1; k2=v2\n        // Note - this logic isn't fully RFC2045 compliant yet, as it\n        //  doesn't fully handle quoted keys or values (eg containing ; or =)\n        Map<String, String> parameters = new HashMap<>();\n        while (string.length() > 0) {\n            String key = string;\n            String value = \"\";\n\n            int semicolon = string.indexOf(';');\n            if (semicolon != -1) {\n                key = string.substring(0, semicolon);\n                string = string.substring(semicolon + 1);\n            } else {\n                string = \"\";\n            }\n\n            int equals = key.indexOf('=');\n            if (equals != -1) {\n                value = key.substring(equals + 1);\n                key = key.substring(0, equals);\n            }\n\n            key = key.trim();\n            if (key.length() > 0) {\n                parameters.put(key, unquote(value.trim()));\n            }\n        }\n        return parameters;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()",
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)",
+      "trim()",
+      "length()"
+    ],
+    "java.util.Collections": [
+      "emptyMap()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "unquote(String)"
+    ]
+  },
+  "full_method_info": "private static Map<String, String> parseParameters(String string) {\n    if (string.isEmpty()) {\n        return Collections.emptyMap();\n    }\n    // Extracts k1=v1, k2=v2 from mime/type; k1=v1; k2=v2\n    // Note - this logic isn't fully RFC2045 compliant yet, as it\n    // doesn't fully handle quoted keys or values (eg containing ; or =)\n    Map<String, String> parameters = new HashMap<>();\n    while (string.length() > 0) {\n        String key = string;\n        String value = \"\";\n        int semicolon = string.indexOf(';');\n        if (semicolon != -1) {\n            key = string.substring(0, semicolon);\n            string = string.substring(semicolon + 1);\n        } else {\n            string = \"\";\n        }\n        int equals = key.indexOf('=');\n        if (equals != -1) {\n            value = key.substring(equals + 1);\n            key = key.substring(0, equals);\n        }\n        key = key.trim();\n        if (key.length() > 0) {\n            parameters.put(key, unquote(value.trim()));\n        }\n    }\n    return parameters;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

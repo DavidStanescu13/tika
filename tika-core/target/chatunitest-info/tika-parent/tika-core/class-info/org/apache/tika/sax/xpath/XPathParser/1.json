@@ -1,0 +1,38 @@
+{
+  "className": "XPathParser",
+  "methodName": "parse",
+  "brief": "public Matcher parse(String xpath){}",
+  "methodSignature": "parse(String)",
+  "sourceCode": "public Matcher parse(String xpath) {\n        if (xpath.equals(\"/text()\")) {\n            return TextMatcher.INSTANCE;\n        } else if (xpath.equals(\"/node()\")) {\n            return NodeMatcher.INSTANCE;\n        } else if (xpath.equals(\"/descendant::node()\") ||\n                xpath.equals(\"/descendant:node()\")) { // for compatibility\n            return new CompositeMatcher(TextMatcher.INSTANCE,\n                    new ChildMatcher(new SubtreeMatcher(NodeMatcher.INSTANCE)));\n        } else if (xpath.equals(\"/@*\")) {\n            return AttributeMatcher.INSTANCE;\n        } else if (xpath.isEmpty()) {\n            return ElementMatcher.INSTANCE;\n        } else if (xpath.startsWith(\"/@\")) {\n            String name = xpath.substring(2);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedAttributeMatcher(prefixes.get(prefix), name);\n            } else {\n                return Matcher.FAIL;\n            }\n        } else if (xpath.startsWith(\"/*\")) {\n            return new ChildMatcher(parse(xpath.substring(2)));\n        } else if (xpath.startsWith(\"///\")) {\n            return Matcher.FAIL;\n        } else if (xpath.startsWith(\"//\")) {\n            return new SubtreeMatcher(parse(xpath.substring(1)));\n        } else if (xpath.startsWith(\"/\")) {\n            int slash = xpath.indexOf('/', 1);\n            if (slash == -1) {\n                slash = xpath.length();\n            }\n            String name = xpath.substring(1, slash);\n            String prefix = null;\n            int colon = name.indexOf(':');\n            if (colon != -1) {\n                prefix = name.substring(0, colon);\n                name = name.substring(colon + 1);\n            }\n            if (prefixes.containsKey(prefix)) {\n                return new NamedElementMatcher(prefixes.get(prefix), name,\n                        parse(xpath.substring(slash)));\n            } else {\n                return Matcher.FAIL;\n            }\n        } else {\n            return Matcher.FAIL;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "startsWith(String)",
+      "isEmpty()",
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)",
+      "indexOf(int, int)",
+      "length()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "containsKey(Object)"
+    ],
+    "org.apache.tika.sax.xpath.XPathParser": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given simple XPath expression to an evaluation state\n * initialized at the document node. Invalid expressions are not flagged\n * as errors, they just result in a failing evaluation state.\n *\n * @param xpath simple XPath expression\n * @return XPath evaluation state\n */\npublic Matcher parse(String xpath) {\n    if (xpath.equals(\"/text()\")) {\n        return TextMatcher.INSTANCE;\n    } else if (xpath.equals(\"/node()\")) {\n        return NodeMatcher.INSTANCE;\n    } else if (xpath.equals(\"/descendant::node()\") || xpath.equals(\"/descendant:node()\")) {\n        // for compatibility\n        return new CompositeMatcher(TextMatcher.INSTANCE, new ChildMatcher(new SubtreeMatcher(NodeMatcher.INSTANCE)));\n    } else if (xpath.equals(\"/@*\")) {\n        return AttributeMatcher.INSTANCE;\n    } else if (xpath.isEmpty()) {\n        return ElementMatcher.INSTANCE;\n    } else if (xpath.startsWith(\"/@\")) {\n        String name = xpath.substring(2);\n        String prefix = null;\n        int colon = name.indexOf(':');\n        if (colon != -1) {\n            prefix = name.substring(0, colon);\n            name = name.substring(colon + 1);\n        }\n        if (prefixes.containsKey(prefix)) {\n            return new NamedAttributeMatcher(prefixes.get(prefix), name);\n        } else {\n            return Matcher.FAIL;\n        }\n    } else if (xpath.startsWith(\"/*\")) {\n        return new ChildMatcher(parse(xpath.substring(2)));\n    } else if (xpath.startsWith(\"///\")) {\n        return Matcher.FAIL;\n    } else if (xpath.startsWith(\"//\")) {\n        return new SubtreeMatcher(parse(xpath.substring(1)));\n    } else if (xpath.startsWith(\"/\")) {\n        int slash = xpath.indexOf('/', 1);\n        if (slash == -1) {\n            slash = xpath.length();\n        }\n        String name = xpath.substring(1, slash);\n        String prefix = null;\n        int colon = name.indexOf(':');\n        if (colon != -1) {\n            prefix = name.substring(0, colon);\n            name = name.substring(colon + 1);\n        }\n        if (prefixes.containsKey(prefix)) {\n            return new NamedElementMatcher(prefixes.get(prefix), name, parse(xpath.substring(slash)));\n        } else {\n            return Matcher.FAIL;\n        }\n    } else {\n        return Matcher.FAIL;\n    }\n}",
+  "method_comment": "\n     * Parses the given simple XPath expression to an evaluation state\n     * initialized at the document node. Invalid expressions are not flagged\n     * as errors, they just result in a failing evaluation state.\n     *\n     * @param xpath simple XPath expression\n     * @return XPath evaluation state\n     ",
+  "method_annotation": ""
+}

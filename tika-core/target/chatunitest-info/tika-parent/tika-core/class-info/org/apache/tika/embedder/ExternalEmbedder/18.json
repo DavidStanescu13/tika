@@ -1,0 +1,43 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getCommandMetadataSegments",
+  "brief": "protected List<String> getCommandMetadataSegments(Metadata metadata){}",
+  "methodSignature": "getCommandMetadataSegments(Metadata)",
+  "sourceCode": "protected List<String> getCommandMetadataSegments(Metadata metadata) {\n        List<String> commandMetadataSegments = new ArrayList<>();\n        if (metadata == null || metadata.names() == null) {\n            return commandMetadataSegments;\n        }\n        for (String metadataName : metadata.names()) {\n            for (Property property : getMetadataCommandArguments().keySet()) {\n                if (metadataName.equals(property.getName())) {\n                    String[] metadataCommandArguments = getMetadataCommandArguments().get(property);\n                    if (metadataCommandArguments != null) {\n                        for (String metadataCommandArgument : metadataCommandArguments) {\n                            if (metadata.isMultiValued(metadataName)) {\n                                for (String metadataValue : metadata.getValues(metadataName)) {\n                                    String assignmentValue = metadataValue;\n                                    if (quoteAssignmentValues) {\n                                        assignmentValue = \"'\" + assignmentValue + \"'\";\n                                    }\n                                    commandMetadataSegments\n                                            .add(metadataCommandArgument + commandAppendOperator +\n                                                    assignmentValue);\n                                }\n                            } else {\n                                String assignmentValue = metadata.get(metadataName);\n                                if (quoteAssignmentValues) {\n                                    assignmentValue = \"'\" + assignmentValue + \"'\";\n                                }\n                                commandMetadataSegments\n                                        .add(metadataCommandArgument + commandAssignmentOperator +\n                                                assignmentValue);\n                            }\n                        }\n                    }\n                }\n            }\n        }\n        return commandMetadataSegments;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(String)",
+      "names()",
+      "isMultiValued(String)",
+      "getValues(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "keySet()"
+    ],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "getMetadataCommandArguments()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Constructs a collection of command line arguments responsible for setting\n * individual metadata fields based on the given <code>metadata</code>.\n *\n * @param metadata the metadata to embed\n * @return the metadata-related command line arguments\n */\nprotected List<String> getCommandMetadataSegments(Metadata metadata) {\n    List<String> commandMetadataSegments = new ArrayList<>();\n    if (metadata == null || metadata.names() == null) {\n        return commandMetadataSegments;\n    }\n    for (String metadataName : metadata.names()) {\n        for (Property property : getMetadataCommandArguments().keySet()) {\n            if (metadataName.equals(property.getName())) {\n                String[] metadataCommandArguments = getMetadataCommandArguments().get(property);\n                if (metadataCommandArguments != null) {\n                    for (String metadataCommandArgument : metadataCommandArguments) {\n                        if (metadata.isMultiValued(metadataName)) {\n                            for (String metadataValue : metadata.getValues(metadataName)) {\n                                String assignmentValue = metadataValue;\n                                if (quoteAssignmentValues) {\n                                    assignmentValue = \"'\" + assignmentValue + \"'\";\n                                }\n                                commandMetadataSegments.add(metadataCommandArgument + commandAppendOperator + assignmentValue);\n                            }\n                        } else {\n                            String assignmentValue = metadata.get(metadataName);\n                            if (quoteAssignmentValues) {\n                                assignmentValue = \"'\" + assignmentValue + \"'\";\n                            }\n                            commandMetadataSegments.add(metadataCommandArgument + commandAssignmentOperator + assignmentValue);\n                        }\n                    }\n                }\n            }\n        }\n    }\n    return commandMetadataSegments;\n}",
+  "method_comment": "\n     * Constructs a collection of command line arguments responsible for setting\n     * individual metadata fields based on the given <code>metadata</code>.\n     *\n     * @param metadata the metadata to embed\n     * @return the metadata-related command line arguments\n     ",
+  "method_annotation": ""
+}

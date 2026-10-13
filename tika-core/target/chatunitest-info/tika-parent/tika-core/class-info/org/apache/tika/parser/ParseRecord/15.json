@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "isThrowOnMaxCount",
+  "brief": "public boolean isThrowOnMaxCount(){}",
+  "methodSignature": "isThrowOnMaxCount()",
+  "sourceCode": "public boolean isThrowOnMaxCount() {\n        return throwOnMaxCount;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns whether throwing is configured when max count is reached.\n *\n * @return true if an exception should be thrown on max count\n */\npublic boolean isThrowOnMaxCount() {\n    return throwOnMaxCount;\n}",
+  "method_comment": "\n     * Returns whether throwing is configured when max count is reached.\n     *\n     * @return true if an exception should be thrown on max count\n     ",
+  "method_annotation": ""
+}

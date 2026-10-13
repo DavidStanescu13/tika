@@ -1,0 +1,50 @@
+{
+  "fullClassName": "org.apache.tika.parser.EmptyParser",
+  "className": "EmptyParser",
+  "index": 232,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class EmptyParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Set;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.sax.XHTMLContentHandler;"
+  ],
+  "fields": [
+    "public static final EmptyParser INSTANCE = new EmptyParser();",
+    "private static final long serialVersionUID = -4218649699095732123L;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "1"
+  },
+  "methodsBrief": [
+    "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws SAXException{}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.util.Collections;\nimport java.util.Set;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.sax.XHTMLContentHandler;\n\n/**\n * Dummy parser that always produces an empty XHTML document without even\n * attempting to parse the given document stream. Useful as a sentinel parser\n * for unknown document types.\n */\n@TikaComponent(spi = false)\npublic class EmptyParser implements Parser {\n\n    /**\n     * Singleton instance of this class.\n     */\n    public static final EmptyParser INSTANCE = new EmptyParser();\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = -4218649699095732123L;\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return Collections.emptySet();\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws SAXException {\n        XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata, context);\n        xhtml.startDocument();\n        xhtml.endDocument();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Dummy parser that always produces an empty XHTML document without even\n * attempting to parse the given document stream. Useful as a sentinel parser\n * for unknown document types.\n */\n@TikaComponent(spi = false)\npublic class EmptyParser implements Parser {\n\n    /**\n     * Singleton instance of this class.\n     */\n    public static final EmptyParser INSTANCE = new EmptyParser();\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = -4218649699095732123L;\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return Collections.emptySet();\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws SAXException {\n        XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata, context);\n        xhtml.startDocument();\n        xhtml.endDocument();\n    }\n}",
+  "subClasses": []
+}

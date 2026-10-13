@@ -1,0 +1,31 @@
+{
+  "className": "OverrideDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\r\n            throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext)\n            throws IOException {\n        String type = metadata.get(TikaCoreProperties.CONTENT_TYPE_PARSER_OVERRIDE);\n        if (type != null) {\n            return MediaType.parse(type);\n        }\n        type = metadata.get(TikaCoreProperties.CONTENT_TYPE_USER_OVERRIDE);\n        if (type != null) {\n            return MediaType.parse(type);\n        } else {\n            return MediaType.OCTET_STREAM;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    String type = metadata.get(TikaCoreProperties.CONTENT_TYPE_PARSER_OVERRIDE);\n    if (type != null) {\n        return MediaType.parse(type);\n    }\n    type = metadata.get(TikaCoreProperties.CONTENT_TYPE_USER_OVERRIDE);\n    if (type != null) {\n        return MediaType.parse(type);\n    } else {\n        return MediaType.OCTET_STREAM;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

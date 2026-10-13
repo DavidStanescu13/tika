@@ -1,0 +1,25 @@
+{
+  "className": "DateUtils",
+  "methodName": "formatDate",
+  "brief": "public static String formatDate(Calendar date){}",
+  "methodSignature": "formatDate(Calendar)",
+  "sourceCode": "public static String formatDate(Calendar date) {\n        return doFormatDate(date);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Calendar"
+  ],
+  "dependentMethods": {
+    "java.util.Calendar": [],
+    "org.apache.tika.utils.DateUtils": [
+      "doFormatDate(Calendar)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a ISO 8601 representation of the given date in UTC,\n * truncated to the seconds unit. This method is thread safe and non-blocking.\n *\n * @param date given Calendar\n * @return ISO 8601 date string in UTC, truncated to the seconds unit\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n */\npublic static String formatDate(Calendar date) {\n    return doFormatDate(date);\n}",
+  "method_comment": "\n     * Returns a ISO 8601 representation of the given date in UTC,\n     * truncated to the seconds unit. This method is thread safe and non-blocking.\n     *\n     * @param date given Calendar\n     * @return ISO 8601 date string in UTC, truncated to the seconds unit\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n     ",
+  "method_annotation": ""
+}

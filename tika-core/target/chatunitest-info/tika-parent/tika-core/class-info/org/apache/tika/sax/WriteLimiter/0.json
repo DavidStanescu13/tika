@@ -1,0 +1,18 @@
+{
+  "className": "WriteLimiter",
+  "methodName": "getWriteLimit",
+  "brief": "int getWriteLimit();",
+  "methodSignature": "getWriteLimit()",
+  "sourceCode": "int getWriteLimit();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "int getWriteLimit();",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "startDocument",
+  "brief": "@Override\r\n    public void startDocument() throws SAXException{}",
+  "methodSignature": "startDocument()",
+  "sourceCode": "@Override\n    public void startDocument() throws SAXException {\n        if (!documentStarted) {\n            documentStarted = true;\n            super.startDocument();\n            startPrefixMapping(\"\", XHTML);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Starts an XHTML document by setting up the namespace mappings\n * when called for the first time.\n * The standard XHTML prefix is generated lazily when the first\n * element is started.\n */\n@Override\npublic void startDocument() throws SAXException {\n    if (!documentStarted) {\n        documentStarted = true;\n        super.startDocument();\n        startPrefixMapping(\"\", XHTML);\n    }\n}",
+  "method_comment": "\n     * Starts an XHTML document by setting up the namespace mappings\n     * when called for the first time.\n     * The standard XHTML prefix is generated lazily when the first\n     * element is started.\n     ",
+  "method_annotation": "@Override\n"
+}

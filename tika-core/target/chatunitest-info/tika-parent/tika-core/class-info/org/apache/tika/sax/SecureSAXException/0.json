@@ -1,0 +1,22 @@
+{
+  "className": "SecureSAXException",
+  "methodName": "isCausedBy",
+  "brief": "public boolean isCausedBy(SecureContentHandler handler){}",
+  "methodSignature": "isCausedBy(SecureContentHandler)",
+  "sourceCode": "public boolean isCausedBy(SecureContentHandler handler) {\n            return SecureContentHandler.this == handler;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SecureContentHandler"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.SecureContentHandler": []
+  },
+  "full_method_info": "public boolean isCausedBy(SecureContentHandler handler) {\n    return SecureContentHandler.this == handler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

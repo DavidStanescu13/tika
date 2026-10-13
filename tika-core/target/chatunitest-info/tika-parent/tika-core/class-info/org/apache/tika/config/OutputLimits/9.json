@@ -1,0 +1,20 @@
+{
+  "className": "OutputLimits",
+  "methodName": "setZipBombThreshold",
+  "brief": "public void setZipBombThreshold(long zipBombThreshold){}",
+  "methodSignature": "setZipBombThreshold(long)",
+  "sourceCode": "public void setZipBombThreshold(long zipBombThreshold) {\n        this.zipBombThreshold = zipBombThreshold;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the zip bomb threshold (characters before check activates).\n *\n * @param zipBombThreshold zip bomb threshold\n */\npublic void setZipBombThreshold(long zipBombThreshold) {\n    this.zipBombThreshold = zipBombThreshold;\n}",
+  "method_comment": "\n     * Sets the zip bomb threshold (characters before check activates).\n     *\n     * @param zipBombThreshold zip bomb threshold\n     ",
+  "method_annotation": ""
+}

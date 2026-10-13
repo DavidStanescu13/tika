@@ -1,0 +1,26 @@
+{
+  "className": "CompositeMatcher",
+  "methodName": "matchesAttribute",
+  "brief": "public boolean matchesAttribute(String namespace, String name){}",
+  "methodSignature": "matchesAttribute(String, String)",
+  "sourceCode": "public boolean matchesAttribute(String namespace, String name) {\n        return a.matchesAttribute(namespace, name) || b.matchesAttribute(namespace, name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "matchesAttribute(String, String)"
+    ]
+  },
+  "full_method_info": "public boolean matchesAttribute(String namespace, String name) {\n    return a.matchesAttribute(namespace, name) || b.matchesAttribute(namespace, name);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

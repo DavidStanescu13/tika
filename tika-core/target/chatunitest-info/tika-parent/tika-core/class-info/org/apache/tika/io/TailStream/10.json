@@ -1,0 +1,30 @@
+{
+  "className": "TailStream",
+  "methodName": "copyToTailBuffer",
+  "brief": "private void copyToTailBuffer(byte[] buf, int ofs, int length){}",
+  "methodSignature": "copyToTailBuffer(byte[], int, int)",
+  "sourceCode": "private void copyToTailBuffer(byte[] buf, int ofs, int length) {\n        int remaining = tailSize - currentIndex;\n        int size1 = Math.min(remaining, length);\n        System.arraycopy(buf, ofs, tailBuffer, currentIndex, size1);\n        System.arraycopy(buf, ofs + size1, tailBuffer, 0, length - size1);\n        currentIndex = (currentIndex + length) % tailSize;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Copies the given buffer into the internal tail buffer at the current\n * position. This method is called if a buffer is read from the underlying\n * stream whose length is smaller than the tail buffer. In this case the\n * tail buffer is only partly overwritten.\n *\n * @param buf    the buffer\n * @param ofs    the start offset in the buffer\n * @param length the number of bytes to be copied\n */\nprivate void copyToTailBuffer(byte[] buf, int ofs, int length) {\n    int remaining = tailSize - currentIndex;\n    int size1 = Math.min(remaining, length);\n    System.arraycopy(buf, ofs, tailBuffer, currentIndex, size1);\n    System.arraycopy(buf, ofs + size1, tailBuffer, 0, length - size1);\n    currentIndex = (currentIndex + length) % tailSize;\n}",
+  "method_comment": "\n     * Copies the given buffer into the internal tail buffer at the current\n     * position. This method is called if a buffer is read from the underlying\n     * stream whose length is smaller than the tail buffer. In this case the\n     * tail buffer is only partly overwritten.\n     *\n     * @param buf    the buffer\n     * @param ofs    the start offset in the buffer\n     * @param length the number of bytes to be copied\n     ",
+  "method_annotation": ""
+}

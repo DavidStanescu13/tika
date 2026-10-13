@@ -1,0 +1,22 @@
+{
+  "className": "TextStatistics",
+  "methodName": "countEightBit",
+  "brief": "public int countEightBit(){}",
+  "methodSignature": "countEightBit()",
+  "sourceCode": "public int countEightBit() {\n        return count(128, 256);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TextStatistics": [
+      "count(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Counts eight bit characters, i.e. bytes with their highest bit set.\n *\n * @return count of eight bit characters\n */\npublic int countEightBit() {\n    return count(128, 256);\n}",
+  "method_comment": "\n     * Counts eight bit characters, i.e. bytes with their highest bit set.\n     *\n     * @return count of eight bit characters\n     ",
+  "method_annotation": ""
+}

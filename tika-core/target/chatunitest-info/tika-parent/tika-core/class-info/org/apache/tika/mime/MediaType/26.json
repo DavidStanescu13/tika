@@ -1,0 +1,26 @@
+{
+  "className": "MediaType",
+  "methodName": "MediaType",
+  "brief": "public MediaType(MediaType type, Charset charset){}",
+  "methodSignature": "MediaType(MediaType, Charset)",
+  "sourceCode": "public MediaType(MediaType type, Charset charset) {\n        this(type, \"charset\", charset.name());\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "Charset"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "java.nio.charset.Charset": [
+      "name()"
+    ]
+  },
+  "full_method_info": "public MediaType(MediaType type, Charset charset) {\n    this(type, \"charset\", charset.name());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

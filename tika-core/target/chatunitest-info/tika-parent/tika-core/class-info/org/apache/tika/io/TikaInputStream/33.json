@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "hasLength",
+  "brief": "public boolean hasLength(){}",
+  "methodSignature": "hasLength()",
+  "sourceCode": "public boolean hasLength() {\n        if (overrideLength >= 0) {\n            return true;\n        }\n        TikaInputSource source = inputSource();\n        return source != null && source.getLength() != -1;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "inputSource()"
+    ],
+    "org.apache.tika.io.TikaInputSource": [
+      "getLength()"
+    ]
+  },
+  "full_method_info": "public boolean hasLength() {\n    if (overrideLength >= 0) {\n        return true;\n    }\n    TikaInputSource source = inputSource();\n    return source != null && source.getLength() != -1;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

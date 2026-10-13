@@ -1,0 +1,28 @@
+{
+  "className": "StreamCache",
+  "methodName": "spillToFile",
+  "brief": "private void spillToFile() throws IOException{}",
+  "methodSignature": "spillToFile()",
+  "sourceCode": "private void spillToFile() throws IOException {\n        if (spillFile != null) {\n            return; // Already spilled\n        }\n\n        spillFile = tmp.createTempFile(suffix);\n        spillOutputStream = new BufferedOutputStream(Files.newOutputStream(spillFile));\n\n        // Write existing memory content to file\n        if (memorySize > 0) {\n            spillOutputStream.write(memoryBuffer, 0, memorySize);\n        }\n\n        // Release memory buffer\n        memoryBuffer = null;\n        memorySize = 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile(String)"
+    ],
+    "java.nio.file.Files": [
+      "newOutputStream(Path, OpenOption[])"
+    ],
+    "java.io.OutputStream": [
+      "write(byte[], int, int)"
+    ]
+  },
+  "full_method_info": "private void spillToFile() throws IOException {\n    if (spillFile != null) {\n        // Already spilled\n        return;\n    }\n    spillFile = tmp.createTempFile(suffix);\n    spillOutputStream = new BufferedOutputStream(Files.newOutputStream(spillFile));\n    // Write existing memory content to file\n    if (memorySize > 0) {\n        spillOutputStream.write(memoryBuffer, 0, memorySize);\n    }\n    // Release memory buffer\n    memoryBuffer = null;\n    memorySize = 0;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

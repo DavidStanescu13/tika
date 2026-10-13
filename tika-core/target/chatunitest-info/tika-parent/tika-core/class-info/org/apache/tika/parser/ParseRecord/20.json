@@ -1,0 +1,20 @@
+{
+  "className": "ParseRecord",
+  "methodName": "setMaxEmbeddedDepth",
+  "brief": "public void setMaxEmbeddedDepth(int maxEmbeddedDepth){}",
+  "methodSignature": "setMaxEmbeddedDepth(int)",
+  "sourceCode": "public void setMaxEmbeddedDepth(int maxEmbeddedDepth) {\n        this.maxEmbeddedDepth = maxEmbeddedDepth;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum depth for parsing embedded documents.\n * A value of -1 means unlimited (the default).\n * A value of 0 means no embedded documents will be parsed.\n * A value of 1 means only first-level embedded documents will be parsed, etc.\n *\n * @param maxEmbeddedDepth the maximum embedded depth, or -1 for unlimited\n */\npublic void setMaxEmbeddedDepth(int maxEmbeddedDepth) {\n    this.maxEmbeddedDepth = maxEmbeddedDepth;\n}",
+  "method_comment": "\n     * Sets the maximum depth for parsing embedded documents.\n     * A value of -1 means unlimited (the default).\n     * A value of 0 means no embedded documents will be parsed.\n     * A value of 1 means only first-level embedded documents will be parsed, etc.\n     *\n     * @param maxEmbeddedDepth the maximum embedded depth, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

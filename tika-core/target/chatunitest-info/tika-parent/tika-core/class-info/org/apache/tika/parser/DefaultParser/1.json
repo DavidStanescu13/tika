@@ -1,0 +1,36 @@
+{
+  "className": "DefaultParser",
+  "methodName": "setEncodingDetector",
+  "brief": "private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector){}",
+  "methodSignature": "setEncodingDetector(Parser, EncodingDetector)",
+  "sourceCode": "private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector) {\n        if (p instanceof AbstractEncodingDetectorParser) {\n            ((AbstractEncodingDetectorParser) p).setEncodingDetector(encodingDetector);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setEncodingDetector(child, encodingDetector);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setEncodingDetector(((ParserDecorator) p).getWrappedParser(), encodingDetector);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "EncodingDetector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.detect.EncodingDetector": [],
+    "org.apache.tika.parser.AbstractEncodingDetectorParser": [
+      "setEncodingDetector(EncodingDetector)"
+    ],
+    "org.apache.tika.parser.CompositeParser": [
+      "getAllComponentParsers()"
+    ],
+    "org.apache.tika.parser.DefaultParser": [
+      "setEncodingDetector(Parser, EncodingDetector)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ]
+  },
+  "full_method_info": "// recursively go through the parsers and set the encoding detector\n// as configured in the config file\nprivate static void setEncodingDetector(Parser p, EncodingDetector encodingDetector) {\n    if (p instanceof AbstractEncodingDetectorParser) {\n        ((AbstractEncodingDetectorParser) p).setEncodingDetector(encodingDetector);\n    } else if (p instanceof CompositeParser) {\n        for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n            setEncodingDetector(child, encodingDetector);\n        }\n    } else if (p instanceof ParserDecorator) {\n        setEncodingDetector(((ParserDecorator) p).getWrappedParser(), encodingDetector);\n    }\n}",
+  "method_comment": "as configured in the config file",
+  "method_annotation": ""
+}

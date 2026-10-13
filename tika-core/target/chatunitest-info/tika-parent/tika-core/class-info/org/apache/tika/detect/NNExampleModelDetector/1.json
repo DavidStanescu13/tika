@@ -1,0 +1,43 @@
+{
+  "className": "NNExampleModelDetector",
+  "methodName": "loadDefaultModels",
+  "brief": "@Override\r\n    public void loadDefaultModels(ClassLoader classLoader){}",
+  "methodSignature": "loadDefaultModels(ClassLoader)",
+  "sourceCode": "@Override\n    public void loadDefaultModels(ClassLoader classLoader) {\n        if (classLoader == null) {\n            classLoader = TrainedModelDetector.class.getClassLoader();\n        }\n\n        // This allows us to replicate class.getResource() when using\n        // the classloader directly\n        String classPrefix =\n                TrainedModelDetector.class.getPackage().getName().replace('.', '/') + \"/\";\n\n        // Get the core URL, and all the extensions URLs\n        URL modelURL = classLoader.getResource(classPrefix + EXAMPLE_NNMODEL_FILE);\n        Objects.requireNonNull(modelURL,\n                \"required resource \" + classPrefix + EXAMPLE_NNMODEL_FILE + \" not found\");\n        try (InputStream stream = modelURL.openStream()) {\n            loadDefaultModels(stream);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ClassLoader"
+  ],
+  "dependentMethods": {
+    "java.lang.ClassLoader": [
+      "getResource(String)"
+    ],
+    "java.lang.Class": [
+      "getClassLoader()",
+      "getPackage()"
+    ],
+    "java.lang.String": [
+      "replace(char, char)"
+    ],
+    "java.lang.Package": [
+      "getName()"
+    ],
+    "java.util.Objects": [
+      "requireNonNull(T, String)"
+    ],
+    "java.net.URL": [
+      "openStream()"
+    ],
+    "org.apache.tika.detect.NNExampleModelDetector": [
+      "loadDefaultModels(InputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * this method gets overwritten to register load neural network models\n */\n@Override\npublic void loadDefaultModels(ClassLoader classLoader) {\n    if (classLoader == null) {\n        classLoader = TrainedModelDetector.class.getClassLoader();\n    }\n    // This allows us to replicate class.getResource() when using\n    // the classloader directly\n    String classPrefix = TrainedModelDetector.class.getPackage().getName().replace('.', '/') + \"/\";\n    // Get the core URL, and all the extensions URLs\n    URL modelURL = classLoader.getResource(classPrefix + EXAMPLE_NNMODEL_FILE);\n    Objects.requireNonNull(modelURL, \"required resource \" + classPrefix + EXAMPLE_NNMODEL_FILE + \" not found\");\n    try (InputStream stream = modelURL.openStream()) {\n        loadDefaultModels(stream);\n    } catch (IOException e) {\n        throw new RuntimeException(\"Unable to read the default media type registry\", e);\n    }\n}",
+  "method_comment": "\n     * this method gets overwritten to register load neural network models\n     ",
+  "method_annotation": "@Override\n"
+}

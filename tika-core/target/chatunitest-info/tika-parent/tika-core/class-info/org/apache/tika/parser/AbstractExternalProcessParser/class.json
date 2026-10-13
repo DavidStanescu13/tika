@@ -1,0 +1,43 @@
+{
+  "fullClassName": "org.apache.tika.parser.AbstractExternalProcessParser",
+  "className": "AbstractExternalProcessParser",
+  "index": 224,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public abstract class AbstractExternalProcessParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.util.UUID;",
+    "import java.util.concurrent.ConcurrentHashMap;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 7186985395903074255L;",
+    "private static final ConcurrentHashMap<String, Process> PROCESS_MAP = new ConcurrentHashMap<>();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "register(Process)": "0",
+    "release(String)": "1"
+  },
+  "methodsBrief": [
+    "protected String register(Process p){}",
+    "protected Process release(String id){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.util.UUID;\nimport java.util.concurrent.ConcurrentHashMap;\n\n/**\n * Abstract base class for parsers that call external processes.  This\n * adds one more layer of 'hope' that processes won't be orphaned if\n * the jvm has to be restarted.  This does not guarantee that the\n * processes won't be orphaned in case of, e.g. kill -9, but this\n * increases the chances that under normal circumstances or if the jvm\n * itself exits, that external processes won't be orphaned.\n *\n * @since Apache Tika 1.27\n */\npublic abstract class AbstractExternalProcessParser implements Parser {\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 7186985395903074255L;\n\n    private static final ConcurrentHashMap<String, Process> PROCESS_MAP = new ConcurrentHashMap<>();\n\n    static {\n        Runtime.getRuntime().addShutdownHook(new Thread(() -> {\n            PROCESS_MAP.forEachValue(1, Process::destroyForcibly);\n        }));\n    }\n\n    protected String register(Process p) {\n        String id = UUID.randomUUID().toString();\n        PROCESS_MAP.put(id, p);\n        return id;\n    }\n\n    protected Process release(String id) {\n        return PROCESS_MAP.remove(id);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Abstract base class for parsers that call external processes.  This\n * adds one more layer of 'hope' that processes won't be orphaned if\n * the jvm has to be restarted.  This does not guarantee that the\n * processes won't be orphaned in case of, e.g. kill -9, but this\n * increases the chances that under normal circumstances or if the jvm\n * itself exits, that external processes won't be orphaned.\n *\n * @since Apache Tika 1.27\n */\npublic abstract class AbstractExternalProcessParser implements Parser {\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 7186985395903074255L;\n\n    private static final ConcurrentHashMap<String, Process> PROCESS_MAP = new ConcurrentHashMap<>();\n\n    static {\n        Runtime.getRuntime().addShutdownHook(new Thread(() -> {\n            PROCESS_MAP.forEachValue(1, Process::destroyForcibly);\n        }));\n    }\n\n    protected String register(Process p) {\n        String id = UUID.randomUUID().toString();\n        PROCESS_MAP.put(id, p);\n        return id;\n    }\n\n    protected Process release(String id) {\n        return PROCESS_MAP.remove(id);\n    }\n}",
+  "subClasses": []
+}

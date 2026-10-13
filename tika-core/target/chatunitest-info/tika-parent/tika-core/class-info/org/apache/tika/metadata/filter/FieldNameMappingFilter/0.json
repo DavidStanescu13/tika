@@ -1,0 +1,31 @@
+{
+  "className": "FieldNameMappingFilter",
+  "methodName": "filter",
+  "brief": "@Override\r\n    protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "@Override\n    protected void filter(Metadata metadata) {\n        if (excludeUnmapped) {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        // target field name is operator-configured; may legitimately be a reserved key\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                } else {\n                    metadata.remove(n);\n                }\n            }\n        } else {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                }\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "names()",
+      "addTrusted(String, String)",
+      "getValues(String)",
+      "remove(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "containsKey(Object)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void filter(Metadata metadata) {\n    if (excludeUnmapped) {\n        for (String n : metadata.names()) {\n            if (mappings.containsKey(n)) {\n                String[] vals = metadata.getValues(n);\n                metadata.remove(n);\n                for (String val : vals) {\n                    // target field name is operator-configured; may legitimately be a reserved key\n                    metadata.addTrusted(mappings.get(n), val);\n                }\n            } else {\n                metadata.remove(n);\n            }\n        }\n    } else {\n        for (String n : metadata.names()) {\n            if (mappings.containsKey(n)) {\n                String[] vals = metadata.getValues(n);\n                metadata.remove(n);\n                for (String val : vals) {\n                    metadata.addTrusted(mappings.get(n), val);\n                }\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

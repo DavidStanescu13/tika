@@ -1,0 +1,20 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "advance",
+  "brief": "protected void advance(int length) throws SAXException{}",
+  "methodSignature": "advance(int)",
+  "sourceCode": "protected void advance(int length) throws SAXException {\n        characterCount += length;\n        if (characterCount > threshold) {\n            long byteCount = getByteCount();\n            if (characterCount > byteCount * ratio) {\n                throw new SecureSAXException(\"Suspected zip bomb: \" + byteCount + \" input bytes produced \" + characterCount + \" output characters\");\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Records the given number of output characters (or more accurately\n * UTF-16 code units). Throws an exception if the recorded number of\n * characters highly exceeds the number of input bytes read.\n *\n * @param length number of new output characters produced\n * @throws SAXException if a zip bomb is detected\n */\nprotected void advance(int length) throws SAXException {\n    characterCount += length;\n    if (characterCount > threshold) {\n        long byteCount = getByteCount();\n        if (characterCount > byteCount * ratio) {\n            throw new SecureSAXException(\"Suspected zip bomb: \" + byteCount + \" input bytes produced \" + characterCount + \" output characters\");\n        }\n    }\n}",
+  "method_comment": "\n     * Records the given number of output characters (or more accurately\n     * UTF-16 code units). Throws an exception if the recorded number of\n     * characters highly exceeds the number of input bytes read.\n     *\n     * @param length number of new output characters produced\n     * @throws SAXException if a zip bomb is detected\n     ",
+  "method_annotation": ""
+}

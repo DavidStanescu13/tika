@@ -1,0 +1,20 @@
+{
+  "className": "SafeContentHandler",
+  "methodName": "isInvalid",
+  "brief": "protected boolean isInvalid(int ch){}",
+  "methodSignature": "isInvalid(int)",
+  "sourceCode": "protected boolean isInvalid(int ch) {\n        if (ch < 0x20) {\n            return ch != 0x09 && ch != 0x0A && ch != 0x0D;\n        } else if (ch < 0xE000) {\n            return ch > 0xD7FF;\n        } else if (ch < 0x10000) {\n            return ch > 0xFFFD;\n        } else {\n            return ch > 0x10FFFF;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Checks whether the given Unicode character is an invalid XML character\n * and should be replaced for output. Subclasses can override this method\n * to use an alternative definition of which characters should be replaced\n * in the XML output. The default definition from the XML specification is:\n * <pre>\n * Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]\n * </pre>\n *\n * @param ch character\n * @return <code>true</code> if the character should be replaced,\n * <code>false</code> otherwise\n */\nprotected boolean isInvalid(int ch) {\n    if (ch < 0x20) {\n        return ch != 0x09 && ch != 0x0A && ch != 0x0D;\n    } else if (ch < 0xE000) {\n        return ch > 0xD7FF;\n    } else if (ch < 0x10000) {\n        return ch > 0xFFFD;\n    } else {\n        return ch > 0x10FFFF;\n    }\n}",
+  "method_comment": "\n     * Checks whether the given Unicode character is an invalid XML character\n     * and should be replaced for output. Subclasses can override this method\n     * to use an alternative definition of which characters should be replaced\n     * in the XML output. The default definition from the XML specification is:\n     * <pre>\n     * Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]\n     * </pre>\n     *\n     * @param ch character\n     * @return <code>true</code> if the character should be replaced,\n     * <code>false</code> otherwise\n     ",
+  "method_annotation": ""
+}

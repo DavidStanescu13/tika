@@ -1,0 +1,26 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "StandardMetadataLimiter",
+  "brief": "protected StandardMetadataLimiter(int maxKeySize, int maxFieldSize, int maxEstimatedSize,\r\n                               int maxValuesPerField,\r\n                               Set<String> includeFields,\r\n                               Set<String> excludeFields,\r\n                               boolean includeEmpty){}",
+  "methodSignature": "StandardMetadataLimiter(int, int, int, int, Set, Set, boolean)",
+  "sourceCode": "protected StandardMetadataLimiter(int maxKeySize, int maxFieldSize, int maxEstimatedSize,\n                               int maxValuesPerField,\n                               Set<String> includeFields,\n                               Set<String> excludeFields,\n                               boolean includeEmpty) {\n\n        this.maxKeySize = maxKeySize;\n        this.maxFieldSize = maxFieldSize;\n        this.maxTotalEstimatedSize = maxEstimatedSize;\n        this.maxValuesPerField = maxValuesPerField;\n        // Defensive copies to prevent external modification\n        this.includeFields = includeFields != null ? new HashSet<>(includeFields) : new HashSet<>();\n        this.excludeFields = excludeFields != null ? new HashSet<>(excludeFields) : new HashSet<>();\n        this.includeEmpty = includeEmpty;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "int",
+    "int",
+    "int",
+    "Set<String>",
+    "Set<String>",
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "protected StandardMetadataLimiter(int maxKeySize, int maxFieldSize, int maxEstimatedSize, int maxValuesPerField, Set<String> includeFields, Set<String> excludeFields, boolean includeEmpty) {\n    this.maxKeySize = maxKeySize;\n    this.maxFieldSize = maxFieldSize;\n    this.maxTotalEstimatedSize = maxEstimatedSize;\n    this.maxValuesPerField = maxValuesPerField;\n    // Defensive copies to prevent external modification\n    this.includeFields = includeFields != null ? new HashSet<>(includeFields) : new HashSet<>();\n    this.excludeFields = excludeFields != null ? new HashSet<>(excludeFields) : new HashSet<>();\n    this.includeEmpty = includeEmpty;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

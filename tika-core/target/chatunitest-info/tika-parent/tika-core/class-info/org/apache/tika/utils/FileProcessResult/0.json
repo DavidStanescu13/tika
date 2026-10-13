@@ -1,0 +1,18 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "getStderr",
+  "brief": "public String getStderr(){}",
+  "methodSignature": "getStderr()",
+  "sourceCode": "public String getStderr() {\n        return stderr;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public String getStderr() {\n    return stderr;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

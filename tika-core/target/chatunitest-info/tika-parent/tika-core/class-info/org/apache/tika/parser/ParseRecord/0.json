@@ -1,0 +1,29 @@
+{
+  "className": "ParseRecord",
+  "methodName": "newInstance",
+  "brief": "public static ParseRecord newInstance(ParseContext context){}",
+  "methodSignature": "newInstance(ParseContext)",
+  "sourceCode": "public static ParseRecord newInstance(ParseContext context) {\n        ParseRecord record = new ParseRecord();\n        EmbeddedLimits limits = EmbeddedLimits.get(context);\n        record.maxEmbeddedDepth = limits.getMaxDepth();\n        record.maxEmbeddedCount = limits.getMaxCount();\n        record.throwOnMaxDepth = limits.isThrowOnMaxDepth();\n        record.throwOnMaxCount = limits.isThrowOnMaxCount();\n        return record;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.config.EmbeddedLimits": [
+      "get(ParseContext)",
+      "getMaxCount()",
+      "getMaxDepth()",
+      "isThrowOnMaxDepth()",
+      "isThrowOnMaxCount()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new ParseRecord configured from EmbeddedLimits in the ParseContext.\n * <p>\n * If EmbeddedLimits is present in the context, the ParseRecord will be configured\n * with those limits. Otherwise, default unlimited values are used.\n *\n * @param context the ParseContext (may be null)\n * @return a new ParseRecord configured from the context\n */\npublic static ParseRecord newInstance(ParseContext context) {\n    ParseRecord record = new ParseRecord();\n    EmbeddedLimits limits = EmbeddedLimits.get(context);\n    record.maxEmbeddedDepth = limits.getMaxDepth();\n    record.maxEmbeddedCount = limits.getMaxCount();\n    record.throwOnMaxDepth = limits.isThrowOnMaxDepth();\n    record.throwOnMaxCount = limits.isThrowOnMaxCount();\n    return record;\n}",
+  "method_comment": "\n     * Creates a new ParseRecord configured from EmbeddedLimits in the ParseContext.\n     * <p>\n     * If EmbeddedLimits is present in the context, the ParseRecord will be configured\n     * with those limits. Otherwise, default unlimited values are used.\n     *\n     * @param context the ParseContext (may be null)\n     * @return a new ParseRecord configured from the context\n     ",
+  "method_annotation": ""
+}

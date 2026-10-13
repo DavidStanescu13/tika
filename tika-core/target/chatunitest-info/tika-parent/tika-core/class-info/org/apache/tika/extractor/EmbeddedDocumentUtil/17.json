@@ -1,0 +1,31 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "tryToFindExistingLeafParser",
+  "brief": "public static Parser tryToFindExistingLeafParser(Class clazz, ParseContext context){}",
+  "methodSignature": "tryToFindExistingLeafParser(Class, ParseContext)",
+  "sourceCode": "public static Parser tryToFindExistingLeafParser(Class clazz, ParseContext context) {\n        Parser p = context.get(Parser.class);\n        if (equals(p, clazz)) {\n            return p;\n        }\n        Parser returnParser = null;\n        if (p != null) {\n            if (p instanceof ParserDecorator) {\n                p = findInDecorated((ParserDecorator) p, clazz);\n            }\n            if (equals(p, clazz)) {\n                return p;\n            }\n            if (p instanceof CompositeParser) {\n                returnParser = findInComposite((CompositeParser) p, clazz, context);\n            }\n        }\n        if (returnParser != null && equals(returnParser, clazz)) {\n            return returnParser;\n        }\n\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "findInDecorated(ParserDecorator, Class)",
+      "findInComposite(CompositeParser, Class, ParseContext)",
+      "equals(Parser, Class)"
+    ]
+  },
+  "full_method_info": "/**\n * Tries to find an existing parser within the ParseContext.\n * It looks inside of CompositeParsers and ParserDecorators.\n * The use case is when a parser needs to parse an internal stream\n * that is _part_ of the document, e.g. rtf body inside an msg.\n * <p/>\n * Can return <code>null</code> if the context contains no parser or\n * the correct parser can't be found.\n *\n * @param clazz   parser class to search for\n * @param context\n * @return\n */\npublic static Parser tryToFindExistingLeafParser(Class clazz, ParseContext context) {\n    Parser p = context.get(Parser.class);\n    if (equals(p, clazz)) {\n        return p;\n    }\n    Parser returnParser = null;\n    if (p != null) {\n        if (p instanceof ParserDecorator) {\n            p = findInDecorated((ParserDecorator) p, clazz);\n        }\n        if (equals(p, clazz)) {\n            return p;\n        }\n        if (p instanceof CompositeParser) {\n            returnParser = findInComposite((CompositeParser) p, clazz, context);\n        }\n    }\n    if (returnParser != null && equals(returnParser, clazz)) {\n        return returnParser;\n    }\n    return null;\n}",
+  "method_comment": "\n     * Tries to find an existing parser within the ParseContext.\n     * It looks inside of CompositeParsers and ParserDecorators.\n     * The use case is when a parser needs to parse an internal stream\n     * that is _part_ of the document, e.g. rtf body inside an msg.\n     * <p/>\n     * Can return <code>null</code> if the context contains no parser or\n     * the correct parser can't be found.\n     *\n     * @param clazz   parser class to search for\n     * @param context\n     * @return\n     ",
+  "method_annotation": ""
+}

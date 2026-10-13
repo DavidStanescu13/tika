@@ -1,0 +1,28 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "parse",
+  "brief": "@Deprecated\r\n    public void parse(TikaInputStream tis, ContentHandlerFactory handlers, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandlerFactory, Metadata, ParseContext)",
+  "sourceCode": "@Deprecated\n    public void parse(TikaInputStream tis, ContentHandlerFactory handlers, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        parse(tis, null, handlers, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandlerFactory",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.sax.ContentHandlerFactory": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Processes the given Stream through one or more parsers,\n * resetting things between parsers as requested by policy.\n * The actual processing is delegated to one or more {@link Parser}s.\n * You will get one ContentHandler fetched for each Parser used.\n * TODO Do we need to return all the ContentHandler instances we created?\n *\n * @deprecated The {@link ContentHandlerFactory} override is still experimental\n * and the method signature is subject to change before Tika 2.0\n */\n@Deprecated\npublic void parse(TikaInputStream tis, ContentHandlerFactory handlers, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    parse(tis, null, handlers, metadata, context);\n}",
+  "method_comment": "\n     * Processes the given Stream through one or more parsers,\n     * resetting things between parsers as requested by policy.\n     * The actual processing is delegated to one or more {@link Parser}s.\n     * You will get one ContentHandler fetched for each Parser used.\n     * TODO Do we need to return all the ContentHandler instances we created?\n     *\n     * @deprecated The {@link ContentHandlerFactory} override is still experimental\n     * and the method signature is subject to change before Tika 2.0\n     ",
+  "method_annotation": "@Deprecated\n"
+}

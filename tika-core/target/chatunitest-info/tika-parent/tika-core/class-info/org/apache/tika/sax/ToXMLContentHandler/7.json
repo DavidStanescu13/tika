@@ -1,0 +1,28 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "write",
+  "brief": "protected void write(String string) throws SAXException{}",
+  "methodSignature": "write(String)",
+  "sourceCode": "protected void write(String string) throws SAXException {\n        super.characters(string.toCharArray(), 0, string.length());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toCharArray()",
+      "length()"
+    ],
+    "org.apache.tika.sax.ToTextContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given string of character as-is.\n *\n * @param string string of character to be written\n * @throws SAXException if the character string could not be written\n */\nprotected void write(String string) throws SAXException {\n    super.characters(string.toCharArray(), 0, string.length());\n}",
+  "method_comment": "\n     * Writes the given string of character as-is.\n     *\n     * @param string string of character to be written\n     * @throws SAXException if the character string could not be written\n     ",
+  "method_annotation": ""
+}

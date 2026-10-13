@@ -1,0 +1,22 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "setType",
+  "brief": "public void setType(HANDLER_TYPE type){}",
+  "methodSignature": "setType(HANDLER_TYPE)",
+  "sourceCode": "public void setType(HANDLER_TYPE type) {\n        this.type = type;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "HANDLER_TYPE"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.BasicContentHandlerFactory.HANDLER_TYPE": []
+  },
+  "full_method_info": "/**\n * Sets the handler type.\n * @param type the handler type\n */\npublic void setType(HANDLER_TYPE type) {\n    this.type = type;\n}",
+  "method_comment": "\n     * Sets the handler type.\n     * @param type the handler type\n     ",
+  "method_annotation": ""
+}

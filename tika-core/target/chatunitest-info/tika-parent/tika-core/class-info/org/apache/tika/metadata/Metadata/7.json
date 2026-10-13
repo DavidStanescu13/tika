@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "get",
+  "brief": "public String get(Property property){}",
+  "methodSignature": "get(Property)",
+  "sourceCode": "public String get(Property property) {\n        return get(property.getName());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "get(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the value (if any) of the identified metadata property. If many values are associated\n * to the specified property, then the first one is returned.\n *\n * @param property property definition\n * @return property value, or <code>null</code> if the property is not set\n * @since Apache Tika 0.7\n */\npublic String get(Property property) {\n    return get(property.getName());\n}",
+  "method_comment": "\n     * Returns the value (if any) of the identified metadata property. If many values are associated\n     * to the specified property, then the first one is returned.\n     *\n     * @param property property definition\n     * @return property value, or <code>null</code> if the property is not set\n     * @since Apache Tika 0.7\n     ",
+  "method_annotation": ""
+}

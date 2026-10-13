@@ -1,0 +1,37 @@
+{
+  "className": "MagicDetector",
+  "methodName": "decodeValue",
+  "brief": "private static byte[] decodeValue(String value, String type){}",
+  "methodSignature": "decodeValue(String, String)",
+  "sourceCode": "private static byte[] decodeValue(String value, String type) {\n        // Preliminary check\n        if ((value == null) || (type == null)) {\n            return null;\n        }\n\n        byte[] decoded = null;\n        String tmpVal = null;\n        int radix = 8;\n\n        // hex\n        if (value.startsWith(\"0x\")) {\n            tmpVal = value.substring(2);\n            radix = 16;\n        } else {\n            tmpVal = value;\n            radix = 8;\n        }\n\n        switch (type) {\n            case \"string\":\n            case \"regex\":\n            case \"unicodeLE\":\n            case \"unicodeBE\":\n                decoded = decodeString(value, type);\n                break;\n            case \"stringignorecase\":\n                decoded = decodeString(value.toLowerCase(Locale.ROOT), type);\n                break;\n            case \"byte\":\n                decoded = tmpVal.getBytes(UTF_8);\n                break;\n            case \"host16\":\n            case \"little16\": {\n                int i = Integer.parseInt(tmpVal, radix);\n                decoded = new byte[]{(byte) (i & 0x00FF), (byte) (i >> 8)};\n                break;\n            }\n            case \"big16\": {\n                int i = Integer.parseInt(tmpVal, radix);\n                decoded = new byte[]{(byte) (i >> 8), (byte) (i & 0x00FF)};\n                break;\n            }\n            case \"host32\":\n            case \"little32\": {\n                long i = Long.parseLong(tmpVal, radix);\n                decoded = new byte[]{(byte) ((i & 0x000000FF)), (byte) ((i & 0x0000FF00) >> 8),\n                        (byte) ((i & 0x00FF0000) >> 16), (byte) ((i & 0xFF000000) >> 24)};\n                break;\n            }\n            case \"big32\": {\n                long i = Long.parseLong(tmpVal, radix);\n                decoded = new byte[]{(byte) ((i & 0xFF000000) >> 24), (byte) ((i & 0x00FF0000) >> 16),\n                        (byte) ((i & 0x0000FF00) >> 8), (byte) ((i & 0x000000FF))};\n                break;\n            }\n        }\n        return decoded;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "toLowerCase(Locale)",
+      "getBytes(Charset)"
+    ],
+    "org.apache.tika.detect.MagicDetector": [
+      "decodeString(String, String)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String, int)"
+    ],
+    "java.lang.Long": [
+      "parseLong(String, int)"
+    ]
+  },
+  "full_method_info": "private static byte[] decodeValue(String value, String type) {\n    // Preliminary check\n    if ((value == null) || (type == null)) {\n        return null;\n    }\n    byte[] decoded = null;\n    String tmpVal = null;\n    int radix = 8;\n    // hex\n    if (value.startsWith(\"0x\")) {\n        tmpVal = value.substring(2);\n        radix = 16;\n    } else {\n        tmpVal = value;\n        radix = 8;\n    }\n    switch(type) {\n        case \"string\":\n        case \"regex\":\n        case \"unicodeLE\":\n        case \"unicodeBE\":\n            decoded = decodeString(value, type);\n            break;\n        case \"stringignorecase\":\n            decoded = decodeString(value.toLowerCase(Locale.ROOT), type);\n            break;\n        case \"byte\":\n            decoded = tmpVal.getBytes(UTF_8);\n            break;\n        case \"host16\":\n        case \"little16\":\n            {\n                int i = Integer.parseInt(tmpVal, radix);\n                decoded = new byte[] { (byte) (i & 0x00FF), (byte) (i >> 8) };\n                break;\n            }\n        case \"big16\":\n            {\n                int i = Integer.parseInt(tmpVal, radix);\n                decoded = new byte[] { (byte) (i >> 8), (byte) (i & 0x00FF) };\n                break;\n            }\n        case \"host32\":\n        case \"little32\":\n            {\n                long i = Long.parseLong(tmpVal, radix);\n                decoded = new byte[] { (byte) ((i & 0x000000FF)), (byte) ((i & 0x0000FF00) >> 8), (byte) ((i & 0x00FF0000) >> 16), (byte) ((i & 0xFF000000) >> 24) };\n                break;\n            }\n        case \"big32\":\n            {\n                long i = Long.parseLong(tmpVal, radix);\n                decoded = new byte[] { (byte) ((i & 0xFF000000) >> 24), (byte) ((i & 0x00FF0000) >> 16), (byte) ((i & 0x0000FF00) >> 8), (byte) ((i & 0x000000FF)) };\n                break;\n            }\n    }\n    return decoded;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

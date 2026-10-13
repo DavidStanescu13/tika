@@ -1,0 +1,24 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "throwIfCauseOf",
+  "brief": "public void throwIfCauseOf(SAXException e) throws TikaException{}",
+  "methodSignature": "throwIfCauseOf(SAXException)",
+  "sourceCode": "public void throwIfCauseOf(SAXException e) throws TikaException {\n        if (e instanceof SecureSAXException && ((SecureSAXException) e).isCausedBy(this)) {\n            throw new TikaException(\"Zip bomb detected!\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXException"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.SecureContentHandler.SecureSAXException": [
+      "isCausedBy(SecureContentHandler)"
+    ]
+  },
+  "full_method_info": "/**\n * Converts the given {@link SAXException} to a corresponding\n * {@link TikaException} if it's caused by this instance detecting\n * a zip bomb.\n *\n * @param e SAX exception\n * @throws TikaException zip bomb exception\n */\npublic void throwIfCauseOf(SAXException e) throws TikaException {\n    if (e instanceof SecureSAXException && ((SecureSAXException) e).isCausedBy(this)) {\n        throw new TikaException(\"Zip bomb detected!\", e);\n    }\n}",
+  "method_comment": "\n     * Converts the given {@link SAXException} to a corresponding\n     * {@link TikaException} if it's caused by this instance detecting\n     * a zip bomb.\n     *\n     * @param e SAX exception\n     * @throws TikaException zip bomb exception\n     ",
+  "method_annotation": ""
+}

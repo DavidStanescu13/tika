@@ -1,0 +1,33 @@
+{
+  "className": "StreamGobbler",
+  "methodName": "readLineBounded",
+  "brief": "private String readLineBounded(Reader r) throws IOException{}",
+  "methodSignature": "readLineBounded(Reader)",
+  "sourceCode": "private String readLineBounded(Reader r) throws IOException {\n        StringBuilder sb = new StringBuilder();\n        boolean discarding = false;\n        int ch;\n        while ((ch = r.read()) != -1) {\n            if (ch == '\\n') {\n                break;\n            }\n            if (ch == '\\r') {\n                // peek for \\r\\n\n                r.mark(1);\n                int next = r.read();\n                if (next != '\\n' && next != -1) {\n                    r.reset();\n                }\n                break;\n            }\n            if (!discarding) {\n                if (sb.length() < MAX_LINE_LENGTH) {\n                    sb.append((char) ch);\n                } else {\n                    discarding = true;\n                    isTruncated = true;\n                }\n            }\n            // When discarding, we still consume chars until newline/EOF\n            // to keep the stream position correct.\n        }\n        if (ch == -1 && sb.length() == 0) {\n            return null;\n        }\n        return sb.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Reader"
+  ],
+  "dependentMethods": {
+    "java.io.Reader": [
+      "read()",
+      "mark(int)",
+      "reset()"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Reads a line from the reader, capping at {@link #MAX_LINE_LENGTH} chars.\n * Any remaining chars on the line are discarded. Returns null at EOF.\n */\nprivate String readLineBounded(Reader r) throws IOException {\n    StringBuilder sb = new StringBuilder();\n    boolean discarding = false;\n    int ch;\n    while ((ch = r.read()) != -1) {\n        if (ch == '\\n') {\n            break;\n        }\n        if (ch == '\\r') {\n            // peek for \\r\\n\n            r.mark(1);\n            int next = r.read();\n            if (next != '\\n' && next != -1) {\n                r.reset();\n            }\n            break;\n        }\n        if (!discarding) {\n            if (sb.length() < MAX_LINE_LENGTH) {\n                sb.append((char) ch);\n            } else {\n                discarding = true;\n                isTruncated = true;\n            }\n        }\n        // When discarding, we still consume chars until newline/EOF\n        // to keep the stream position correct.\n    }\n    if (ch == -1 && sb.length() == 0) {\n        return null;\n    }\n    return sb.toString();\n}",
+  "method_comment": "\n     * Reads a line from the reader, capping at {@link #MAX_LINE_LENGTH} chars.\n     * Any remaining chars on the line are discarded. Returns null at EOF.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "RootXML",
+  "methodName": "matches",
+  "brief": "boolean matches(String namespaceURI, String localName){}",
+  "methodSignature": "matches(String, String)",
+  "sourceCode": "boolean matches(String namespaceURI, String localName) {\n            //Compare namespaces\n            if (!isEmpty(this.namespaceURI)) {\n                if (!this.namespaceURI.equals(namespaceURI)) {\n                    return false;\n                }\n            } else {\n                // else if it was empty then check to see if the provided namespaceURI\n                // is empty. If it is not, then these two aren't equal and return false\n                if (!isEmpty(namespaceURI)) {\n                    return false;\n                }\n            }\n\n            //Compare root element's local name\n            if (!isEmpty(this.localName)) {\n                return this.localName.equals(localName);\n            } else {\n                // else if it was empty then check to see if the provided localName\n                // is empty. If it is not, then these two aren't equal and return false\n                return isEmpty(localName);\n            }\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.mime.MimeType.RootXML": [
+      "isEmpty(String)"
+    ]
+  },
+  "full_method_info": "boolean matches(String namespaceURI, String localName) {\n    // Compare namespaces\n    if (!isEmpty(this.namespaceURI)) {\n        if (!this.namespaceURI.equals(namespaceURI)) {\n            return false;\n        }\n    } else {\n        // else if it was empty then check to see if the provided namespaceURI\n        // is empty. If it is not, then these two aren't equal and return false\n        if (!isEmpty(namespaceURI)) {\n            return false;\n        }\n    }\n    // Compare root element's local name\n    if (!isEmpty(this.localName)) {\n        return this.localName.equals(localName);\n    } else {\n        // else if it was empty then check to see if the provided localName\n        // is empty. If it is not, then these two aren't equal and return false\n        return isEmpty(localName);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

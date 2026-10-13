@@ -1,0 +1,25 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "removeService",
+  "brief": "static Object removeService(Object reference){}",
+  "methodSignature": "removeService(Object)",
+  "sourceCode": "static Object removeService(Object reference) {\n        synchronized (SERVICES) {\n            return SERVICES.remove(reference);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "remove(Object)"
+    ]
+  },
+  "full_method_info": "static Object removeService(Object reference) {\n    synchronized (SERVICES) {\n        return SERVICES.remove(reference);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

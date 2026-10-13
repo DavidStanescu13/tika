@@ -1,0 +1,41 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "readByteFrequencies",
+  "brief": "protected float[] readByteFrequencies(final InputStream input) throws IOException{}",
+  "methodSignature": "readByteFrequencies(InputStream)",
+  "sourceCode": "protected float[] readByteFrequencies(final InputStream input) throws IOException {\n        ReadableByteChannel inputChannel;\n        // TODO: any reason to avoid closing of input & inputChannel?\n        try {\n            inputChannel = Channels.newChannel(input);\n            // long inSize = inputChannel.size();\n            float[] histogram = new float[257];\n            histogram[0] = 1;\n\n            // create buffer with capacity of maxBufSize bytes\n            ByteBuffer buf = ByteBuffer.allocate(1024 * 5);\n            int bytesRead = inputChannel.read(buf); // read into buffer.\n\n            float max = -1;\n            while (bytesRead != -1) {\n\n                ((Buffer) buf).flip(); // make buffer ready for read\n\n                while (buf.hasRemaining()) {\n                    byte byt = buf.get();\n                    int idx = byt;\n                    idx++;\n                    if (byt < 0) {\n                        idx = 256 + idx;\n                        histogram[idx]++;\n                    } else {\n                        histogram[idx]++;\n                    }\n                    max = Math.max(max, histogram[idx]);\n                }\n\n                buf.clear(); // make buffer ready for writing\n                bytesRead = inputChannel.read(buf);\n            }\n\n            int i;\n            for (i = 1; i < histogram.length; i++) {\n                histogram[i] /= max;\n                histogram[i] = (float) Math.sqrt(histogram[i]);\n            }\n\n            return histogram;\n        } finally {\n            // inputChannel.close();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "java.nio.channels.Channels": [
+      "newChannel(InputStream)"
+    ],
+    "java.nio.ByteBuffer": [
+      "allocate(int)",
+      "get()",
+      "clear()"
+    ],
+    "java.nio.channels.ReadableByteChannel": [
+      "read(ByteBuffer)"
+    ],
+    "java.nio.Buffer": [
+      "hasRemaining()",
+      "flip()"
+    ],
+    "java.lang.Math": [
+      "max(float, float)",
+      "sqrt(double)"
+    ]
+  },
+  "full_method_info": "/**\n * Read the {@code inputstream} and build a byte frequency histogram\n *\n * @param input stream to read from\n * @return byte frequencies array\n * @throws IOException\n */\nprotected float[] readByteFrequencies(final InputStream input) throws IOException {\n    ReadableByteChannel inputChannel;\n    // TODO: any reason to avoid closing of input & inputChannel?\n    try {\n        inputChannel = Channels.newChannel(input);\n        // long inSize = inputChannel.size();\n        float[] histogram = new float[257];\n        histogram[0] = 1;\n        // create buffer with capacity of maxBufSize bytes\n        ByteBuffer buf = ByteBuffer.allocate(1024 * 5);\n        // read into buffer.\n        int bytesRead = inputChannel.read(buf);\n        float max = -1;\n        while (bytesRead != -1) {\n            // make buffer ready for read\n            ((Buffer) buf).flip();\n            while (buf.hasRemaining()) {\n                byte byt = buf.get();\n                int idx = byt;\n                idx++;\n                if (byt < 0) {\n                    idx = 256 + idx;\n                    histogram[idx]++;\n                } else {\n                    histogram[idx]++;\n                }\n                max = Math.max(max, histogram[idx]);\n            }\n            // make buffer ready for writing\n            buf.clear();\n            bytesRead = inputChannel.read(buf);\n        }\n        int i;\n        for (i = 1; i < histogram.length; i++) {\n            histogram[i] /= max;\n            histogram[i] = (float) Math.sqrt(histogram[i]);\n        }\n        return histogram;\n    } finally {\n        // inputChannel.close();\n    }\n}",
+  "method_comment": "\n     * Read the {@code inputstream} and build a byte frequency histogram\n     *\n     * @param input stream to read from\n     * @return byte frequencies array\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

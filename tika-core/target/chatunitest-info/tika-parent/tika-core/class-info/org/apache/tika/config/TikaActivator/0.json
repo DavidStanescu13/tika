@@ -1,0 +1,25 @@
+{
+  "className": "TikaActivator",
+  "methodName": "start",
+  "brief": "public void start(final BundleContext context) throws Exception{}",
+  "methodSignature": "start(BundleContext)",
+  "sourceCode": "public void start(final BundleContext context) throws Exception {\n        bundleContext = context;\n\n        trackService(context, Detector.class);\n        trackService(context, Parser.class);\n        trackService(context, EncodingDetector.class);\n        trackService(context, LanguageDetector.class);\n        trackService(context, MetadataFilter.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "BundleContext"
+  ],
+  "dependentMethods": {
+    "org.osgi.framework.BundleContext": [],
+    "org.apache.tika.config.TikaActivator": [
+      "trackService(BundleContext, Class<?>)"
+    ]
+  },
+  "full_method_info": "public void start(final BundleContext context) throws Exception {\n    bundleContext = context;\n    trackService(context, Detector.class);\n    trackService(context, Parser.class);\n    trackService(context, EncodingDetector.class);\n    trackService(context, LanguageDetector.class);\n    trackService(context, MetadataFilter.class);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

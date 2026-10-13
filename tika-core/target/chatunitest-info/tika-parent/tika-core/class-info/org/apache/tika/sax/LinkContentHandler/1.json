@@ -1,0 +1,34 @@
+{
+  "className": "LinkContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String local, String name, Attributes attributes){}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String local, String name, Attributes attributes) {\n        if (XHTML.equals(uri)) {\n            if (\"a\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"a\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"link\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"link\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"script\".equals(local)) {\n                if (attributes.getValue(\"\", \"src\") != null) {\n                    LinkBuilder builder = new LinkBuilder(\"script\");\n                    builder.setURI(attributes.getValue(\"\", \"src\"));\n                    builderStack.addFirst(builder);\n                }\n            } else if (\"iframe\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"iframe\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builderStack.addFirst(builder);\n            } else if (\"img\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"img\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n\n                String alt = attributes.getValue(\"\", \"alt\");\n                if (alt != null) {\n                    char[] ch = alt.toCharArray();\n                    characters(ch, 0, ch.length);\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "toCharArray()"
+    ],
+    "java.util.LinkedList": [
+      "addFirst(E)"
+    ],
+    "org.apache.tika.sax.LinkContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "// -------------------------------------------------------< ContentHandler>\n@Override\npublic void startElement(String uri, String local, String name, Attributes attributes) {\n    if (XHTML.equals(uri)) {\n        if (\"a\".equals(local)) {\n            LinkBuilder builder = new LinkBuilder(\"a\");\n            builder.setURI(attributes.getValue(\"\", \"href\"));\n            builder.setTitle(attributes.getValue(\"\", \"title\"));\n            builder.setRel(attributes.getValue(\"\", \"rel\"));\n            builderStack.addFirst(builder);\n        } else if (\"link\".equals(local)) {\n            LinkBuilder builder = new LinkBuilder(\"link\");\n            builder.setURI(attributes.getValue(\"\", \"href\"));\n            builder.setRel(attributes.getValue(\"\", \"rel\"));\n            builderStack.addFirst(builder);\n        } else if (\"script\".equals(local)) {\n            if (attributes.getValue(\"\", \"src\") != null) {\n                LinkBuilder builder = new LinkBuilder(\"script\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builderStack.addFirst(builder);\n            }\n        } else if (\"iframe\".equals(local)) {\n            LinkBuilder builder = new LinkBuilder(\"iframe\");\n            builder.setURI(attributes.getValue(\"\", \"src\"));\n            builderStack.addFirst(builder);\n        } else if (\"img\".equals(local)) {\n            LinkBuilder builder = new LinkBuilder(\"img\");\n            builder.setURI(attributes.getValue(\"\", \"src\"));\n            builder.setTitle(attributes.getValue(\"\", \"title\"));\n            builder.setRel(attributes.getValue(\"\", \"rel\"));\n            builderStack.addFirst(builder);\n            String alt = attributes.getValue(\"\", \"alt\");\n            if (alt != null) {\n                char[] ch = alt.toCharArray();\n                characters(ch, 0, ch.length);\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

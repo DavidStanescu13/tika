@@ -1,0 +1,22 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setOutputFileHandler",
+  "brief": "public void setOutputFileHandler(Parser outputFileHandler){}",
+  "methodSignature": "setOutputFileHandler(Parser)",
+  "sourceCode": "public void setOutputFileHandler(Parser outputFileHandler) {\n        this.outputFileHandler = outputFileHandler;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "full_method_info": "public void setOutputFileHandler(Parser outputFileHandler) {\n    this.outputFileHandler = outputFileHandler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

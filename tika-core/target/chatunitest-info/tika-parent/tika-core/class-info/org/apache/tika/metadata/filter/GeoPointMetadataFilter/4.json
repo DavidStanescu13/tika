@@ -1,0 +1,22 @@
+{
+  "className": "GeoPointMetadataFilter",
+  "methodName": "GeoPointMetadataFilter",
+  "brief": "public GeoPointMetadataFilter(Config config){}",
+  "methodSignature": "GeoPointMetadataFilter(Config)",
+  "sourceCode": "public GeoPointMetadataFilter(Config config) {\n        this.geoPointFieldName = config.geoPointFieldName;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Config"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.filter.GeoPointMetadataFilter.Config": []
+  },
+  "full_method_info": "public GeoPointMetadataFilter(Config config) {\n    this.geoPointFieldName = config.geoPointFieldName;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

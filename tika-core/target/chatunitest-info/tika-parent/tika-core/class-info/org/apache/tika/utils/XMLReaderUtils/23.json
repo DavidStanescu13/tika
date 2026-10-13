@@ -1,0 +1,49 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "releaseDOMBuilder",
+  "brief": "private static void releaseDOMBuilder(PoolDOMBuilder builder){}",
+  "methodSignature": "releaseDOMBuilder(PoolDOMBuilder)",
+  "sourceCode": "private static void releaseDOMBuilder(PoolDOMBuilder builder) {\n        if (builder == null) {\n            return;\n        }\n        if (builder.getPoolGeneration() != POOL_GENERATION.get()) {\n            return;\n        }\n        try {\n            builder.reset();\n        } catch (UnsupportedOperationException e) {\n            //ignore\n        }\n        DOM_POOL_LOCK\n                .readLock().lock();\n        builder.incrementUses();\n        if (builder.numUses >= MAX_NUM_REUSES) {\n            try {\n                builder = new PoolDOMBuilder(builder.getPoolGeneration(), getDocumentBuilderFactory().newDocumentBuilder());\n            } catch (ParserConfigurationException e) {\n                LOG.warn(\"Exception trying to configure a new dom builder?!\", e);\n                return;\n            }\n        }\n        try {\n            //if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n            // this parser will not be added and will then be gc'd\n            boolean success = DOM_BUILDERS.offer(builder);\n            if (!success) {\n                LOG.warn(\n                        \"DocumentBuilder not taken back into pool.  If you haven't resized the \" +\n                                \"pool, this could be a sign that there are more calls to \" +\n                                \"'acquire' than to 'release'\");\n            }\n        } finally {\n            DOM_POOL_LOCK\n                    .readLock().unlock();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PoolDOMBuilder"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.utils.XMLReaderUtils.PoolDOMBuilder": [
+      "getPoolGeneration()",
+      "reset()",
+      "incrementUses()"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "get()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "javax.xml.parsers.DocumentBuilderFactory": [
+      "newDocumentBuilder()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilderFactory()"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Throwable)",
+      "warn(String)"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "offer(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Return parser to the pool for reuse.\n *\n * @param builder builder to return\n */\nprivate static void releaseDOMBuilder(PoolDOMBuilder builder) {\n    if (builder == null) {\n        return;\n    }\n    if (builder.getPoolGeneration() != POOL_GENERATION.get()) {\n        return;\n    }\n    try {\n        builder.reset();\n    } catch (UnsupportedOperationException e) {\n        // ignore\n    }\n    DOM_POOL_LOCK.readLock().lock();\n    builder.incrementUses();\n    if (builder.numUses >= MAX_NUM_REUSES) {\n        try {\n            builder = new PoolDOMBuilder(builder.getPoolGeneration(), getDocumentBuilderFactory().newDocumentBuilder());\n        } catch (ParserConfigurationException e) {\n            LOG.warn(\"Exception trying to configure a new dom builder?!\", e);\n            return;\n        }\n    }\n    try {\n        // if there are extra parsers (e.g. after a reset of the pool to a smaller size),\n        // this parser will not be added and will then be gc'd\n        boolean success = DOM_BUILDERS.offer(builder);\n        if (!success) {\n            LOG.warn(\"DocumentBuilder not taken back into pool.  If you haven't resized the \" + \"pool, this could be a sign that there are more calls to \" + \"'acquire' than to 'release'\");\n        }\n    } finally {\n        DOM_POOL_LOCK.readLock().unlock();\n    }\n}",
+  "method_comment": "\n     * Return parser to the pool for reuse.\n     *\n     * @param builder builder to return\n     ",
+  "method_annotation": ""
+}

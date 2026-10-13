@@ -1,0 +1,25 @@
+{
+  "className": "TikaProgressTracker",
+  "methodName": "update",
+  "brief": "public void update(){}",
+  "methodSignature": "update()",
+  "sourceCode": "public void update() {\n        lastProgressMillis.set(System.currentTimeMillis());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.concurrent.atomic.AtomicLong": [
+      "set(long)"
+    ],
+    "java.lang.System": [
+      "currentTimeMillis()"
+    ]
+  },
+  "full_method_info": "/**\n * Signals progress directly on this tracker instance.\n */\npublic void update() {\n    lastProgressMillis.set(System.currentTimeMillis());\n}",
+  "method_comment": "\n     * Signals progress directly on this tracker instance.\n     ",
+  "method_annotation": ""
+}

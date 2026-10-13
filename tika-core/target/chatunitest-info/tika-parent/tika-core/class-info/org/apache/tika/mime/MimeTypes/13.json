@@ -1,0 +1,18 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getMinLength",
+  "brief": "public int getMinLength(){}",
+  "methodSignature": "getMinLength()",
+  "sourceCode": "public int getMinLength() {\n        // This needs to be reasonably large to be able to correctly detect\n        // things like XML root elements after initial comment and DTDs\n        return 64 * 1024;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Return the minimum length of data to provide to analyzing methods based\n * on the document's content in order to check all the known MimeTypes.\n *\n * @return the minimum length of data to provide.\n * @see #getMimeType(byte[])\n */\npublic int getMinLength() {\n    // This needs to be reasonably large to be able to correctly detect\n    // things like XML root elements after initial comment and DTDs\n    return 64 * 1024;\n}",
+  "method_comment": "\n     * Return the minimum length of data to provide to analyzing methods based\n     * on the document's content in order to check all the known MimeTypes.\n     *\n     * @return the minimum length of data to provide.\n     * @see #getMimeType(byte[])\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "TikaActivator",
+  "methodName": "addingService",
+  "brief": "public Object addingService(ServiceReference reference){}",
+  "methodSignature": "addingService(ServiceReference)",
+  "sourceCode": "public Object addingService(ServiceReference reference) {\n        int rank = 0;\n        Object property = reference.getProperty(Constants.SERVICE_RANKING);\n        if (property instanceof Integer) {\n            rank = (Integer) property;\n        }\n\n        Object service = bundleContext.getService(reference);\n        ServiceLoader.addService(reference, service, rank);\n        return service;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceReference"
+  ],
+  "dependentMethods": {
+    "org.osgi.framework.ServiceReference": [
+      "getProperty(String)"
+    ],
+    "org.osgi.framework.BundleContext": [
+      "getService(ServiceReference<S>)"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "addService(Object, Object, int)"
+    ]
+  },
+  "full_method_info": "public Object addingService(ServiceReference reference) {\n    int rank = 0;\n    Object property = reference.getProperty(Constants.SERVICE_RANKING);\n    if (property instanceof Integer) {\n        rank = (Integer) property;\n    }\n    Object service = bundleContext.getService(reference);\n    ServiceLoader.addService(reference, service, rank);\n    return service;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

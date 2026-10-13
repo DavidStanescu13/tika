@@ -1,0 +1,90 @@
+{
+  "fullClassName": "org.apache.tika.io.FileSource",
+  "className": "FileSource",
+  "index": 102,
+  "modifier": "[]",
+  "extend": "[InputStream]",
+  "implement": "[TikaInputSource]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "class FileSource",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.BufferedInputStream;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import org.apache.commons.io.IOUtils;"
+  ],
+  "fields": [
+    "private final Path path;",
+    "private final long length;",
+    "private InputStream currentStream;",
+    "private long position;",
+    "private long markPosition = -1;"
+  ],
+  "superClasses": [
+    "InputStream"
+  ],
+  "implementedTypes": [
+    "TikaInputSource"
+  ],
+  "methodSigs": {
+    "read()": "0",
+    "read(byte[], int, int)": "1",
+    "skip(long)": "2",
+    "available()": "3",
+    "seekTo(long)": "4",
+    "hasPath()": "5",
+    "getPath(String)": "6",
+    "getLength()": "7",
+    "close()": "8",
+    "enableRewind()": "9",
+    "mark(int)": "10",
+    "reset()": "11",
+    "markSupported()": "12",
+    "FileSource(Path)": "13"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public int read() throws IOException{}",
+    "@Override\r\n    public int read(byte[] b, int off, int len) throws IOException{}",
+    "@Override\r\n    public long skip(long n) throws IOException{}",
+    "@Override\r\n    public int available() throws IOException{}",
+    "@Override\r\n    public void seekTo(long newPosition) throws IOException{}",
+    "@Override\r\n    public boolean hasPath(){}",
+    "@Override\r\n    public Path getPath(String suffix) throws IOException{}",
+    "@Override\r\n    public long getLength(){}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "@Override\r\n    public void enableRewind(){}",
+    "@Override\r\n    public synchronized void mark(int readlimit){}",
+    "@Override\r\n    public synchronized void reset() throws IOException{}",
+    "@Override\r\n    public boolean markSupported(){}",
+    "FileSource(Path path) throws IOException{}"
+  ],
+  "constructorSigs": [
+    "FileSource(Path)"
+  ],
+  "constructorBrief": [
+    "FileSource(Path path) throws IOException{}"
+  ],
+  "getterSetterSigs": [
+    "getLength()"
+  ],
+  "getterSetterBrief": [
+    "@Override\r\n    public long getLength(){}"
+  ],
+  "constructorDeps": {
+    "java.nio.file.Path": [],
+    "java.nio.file.Files": [
+      "size(Path)",
+      "newInputStream(Path, OpenOption[])"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.BufferedInputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport org.apache.commons.io.IOUtils;\n\n/**\n * Input source backed by a file.\n * <p>\n * Data is already on disk. No caching is needed.\n * {@link #getPath} returns the existing path immediately.\n * Mark/reset works by reopening the file and skipping to the marked position.\n */\nclass FileSource extends InputStream implements TikaInputSource {\n\n    private final Path path;\n\n    private final long length;\n\n    private InputStream currentStream;\n\n    private long position;\n\n    FileSource(Path path) throws IOException {\n        this.path = path;\n        this.length = Files.size(path);\n        this.currentStream = new BufferedInputStream(Files.newInputStream(path));\n        this.position = 0;\n    }\n\n    @Override\n    public int read() throws IOException {\n        int b = currentStream.read();\n        if (b != -1) {\n            position++;\n        }\n        return b;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        int n = currentStream.read(b, off, len);\n        if (n > 0) {\n            position += n;\n        }\n        return n;\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        long skipped = IOUtils.skip(currentStream, n);\n        position += skipped;\n        return skipped;\n    }\n\n    @Override\n    public int available() throws IOException {\n        return currentStream.available();\n    }\n\n    @Override\n    public void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0) {\n            throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n        }\n        if (newPosition > length) {\n            throw new IOException(\"Cannot seek past end of file. Position: \" + newPosition + \", length: \" + length);\n        }\n        // Close current stream and reopen at the beginning\n        currentStream.close();\n        currentStream = new BufferedInputStream(Files.newInputStream(path));\n        // Skip to the new position\n        if (newPosition > 0) {\n            IOUtils.skipFully(currentStream, newPosition);\n        }\n        this.position = newPosition;\n    }\n\n    @Override\n    public boolean hasPath() {\n        return true;\n    }\n\n    @Override\n    public Path getPath(String suffix) throws IOException {\n        // Already file-backed, just return the path\n        return path;\n    }\n\n    @Override\n    public long getLength() {\n        return length;\n    }\n\n    @Override\n    public void close() throws IOException {\n        if (currentStream != null) {\n            currentStream.close();\n        }\n    }\n\n    @Override\n    public void enableRewind() {\n        // No-op: file is always rewindable\n    }\n\n    // Mark/reset support using seekTo\n    private long markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        seekTo(markPosition);\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Input source backed by a file.\n * <p>\n * Data is already on disk. No caching is needed.\n * {@link #getPath} returns the existing path immediately.\n * Mark/reset works by reopening the file and skipping to the marked position.\n */\nclass FileSource extends InputStream implements TikaInputSource {\n\n    private final Path path;\n\n    private final long length;\n\n    private InputStream currentStream;\n\n    private long position;\n\n    FileSource(Path path) throws IOException {\n        this.path = path;\n        this.length = Files.size(path);\n        this.currentStream = new BufferedInputStream(Files.newInputStream(path));\n        this.position = 0;\n    }\n\n    @Override\n    public int read() throws IOException {\n        int b = currentStream.read();\n        if (b != -1) {\n            position++;\n        }\n        return b;\n    }\n\n    @Override\n    public int read(byte[] b, int off, int len) throws IOException {\n        int n = currentStream.read(b, off, len);\n        if (n > 0) {\n            position += n;\n        }\n        return n;\n    }\n\n    @Override\n    public long skip(long n) throws IOException {\n        long skipped = IOUtils.skip(currentStream, n);\n        position += skipped;\n        return skipped;\n    }\n\n    @Override\n    public int available() throws IOException {\n        return currentStream.available();\n    }\n\n    @Override\n    public void seekTo(long newPosition) throws IOException {\n        if (newPosition < 0) {\n            throw new IOException(\"Cannot seek to negative position: \" + newPosition);\n        }\n        if (newPosition > length) {\n            throw new IOException(\"Cannot seek past end of file. Position: \" + newPosition + \", length: \" + length);\n        }\n        // Close current stream and reopen at the beginning\n        currentStream.close();\n        currentStream = new BufferedInputStream(Files.newInputStream(path));\n        // Skip to the new position\n        if (newPosition > 0) {\n            IOUtils.skipFully(currentStream, newPosition);\n        }\n        this.position = newPosition;\n    }\n\n    @Override\n    public boolean hasPath() {\n        return true;\n    }\n\n    @Override\n    public Path getPath(String suffix) throws IOException {\n        // Already file-backed, just return the path\n        return path;\n    }\n\n    @Override\n    public long getLength() {\n        return length;\n    }\n\n    @Override\n    public void close() throws IOException {\n        if (currentStream != null) {\n            currentStream.close();\n        }\n    }\n\n    @Override\n    public void enableRewind() {\n        // No-op: file is always rewindable\n    }\n\n    // Mark/reset support using seekTo\n    private long markPosition = -1;\n\n    @Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }\n\n    @Override\n    public synchronized void reset() throws IOException {\n        if (markPosition < 0) {\n            throw new IOException(\"Mark not set\");\n        }\n        seekTo(markPosition);\n    }\n\n    @Override\n    public boolean markSupported() {\n        return true;\n    }\n}",
+  "subClasses": []
+}

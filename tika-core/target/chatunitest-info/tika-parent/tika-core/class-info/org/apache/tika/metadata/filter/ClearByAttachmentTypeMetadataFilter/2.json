@@ -1,0 +1,18 @@
+{
+  "className": "ClearByAttachmentTypeMetadataFilter",
+  "methodName": "getTypes",
+  "brief": "public List<String> getTypes(){}",
+  "methodSignature": "getTypes()",
+  "sourceCode": "public List<String> getTypes() {\n        return new ArrayList<>(types);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public List<String> getTypes() {\n    return new ArrayList<>(types);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

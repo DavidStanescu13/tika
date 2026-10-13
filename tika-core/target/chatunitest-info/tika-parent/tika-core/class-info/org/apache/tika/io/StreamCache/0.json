@@ -1,0 +1,28 @@
+{
+  "className": "StreamCache",
+  "methodName": "append",
+  "brief": "void append(int b) throws IOException{}",
+  "methodSignature": "append(int)",
+  "sourceCode": "void append(int b) throws IOException {\n        if (closed) {\n            throw new IOException(\"StreamCache is closed\");\n        }\n\n        if (memoryBuffer != null) {\n            // Still in memory mode\n            if (memorySize >= memoryThreshold) {\n                spillToFile();\n                spillOutputStream.write(b);\n            } else {\n                ensureMemoryCapacity(memorySize + 1);\n                memoryBuffer[memorySize++] = (byte) b;\n            }\n        } else {\n            // Already spilled to file\n            spillOutputStream.write(b);\n        }\n        totalSize++;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "spillToFile()",
+      "ensureMemoryCapacity(int)"
+    ],
+    "java.io.OutputStream": [
+      "write(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Append a single byte to the cache.\n */\nvoid append(int b) throws IOException {\n    if (closed) {\n        throw new IOException(\"StreamCache is closed\");\n    }\n    if (memoryBuffer != null) {\n        // Still in memory mode\n        if (memorySize >= memoryThreshold) {\n            spillToFile();\n            spillOutputStream.write(b);\n        } else {\n            ensureMemoryCapacity(memorySize + 1);\n            memoryBuffer[memorySize++] = (byte) b;\n        }\n    } else {\n        // Already spilled to file\n        spillOutputStream.write(b);\n    }\n    totalSize++;\n}",
+  "method_comment": "\n     * Append a single byte to the cache.\n     ",
+  "method_annotation": ""
+}

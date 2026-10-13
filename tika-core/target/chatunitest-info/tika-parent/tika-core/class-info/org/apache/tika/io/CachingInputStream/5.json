@@ -1,0 +1,22 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "getCachedSize",
+  "brief": "long getCachedSize(){}",
+  "methodSignature": "getCachedSize()",
+  "sourceCode": "long getCachedSize() {\n        return cache.size();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Get the number of bytes currently cached.\n */\nlong getCachedSize() {\n    return cache.size();\n}",
+  "method_comment": "\n     * Get the number of bytes currently cached.\n     ",
+  "method_annotation": ""
+}

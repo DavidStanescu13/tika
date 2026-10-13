@@ -1,0 +1,32 @@
+{
+  "className": "ConcurrentUtils",
+  "methodName": "execute",
+  "brief": "public static Future execute(ParseContext context, Runnable runnable){}",
+  "methodSignature": "execute(ParseContext, Runnable)",
+  "sourceCode": "public static Future execute(ParseContext context, Runnable runnable) {\n\n        Future future = null;\n        ExecutorService executorService = context.get(ExecutorService.class);\n        if (executorService == null) {\n            FutureTask task = new FutureTask<>(runnable, null);\n            Thread thread = new Thread(task, \"Tika Thread\");\n            thread.start();\n            future = task;\n        } else {\n            future = executorService.submit(runnable);\n        }\n\n        return future;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext",
+    "Runnable"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "java.lang.Runnable": [],
+    "java.lang.Thread": [
+      "start()"
+    ],
+    "java.util.concurrent.ExecutorService": [
+      "submit(Runnable)"
+    ]
+  },
+  "full_method_info": "/**\n * Execute a runnable using an ExecutorService from the ParseContext if possible.\n * Otherwise fallback to individual threads.\n *\n * @param context\n * @param runnable\n * @return\n */\npublic static Future execute(ParseContext context, Runnable runnable) {\n    Future future = null;\n    ExecutorService executorService = context.get(ExecutorService.class);\n    if (executorService == null) {\n        FutureTask task = new FutureTask<>(runnable, null);\n        Thread thread = new Thread(task, \"Tika Thread\");\n        thread.start();\n        future = task;\n    } else {\n        future = executorService.submit(runnable);\n    }\n    return future;\n}",
+  "method_comment": "\n     * Execute a runnable using an ExecutorService from the ParseContext if possible.\n     * Otherwise fallback to individual threads.\n     *\n     * @param context\n     * @param runnable\n     * @return\n     ",
+  "method_annotation": ""
+}

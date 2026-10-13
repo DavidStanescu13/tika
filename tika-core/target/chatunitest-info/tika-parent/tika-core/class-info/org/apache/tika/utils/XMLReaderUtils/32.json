@@ -1,0 +1,47 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "setPoolSize",
+  "brief": "public static void setPoolSize(int poolSize) throws TikaException{}",
+  "methodSignature": "setPoolSize(int)",
+  "sourceCode": "public static void setPoolSize(int poolSize) throws TikaException {\n        if (poolSize < 0) {\n            throw new IllegalArgumentException(\"PoolSize must be >= 0\");\n        }\n        //stop the world with a write lock.\n        //parsers that are currently in use will be offered later (once the lock is released),\n        //but not accepted and will be gc'd.  We have to do this locking and\n        //the read locking in case one thread resizes the pool when the\n        //parsers have already started.  We could have an NPE on SAX_PARSERS\n        //if we didn't lock.\n        SAX_POOL_LOCK\n                .writeLock().lock();\n        try {\n            //free up any resources before emptying SAX_PARSERS\n            for (PoolSAXParser parser : SAX_PARSERS) {\n                parser.reset();\n            }\n            SAX_PARSERS.clear();\n            if (poolSize > 0) {\n                SAX_PARSERS = new ArrayBlockingQueue<>(poolSize);\n                int generation = POOL_GENERATION.incrementAndGet();\n                for (int i = 0; i < poolSize; i++) {\n                    try {\n                        SAX_PARSERS.offer(buildPoolParser(generation, getSAXParserFactory().newSAXParser()));\n                    } catch (SAXException | ParserConfigurationException e) {\n                        throw new TikaException(\"problem creating sax parser\", e);\n                    }\n                }\n            }\n        } finally {\n            SAX_POOL_LOCK\n                    .writeLock().unlock();\n        }\n\n        DOM_POOL_LOCK\n                .writeLock().lock();\n        try {\n            DOM_BUILDERS.clear();\n            if (poolSize > 0) {\n                DOM_BUILDERS = new ArrayBlockingQueue<>(poolSize);\n                for (int i = 0; i < poolSize; i++) {\n                    DOM_BUILDERS.offer(new PoolDOMBuilder(POOL_GENERATION.get(), getDocumentBuilder()));\n                }\n            }\n        } finally {\n            DOM_POOL_LOCK\n                    .writeLock().unlock();\n        }\n        POOL_SIZE = poolSize;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "writeLock()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils.PoolSAXParser": [
+      "reset()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "offer(E)",
+      "clear()"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "incrementAndGet()",
+      "get()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilder()",
+      "buildPoolParser(int, SAXParser)",
+      "getSAXParserFactory()"
+    ],
+    "javax.xml.parsers.SAXParserFactory": [
+      "newSAXParser()"
+    ]
+  },
+  "full_method_info": "/**\n * Set the pool size for cached XML parsers.  This has a side\n * effect of locking the pool, and rebuilding the pool from\n * scratch with the most recent settings, such as {@link #MAX_ENTITY_EXPANSIONS}\n *\n * As of Tika 3.2.1, if a value of <code>0</code> is passed in, no SAXParsers or DOMBuilders\n * will be pooled, and a new parser/builder will be built for each parse.\n *\n * @param poolSize\n * @since Apache Tika 1.19\n */\npublic static void setPoolSize(int poolSize) throws TikaException {\n    if (poolSize < 0) {\n        throw new IllegalArgumentException(\"PoolSize must be >= 0\");\n    }\n    // stop the world with a write lock.\n    // parsers that are currently in use will be offered later (once the lock is released),\n    // but not accepted and will be gc'd.  We have to do this locking and\n    // the read locking in case one thread resizes the pool when the\n    // parsers have already started.  We could have an NPE on SAX_PARSERS\n    // if we didn't lock.\n    SAX_POOL_LOCK.writeLock().lock();\n    try {\n        // free up any resources before emptying SAX_PARSERS\n        for (PoolSAXParser parser : SAX_PARSERS) {\n            parser.reset();\n        }\n        SAX_PARSERS.clear();\n        if (poolSize > 0) {\n            SAX_PARSERS = new ArrayBlockingQueue<>(poolSize);\n            int generation = POOL_GENERATION.incrementAndGet();\n            for (int i = 0; i < poolSize; i++) {\n                try {\n                    SAX_PARSERS.offer(buildPoolParser(generation, getSAXParserFactory().newSAXParser()));\n                } catch (SAXException | ParserConfigurationException e) {\n                    throw new TikaException(\"problem creating sax parser\", e);\n                }\n            }\n        }\n    } finally {\n        SAX_POOL_LOCK.writeLock().unlock();\n    }\n    DOM_POOL_LOCK.writeLock().lock();\n    try {\n        DOM_BUILDERS.clear();\n        if (poolSize > 0) {\n            DOM_BUILDERS = new ArrayBlockingQueue<>(poolSize);\n            for (int i = 0; i < poolSize; i++) {\n                DOM_BUILDERS.offer(new PoolDOMBuilder(POOL_GENERATION.get(), getDocumentBuilder()));\n            }\n        }\n    } finally {\n        DOM_POOL_LOCK.writeLock().unlock();\n    }\n    POOL_SIZE = poolSize;\n}",
+  "method_comment": "\n     * Set the pool size for cached XML parsers.  This has a side\n     * effect of locking the pool, and rebuilding the pool from\n     * scratch with the most recent settings, such as {@link #MAX_ENTITY_EXPANSIONS}\n     *\n     * As of Tika 3.2.1, if a value of <code>0</code> is passed in, no SAXParsers or DOMBuilders\n     * will be pooled, and a new parser/builder will be built for each parse.\n     *\n     * @param poolSize\n     * @since Apache Tika 1.19\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "MediaTypeRegistry",
+  "methodName": "normalize",
+  "brief": "public MediaType normalize(MediaType type){}",
+  "methodSignature": "normalize(MediaType)",
+  "sourceCode": "public MediaType normalize(MediaType type) {\n        if (type == null) {\n            return null;\n        }\n        MediaType canonical = registry.get(type.getBaseType());\n        if (canonical == null) {\n            return type;\n        } else if (type.hasParameters()) {\n            return new MediaType(canonical, type.getParameters());\n        } else {\n            return canonical;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "getParameters()",
+      "hasParameters()",
+      "getBaseType()"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "public MediaType normalize(MediaType type) {\n    if (type == null) {\n        return null;\n    }\n    MediaType canonical = registry.get(type.getBaseType());\n    if (canonical == null) {\n        return type;\n    } else if (type.hasParameters()) {\n        return new MediaType(canonical, type.getParameters());\n    } else {\n        return canonical;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

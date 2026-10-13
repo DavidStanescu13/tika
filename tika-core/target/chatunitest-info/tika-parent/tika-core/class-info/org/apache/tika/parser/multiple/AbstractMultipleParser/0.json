@@ -1,0 +1,44 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "mergeMetadata",
+  "brief": "protected static Metadata mergeMetadata(Metadata newMetadata, Metadata lastMetadata,\r\n                                            MetadataPolicy policy){}",
+  "methodSignature": "mergeMetadata(Metadata, Metadata, MetadataPolicy)",
+  "sourceCode": "protected static Metadata mergeMetadata(Metadata newMetadata, Metadata lastMetadata,\n                                            MetadataPolicy policy) {\n        if (policy == MetadataPolicy.DISCARD_ALL) {\n            return newMetadata;\n        }\n\n        for (String n : lastMetadata.names()) {\n            // If this is one of the metadata keys we're setting ourselves\n            //  for tracking/errors, then always keep the latest one!\n            if (n.equals(TikaCoreProperties.TIKA_PARSED_BY.getName())) {\n                continue;\n            }\n            if (n.equals(ParserUtils.EMBEDDED_PARSER.getName())) {\n                continue;\n            }\n            if (n.equals(TikaCoreProperties.EMBEDDED_EXCEPTION.getName())) {\n                continue;\n            }\n\n            // Merge as per policy\n            String[] newVals = newMetadata.getValues(n);\n            String[] oldVals = lastMetadata.getValues(n);\n            if (newVals == null || newVals.length == 0) {\n                // Metadata only in previous run, keep old values\n                for (String val : oldVals) {\n                    newMetadata.reconstruct(n, val, true);\n                }\n            } else if (Arrays.deepEquals(oldVals, newVals)) {\n                // Metadata is the same, nothing to do\n                continue;\n            } else {\n                switch (policy) {\n                    case FIRST_WINS:\n                        // Use the earlier value(s) in place of this/these one/s\n                        newMetadata.remove(n);\n                        for (String val : oldVals) {\n                            newMetadata.reconstruct(n, val, true);\n                        }\n                        continue;\n                    case LAST_WINS:\n                        // Most recent (last) parser has already won\n                        continue;\n                    case KEEP_ALL:\n                        // Start with old list, then add any new unique values\n                        List<String> vals = new ArrayList<>(Arrays.asList(oldVals));\n                        newMetadata.remove(n);\n                        for (String oldVal : oldVals) {\n                            newMetadata.reconstruct(n, oldVal, true);\n                        }\n                        for (String newVal : newVals) {\n                            if (!vals.contains(newVal)) {\n                                newMetadata.reconstruct(n, newVal, true);\n                                vals.add(newVal);\n                            }\n                        }\n\n                        continue;\n                }\n            }\n        }\n        return newMetadata;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "Metadata",
+    "MetadataPolicy"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "names()",
+      "getValues(String)",
+      "remove(String)",
+      "reconstruct(String, String, boolean)"
+    ],
+    "org.apache.tika.parser.multiple.AbstractMultipleParser.MetadataPolicy": [],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])",
+      "deepEquals(Object[], Object[])"
+    ],
+    "java.util.List": [
+      "contains(Object)",
+      "add(E)"
+    ]
+  },
+  "full_method_info": "protected static Metadata mergeMetadata(Metadata newMetadata, Metadata lastMetadata, MetadataPolicy policy) {\n    if (policy == MetadataPolicy.DISCARD_ALL) {\n        return newMetadata;\n    }\n    for (String n : lastMetadata.names()) {\n        // If this is one of the metadata keys we're setting ourselves\n        // for tracking/errors, then always keep the latest one!\n        if (n.equals(TikaCoreProperties.TIKA_PARSED_BY.getName())) {\n            continue;\n        }\n        if (n.equals(ParserUtils.EMBEDDED_PARSER.getName())) {\n            continue;\n        }\n        if (n.equals(TikaCoreProperties.EMBEDDED_EXCEPTION.getName())) {\n            continue;\n        }\n        // Merge as per policy\n        String[] newVals = newMetadata.getValues(n);\n        String[] oldVals = lastMetadata.getValues(n);\n        if (newVals == null || newVals.length == 0) {\n            // Metadata only in previous run, keep old values\n            for (String val : oldVals) {\n                newMetadata.reconstruct(n, val, true);\n            }\n        } else if (Arrays.deepEquals(oldVals, newVals)) {\n            // Metadata is the same, nothing to do\n            continue;\n        } else {\n            switch(policy) {\n                case FIRST_WINS:\n                    // Use the earlier value(s) in place of this/these one/s\n                    newMetadata.remove(n);\n                    for (String val : oldVals) {\n                        newMetadata.reconstruct(n, val, true);\n                    }\n                    continue;\n                case LAST_WINS:\n                    // Most recent (last) parser has already won\n                    continue;\n                case KEEP_ALL:\n                    // Start with old list, then add any new unique values\n                    List<String> vals = new ArrayList<>(Arrays.asList(oldVals));\n                    newMetadata.remove(n);\n                    for (String oldVal : oldVals) {\n                        newMetadata.reconstruct(n, oldVal, true);\n                    }\n                    for (String newVal : newVals) {\n                        if (!vals.contains(newVal)) {\n                            newMetadata.reconstruct(n, newVal, true);\n                            vals.add(newVal);\n                        }\n                    }\n                    continue;\n            }\n        }\n    }\n    return newMetadata;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

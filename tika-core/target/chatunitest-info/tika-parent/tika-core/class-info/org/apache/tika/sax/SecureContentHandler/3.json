@@ -1,0 +1,18 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "getMaximumCompressionRatio",
+  "brief": "public long getMaximumCompressionRatio(){}",
+  "methodSignature": "getMaximumCompressionRatio()",
+  "sourceCode": "public long getMaximumCompressionRatio() {\n        return ratio;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the maximum compression ratio.\n *\n * @return maximum compression ratio\n */\npublic long getMaximumCompressionRatio() {\n    return ratio;\n}",
+  "method_comment": "\n     * Returns the maximum compression ratio.\n     *\n     * @return maximum compression ratio\n     ",
+  "method_annotation": ""
+}

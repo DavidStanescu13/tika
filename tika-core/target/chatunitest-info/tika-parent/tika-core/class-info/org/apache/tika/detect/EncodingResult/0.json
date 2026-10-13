@@ -1,0 +1,18 @@
+{
+  "className": "EncodingResult",
+  "methodName": "getCharset",
+  "brief": "public Charset getCharset(){}",
+  "methodSignature": "getCharset()",
+  "sourceCode": "public Charset getCharset() {\n        return charset;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The detected charset. For <em>decoding</em> bytes prefer {@link #getDecodeAs()};\n * this is the charset to <em>report</em> (Content-Type / detected-encoding).\n */\npublic Charset getCharset() {\n    return charset;\n}",
+  "method_comment": "\n     * The detected charset. For <em>decoding</em> bytes prefer {@link #getDecodeAs()};\n     * this is the charset to <em>report</em> (Content-Type / detected-encoding).\n     ",
+  "method_annotation": ""
+}

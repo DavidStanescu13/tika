@@ -1,0 +1,52 @@
+{
+  "className": "TikaExtras",
+  "methodName": "install",
+  "brief": "public static ClassLoader install(){}",
+  "methodSignature": "install()",
+  "sourceCode": "public static ClassLoader install() {\n        List<Path> jars = extraJars();\n        if (jars.isEmpty()) {\n            return null;\n        }\n        List<URL> urls = new ArrayList<>(jars.size());\n        List<Path> loaded = new ArrayList<>(jars.size());\n        for (Path jar : jars) {\n            try {\n                urls.add(jar.toUri().toURL());\n                loaded.add(jar);\n            } catch (Exception e) {\n                LOG.warn(\"Skipping extra jar {}: {}\", jar, e.toString());\n            }\n        }\n        if (urls.isEmpty()) {\n            return null;\n        }\n        ClassLoader parent = Thread.currentThread().getContextClassLoader();\n        if (parent == null) {\n            parent = TikaExtras.class.getClassLoader();\n        }\n        URLClassLoader cl = new URLClassLoader(urls.toArray(new URL[0]), parent);\n        Thread.currentThread().setContextClassLoader(cl);\n        ServiceLoader.setContextClassLoader(cl);\n        LOG.info(\"{}: loaded {} extra jar(s): {}\", EXTRAS_DIR_PROPERTY, loaded.size(), loaded);\n        return cl;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.config.TikaExtras": [
+      "extraJars()"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "isEmpty()",
+      "add(E)",
+      "size()"
+    ],
+    "java.net.URI": [
+      "toURL()"
+    ],
+    "java.nio.file.Path": [
+      "toUri()"
+    ],
+    "org.slf4j.Logger": [
+      "info(String, Object[])",
+      "warn(String, Object, Object)"
+    ],
+    "java.lang.Throwable": [
+      "toString()"
+    ],
+    "java.lang.Thread": [
+      "getContextClassLoader()",
+      "currentThread()",
+      "setContextClassLoader(ClassLoader)"
+    ],
+    "java.lang.Class": [
+      "getClassLoader()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "setContextClassLoader(ClassLoader)"
+    ]
+  },
+  "full_method_info": "/**\n * If {@value #EXTRAS_DIR_PROPERTY} is set, installs a classloader over the\n * {@code *.jar} files in that directory as the thread + Tika\n * {@link ServiceLoader} context classloader, so they join SPI discovery.\n * No-op (returns {@code null}) when the property is unset or the directory is\n * missing/empty.  Call exactly once at startup, before any Tika component is\n * loaded: each call builds a new classloader, so repeated calls stack them and\n * leave the earlier ones' open jar handles dangling.\n *\n * @return the installed classloader, or {@code null} if extras are off/empty\n */\npublic static ClassLoader install() {\n    List<Path> jars = extraJars();\n    if (jars.isEmpty()) {\n        return null;\n    }\n    List<URL> urls = new ArrayList<>(jars.size());\n    List<Path> loaded = new ArrayList<>(jars.size());\n    for (Path jar : jars) {\n        try {\n            urls.add(jar.toUri().toURL());\n            loaded.add(jar);\n        } catch (Exception e) {\n            LOG.warn(\"Skipping extra jar {}: {}\", jar, e.toString());\n        }\n    }\n    if (urls.isEmpty()) {\n        return null;\n    }\n    ClassLoader parent = Thread.currentThread().getContextClassLoader();\n    if (parent == null) {\n        parent = TikaExtras.class.getClassLoader();\n    }\n    URLClassLoader cl = new URLClassLoader(urls.toArray(new URL[0]), parent);\n    Thread.currentThread().setContextClassLoader(cl);\n    ServiceLoader.setContextClassLoader(cl);\n    LOG.info(\"{}: loaded {} extra jar(s): {}\", EXTRAS_DIR_PROPERTY, loaded.size(), loaded);\n    return cl;\n}",
+  "method_comment": "\n     * If {@value #EXTRAS_DIR_PROPERTY} is set, installs a classloader over the\n     * {@code *.jar} files in that directory as the thread + Tika\n     * {@link ServiceLoader} context classloader, so they join SPI discovery.\n     * No-op (returns {@code null}) when the property is unset or the directory is\n     * missing/empty.  Call exactly once at startup, before any Tika component is\n     * loaded: each call builds a new classloader, so repeated calls stack them and\n     * leave the earlier ones' open jar handles dangling.\n     *\n     * @return the installed classloader, or {@code null} if extras are off/empty\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Property",
+  "methodName": "internalText",
+  "brief": "public static Property internalText(String name){}",
+  "methodSignature": "internalText(String)",
+  "sourceCode": "public static Property internalText(String name) {\n        return new Property(name, true, ValueType.TEXT);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static Property internalText(String name) {\n    return new Property(name, true, ValueType.TEXT);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

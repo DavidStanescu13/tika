@@ -1,0 +1,105 @@
+{
+  "fullClassName": "org.apache.tika.parser.RegexCaptureParser",
+  "className": "RegexCaptureParser",
+  "index": 258,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class RegexCaptureParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.BufferedReader;",
+    "import java.io.IOException;",
+    "import java.io.InputStreamReader;",
+    "import java.nio.charset.StandardCharsets;",
+    "import java.util.Collections;",
+    "import java.util.HashMap;",
+    "import java.util.LinkedHashSet;",
+    "import java.util.Map;",
+    "import java.util.Set;",
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;"
+  ],
+  "fields": [
+    "private static final Set<MediaType> SUPPORTED_TYPES =\n            Collections.singleton(MediaType.TEXT_PLAIN);",
+    "private final RegexCaptureParserConfig config;",
+    "private final Map<String, Pattern> captureMap;",
+    "private final Map<String, Pattern> matchMap;",
+    "private final boolean writeContent;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "getConfig()": "1",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "2",
+    "RegexCaptureParser()": "3",
+    "RegexCaptureParser(RegexCaptureParserConfig)": "4",
+    "RegexCaptureParser(JsonConfig)": "5"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "public RegexCaptureParserConfig getConfig(){}",
+    "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+    "public RegexCaptureParser(){}",
+    "public RegexCaptureParser(RegexCaptureParserConfig config){}",
+    "public RegexCaptureParser(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "RegexCaptureParser()",
+    "RegexCaptureParser(RegexCaptureParserConfig)",
+    "RegexCaptureParser(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public RegexCaptureParser(){}",
+    "public RegexCaptureParser(RegexCaptureParserConfig config){}",
+    "public RegexCaptureParser(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "getConfig()"
+  ],
+  "getterSetterBrief": [
+    "public RegexCaptureParserConfig getConfig(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.parser.RegexCaptureParserConfig": [
+      "getMatchMap()",
+      "isWriteContent()",
+      "getCaptureMap()"
+    ],
+    "java.util.Map": [
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.regex.Pattern": [
+      "compile(String)"
+    ],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.nio.charset.StandardCharsets;\nimport java.util.Collections;\nimport java.util.HashMap;\nimport java.util.LinkedHashSet;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\n\n@TikaComponent(spi = false)\npublic class RegexCaptureParser implements Parser {\n\n    private static final Set<MediaType> SUPPORTED_TYPES = Collections.singleton(MediaType.TEXT_PLAIN);\n\n    private final RegexCaptureParserConfig config;\n\n    private final Map<String, Pattern> captureMap;\n\n    private final Map<String, Pattern> matchMap;\n\n    private final boolean writeContent;\n\n    public RegexCaptureParser() {\n        this(new RegexCaptureParserConfig());\n    }\n\n    public RegexCaptureParser(RegexCaptureParserConfig config) {\n        this.config = config;\n        this.captureMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getCaptureMap().entrySet()) {\n            this.captureMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.matchMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getMatchMap().entrySet()) {\n            this.matchMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.writeContent = config.isWriteContent();\n    }\n\n    public RegexCaptureParser(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, RegexCaptureParserConfig.class));\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return SUPPORTED_TYPES;\n    }\n\n    public RegexCaptureParserConfig getConfig() {\n        return config;\n    }\n\n    @Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try (BufferedReader reader = new BufferedReader(new InputStreamReader(tis, StandardCharsets.UTF_8))) {\n            String line = reader.readLine();\n            Map<String, Matcher> localCaptureMap = new HashMap();\n            for (Map.Entry<String, Pattern> e : captureMap.entrySet()) {\n                localCaptureMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n            Map<String, Matcher> localMatchMap = new HashMap<>();\n            for (Map.Entry<String, Pattern> e : matchMap.entrySet()) {\n                localMatchMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n            Map<String, Set<String>> keyVals = new HashMap<>();\n            while (line != null) {\n                for (Map.Entry<String, Matcher> e : localCaptureMap.entrySet()) {\n                    Matcher m = e.getValue();\n                    if (m.reset(line).find()) {\n                        String val = m.group(1);\n                        Set<String> vals = keyVals.get(e.getKey());\n                        if (vals == null) {\n                            vals = new LinkedHashSet<>();\n                            keyVals.put(e.getKey(), vals);\n                        }\n                        vals.add(val);\n                    }\n                }\n                for (Map.Entry<String, Matcher> e : localMatchMap.entrySet()) {\n                    if (e.getValue().reset(line).find()) {\n                        metadata.set(e.getKey(), \"true\");\n                    }\n                }\n                if (writeContent) {\n                    char[] chars = line.toCharArray();\n                    handler.characters(chars, 0, chars.length);\n                }\n                line = reader.readLine();\n            }\n            for (Map.Entry<String, Set<String>> e : keyVals.entrySet()) {\n                for (String val : e.getValue()) {\n                    metadata.add(e.getKey(), val);\n                }\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "@TikaComponent(spi = false)\npublic class RegexCaptureParser implements Parser {\n\n    private static final Set<MediaType> SUPPORTED_TYPES = Collections.singleton(MediaType.TEXT_PLAIN);\n\n    private final RegexCaptureParserConfig config;\n\n    private final Map<String, Pattern> captureMap;\n\n    private final Map<String, Pattern> matchMap;\n\n    private final boolean writeContent;\n\n    public RegexCaptureParser() {\n        this(new RegexCaptureParserConfig());\n    }\n\n    public RegexCaptureParser(RegexCaptureParserConfig config) {\n        this.config = config;\n        this.captureMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getCaptureMap().entrySet()) {\n            this.captureMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.matchMap = new HashMap<>();\n        for (Map.Entry<String, String> e : config.getMatchMap().entrySet()) {\n            this.matchMap.put(e.getKey(), Pattern.compile(e.getValue()));\n        }\n        this.writeContent = config.isWriteContent();\n    }\n\n    public RegexCaptureParser(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, RegexCaptureParserConfig.class));\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return SUPPORTED_TYPES;\n    }\n\n    public RegexCaptureParserConfig getConfig() {\n        return config;\n    }\n\n    @Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try (BufferedReader reader = new BufferedReader(new InputStreamReader(tis, StandardCharsets.UTF_8))) {\n            String line = reader.readLine();\n            Map<String, Matcher> localCaptureMap = new HashMap();\n            for (Map.Entry<String, Pattern> e : captureMap.entrySet()) {\n                localCaptureMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n            Map<String, Matcher> localMatchMap = new HashMap<>();\n            for (Map.Entry<String, Pattern> e : matchMap.entrySet()) {\n                localMatchMap.put(e.getKey(), e.getValue().matcher(\"\"));\n            }\n            Map<String, Set<String>> keyVals = new HashMap<>();\n            while (line != null) {\n                for (Map.Entry<String, Matcher> e : localCaptureMap.entrySet()) {\n                    Matcher m = e.getValue();\n                    if (m.reset(line).find()) {\n                        String val = m.group(1);\n                        Set<String> vals = keyVals.get(e.getKey());\n                        if (vals == null) {\n                            vals = new LinkedHashSet<>();\n                            keyVals.put(e.getKey(), vals);\n                        }\n                        vals.add(val);\n                    }\n                }\n                for (Map.Entry<String, Matcher> e : localMatchMap.entrySet()) {\n                    if (e.getValue().reset(line).find()) {\n                        metadata.set(e.getKey(), \"true\");\n                    }\n                }\n                if (writeContent) {\n                    char[] chars = line.toCharArray();\n                    handler.characters(chars, 0, chars.length);\n                }\n                line = reader.readLine();\n            }\n            for (Map.Entry<String, Set<String>> e : keyVals.entrySet()) {\n                for (String val : e.getValue()) {\n                    metadata.add(e.getKey(), val);\n                }\n            }\n        }\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,39 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getDefaultParsers",
+  "brief": "private static List<Parser> getDefaultParsers(ServiceLoader loader,\r\n                                                  EncodingDetector encodingDetector,\r\n                                                  Renderer renderer,\r\n                                                  Collection<Class<? extends Parser>>\r\n                                                          excludeParsers){}",
+  "methodSignature": "getDefaultParsers(ServiceLoader, EncodingDetector, Renderer, Collection)",
+  "sourceCode": "private static List<Parser> getDefaultParsers(ServiceLoader loader,\n                                                  EncodingDetector encodingDetector,\n                                                  Renderer renderer,\n                                                  Collection<Class<? extends Parser>>\n                                                          excludeParsers) {\n        List<Parser> parsers =\n                loader.loadStaticServiceProviders(Parser.class, excludeParsers);\n\n        if (encodingDetector != null) {\n            for (Parser p : parsers) {\n                setEncodingDetector(p, encodingDetector);\n            }\n        }\n        if (renderer != null) {\n            for (Parser p : parsers) {\n                setRenderer(p, renderer);\n            }\n        }\n        ServiceLoaderUtils.sortLoadedClasses(parsers);\n        //reverse the order of parsers so that custom ones come last\n        //this will prevent them from being overwritten in getParsers(ParseContext ..)\n        Collections.reverse(parsers);\n        return parsers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ServiceLoader",
+    "EncodingDetector",
+    "Renderer",
+    "Collection<Class<? extends Parser>>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader": [
+      "loadStaticServiceProviders(Class<T>, Class<? extends T>>)"
+    ],
+    "org.apache.tika.detect.EncodingDetector": [],
+    "org.apache.tika.renderer.Renderer": [],
+    "org.apache.tika.parser.DefaultParser": [
+      "setRenderer(Parser, Renderer)",
+      "setEncodingDetector(Parser, EncodingDetector)"
+    ],
+    "org.apache.tika.utils.ServiceLoaderUtils": [
+      "sortLoadedClasses(List<T>)"
+    ],
+    "java.util.Collections": [
+      "reverse(Object>)"
+    ]
+  },
+  "full_method_info": "/**\n * Finds all statically loadable parsers and sort the list by name,\n * rather than discovery order. CompositeParser takes the last\n * parser for any given media type, so put the Tika parsers first\n * so that non-Tika (user supplied) parsers can take precedence.\n *\n * @param loader service loader\n * @return ordered list of statically loadable parsers\n */\nprivate static List<Parser> getDefaultParsers(ServiceLoader loader, EncodingDetector encodingDetector, Renderer renderer, Collection<Class<? extends Parser>> excludeParsers) {\n    List<Parser> parsers = loader.loadStaticServiceProviders(Parser.class, excludeParsers);\n    if (encodingDetector != null) {\n        for (Parser p : parsers) {\n            setEncodingDetector(p, encodingDetector);\n        }\n    }\n    if (renderer != null) {\n        for (Parser p : parsers) {\n            setRenderer(p, renderer);\n        }\n    }\n    ServiceLoaderUtils.sortLoadedClasses(parsers);\n    // reverse the order of parsers so that custom ones come last\n    // this will prevent them from being overwritten in getParsers(ParseContext ..)\n    Collections.reverse(parsers);\n    return parsers;\n}",
+  "method_comment": "\n     * Finds all statically loadable parsers and sort the list by name,\n     * rather than discovery order. CompositeParser takes the last\n     * parser for any given media type, so put the Tika parsers first\n     * so that non-Tika (user supplied) parsers can take precedence.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable parsers\n     ",
+  "method_annotation": ""
+}

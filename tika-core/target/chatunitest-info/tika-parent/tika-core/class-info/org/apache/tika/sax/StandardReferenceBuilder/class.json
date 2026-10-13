@@ -1,0 +1,57 @@
+{
+  "fullClassName": "org.apache.tika.sax.StandardReferenceBuilder",
+  "className": "StandardReferenceBuilder",
+  "index": 304,
+  "modifier": "[public , static ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public static class StandardReferenceBuilder",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final String mainOrganization;",
+    "private final String identifier;",
+    "private String separator;",
+    "private String secondOrganization;",
+    "private double score;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "setSecondOrganization(String, String)": "0",
+    "setScore(double)": "1",
+    "build()": "2",
+    "StandardReferenceBuilder(String, String)": "3"
+  },
+  "methodsBrief": [
+    "public StandardReferenceBuilder setSecondOrganization(String separator,\r\n                                                              String secondOrganization){}",
+    "public StandardReferenceBuilder setScore(double score){}",
+    "public StandardReference build(){}",
+    "public StandardReferenceBuilder(String mainOrganization, String identifier){}"
+  ],
+  "constructorSigs": [
+    "StandardReferenceBuilder(String, String)"
+  ],
+  "constructorBrief": [
+    "public StandardReferenceBuilder(String mainOrganization, String identifier){}"
+  ],
+  "getterSetterSigs": [
+    "setSecondOrganization(String, String)",
+    "setScore(double)"
+  ],
+  "getterSetterBrief": [
+    "public StandardReferenceBuilder setSecondOrganization(String separator,\r\n                                                              String secondOrganization){}",
+    "public StandardReferenceBuilder setScore(double score){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\n/**\n * Class that represents a standard reference.\n */\npublic class StandardReference {\n\n    private String mainOrganization;\n\n    private String separator;\n\n    private String secondOrganization;\n\n    private String identifier;\n\n    private double score;\n\n    private StandardReference(String mainOrganizationAcronym, String separator, String secondOrganizationAcronym, String identifier, double score) {\n        super();\n        this.mainOrganization = mainOrganizationAcronym;\n        this.separator = separator;\n        this.secondOrganization = secondOrganizationAcronym;\n        this.identifier = identifier;\n        this.score = score;\n    }\n\n    public String getMainOrganizationAcronym() {\n        return mainOrganization;\n    }\n\n    public void setMainOrganizationAcronym(String mainOrganizationAcronym) {\n        this.mainOrganization = mainOrganizationAcronym;\n    }\n\n    public String getSeparator() {\n        return separator;\n    }\n\n    public void setSeparator(String separator) {\n        this.separator = separator;\n    }\n\n    public String getSecondOrganizationAcronym() {\n        return secondOrganization;\n    }\n\n    public void setSecondOrganizationAcronym(String secondOrganizationAcronym) {\n        this.secondOrganization = secondOrganizationAcronym;\n    }\n\n    public String getIdentifier() {\n        return identifier;\n    }\n\n    public void setIdentifier(String identifier) {\n        this.identifier = identifier;\n    }\n\n    public double getScore() {\n        return score;\n    }\n\n    public void setScore(double score) {\n        this.score = score;\n    }\n\n    @Override\n    public String toString() {\n        String standardReference = mainOrganization;\n        if (separator != null && !separator.isEmpty()) {\n            standardReference += separator + secondOrganization;\n        }\n        standardReference += \" \" + identifier;\n        return standardReference;\n    }\n\n    public static class StandardReferenceBuilder {\n\n        private final String mainOrganization;\n\n        private final String identifier;\n\n        private String separator;\n\n        private String secondOrganization;\n\n        private double score;\n\n        public StandardReferenceBuilder(String mainOrganization, String identifier) {\n            this.mainOrganization = mainOrganization;\n            this.separator = null;\n            this.secondOrganization = null;\n            this.identifier = identifier;\n            this.score = 0;\n        }\n\n        public StandardReferenceBuilder setSecondOrganization(String separator, String secondOrganization) {\n            this.separator = separator;\n            this.secondOrganization = secondOrganization;\n            return this;\n        }\n\n        public StandardReferenceBuilder setScore(double score) {\n            this.score = score;\n            return this;\n        }\n\n        public StandardReference build() {\n            return new StandardReference(mainOrganization, separator, secondOrganization, identifier, score);\n        }\n    }\n}\n",
+  "classDeclarationCode": "public static class StandardReferenceBuilder {\n\n    private final String mainOrganization;\n\n    private final String identifier;\n\n    private String separator;\n\n    private String secondOrganization;\n\n    private double score;\n\n    public StandardReferenceBuilder(String mainOrganization, String identifier) {\n        this.mainOrganization = mainOrganization;\n        this.separator = null;\n        this.secondOrganization = null;\n        this.identifier = identifier;\n        this.score = 0;\n    }\n\n    public StandardReferenceBuilder setSecondOrganization(String separator, String secondOrganization) {\n        this.separator = separator;\n        this.secondOrganization = secondOrganization;\n        return this;\n    }\n\n    public StandardReferenceBuilder setScore(double score) {\n        this.score = score;\n        return this;\n    }\n\n    public StandardReference build() {\n        return new StandardReference(mainOrganization, separator, secondOrganization, identifier, score);\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,21 @@
+{
+  "className": "TextStatistics",
+  "methodName": "count",
+  "brief": "private int count(int from, int to){}",
+  "methodSignature": "count(int, int)",
+  "sourceCode": "private int count(int from, int to) {\n        assert 0 <= from && to <= counts.length;\n        int count = 0;\n        for (int i = from; i < to; i++) {\n            count += counts[i];\n        }\n        return count;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "private int count(int from, int to) {\n    assert 0 <= from && to <= counts.length;\n    int count = 0;\n    for (int i = from; i < to; i++) {\n        count += counts[i];\n    }\n    return count;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

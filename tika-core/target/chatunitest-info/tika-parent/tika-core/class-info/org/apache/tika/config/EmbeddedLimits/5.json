@@ -1,0 +1,20 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "setMaxCount",
+  "brief": "public void setMaxCount(int maxCount){}",
+  "methodSignature": "setMaxCount(int)",
+  "sourceCode": "public void setMaxCount(int maxCount) {\n        this.maxCount = maxCount;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum number of embedded documents to process.\n *\n * @param maxCount maximum count, or -1 for unlimited\n */\npublic void setMaxCount(int maxCount) {\n    this.maxCount = maxCount;\n}",
+  "method_comment": "\n     * Sets the maximum number of embedded documents to process.\n     *\n     * @param maxCount maximum count, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

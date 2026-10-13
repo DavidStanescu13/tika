@@ -1,0 +1,22 @@
+{
+  "className": "DefaultTranslator",
+  "methodName": "getTranslators",
+  "brief": "public List<Translator> getTranslators(){}",
+  "methodSignature": "getTranslators()",
+  "sourceCode": "public List<Translator> getTranslators() {\n        return getDefaultTranslators(loader);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.translate.DefaultTranslator": [
+      "getDefaultTranslators(ServiceLoader)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns all available translators\n */\npublic List<Translator> getTranslators() {\n    return getDefaultTranslators(loader);\n}",
+  "method_comment": "\n     * Returns all available translators\n     ",
+  "method_annotation": ""
+}

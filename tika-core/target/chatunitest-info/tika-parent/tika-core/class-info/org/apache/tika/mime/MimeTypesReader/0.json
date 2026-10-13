@@ -1,0 +1,29 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "acquireSAXParser",
+  "brief": "private static SAXParser acquireSAXParser() throws TikaException{}",
+  "methodSignature": "acquireSAXParser()",
+  "sourceCode": "private static SAXParser acquireSAXParser() throws TikaException {\n        while (true) {\n            SAXParser parser = null;\n            try {\n                READ_WRITE_LOCK.readLock().lock();\n                parser = SAX_PARSERS.poll(10, TimeUnit.MILLISECONDS);\n            } catch (InterruptedException e) {\n                throw new TikaException(\"interrupted while waiting for SAXParser\", e);\n            } finally {\n                READ_WRITE_LOCK.readLock().unlock();\n\n            }\n            if (parser != null) {\n                return parser;\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock": [
+      "unlock()",
+      "lock()"
+    ],
+    "java.util.concurrent.locks.ReentrantReadWriteLock": [
+      "readLock()"
+    ],
+    "java.util.concurrent.ArrayBlockingQueue": [
+      "poll(long, TimeUnit)"
+    ]
+  },
+  "full_method_info": "/**\n * Acquire a SAXParser from the pool; create one if it\n * doesn't exist.  Make sure to {@link #releaseParser(SAXParser)} in\n * a <code>finally</code> block every time you call this.\n *\n * @return a SAXParser\n * @throws TikaException\n */\nprivate static SAXParser acquireSAXParser() throws TikaException {\n    while (true) {\n        SAXParser parser = null;\n        try {\n            READ_WRITE_LOCK.readLock().lock();\n            parser = SAX_PARSERS.poll(10, TimeUnit.MILLISECONDS);\n        } catch (InterruptedException e) {\n            throw new TikaException(\"interrupted while waiting for SAXParser\", e);\n        } finally {\n            READ_WRITE_LOCK.readLock().unlock();\n        }\n        if (parser != null) {\n            return parser;\n        }\n    }\n}",
+  "method_comment": "\n     * Acquire a SAXParser from the pool; create one if it\n     * doesn't exist.  Make sure to {@link #releaseParser(SAXParser)} in\n     * a <code>finally</code> block every time you call this.\n     *\n     * @return a SAXParser\n     * @throws TikaException\n     ",
+  "method_annotation": ""
+}

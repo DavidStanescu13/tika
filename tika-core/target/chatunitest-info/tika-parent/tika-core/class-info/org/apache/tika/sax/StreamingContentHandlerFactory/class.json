@@ -1,0 +1,39 @@
+{
+  "fullClassName": "org.apache.tika.sax.StreamingContentHandlerFactory",
+  "className": "StreamingContentHandlerFactory",
+  "index": 308,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerFactory]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public interface StreamingContentHandlerFactory",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.OutputStream;",
+    "import java.nio.charset.Charset;",
+    "import org.xml.sax.ContentHandler;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "ContentHandlerFactory"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "createHandler(OutputStream, Charset)": "0"
+  },
+  "methodsBrief": [
+    "ContentHandler createHandler(OutputStream os, Charset charset);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.OutputStream;\nimport java.nio.charset.Charset;\nimport org.xml.sax.ContentHandler;\n\n/**\n * Extended factory interface for creating ContentHandler instances that write\n * directly to an OutputStream.\n * <p>\n * This interface extends {@link ContentHandlerFactory} to add streaming output\n * capability, primarily used by tika-server's /tika endpoint for streaming\n * responses back to clients.\n *\n * @see ContentHandlerFactory\n * @see BasicContentHandlerFactory\n */\npublic interface StreamingContentHandlerFactory extends ContentHandlerFactory {\n\n    /**\n     * Creates a new ContentHandler that writes output directly to the given OutputStream.\n     *\n     * @param os      the output stream to write to\n     * @param charset the character encoding to use\n     * @return a new ContentHandler instance that writes to the stream\n     */\n    ContentHandler createHandler(OutputStream os, Charset charset);\n}\n",
+  "classDeclarationCode": "/**\n * Extended factory interface for creating ContentHandler instances that write\n * directly to an OutputStream.\n * <p>\n * This interface extends {@link ContentHandlerFactory} to add streaming output\n * capability, primarily used by tika-server's /tika endpoint for streaming\n * responses back to clients.\n *\n * @see ContentHandlerFactory\n * @see BasicContentHandlerFactory\n */\npublic interface StreamingContentHandlerFactory extends ContentHandlerFactory {\n\n    /**\n     * Creates a new ContentHandler that writes output directly to the given OutputStream.\n     *\n     * @param os      the output stream to write to\n     * @param charset the character encoding to use\n     * @return a new ContentHandler instance that writes to the stream\n     */\n    ContentHandler createHandler(OutputStream os, Charset charset);\n}",
+  "subClasses": []
+}

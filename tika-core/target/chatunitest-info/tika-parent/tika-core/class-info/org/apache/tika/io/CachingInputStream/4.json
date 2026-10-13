@@ -1,0 +1,18 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "getPosition",
+  "brief": "long getPosition(){}",
+  "methodSignature": "getPosition()",
+  "sourceCode": "long getPosition() {\n        return position;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get the current position in the stream.\n */\nlong getPosition() {\n    return position;\n}",
+  "method_comment": "\n     * Get the current position in the stream.\n     ",
+  "method_annotation": ""
+}

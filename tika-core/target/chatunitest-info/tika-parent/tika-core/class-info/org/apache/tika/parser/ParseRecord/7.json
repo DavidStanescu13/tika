@@ -1,0 +1,26 @@
+{
+  "className": "ParseRecord",
+  "methodName": "addWarning",
+  "brief": "public void addWarning(String msg){}",
+  "methodSignature": "addWarning(String)",
+  "sourceCode": "public void addWarning(String msg) {\n        if (warnings.size() < MAX_WARNINGS) {\n            warnings.add(msg);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "add(E)",
+      "size()"
+    ]
+  },
+  "full_method_info": "public void addWarning(String msg) {\n    if (warnings.size() < MAX_WARNINGS) {\n        warnings.add(msg);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,36 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "setFilterKey",
+  "brief": "private void setFilterKey(StringSizePair filterKey, String value,\r\n                              Map<String, String[]> data){}",
+  "methodSignature": "setFilterKey(StringSizePair, String, Map)",
+  "sourceCode": "private void setFilterKey(StringSizePair filterKey, String value,\n                              Map<String, String[]> data) {\n        //if you can't even add the key, give up now\n        if (! data.containsKey(filterKey.string) &&\n                (filterKey.size + estimatedSize > maxTotalEstimatedSize)) {\n            setTruncated(data);\n            return;\n        }\n\n        Integer fieldSizeInteger = fieldSizes.get(filterKey.string);\n        int fieldSize = fieldSizeInteger == null ? 0 : fieldSizeInteger;\n        int maxAllowed = maxAllowedToSet(filterKey);\n        if (maxAllowed <= 0) {\n            setTruncated(data);\n            return;\n        }\n        int valueLength = estimateSize(value);\n        String toSet = value;\n        if (valueLength > maxAllowed) {\n            toSet = truncate(value, maxAllowed, data);\n            valueLength = estimateSize(toSet);\n            if (valueLength == 0) {\n                return;\n            }\n        }\n\n        int addedOverall = 0;\n        if (fieldSizeInteger == null) {\n            //if there was no value before, we're adding\n            //a key.  If there was a value before, do not\n            //add the key length.\n            addedOverall += filterKey.size;\n        }\n        addedOverall += valueLength - fieldSize;\n        estimatedSize += addedOverall;\n\n        fieldSizes.put(filterKey.string, valueLength);\n\n        data.put(filterKey.string, new String[]{ toSet });\n\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringSizePair",
+    "String",
+    "Map<String,String[]>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter.StringSizePair": [],
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "containsKey(Object)"
+    ],
+    "org.apache.tika.metadata.writefilter.StandardMetadataLimiter": [
+      "estimateSize(String)",
+      "setTruncated(String[]>)",
+      "maxAllowedToSet(StringSizePair)",
+      "truncate(String, int, String[]>)"
+    ]
+  },
+  "full_method_info": "private void setFilterKey(StringSizePair filterKey, String value, Map<String, String[]> data) {\n    // if you can't even add the key, give up now\n    if (!data.containsKey(filterKey.string) && (filterKey.size + estimatedSize > maxTotalEstimatedSize)) {\n        setTruncated(data);\n        return;\n    }\n    Integer fieldSizeInteger = fieldSizes.get(filterKey.string);\n    int fieldSize = fieldSizeInteger == null ? 0 : fieldSizeInteger;\n    int maxAllowed = maxAllowedToSet(filterKey);\n    if (maxAllowed <= 0) {\n        setTruncated(data);\n        return;\n    }\n    int valueLength = estimateSize(value);\n    String toSet = value;\n    if (valueLength > maxAllowed) {\n        toSet = truncate(value, maxAllowed, data);\n        valueLength = estimateSize(toSet);\n        if (valueLength == 0) {\n            return;\n        }\n    }\n    int addedOverall = 0;\n    if (fieldSizeInteger == null) {\n        // if there was no value before, we're adding\n        // a key.  If there was a value before, do not\n        // add the key length.\n        addedOverall += filterKey.size;\n    }\n    addedOverall += valueLength - fieldSize;\n    estimatedSize += addedOverall;\n    fieldSizes.put(filterKey.string, valueLength);\n    data.put(filterKey.string, new String[] { toSet });\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

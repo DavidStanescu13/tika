@@ -1,0 +1,28 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "determineMaxEntityExpansions",
+  "brief": "private static int determineMaxEntityExpansions(){}",
+  "methodSignature": "determineMaxEntityExpansions()",
+  "sourceCode": "private static int determineMaxEntityExpansions() {\n        String expansionLimit = System.getProperty(JAXP_ENTITY_EXPANSION_LIMIT_KEY);\n        if (expansionLimit != null) {\n            try {\n                return Integer.parseInt(expansionLimit);\n            } catch (NumberFormatException e) {\n                LOG.warn(\n                        \"Couldn't parse an integer for the entity expansion limit: {}; \" +\n                                \"backing off to default: {}\",\n                        expansionLimit, DEFAULT_MAX_ENTITY_EXPANSIONS);\n            }\n        }\n        return DEFAULT_MAX_ENTITY_EXPANSIONS;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.System": [
+      "getProperty(String)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Object, Object)"
+    ]
+  },
+  "full_method_info": "private static int determineMaxEntityExpansions() {\n    String expansionLimit = System.getProperty(JAXP_ENTITY_EXPANSION_LIMIT_KEY);\n    if (expansionLimit != null) {\n        try {\n            return Integer.parseInt(expansionLimit);\n        } catch (NumberFormatException e) {\n            LOG.warn(\"Couldn't parse an integer for the entity expansion limit: {}; \" + \"backing off to default: {}\", expansionLimit, DEFAULT_MAX_ENTITY_EXPANSIONS);\n        }\n    }\n    return DEFAULT_MAX_ENTITY_EXPANSIONS;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "HighByteLetterStats",
+  "methodName": "isCasedLatinishLetter",
+  "brief": "private static boolean isCasedLatinishLetter(int cp){}",
+  "methodSignature": "isCasedLatinishLetter(int)",
+  "sourceCode": "private static boolean isCasedLatinishLetter(int cp) {\n        if (cp == 0x00AA || cp == 0x00BA || cp == 0x207F) {\n            return false; // ª, º, ⁿ — ordinal / superscript indicators\n        }\n        int type = Character.getType(cp);\n        return type == Character.UPPERCASE_LETTER\n                || type == Character.LOWERCASE_LETTER\n                || type == Character.TITLECASE_LETTER;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Character": [
+      "getType(int)"
+    ]
+  },
+  "full_method_info": "private static boolean isCasedLatinishLetter(int cp) {\n    if (cp == 0x00AA || cp == 0x00BA || cp == 0x207F) {\n        // ª, º, ⁿ — ordinal / superscript indicators\n        return false;\n    }\n    int type = Character.getType(cp);\n    return type == Character.UPPERCASE_LETTER || type == Character.LOWERCASE_LETTER || type == Character.TITLECASE_LETTER;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

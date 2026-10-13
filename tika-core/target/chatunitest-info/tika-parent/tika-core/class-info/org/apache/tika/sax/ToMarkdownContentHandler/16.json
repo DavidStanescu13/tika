@@ -1,0 +1,28 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "startTable",
+  "brief": "private void startTable(){}",
+  "methodSignature": "startTable()",
+  "sourceCode": "private void startTable() {\n        tableDepth++;\n        if (tableDepth == 1) {\n            popToBlockHost();\n            tableBlock = new TableBlock();\n            tableBody = null;\n            rowIndex = 0;\n            stack.peek().appendChild(tableBlock);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "popToBlockHost()"
+    ],
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ],
+    "java.util.Deque": [
+      "peek()"
+    ]
+  },
+  "full_method_info": "private void startTable() {\n    tableDepth++;\n    if (tableDepth == 1) {\n        popToBlockHost();\n        tableBlock = new TableBlock();\n        tableBody = null;\n        rowIndex = 0;\n        stack.peek().appendChild(tableBlock);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

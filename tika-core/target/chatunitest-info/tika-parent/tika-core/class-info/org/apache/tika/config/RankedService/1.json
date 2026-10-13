@@ -1,0 +1,22 @@
+{
+  "className": "RankedService",
+  "methodName": "compareTo",
+  "brief": "public int compareTo(RankedService that){}",
+  "methodSignature": "compareTo(RankedService)",
+  "sourceCode": "public int compareTo(RankedService that) {\n            return that.rank - rank; // highest number first\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "RankedService"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.config.ServiceLoader.RankedService": []
+  },
+  "full_method_info": "public int compareTo(RankedService that) {\n    // highest number first\n    return that.rank - rank;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

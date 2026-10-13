@@ -1,0 +1,33 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "initializeEmbeddedDocumentExtractor",
+  "brief": "private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context){}",
+  "methodSignature": "initializeEmbeddedDocumentExtractor(Metadata, ParseContext)",
+  "sourceCode": "private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context) {\n        if (context.get(EmbeddedDocumentExtractor.class) != null) {\n            return;\n        }\n        // pass in self for embedded documents unless\n        // the caller has specified a parser\n        Parser p = context.get(Parser.class);\n        if (p == null) {\n            context.set(Parser.class, this);\n        }\n        // pass in own detector for embedded documents unless\n        // the caller has specified one\n        Detector d = context.get(Detector.class);\n        if (d == null) {\n            context.set(Detector.class, getDetector());\n        }\n        EmbeddedDocumentExtractorFactory edxf = context.get(EmbeddedDocumentExtractorFactory.class);\n        if (edxf == null) {\n            edxf = new StandardExtractorFactory();\n        }\n        EmbeddedDocumentExtractor edx = edxf.newInstance(metadata, context);\n        context.set(EmbeddedDocumentExtractor.class, edx);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)",
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.AutoDetectParser": [
+      "getDetector()"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentExtractorFactory": [
+      "newInstance(Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "private void initializeEmbeddedDocumentExtractor(Metadata metadata, ParseContext context) {\n    if (context.get(EmbeddedDocumentExtractor.class) != null) {\n        return;\n    }\n    // pass in self for embedded documents unless\n    // the caller has specified a parser\n    Parser p = context.get(Parser.class);\n    if (p == null) {\n        context.set(Parser.class, this);\n    }\n    // pass in own detector for embedded documents unless\n    // the caller has specified one\n    Detector d = context.get(Detector.class);\n    if (d == null) {\n        context.set(Detector.class, getDetector());\n    }\n    EmbeddedDocumentExtractorFactory edxf = context.get(EmbeddedDocumentExtractorFactory.class);\n    if (edxf == null) {\n        edxf = new StandardExtractorFactory();\n    }\n    EmbeddedDocumentExtractor edx = edxf.newInstance(metadata, context);\n    context.set(EmbeddedDocumentExtractor.class, edx);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

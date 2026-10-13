@@ -1,0 +1,23 @@
+{
+  "className": "DIFContentHandler",
+  "methodName": "DIFContentHandler",
+  "brief": "public DIFContentHandler(ContentHandler delegate, Metadata metadata){}",
+  "methodSignature": "DIFContentHandler(ContentHandler, Metadata)",
+  "sourceCode": "public DIFContentHandler(ContentHandler delegate, Metadata metadata) {\n        this.delegate = delegate;\n        this.isLeaf = false;\n        this.metadata = metadata;\n        this.treeStack = new Stack<>();\n        this.dataStack = new Stack<>();\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "public DIFContentHandler(ContentHandler delegate, Metadata metadata) {\n    this.delegate = delegate;\n    this.isLeaf = false;\n    this.metadata = metadata;\n    this.treeStack = new Stack<>();\n    this.dataStack = new Stack<>();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

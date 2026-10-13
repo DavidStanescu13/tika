@@ -1,0 +1,20 @@
+{
+  "className": "Tika",
+  "methodName": "setMaxStringLength",
+  "brief": "public void setMaxStringLength(int maxStringLength){}",
+  "methodSignature": "setMaxStringLength(int)",
+  "sourceCode": "public void setMaxStringLength(int maxStringLength) {\n        this.maxStringLength = maxStringLength;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum length of strings returned by the parseToString\n * methods.\n *\n * @param maxStringLength maximum string length,\n *                        or -1 to disable this limit\n * @since Apache Tika 0.7\n */\npublic void setMaxStringLength(int maxStringLength) {\n    this.maxStringLength = maxStringLength;\n}",
+  "method_comment": "\n     * Sets the maximum length of strings returned by the parseToString\n     * methods.\n     *\n     * @param maxStringLength maximum string length,\n     *                        or -1 to disable this limit\n     * @since Apache Tika 0.7\n     ",
+  "method_annotation": ""
+}

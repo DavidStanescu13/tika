@@ -1,0 +1,24 @@
+{
+  "className": "QName",
+  "methodName": "QName",
+  "brief": "QName(String uri, String localName, String qName){}",
+  "methodSignature": "QName(String, String, String)",
+  "sourceCode": "QName(String uri, String localName, String qName) {\n            this.uri = nullSafe(uri);\n            this.localName = nullSafe(localName);\n            this.qName = nullSafe(qName);\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "QName(String uri, String localName, String qName) {\n    this.uri = nullSafe(uri);\n    this.localName = nullSafe(localName);\n    this.qName = nullSafe(qName);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

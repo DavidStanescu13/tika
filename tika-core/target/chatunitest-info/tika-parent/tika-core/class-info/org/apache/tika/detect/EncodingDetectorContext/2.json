@@ -1,0 +1,22 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "getResults",
+  "brief": "public List<Result> getResults(){}",
+  "methodSignature": "getResults()",
+  "sourceCode": "public List<Result> getResults() {\n        return Collections.unmodifiableList(results);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * @return unmodifiable list of all per-detector results in detection order\n */\npublic List<Result> getResults() {\n    return Collections.unmodifiableList(results);\n}",
+  "method_comment": "\n     * @return unmodifiable list of all per-detector results in detection order\n     ",
+  "method_annotation": ""
+}

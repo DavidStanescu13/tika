@@ -1,0 +1,35 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "parseSAX",
+  "brief": "public static void parseSAX(Reader reader, ContentHandler contentHandler, ParseContext context)\r\n            throws TikaException, IOException, SAXException{}",
+  "methodSignature": "parseSAX(Reader, ContentHandler, ParseContext)",
+  "sourceCode": "public static void parseSAX(Reader reader, ContentHandler contentHandler, ParseContext context)\n            throws TikaException, IOException, SAXException {\n        SAXParser saxParser = context.get(SAXParser.class);\n        PoolSAXParser poolSAXParser = null;\n        if (saxParser == null) {\n            if (POOL_SIZE == 0) {\n                saxParser = getSAXParser();\n            } else {\n                poolSAXParser = acquireSAXParser();\n                if (poolSAXParser != null) {\n                    saxParser = poolSAXParser.getSAXParser();\n                } else {\n                    saxParser = getSAXParser();\n                }\n            }\n        }\n        try {\n            saxParser.parse(new InputSource(reader), new OfflineContentHandler(contentHandler));\n        } finally {\n            releaseParser(poolSAXParser);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Reader",
+    "ContentHandler",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.io.Reader": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getSAXParser()",
+      "acquireSAXParser()",
+      "releaseParser(PoolSAXParser)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils.PoolSAXParser": [
+      "getSAXParser()"
+    ]
+  },
+  "full_method_info": "/**\n * This checks context for a user specified {@link SAXParser}.\n * If one is not found, this reuses a SAXParser from the pool.\n *\n * @param reader         reader (character stream) to parse\n * @param contentHandler handler to use; this wraps a {@link OfflineContentHandler}\n *                       to the content handler as an extra layer of defense against\n *                       external entity vulnerabilities\n * @param context        context to use\n * @return\n * @throws TikaException\n * @throws IOException\n * @throws SAXException\n * @since Apache Tika 2.5\n */\npublic static void parseSAX(Reader reader, ContentHandler contentHandler, ParseContext context) throws TikaException, IOException, SAXException {\n    SAXParser saxParser = context.get(SAXParser.class);\n    PoolSAXParser poolSAXParser = null;\n    if (saxParser == null) {\n        if (POOL_SIZE == 0) {\n            saxParser = getSAXParser();\n        } else {\n            poolSAXParser = acquireSAXParser();\n            if (poolSAXParser != null) {\n                saxParser = poolSAXParser.getSAXParser();\n            } else {\n                saxParser = getSAXParser();\n            }\n        }\n    }\n    try {\n        saxParser.parse(new InputSource(reader), new OfflineContentHandler(contentHandler));\n    } finally {\n        releaseParser(poolSAXParser);\n    }\n}",
+  "method_comment": "\n     * This checks context for a user specified {@link SAXParser}.\n     * If one is not found, this reuses a SAXParser from the pool.\n     *\n     * @param reader         reader (character stream) to parse\n     * @param contentHandler handler to use; this wraps a {@link OfflineContentHandler}\n     *                       to the content handler as an extra layer of defense against\n     *                       external entity vulnerabilities\n     * @param context        context to use\n     * @return\n     * @throws TikaException\n     * @throws IOException\n     * @throws SAXException\n     * @since Apache Tika 2.5\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "PageAnchoring",
+  "methodName": "applyPageMetadata",
+  "brief": "public static void applyPageMetadata(Metadata target, Collection<Integer> pages){}",
+  "methodSignature": "applyPageMetadata(Metadata, Collection)",
+  "sourceCode": "public static void applyPageMetadata(Metadata target, Collection<Integer> pages) {\n        applyAnchorMetadata(target, pages,\n                TikaPagedText.PAGE_NUMBER, TikaPagedText.PAGE_NUMBERS,\n                TikaPagedText.UNLINKED_PAGE);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "Collection<Integer>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.metadata.PageAnchoring": [
+      "applyAnchorMetadata(Metadata, Integer>, Property, Property, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Apply {@link TikaPagedText#PAGE_NUMBER} / {@link TikaPagedText#PAGE_NUMBERS}\n * to {@code target}, per the page-anchoring convention.  Used by\n * presentation parsers (PPT, PPTX, ODP), and by PDF parsers when\n * tagging per-page embedded resources.\n *\n * @param target metadata to write to\n * @param pages  1-based page numbers, an empty collection for\n *               \"known unlinked\", or {@code null} for unknown\n */\npublic static void applyPageMetadata(Metadata target, Collection<Integer> pages) {\n    applyAnchorMetadata(target, pages, TikaPagedText.PAGE_NUMBER, TikaPagedText.PAGE_NUMBERS, TikaPagedText.UNLINKED_PAGE);\n}",
+  "method_comment": "\n     * Apply {@link TikaPagedText#PAGE_NUMBER} / {@link TikaPagedText#PAGE_NUMBERS}\n     * to {@code target}, per the page-anchoring convention.  Used by\n     * presentation parsers (PPT, PPTX, ODP), and by PDF parsers when\n     * tagging per-page embedded resources.\n     *\n     * @param target metadata to write to\n     * @param pages  1-based page numbers, an empty collection for\n     *               \"known unlinked\", or {@code null} for unknown\n     ",
+  "method_annotation": ""
+}

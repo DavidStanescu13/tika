@@ -1,0 +1,25 @@
+{
+  "className": "MinShouldMatchClause",
+  "methodName": "MinShouldMatchClause",
+  "brief": "MinShouldMatchClause(int min, List<Clause> clauses){}",
+  "methodSignature": "MinShouldMatchClause(int, List)",
+  "sourceCode": "MinShouldMatchClause(int min, List<Clause> clauses) {\n\n        if (clauses == null || clauses.size() == 0) {\n            throw new IllegalArgumentException(\"clauses must be not null with size > 0\");\n        }\n\n        if (min > clauses.size()) {\n            throw new IllegalArgumentException(\n                    \"min (\" + min + \") cannot be > clauses.size (\" + clauses.size() + \")\");\n        } else if (min <= 0) {\n            throw new IllegalArgumentException(\"min cannot be <= 0: \" + min);\n        }\n\n        this.min = min;\n        this.clauses = clauses;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "List<Clause>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "size()"
+    ]
+  },
+  "full_method_info": "MinShouldMatchClause(int min, List<Clause> clauses) {\n    if (clauses == null || clauses.size() == 0) {\n        throw new IllegalArgumentException(\"clauses must be not null with size > 0\");\n    }\n    if (min > clauses.size()) {\n        throw new IllegalArgumentException(\"min (\" + min + \") cannot be > clauses.size (\" + clauses.size() + \")\");\n    } else if (min <= 0) {\n        throw new IllegalArgumentException(\"min cannot be <= 0: \" + min);\n    }\n    this.min = min;\n    this.clauses = clauses;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

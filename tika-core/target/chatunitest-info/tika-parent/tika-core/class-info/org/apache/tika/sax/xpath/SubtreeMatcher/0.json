@@ -1,0 +1,26 @@
+{
+  "className": "SubtreeMatcher",
+  "methodName": "descend",
+  "brief": "@Override\r\n    public Matcher descend(String namespace, String name){}",
+  "methodSignature": "descend(String, String)",
+  "sourceCode": "@Override\n    public Matcher descend(String namespace, String name) {\n        Matcher next = then.descend(namespace, name);\n        if (next == FAIL || next == then) {\n            return this;\n        } else {\n            return new CompositeMatcher(next, this);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": [
+      "descend(String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Matcher descend(String namespace, String name) {\n    Matcher next = then.descend(namespace, name);\n    if (next == FAIL || next == then) {\n        return this;\n    } else {\n        return new CompositeMatcher(next, this);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

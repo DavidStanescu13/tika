@@ -1,0 +1,22 @@
+{
+  "className": "MagicDetector",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        // Needs to be unique, as these get compared.\n        return \"Magic Detection for \" + type + \" looking for \" + pattern.length + \" bytes = \" +\n                Arrays.toString(this.pattern) + \" mask = \" + Arrays.toString(this.mask);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "toString(byte[])"
+    ]
+  },
+  "full_method_info": "/**\n * Returns a string representation of the Detection Rule.\n * Should sort nicely by type and details, as we sometimes\n * compare these.\n */\npublic String toString() {\n    // Needs to be unique, as these get compared.\n    return \"Magic Detection for \" + type + \" looking for \" + pattern.length + \" bytes = \" + Arrays.toString(this.pattern) + \" mask = \" + Arrays.toString(this.mask);\n}",
+  "method_comment": "\n     * Returns a string representation of the Detection Rule.\n     * Should sort nicely by type and details, as we sometimes\n     * compare these.\n     ",
+  "method_annotation": ""
+}

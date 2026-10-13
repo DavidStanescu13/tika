@@ -1,0 +1,20 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "fatalError",
+  "brief": "@Override\r\n    public void fatalError (SAXParseException exception)\r\n            throws SAXException{}",
+  "methodSignature": "fatalError(SAXParseException)",
+  "sourceCode": "@Override\n    public void fatalError (SAXParseException exception)\n            throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler)handler).fatalError(exception);\n        } else {\n            super.fatalError(exception);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXParseException"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void fatalError(SAXParseException exception) throws SAXException {\n    if (handler instanceof ErrorHandler) {\n        ((ErrorHandler) handler).fatalError(exception);\n    } else {\n        super.fatalError(exception);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

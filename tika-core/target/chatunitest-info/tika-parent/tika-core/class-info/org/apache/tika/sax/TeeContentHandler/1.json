@@ -1,0 +1,22 @@
+{
+  "className": "TeeContentHandler",
+  "methodName": "endPrefixMapping",
+  "brief": "@Override\r\n    public void endPrefixMapping(String prefix) throws SAXException{}",
+  "methodSignature": "endPrefixMapping(String)",
+  "sourceCode": "@Override\n    public void endPrefixMapping(String prefix) throws SAXException {\n        for (ContentHandler handler : handlers) {\n            handler.endPrefixMapping(prefix);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void endPrefixMapping(String prefix) throws SAXException {\n    for (ContentHandler handler : handlers) {\n        handler.endPrefixMapping(prefix);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,20 @@
+{
+  "className": "SecureHandlerCounter",
+  "methodName": "addChars",
+  "brief": "void addChars(int numChars){}",
+  "methodSignature": "addChars(int)",
+  "sourceCode": "void addChars(int numChars) {\n            totalChars += numChars;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "void addChars(int numChars) {\n    totalChars += numChars;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

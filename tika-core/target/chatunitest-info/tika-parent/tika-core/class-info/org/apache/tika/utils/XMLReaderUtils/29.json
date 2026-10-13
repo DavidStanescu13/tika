@@ -1,0 +1,18 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getMaxNumReuses",
+  "brief": "public static int getMaxNumReuses(){}",
+  "methodSignature": "getMaxNumReuses()",
+  "sourceCode": "public static int getMaxNumReuses() {\n        return MAX_NUM_REUSES;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get the maximum number of times a SAXParser or DOMBuilder may be reused.\n *\n * @return\n */\npublic static int getMaxNumReuses() {\n    return MAX_NUM_REUSES;\n}",
+  "method_comment": "\n     * Get the maximum number of times a SAXParser or DOMBuilder may be reused.\n     *\n     * @return\n     ",
+  "method_annotation": ""
+}

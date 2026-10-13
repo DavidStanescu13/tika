@@ -1,0 +1,27 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "charsetFromContentTypeHint",
+  "brief": "public static Charset charsetFromContentTypeHint(Metadata metadata){}",
+  "methodSignature": "charsetFromContentTypeHint(Metadata)",
+  "sourceCode": "public static Charset charsetFromContentTypeHint(Metadata metadata) {\n        return charsetFromMediaType(metadata.get(TikaCoreProperties.CONTENT_TYPE_HINT));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.detect.MetadataCharsetDetector": [
+      "charsetFromMediaType(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the charset named in the {@code charset} parameter of the\n * {@link TikaCoreProperties#CONTENT_TYPE_HINT} value — a content-type a source\n * claimed for the bytes (HTML {@code <meta>}, a zip entry's UTF-8 flag, ...) —\n * or {@code null} if absent or unparseable.\n */\npublic static Charset charsetFromContentTypeHint(Metadata metadata) {\n    return charsetFromMediaType(metadata.get(TikaCoreProperties.CONTENT_TYPE_HINT));\n}",
+  "method_comment": "\n     * Returns the charset named in the {@code charset} parameter of the\n     * {@link TikaCoreProperties#CONTENT_TYPE_HINT} value — a content-type a source\n     * claimed for the bytes (HTML {@code <meta>}, a zip entry's UTF-8 flag, ...) —\n     * or {@code null} if absent or unparseable.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "CompositeMetadataFilter",
+  "methodName": "CompositeMetadataFilter",
+  "brief": "public CompositeMetadataFilter(List<MetadataFilter> filters){}",
+  "methodSignature": "CompositeMetadataFilter(List)",
+  "sourceCode": "public CompositeMetadataFilter(List<MetadataFilter> filters) {\n        this.filters = filters;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<MetadataFilter>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public CompositeMetadataFilter(List<MetadataFilter> filters) {\n    this.filters = filters;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

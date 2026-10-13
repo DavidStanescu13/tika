@@ -1,0 +1,31 @@
+{
+  "className": "Metadata",
+  "methodName": "getMetadataEntryHashCode",
+  "brief": "private int getMetadataEntryHashCode(Entry<String, String[]> e){}",
+  "methodSignature": "getMetadataEntryHashCode(Entry)",
+  "sourceCode": "private int getMetadataEntryHashCode(Entry<String, String[]> e) {\n        return Objects.hashCode(e.getKey()) ^ Arrays.hashCode(e.getValue());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Entry<String,String[]>"
+  ],
+  "dependentMethods": {
+    "java.util.Objects": [
+      "hashCode(Object)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.Arrays": [
+      "hashCode(Object[])"
+    ]
+  },
+  "full_method_info": "private int getMetadataEntryHashCode(Entry<String, String[]> e) {\n    return Objects.hashCode(e.getKey()) ^ Arrays.hashCode(e.getValue());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

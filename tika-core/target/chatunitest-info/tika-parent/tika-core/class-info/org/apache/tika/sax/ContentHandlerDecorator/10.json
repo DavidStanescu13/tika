@@ -1,0 +1,24 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "ignorableWhitespace",
+  "brief": "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "ignorableWhitespace(char[], int, int)",
+  "sourceCode": "@Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        try {\n            handler.ignorableWhitespace(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "@Override\npublic void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n    try {\n        handler.ignorableWhitespace(ch, start, length);\n    } catch (SAXException e) {\n        handleException(e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "getZipBombThreshold",
+  "brief": "public long getZipBombThreshold(){}",
+  "methodSignature": "getZipBombThreshold()",
+  "sourceCode": "public long getZipBombThreshold() {\n        return zipBombThreshold;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the zip bomb threshold (characters before check activates).\n *\n * @return zip bomb threshold\n */\npublic long getZipBombThreshold() {\n    return zipBombThreshold;\n}",
+  "method_comment": "\n     * Gets the zip bomb threshold (characters before check activates).\n     *\n     * @return zip bomb threshold\n     ",
+  "method_annotation": ""
+}

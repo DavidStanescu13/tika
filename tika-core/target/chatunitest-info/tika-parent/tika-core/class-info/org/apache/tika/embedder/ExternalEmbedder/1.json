@@ -1,0 +1,26 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "check",
+  "brief": "public static boolean check(String checkCmd, int... errorValue){}",
+  "methodSignature": "check(String, int[])",
+  "sourceCode": "public static boolean check(String checkCmd, int... errorValue) {\n        return check(new String[]{checkCmd}, errorValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "check(String[], int[])"
+    ]
+  },
+  "full_method_info": "/**\n * Checks to see if the command can be run. Typically used with something\n * like \"myapp --version\" to check to see if \"myapp\" is installed and on the\n * path.\n *\n * @param checkCmd   the check command to run\n * @param errorValue what is considered an error value?\n * @return whether or not the check completed without error\n */\npublic static boolean check(String checkCmd, int... errorValue) {\n    return check(new String[] { checkCmd }, errorValue);\n}",
+  "method_comment": "\n     * Checks to see if the command can be run. Typically used with something\n     * like \"myapp --version\" to check to see if \"myapp\" is installed and on the\n     * path.\n     *\n     * @param checkCmd   the check command to run\n     * @param errorValue what is considered an error value?\n     * @return whether or not the check completed without error\n     ",
+  "method_annotation": ""
+}

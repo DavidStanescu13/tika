@@ -1,0 +1,18 @@
+{
+  "className": "EncodingDetectorContext",
+  "methodName": "getProbeCache",
+  "brief": "public EncodingProbeCache getProbeCache(){}",
+  "methodSignature": "getProbeCache()",
+  "sourceCode": "public EncodingProbeCache getProbeCache() {\n        return probeCache;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Per-detection cache of the raw detection probe, shared across the detectors in\n * this chain so they don't each re-read the same leading bytes. It lives and dies\n * with this context (which is removed after detection), so it never leaks into\n * recursive/attachment parsing.\n */\npublic EncodingProbeCache getProbeCache() {\n    return probeCache;\n}",
+  "method_comment": "\n     * Per-detection cache of the raw detection probe, shared across the detectors in\n     * this chain so they don't each re-read the same leading bytes. It lives and dies\n     * with this context (which is removed after detection), so it never leaks into\n     * recursive/attachment parsing.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,33 @@
+{
+  "className": "ParseContext",
+  "methodName": "copyFrom",
+  "brief": "public void copyFrom(ParseContext source){}",
+  "methodSignature": "copyFrom(ParseContext)",
+  "sourceCode": "public void copyFrom(ParseContext source) {\n        if (source == null) {\n            return;\n        }\n        // Copy typed objects\n        context.putAll(source.context);\n        // Copy JSON configs, invalidating stale resolved state for overridden keys.\n        // When a source jsonConfig overrides an existing entry, the previously resolved\n        // object is stale and must be cleared so resolveAll() will re-resolve from the\n        // new JSON config.\n        for (Map.Entry<String, JsonConfig> entry : source.jsonConfigs.entrySet()) {\n            String key = entry.getKey();\n            jsonConfigs.put(key, entry.getValue());\n            if (resolvedConfigs != null) {\n                resolvedConfigs.remove(key);\n            }\n        }\n        // Copy resolved configs from source (if any)\n        if (source.resolvedConfigs != null && !source.resolvedConfigs.isEmpty()) {\n            if (resolvedConfigs == null) {\n                resolvedConfigs = new HashMap<>();\n            }\n            resolvedConfigs.putAll(source.resolvedConfigs);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "java.util.Map": [
+      "remove(Object)",
+      "isEmpty()",
+      "entrySet()",
+      "putAll(Map<? extends K, ? extends V>)",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "/**\n * Copies all entries from the source ParseContext into this one.\n * Existing entries in this context are overwritten by source entries.\n * <p>\n * This copies both typed objects (from context map) and JSON configs.\n *\n * @param source the ParseContext to copy from\n * @since Apache Tika 4.0\n */\npublic void copyFrom(ParseContext source) {\n    if (source == null) {\n        return;\n    }\n    // Copy typed objects\n    context.putAll(source.context);\n    // Copy JSON configs, invalidating stale resolved state for overridden keys.\n    // When a source jsonConfig overrides an existing entry, the previously resolved\n    // object is stale and must be cleared so resolveAll() will re-resolve from the\n    // new JSON config.\n    for (Map.Entry<String, JsonConfig> entry : source.jsonConfigs.entrySet()) {\n        String key = entry.getKey();\n        jsonConfigs.put(key, entry.getValue());\n        if (resolvedConfigs != null) {\n            resolvedConfigs.remove(key);\n        }\n    }\n    // Copy resolved configs from source (if any)\n    if (source.resolvedConfigs != null && !source.resolvedConfigs.isEmpty()) {\n        if (resolvedConfigs == null) {\n            resolvedConfigs = new HashMap<>();\n        }\n        resolvedConfigs.putAll(source.resolvedConfigs);\n    }\n}",
+  "method_comment": "\n     * Copies all entries from the source ParseContext into this one.\n     * Existing entries in this context are overwritten by source entries.\n     * <p>\n     * This copies both typed objects (from context map) and JSON configs.\n     *\n     * @param source the ParseContext to copy from\n     * @since Apache Tika 4.0\n     ",
+  "method_annotation": ""
+}

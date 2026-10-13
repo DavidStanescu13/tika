@@ -1,0 +1,36 @@
+{
+  "className": "ParsingEmbeddedDocumentExtractor",
+  "methodName": "shouldParseEmbedded",
+  "brief": "@Override\r\n    public boolean shouldParseEmbedded(Metadata metadata){}",
+  "methodSignature": "shouldParseEmbedded(Metadata)",
+  "sourceCode": "@Override\n    public boolean shouldParseEmbedded(Metadata metadata) {\n        // Check ParseRecord for depth/count limits first\n        ParseRecord parseRecord = context.get(ParseRecord.class);\n        if (parseRecord != null && !checkEmbeddedLimits(parseRecord)) {\n            return false;\n        }\n\n        // Then check DocumentSelector for content-based filtering\n        DocumentSelector selector = context.get(DocumentSelector.class);\n        if (selector != null) {\n            return selector.select(metadata);\n        }\n\n        // Then check FilenameFilter\n        FilenameFilter filter = context.get(FilenameFilter.class);\n        if (filter != null) {\n            String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n            if (name != null) {\n                return filter.accept(ABSTRACT_PATH, name);\n            }\n        }\n\n        return true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.extractor.ParsingEmbeddedDocumentExtractor": [
+      "checkEmbeddedLimits(ParseRecord)"
+    ],
+    "org.apache.tika.extractor.DocumentSelector": [
+      "select(Metadata)"
+    ],
+    "java.io.FilenameFilter": [
+      "accept(File, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic boolean shouldParseEmbedded(Metadata metadata) {\n    // Check ParseRecord for depth/count limits first\n    ParseRecord parseRecord = context.get(ParseRecord.class);\n    if (parseRecord != null && !checkEmbeddedLimits(parseRecord)) {\n        return false;\n    }\n    // Then check DocumentSelector for content-based filtering\n    DocumentSelector selector = context.get(DocumentSelector.class);\n    if (selector != null) {\n        return selector.select(metadata);\n    }\n    // Then check FilenameFilter\n    FilenameFilter filter = context.get(FilenameFilter.class);\n    if (filter != null) {\n        String name = metadata.get(TikaCoreProperties.RESOURCE_NAME_KEY);\n        if (name != null) {\n            return filter.accept(ABSTRACT_PATH, name);\n        }\n    }\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

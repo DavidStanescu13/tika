@@ -1,0 +1,126 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.nio.file.Files;
+import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_7_0_Test {
+
+    @Mock
+    private Process mockProcess;
+
+    @Mock
+    private StreamGobbler mockOutGobbler;
+
+    @Mock
+    private StreamGobbler mockErrGobbler;
+
+    @BeforeEach
+    public void setUp() {
+        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
+        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
+    }
+
+    @Test
+    public void testCheckCommandWithNoErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertTrue(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 1 };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(1);
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeout() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new IOException());
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new TimeoutException());
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new SecurityException());
+        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand(checkCmd));
+    }
+
+    @Test
+    public void testCheckCommandWithErrorInErrorStream() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(127);
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_checkCommand_7_0_Test: line 4 : package org.mockito.junit.jupiter does not exist
+Error in ProcessUtils_checkCommand_7_0_Test: line 16 : package org.mockito does not exist
+Error in ProcessUtils_checkCommand_7_0_Test: line 14 : package org.mockito does not exist
+Error in ProcessUtils_checkCommand_7_0_Test: line 19 : cannot find symbol
+  symbol: class MockitoExtension
+Error in ProcessUtils_checkCommand_7_0_Test: line 22 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_0_Test
+Error in ProcessUtils_checkCommand_7_0_Test: line 25 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_0_Test
+Error in ProcessUtils_checkCommand_7_0_Test: line 28 : cannot find symbol
+  symbol:   class Mock
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_7_0_Test

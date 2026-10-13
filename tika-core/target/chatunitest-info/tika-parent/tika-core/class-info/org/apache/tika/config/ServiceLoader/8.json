@@ -1,0 +1,29 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "findServiceResources",
+  "brief": "public Enumeration<URL> findServiceResources(String filePattern){}",
+  "methodSignature": "findServiceResources(String)",
+  "sourceCode": "public Enumeration<URL> findServiceResources(String filePattern) {\n        try {\n            return loader.getResources(filePattern);\n        } catch (IOException ignore) {\n            // We couldn't get the list of service resource files\n            List<URL> empty = Collections.emptyList();\n            return Collections.enumeration(empty);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.ClassLoader": [
+      "getResources(String)"
+    ],
+    "java.util.Collections": [
+      "enumeration(Collection<T>)",
+      "emptyList()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns all the available service resources matching the\n * given pattern, such as all instances of tika-mimetypes.xml\n * on the classpath, or all org.apache.tika.parser.Parser\n * service files.\n */\npublic Enumeration<URL> findServiceResources(String filePattern) {\n    try {\n        return loader.getResources(filePattern);\n    } catch (IOException ignore) {\n        // We couldn't get the list of service resource files\n        List<URL> empty = Collections.emptyList();\n        return Collections.enumeration(empty);\n    }\n}",
+  "method_comment": "\n     * Returns all the available service resources matching the\n     * given pattern, such as all instances of tika-mimetypes.xml\n     * on the classpath, or all org.apache.tika.parser.Parser\n     * service files.\n     ",
+  "method_annotation": ""
+}

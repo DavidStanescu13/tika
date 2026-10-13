@@ -1,0 +1,25 @@
+{
+  "className": "Xerces2PoolSAXParser",
+  "methodName": "reset",
+  "brief": "@Override\r\n        void reset(){}",
+  "methodSignature": "reset()",
+  "sourceCode": "@Override\n        void reset() {\n            try {\n                Object object = saxParser.getProperty(XERCES_SECURITY_MANAGER_PROPERTY);\n                saxParser.reset();\n                saxParser.setProperty(XERCES_SECURITY_MANAGER_PROPERTY, object);\n            } catch (SAXException e) {\n                LOG.warn(\"problem resetting sax parser\", e);\n            }\n            try {\n                XMLReader reader = saxParser.getXMLReader();\n                clearReader(reader);\n            } catch (SAXException e) {\n                // ignored\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParser": [
+      "reset()",
+      "setProperty(String, Object)",
+      "getXMLReader()",
+      "getProperty(String)"
+    ]
+  },
+  "full_method_info": "@Override\nvoid reset() {\n    try {\n        Object object = saxParser.getProperty(XERCES_SECURITY_MANAGER_PROPERTY);\n        saxParser.reset();\n        saxParser.setProperty(XERCES_SECURITY_MANAGER_PROPERTY, object);\n    } catch (SAXException e) {\n        LOG.warn(\"problem resetting sax parser\", e);\n    }\n    try {\n        XMLReader reader = saxParser.getXMLReader();\n        clearReader(reader);\n    } catch (SAXException e) {\n        // ignored\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "remove",
+  "brief": "public void remove(String name){}",
+  "methodSignature": "remove(String)",
+  "sourceCode": "public void remove(String name) {\n        metadata.remove(name);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "remove(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Remove a metadata and all its associated values.\n *\n * @param name metadata name to remove\n */\npublic void remove(String name) {\n    metadata.remove(name);\n}",
+  "method_comment": "\n     * Remove a metadata and all its associated values.\n     *\n     * @param name metadata name to remove\n     ",
+  "method_annotation": ""
+}

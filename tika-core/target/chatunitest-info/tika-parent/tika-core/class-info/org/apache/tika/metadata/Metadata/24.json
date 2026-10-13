@@ -1,0 +1,33 @@
+{
+  "className": "Metadata",
+  "methodName": "set",
+  "brief": "public void set(Property property, String[] values){}",
+  "methodSignature": "set(Property, String[])",
+  "sourceCode": "public void set(Property property, String[] values) {\n        if (property == null) {\n            throw new NullPointerException(\"property must not be null\");\n        }\n        if (property.getPropertyType() == PropertyType.COMPOSITE) {\n            set(property.getPrimaryProperty(), values);\n            if (property.getSecondaryExtractProperties() != null) {\n                for (Property secondaryExtractProperty : property.getSecondaryExtractProperties()) {\n                    set(secondaryExtractProperty, values);\n                }\n            }\n        } else {\n            set(property.getName(), values);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "String[]"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getPrimaryProperty()",
+      "getName()",
+      "getPropertyType()",
+      "getSecondaryExtractProperties()"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String[])",
+      "set(String, String[])"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the values of the identified metadata property.\n *\n * @param property property definition\n * @param values   property values\n * @since Apache Tika 1.2\n */\npublic void set(Property property, String[] values) {\n    if (property == null) {\n        throw new NullPointerException(\"property must not be null\");\n    }\n    if (property.getPropertyType() == PropertyType.COMPOSITE) {\n        set(property.getPrimaryProperty(), values);\n        if (property.getSecondaryExtractProperties() != null) {\n            for (Property secondaryExtractProperty : property.getSecondaryExtractProperties()) {\n                set(secondaryExtractProperty, values);\n            }\n        }\n    } else {\n        set(property.getName(), values);\n    }\n}",
+  "method_comment": "\n     * Sets the values of the identified metadata property.\n     *\n     * @param property property definition\n     * @param values   property values\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": ""
+}

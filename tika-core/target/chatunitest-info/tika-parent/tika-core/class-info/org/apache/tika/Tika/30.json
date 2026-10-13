@@ -1,0 +1,18 @@
+{
+  "className": "Tika",
+  "methodName": "getTranslator",
+  "brief": "public Translator getTranslator(){}",
+  "methodSignature": "getTranslator()",
+  "sourceCode": "public Translator getTranslator() {\n        return translator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the translator instance used by this facade.\n *\n * @return translator instance\n * @since Tika 1.6\n */\npublic Translator getTranslator() {\n    return translator;\n}",
+  "method_comment": "\n     * Returns the translator instance used by this facade.\n     *\n     * @return translator instance\n     * @since Tika 1.6\n     ",
+  "method_annotation": ""
+}

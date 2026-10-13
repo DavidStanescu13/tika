@@ -1,0 +1,22 @@
+{
+  "className": "TailStream",
+  "methodName": "reset",
+  "brief": "@Override\r\n    public void reset(){}",
+  "methodSignature": "reset()",
+  "sourceCode": "@Override\n    public void reset() {\n        if (markBuffer != null) {\n            System.arraycopy(markBuffer, 0, tailBuffer, 0, tailSize);\n            currentIndex = markIndex;\n            bytesRead = markBytesRead;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * {@inheritDoc} This implementation restores this stream's state to the\n * state when ''mark()'' was called the last time. If ''mark()'' has not\n * been called before, this method has no effect.\n */\n@Override\npublic void reset() {\n    if (markBuffer != null) {\n        System.arraycopy(markBuffer, 0, tailBuffer, 0, tailSize);\n        currentIndex = markIndex;\n        bytesRead = markBytesRead;\n    }\n}",
+  "method_comment": "\n     * {@inheritDoc} This implementation restores this stream's state to the\n     * state when ''mark()'' was called the last time. If ''mark()'' has not\n     * been called before, this method has no effect.\n     ",
+  "method_annotation": "@Override\n"
+}

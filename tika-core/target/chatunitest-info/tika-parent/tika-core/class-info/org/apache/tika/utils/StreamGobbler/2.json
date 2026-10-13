@@ -1,0 +1,18 @@
+{
+  "className": "StreamGobbler",
+  "methodName": "getLines",
+  "brief": "public List<String> getLines(){}",
+  "methodSignature": "getLines()",
+  "sourceCode": "public List<String> getLines() {\n        return lines;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public List<String> getLines() {\n    return lines;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

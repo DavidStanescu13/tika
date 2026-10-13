@@ -1,0 +1,18 @@
+{
+  "className": "Clause",
+  "methodName": "size",
+  "brief": "int size();",
+  "methodSignature": "size()",
+  "sourceCode": "int size();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the size of this clause. The size of a clause is the number of\n * chars it is composed of.\n */\nint size();",
+  "method_comment": "\n     * Returns the size of this clause. The size of a clause is the number of\n     * chars it is composed of.\n     ",
+  "method_annotation": ""
+}

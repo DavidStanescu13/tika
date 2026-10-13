@@ -1,0 +1,24 @@
+{
+  "className": "MagicDetector",
+  "methodName": "MagicDetector",
+  "brief": "public MagicDetector(MediaType type, byte[] pattern){}",
+  "methodSignature": "MagicDetector(MediaType, byte[])",
+  "sourceCode": "public MagicDetector(MediaType type, byte[] pattern) {\n        this(type, pattern, 0);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MediaType",
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [],
+    "byte": []
+  },
+  "full_method_info": "public MagicDetector(MediaType type, byte[] pattern) {\n    this(type, pattern, 0);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

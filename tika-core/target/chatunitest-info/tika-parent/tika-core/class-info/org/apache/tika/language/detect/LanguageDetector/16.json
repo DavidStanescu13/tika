@@ -1,0 +1,18 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "detectAll",
+  "brief": "public abstract List<LanguageResult> detectAll();",
+  "methodSignature": "detectAll()",
+  "sourceCode": "public abstract List<LanguageResult> detectAll();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Detect languages based on previously submitted text (via addText calls).\n *\n * @return list of all possible languages with at least medium confidence,\n * sorted by confidence from highest to lowest. There will always\n * be at least one result, which might have a confidence of NONE.\n */\npublic abstract List<LanguageResult> detectAll();",
+  "method_comment": "\n     * Detect languages based on previously submitted text (via addText calls).\n     *\n     * @return list of all possible languages with at least medium confidence,\n     * sorted by confidence from highest to lowest. There will always\n     * be at least one result, which might have a confidence of NONE.\n     ",
+  "method_annotation": ""
+}

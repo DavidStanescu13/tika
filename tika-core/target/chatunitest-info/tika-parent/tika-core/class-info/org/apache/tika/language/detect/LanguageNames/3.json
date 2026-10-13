@@ -1,0 +1,22 @@
+{
+  "className": "LanguageNames",
+  "methodName": "hasMacroLanguage",
+  "brief": "public static boolean hasMacroLanguage(String languageTag){}",
+  "methodSignature": "hasMacroLanguage(String)",
+  "sourceCode": "public static boolean hasMacroLanguage(String languageTag) {\n        // Locale locale = Locale.forLanguageTag(languageTag); // unused\n        // TODO make it so\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static boolean hasMacroLanguage(String languageTag) {\n    // Locale locale = Locale.forLanguageTag(languageTag); // unused\n    // TODO make it so\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

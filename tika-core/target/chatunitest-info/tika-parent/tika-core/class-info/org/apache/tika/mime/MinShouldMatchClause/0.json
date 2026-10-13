@@ -1,0 +1,25 @@
+{
+  "className": "MinShouldMatchClause",
+  "methodName": "eval",
+  "brief": "public boolean eval(byte[] data){}",
+  "methodSignature": "eval(byte[])",
+  "sourceCode": "public boolean eval(byte[] data) {\n        int matches = 0;\n        for (Clause clause : clauses) {\n            if (clause.eval(data)) {\n                if (++matches >= min) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.mime.Clause": [
+      "eval(byte[])"
+    ]
+  },
+  "full_method_info": "public boolean eval(byte[] data) {\n    int matches = 0;\n    for (Clause clause : clauses) {\n        if (clause.eval(data)) {\n            if (++matches >= min) {\n                return true;\n            }\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

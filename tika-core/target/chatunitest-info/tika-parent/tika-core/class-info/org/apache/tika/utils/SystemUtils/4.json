@@ -1,0 +1,25 @@
+{
+  "className": "SystemUtils",
+  "methodName": "doesOSVersionContain",
+  "brief": "static boolean doesOSVersionContain(String osVersion, String osVersionSearch){}",
+  "methodSignature": "doesOSVersionContain(String, String)",
+  "sourceCode": "static boolean doesOSVersionContain(String osVersion, String osVersionSearch) {\n        return osVersion != null && osVersion.contains(osVersionSearch);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "contains(CharSequence)"
+    ]
+  },
+  "full_method_info": "static boolean doesOSVersionContain(String osVersion, String osVersionSearch) {\n    return osVersion != null && osVersion.contains(osVersionSearch);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

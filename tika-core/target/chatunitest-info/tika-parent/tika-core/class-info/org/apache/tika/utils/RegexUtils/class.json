@@ -1,0 +1,42 @@
+{
+  "fullClassName": "org.apache.tika.utils.RegexUtils",
+  "className": "RegexUtils",
+  "index": 349,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class RegexUtils",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.Collections;",
+    "import java.util.List;",
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;"
+  ],
+  "fields": [
+    "private static final String LINKS_REGEX = \"([A-Za-z][A-Za-z0-9+.-]{1,120}:\" +\n            \"[A-Za-z0-9/](([A-Za-z0-9$_.+!*,;/?:@&~=-])|%[A-Fa-f0-9]{2}){1,333}\" +\n            \"(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)\";",
+    "private static final Pattern LINKS_PATTERN =\n            Pattern.compile(LINKS_REGEX, Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "extractLinks(String)": "0"
+  },
+  "methodsBrief": [
+    "public static List<String> extractLinks(String content){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\n/**\n * Inspired from Nutch code class OutlinkExtractor. Apply regex to extract\n * content\n */\npublic class RegexUtils {\n\n    /**\n     * Regex pattern to get URLs within a plain text.\n     *\n     * @see <a\n     * href=\"http://www.truerwords.net/articles/ut/urlactivation.html\">http://www.truerwords.net/articles/ut/urlactivation.html\n     * </a>\n     */\n    private static final String LINKS_REGEX = \"([A-Za-z][A-Za-z0-9+.-]{1,120}:\" + \"[A-Za-z0-9/](([A-Za-z0-9$_.+!*,;/?:@&~=-])|%[A-Fa-f0-9]{2}){1,333}\" + \"(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)\";\n\n    private static final Pattern LINKS_PATTERN = Pattern.compile(LINKS_REGEX, Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);\n\n    /**\n     * Extract urls from plain text.\n     *\n     * @param content The plain text content to examine\n     * @return List of urls within found in the plain text\n     */\n    public static List<String> extractLinks(String content) {\n        if (content == null || content.isEmpty()) {\n            return Collections.emptyList();\n        }\n        List<String> extractions = new ArrayList<>();\n        final Matcher matcher = LINKS_PATTERN.matcher(content);\n        while (matcher.find()) {\n            extractions.add(matcher.group());\n        }\n        return extractions;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Inspired from Nutch code class OutlinkExtractor. Apply regex to extract\n * content\n */\npublic class RegexUtils {\n\n    /**\n     * Regex pattern to get URLs within a plain text.\n     *\n     * @see <a\n     * href=\"http://www.truerwords.net/articles/ut/urlactivation.html\">http://www.truerwords.net/articles/ut/urlactivation.html\n     * </a>\n     */\n    private static final String LINKS_REGEX = \"([A-Za-z][A-Za-z0-9+.-]{1,120}:\" + \"[A-Za-z0-9/](([A-Za-z0-9$_.+!*,;/?:@&~=-])|%[A-Fa-f0-9]{2}){1,333}\" + \"(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*,;/?:@&~=%-]{0,1000}))?)\";\n\n    private static final Pattern LINKS_PATTERN = Pattern.compile(LINKS_REGEX, Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);\n\n    /**\n     * Extract urls from plain text.\n     *\n     * @param content The plain text content to examine\n     * @return List of urls within found in the plain text\n     */\n    public static List<String> extractLinks(String content) {\n        if (content == null || content.isEmpty()) {\n            return Collections.emptyList();\n        }\n        List<String> extractions = new ArrayList<>();\n        final Matcher matcher = LINKS_PATTERN.matcher(content);\n        while (matcher.find()) {\n            extractions.add(matcher.group());\n        }\n        return extractions;\n    }\n}",
+  "subClasses": []
+}

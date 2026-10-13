@@ -1,0 +1,18 @@
+{
+  "className": "ByteArraySource",
+  "methodName": "hasPath",
+  "brief": "@Override\r\n    public boolean hasPath(){}",
+  "methodSignature": "hasPath()",
+  "sourceCode": "@Override\n    public boolean hasPath() {\n        return spilledPath != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic boolean hasPath() {\n    return spilledPath != null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

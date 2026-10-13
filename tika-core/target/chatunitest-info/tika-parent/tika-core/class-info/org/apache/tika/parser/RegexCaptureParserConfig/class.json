@@ -1,0 +1,72 @@
+{
+  "fullClassName": "org.apache.tika.parser.RegexCaptureParserConfig",
+  "className": "RegexCaptureParserConfig",
+  "index": 259,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class RegexCaptureParserConfig",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import java.util.HashMap;",
+    "import java.util.Map;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "private Map<String, String> captureMap = new HashMap<>();",
+    "private Map<String, String> matchMap = new HashMap<>();",
+    "private boolean writeContent = false;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "getCaptureMap()": "0",
+    "setCaptureMap(Map)": "1",
+    "getMatchMap()": "2",
+    "setMatchMap(Map)": "3",
+    "isWriteContent()": "4",
+    "setWriteContent(boolean)": "5",
+    "RegexCaptureParserConfig()": "6"
+  },
+  "methodsBrief": [
+    "public Map<String, String> getCaptureMap(){}",
+    "public void setCaptureMap(Map<String, String> captureMap){}",
+    "public Map<String, String> getMatchMap(){}",
+    "public void setMatchMap(Map<String, String> matchMap){}",
+    "public boolean isWriteContent(){}",
+    "public void setWriteContent(boolean writeContent){}",
+    "public RegexCaptureParserConfig(){}"
+  ],
+  "constructorSigs": [
+    "RegexCaptureParserConfig()"
+  ],
+  "constructorBrief": [
+    "public RegexCaptureParserConfig(){}"
+  ],
+  "getterSetterSigs": [
+    "getCaptureMap()",
+    "setCaptureMap(Map)",
+    "getMatchMap()",
+    "setMatchMap(Map)",
+    "setWriteContent(boolean)"
+  ],
+  "getterSetterBrief": [
+    "public Map<String, String> getCaptureMap(){}",
+    "public void setCaptureMap(Map<String, String> captureMap){}",
+    "public Map<String, String> getMatchMap(){}",
+    "public void setMatchMap(Map<String, String> matchMap){}",
+    "public void setWriteContent(boolean writeContent){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.Serializable;\nimport java.util.HashMap;\nimport java.util.Map;\n\n/**\n * Configuration for {@link RegexCaptureParser}.\n */\npublic class RegexCaptureParserConfig implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    private Map<String, String> captureMap = new HashMap<>();\n\n    private Map<String, String> matchMap = new HashMap<>();\n\n    private boolean writeContent = false;\n\n    public RegexCaptureParserConfig() {\n    }\n\n    public Map<String, String> getCaptureMap() {\n        return captureMap;\n    }\n\n    public void setCaptureMap(Map<String, String> captureMap) {\n        this.captureMap = captureMap;\n    }\n\n    public Map<String, String> getMatchMap() {\n        return matchMap;\n    }\n\n    public void setMatchMap(Map<String, String> matchMap) {\n        this.matchMap = matchMap;\n    }\n\n    public boolean isWriteContent() {\n        return writeContent;\n    }\n\n    public void setWriteContent(boolean writeContent) {\n        this.writeContent = writeContent;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for {@link RegexCaptureParser}.\n */\npublic class RegexCaptureParserConfig implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    private Map<String, String> captureMap = new HashMap<>();\n\n    private Map<String, String> matchMap = new HashMap<>();\n\n    private boolean writeContent = false;\n\n    public RegexCaptureParserConfig() {\n    }\n\n    public Map<String, String> getCaptureMap() {\n        return captureMap;\n    }\n\n    public void setCaptureMap(Map<String, String> captureMap) {\n        this.captureMap = captureMap;\n    }\n\n    public Map<String, String> getMatchMap() {\n        return matchMap;\n    }\n\n    public void setMatchMap(Map<String, String> matchMap) {\n        this.matchMap = matchMap;\n    }\n\n    public boolean isWriteContent() {\n        return writeContent;\n    }\n\n    public void setWriteContent(boolean writeContent) {\n        this.writeContent = writeContent;\n    }\n}",
+  "subClasses": []
+}

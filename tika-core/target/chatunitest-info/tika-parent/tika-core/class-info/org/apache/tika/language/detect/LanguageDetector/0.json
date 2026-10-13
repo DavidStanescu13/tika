@@ -1,0 +1,26 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "getDefaultLanguageDetector",
+  "brief": "public static LanguageDetector getDefaultLanguageDetector(){}",
+  "methodSignature": "getDefaultLanguageDetector()",
+  "sourceCode": "public static LanguageDetector getDefaultLanguageDetector() {\n        List<LanguageDetector> detectors = getLanguageDetectors();\n        if (detectors.isEmpty()) {\n            throw new IllegalStateException(\"No language detectors available\");\n        } else {\n            return detectors.get(0);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "getLanguageDetectors()"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "get(int)"
+    ]
+  },
+  "full_method_info": "public static LanguageDetector getDefaultLanguageDetector() {\n    List<LanguageDetector> detectors = getLanguageDetectors();\n    if (detectors.isEmpty()) {\n        throw new IllegalStateException(\"No language detectors available\");\n    } else {\n        return detectors.get(0);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

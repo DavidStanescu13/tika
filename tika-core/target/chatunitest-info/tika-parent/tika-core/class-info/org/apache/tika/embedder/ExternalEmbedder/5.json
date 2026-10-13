@@ -1,0 +1,24 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setSupportedEmbedTypes",
+  "brief": "public void setSupportedEmbedTypes(Set<MediaType> supportedEmbedTypes){}",
+  "methodSignature": "setSupportedEmbedTypes(Set)",
+  "sourceCode": "public void setSupportedEmbedTypes(Set<MediaType> supportedEmbedTypes) {\n        this.supportedEmbedTypes =\n                Collections.unmodifiableSet(new HashSet<>(supportedEmbedTypes));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<MediaType>"
+  ],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "full_method_info": "public void setSupportedEmbedTypes(Set<MediaType> supportedEmbedTypes) {\n    this.supportedEmbedTypes = Collections.unmodifiableSet(new HashSet<>(supportedEmbedTypes));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

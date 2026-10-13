@@ -1,0 +1,27 @@
+{
+  "className": "Tika",
+  "methodName": "parse",
+  "brief": "public Reader parse(InputStream stream, Metadata metadata) throws IOException{}",
+  "methodSignature": "parse(InputStream, Metadata)",
+  "sourceCode": "public Reader parse(InputStream stream, Metadata metadata) throws IOException {\n        ParseContext context = new ParseContext();\n        return parse(stream, metadata, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.Tika": [
+      "parse(InputStream, Metadata, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given document and returns the extracted text content.\n * Input metadata like a file name or a content type hint can be passed\n * in the given metadata instance. Metadata information extracted from\n * the document is returned in that same metadata instance.\n * <p>\n * The returned reader will be responsible for closing the given stream.\n * The stream and any associated resources will be closed at or before\n * the time when the {@link Reader#close()} method is called.\n *\n * @param stream   the document to be parsed\n * @param metadata where document's metadata will be populated\n * @return extracted text content\n * @throws IOException if the document can not be read or parsed\n */\npublic Reader parse(InputStream stream, Metadata metadata) throws IOException {\n    ParseContext context = new ParseContext();\n    return parse(stream, metadata, context);\n}",
+  "method_comment": "\n     * Parses the given document and returns the extracted text content.\n     * Input metadata like a file name or a content type hint can be passed\n     * in the given metadata instance. Metadata information extracted from\n     * the document is returned in that same metadata instance.\n     * <p>\n     * The returned reader will be responsible for closing the given stream.\n     * The stream and any associated resources will be closed at or before\n     * the time when the {@link Reader#close()} method is called.\n     *\n     * @param stream   the document to be parsed\n     * @param metadata where document's metadata will be populated\n     * @return extracted text content\n     * @throws IOException if the document can not be read or parsed\n     ",
+  "method_annotation": ""
+}

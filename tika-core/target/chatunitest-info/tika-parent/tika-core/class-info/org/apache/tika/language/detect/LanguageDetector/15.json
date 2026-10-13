@@ -1,0 +1,18 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "hasEnoughText",
+  "brief": "public boolean hasEnoughText(){}",
+  "methodSignature": "hasEnoughText()",
+  "sourceCode": "public boolean hasEnoughText() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tell the caller whether more text is required for the current document\n * before the language can be reliably detected.\n * <p>\n * Implementations can override this to do early termination of stats\n * collection, which can improve performance with longer documents.\n * <p>\n * Note that detect() can be called even when this returns false\n *\n * @return true if we have enough text for reliable detection.\n */\npublic boolean hasEnoughText() {\n    return false;\n}",
+  "method_comment": "\n     * Tell the caller whether more text is required for the current document\n     * before the language can be reliably detected.\n     * <p>\n     * Implementations can override this to do early termination of stats\n     * collection, which can improve performance with longer documents.\n     * <p>\n     * Note that detect() can be called even when this returns false\n     *\n     * @return true if we have enough text for reliable detection.\n     ",
+  "method_annotation": ""
+}

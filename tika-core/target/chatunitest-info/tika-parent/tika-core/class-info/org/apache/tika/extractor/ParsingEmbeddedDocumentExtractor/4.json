@@ -1,0 +1,18 @@
+{
+  "className": "ParsingEmbeddedDocumentExtractor",
+  "methodName": "getDelegatingParser",
+  "brief": "public Parser getDelegatingParser(){}",
+  "methodSignature": "getDelegatingParser()",
+  "sourceCode": "public Parser getDelegatingParser() {\n        return DELEGATING_PARSER;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Parser getDelegatingParser() {\n    return DELEGATING_PARSER;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Tika",
+  "methodName": "translate",
+  "brief": "public String translate(String text, String targetLanguage){}",
+  "methodSignature": "translate(String, String)",
+  "sourceCode": "public String translate(String text, String targetLanguage) {\n        try {\n            return translator.translate(text, targetLanguage);\n        } catch (Exception e) {\n            throw new IllegalStateException(\"Error translating data.\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.language.translate.Translator": [
+      "translate(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Translate the given text String to the given language, attempting to auto-detect the\n * source language.\n *\n * @param text           The text to translate.\n * @param targetLanguage The desired output language (for example, \"en\").\n * @return The translated text. If translation is unavailable (client keys not set), returns\n * the same text back.\n * @see org.apache.tika.language.translate.Translator\n */\npublic String translate(String text, String targetLanguage) {\n    try {\n        return translator.translate(text, targetLanguage);\n    } catch (Exception e) {\n        throw new IllegalStateException(\"Error translating data.\", e);\n    }\n}",
+  "method_comment": "\n     * Translate the given text String to the given language, attempting to auto-detect the\n     * source language.\n     *\n     * @param text           The text to translate.\n     * @param targetLanguage The desired output language (for example, \"en\").\n     * @return The translated text. If translation is unavailable (client keys not set), returns\n     * the same text back.\n     * @see org.apache.tika.language.translate.Translator\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "LanguageHandler",
+  "methodName": "LanguageHandler",
+  "brief": "public LanguageHandler(LanguageWriter writer){}",
+  "methodSignature": "LanguageHandler(LanguageWriter)",
+  "sourceCode": "public LanguageHandler(LanguageWriter writer) {\n        super(writer);\n\n        this.writer = writer;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "LanguageWriter"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageWriter": []
+  },
+  "full_method_info": "public LanguageHandler(LanguageWriter writer) {\n    super(writer);\n    this.writer = writer;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

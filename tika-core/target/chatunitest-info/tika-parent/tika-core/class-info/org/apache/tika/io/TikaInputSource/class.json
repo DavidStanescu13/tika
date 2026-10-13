@@ -1,0 +1,51 @@
+{
+  "fullClassName": "org.apache.tika.io.TikaInputSource",
+  "className": "TikaInputSource",
+  "index": 109,
+  "modifier": "[]",
+  "extend": "[Closeable]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "interface TikaInputSource",
+  "hasConstructor": false,
+  "isPublic": false,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Closeable;",
+    "import java.io.IOException;",
+    "import java.nio.file.Path;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Closeable"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "seekTo(long)": "0",
+    "hasPath()": "1",
+    "getPath(String)": "2",
+    "getLength()": "3",
+    "enableRewind()": "4"
+  },
+  "methodsBrief": [
+    "void seekTo(long position) throws IOException;",
+    "boolean hasPath();",
+    "Path getPath(String suffix) throws IOException;",
+    "long getLength();",
+    "void enableRewind();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getLength()"
+  ],
+  "getterSetterBrief": [
+    "long getLength();"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.io.Closeable;\nimport java.io.IOException;\nimport java.nio.file.Path;\n\n/**\n * Package-private interface for TikaInputStream input sources.\n * <p>\n * Implementations must also extend {@link java.io.InputStream} (or a subclass).\n * This interface defines the additional methods beyond InputStream that\n * TikaInputStream needs.\n */\ninterface TikaInputSource extends Closeable {\n\n    /**\n     * Seeks to a specific position in the stream.\n     * Can only seek to positions that have already been read (for CachingSource)\n     * or any valid position (for ByteArraySource and FileSource).\n     */\n    void seekTo(long position) throws IOException;\n\n    /**\n     * Returns true if this source has a file path available.\n     */\n    boolean hasPath();\n\n    /**\n     * Gets the file path, potentially spilling to a temp file if needed.\n     * @param suffix file suffix for temp files\n     * @return the file path\n     */\n    Path getPath(String suffix) throws IOException;\n\n    /**\n     * Returns the length of the content, or -1 if unknown.\n     */\n    long getLength();\n\n    /**\n     * Enables full rewind capability.\n     * <p>\n     * For ByteArraySource and FileSource, this is a no-op (always rewindable).\n     * For CachingSource, this switches from passthrough mode to caching mode,\n     * enabling subsequent {@link #seekTo(long)} and rewind operations.\n     * <p>\n     * Must be called when position is 0, otherwise throws IllegalStateException.\n     *\n     * @throws IllegalStateException if position is not 0\n     */\n    void enableRewind();\n}\n",
+  "classDeclarationCode": "/**\n * Package-private interface for TikaInputStream input sources.\n * <p>\n * Implementations must also extend {@link java.io.InputStream} (or a subclass).\n * This interface defines the additional methods beyond InputStream that\n * TikaInputStream needs.\n */\ninterface TikaInputSource extends Closeable {\n\n    /**\n     * Seeks to a specific position in the stream.\n     * Can only seek to positions that have already been read (for CachingSource)\n     * or any valid position (for ByteArraySource and FileSource).\n     */\n    void seekTo(long position) throws IOException;\n\n    /**\n     * Returns true if this source has a file path available.\n     */\n    boolean hasPath();\n\n    /**\n     * Gets the file path, potentially spilling to a temp file if needed.\n     * @param suffix file suffix for temp files\n     * @return the file path\n     */\n    Path getPath(String suffix) throws IOException;\n\n    /**\n     * Returns the length of the content, or -1 if unknown.\n     */\n    long getLength();\n\n    /**\n     * Enables full rewind capability.\n     * <p>\n     * For ByteArraySource and FileSource, this is a no-op (always rewindable).\n     * For CachingSource, this switches from passthrough mode to caching mode,\n     * enabling subsequent {@link #seekTo(long)} and rewind operations.\n     * <p>\n     * Must be called when position is 0, otherwise throws IllegalStateException.\n     *\n     * @throws IllegalStateException if position is not 0\n     */\n    void enableRewind();\n}",
+  "subClasses": []
+}

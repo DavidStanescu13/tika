@@ -1,0 +1,32 @@
+{
+  "className": "DIFContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes)\n            throws SAXException {\n        this.isLeaf = true;\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n            String value = \"Geographic Data: \";\n            this.delegate.characters(value.toCharArray(), 0, value.length());\n            this.delegate.endElement(\"\", \"h3\", \"h3\");\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.startElement(\"\", \"table\", \"table\", EMPTY_ATTRIBUTES);\n        }\n        this.treeStack.push(localName);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "toCharArray()",
+      "length()"
+    ],
+    "java.util.Stack": [
+      "push(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n    this.isLeaf = true;\n    if (localName.equals(\"Spatial_Coverage\")) {\n        this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n        this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n        this.delegate.startElement(\"\", \"h3\", \"h3\", EMPTY_ATTRIBUTES);\n        String value = \"Geographic Data: \";\n        this.delegate.characters(value.toCharArray(), 0, value.length());\n        this.delegate.endElement(\"\", \"h3\", \"h3\");\n        this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n        this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n        this.delegate.startElement(\"\", \"table\", \"table\", EMPTY_ATTRIBUTES);\n    }\n    this.treeStack.push(localName);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

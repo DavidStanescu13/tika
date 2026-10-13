@@ -1,0 +1,33 @@
+{
+  "className": "XHTMLBalancingHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        // Pop best-effort: an unbalanced endElement (e.g., emitted after the\n        // matching startElement was swallowed) still forwards downstream so a\n        // wrapping StrictXHTMLValidator sees the violation.\n        if (!openElements.isEmpty()) {\n            openElements.pop();\n        }\n        super.endElement(uri, localName, qName);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.util.Deque": [
+      "pop()"
+    ],
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endElement(String, String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) throws SAXException {\n    // Pop best-effort: an unbalanced endElement (e.g., emitted after the\n    // matching startElement was swallowed) still forwards downstream so a\n    // wrapping StrictXHTMLValidator sees the violation.\n    if (!openElements.isEmpty()) {\n        openElements.pop();\n    }\n    super.endElement(uri, localName, qName);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

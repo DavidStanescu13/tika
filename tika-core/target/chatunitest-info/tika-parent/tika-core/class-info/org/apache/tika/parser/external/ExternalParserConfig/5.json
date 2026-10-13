@@ -1,0 +1,22 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setStdoutHandler",
+  "brief": "public void setStdoutHandler(Parser stdoutHandler){}",
+  "methodSignature": "setStdoutHandler(Parser)",
+  "sourceCode": "public void setStdoutHandler(Parser stdoutHandler) {\n        this.stdoutHandler = stdoutHandler;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "full_method_info": "public void setStdoutHandler(Parser stdoutHandler) {\n    this.stdoutHandler = stdoutHandler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

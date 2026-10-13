@@ -1,0 +1,25 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "spillToFile",
+  "brief": "Path spillToFile(String suffix) throws IOException{}",
+  "methodSignature": "spillToFile(String)",
+  "sourceCode": "Path spillToFile(String suffix) throws IOException {\n        return cache.toFile(source, suffix);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.io.StreamCache": [
+      "toFile(InputStream, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Force all remaining content to be read and cached, then return the file path.\n */\nPath spillToFile(String suffix) throws IOException {\n    return cache.toFile(source, suffix);\n}",
+  "method_comment": "\n     * Force all remaining content to be read and cached, then return the file path.\n     ",
+  "method_annotation": ""
+}

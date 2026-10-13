@@ -1,0 +1,22 @@
+{
+  "className": "AutoDetectParser",
+  "methodName": "setDetector",
+  "brief": "public void setDetector(Detector detector){}",
+  "methodSignature": "setDetector(Detector)",
+  "sourceCode": "public void setDetector(Detector detector) {\n        this.detector = detector;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Detector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.detect.Detector": []
+  },
+  "full_method_info": "/**\n * Sets the type detector used by this parser to auto-detect the type\n * of a document.\n *\n * @param detector type detector\n * @since Apache Tika 0.4\n */\npublic void setDetector(Detector detector) {\n    this.detector = detector;\n}",
+  "method_comment": "\n     * Sets the type detector used by this parser to auto-detect the type\n     * of a document.\n     *\n     * @param detector type detector\n     * @since Apache Tika 0.4\n     ",
+  "method_annotation": ""
+}

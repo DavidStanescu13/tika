@@ -1,0 +1,31 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "identifyStaticServiceProviders",
+  "brief": "protected <T> List<String> identifyStaticServiceProviders(Class<T> iface){}",
+  "methodSignature": "identifyStaticServiceProviders(Class)",
+  "sourceCode": "protected <T> List<String> identifyStaticServiceProviders(Class<T> iface) {\n        List<String> names = new ArrayList<>();\n\n        if (loader != null) {\n            String serviceName = iface.getName();\n            Enumeration<URL> resources = findServiceResources(\"META-INF/services/\" + serviceName);\n            for (URL resource : Collections.list(resources)) {\n                try {\n                    collectServiceClassNames(resource, names);\n                } catch (IOException e) {\n                    //TODO -- swallow log? or don't catch?\n                }\n            }\n        }\n\n        return names;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "getName()"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "findServiceResources(String)",
+      "collectServiceClassNames(URL, String>)"
+    ],
+    "java.util.Collections": [
+      "list(Enumeration<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the defined static service providers of the given type, without\n * attempting to load them.\n * The providers are loaded using the service provider mechanism using\n * the configured class loader (if any).\n *\n * @param iface service provider interface\n * @return static list of uninitialised service providers\n * @since Apache Tika 1.6\n */\nprotected <T> List<String> identifyStaticServiceProviders(Class<T> iface) {\n    List<String> names = new ArrayList<>();\n    if (loader != null) {\n        String serviceName = iface.getName();\n        Enumeration<URL> resources = findServiceResources(\"META-INF/services/\" + serviceName);\n        for (URL resource : Collections.list(resources)) {\n            try {\n                collectServiceClassNames(resource, names);\n            } catch (IOException e) {\n                // TODO -- swallow log? or don't catch?\n            }\n        }\n    }\n    return names;\n}",
+  "method_comment": "\n     * Returns the defined static service providers of the given type, without\n     * attempting to load them.\n     * The providers are loaded using the service provider mechanism using\n     * the configured class loader (if any).\n     *\n     * @param iface service provider interface\n     * @return static list of uninitialised service providers\n     * @since Apache Tika 1.6\n     ",
+  "method_annotation": ""
+}

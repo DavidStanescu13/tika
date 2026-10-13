@@ -1,0 +1,27 @@
+{
+  "className": "StringOutput",
+  "methodName": "write",
+  "brief": "public void write(char[] ch, int start, int length){}",
+  "methodSignature": "write(char[], int, int)",
+  "sourceCode": "public void write(char[] ch, int start, int length) {\n            builder.append(ch, start, length);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.lang.StringBuilder": [
+      "append(char[], int, int)"
+    ]
+  },
+  "full_method_info": "public void write(char[] ch, int start, int length) {\n    builder.append(ch, start, length);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

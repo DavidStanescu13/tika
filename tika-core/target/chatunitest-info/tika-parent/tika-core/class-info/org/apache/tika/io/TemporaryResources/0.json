@@ -1,0 +1,22 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "setTemporaryFileDirectory",
+  "brief": "public void setTemporaryFileDirectory(Path tempFileDir){}",
+  "methodSignature": "setTemporaryFileDirectory(Path)",
+  "sourceCode": "public void setTemporaryFileDirectory(Path tempFileDir) {\n        this.tempFileDir = tempFileDir;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": []
+  },
+  "full_method_info": "/**\n * Sets the directory to be used for the temporary files created by\n * the {@link #createTempFile(String)} method.\n *\n * @param tempFileDir temporary file directory,\n *                    or <code>null</code> for the system default\n */\npublic void setTemporaryFileDirectory(Path tempFileDir) {\n    this.tempFileDir = tempFileDir;\n}",
+  "method_comment": "\n     * Sets the directory to be used for the temporary files created by\n     * the {@link #createTempFile(String)} method.\n     *\n     * @param tempFileDir temporary file directory,\n     *                    or <code>null</code> for the system default\n     ",
+  "method_annotation": ""
+}

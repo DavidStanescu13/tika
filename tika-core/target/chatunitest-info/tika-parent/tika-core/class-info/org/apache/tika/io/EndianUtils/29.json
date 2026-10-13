@@ -1,0 +1,20 @@
+{
+  "className": "EndianUtils",
+  "methodName": "ubyteToInt",
+  "brief": "public static int ubyteToInt(byte b){}",
+  "methodSignature": "ubyteToInt(byte)",
+  "sourceCode": "public static int ubyteToInt(byte b) {\n        return b & 0xFF;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Convert an 'unsigned' byte to an integer. ie, don't carry across the\n * sign.\n *\n * @param b Description of the Parameter\n * @return Description of the Return Value\n */\npublic static int ubyteToInt(byte b) {\n    return b & 0xFF;\n}",
+  "method_comment": "\n     * Convert an 'unsigned' byte to an integer. ie, don't carry across the\n     * sign.\n     *\n     * @param b Description of the Parameter\n     * @return Description of the Return Value\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "AutoDetectReader",
+  "methodName": "AutoDetectReader",
+  "brief": "private AutoDetectReader(TikaInputStream tis, Metadata metadata,\r\n                             EncodingDetector encodingDetector) throws IOException, TikaException{}",
+  "methodSignature": "AutoDetectReader(TikaInputStream, Metadata, EncodingDetector)",
+  "sourceCode": "private AutoDetectReader(TikaInputStream tis, Metadata metadata,\n                             EncodingDetector encodingDetector) throws IOException, TikaException {\n        this(tis, detect(tis, metadata, encodingDetector));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "EncodingDetector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.detect.EncodingDetector": [],
+    "org.apache.tika.detect.AutoDetectReader": [
+      "detect(TikaInputStream, Metadata, EncodingDetector)"
+    ]
+  },
+  "full_method_info": "private AutoDetectReader(TikaInputStream tis, Metadata metadata, EncodingDetector encodingDetector) throws IOException, TikaException {\n    this(tis, detect(tis, metadata, encodingDetector));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

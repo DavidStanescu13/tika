@@ -1,0 +1,20 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setReturnStdout",
+  "brief": "public void setReturnStdout(boolean returnStdout){}",
+  "methodSignature": "setReturnStdout(boolean)",
+  "sourceCode": "public void setReturnStdout(boolean returnStdout) {\n        this.returnStdout = returnStdout;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setReturnStdout(boolean returnStdout) {\n    this.returnStdout = returnStdout;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

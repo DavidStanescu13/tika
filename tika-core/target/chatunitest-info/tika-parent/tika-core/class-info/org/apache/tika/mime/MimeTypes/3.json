@@ -1,0 +1,28 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getMimeType",
+  "brief": "@Deprecated\r\n    public MimeType getMimeType(File file) throws MimeTypeException, IOException{}",
+  "methodSignature": "getMimeType(File)",
+  "sourceCode": "@Deprecated\n    public MimeType getMimeType(File file) throws MimeTypeException, IOException {\n        return forName(new Tika(this).detect(file));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "File"
+  ],
+  "dependentMethods": {
+    "java.io.File": [],
+    "org.apache.tika.mime.MimeTypes": [
+      "forName(String)"
+    ],
+    "org.apache.tika.Tika": [
+      "detect(File)"
+    ]
+  },
+  "full_method_info": "/**\n * Find the Mime Content Type of a document stored in the given file.\n * Returns application/octet-stream if no better match is found.\n *\n * @param file file to analyze\n * @return the Mime Content Type of the specified document\n * @throws MimeTypeException if the type can't be detected\n * @throws IOException       if the file can't be read\n * @deprecated Use {@link Tika#detect(File)} instead\n */\n@Deprecated\npublic MimeType getMimeType(File file) throws MimeTypeException, IOException {\n    return forName(new Tika(this).detect(file));\n}",
+  "method_comment": "\n     * Find the Mime Content Type of a document stored in the given file.\n     * Returns application/octet-stream if no better match is found.\n     *\n     * @param file file to analyze\n     * @return the Mime Content Type of the specified document\n     * @throws MimeTypeException if the type can't be detected\n     * @throws IOException       if the file can't be read\n     * @deprecated Use {@link Tika#detect(File)} instead\n     ",
+  "method_annotation": "@Deprecated\n"
+}

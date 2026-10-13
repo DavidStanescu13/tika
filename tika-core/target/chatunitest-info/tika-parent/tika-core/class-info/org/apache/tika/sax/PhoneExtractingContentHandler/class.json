@@ -1,0 +1,60 @@
+{
+  "fullClassName": "org.apache.tika.sax.PhoneExtractingContentHandler",
+  "className": "PhoneExtractingContentHandler",
+  "index": 293,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class PhoneExtractingContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import java.util.List;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "private static final String PHONE_NUMBERS = \"phonenumbers\";",
+    "private final Metadata metadata;",
+    "private final StringBuilder stringBuilder;"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "characters(char[], int, int)": "0",
+    "endDocument()": "1",
+    "PhoneExtractingContentHandler(ContentHandler, Metadata)": "2",
+    "PhoneExtractingContentHandler()": "3"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "public PhoneExtractingContentHandler(ContentHandler handler, Metadata metadata){}",
+    "protected PhoneExtractingContentHandler(){}"
+  ],
+  "constructorSigs": [
+    "PhoneExtractingContentHandler(ContentHandler, Metadata)",
+    "PhoneExtractingContentHandler()"
+  ],
+  "constructorBrief": [
+    "public PhoneExtractingContentHandler(ContentHandler handler, Metadata metadata){}",
+    "protected PhoneExtractingContentHandler(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.Arrays;\nimport java.util.List;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.metadata.Metadata;\n\n/**\n * Class used to extract phone numbers while parsing.\n * <p>\n * Every time a document is parsed in Tika, the content is split into SAX events.\n * Those SAX events are handled by a ContentHandler. You can think of these events\n * as marking a tag in an HTML file. Once you're finished parsing, you can call\n * handler.toString(), for example, to get the text contents of the file. On the other\n * hand, any of the metadata of the file will be added to the Metadata object passed\n * in during the parse() call.  So, the Parser class sends metadata to the Metadata\n * object and content to the ContentHandler.\n * <p>\n * This class is an example of how to combine a ContentHandler and a Metadata.\n * As content is passed to the handler, we first check to see if it matches a\n * textual pattern for a phone number. If the extracted content is a phone number,\n * we add it to the metadata under the key \"phonenumbers\". So, if you used this\n * ContentHandler when you parsed a document, then called\n * metadata.getValues(\"phonenumbers\"), you would get an array of Strings of phone\n * numbers found in the document.\n * <p>\n * Please see the PhoneExtractingContentHandlerTest for an example of how to use\n * this class.\n */\npublic class PhoneExtractingContentHandler extends ContentHandlerDecorator {\n\n    private static final String PHONE_NUMBERS = \"phonenumbers\";\n\n    private final Metadata metadata;\n\n    private final StringBuilder stringBuilder;\n\n    public PhoneExtractingContentHandler(ContentHandler handler, Metadata metadata) {\n        super(handler);\n        this.metadata = metadata;\n        this.stringBuilder = new StringBuilder();\n    }\n\n    protected PhoneExtractingContentHandler() {\n        this(new DefaultHandler(), new Metadata());\n    }\n\n    /**\n     * The characters method is called whenever a Parser wants to pass raw...\n     * characters to the ContentHandler. But, sometimes, phone numbers are split\n     * accross different calls to characters, depending on the specific Parser\n     * used. So, we simply add all characters to a StringBuilder and analyze it\n     * once the document is finished.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    /**\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any phone numbers.\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<String> numbers = CleanPhoneText.extractPhoneNumbers(stringBuilder.toString());\n        for (String number : numbers) {\n            metadata.add(PHONE_NUMBERS, number);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Class used to extract phone numbers while parsing.\n * <p>\n * Every time a document is parsed in Tika, the content is split into SAX events.\n * Those SAX events are handled by a ContentHandler. You can think of these events\n * as marking a tag in an HTML file. Once you're finished parsing, you can call\n * handler.toString(), for example, to get the text contents of the file. On the other\n * hand, any of the metadata of the file will be added to the Metadata object passed\n * in during the parse() call.  So, the Parser class sends metadata to the Metadata\n * object and content to the ContentHandler.\n * <p>\n * This class is an example of how to combine a ContentHandler and a Metadata.\n * As content is passed to the handler, we first check to see if it matches a\n * textual pattern for a phone number. If the extracted content is a phone number,\n * we add it to the metadata under the key \"phonenumbers\". So, if you used this\n * ContentHandler when you parsed a document, then called\n * metadata.getValues(\"phonenumbers\"), you would get an array of Strings of phone\n * numbers found in the document.\n * <p>\n * Please see the PhoneExtractingContentHandlerTest for an example of how to use\n * this class.\n */\npublic class PhoneExtractingContentHandler extends ContentHandlerDecorator {\n\n    private static final String PHONE_NUMBERS = \"phonenumbers\";\n\n    private final Metadata metadata;\n\n    private final StringBuilder stringBuilder;\n\n    public PhoneExtractingContentHandler(ContentHandler handler, Metadata metadata) {\n        super(handler);\n        this.metadata = metadata;\n        this.stringBuilder = new StringBuilder();\n    }\n\n    protected PhoneExtractingContentHandler() {\n        this(new DefaultHandler(), new Metadata());\n    }\n\n    /**\n     * The characters method is called whenever a Parser wants to pass raw...\n     * characters to the ContentHandler. But, sometimes, phone numbers are split\n     * accross different calls to characters, depending on the specific Parser\n     * used. So, we simply add all characters to a StringBuilder and analyze it\n     * once the document is finished.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    /**\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any phone numbers.\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<String> numbers = CleanPhoneText.extractPhoneNumbers(stringBuilder.toString());\n        for (String number : numbers) {\n            metadata.add(PHONE_NUMBERS, number);\n        }\n    }\n}",
+  "subClasses": []
+}

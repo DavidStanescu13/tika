@@ -1,0 +1,43 @@
+{
+  "fullClassName": "org.apache.tika.parser.StatefulParser",
+  "className": "StatefulParser",
+  "index": 262,
+  "modifier": "[public ]",
+  "extend": "[ParserDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public class StatefulParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "ParserDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "StatefulParser(Parser)": "0"
+  },
+  "methodsBrief": [
+    "public StatefulParser(Parser parser){}"
+  ],
+  "constructorSigs": [
+    "StatefulParser(Parser)"
+  ],
+  "constructorBrief": [
+    "public StatefulParser(Parser parser){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.parser.Parser": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\n/**\n * The RecursiveParserWrapper wraps the parser sent\n * into the parsecontext and then uses that parser\n * to store state (among many other things).\n * <p>\n * There are some use cases where regular parsers\n * want to parse content inline (e.g. OCR), and their\n * output should not be treated as coming from an embedded\n * object.\n */\npublic class StatefulParser extends ParserDecorator {\n\n    public StatefulParser(Parser parser) {\n        super(parser);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * The RecursiveParserWrapper wraps the parser sent\n * into the parsecontext and then uses that parser\n * to store state (among many other things).\n * <p>\n * There are some use cases where regular parsers\n * want to parse content inline (e.g. OCR), and their\n * output should not be treated as coming from an embedded\n * object.\n */\npublic class StatefulParser extends ParserDecorator {\n\n    public StatefulParser(Parser parser) {\n        super(parser);\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.parser.RecursiveParserWrapper.EmbeddedParserDecorator"
+  ]
+}

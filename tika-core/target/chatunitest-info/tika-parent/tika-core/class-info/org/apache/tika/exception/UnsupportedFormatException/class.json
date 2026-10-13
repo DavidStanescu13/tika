@@ -1,0 +1,41 @@
+{
+  "fullClassName": "org.apache.tika.exception.UnsupportedFormatException",
+  "className": "UnsupportedFormatException",
+  "index": 73,
+  "modifier": "[public ]",
+  "extend": "[TikaException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class UnsupportedFormatException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "TikaException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "UnsupportedFormatException(String)": "0"
+  },
+  "methodsBrief": [
+    "public UnsupportedFormatException(String msg){}"
+  ],
+  "constructorSigs": [
+    "UnsupportedFormatException(String)"
+  ],
+  "constructorBrief": [
+    "public UnsupportedFormatException(String msg){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\n/**\n * Parsers should throw this exception when they encounter\n * a file format that they do not support.  This should only happen\n * when we're not able to differentiate versions by the mime.  For example,\n * At the time of this writing, \"application/wordperfect\" covers all versions\n * of the wordperfect format; however, the parser only handles 6.x.\n * <p/>\n * Whenever possible/convenient, it is better to distinguish file formats by mime\n * so that unsupported formats will be handled by the\n * {@link org.apache.tika.parser.EmptyParser}.\n * However, if we can't differentiate by mime or we need to rely on the parser\n * to distinguish the versions (in the case that magic can't distinguish),\n * this exception should be thrown.\n */\npublic class UnsupportedFormatException extends TikaException {\n\n    public UnsupportedFormatException(String msg) {\n        super(msg);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Parsers should throw this exception when they encounter\n * a file format that they do not support.  This should only happen\n * when we're not able to differentiate versions by the mime.  For example,\n * At the time of this writing, \"application/wordperfect\" covers all versions\n * of the wordperfect format; however, the parser only handles 6.x.\n * <p/>\n * Whenever possible/convenient, it is better to distinguish file formats by mime\n * so that unsupported formats will be handled by the\n * {@link org.apache.tika.parser.EmptyParser}.\n * However, if we can't differentiate by mime or we need to rely on the parser\n * to distinguish the versions (in the case that magic can't distinguish),\n * this exception should be thrown.\n */\npublic class UnsupportedFormatException extends TikaException {\n\n    public UnsupportedFormatException(String msg) {\n        super(msg);\n    }\n}",
+  "subClasses": []
+}

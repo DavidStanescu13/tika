@@ -1,0 +1,25 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "setFilePath",
+  "brief": "public void setFilePath(String fileCommandPath){}",
+  "methodSignature": "setFilePath(String)",
+  "sourceCode": "public void setFilePath(String fileCommandPath) {\n        //this opens up a potential command vulnerability.\n        //Don't ever let an untrusted user set this.\n        this.fileCommandPath = fileCommandPath;\n        checkHasFile(this.fileCommandPath);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.detect.FileCommandDetector": [
+      "checkHasFile(String)"
+    ]
+  },
+  "full_method_info": "public void setFilePath(String fileCommandPath) {\n    // this opens up a potential command vulnerability.\n    // Don't ever let an untrusted user set this.\n    this.fileCommandPath = fileCommandPath;\n    checkHasFile(this.fileCommandPath);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getSupportedEmbedTypes",
+  "brief": "public Set<MediaType> getSupportedEmbedTypes(){}",
+  "methodSignature": "getSupportedEmbedTypes()",
+  "sourceCode": "public Set<MediaType> getSupportedEmbedTypes() {\n        return supportedEmbedTypes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Set<MediaType> getSupportedEmbedTypes() {\n    return supportedEmbedTypes;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

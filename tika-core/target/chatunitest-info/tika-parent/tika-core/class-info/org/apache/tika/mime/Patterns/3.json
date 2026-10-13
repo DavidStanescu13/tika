@@ -1,0 +1,39 @@
+{
+  "className": "Patterns",
+  "methodName": "addExtension",
+  "brief": "private void addExtension(String extension, MimeType type) throws MimeTypeException{}",
+  "methodSignature": "addExtension(String, MimeType)",
+  "sourceCode": "private void addExtension(String extension, MimeType type) throws MimeTypeException {\n        MimeType previous = extensions.get(extension);\n        if (previous == null || registry.isSpecializationOf(previous.getType(), type.getType())) {\n            extensions.put(extension, type);\n            int length = extension.length();\n            minExtensionLength = Math.min(minExtensionLength, length);\n            maxExtensionLength = Math.max(maxExtensionLength, length);\n        } else if (previous == type ||\n                registry.isSpecializationOf(type.getType(), previous.getType())) {\n            // do nothing\n        } else {\n            throw new MimeTypeException(\"Conflicting extension pattern: \" + extension);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "getType()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)",
+      "max(int, int)"
+    ]
+  },
+  "full_method_info": "private void addExtension(String extension, MimeType type) throws MimeTypeException {\n    MimeType previous = extensions.get(extension);\n    if (previous == null || registry.isSpecializationOf(previous.getType(), type.getType())) {\n        extensions.put(extension, type);\n        int length = extension.length();\n        minExtensionLength = Math.min(minExtensionLength, length);\n        maxExtensionLength = Math.max(maxExtensionLength, length);\n    } else if (previous == type || registry.isSpecializationOf(type.getType(), previous.getType())) {\n        // do nothing\n    } else {\n        throw new MimeTypeException(\"Conflicting extension pattern: \" + extension);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

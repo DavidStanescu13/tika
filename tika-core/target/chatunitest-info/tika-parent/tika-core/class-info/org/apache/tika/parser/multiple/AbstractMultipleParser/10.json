@@ -1,0 +1,51 @@
+{
+  "className": "AbstractMultipleParser",
+  "methodName": "parse",
+  "brief": "private void parse(TikaInputStream tis, ContentHandler handler,\r\n                       ContentHandlerFactory handlerFactory, Metadata originalMetadata,\r\n                       ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, ContentHandlerFactory, Metadata, ParseContext)",
+  "sourceCode": "private void parse(TikaInputStream tis, ContentHandler handler,\n                       ContentHandlerFactory handlerFactory, Metadata originalMetadata,\n                       ParseContext context) throws IOException, SAXException, TikaException {\n        // Enable rewind capability since we rewind between multiple parsers\n        tis.enableRewind();\n\n        // Track the metadata between parsers, so we can apply our policy\n        Metadata lastMetadata = cloneMetadata(originalMetadata);\n        Metadata metadata = lastMetadata;\n\n        // Start tracking resources, so we can clean up when done\n        TemporaryResources tmp = new TemporaryResources();\n        try {\n            for (Parser p : parsers) {\n                // Get a new handler for this parser, if we can\n                // If not, the user will get text from every parser\n                //  mushed together onto the one solitary handler...\n                if (handlerFactory != null) {\n                    handler = handlerFactory.createHandler();\n                }\n\n                // Record that we used this parser\n                recordParserDetails(p, originalMetadata);\n\n                // Prepare an near-empty Metadata, will merge after\n                metadata = cloneMetadata(originalMetadata);\n\n                // Notify the implementation of what we're about to do\n                parserPrepare(p, metadata, context);\n\n                // Process if possible\n                Exception failure = null;\n                try {\n                    p.parse(tis, handler, metadata, context);\n                } catch (Exception e) {\n                    // Record the failure such that it can't get lost / overwritten\n                    recordParserFailure(p, e, originalMetadata);\n                    recordParserFailure(p, e, metadata);\n                    failure = e;\n                }\n\n                // Notify the implementation how it went\n                boolean tryNext = parserCompleted(p, metadata, handler, context, failure);\n\n                // Handle metadata merging / clashes\n                metadata = mergeMetadata(metadata, lastMetadata, policy);\n\n                // Abort if requested, with the exception if there was one\n                if (!tryNext) {\n                    if (failure != null) {\n                        if (failure instanceof IOException) {\n                            throw (IOException) failure;\n                        }\n                        if (failure instanceof SAXException) {\n                            throw (SAXException) failure;\n                        }\n                        if (failure instanceof TikaException) {\n                            throw (TikaException) failure;\n                        }\n                        throw new TikaException(\"Unexpected RuntimeException from \" + p, failure);\n                    }\n                    // Abort processing, don't try any more parsers\n                    break;\n                }\n\n                // Prepare for the next parser, if present\n                lastMetadata = cloneMetadata(metadata);\n                tis.rewind();\n            }\n        } finally {\n            tmp.dispose();\n        }\n\n        // Finally, copy the latest metadata back onto their supplied object\n        for (String n : metadata.names()) {\n            originalMetadata.remove(n);\n            for (String val : metadata.getValues(n)) {\n                originalMetadata.reconstruct(n, val, true);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "ContentHandlerFactory",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "enableRewind()",
+      "rewind()"
+    ],
+    "org.apache.tika.sax.ContentHandlerFactory": [
+      "createHandler()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "names()",
+      "getValues(String)",
+      "remove(String)",
+      "reconstruct(String, String, boolean)"
+    ],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.utils.ParserUtils": [
+      "cloneMetadata(Metadata)",
+      "recordParserDetails(Parser, Metadata)",
+      "recordParserFailure(Parser, Throwable, Metadata)"
+    ],
+    "org.apache.tika.parser.multiple.AbstractMultipleParser": [
+      "parserPrepare(Parser, Metadata, ParseContext)",
+      "mergeMetadata(Metadata, Metadata, MetadataPolicy)"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "dispose()"
+    ]
+  },
+  "full_method_info": "private void parse(TikaInputStream tis, ContentHandler handler, ContentHandlerFactory handlerFactory, Metadata originalMetadata, ParseContext context) throws IOException, SAXException, TikaException {\n    // Enable rewind capability since we rewind between multiple parsers\n    tis.enableRewind();\n    // Track the metadata between parsers, so we can apply our policy\n    Metadata lastMetadata = cloneMetadata(originalMetadata);\n    Metadata metadata = lastMetadata;\n    // Start tracking resources, so we can clean up when done\n    TemporaryResources tmp = new TemporaryResources();\n    try {\n        for (Parser p : parsers) {\n            // Get a new handler for this parser, if we can\n            // If not, the user will get text from every parser\n            // mushed together onto the one solitary handler...\n            if (handlerFactory != null) {\n                handler = handlerFactory.createHandler();\n            }\n            // Record that we used this parser\n            recordParserDetails(p, originalMetadata);\n            // Prepare an near-empty Metadata, will merge after\n            metadata = cloneMetadata(originalMetadata);\n            // Notify the implementation of what we're about to do\n            parserPrepare(p, metadata, context);\n            // Process if possible\n            Exception failure = null;\n            try {\n                p.parse(tis, handler, metadata, context);\n            } catch (Exception e) {\n                // Record the failure such that it can't get lost / overwritten\n                recordParserFailure(p, e, originalMetadata);\n                recordParserFailure(p, e, metadata);\n                failure = e;\n            }\n            // Notify the implementation how it went\n            boolean tryNext = parserCompleted(p, metadata, handler, context, failure);\n            // Handle metadata merging / clashes\n            metadata = mergeMetadata(metadata, lastMetadata, policy);\n            // Abort if requested, with the exception if there was one\n            if (!tryNext) {\n                if (failure != null) {\n                    if (failure instanceof IOException) {\n                        throw (IOException) failure;\n                    }\n                    if (failure instanceof SAXException) {\n                        throw (SAXException) failure;\n                    }\n                    if (failure instanceof TikaException) {\n                        throw (TikaException) failure;\n                    }\n                    throw new TikaException(\"Unexpected RuntimeException from \" + p, failure);\n                }\n                // Abort processing, don't try any more parsers\n                break;\n            }\n            // Prepare for the next parser, if present\n            lastMetadata = cloneMetadata(metadata);\n            tis.rewind();\n        }\n    } finally {\n        tmp.dispose();\n    }\n    // Finally, copy the latest metadata back onto their supplied object\n    for (String n : metadata.names()) {\n        originalMetadata.remove(n);\n        for (String val : metadata.getValues(n)) {\n            originalMetadata.reconstruct(n, val, true);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

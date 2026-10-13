@@ -1,0 +1,31 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(InputStream stream, String name) throws IOException{}",
+  "methodSignature": "detect(InputStream, String)",
+  "sourceCode": "public String detect(InputStream stream, String name) throws IOException {\n        ParseContext context = new ParseContext();\n        Metadata metadata = Metadata.newInstance(context);\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n        return detect(stream, metadata);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.Tika": [
+      "detect(InputStream, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of the given document. The type detection is\n * based on the content of the given document stream and the name of the\n * document.\n * <p>\n * If the document stream supports the\n * {@link InputStream#markSupported() mark feature}, then the stream is\n * marked and reset to the original position before this method returns.\n * Only a limited number of bytes are read from the stream.\n * <p>\n * The given document stream is <em>not</em> closed by this method.\n *\n * @param stream the document stream\n * @param name   document name\n * @return detected media type\n * @throws IOException if the stream can not be read\n * @since Apache Tika 0.9\n */\npublic String detect(InputStream stream, String name) throws IOException {\n    ParseContext context = new ParseContext();\n    Metadata metadata = Metadata.newInstance(context);\n    metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, name);\n    return detect(stream, metadata);\n}",
+  "method_comment": "\n     * Detects the media type of the given document. The type detection is\n     * based on the content of the given document stream and the name of the\n     * document.\n     * <p>\n     * If the document stream supports the\n     * {@link InputStream#markSupported() mark feature}, then the stream is\n     * marked and reset to the original position before this method returns.\n     * Only a limited number of bytes are read from the stream.\n     * <p>\n     * The given document stream is <em>not</em> closed by this method.\n     *\n     * @param stream the document stream\n     * @param name   document name\n     * @return detected media type\n     * @throws IOException if the stream can not be read\n     * @since Apache Tika 0.9\n     ",
+  "method_annotation": ""
+}

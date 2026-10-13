@@ -1,0 +1,18 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getCommandAppendOperator",
+  "brief": "public String getCommandAppendOperator(){}",
+  "methodSignature": "getCommandAppendOperator()",
+  "sourceCode": "public String getCommandAppendOperator() {\n        return commandAppendOperator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the operator to append rather than replace a value for the command\n * line tool, i.e. \"+=\".\n *\n * @return the append operator\n */\npublic String getCommandAppendOperator() {\n    return commandAppendOperator;\n}",
+  "method_comment": "\n     * Gets the operator to append rather than replace a value for the command\n     * line tool, i.e. \"+=\".\n     *\n     * @return the append operator\n     ",
+  "method_annotation": ""
+}

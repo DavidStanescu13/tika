@@ -1,0 +1,25 @@
+{
+  "className": "Result",
+  "methodName": "getCharset",
+  "brief": "public Charset getCharset(){}",
+  "methodSignature": "getCharset()",
+  "sourceCode": "public Charset getCharset() {\n            return encodingResults.get(0).getCharset();\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.EncodingResult": [
+      "getCharset()"
+    ],
+    "java.util.List": [
+      "get(int)"
+    ]
+  },
+  "full_method_info": "/**\n * The top-ranked charset from this detector.\n */\npublic Charset getCharset() {\n    return encodingResults.get(0).getCharset();\n}",
+  "method_comment": "\n         * The top-ranked charset from this detector.\n         ",
+  "method_annotation": ""
+}

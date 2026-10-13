@@ -1,0 +1,20 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "setContentHandler",
+  "brief": "protected void setContentHandler(ContentHandler handler){}",
+  "methodSignature": "setContentHandler(ContentHandler)",
+  "sourceCode": "protected void setContentHandler(ContentHandler handler) {\n        assert handler != null;\n        this.handler = handler;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the underlying content handler. All future SAX events will be\n * directed to this handler instead of the one that was previously used.\n *\n * @param handler content handler\n */\nprotected void setContentHandler(ContentHandler handler) {\n    assert handler != null;\n    this.handler = handler;\n}",
+  "method_comment": "\n     * Sets the underlying content handler. All future SAX events will be\n     * directed to this handler instead of the one that was previously used.\n     *\n     * @param handler content handler\n     ",
+  "method_annotation": ""
+}

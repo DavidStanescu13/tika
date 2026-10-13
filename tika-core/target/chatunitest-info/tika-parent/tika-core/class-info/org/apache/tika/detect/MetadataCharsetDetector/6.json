@@ -1,0 +1,28 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "normalizeWhatwg",
+  "brief": "private static Charset normalizeWhatwg(Charset cs){}",
+  "methodSignature": "normalizeWhatwg(Charset)",
+  "sourceCode": "private static Charset normalizeWhatwg(Charset cs) {\n        if (cs == null) {\n            return null;\n        }\n        String name = cs.name();\n        if (StandardCharsets.ISO_8859_1.name().equals(name)\n                || StandardCharsets.US_ASCII.name().equals(name)) {\n            try {\n                return Charset.forName(\"windows-1252\");\n            } catch (IllegalArgumentException e) {\n                return cs;\n            }\n        }\n        return cs;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Charset"
+  ],
+  "dependentMethods": {
+    "java.nio.charset.Charset": [
+      "name()",
+      "forName(String)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Applies the critical WHATWG encoding-label normalizations that are universally\n * applicable regardless of content type.  The WHATWG encoding spec\n * (https://encoding.spec.whatwg.org/) maps {@code ISO-8859-1}, {@code US-ASCII},\n * and their aliases to {@code windows-1252} because real-world content labeled\n * with these names is almost always actually windows-1252.\n */\nprivate static Charset normalizeWhatwg(Charset cs) {\n    if (cs == null) {\n        return null;\n    }\n    String name = cs.name();\n    if (StandardCharsets.ISO_8859_1.name().equals(name) || StandardCharsets.US_ASCII.name().equals(name)) {\n        try {\n            return Charset.forName(\"windows-1252\");\n        } catch (IllegalArgumentException e) {\n            return cs;\n        }\n    }\n    return cs;\n}",
+  "method_comment": "\n     * Applies the critical WHATWG encoding-label normalizations that are universally\n     * applicable regardless of content type.  The WHATWG encoding spec\n     * (https://encoding.spec.whatwg.org/) maps {@code ISO-8859-1}, {@code US-ASCII},\n     * and their aliases to {@code windows-1252} because real-world content labeled\n     * with these names is almost always actually windows-1252.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,35 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "sendStdOutToOutputStream",
+  "brief": "private void sendStdOutToOutputStream(final Process process, final OutputStream outputStream){}",
+  "methodSignature": "sendStdOutToOutputStream(Process, OutputStream)",
+  "sourceCode": "private void sendStdOutToOutputStream(final Process process, final OutputStream outputStream) {\n        try {\n            IOUtils.copy(process.getInputStream(), outputStream);\n        } catch (IOException e) {\n            System.out.println(\"ERROR: \" + e.getMessage());\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Process",
+    "OutputStream"
+  ],
+  "dependentMethods": {
+    "java.lang.Process": [
+      "getInputStream()"
+    ],
+    "java.io.OutputStream": [],
+    "org.apache.commons.io.IOUtils": [
+      "copy(InputStream, OutputStream)"
+    ],
+    "java.io.PrintStream": [
+      "println(String)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * Sends the standard output of the given\n * process to the given output stream. Potential exceptions are\n * ignored.\n * <p>\n * Note that the given output stream is <em>not</em> closed by this method.\n *\n * @param process      the process\n * @param outputStream the putput stream to send to standard input of the process\n */\nprivate void sendStdOutToOutputStream(final Process process, final OutputStream outputStream) {\n    try {\n        IOUtils.copy(process.getInputStream(), outputStream);\n    } catch (IOException e) {\n        System.out.println(\"ERROR: \" + e.getMessage());\n    }\n}",
+  "method_comment": "\n     * Sends the standard output of the given\n     * process to the given output stream. Potential exceptions are\n     * ignored.\n     * <p>\n     * Note that the given output stream is <em>not</em> closed by this method.\n     *\n     * @param process      the process\n     * @param outputStream the putput stream to send to standard input of the process\n     ",
+  "method_annotation": ""
+}

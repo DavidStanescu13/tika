@@ -1,0 +1,22 @@
+{
+  "className": "LanguageHandler",
+  "methodName": "getLanguage",
+  "brief": "public LanguageResult getLanguage(){}",
+  "methodSignature": "getLanguage()",
+  "sourceCode": "public LanguageResult getLanguage() {\n        return writer.getLanguage();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageWriter": [
+      "getLanguage()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the detected language based on text handled thus far.\n *\n * @return LanguageResult\n */\npublic LanguageResult getLanguage() {\n    return writer.getLanguage();\n}",
+  "method_comment": "\n     * Returns the detected language based on text handled thus far.\n     *\n     * @return LanguageResult\n     ",
+  "method_annotation": ""
+}

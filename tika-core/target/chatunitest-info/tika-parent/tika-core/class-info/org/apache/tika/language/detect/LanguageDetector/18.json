@@ -1,0 +1,27 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "detectAll",
+  "brief": "public List<LanguageResult> detectAll(String text){}",
+  "methodSignature": "detectAll(String)",
+  "sourceCode": "public List<LanguageResult> detectAll(String text) {\n        reset();\n        addText(text);\n        return detectAll();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "reset()",
+      "detectAll()",
+      "addText(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Utility wrapper that detects the language of a given chunk of text.\n *\n * @param text String to add to current statistics.\n * @return list of all possible languages with at least medium confidence,\n * sorted by confidence from highest to lowest.\n */\npublic List<LanguageResult> detectAll(String text) {\n    reset();\n    addText(text);\n    return detectAll();\n}",
+  "method_comment": "\n     * Utility wrapper that detects the language of a given chunk of text.\n     *\n     * @param text String to add to current statistics.\n     * @return list of all possible languages with at least medium confidence,\n     * sorted by confidence from highest to lowest.\n     ",
+  "method_annotation": ""
+}

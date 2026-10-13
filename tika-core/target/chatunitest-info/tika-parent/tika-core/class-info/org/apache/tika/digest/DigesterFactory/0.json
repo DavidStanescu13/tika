@@ -1,0 +1,18 @@
+{
+  "className": "DigesterFactory",
+  "methodName": "build",
+  "brief": "Digester build();",
+  "methodSignature": "build()",
+  "sourceCode": "Digester build();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Build a new Digester instance using the factory's configured properties.\n *\n * @return a new Digester instance\n */\nDigester build();",
+  "method_comment": "\n     * Build a new Digester instance using the factory's configured properties.\n     *\n     * @return a new Digester instance\n     ",
+  "method_annotation": ""
+}

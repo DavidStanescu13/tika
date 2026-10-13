@@ -1,0 +1,33 @@
+{
+  "className": "MimeTypes",
+  "methodName": "getRegisteredMimeType",
+  "brief": "public MimeType getRegisteredMimeType(String name) throws MimeTypeException{}",
+  "methodSignature": "getRegisteredMimeType(String)",
+  "sourceCode": "public MimeType getRegisteredMimeType(String name) throws MimeTypeException {\n        MediaType type = MediaType.parse(name);\n        if (type != null) {\n            MediaType normalisedType = registry.normalize(type);\n            MimeType candidate = types.get(normalisedType);\n            if (candidate != null) {\n                return candidate;\n            }\n            if (normalisedType.hasParameters()) {\n                return types.get(normalisedType.getBaseType());\n            }\n            return null;\n        } else {\n            throw new MimeTypeException(\"Invalid media type name: \" + name);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)",
+      "hasParameters()",
+      "getBaseType()"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "normalize(MediaType)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the registered, normalised media type with the given name (or alias).\n *\n * <p>Unlike {@link #forName(String)}, this function will <em>not</em> create a\n * new MimeType and register it. Instead, <code>null</code> will be returned if\n * there is no definition available for the given name.\n *\n * <p>Also, unlike {@link #forName(String)}, this function may return a\n * mime type that has fewer parameters than were included in the supplied name.\n * If the registered mime type has parameters (e.g.\n * <code>application/dita+xml;format=map</code>), then those will be maintained.\n * However, if the supplied name has paramenters that the <em>registered</em> mime\n * type does not (e.g. <code>application/xml; charset=UTF-8</code> as a name,\n * compared to just <code>application/xml</code> for the type in the registry),\n * then those parameters will not be included in the returned type.\n *\n * @param name media type name (case-insensitive)\n * @return the registered media type with the given name or alias, or null if not found\n * @throws MimeTypeException if the given media type name is invalid\n */\npublic MimeType getRegisteredMimeType(String name) throws MimeTypeException {\n    MediaType type = MediaType.parse(name);\n    if (type != null) {\n        MediaType normalisedType = registry.normalize(type);\n        MimeType candidate = types.get(normalisedType);\n        if (candidate != null) {\n            return candidate;\n        }\n        if (normalisedType.hasParameters()) {\n            return types.get(normalisedType.getBaseType());\n        }\n        return null;\n    } else {\n        throw new MimeTypeException(\"Invalid media type name: \" + name);\n    }\n}",
+  "method_comment": "\n     * Returns the registered, normalised media type with the given name (or alias).\n     *\n     * <p>Unlike {@link #forName(String)}, this function will <em>not</em> create a\n     * new MimeType and register it. Instead, <code>null</code> will be returned if\n     * there is no definition available for the given name.\n     *\n     * <p>Also, unlike {@link #forName(String)}, this function may return a\n     * mime type that has fewer parameters than were included in the supplied name.\n     * If the registered mime type has parameters (e.g.\n     * <code>application/dita+xml;format=map</code>), then those will be maintained.\n     * However, if the supplied name has paramenters that the <em>registered</em> mime\n     * type does not (e.g. <code>application/xml; charset=UTF-8</code> as a name,\n     * compared to just <code>application/xml</code> for the type in the registry),\n     * then those parameters will not be included in the returned type.\n     *\n     * @param name media type name (case-insensitive)\n     * @return the registered media type with the given name or alias, or null if not found\n     * @throws MimeTypeException if the given media type name is invalid\n     ",
+  "method_annotation": ""
+}

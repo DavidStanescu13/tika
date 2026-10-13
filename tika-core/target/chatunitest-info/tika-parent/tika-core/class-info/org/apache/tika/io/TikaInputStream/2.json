@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(InputStream stream){}",
+  "methodSignature": "get(InputStream)",
+  "sourceCode": "public static TikaInputStream get(InputStream stream) {\n        return get(stream, new TemporaryResources(), null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(InputStream, TemporaryResources, Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(InputStream stream) {\n    return get(stream, new TemporaryResources(), null);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

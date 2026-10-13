@@ -1,0 +1,75 @@
+{
+  "fullClassName": "org.apache.tika.sax.AbstractRecursiveParserWrapperHandler",
+  "className": "AbstractRecursiveParserWrapperHandler",
+  "index": 275,
+  "modifier": "[public , abstract ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public abstract class AbstractRecursiveParserWrapperHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.Property;",
+    "import org.apache.tika.metadata.TikaCoreProperties;"
+  ],
+  "fields": [
+    "public final static Property EMBEDDED_RESOURCE_LIMIT_REACHED =\n            TikaCoreProperties.EMBEDDED_RESOURCE_LIMIT_REACHED;",
+    "public final static Property EMBEDDED_DEPTH_LIMIT_REACHED =\n            TikaCoreProperties.EMBEDDED_DEPTH_LIMIT_REACHED;",
+    "private static final int MAX_DEPTH = 100;",
+    "private final ContentHandlerFactory contentHandlerFactory;",
+    "private int embeddedDepth = 0;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "createHandler()": "0",
+    "startEmbeddedDocument(ContentHandler, Metadata)": "1",
+    "endEmbeddedDocument(ContentHandler, Metadata)": "2",
+    "decrementEmbeddedDepth()": "3",
+    "endDocument(ContentHandler, Metadata)": "4",
+    "getContentHandlerFactory()": "5",
+    "AbstractRecursiveParserWrapperHandler(ContentHandlerFactory)": "6"
+  },
+  "methodsBrief": [
+    "public ContentHandler createHandler(){}",
+    "public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+    "public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata)\r\n            throws SAXException{}",
+    "protected void decrementEmbeddedDepth(){}",
+    "public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException{}",
+    "public ContentHandlerFactory getContentHandlerFactory(){}",
+    "public AbstractRecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory){}"
+  ],
+  "constructorSigs": [
+    "AbstractRecursiveParserWrapperHandler(ContentHandlerFactory)"
+  ],
+  "constructorBrief": [
+    "public AbstractRecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory){}"
+  ],
+  "getterSetterSigs": [
+    "getContentHandlerFactory()"
+  ],
+  "getterSetterBrief": [
+    "public ContentHandlerFactory getContentHandlerFactory(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.sax.ContentHandlerFactory": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.Serializable;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.Property;\nimport org.apache.tika.metadata.TikaCoreProperties;\n\n/**\n * This is a special handler to be used only with the\n * {@link org.apache.tika.parser.RecursiveParserWrapper}.\n * It allows for finer-grained processing of embedded documents than in the legacy handlers.\n * Subclasses can choose how to process individual embedded documents.\n */\npublic abstract class AbstractRecursiveParserWrapperHandler extends DefaultHandler implements Serializable {\n\n    // Canonical definitions live in TikaCoreProperties; alias here so the key can never diverge.\n    public final static Property EMBEDDED_RESOURCE_LIMIT_REACHED = TikaCoreProperties.EMBEDDED_RESOURCE_LIMIT_REACHED;\n\n    public final static Property EMBEDDED_DEPTH_LIMIT_REACHED = TikaCoreProperties.EMBEDDED_DEPTH_LIMIT_REACHED;\n\n    private static final int MAX_DEPTH = 100;\n\n    private final ContentHandlerFactory contentHandlerFactory;\n\n    private int embeddedDepth = 0;\n\n    public AbstractRecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory) {\n        this.contentHandlerFactory = contentHandlerFactory;\n    }\n\n    public ContentHandler createHandler() {\n        return contentHandlerFactory.createHandler();\n    }\n\n    /**\n     * This is called before parsing each embedded document.  Override this\n     * for custom behavior.  Make sure to call this in your custom classes\n     * because this tracks the embedded depth.\n     *\n     * @param contentHandler local handler to be used on this embedded document\n     * @param metadata       embedded document's metadata\n     */\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        embeddedDepth++;\n        if (embeddedDepth >= MAX_DEPTH) {\n            throw new SAXException(\"Max embedded depth reached: \" + embeddedDepth);\n        }\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, embeddedDepth);\n    }\n\n    /**\n     * This is called after parsing each embedded document.  Override this\n     * for custom behavior.  This is currently a no-op aside from tracking embedded depth.\n     * <p>\n     * When overriding, make sure to call {@link #decrementEmbeddedDepth()}\n     *\n     * @param contentHandler content handler that was used on this embedded document\n     * @param metadata       metadata for this embedded document\n     * @throws SAXException\n     */\n    public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        decrementEmbeddedDepth();\n    }\n\n    /**\n     * This is called by {@link #endEmbeddedDocument(ContentHandler, Metadata)}. Users\n     * overriding {@link #endEmbeddedDocument(ContentHandler, Metadata)} need to call this\n     * unless they are triggering it via <code>super.endEmbeddedDocument(contentHandler, metadata);</code>\n     */\n    protected void decrementEmbeddedDepth() {\n        embeddedDepth--;\n    }\n\n    /**\n     * This is called after the full parse has completed.  Override this\n     * for custom behavior.  Make sure to call this as <code>super.endDocument(...)</code>\n     * in subclasses.\n     *\n     * @param contentHandler content handler that was used on the main document\n     * @param metadata       metadata that was gathered for the main document\n     * @throws SAXException\n     */\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, 0);\n    }\n\n    public ContentHandlerFactory getContentHandlerFactory() {\n        return contentHandlerFactory;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This is a special handler to be used only with the\n * {@link org.apache.tika.parser.RecursiveParserWrapper}.\n * It allows for finer-grained processing of embedded documents than in the legacy handlers.\n * Subclasses can choose how to process individual embedded documents.\n */\npublic abstract class AbstractRecursiveParserWrapperHandler extends DefaultHandler implements Serializable {\n\n    // Canonical definitions live in TikaCoreProperties; alias here so the key can never diverge.\n    public final static Property EMBEDDED_RESOURCE_LIMIT_REACHED = TikaCoreProperties.EMBEDDED_RESOURCE_LIMIT_REACHED;\n\n    public final static Property EMBEDDED_DEPTH_LIMIT_REACHED = TikaCoreProperties.EMBEDDED_DEPTH_LIMIT_REACHED;\n\n    private static final int MAX_DEPTH = 100;\n\n    private final ContentHandlerFactory contentHandlerFactory;\n\n    private int embeddedDepth = 0;\n\n    public AbstractRecursiveParserWrapperHandler(ContentHandlerFactory contentHandlerFactory) {\n        this.contentHandlerFactory = contentHandlerFactory;\n    }\n\n    public ContentHandler createHandler() {\n        return contentHandlerFactory.createHandler();\n    }\n\n    /**\n     * This is called before parsing each embedded document.  Override this\n     * for custom behavior.  Make sure to call this in your custom classes\n     * because this tracks the embedded depth.\n     *\n     * @param contentHandler local handler to be used on this embedded document\n     * @param metadata       embedded document's metadata\n     */\n    public void startEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        embeddedDepth++;\n        if (embeddedDepth >= MAX_DEPTH) {\n            throw new SAXException(\"Max embedded depth reached: \" + embeddedDepth);\n        }\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, embeddedDepth);\n    }\n\n    /**\n     * This is called after parsing each embedded document.  Override this\n     * for custom behavior.  This is currently a no-op aside from tracking embedded depth.\n     * <p>\n     * When overriding, make sure to call {@link #decrementEmbeddedDepth()}\n     *\n     * @param contentHandler content handler that was used on this embedded document\n     * @param metadata       metadata for this embedded document\n     * @throws SAXException\n     */\n    public void endEmbeddedDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        decrementEmbeddedDepth();\n    }\n\n    /**\n     * This is called by {@link #endEmbeddedDocument(ContentHandler, Metadata)}. Users\n     * overriding {@link #endEmbeddedDocument(ContentHandler, Metadata)} need to call this\n     * unless they are triggering it via <code>super.endEmbeddedDocument(contentHandler, metadata);</code>\n     */\n    protected void decrementEmbeddedDepth() {\n        embeddedDepth--;\n    }\n\n    /**\n     * This is called after the full parse has completed.  Override this\n     * for custom behavior.  Make sure to call this as <code>super.endDocument(...)</code>\n     * in subclasses.\n     *\n     * @param contentHandler content handler that was used on the main document\n     * @param metadata       metadata that was gathered for the main document\n     * @throws SAXException\n     */\n    public void endDocument(ContentHandler contentHandler, Metadata metadata) throws SAXException {\n        metadata.set(TikaCoreProperties.EMBEDDED_DEPTH, 0);\n    }\n\n    public ContentHandlerFactory getContentHandlerFactory() {\n        return contentHandlerFactory;\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.RecursiveParserWrapperHandler"
+  ]
+}

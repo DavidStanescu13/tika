@@ -1,0 +1,18 @@
+{
+  "className": "LanguageResult",
+  "methodName": "isUnknown",
+  "brief": "public boolean isUnknown(){}",
+  "methodSignature": "isUnknown()",
+  "sourceCode": "public boolean isUnknown() {\n        return confidence == LanguageConfidence.NONE;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isUnknown() {\n    return confidence == LanguageConfidence.NONE;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "loadDefaultModels",
+  "brief": "public void loadDefaultModels(Path modelFile){}",
+  "methodSignature": "loadDefaultModels(Path)",
+  "sourceCode": "public void loadDefaultModels(Path modelFile) {\n        try (InputStream in = Files.newInputStream(modelFile)) {\n            loadDefaultModels(in);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Path"
+  ],
+  "dependentMethods": {
+    "java.nio.file.Path": [],
+    "java.nio.file.Files": [
+      "newInputStream(Path, OpenOption[])"
+    ],
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(InputStream)"
+    ]
+  },
+  "full_method_info": "public void loadDefaultModels(Path modelFile) {\n    try (InputStream in = Files.newInputStream(modelFile)) {\n        loadDefaultModels(in);\n    } catch (IOException e) {\n        throw new RuntimeException(\"Unable to read the default media type registry\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

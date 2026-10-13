@@ -1,0 +1,33 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "buildDOM",
+  "brief": "public static Document buildDOM(String uriString)\r\n            throws TikaException, IOException, SAXException{}",
+  "methodSignature": "buildDOM(String)",
+  "sourceCode": "public static Document buildDOM(String uriString)\n            throws TikaException, IOException, SAXException {\n        PoolDOMBuilder poolBuilder = null;\n        DocumentBuilder builder = null;\n        if (POOL_SIZE == 0) {\n            builder = getDocumentBuilder();\n        } else {\n            poolBuilder = acquireDOMBuilder();\n            if (poolBuilder != null) {\n                builder = poolBuilder.getDocumentBuilder();\n            } else {\n                builder = getDocumentBuilder();\n            }\n        }\n\n        try {\n            return builder.parse(uriString);\n        } finally {\n            releaseDOMBuilder(poolBuilder);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilder()",
+      "acquireDOMBuilder()",
+      "releaseDOMBuilder(PoolDOMBuilder)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils.PoolDOMBuilder": [
+      "getDocumentBuilder()"
+    ],
+    "javax.xml.parsers.DocumentBuilder": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Builds a Document with a DocumentBuilder from the pool\n *\n * @param uriString uriString to process\n * @return a document\n * @throws TikaException\n * @throws IOException\n * @throws SAXException\n * @since Apache Tika 1.19.1\n */\npublic static Document buildDOM(String uriString) throws TikaException, IOException, SAXException {\n    PoolDOMBuilder poolBuilder = null;\n    DocumentBuilder builder = null;\n    if (POOL_SIZE == 0) {\n        builder = getDocumentBuilder();\n    } else {\n        poolBuilder = acquireDOMBuilder();\n        if (poolBuilder != null) {\n            builder = poolBuilder.getDocumentBuilder();\n        } else {\n            builder = getDocumentBuilder();\n        }\n    }\n    try {\n        return builder.parse(uriString);\n    } finally {\n        releaseDOMBuilder(poolBuilder);\n    }\n}",
+  "method_comment": "\n     * Builds a Document with a DocumentBuilder from the pool\n     *\n     * @param uriString uriString to process\n     * @return a document\n     * @throws TikaException\n     * @throws IOException\n     * @throws SAXException\n     * @since Apache Tika 1.19.1\n     ",
+  "method_annotation": ""
+}

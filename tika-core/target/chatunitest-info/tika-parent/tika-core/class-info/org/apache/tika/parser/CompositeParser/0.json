@@ -1,0 +1,31 @@
+{
+  "className": "CompositeParser",
+  "methodName": "getParsers",
+  "brief": "public Map<MediaType, Parser> getParsers(ParseContext context){}",
+  "methodSignature": "getParsers(ParseContext)",
+  "sourceCode": "public Map<MediaType, Parser> getParsers(ParseContext context) {\n        Map<MediaType, Parser> map = new HashMap<>();\n        for (Parser parser : parsers) {\n            for (MediaType type : parser.getSupportedTypes(context)) {\n                map.put(registry.normalize(type), parser);\n            }\n        }\n        return map;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.parser.Parser": [
+      "getSupportedTypes(ParseContext)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "normalize(MediaType)"
+    ]
+  },
+  "full_method_info": "public Map<MediaType, Parser> getParsers(ParseContext context) {\n    Map<MediaType, Parser> map = new HashMap<>();\n    for (Parser parser : parsers) {\n        for (MediaType type : parser.getSupportedTypes(context)) {\n            map.put(registry.normalize(type), parser);\n        }\n    }\n    return map;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

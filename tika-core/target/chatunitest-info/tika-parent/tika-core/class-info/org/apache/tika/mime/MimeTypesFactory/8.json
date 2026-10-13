@@ -1,0 +1,66 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(String coreFilePath, String extensionFilePath,\r\n                                   ClassLoader classLoader) throws IOException, MimeTypeException{}",
+  "methodSignature": "create(String, String, ClassLoader)",
+  "sourceCode": "public static MimeTypes create(String coreFilePath, String extensionFilePath,\n                                   ClassLoader classLoader) throws IOException, MimeTypeException {\n        // If no specific classloader was requested, use our own class's one\n        if (classLoader == null) {\n            classLoader = MimeTypesReader.class.getClassLoader();\n        }\n\n        // This allows us to replicate class.getResource() when using\n        //  the classloader directly\n        String classPrefix = MimeTypesReader.class.getPackage().getName().replace('.', '/') + \"/\";\n\n        // Get the core URL, and all the extensions URLs\n        URL coreURL = classLoader.getResource(classPrefix + coreFilePath);\n        List<URL> extensionURLs =\n                Collections.list(classLoader.getResources(extensionFilePath));\n\n        // Swap that into an Array, and process\n        List<URL> urls = new ArrayList<>();\n        urls.add(coreURL);\n        urls.addAll(extensionURLs);\n        if (LOG.isDebugEnabled()) {\n            urls.stream().forEach( u ->\n                    LOG.debug(\"Loaded custom mimes file: {}\", u)\n            );\n        }\n\n        String customMimesPath = System.getProperty(CUSTOM_MIMES_SYS_PROP);\n        if (customMimesPath != null) {\n            File externalFile = new File(customMimesPath);\n            if (!externalFile.exists()) {\n                throw new IOException(\n                        \"Specified custom mimetypes file not found: \" + customMimesPath);\n            }\n            URL externalURL = externalFile.toURI().toURL();\n            urls.add(externalURL);\n            if (LOG.isDebugEnabled()) {\n                LOG.debug(\"Loaded external custom mimetypes file: {}\", externalFile.getAbsolutePath());\n            }\n        }\n\n        return create(urls.toArray(new URL[0]));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "ClassLoader"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "replace(char, char)"
+    ],
+    "java.lang.ClassLoader": [
+      "getResource(String)",
+      "getResources(String)"
+    ],
+    "java.lang.Class": [
+      "getClassLoader()",
+      "getPackage()"
+    ],
+    "java.lang.Package": [
+      "getName()"
+    ],
+    "java.util.Collections": [
+      "list(Enumeration<T>)"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ],
+    "org.slf4j.Logger": [
+      "debug(String, Object)",
+      "isDebugEnabled()"
+    ],
+    "java.util.stream.Stream": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.lang.System": [
+      "getProperty(String)"
+    ],
+    "java.io.File": [
+      "toURI()",
+      "getAbsolutePath()",
+      "exists()"
+    ],
+    "java.net.URI": [
+      "toURL()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates and returns a MimeTypes instance. The core mimetypes\n * will be loaded from the specified file path, and any custom\n * override mimetypes found will loaded afterwards.\n * The file paths will be interpreted by the specified class\n * loader in getResource().\n * It will also load custom mimetypes from the system property\n * {@link #CUSTOM_MIMES_SYS_PROP}, if specified.\n *\n * @param coreFilePath      The main MimeTypes file to load\n * @param extensionFilePath The name of extension MimeType files to load afterwards\n * @throws IOException       if the file can not be accessed\n * @throws MimeTypeException if the type configuration is invalid\n */\npublic static MimeTypes create(String coreFilePath, String extensionFilePath, ClassLoader classLoader) throws IOException, MimeTypeException {\n    // If no specific classloader was requested, use our own class's one\n    if (classLoader == null) {\n        classLoader = MimeTypesReader.class.getClassLoader();\n    }\n    // This allows us to replicate class.getResource() when using\n    // the classloader directly\n    String classPrefix = MimeTypesReader.class.getPackage().getName().replace('.', '/') + \"/\";\n    // Get the core URL, and all the extensions URLs\n    URL coreURL = classLoader.getResource(classPrefix + coreFilePath);\n    List<URL> extensionURLs = Collections.list(classLoader.getResources(extensionFilePath));\n    // Swap that into an Array, and process\n    List<URL> urls = new ArrayList<>();\n    urls.add(coreURL);\n    urls.addAll(extensionURLs);\n    if (LOG.isDebugEnabled()) {\n        urls.stream().forEach(u -> LOG.debug(\"Loaded custom mimes file: {}\", u));\n    }\n    String customMimesPath = System.getProperty(CUSTOM_MIMES_SYS_PROP);\n    if (customMimesPath != null) {\n        File externalFile = new File(customMimesPath);\n        if (!externalFile.exists()) {\n            throw new IOException(\"Specified custom mimetypes file not found: \" + customMimesPath);\n        }\n        URL externalURL = externalFile.toURI().toURL();\n        urls.add(externalURL);\n        if (LOG.isDebugEnabled()) {\n            LOG.debug(\"Loaded external custom mimetypes file: {}\", externalFile.getAbsolutePath());\n        }\n    }\n    return create(urls.toArray(new URL[0]));\n}",
+  "method_comment": "\n     * Creates and returns a MimeTypes instance. The core mimetypes\n     * will be loaded from the specified file path, and any custom\n     * override mimetypes found will loaded afterwards.\n     * The file paths will be interpreted by the specified class\n     * loader in getResource().\n     * It will also load custom mimetypes from the system property\n     * {@link #CUSTOM_MIMES_SYS_PROP}, if specified.\n     *\n     * @param coreFilePath      The main MimeTypes file to load\n     * @param extensionFilePath The name of extension MimeType files to load afterwards\n     * @throws IOException       if the file can not be accessed\n     * @throws MimeTypeException if the type configuration is invalid\n     ",
+  "method_annotation": ""
+}

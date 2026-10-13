@@ -1,0 +1,18 @@
+{
+  "className": "WriteLimiter",
+  "methodName": "isThrowOnWriteLimitReached",
+  "brief": "boolean isThrowOnWriteLimitReached();",
+  "methodSignature": "isThrowOnWriteLimitReached()",
+  "sourceCode": "boolean isThrowOnWriteLimitReached();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "boolean isThrowOnWriteLimitReached();",
+  "method_comment": "",
+  "method_annotation": ""
+}

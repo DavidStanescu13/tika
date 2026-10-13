@@ -1,0 +1,22 @@
+{
+  "className": "MimeType",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        return type.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the name of this media type.\n *\n * @return media type name\n */\npublic String toString() {\n    return type.toString();\n}",
+  "method_comment": "\n     * Returns the name of this media type.\n     *\n     * @return media type name\n     ",
+  "method_annotation": ""
+}

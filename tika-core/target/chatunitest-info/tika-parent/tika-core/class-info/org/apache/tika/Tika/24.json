@@ -1,0 +1,31 @@
+{
+  "className": "Tika",
+  "methodName": "parseToString",
+  "brief": "public String parseToString(File file) throws IOException, TikaException{}",
+  "methodSignature": "parseToString(File)",
+  "sourceCode": "public String parseToString(File file) throws IOException, TikaException {\n        ParseContext context = new ParseContext();\n        Metadata metadata = Metadata.newInstance(context);\n        @SuppressWarnings(\"deprecation\") InputStream stream = TikaInputStream.get(file, metadata);\n        return parseToString(stream, metadata, maxStringLength, context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "File"
+  ],
+  "dependentMethods": {
+    "java.io.File": [],
+    "org.apache.tika.metadata.Metadata": [
+      "newInstance(ParseContext)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(File, Metadata)"
+    ],
+    "org.apache.tika.Tika": [
+      "parseToString(InputStream, Metadata, int, ParseContext)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given file and returns the extracted text content.\n * <p>\n * To avoid unpredictable excess memory use, the returned string contains\n * only up to {@link #getMaxStringLength()} first characters extracted\n * from the input document. Use the {@link #setMaxStringLength(int)}\n * method to adjust this limitation.\n *\n * @param file the file to be parsed\n * @return extracted text content\n * @throws IOException   if the file can not be read\n * @throws TikaException if the file can not be parsed\n * @see #parseToString(Path)\n */\npublic String parseToString(File file) throws IOException, TikaException {\n    ParseContext context = new ParseContext();\n    Metadata metadata = Metadata.newInstance(context);\n    @SuppressWarnings(\"deprecation\")\n    InputStream stream = TikaInputStream.get(file, metadata);\n    return parseToString(stream, metadata, maxStringLength, context);\n}",
+  "method_comment": "\n     * Parses the given file and returns the extracted text content.\n     * <p>\n     * To avoid unpredictable excess memory use, the returned string contains\n     * only up to {@link #getMaxStringLength()} first characters extracted\n     * from the input document. Use the {@link #setMaxStringLength(int)}\n     * method to adjust this limitation.\n     *\n     * @param file the file to be parsed\n     * @return extracted text content\n     * @throws IOException   if the file can not be read\n     * @throws TikaException if the file can not be parsed\n     * @see #parseToString(Path)\n     ",
+  "method_annotation": ""
+}

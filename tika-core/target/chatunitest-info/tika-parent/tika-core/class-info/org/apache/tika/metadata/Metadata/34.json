@@ -1,0 +1,33 @@
+{
+  "className": "Metadata",
+  "methodName": "add",
+  "brief": "public void add(Property property, Calendar date){}",
+  "methodSignature": "add(Property, Calendar)",
+  "sourceCode": "public void add(Property property, Calendar date) {\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n            throw new PropertyTypeException(Property.ValueType.DATE,\n                    property.getPrimaryProperty().getValueType());\n        }\n        String dateString = null;\n        if (date != null) {\n            dateString = formatDate(date);\n        }\n        add(property, dateString);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "Calendar"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()"
+    ],
+    "java.util.Calendar": [],
+    "org.apache.tika.utils.DateUtils": [
+      "formatDate(Calendar)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the date value of the identified metadata property.\n *\n * @param property simple calendar property definition\n * @param date     property value\n * @since Apache Tika 2.5.0\n */\npublic void add(Property property, Calendar date) {\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.DATE) {\n        throw new PropertyTypeException(Property.ValueType.DATE, property.getPrimaryProperty().getValueType());\n    }\n    String dateString = null;\n    if (date != null) {\n        dateString = formatDate(date);\n    }\n    add(property, dateString);\n}",
+  "method_comment": "\n     * Adds the date value of the identified metadata property.\n     *\n     * @param property simple calendar property definition\n     * @param date     property value\n     * @since Apache Tika 2.5.0\n     ",
+  "method_annotation": ""
+}

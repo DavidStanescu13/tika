@@ -1,0 +1,26 @@
+{
+  "className": "DetectHelper",
+  "methodName": "getStreamForDetectionOnly",
+  "brief": "public static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength)\r\n            throws IOException{}",
+  "methodSignature": "getStreamForDetectionOnly(InputStream, int)",
+  "sourceCode": "public static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength)\n            throws IOException {\n        return getStreamForDetectionOnly(stream, maxLength, new Metadata());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.detect.DetectHelper": [
+      "getStreamForDetectionOnly(InputStream, int, Metadata)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a TikaInputStream suitable for detection-only purposes by reading\n * up to {@code maxLength} bytes from the input stream into a byte array.\n * <p>\n * This overload creates a new Metadata object internally. If you need to check\n * whether the content was truncated, use\n * {@link #getStreamForDetectionOnly(InputStream, int, Metadata)} instead.\n *\n * @param stream    the input stream to read from (will NOT be closed)\n * @param maxLength the maximum number of bytes to read\n * @return a TikaInputStream backed by the buffered bytes\n * @throws IOException if an I/O error occurs\n */\npublic static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength) throws IOException {\n    return getStreamForDetectionOnly(stream, maxLength, new Metadata());\n}",
+  "method_comment": "\n     * Creates a TikaInputStream suitable for detection-only purposes by reading\n     * up to {@code maxLength} bytes from the input stream into a byte array.\n     * <p>\n     * This overload creates a new Metadata object internally. If you need to check\n     * whether the content was truncated, use\n     * {@link #getStreamForDetectionOnly(InputStream, int, Metadata)} instead.\n     *\n     * @param stream    the input stream to read from (will NOT be closed)\n     * @param maxLength the maximum number of bytes to read\n     * @return a TikaInputStream backed by the buffered bytes\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": ""
+}

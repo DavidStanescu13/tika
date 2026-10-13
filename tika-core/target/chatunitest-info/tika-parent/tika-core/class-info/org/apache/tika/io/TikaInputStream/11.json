@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(Blob blob) throws SQLException, IOException{}",
+  "methodSignature": "get(Blob)",
+  "sourceCode": "public static TikaInputStream get(Blob blob) throws SQLException, IOException {\n        return get(blob, new Metadata());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Blob"
+  ],
+  "dependentMethods": {
+    "java.sql.Blob": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(Blob, Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(Blob blob) throws SQLException, IOException {\n    return get(blob, new Metadata());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

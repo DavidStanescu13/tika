@@ -1,0 +1,34 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getSAXParserFactory",
+  "brief": "public static SAXParserFactory getSAXParserFactory(){}",
+  "methodSignature": "getSAXParserFactory()",
+  "sourceCode": "public static SAXParserFactory getSAXParserFactory() {\n        SAXParserFactory factory = SAXParserFactory.newInstance();\n        if (LOG.isDebugEnabled()) {\n            LOG.debug(\"SAXParserFactory class {}\", factory.getClass());\n        }\n        factory.setNamespaceAware(true);\n        factory.setValidating(false);\n        trySetSAXFeature(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);\n        trySetSAXFeature(factory, \"http://xml.org/sax/features/external-general-entities\", false);\n        trySetSAXFeature(factory, \"http://xml.org/sax/features/external-parameter-entities\", false);\n        trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-external-dtd\",\n                false);\n        trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-dtd-grammar\",\n                false);\n\n        return factory;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParserFactory": [
+      "newInstance()",
+      "setNamespaceAware(boolean)",
+      "setValidating(boolean)"
+    ],
+    "org.slf4j.Logger": [
+      "debug(String, Object)",
+      "isDebugEnabled()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "trySetSAXFeature(SAXParserFactory, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the SAX parser factory specified in this parsing context.\n * If a factory is not explicitly specified, then a default factory\n * instance is created and returned. The default factory instance is\n * configured to be namespace-aware, not validating, and to use\n * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n *\n * @return SAX parser factory\n * @since Apache Tika 0.8\n */\npublic static SAXParserFactory getSAXParserFactory() {\n    SAXParserFactory factory = SAXParserFactory.newInstance();\n    if (LOG.isDebugEnabled()) {\n        LOG.debug(\"SAXParserFactory class {}\", factory.getClass());\n    }\n    factory.setNamespaceAware(true);\n    factory.setValidating(false);\n    trySetSAXFeature(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);\n    trySetSAXFeature(factory, \"http://xml.org/sax/features/external-general-entities\", false);\n    trySetSAXFeature(factory, \"http://xml.org/sax/features/external-parameter-entities\", false);\n    trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-external-dtd\", false);\n    trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-dtd-grammar\", false);\n    return factory;\n}",
+  "method_comment": "\n     * Returns the SAX parser factory specified in this parsing context.\n     * If a factory is not explicitly specified, then a default factory\n     * instance is created and returned. The default factory instance is\n     * configured to be namespace-aware, not validating, and to use\n     * {@link XMLConstants#FEATURE_SECURE_PROCESSING secure XML processing}.\n     *\n     * @return SAX parser factory\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

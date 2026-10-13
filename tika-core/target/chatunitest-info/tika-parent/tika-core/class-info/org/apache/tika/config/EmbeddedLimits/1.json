@@ -1,0 +1,20 @@
+{
+  "className": "EmbeddedLimits",
+  "methodName": "setMaxDepth",
+  "brief": "public void setMaxDepth(int maxDepth){}",
+  "methodSignature": "setMaxDepth(int)",
+  "sourceCode": "public void setMaxDepth(int maxDepth) {\n        this.maxDepth = maxDepth;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum nesting depth for embedded documents.\n *\n * @param maxDepth maximum depth, or -1 for unlimited\n */\npublic void setMaxDepth(int maxDepth) {\n    this.maxDepth = maxDepth;\n}",
+  "method_comment": "\n     * Sets the maximum nesting depth for embedded documents.\n     *\n     * @param maxDepth maximum depth, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

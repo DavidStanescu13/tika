@@ -1,0 +1,22 @@
+{
+  "className": "ExcludeFieldMetadataFilter",
+  "methodName": "ExcludeFieldMetadataFilter",
+  "brief": "public ExcludeFieldMetadataFilter(Config config){}",
+  "methodSignature": "ExcludeFieldMetadataFilter(Config)",
+  "sourceCode": "public ExcludeFieldMetadataFilter(Config config) {\n        this.excludeSet = new HashSet<>(config.exclude);\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Config"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.filter.ExcludeFieldMetadataFilter.Config": []
+  },
+  "full_method_info": "public ExcludeFieldMetadataFilter(Config config) {\n    this.excludeSet = new HashSet<>(config.exclude);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

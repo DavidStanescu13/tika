@@ -1,0 +1,75 @@
+{
+  "fullClassName": "org.apache.tika.utils.StreamGobbler",
+  "className": "StreamGobbler",
+  "index": 351,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Runnable]",
+  "packageName": "org.apache.tika.utils",
+  "packageDeclaration": "package org.apache.tika.utils;",
+  "classSignature": "public class StreamGobbler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.BufferedReader;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.InputStreamReader;",
+    "import java.io.Reader;",
+    "import java.nio.charset.StandardCharsets;",
+    "import java.util.ArrayList;",
+    "import java.util.List;"
+  ],
+  "fields": [
+    "private static final int MAX_LINE_LENGTH = 1_000_000;",
+    "private final InputStream is;",
+    "private final int maxBufferLength;",
+    "List<String> lines = new ArrayList<>();",
+    "long streamLength = 0;",
+    "boolean isTruncated = false;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Runnable"
+  ],
+  "methodSigs": {
+    "run()": "0",
+    "readLineBounded(Reader)": "1",
+    "getLines()": "2",
+    "getStreamLength()": "3",
+    "getIsTruncated()": "4",
+    "StreamGobbler(InputStream, int)": "5"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void run(){}",
+    "private String readLineBounded(Reader r) throws IOException{}",
+    "public List<String> getLines(){}",
+    "public long getStreamLength(){}",
+    "public boolean getIsTruncated(){}",
+    "public StreamGobbler(InputStream is, int maxBufferLength){}"
+  ],
+  "constructorSigs": [
+    "StreamGobbler(InputStream, int)"
+  ],
+  "constructorBrief": [
+    "public StreamGobbler(InputStream is, int maxBufferLength){}"
+  ],
+  "getterSetterSigs": [
+    "getLines()",
+    "getStreamLength()",
+    "getIsTruncated()"
+  ],
+  "getterSetterBrief": [
+    "public List<String> getLines(){}",
+    "public long getStreamLength(){}",
+    "public boolean getIsTruncated(){}"
+  ],
+  "constructorDeps": {
+    "java.io.InputStream": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.utils;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.InputStreamReader;\nimport java.io.Reader;\nimport java.nio.charset.StandardCharsets;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class StreamGobbler implements Runnable {\n\n    // Maximum chars to buffer for a single line before truncating.\n    // Prevents OOM from a process outputting gigabytes without a newline.\n    private static final int MAX_LINE_LENGTH = 1_000_000;\n\n    private final InputStream is;\n\n    private final int maxBufferLength;\n\n    List<String> lines = new ArrayList<>();\n\n    long streamLength = 0;\n\n    boolean isTruncated = false;\n\n    public StreamGobbler(InputStream is, int maxBufferLength) {\n        this.is = is;\n        this.maxBufferLength = maxBufferLength;\n    }\n\n    @Override\n    public void run() {\n        try (Reader r = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {\n            String line = readLineBounded(r);\n            while (line != null) {\n                if (maxBufferLength >= 0) {\n                    if (streamLength + line.length() > maxBufferLength) {\n                        int len = maxBufferLength - (int) streamLength;\n                        if (len > 0) {\n                            isTruncated = true;\n                            String truncatedLine = line.substring(0, Math.min(line.length(), len));\n                            lines.add(truncatedLine);\n                        }\n                    } else {\n                        lines.add(line);\n                    }\n                }\n                streamLength += line.length();\n                line = readLineBounded(r);\n            }\n        } catch (IOException e) {\n            return;\n        }\n    }\n\n    /**\n     * Reads a line from the reader, capping at {@link #MAX_LINE_LENGTH} chars.\n     * Any remaining chars on the line are discarded. Returns null at EOF.\n     */\n    private String readLineBounded(Reader r) throws IOException {\n        StringBuilder sb = new StringBuilder();\n        boolean discarding = false;\n        int ch;\n        while ((ch = r.read()) != -1) {\n            if (ch == '\\n') {\n                break;\n            }\n            if (ch == '\\r') {\n                // peek for \\r\\n\n                r.mark(1);\n                int next = r.read();\n                if (next != '\\n' && next != -1) {\n                    r.reset();\n                }\n                break;\n            }\n            if (!discarding) {\n                if (sb.length() < MAX_LINE_LENGTH) {\n                    sb.append((char) ch);\n                } else {\n                    discarding = true;\n                    isTruncated = true;\n                }\n            }\n            // When discarding, we still consume chars until newline/EOF\n            // to keep the stream position correct.\n        }\n        if (ch == -1 && sb.length() == 0) {\n            return null;\n        }\n        return sb.toString();\n    }\n\n    public List<String> getLines() {\n        return lines;\n    }\n\n    public long getStreamLength() {\n        return streamLength;\n    }\n\n    public boolean getIsTruncated() {\n        return isTruncated;\n    }\n}\n",
+  "classDeclarationCode": "public class StreamGobbler implements Runnable {\n\n    // Maximum chars to buffer for a single line before truncating.\n    // Prevents OOM from a process outputting gigabytes without a newline.\n    private static final int MAX_LINE_LENGTH = 1_000_000;\n\n    private final InputStream is;\n\n    private final int maxBufferLength;\n\n    List<String> lines = new ArrayList<>();\n\n    long streamLength = 0;\n\n    boolean isTruncated = false;\n\n    public StreamGobbler(InputStream is, int maxBufferLength) {\n        this.is = is;\n        this.maxBufferLength = maxBufferLength;\n    }\n\n    @Override\n    public void run() {\n        try (Reader r = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {\n            String line = readLineBounded(r);\n            while (line != null) {\n                if (maxBufferLength >= 0) {\n                    if (streamLength + line.length() > maxBufferLength) {\n                        int len = maxBufferLength - (int) streamLength;\n                        if (len > 0) {\n                            isTruncated = true;\n                            String truncatedLine = line.substring(0, Math.min(line.length(), len));\n                            lines.add(truncatedLine);\n                        }\n                    } else {\n                        lines.add(line);\n                    }\n                }\n                streamLength += line.length();\n                line = readLineBounded(r);\n            }\n        } catch (IOException e) {\n            return;\n        }\n    }\n\n    /**\n     * Reads a line from the reader, capping at {@link #MAX_LINE_LENGTH} chars.\n     * Any remaining chars on the line are discarded. Returns null at EOF.\n     */\n    private String readLineBounded(Reader r) throws IOException {\n        StringBuilder sb = new StringBuilder();\n        boolean discarding = false;\n        int ch;\n        while ((ch = r.read()) != -1) {\n            if (ch == '\\n') {\n                break;\n            }\n            if (ch == '\\r') {\n                // peek for \\r\\n\n                r.mark(1);\n                int next = r.read();\n                if (next != '\\n' && next != -1) {\n                    r.reset();\n                }\n                break;\n            }\n            if (!discarding) {\n                if (sb.length() < MAX_LINE_LENGTH) {\n                    sb.append((char) ch);\n                } else {\n                    discarding = true;\n                    isTruncated = true;\n                }\n            }\n            // When discarding, we still consume chars until newline/EOF\n            // to keep the stream position correct.\n        }\n        if (ch == -1 && sb.length() == 0) {\n            return null;\n        }\n        return sb.toString();\n    }\n\n    public List<String> getLines() {\n        return lines;\n    }\n\n    public long getStreamLength() {\n        return streamLength;\n    }\n\n    public boolean getIsTruncated() {\n        return isTruncated;\n    }\n}",
+  "subClasses": []
+}

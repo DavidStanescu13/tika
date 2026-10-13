@@ -1,0 +1,26 @@
+{
+  "className": "LengthComparator",
+  "methodName": "compare",
+  "brief": "public int compare(String a, String b){}",
+  "methodSignature": "compare(String, String)",
+  "sourceCode": "public int compare(String a, String b) {\n            int diff = b.length() - a.length();\n            if (diff == 0) {\n                diff = a.compareTo(b);\n            }\n            return diff;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "compareTo(String)",
+      "length()"
+    ]
+  },
+  "full_method_info": "public int compare(String a, String b) {\n    int diff = b.length() - a.length();\n    if (diff == 0) {\n        diff = a.compareTo(b);\n    }\n    return diff;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

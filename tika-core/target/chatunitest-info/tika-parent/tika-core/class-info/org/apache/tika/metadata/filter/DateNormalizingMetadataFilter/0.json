@@ -1,0 +1,44 @@
+{
+  "className": "DateNormalizingMetadataFilter",
+  "methodName": "filter",
+  "brief": "protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "protected void filter(Metadata metadata) {\n        SimpleDateFormat dateFormatter = null;\n        SimpleDateFormat utcFormatter = null;\n        for (String n : metadata.names()) {\n\n            Property property = Property.get(n);\n            if (property != null) {\n                if (property.getValueType().equals(Property.ValueType.DATE)) {\n                    String dateString = metadata.get(property);\n                    if (dateString.endsWith(\"Z\")) {\n                        continue;\n                    }\n                    if (dateFormatter == null) {\n                        dateFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss\", Locale.US);\n                        dateFormatter.setTimeZone(defaultTimeZone);\n                        utcFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\", Locale.US);\n                        utcFormatter.setTimeZone(UTC);\n                    }\n                    Date d = null;\n                    try {\n                        d = dateFormatter.parse(dateString);\n                        metadata.set(property, utcFormatter.format(d));\n                    } catch (ParseException e) {\n                        LOGGER.warn(\"Couldn't convert date to default time zone: >\"\n                                + dateString + \"<\");\n                    }\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "names()",
+      "get(Property)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "get(String)"
+    ],
+    "java.lang.Enum": [
+      "equals(Object)"
+    ],
+    "java.lang.String": [
+      "endsWith(String)"
+    ],
+    "java.text.DateFormat": [
+      "format(Date)",
+      "setTimeZone(TimeZone)",
+      "parse(String)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ]
+  },
+  "full_method_info": "protected void filter(Metadata metadata) {\n    SimpleDateFormat dateFormatter = null;\n    SimpleDateFormat utcFormatter = null;\n    for (String n : metadata.names()) {\n        Property property = Property.get(n);\n        if (property != null) {\n            if (property.getValueType().equals(Property.ValueType.DATE)) {\n                String dateString = metadata.get(property);\n                if (dateString.endsWith(\"Z\")) {\n                    continue;\n                }\n                if (dateFormatter == null) {\n                    dateFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss\", Locale.US);\n                    dateFormatter.setTimeZone(defaultTimeZone);\n                    utcFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\", Locale.US);\n                    utcFormatter.setTimeZone(UTC);\n                }\n                Date d = null;\n                try {\n                    d = dateFormatter.parse(dateString);\n                    metadata.set(property, utcFormatter.format(d));\n                } catch (ParseException e) {\n                    LOGGER.warn(\"Couldn't convert date to default time zone: >\" + dateString + \"<\");\n                }\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

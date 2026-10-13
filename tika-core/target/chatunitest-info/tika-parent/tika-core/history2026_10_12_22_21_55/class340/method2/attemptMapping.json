@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "CharsetUtils_clean_2_0_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_clean_2_0_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_clean_2_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "clean",
+    "methodSig": "clean(String)"
+  },
+  "attempt1": {
+    "testClassName": "CharsetUtils_clean_2_1_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_clean_2_1_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_clean_2_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "clean",
+    "methodSig": "clean(String)"
+  },
+  "attempt2": {
+    "testClassName": "CharsetUtils_clean_2_2_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_clean_2_2_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_clean_2_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "clean",
+    "methodSig": "clean(String)"
+  },
+  "attempt3": {
+    "testClassName": "CharsetUtils_clean_2_3_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_clean_2_3_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_clean_2_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "clean",
+    "methodSig": "clean(String)"
+  },
+  "attempt4": {
+    "testClassName": "CharsetUtils_clean_2_4_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_clean_2_4_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_clean_2_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "clean",
+    "methodSig": "clean(String)"
+  }
+}

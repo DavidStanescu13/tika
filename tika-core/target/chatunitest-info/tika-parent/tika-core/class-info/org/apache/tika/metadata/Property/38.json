@@ -1,0 +1,43 @@
+{
+  "className": "Property",
+  "methodName": "Property",
+  "brief": "private Property(String name, boolean internal, PropertyType propertyType, ValueType valueType,\r\n                     String[] choices, Property primaryProperty,\r\n                     Property[] secondaryExtractProperties){}",
+  "methodSignature": "Property(String, boolean, PropertyType, ValueType, String[], Property, Property[])",
+  "sourceCode": "private Property(String name, boolean internal, PropertyType propertyType, ValueType valueType,\n                     String[] choices, Property primaryProperty,\n                     Property[] secondaryExtractProperties) {\n        this.name = name;\n        this.internal = internal;\n        this.propertyType = propertyType;\n        this.valueType = valueType;\n        if (choices != null) {\n            this.choices = Collections\n                    .unmodifiableSet(new HashSet<>(Arrays.asList(choices.clone())));\n        } else {\n            this.choices = null;\n        }\n\n        if (primaryProperty != null) {\n            this.primaryProperty = primaryProperty;\n            this.secondaryExtractProperties = secondaryExtractProperties;\n        } else {\n            this.primaryProperty = this;\n            this.secondaryExtractProperties = null;\n\n            // Only store primary properties for lookup, not composites\n            synchronized (PROPERTIES) {\n                PROPERTIES.put(name, this);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean",
+    "PropertyType",
+    "ValueType",
+    "String[]",
+    "Property",
+    "Property[]"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Property.PropertyType": [],
+    "org.apache.tika.metadata.Property.ValueType": [],
+    "org.apache.tika.metadata.Property": [],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ],
+    "java.lang.Object": [
+      "clone()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "private Property(String name, boolean internal, PropertyType propertyType, ValueType valueType, String[] choices, Property primaryProperty, Property[] secondaryExtractProperties) {\n    this.name = name;\n    this.internal = internal;\n    this.propertyType = propertyType;\n    this.valueType = valueType;\n    if (choices != null) {\n        this.choices = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(choices.clone())));\n    } else {\n        this.choices = null;\n    }\n    if (primaryProperty != null) {\n        this.primaryProperty = primaryProperty;\n        this.secondaryExtractProperties = secondaryExtractProperties;\n    } else {\n        this.primaryProperty = this;\n        this.secondaryExtractProperties = null;\n        // Only store primary properties for lookup, not composites\n        synchronized (PROPERTIES) {\n            PROPERTIES.put(name, this);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

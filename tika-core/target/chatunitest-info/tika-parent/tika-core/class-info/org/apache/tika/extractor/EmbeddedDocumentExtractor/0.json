@@ -1,0 +1,22 @@
+{
+  "className": "EmbeddedDocumentExtractor",
+  "methodName": "shouldParseEmbedded",
+  "brief": "boolean shouldParseEmbedded(Metadata metadata);",
+  "methodSignature": "shouldParseEmbedded(Metadata)",
+  "sourceCode": "boolean shouldParseEmbedded(Metadata metadata);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "/**\n * Determines whether the given embedded document should be parsed.\n * <p>\n * Note: Implementations may throw {@link org.apache.tika.exception.EmbeddedLimitReachedException}\n * (a RuntimeException) if a limit is exceeded and throwing is configured.\n *\n * @param metadata the metadata for the embedded document\n * @return true if the embedded document should be parsed\n */\nboolean shouldParseEmbedded(Metadata metadata);",
+  "method_comment": "\n     * Determines whether the given embedded document should be parsed.\n     * <p>\n     * Note: Implementations may throw {@link org.apache.tika.exception.EmbeddedLimitReachedException}\n     * (a RuntimeException) if a limit is exceeded and throwing is configured.\n     *\n     * @param metadata the metadata for the embedded document\n     * @return true if the embedded document should be parsed\n     ",
+  "method_annotation": ""
+}

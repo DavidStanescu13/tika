@@ -1,0 +1,24 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "setTemporaryFileDirectory",
+  "brief": "public void setTemporaryFileDirectory(File tempFileDir){}",
+  "methodSignature": "setTemporaryFileDirectory(File)",
+  "sourceCode": "public void setTemporaryFileDirectory(File tempFileDir) {\n        this.tempFileDir = tempFileDir == null ? null : tempFileDir.toPath();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "File"
+  ],
+  "dependentMethods": {
+    "java.io.File": [
+      "toPath()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the directory to be used for the temporary files created by\n * the {@link #createTempFile(String)} method.\n *\n * @param tempFileDir temporary file directory,\n *                    or <code>null</code> for the system default\n * @see #setTemporaryFileDirectory(Path)\n */\npublic void setTemporaryFileDirectory(File tempFileDir) {\n    this.tempFileDir = tempFileDir == null ? null : tempFileDir.toPath();\n}",
+  "method_comment": "\n     * Sets the directory to be used for the temporary files created by\n     * the {@link #createTempFile(String)} method.\n     *\n     * @param tempFileDir temporary file directory,\n     *                    or <code>null</code> for the system default\n     * @see #setTemporaryFileDirectory(Path)\n     ",
+  "method_annotation": ""
+}

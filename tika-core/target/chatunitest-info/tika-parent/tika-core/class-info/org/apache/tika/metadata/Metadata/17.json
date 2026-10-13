@@ -1,0 +1,30 @@
+{
+  "className": "Metadata",
+  "methodName": "add",
+  "brief": "protected void add(final String name, final String[] newValues){}",
+  "methodSignature": "add(String, String[])",
+  "sourceCode": "protected void add(final String name, final String[] newValues) {\n        String[] values = metadata.get(name);\n        if (values == null) {\n            set(name, newValues);\n        } else {\n            for (String val : newValues) {\n                addTrusted(name, val);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String[]"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "addTrusted(String, String)",
+      "set(String, String[])"
+    ]
+  },
+  "full_method_info": "/**\n * Add a metadata name/value mapping. Add the specified value to the list of\n * values associated to the specified metadata name.\n *\n * @param name  the metadata name.\n * @param newValues the metadata values\n */\nprotected void add(final String name, final String[] newValues) {\n    String[] values = metadata.get(name);\n    if (values == null) {\n        set(name, newValues);\n    } else {\n        for (String val : newValues) {\n            addTrusted(name, val);\n        }\n    }\n}",
+  "method_comment": "\n     * Add a metadata name/value mapping. Add the specified value to the list of\n     * values associated to the specified metadata name.\n     *\n     * @param name  the metadata name.\n     * @param newValues the metadata values\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "FileProcessResult",
+  "methodName": "setStderrLength",
+  "brief": "public void setStderrLength(long stderrLength){}",
+  "methodSignature": "setStderrLength(long)",
+  "sourceCode": "public void setStderrLength(long stderrLength) {\n        this.stderrLength = stderrLength;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setStderrLength(long stderrLength) {\n    this.stderrLength = stderrLength;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

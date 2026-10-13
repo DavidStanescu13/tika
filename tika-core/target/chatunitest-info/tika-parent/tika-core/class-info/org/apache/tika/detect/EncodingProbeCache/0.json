@@ -1,0 +1,21 @@
+{
+  "className": "EncodingProbeCache",
+  "methodName": "get",
+  "brief": "public byte[] get(int contentTarget, int rawCap){}",
+  "methodSignature": "get(int, int)",
+  "sourceCode": "public byte[] get(int contentTarget, int rawCap) {\n        if (probe != null && this.contentTarget == contentTarget && this.rawCap == rawCap) {\n            return probe;\n        }\n        return null;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return the cached probe if one was stored with the same {@code contentTarget} and\n * {@code rawCap}; otherwise {@code null}\n */\npublic byte[] get(int contentTarget, int rawCap) {\n    if (probe != null && this.contentTarget == contentTarget && this.rawCap == rawCap) {\n        return probe;\n    }\n    return null;\n}",
+  "method_comment": "\n     * @return the cached probe if one was stored with the same {@code contentTarget} and\n     * {@code rawCap}; otherwise {@code null}\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "priorExtensionFileType",
+  "brief": "public synchronized Builder priorExtensionFileType(final float prior){}",
+  "methodSignature": "priorExtensionFileType(float)",
+  "sourceCode": "public synchronized Builder priorExtensionFileType(final float prior) {\n            this.priorExtensionFileType = prior;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public synchronized Builder priorExtensionFileType(final float prior) {\n    this.priorExtensionFileType = prior;\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

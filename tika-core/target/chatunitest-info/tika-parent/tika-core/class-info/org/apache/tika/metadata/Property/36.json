@@ -1,0 +1,25 @@
+{
+  "className": "Property",
+  "methodName": "equals",
+  "brief": "public boolean equals(Object o){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "public boolean equals(Object o) {\n        return o instanceof Property && name.equals(((Property) o).name);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "public boolean equals(Object o) {\n    return o instanceof Property && name.equals(((Property) o).name);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

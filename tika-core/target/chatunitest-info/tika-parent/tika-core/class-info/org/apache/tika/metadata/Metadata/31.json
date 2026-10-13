@@ -1,0 +1,32 @@
+{
+  "className": "Metadata",
+  "methodName": "set",
+  "brief": "public void set(Property property, double value){}",
+  "methodSignature": "set(Property, double)",
+  "sourceCode": "public void set(Property property, double value) {\n        if (property.getPrimaryProperty().getValueType() != Property.ValueType.REAL &&\n                property.getPrimaryProperty().getValueType() != Property.ValueType.RATIONAL) {\n            throw new PropertyTypeException(Property.ValueType.REAL,\n                    property.getPrimaryProperty().getValueType());\n        }\n        set(property, Double.toString(value));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "double"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getValueType()",
+      "getPrimaryProperty()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "java.lang.Double": [
+      "toString(double)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the real or rational value of the identified metadata property.\n *\n * @param property simple real or simple rational property definition\n * @param value    property value\n * @since Apache Tika 0.8\n */\npublic void set(Property property, double value) {\n    if (property.getPrimaryProperty().getValueType() != Property.ValueType.REAL && property.getPrimaryProperty().getValueType() != Property.ValueType.RATIONAL) {\n        throw new PropertyTypeException(Property.ValueType.REAL, property.getPrimaryProperty().getValueType());\n    }\n    set(property, Double.toString(value));\n}",
+  "method_comment": "\n     * Sets the real or rational value of the identified metadata property.\n     *\n     * @param property simple real or simple rational property definition\n     * @param value    property value\n     * @since Apache Tika 0.8\n     ",
+  "method_annotation": ""
+}

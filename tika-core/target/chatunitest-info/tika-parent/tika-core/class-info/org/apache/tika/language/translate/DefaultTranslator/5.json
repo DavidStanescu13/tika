@@ -1,0 +1,22 @@
+{
+  "className": "DefaultTranslator",
+  "methodName": "getTranslator",
+  "brief": "public Translator getTranslator(){}",
+  "methodSignature": "getTranslator()",
+  "sourceCode": "public Translator getTranslator() {\n        return getFirstAvailable(loader);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.translate.DefaultTranslator": [
+      "getFirstAvailable(ServiceLoader)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the current translator\n */\npublic Translator getTranslator() {\n    return getFirstAvailable(loader);\n}",
+  "method_comment": "\n     * Returns the current translator\n     ",
+  "method_annotation": ""
+}

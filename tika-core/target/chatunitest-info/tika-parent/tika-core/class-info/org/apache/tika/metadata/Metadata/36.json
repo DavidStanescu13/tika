@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "remove",
+  "brief": "public void remove(Property property){}",
+  "methodSignature": "remove(Property)",
+  "sourceCode": "public void remove(Property property) {\n        remove(property.getName());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "getName()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "remove(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Remove a metadata property and all its associated values.\n *\n * @param property metadata property to remove\n */\npublic void remove(Property property) {\n    remove(property.getName());\n}",
+  "method_comment": "\n     * Remove a metadata property and all its associated values.\n     *\n     * @param property metadata property to remove\n     ",
+  "method_annotation": ""
+}

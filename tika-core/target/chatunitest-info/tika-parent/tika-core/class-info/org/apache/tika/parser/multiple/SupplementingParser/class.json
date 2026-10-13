@@ -1,0 +1,67 @@
+{
+  "fullClassName": "org.apache.tika.parser.multiple.SupplementingParser",
+  "className": "SupplementingParser",
+  "index": 239,
+  "modifier": "[public ]",
+  "extend": "[AbstractMultipleParser]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser.multiple",
+  "packageDeclaration": "package org.apache.tika.parser.multiple;",
+  "classSignature": "public class SupplementingParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import java.util.Collection;",
+    "import java.util.List;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.parser.Parser;"
+  ],
+  "fields": [
+    "public static final List<MetadataPolicy> allowedPolicies =\n            Arrays.asList(MetadataPolicy.FIRST_WINS, MetadataPolicy.LAST_WINS,\n                    MetadataPolicy.KEEP_ALL);",
+    "private static final long serialVersionUID = 313179254565350994L;"
+  ],
+  "superClasses": [
+    "AbstractMultipleParser"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parserCompleted(Parser, Metadata, ContentHandler, ParseContext, Exception)": "0",
+    "SupplementingParser(MediaTypeRegistry, MetadataPolicy, Parser[])": "1",
+    "SupplementingParser(MediaTypeRegistry, MetadataPolicy, Collection)": "2"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler,\r\n                                      ParseContext context, Exception exception){}",
+    "public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                               Parser... parsers){}",
+    "public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                               Collection<? extends Parser> parsers){}"
+  ],
+  "constructorSigs": [
+    "SupplementingParser(MediaTypeRegistry, MetadataPolicy, Parser[])",
+    "SupplementingParser(MediaTypeRegistry, MetadataPolicy, Collection)"
+  ],
+  "constructorBrief": [
+    "public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                               Parser... parsers){}",
+    "public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy,\r\n                               Collection<? extends Parser> parsers){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "org.apache.tika.parser.multiple.AbstractMultipleParser.MetadataPolicy": [],
+    "org.apache.tika.parser.Parser...": [],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ],
+    "java.util.List": [
+      "contains(Object)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser.multiple;\n\nimport java.util.Arrays;\nimport java.util.Collection;\nimport java.util.List;\nimport org.xml.sax.ContentHandler;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.parser.Parser;\n\n/**\n * Runs the input stream through all available parsers,\n * merging the metadata from them based on the\n * {@link AbstractMultipleParser.MetadataPolicy} chosen.\n * <p>\n * Warning - currently only one Parser should output\n * any Content to the {@link ContentHandler}, the rest\n * should only output {@link Metadata}. A solution to\n * multiple-content is still being worked on...\n *\n * @since Apache Tika 1.18\n */\npublic class SupplementingParser extends AbstractMultipleParser {\n\n    /**\n     * The different Metadata Policies we support (not discard)\n     */\n    public static final List<MetadataPolicy> allowedPolicies = Arrays.asList(MetadataPolicy.FIRST_WINS, MetadataPolicy.LAST_WINS, MetadataPolicy.KEEP_ALL);\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 313179254565350994L;\n\n    public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers) {\n        this(registry, policy, Arrays.asList(parsers));\n    }\n\n    public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy, Collection<? extends Parser> parsers) {\n        super(registry, policy, parsers);\n        // Ensure it's a supported policy\n        if (!allowedPolicies.contains(policy)) {\n            throw new IllegalArgumentException(\"Unsupported policy for SupplementingParser: \" + policy);\n        }\n    }\n\n    @Override\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception) {\n        // If there was no exception, just carry on to the next\n        if (exception == null) {\n            return true;\n        }\n        // Have the next parser tried\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Runs the input stream through all available parsers,\n * merging the metadata from them based on the\n * {@link AbstractMultipleParser.MetadataPolicy} chosen.\n * <p>\n * Warning - currently only one Parser should output\n * any Content to the {@link ContentHandler}, the rest\n * should only output {@link Metadata}. A solution to\n * multiple-content is still being worked on...\n *\n * @since Apache Tika 1.18\n */\npublic class SupplementingParser extends AbstractMultipleParser {\n\n    /**\n     * The different Metadata Policies we support (not discard)\n     */\n    public static final List<MetadataPolicy> allowedPolicies = Arrays.asList(MetadataPolicy.FIRST_WINS, MetadataPolicy.LAST_WINS, MetadataPolicy.KEEP_ALL);\n\n    /**\n     * Serial version UID.\n     */\n    private static final long serialVersionUID = 313179254565350994L;\n\n    public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy, Parser... parsers) {\n        this(registry, policy, Arrays.asList(parsers));\n    }\n\n    public SupplementingParser(MediaTypeRegistry registry, MetadataPolicy policy, Collection<? extends Parser> parsers) {\n        super(registry, policy, parsers);\n        // Ensure it's a supported policy\n        if (!allowedPolicies.contains(policy)) {\n            throw new IllegalArgumentException(\"Unsupported policy for SupplementingParser: \" + policy);\n        }\n    }\n\n    @Override\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception) {\n        // If there was no exception, just carry on to the next\n        if (exception == null) {\n            return true;\n        }\n        // Have the next parser tried\n        return true;\n    }\n}",
+  "subClasses": []
+}

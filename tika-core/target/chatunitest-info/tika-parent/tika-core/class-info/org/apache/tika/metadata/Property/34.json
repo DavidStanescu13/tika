@@ -1,0 +1,18 @@
+{
+  "className": "Property",
+  "methodName": "getSecondaryExtractProperties",
+  "brief": "public Property[] getSecondaryExtractProperties(){}",
+  "methodSignature": "getSecondaryExtractProperties()",
+  "sourceCode": "public Property[] getSecondaryExtractProperties() {\n        return secondaryExtractProperties;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the secondary properties for a composite property\n *\n * @return the secondary properties\n */\npublic Property[] getSecondaryExtractProperties() {\n    return secondaryExtractProperties;\n}",
+  "method_comment": "\n     * Gets the secondary properties for a composite property\n     *\n     * @return the secondary properties\n     ",
+  "method_annotation": ""
+}

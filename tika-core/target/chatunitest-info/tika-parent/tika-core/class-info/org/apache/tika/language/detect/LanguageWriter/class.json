@@ -1,0 +1,66 @@
+{
+  "fullClassName": "org.apache.tika.language.detect.LanguageWriter",
+  "className": "LanguageWriter",
+  "index": 115,
+  "modifier": "[public ]",
+  "extend": "[Writer]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.language.detect",
+  "packageDeclaration": "package org.apache.tika.language.detect;",
+  "classSignature": "public class LanguageWriter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Writer;"
+  ],
+  "fields": [
+    "private final LanguageDetector detector;"
+  ],
+  "superClasses": [
+    "Writer"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDetector()": "0",
+    "getLanguage()": "1",
+    "write(char[], int, int)": "2",
+    "close()": "3",
+    "flush()": "4",
+    "reset()": "5",
+    "LanguageWriter(LanguageDetector)": "6"
+  },
+  "methodsBrief": [
+    "public LanguageDetector getDetector(){}",
+    "public LanguageResult getLanguage(){}",
+    "@Override\r\n    public void write(char[] cbuf, int off, int len){}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "@Override\r\n    public void flush(){}",
+    "public void reset(){}",
+    "public LanguageWriter(LanguageDetector detector){}"
+  ],
+  "constructorSigs": [
+    "LanguageWriter(LanguageDetector)"
+  ],
+  "constructorBrief": [
+    "public LanguageWriter(LanguageDetector detector){}"
+  ],
+  "getterSetterSigs": [
+    "getDetector()",
+    "getLanguage()"
+  ],
+  "getterSetterBrief": [
+    "public LanguageDetector getDetector(){}",
+    "public LanguageResult getLanguage(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "reset()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.language.detect;\n\nimport java.io.IOException;\nimport java.io.Writer;\n\n/**\n * Writer that builds a language profile based on all the written content.\n *\n * @since Apache Tika 0.10\n */\npublic class LanguageWriter extends Writer {\n\n    private final LanguageDetector detector;\n\n    public LanguageWriter(LanguageDetector detector) {\n        this.detector = detector;\n        detector.reset();\n    }\n\n    /**\n     * Returns the language detector used by this writer. Note that\n     * the returned language detector gets updated whenever new characters\n     * are written.\n     *\n     * @return language detector\n     */\n    public LanguageDetector getDetector() {\n        return detector;\n    }\n\n    /**\n     * Returns the detected language based on text written thus far.\n     *\n     * @return LanguageResult\n     */\n    public LanguageResult getLanguage() {\n        return detector.detect();\n    }\n\n    @Override\n    public void write(char[] cbuf, int off, int len) {\n        detector.addText(cbuf, off, len);\n    }\n\n    /**\n     * Ignored.\n     */\n    @Override\n    public void close() throws IOException {\n    }\n\n    /**\n     * Ignored.\n     */\n    @Override\n    public void flush() {\n    }\n\n    public void reset() {\n        detector.reset();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Writer that builds a language profile based on all the written content.\n *\n * @since Apache Tika 0.10\n */\npublic class LanguageWriter extends Writer {\n\n    private final LanguageDetector detector;\n\n    public LanguageWriter(LanguageDetector detector) {\n        this.detector = detector;\n        detector.reset();\n    }\n\n    /**\n     * Returns the language detector used by this writer. Note that\n     * the returned language detector gets updated whenever new characters\n     * are written.\n     *\n     * @return language detector\n     */\n    public LanguageDetector getDetector() {\n        return detector;\n    }\n\n    /**\n     * Returns the detected language based on text written thus far.\n     *\n     * @return LanguageResult\n     */\n    public LanguageResult getLanguage() {\n        return detector.detect();\n    }\n\n    @Override\n    public void write(char[] cbuf, int off, int len) {\n        detector.addText(cbuf, off, len);\n    }\n\n    /**\n     * Ignored.\n     */\n    @Override\n    public void close() throws IOException {\n    }\n\n    /**\n     * Ignored.\n     */\n    @Override\n    public void flush() {\n    }\n\n    public void reset() {\n        detector.reset();\n    }\n}",
+  "subClasses": []
+}

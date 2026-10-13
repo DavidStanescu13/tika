@@ -1,0 +1,25 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(String filePath) throws IOException, MimeTypeException{}",
+  "methodSignature": "create(String)",
+  "sourceCode": "public static MimeTypes create(String filePath) throws IOException, MimeTypeException {\n        return create(MimeTypesReader.class.getResource(filePath));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.Class": [
+      "getResource(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates and returns a MimeTypes instance from the specified file path,\n * as interpreted by the class loader in getResource().\n *\n * @throws IOException       if the file can not be accessed\n * @throws MimeTypeException if the type configuration is invalid\n */\npublic static MimeTypes create(String filePath) throws IOException, MimeTypeException {\n    return create(MimeTypesReader.class.getResource(filePath));\n}",
+  "method_comment": "\n     * Creates and returns a MimeTypes instance from the specified file path,\n     * as interpreted by the class loader in getResource().\n     *\n     * @throws IOException       if the file can not be accessed\n     * @throws MimeTypeException if the type configuration is invalid\n     ",
+  "method_annotation": ""
+}

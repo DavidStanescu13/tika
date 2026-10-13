@@ -1,0 +1,24 @@
+{
+  "className": "Translator",
+  "methodName": "translate",
+  "brief": "String translate(String text, String sourceLanguage, String targetLanguage)\r\n            throws TikaException, IOException;",
+  "methodSignature": "translate(String, String, String)",
+  "sourceCode": "String translate(String text, String sourceLanguage, String targetLanguage)\n            throws TikaException, IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Translate text between given languages.\n *\n * @param text           The text to translate.\n * @param sourceLanguage The input text language (for example, \"en\").\n * @param targetLanguage The desired language to translate to (for example, \"fr\").\n * @return The translation result. If translation is unavailable, returns the same text back.\n * @throws TikaException       When there is an error translating.\n * @throws java.io.IOException\n * @since Tika 1.6\n */\nString translate(String text, String sourceLanguage, String targetLanguage) throws TikaException, IOException;",
+  "method_comment": "\n     * Translate text between given languages.\n     *\n     * @param text           The text to translate.\n     * @param sourceLanguage The input text language (for example, \"en\").\n     * @param targetLanguage The desired language to translate to (for example, \"fr\").\n     * @return The translation result. If translation is unavailable, returns the same text back.\n     * @throws TikaException       When there is an error translating.\n     * @throws java.io.IOException\n     * @since Tika 1.6\n     ",
+  "method_annotation": ""
+}

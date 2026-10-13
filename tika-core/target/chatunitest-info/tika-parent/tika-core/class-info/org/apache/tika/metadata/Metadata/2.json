@@ -1,0 +1,25 @@
+{
+  "className": "Metadata",
+  "methodName": "parseDate",
+  "brief": "private static synchronized Date parseDate(String date){}",
+  "methodSignature": "parseDate(String)",
+  "sourceCode": "private static synchronized Date parseDate(String date) {\n        return DATE_UTILS.tryToParse(date);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.DateUtils": [
+      "tryToParse(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the given date string. This method is synchronized to prevent\n * concurrent access to the thread-unsafe date formats.\n *\n * @param date date string\n * @return parsed date, or <code>null</code> if the date can't be parsed\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n */\nprivate static synchronized Date parseDate(String date) {\n    return DATE_UTILS.tryToParse(date);\n}",
+  "method_comment": "\n     * Parses the given date string. This method is synchronized to prevent\n     * concurrent access to the thread-unsafe date formats.\n     *\n     * @param date date string\n     * @return parsed date, or <code>null</code> if the date can't be parsed\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-495\">TIKA-495</a>\n     ",
+  "method_annotation": ""
+}

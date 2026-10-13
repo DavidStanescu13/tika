@@ -1,0 +1,22 @@
+{
+  "className": "ExternalParserConfig",
+  "methodName": "setContentSource",
+  "brief": "public void setContentSource(String contentSource){}",
+  "methodSignature": "setContentSource(String)",
+  "sourceCode": "public void setContentSource(String contentSource) {\n        this.contentSource = contentSource;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public void setContentSource(String contentSource) {\n    this.contentSource = contentSource;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

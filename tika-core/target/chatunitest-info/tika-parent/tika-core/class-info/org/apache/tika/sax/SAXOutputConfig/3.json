@@ -1,0 +1,20 @@
+{
+  "className": "SAXOutputConfig",
+  "methodName": "setIncludeTitle",
+  "brief": "public void setIncludeTitle(boolean includeTitle){}",
+  "methodSignature": "setIncludeTitle(boolean)",
+  "sourceCode": "public void setIncludeTitle(boolean includeTitle) {\n        this.includeTitle = includeTitle;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public void setIncludeTitle(boolean includeTitle) {\n    this.includeTitle = includeTitle;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

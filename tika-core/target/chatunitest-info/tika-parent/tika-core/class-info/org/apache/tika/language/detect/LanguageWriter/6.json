@@ -1,0 +1,24 @@
+{
+  "className": "LanguageWriter",
+  "methodName": "LanguageWriter",
+  "brief": "public LanguageWriter(LanguageDetector detector){}",
+  "methodSignature": "LanguageWriter(LanguageDetector)",
+  "sourceCode": "public LanguageWriter(LanguageDetector detector) {\n        this.detector = detector;\n        detector.reset();\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "LanguageDetector"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "reset()"
+    ]
+  },
+  "full_method_info": "public LanguageWriter(LanguageDetector detector) {\n    this.detector = detector;\n    detector.reset();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

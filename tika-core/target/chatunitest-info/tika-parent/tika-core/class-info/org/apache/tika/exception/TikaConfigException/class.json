@@ -1,0 +1,46 @@
+{
+  "fullClassName": "org.apache.tika.exception.TikaConfigException",
+  "className": "TikaConfigException",
+  "index": 69,
+  "modifier": "[public ]",
+  "extend": "[TikaException]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.exception",
+  "packageDeclaration": "package org.apache.tika.exception;",
+  "classSignature": "public class TikaConfigException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "TikaException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "TikaConfigException(String)": "0",
+    "TikaConfigException(String, Throwable)": "1"
+  },
+  "methodsBrief": [
+    "public TikaConfigException(String msg){}",
+    "public TikaConfigException(String msg, Throwable cause){}"
+  ],
+  "constructorSigs": [
+    "TikaConfigException(String)",
+    "TikaConfigException(String, Throwable)"
+  ],
+  "constructorBrief": [
+    "public TikaConfigException(String msg){}",
+    "public TikaConfigException(String msg, Throwable cause){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "java.lang.Throwable": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.exception;\n\n/**\n * Tika Config Exception is an exception to occur when there is an error\n * in Tika config file and/or one or more of the parsers failed to initialize\n * from that erroneous config.\n *\n * @since Apache Tika 1.14\n */\npublic class TikaConfigException extends TikaException {\n\n    public TikaConfigException(String msg) {\n        super(msg);\n    }\n\n    public TikaConfigException(String msg, Throwable cause) {\n        super(msg, cause);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Tika Config Exception is an exception to occur when there is an error\n * in Tika config file and/or one or more of the parsers failed to initialize\n * from that erroneous config.\n *\n * @since Apache Tika 1.14\n */\npublic class TikaConfigException extends TikaException {\n\n    public TikaConfigException(String msg) {\n        super(msg);\n    }\n\n    public TikaConfigException(String msg, Throwable cause) {\n        super(msg, cause);\n    }\n}",
+  "subClasses": []
+}

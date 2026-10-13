@@ -1,0 +1,41 @@
+{
+  "className": "TikaExtras",
+  "methodName": "extraJars",
+  "brief": "public static List<Path> extraJars(){}",
+  "methodSignature": "extraJars()",
+  "sourceCode": "public static List<Path> extraJars() {\n        Path dir = extrasDir();\n        if (dir == null || !Files.isDirectory(dir)) {\n            return Collections.emptyList();\n        }\n        List<Path> jars = new ArrayList<>();\n        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, \"*.jar\")) {\n            for (Path jar : stream) {\n                jars.add(jar);\n            }\n        } catch (Exception e) {\n            LOG.warn(\"Could not scan {}={}: {}\", EXTRAS_DIR_PROPERTY, dir, e.toString());\n        }\n        // Sort by file name so jar load order (classloader URL order / forked-child\n        // classpath order, hence SPI precedence) is deterministic across platforms\n        // and filesystems rather than depending on directory iteration order.\n        jars.sort(Comparator.comparing(jar -> jar.getFileName().toString()));\n        return jars;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.config.TikaExtras": [
+      "extrasDir()"
+    ],
+    "java.nio.file.Files": [
+      "isDirectory(Path, LinkOption[])",
+      "newDirectoryStream(Path, String)"
+    ],
+    "java.util.Collections": [
+      "emptyList()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String, Object[])"
+    ],
+    "java.lang.Throwable": [
+      "toString()"
+    ],
+    "java.util.Comparator": [
+      "comparing(Function<? super T, ? extends U>)"
+    ]
+  },
+  "full_method_info": "/**\n * The {@code *.jar} files in the {@value #EXTRAS_DIR_PROPERTY} directory — for\n * callers that extend a forked process's classpath rather than installing a\n * classloader.  Empty when the property is unset or the directory is\n * missing/has no jars.\n */\npublic static List<Path> extraJars() {\n    Path dir = extrasDir();\n    if (dir == null || !Files.isDirectory(dir)) {\n        return Collections.emptyList();\n    }\n    List<Path> jars = new ArrayList<>();\n    try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, \"*.jar\")) {\n        for (Path jar : stream) {\n            jars.add(jar);\n        }\n    } catch (Exception e) {\n        LOG.warn(\"Could not scan {}={}: {}\", EXTRAS_DIR_PROPERTY, dir, e.toString());\n    }\n    // Sort by file name so jar load order (classloader URL order / forked-child\n    // classpath order, hence SPI precedence) is deterministic across platforms\n    // and filesystems rather than depending on directory iteration order.\n    jars.sort(Comparator.comparing(jar -> jar.getFileName().toString()));\n    return jars;\n}",
+  "method_comment": "\n     * The {@code *.jar} files in the {@value #EXTRAS_DIR_PROPERTY} directory — for\n     * callers that extend a forked process's classpath rather than installing a\n     * classloader.  Empty when the property is unset or the directory is\n     * missing/has no jars.\n     ",
+  "method_annotation": ""
+}

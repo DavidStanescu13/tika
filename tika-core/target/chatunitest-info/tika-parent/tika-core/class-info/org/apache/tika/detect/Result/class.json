@@ -1,0 +1,76 @@
+{
+  "fullClassName": "org.apache.tika.detect.Result",
+  "className": "Result",
+  "index": 29,
+  "modifier": "[public , static ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public static class Result",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.Charset;",
+    "import java.util.ArrayList;",
+    "import java.util.Collections;",
+    "import java.util.LinkedHashSet;",
+    "import java.util.List;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "private final List<EncodingResult> encodingResults;",
+    "private final String detectorName;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getEncodingResults()": "0",
+    "getCharset()": "1",
+    "getConfidence()": "2",
+    "getResultType()": "3",
+    "getDetectorName()": "4",
+    "toString()": "5",
+    "Result(List, String)": "6"
+  },
+  "methodsBrief": [
+    "public List<EncodingResult> getEncodingResults(){}",
+    "public Charset getCharset(){}",
+    "public float getConfidence(){}",
+    "public EncodingResult.ResultType getResultType(){}",
+    "public String getDetectorName(){}",
+    "@Override\r\n        public String toString(){}",
+    "public Result(List<EncodingResult> encodingResults, String detectorName){}"
+  ],
+  "constructorSigs": [
+    "Result(List, String)"
+  ],
+  "constructorBrief": [
+    "public Result(List<EncodingResult> encodingResults, String detectorName){}"
+  ],
+  "getterSetterSigs": [
+    "getEncodingResults()",
+    "getCharset()",
+    "getConfidence()",
+    "getResultType()",
+    "getDetectorName()"
+  ],
+  "getterSetterBrief": [
+    "public List<EncodingResult> getEncodingResults(){}",
+    "public Charset getCharset(){}",
+    "public float getConfidence(){}",
+    "public EncodingResult.ResultType getResultType(){}",
+    "public String getDetectorName(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.nio.charset.Charset;\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.LinkedHashSet;\nimport java.util.List;\nimport java.util.Set;\n\n/**\n * Context object that collects encoding detection results from base detectors.\n * Stored in {@link org.apache.tika.parser.ParseContext} by\n * {@link CompositeEncodingDetector} so that a {@link MetaEncodingDetector}\n * can see all candidates and arbitrate. Removed after detection to prevent\n * contamination during recursive parsing.\n *\n * <p>Each base detector contributes a ranked {@link List} of\n * {@link EncodingResult}s. The context exposes the top result from each\n * detector as the primary signal, and provides access to all candidates\n * for richer arbitration strategies.</p>\n *\n * @since Apache Tika 3.2\n */\npublic class EncodingDetectorContext {\n\n    private final List<Result> results = new ArrayList<>();\n\n    private final EncodingProbeCache probeCache = new EncodingProbeCache();\n\n    private String arbitrationInfo;\n\n    /**\n     * Per-detection cache of the raw detection probe, shared across the detectors in\n     * this chain so they don't each re-read the same leading bytes. It lives and dies\n     * with this context (which is removed after detection), so it never leaks into\n     * recursive/attachment parsing.\n     */\n    public EncodingProbeCache getProbeCache() {\n        return probeCache;\n    }\n\n    /**\n     * Record the ranked results from a child detector.\n     *\n     * @param encodingResults ranked results, highest confidence first; must not be empty\n     * @param detectorName    simple class name of the detector\n     */\n    public void addResult(List<EncodingResult> encodingResults, String detectorName) {\n        if (encodingResults != null && !encodingResults.isEmpty()) {\n            results.add(new Result(encodingResults, detectorName));\n        }\n    }\n\n    /**\n     * @return unmodifiable list of all per-detector results in detection order\n     */\n    public List<Result> getResults() {\n        return Collections.unmodifiableList(results);\n    }\n\n    /**\n     * Returns the unique charsets from ALL results of every detector,\n     * in detection order (top result first within each detector).\n     *\n     * <p>Using all candidates rather than just each detector's top-1 is\n     * important when a single detector returns a ranked list (e.g., Mojibuster\n     * on a short probe returns [windows-1252, windows-1250, Shift-JIS]). If\n     * only the top-1 were used, CharSoup would see a single charset and\n     * return \"unanimous\" without ever attempting arbitration.</p>\n     */\n    public Set<Charset> getUniqueCharsets() {\n        Set<Charset> charsets = new LinkedHashSet<>();\n        for (Result r : results) {\n            for (EncodingResult er : r.getEncodingResults()) {\n                charsets.add(er.getCharset());\n            }\n        }\n        return charsets;\n    }\n\n    /**\n     * Returns the highest confidence seen for the given charset across all\n     * detector results (not just top results). Useful for arbitrators that\n     * want to propagate the base detector's confidence for the winning charset.\n     */\n    public float getTopConfidenceFor(Charset charset) {\n        float best = 0f;\n        for (Result r : results) {\n            for (EncodingResult er : r.getEncodingResults()) {\n                if (er.getCharset().equals(charset) && er.getConfidence() > best) {\n                    best = er.getConfidence();\n                }\n            }\n        }\n        return best;\n    }\n\n    /**\n     * Set by the meta detector to describe how it reached its decision.\n     * Values: \"unanimous\", \"scored\", \"no-stream\", \"empty-stream\", etc.\n     */\n    public void setArbitrationInfo(String info) {\n        this.arbitrationInfo = info;\n    }\n\n    public String getArbitrationInfo() {\n        return arbitrationInfo;\n    }\n\n    /**\n     * A single detector's contribution: its ranked list of candidates and its name.\n     */\n    public static class Result {\n\n        private final List<EncodingResult> encodingResults;\n\n        private final String detectorName;\n\n        public Result(List<EncodingResult> encodingResults, String detectorName) {\n            this.encodingResults = Collections.unmodifiableList(new ArrayList<>(encodingResults));\n            this.detectorName = detectorName;\n        }\n\n        /**\n         * All ranked results from this detector, highest confidence first.\n         */\n        public List<EncodingResult> getEncodingResults() {\n            return encodingResults;\n        }\n\n        /**\n         * The top-ranked charset from this detector.\n         */\n        public Charset getCharset() {\n            return encodingResults.get(0).getCharset();\n        }\n\n        /**\n         * The confidence of the top-ranked result from this detector.\n         */\n        public float getConfidence() {\n            return encodingResults.get(0).getConfidence();\n        }\n\n        /**\n         * The {@link EncodingResult.ResultType} of the top-ranked result from this detector.\n         */\n        public EncodingResult.ResultType getResultType() {\n            return encodingResults.get(0).getResultType();\n        }\n\n        public String getDetectorName() {\n            return detectorName;\n        }\n\n        @Override\n        public String toString() {\n            return detectorName + \"=\" + encodingResults.get(0);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A single detector's contribution: its ranked list of candidates and its name.\n */\npublic static class Result {\n\n    private final List<EncodingResult> encodingResults;\n\n    private final String detectorName;\n\n    public Result(List<EncodingResult> encodingResults, String detectorName) {\n        this.encodingResults = Collections.unmodifiableList(new ArrayList<>(encodingResults));\n        this.detectorName = detectorName;\n    }\n\n    /**\n     * All ranked results from this detector, highest confidence first.\n     */\n    public List<EncodingResult> getEncodingResults() {\n        return encodingResults;\n    }\n\n    /**\n     * The top-ranked charset from this detector.\n     */\n    public Charset getCharset() {\n        return encodingResults.get(0).getCharset();\n    }\n\n    /**\n     * The confidence of the top-ranked result from this detector.\n     */\n    public float getConfidence() {\n        return encodingResults.get(0).getConfidence();\n    }\n\n    /**\n     * The {@link EncodingResult.ResultType} of the top-ranked result from this detector.\n     */\n    public EncodingResult.ResultType getResultType() {\n        return encodingResults.get(0).getResultType();\n    }\n\n    public String getDetectorName() {\n        return detectorName;\n    }\n\n    @Override\n    public String toString() {\n        return detectorName + \"=\" + encodingResults.get(0);\n    }\n}",
+  "subClasses": []
+}

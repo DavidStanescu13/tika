@@ -1,0 +1,33 @@
+{
+  "className": "Patterns",
+  "methodName": "addName",
+  "brief": "private void addName(String name, MimeType type) throws MimeTypeException{}",
+  "methodSignature": "addName(String, MimeType)",
+  "sourceCode": "private void addName(String name, MimeType type) throws MimeTypeException {\n        MimeType previous = names.get(name);\n        if (previous == null || registry.isSpecializationOf(previous.getType(), type.getType())) {\n            names.put(name, type);\n        } else if (previous == type ||\n                registry.isSpecializationOf(type.getType(), previous.getType())) {\n            // do nothing\n        } else {\n            throw new MimeTypeException(\"Conflicting name pattern: \" + name);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MimeType": [
+      "getType()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)"
+    ],
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "isSpecializationOf(MediaType, MediaType)"
+    ]
+  },
+  "full_method_info": "private void addName(String name, MimeType type) throws MimeTypeException {\n    MimeType previous = names.get(name);\n    if (previous == null || registry.isSpecializationOf(previous.getType(), type.getType())) {\n        names.put(name, type);\n    } else if (previous == type || registry.isSpecializationOf(type.getType(), previous.getType())) {\n        // do nothing\n    } else {\n        throw new MimeTypeException(\"Conflicting name pattern: \" + name);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

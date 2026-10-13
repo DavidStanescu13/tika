@@ -1,0 +1,27 @@
+{
+  "className": "DateUtils",
+  "methodName": "createDateFormat",
+  "brief": "private static DateFormat createDateFormat(String format, TimeZone timezone){}",
+  "methodSignature": "createDateFormat(String, TimeZone)",
+  "sourceCode": "private static DateFormat createDateFormat(String format, TimeZone timezone) {\n        final SimpleDateFormat sdf = new SimpleDateFormat(format, new DateFormatSymbols(Locale.US));\n        if (timezone != null) {\n            sdf.setTimeZone(timezone);\n        }\n        return sdf;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "TimeZone"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.TimeZone": [],
+    "java.text.DateFormat": [
+      "setTimeZone(TimeZone)"
+    ]
+  },
+  "full_method_info": "private static DateFormat createDateFormat(String format, TimeZone timezone) {\n    final SimpleDateFormat sdf = new SimpleDateFormat(format, new DateFormatSymbols(Locale.US));\n    if (timezone != null) {\n        sdf.setTimeZone(timezone);\n    }\n    return sdf;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

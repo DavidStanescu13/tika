@@ -1,0 +1,25 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "getResourceAsStream",
+  "brief": "public InputStream getResourceAsStream(String name){}",
+  "methodSignature": "getResourceAsStream(String)",
+  "sourceCode": "public InputStream getResourceAsStream(String name) {\n        if (loader != null) {\n            return loader.getResourceAsStream(name);\n        } else {\n            return null;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.ClassLoader": [
+      "getResourceAsStream(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns an input stream for reading the specified resource from the\n * configured class loader.\n *\n * @param name resource name\n * @return input stream, or <code>null</code> if the resource was not found\n * @see ClassLoader#getResourceAsStream(String)\n * @since Apache Tika 1.1\n */\npublic InputStream getResourceAsStream(String name) {\n    if (loader != null) {\n        return loader.getResourceAsStream(name);\n    } else {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Returns an input stream for reading the specified resource from the\n     * configured class loader.\n     *\n     * @param name resource name\n     * @return input stream, or <code>null</code> if the resource was not found\n     * @see ClassLoader#getResourceAsStream(String)\n     * @since Apache Tika 1.1\n     ",
+  "method_annotation": ""
+}

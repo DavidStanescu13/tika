@@ -1,0 +1,22 @@
+{
+  "className": "MimeType",
+  "methodName": "setDescription",
+  "brief": "public void setDescription(String description){}",
+  "methodSignature": "setDescription(String)",
+  "sourceCode": "public void setDescription(String description) {\n        if (description == null) {\n            throw new IllegalArgumentException(\"Description is missing\");\n        }\n        this.description = description;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Set the description of this media type.\n *\n * @param description media type description\n */\npublic void setDescription(String description) {\n    if (description == null) {\n        throw new IllegalArgumentException(\"Description is missing\");\n    }\n    this.description = description;\n}",
+  "method_comment": "\n     * Set the description of this media type.\n     *\n     * @param description media type description\n     ",
+  "method_annotation": ""
+}

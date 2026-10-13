@@ -1,0 +1,22 @@
+{
+  "className": "StreamCache",
+  "methodName": "close",
+  "brief": "@Override\r\n    public void close() throws IOException{}",
+  "methodSignature": "close()",
+  "sourceCode": "@Override\n    public void close() throws IOException {\n        if (closed) {\n            return;\n        }\n        closed = true;\n        memoryBuffer = null;\n\n        if (spillOutputStream != null) {\n            spillOutputStream.close();\n            spillOutputStream = null;\n        }\n        // spillFile cleanup is handled by TemporaryResources\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.io.OutputStream": [
+      "close()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void close() throws IOException {\n    if (closed) {\n        return;\n    }\n    closed = true;\n    memoryBuffer = null;\n    if (spillOutputStream != null) {\n        spillOutputStream.close();\n        spillOutputStream = null;\n    }\n    // spillFile cleanup is handled by TemporaryResources\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

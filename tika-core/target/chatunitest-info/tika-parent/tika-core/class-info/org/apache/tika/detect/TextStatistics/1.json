@@ -1,0 +1,23 @@
+{
+  "className": "TextStatistics",
+  "methodName": "isMostlyAscii",
+  "brief": "public boolean isMostlyAscii(){}",
+  "methodSignature": "isMostlyAscii()",
+  "sourceCode": "public boolean isMostlyAscii() {\n        int control = count(0, 0x20);\n        int ascii = count(0x20, 128);\n        int safe = countSafeControl();\n        return total > 0 && (control - safe) * 100 < total * 2 && (ascii + safe) * 100 > total * 90;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TextStatistics": [
+      "count(int, int)",
+      "countSafeControl()"
+    ]
+  },
+  "full_method_info": "/**\n * Checks whether at least one byte was seen and that the bytes that\n * were seen were mostly plain text (i.e. < 2% control, > 90% ASCII range).\n *\n * @return <code>true</code> if the seen bytes were mostly safe ASCII,\n * <code>false</code> otherwise\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-483\">TIKA-483</a>\n * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-688\">TIKA-688</a>\n */\npublic boolean isMostlyAscii() {\n    int control = count(0, 0x20);\n    int ascii = count(0x20, 128);\n    int safe = countSafeControl();\n    return total > 0 && (control - safe) * 100 < total * 2 && (ascii + safe) * 100 > total * 90;\n}",
+  "method_comment": "\n     * Checks whether at least one byte was seen and that the bytes that\n     * were seen were mostly plain text (i.e. < 2% control, > 90% ASCII range).\n     *\n     * @return <code>true</code> if the seen bytes were mostly safe ASCII,\n     * <code>false</code> otherwise\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-483\">TIKA-483</a>\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-688\">TIKA-688</a>\n     ",
+  "method_annotation": ""
+}

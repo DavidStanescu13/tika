@@ -1,0 +1,31 @@
+{
+  "className": "ExceptionUtils",
+  "methodName": "getFilteredStackTrace",
+  "brief": "public static String getFilteredStackTrace(Throwable t){}",
+  "methodSignature": "getFilteredStackTrace(Throwable)",
+  "sourceCode": "public static String getFilteredStackTrace(Throwable t) {\n        Throwable cause = t;\n        if ((t.getClass().equals(TikaException.class)) && t.getCause() != null) {\n            cause = t.getCause();\n        }\n        return getStackTrace(cause);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [
+      "getCause()"
+    ],
+    "java.lang.Object": [
+      "equals(Object)",
+      "getClass()"
+    ],
+    "org.apache.tika.utils.ExceptionUtils": [
+      "getStackTrace(Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Simple util to get stack trace.\n * <p>\n * This will unwrap a TikaException and return the cause if not null\n * <p>\n * NOTE: If your stacktraces are truncated, make sure to start your jvm\n * with: -XX:-OmitStackTraceInFastThrow\n *\n * @param t throwable\n * @return\n * @throws IOException\n */\npublic static String getFilteredStackTrace(Throwable t) {\n    Throwable cause = t;\n    if ((t.getClass().equals(TikaException.class)) && t.getCause() != null) {\n        cause = t.getCause();\n    }\n    return getStackTrace(cause);\n}",
+  "method_comment": "\n     * Simple util to get stack trace.\n     * <p>\n     * This will unwrap a TikaException and return the cause if not null\n     * <p>\n     * NOTE: If your stacktraces are truncated, make sure to start your jvm\n     * with: -XX:-OmitStackTraceInFastThrow\n     *\n     * @param t throwable\n     * @return\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

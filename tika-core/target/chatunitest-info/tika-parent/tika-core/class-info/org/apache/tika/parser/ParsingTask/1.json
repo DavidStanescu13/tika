@@ -1,0 +1,25 @@
+{
+  "className": "ParsingTask",
+  "methodName": "run",
+  "brief": "public void run(){}",
+  "methodSignature": "run()",
+  "sourceCode": "public void run() {\n            try {\n                try {\n                    IOUtils.copy(input, output);\n                } finally {\n                    output.close();\n                }\n            } catch (Exception e) {\n                exception = e;\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.io.IOUtils": [
+      "copy(InputStream, OutputStream)"
+    ],
+    "java.io.OutputStream": [
+      "close()"
+    ]
+  },
+  "full_method_info": "// ----------------------------------------------------------<Runnable>\npublic void run() {\n    try {\n        try {\n            IOUtils.copy(input, output);\n        } finally {\n            output.close();\n        }\n    } catch (Exception e) {\n        exception = e;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

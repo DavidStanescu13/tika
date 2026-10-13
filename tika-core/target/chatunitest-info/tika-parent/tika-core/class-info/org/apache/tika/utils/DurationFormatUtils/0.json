@@ -1,0 +1,30 @@
+{
+  "className": "DurationFormatUtils",
+  "methodName": "formatMillis",
+  "brief": "public static String formatMillis(long duration){}",
+  "methodSignature": "formatMillis(long)",
+  "sourceCode": "public static String formatMillis(long duration) {\n        duration = Math.abs(duration);\n        StringBuilder sb = new StringBuilder();\n        int secs = (int) (duration / 1000) % 60;\n        int mins = (int) ((duration / (1000 * 60)) % 60);\n        int hrs = (int) ((duration / (1000 * 60 * 60)) % 24);\n        int days = (int) ((duration / (1000 * 60 * 60 * 24)) % 7);\n\n        //sb.append(millis + \" milliseconds\");\n        addUnitString(sb, days, \"day\");\n        addUnitString(sb, hrs, \"hour\");\n        addUnitString(sb, mins, \"minute\");\n        addUnitString(sb, secs, \"second\");\n        if (duration < 1000) {\n            addUnitString(sb, duration, \"millisecond\");\n        }\n\n        return sb.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "abs(long)"
+    ],
+    "org.apache.tika.utils.DurationFormatUtils": [
+      "addUnitString(StringBuilder, long, String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "public static String formatMillis(long duration) {\n    duration = Math.abs(duration);\n    StringBuilder sb = new StringBuilder();\n    int secs = (int) (duration / 1000) % 60;\n    int mins = (int) ((duration / (1000 * 60)) % 60);\n    int hrs = (int) ((duration / (1000 * 60 * 60)) % 24);\n    int days = (int) ((duration / (1000 * 60 * 60 * 24)) % 7);\n    // sb.append(millis + \" milliseconds\");\n    addUnitString(sb, days, \"day\");\n    addUnitString(sb, hrs, \"hour\");\n    addUnitString(sb, mins, \"minute\");\n    addUnitString(sb, secs, \"second\");\n    if (duration < 1000) {\n        addUnitString(sb, duration, \"millisecond\");\n    }\n    return sb.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

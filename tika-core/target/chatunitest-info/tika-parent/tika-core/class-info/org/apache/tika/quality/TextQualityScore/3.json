@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "getCiHigh",
+  "brief": "public float getCiHigh(){}",
+  "methodSignature": "getCiHigh()",
+  "sourceCode": "public float getCiHigh() {\n        return ciHigh;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Upper bound of the 95% confidence interval on zScore.\n */\npublic float getCiHigh() {\n    return ciHigh;\n}",
+  "method_comment": " Upper bound of the 95% confidence interval on zScore. ",
+  "method_annotation": ""
+}

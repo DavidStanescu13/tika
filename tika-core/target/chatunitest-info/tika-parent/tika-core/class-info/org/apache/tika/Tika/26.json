@@ -1,0 +1,18 @@
+{
+  "className": "Tika",
+  "methodName": "getMaxStringLength",
+  "brief": "public int getMaxStringLength(){}",
+  "methodSignature": "getMaxStringLength()",
+  "sourceCode": "public int getMaxStringLength() {\n        return maxStringLength;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the maximum length of strings returned by the\n * parseToString methods.\n *\n * @return maximum string length, or -1 if the limit has been disabled\n * @since Apache Tika 0.7\n */\npublic int getMaxStringLength() {\n    return maxStringLength;\n}",
+  "method_comment": "\n     * Returns the maximum length of strings returned by the\n     * parseToString methods.\n     *\n     * @return maximum string length, or -1 if the limit has been disabled\n     * @since Apache Tika 0.7\n     ",
+  "method_annotation": ""
+}

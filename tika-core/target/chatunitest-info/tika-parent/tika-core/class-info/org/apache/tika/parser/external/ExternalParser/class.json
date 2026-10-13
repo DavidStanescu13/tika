@@ -1,0 +1,145 @@
+{
+  "fullClassName": "org.apache.tika.parser.external.ExternalParser",
+  "className": "ExternalParser",
+  "index": 234,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Parser]",
+  "packageName": "org.apache.tika.parser.external",
+  "packageDeclaration": "package org.apache.tika.parser.external;",
+  "classSignature": "@TikaComponent\r\npublic class ExternalParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.BufferedReader;",
+    "import java.io.IOException;",
+    "import java.nio.charset.StandardCharsets;",
+    "import java.nio.file.Files;",
+    "import java.nio.file.Path;",
+    "import java.util.ArrayList;",
+    "import java.util.Collections;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Set;",
+    "import java.util.regex.Matcher;",
+    "import java.util.regex.Pattern;",
+    "import org.slf4j.Logger;",
+    "import org.slf4j.LoggerFactory;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.config.TikaProgressTracker;",
+    "import org.apache.tika.config.TimeoutLimits;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TemporaryResources;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.ExternalProcess;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.parser.Parser;",
+    "import org.apache.tika.sax.BodyContentHandler;",
+    "import org.apache.tika.sax.XHTMLContentHandler;",
+    "import org.apache.tika.utils.FileProcessResult;",
+    "import org.apache.tika.utils.ProcessUtils;"
+  ],
+  "fields": [
+    "public static final long DEFAULT_TIMEOUT_MS = 60000;",
+    "public static final String INPUT_FILE_TOKEN = \"${INPUT_FILE}\";",
+    "public static final String OUTPUT_FILE_TOKEN = \"${OUTPUT_FILE}\";",
+    "private static final Pattern INPUT_TOKEN_MATCHER =\n            Pattern.compile(\"\\\\$\\\\{INPUT_FILE}\");",
+    "private static final Pattern OUTPUT_TOKEN_MATCHER =\n            Pattern.compile(\"\\\\$\\\\{OUTPUT_FILE}\");",
+    "private static final Logger LOG = LoggerFactory.getLogger(ExternalParser.class);",
+    "private static final ContentHandler DISCARD_HANDLER =\n            new org.xml.sax.helpers.DefaultHandler();",
+    "private final ExternalParserConfig config;",
+    "private final Set<MediaType> supportedTypes;",
+    "private final List<String> commandLine;",
+    "private final Parser stdoutHandler;",
+    "private final Parser stderrHandler;",
+    "private final Parser outputFileHandler;",
+    "private final String[] checkCmd;",
+    "private final int[] checkErrorCodes;",
+    "private volatile Boolean checkResult;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Parser"
+  ],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "1",
+    "handleStream(String, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)": "2",
+    "handleOutputFile(Path, Parser, boolean, XHTMLContentHandler, Metadata, ParseContext)": "3",
+    "getConfig()": "4",
+    "ExternalParser()": "5",
+    "ExternalParser(ExternalParserConfig)": "6",
+    "ExternalParser(JsonConfig)": "7"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "@Override\r\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+    "private void handleStream(String content, Parser handler, boolean isContentSource,\r\n                              XHTMLContentHandler xhtml, Metadata metadata,\r\n                              ParseContext context)\r\n            throws IOException, SAXException, TikaException{}",
+    "private void handleOutputFile(Path outFile, Parser handler,\r\n                                  boolean isContentSource,\r\n                                  XHTMLContentHandler xhtml, Metadata metadata,\r\n                                  ParseContext context)\r\n            throws IOException, SAXException, TikaException{}",
+    "public ExternalParserConfig getConfig(){}",
+    "public ExternalParser(){}",
+    "public ExternalParser(ExternalParserConfig config){}",
+    "public ExternalParser(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "ExternalParser()",
+    "ExternalParser(ExternalParserConfig)",
+    "ExternalParser(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public ExternalParser(){}",
+    "public ExternalParser(ExternalParserConfig config){}",
+    "public ExternalParser(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "getConfig()"
+  ],
+  "getterSetterBrief": [
+    "public ExternalParserConfig getConfig(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.parser.external.ExternalParserConfig": [
+      "getStdoutHandler()",
+      "getStderrHandler()",
+      "getCommandLine()",
+      "getCheckErrorCodes()",
+      "getCheckCommandLine()",
+      "getSupportedTypes()",
+      "getOutputFileHandler()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "isEmpty()"
+    ],
+    "java.util.stream.IntStream": [
+      "toArray()"
+    ],
+    "java.util.stream.Stream": [
+      "mapToInt(ToIntFunction<? super T>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser.external;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.nio.charset.StandardCharsets;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Set;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.config.TikaProgressTracker;\nimport org.apache.tika.config.TimeoutLimits;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TemporaryResources;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.ExternalProcess;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.parser.Parser;\nimport org.apache.tika.sax.BodyContentHandler;\nimport org.apache.tika.sax.XHTMLContentHandler;\nimport org.apache.tika.utils.FileProcessResult;\nimport org.apache.tika.utils.ProcessUtils;\n\n/**\n * Parser that uses an external program (like ffmpeg, exiftool or sox)\n * to extract text content and metadata from a given document.\n * <p>\n * This parser relies on JSON configuration rather than classpath auto-discovery.\n * Users can specify independent handlers for each process stream:\n * <ul>\n *   <li>{@code stdoutHandler} — processes stdout</li>\n *   <li>{@code stderrHandler} — processes stderr</li>\n *   <li>{@code outputFileHandler} — processes the output file</li>\n * </ul>\n * The {@code contentSource} field controls which stream provides the XHTML\n * content output. An optional {@code checkCommandLine} lazily verifies the\n * external tool is available.\n */\n@TikaComponent\npublic class ExternalParser implements Parser {\n\n    public static final long DEFAULT_TIMEOUT_MS = 60000;\n\n    public static final String INPUT_FILE_TOKEN = \"${INPUT_FILE}\";\n\n    public static final String OUTPUT_FILE_TOKEN = \"${OUTPUT_FILE}\";\n\n    private static final Pattern INPUT_TOKEN_MATCHER = Pattern.compile(\"\\\\$\\\\{INPUT_FILE}\");\n\n    private static final Pattern OUTPUT_TOKEN_MATCHER = Pattern.compile(\"\\\\$\\\\{OUTPUT_FILE}\");\n\n    private static final Logger LOG = LoggerFactory.getLogger(ExternalParser.class);\n\n    private static final ContentHandler DISCARD_HANDLER = new org.xml.sax.helpers.DefaultHandler();\n\n    private final ExternalParserConfig config;\n\n    // Cached values derived from config\n    private final Set<MediaType> supportedTypes;\n\n    private final List<String> commandLine;\n\n    private final Parser stdoutHandler;\n\n    private final Parser stderrHandler;\n\n    private final Parser outputFileHandler;\n\n    // Lazy check state\n    private final String[] checkCmd;\n\n    private final int[] checkErrorCodes;\n\n    private volatile Boolean checkResult;\n\n    public ExternalParser() {\n        this(new ExternalParserConfig());\n    }\n\n    public ExternalParser(ExternalParserConfig config) {\n        this.config = config;\n        this.supportedTypes = new HashSet<>();\n        for (String s : config.getSupportedTypes()) {\n            this.supportedTypes.add(MediaType.parse(s));\n        }\n        this.commandLine = new ArrayList<>(config.getCommandLine());\n        this.stdoutHandler = config.getStdoutHandler();\n        this.stderrHandler = config.getStderrHandler();\n        this.outputFileHandler = config.getOutputFileHandler();\n        // Set up lazy check\n        if (config.getCheckCommandLine() != null && !config.getCheckCommandLine().isEmpty()) {\n            this.checkCmd = config.getCheckCommandLine().toArray(new String[0]);\n            if (config.getCheckErrorCodes() != null && !config.getCheckErrorCodes().isEmpty()) {\n                this.checkErrorCodes = config.getCheckErrorCodes().stream().mapToInt(Integer::intValue).toArray();\n            } else {\n                this.checkErrorCodes = new int[] { 127 };\n            }\n            // will be lazily evaluated\n            this.checkResult = null;\n        } else {\n            this.checkCmd = null;\n            this.checkErrorCodes = null;\n            // no check configured, always available\n            this.checkResult = Boolean.TRUE;\n        }\n    }\n\n    public ExternalParser(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, ExternalParserConfig.class));\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        if (checkResult == null) {\n            synchronized (this) {\n                if (checkResult == null) {\n                    checkResult = ProcessUtils.checkCommand(checkCmd, checkErrorCodes);\n                }\n            }\n        }\n        return checkResult ? supportedTypes : Collections.emptySet();\n    }\n\n    @Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try (TemporaryResources tmp = new TemporaryResources()) {\n            Path outFile = null;\n            Path p = tis.getPath();\n            List<String> thisCommandLine = new ArrayList<>();\n            Matcher inputMatcher = INPUT_TOKEN_MATCHER.matcher(\"\");\n            Matcher outputMatcher = OUTPUT_TOKEN_MATCHER.matcher(\"\");\n            boolean hasOutputFile = false;\n            for (String c : commandLine) {\n                if (inputMatcher.reset(c).find()) {\n                    // ProcessBuilder uses argv arrays, not shell invocation,\n                    // so no escaping is needed or desired here.\n                    String updated = c.replace(INPUT_FILE_TOKEN, p.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                } else if (outputMatcher.reset(c).find()) {\n                    outFile = tmp.createTempFile();\n                    String updated = c.replace(OUTPUT_FILE_TOKEN, outFile.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                    hasOutputFile = true;\n                } else {\n                    thisCommandLine.add(c);\n                }\n            }\n            // Always capture both stdout and stderr in memory\n            long localTimeoutMillis = TimeoutLimits.getProcessTimeoutMillis(context, config.getTimeoutMs());\n            FileProcessResult result = ProcessUtils.execute(new ProcessBuilder(thisCommandLine), localTimeoutMillis, config.getMaxStdOut(), config.getMaxStdErr());\n            // Set process metadata\n            metadata.set(ExternalProcess.IS_TIMEOUT, result.isTimeout());\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            TikaProgressTracker.update(context);\n            metadata.set(ExternalProcess.STD_OUT_LENGTH, result.getStdoutLength());\n            metadata.set(ExternalProcess.STD_OUT_IS_TRUNCATED, result.isStdoutTruncated());\n            metadata.set(ExternalProcess.STD_ERR_LENGTH, result.getStderrLength());\n            metadata.set(ExternalProcess.STD_ERR_IS_TRUNCATED, result.isStderrTruncated());\n            if (config.isReturnStdout()) {\n                metadata.set(ExternalProcess.STD_OUT, result.getStdout());\n            }\n            if (config.isReturnStderr()) {\n                metadata.set(ExternalProcess.STD_ERR, result.getStderr());\n            }\n            // Determine content source\n            String effectiveContentSource = config.getContentSource();\n            if (effectiveContentSource == null) {\n                effectiveContentSource = hasOutputFile ? \"outputFile\" : \"stdout\";\n            }\n            XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata, context);\n            xhtml.startDocument();\n            // Process each stream through its handler\n            handleStream(result.getStdout(), stdoutHandler, \"stdout\".equals(effectiveContentSource), xhtml, metadata, context);\n            handleStream(result.getStderr(), stderrHandler, \"stderr\".equals(effectiveContentSource), xhtml, metadata, context);\n            if (hasOutputFile && outFile != null) {\n                handleOutputFile(outFile, outputFileHandler, \"outputFile\".equals(effectiveContentSource), xhtml, metadata, context);\n            }\n            xhtml.endDocument();\n        }\n    }\n\n    private void handleStream(String content, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (content == null || content.isEmpty()) {\n            return;\n        }\n        if (handler != null) {\n            ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(content.getBytes(StandardCharsets.UTF_8))) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw content as XHTML text\n            String[] lines = content.split(\"\\n\", -1);\n            for (int i = 0; i < lines.length; i++) {\n                xhtml.characters(lines[i]);\n                if (i < lines.length - 1) {\n                    xhtml.newline();\n                }\n            }\n        }\n    }\n\n    private void handleOutputFile(Path outFile, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (handler != null) {\n            ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(outFile)) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw file content as XHTML text\n            try (BufferedReader reader = Files.newBufferedReader(outFile)) {\n                String line = reader.readLine();\n                while (line != null) {\n                    xhtml.characters(line);\n                    xhtml.newline();\n                    line = reader.readLine();\n                }\n            }\n        }\n    }\n\n    /**\n     * Returns the configuration for this parser.\n     */\n    public ExternalParserConfig getConfig() {\n        return config;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Parser that uses an external program (like ffmpeg, exiftool or sox)\n * to extract text content and metadata from a given document.\n * <p>\n * This parser relies on JSON configuration rather than classpath auto-discovery.\n * Users can specify independent handlers for each process stream:\n * <ul>\n *   <li>{@code stdoutHandler} — processes stdout</li>\n *   <li>{@code stderrHandler} — processes stderr</li>\n *   <li>{@code outputFileHandler} — processes the output file</li>\n * </ul>\n * The {@code contentSource} field controls which stream provides the XHTML\n * content output. An optional {@code checkCommandLine} lazily verifies the\n * external tool is available.\n */\n@TikaComponent\npublic class ExternalParser implements Parser {\n\n    public static final long DEFAULT_TIMEOUT_MS = 60000;\n\n    public static final String INPUT_FILE_TOKEN = \"${INPUT_FILE}\";\n\n    public static final String OUTPUT_FILE_TOKEN = \"${OUTPUT_FILE}\";\n\n    private static final Pattern INPUT_TOKEN_MATCHER = Pattern.compile(\"\\\\$\\\\{INPUT_FILE}\");\n\n    private static final Pattern OUTPUT_TOKEN_MATCHER = Pattern.compile(\"\\\\$\\\\{OUTPUT_FILE}\");\n\n    private static final Logger LOG = LoggerFactory.getLogger(ExternalParser.class);\n\n    private static final ContentHandler DISCARD_HANDLER = new org.xml.sax.helpers.DefaultHandler();\n\n    private final ExternalParserConfig config;\n\n    // Cached values derived from config\n    private final Set<MediaType> supportedTypes;\n\n    private final List<String> commandLine;\n\n    private final Parser stdoutHandler;\n\n    private final Parser stderrHandler;\n\n    private final Parser outputFileHandler;\n\n    // Lazy check state\n    private final String[] checkCmd;\n\n    private final int[] checkErrorCodes;\n\n    private volatile Boolean checkResult;\n\n    public ExternalParser() {\n        this(new ExternalParserConfig());\n    }\n\n    public ExternalParser(ExternalParserConfig config) {\n        this.config = config;\n        this.supportedTypes = new HashSet<>();\n        for (String s : config.getSupportedTypes()) {\n            this.supportedTypes.add(MediaType.parse(s));\n        }\n        this.commandLine = new ArrayList<>(config.getCommandLine());\n        this.stdoutHandler = config.getStdoutHandler();\n        this.stderrHandler = config.getStderrHandler();\n        this.outputFileHandler = config.getOutputFileHandler();\n        // Set up lazy check\n        if (config.getCheckCommandLine() != null && !config.getCheckCommandLine().isEmpty()) {\n            this.checkCmd = config.getCheckCommandLine().toArray(new String[0]);\n            if (config.getCheckErrorCodes() != null && !config.getCheckErrorCodes().isEmpty()) {\n                this.checkErrorCodes = config.getCheckErrorCodes().stream().mapToInt(Integer::intValue).toArray();\n            } else {\n                this.checkErrorCodes = new int[] { 127 };\n            }\n            // will be lazily evaluated\n            this.checkResult = null;\n        } else {\n            this.checkCmd = null;\n            this.checkErrorCodes = null;\n            // no check configured, always available\n            this.checkResult = Boolean.TRUE;\n        }\n    }\n\n    public ExternalParser(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, ExternalParserConfig.class));\n    }\n\n    @Override\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        if (checkResult == null) {\n            synchronized (this) {\n                if (checkResult == null) {\n                    checkResult = ProcessUtils.checkCommand(checkCmd, checkErrorCodes);\n                }\n            }\n        }\n        return checkResult ? supportedTypes : Collections.emptySet();\n    }\n\n    @Override\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try (TemporaryResources tmp = new TemporaryResources()) {\n            Path outFile = null;\n            Path p = tis.getPath();\n            List<String> thisCommandLine = new ArrayList<>();\n            Matcher inputMatcher = INPUT_TOKEN_MATCHER.matcher(\"\");\n            Matcher outputMatcher = OUTPUT_TOKEN_MATCHER.matcher(\"\");\n            boolean hasOutputFile = false;\n            for (String c : commandLine) {\n                if (inputMatcher.reset(c).find()) {\n                    // ProcessBuilder uses argv arrays, not shell invocation,\n                    // so no escaping is needed or desired here.\n                    String updated = c.replace(INPUT_FILE_TOKEN, p.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                } else if (outputMatcher.reset(c).find()) {\n                    outFile = tmp.createTempFile();\n                    String updated = c.replace(OUTPUT_FILE_TOKEN, outFile.toAbsolutePath().toString());\n                    thisCommandLine.add(updated);\n                    hasOutputFile = true;\n                } else {\n                    thisCommandLine.add(c);\n                }\n            }\n            // Always capture both stdout and stderr in memory\n            long localTimeoutMillis = TimeoutLimits.getProcessTimeoutMillis(context, config.getTimeoutMs());\n            FileProcessResult result = ProcessUtils.execute(new ProcessBuilder(thisCommandLine), localTimeoutMillis, config.getMaxStdOut(), config.getMaxStdErr());\n            // Set process metadata\n            metadata.set(ExternalProcess.IS_TIMEOUT, result.isTimeout());\n            metadata.set(ExternalProcess.EXIT_VALUE, result.getExitValue());\n            TikaProgressTracker.update(context);\n            metadata.set(ExternalProcess.STD_OUT_LENGTH, result.getStdoutLength());\n            metadata.set(ExternalProcess.STD_OUT_IS_TRUNCATED, result.isStdoutTruncated());\n            metadata.set(ExternalProcess.STD_ERR_LENGTH, result.getStderrLength());\n            metadata.set(ExternalProcess.STD_ERR_IS_TRUNCATED, result.isStderrTruncated());\n            if (config.isReturnStdout()) {\n                metadata.set(ExternalProcess.STD_OUT, result.getStdout());\n            }\n            if (config.isReturnStderr()) {\n                metadata.set(ExternalProcess.STD_ERR, result.getStderr());\n            }\n            // Determine content source\n            String effectiveContentSource = config.getContentSource();\n            if (effectiveContentSource == null) {\n                effectiveContentSource = hasOutputFile ? \"outputFile\" : \"stdout\";\n            }\n            XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata, context);\n            xhtml.startDocument();\n            // Process each stream through its handler\n            handleStream(result.getStdout(), stdoutHandler, \"stdout\".equals(effectiveContentSource), xhtml, metadata, context);\n            handleStream(result.getStderr(), stderrHandler, \"stderr\".equals(effectiveContentSource), xhtml, metadata, context);\n            if (hasOutputFile && outFile != null) {\n                handleOutputFile(outFile, outputFileHandler, \"outputFile\".equals(effectiveContentSource), xhtml, metadata, context);\n            }\n            xhtml.endDocument();\n        }\n    }\n\n    private void handleStream(String content, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (content == null || content.isEmpty()) {\n            return;\n        }\n        if (handler != null) {\n            ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(content.getBytes(StandardCharsets.UTF_8))) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw content as XHTML text\n            String[] lines = content.split(\"\\n\", -1);\n            for (int i = 0; i < lines.length; i++) {\n                xhtml.characters(lines[i]);\n                if (i < lines.length - 1) {\n                    xhtml.newline();\n                }\n            }\n        }\n    }\n\n    private void handleOutputFile(Path outFile, Parser handler, boolean isContentSource, XHTMLContentHandler xhtml, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        if (handler != null) {\n            ContentHandler target = isContentSource ? new BodyContentHandler(xhtml) : DISCARD_HANDLER;\n            try (TikaInputStream tis = TikaInputStream.get(outFile)) {\n                handler.parse(tis, target, metadata, context);\n            }\n        } else if (isContentSource) {\n            // No handler — write raw file content as XHTML text\n            try (BufferedReader reader = Files.newBufferedReader(outFile)) {\n                String line = reader.readLine();\n                while (line != null) {\n                    xhtml.characters(line);\n                    xhtml.newline();\n                    line = reader.readLine();\n                }\n            }\n        }\n    }\n\n    /**\n     * Returns the configuration for this parser.\n     */\n    public ExternalParserConfig getConfig() {\n        return config;\n    }\n}",
+  "subClasses": []
+}

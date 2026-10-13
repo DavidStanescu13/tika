@@ -1,0 +1,18 @@
+{
+  "className": "ContentHandlerFactory",
+  "methodName": "handlerTypeName",
+  "brief": "default String handlerTypeName(){}",
+  "methodSignature": "handlerTypeName()",
+  "sourceCode": "default String handlerTypeName() {\n        return \"UNKNOWN\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the name of the handler type produced by this factory\n * (e.g. {@code TEXT}, {@code MARKDOWN}, {@code HTML}, {@code XML}).\n * <p>\n * This value is written to\n * {@link org.apache.tika.metadata.TikaCoreProperties#TIKA_CONTENT_HANDLER_TYPE}\n * so that downstream components (such as the inference pipeline) can\n * determine what format {@code tika:content} is in without guessing.\n *\n * @return handler type name, never {@code null}\n */\ndefault String handlerTypeName() {\n    return \"UNKNOWN\";\n}",
+  "method_comment": "\n     * Returns the name of the handler type produced by this factory\n     * (e.g. {@code TEXT}, {@code MARKDOWN}, {@code HTML}, {@code XML}).\n     * <p>\n     * This value is written to\n     * {@link org.apache.tika.metadata.TikaCoreProperties#TIKA_CONTENT_HANDLER_TYPE}\n     * so that downstream components (such as the inference pipeline) can\n     * determine what format {@code tika:content} is in without guessing.\n     *\n     * @return handler type name, never {@code null}\n     ",
+  "method_annotation": ""
+}

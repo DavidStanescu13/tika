@@ -1,0 +1,18 @@
+{
+  "className": "ParseRecord",
+  "methodName": "isThrowOnMaxDepth",
+  "brief": "public boolean isThrowOnMaxDepth(){}",
+  "methodSignature": "isThrowOnMaxDepth()",
+  "sourceCode": "public boolean isThrowOnMaxDepth() {\n        return throwOnMaxDepth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns whether throwing is configured when max depth is reached.\n *\n * @return true if an exception should be thrown on max depth\n */\npublic boolean isThrowOnMaxDepth() {\n    return throwOnMaxDepth;\n}",
+  "method_comment": "\n     * Returns whether throwing is configured when max depth is reached.\n     *\n     * @return true if an exception should be thrown on max depth\n     ",
+  "method_annotation": ""
+}

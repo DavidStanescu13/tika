@@ -1,0 +1,18 @@
+{
+  "className": "NNTrainedModelBuilder",
+  "methodName": "getNumOfOutputs",
+  "brief": "public int getNumOfOutputs(){}",
+  "methodSignature": "getNumOfOutputs()",
+  "sourceCode": "public int getNumOfOutputs() {\n        return numOfOutputs;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public int getNumOfOutputs() {\n    return numOfOutputs;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "LinkBuilder",
+  "methodName": "getLink",
+  "brief": "public Link getLink(boolean collapseWhitespace){}",
+  "methodSignature": "getLink(boolean)",
+  "sourceCode": "public Link getLink(boolean collapseWhitespace) {\n        String anchor = text.toString();\n\n        if (collapseWhitespace) {\n            anchor = anchor.replaceAll(\"\\\\s+\", \" \").trim();\n        }\n\n        return new Link(type, uri, title, anchor, rel);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "toString()"
+    ],
+    "java.lang.String": [
+      "replaceAll(String, String)",
+      "trim()"
+    ]
+  },
+  "full_method_info": "public Link getLink(boolean collapseWhitespace) {\n    String anchor = text.toString();\n    if (collapseWhitespace) {\n        anchor = anchor.replaceAll(\"\\\\s+\", \" \").trim();\n    }\n    return new Link(type, uri, title, anchor, rel);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

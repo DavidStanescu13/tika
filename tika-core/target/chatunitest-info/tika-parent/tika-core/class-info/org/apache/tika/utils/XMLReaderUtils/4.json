@@ -1,0 +1,36 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getDocumentBuilderFactory",
+  "brief": "public static DocumentBuilderFactory getDocumentBuilderFactory(){}",
+  "methodSignature": "getDocumentBuilderFactory()",
+  "sourceCode": "public static DocumentBuilderFactory getDocumentBuilderFactory() {\n        //borrowed from Apache POI\n        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();\n        if (LOG.isDebugEnabled()) {\n            LOG.debug(\"DocumentBuilderFactory class {}\", factory.getClass());\n        }\n\n        factory.setExpandEntityReferences(false);\n        factory.setNamespaceAware(true);\n        factory.setValidating(false);\n\n        trySetSAXFeature(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);\n        trySetSAXFeature(factory, \"http://xml.org/sax/features/external-general-entities\", false);\n        trySetSAXFeature(factory, \"http://xml.org/sax/features/external-parameter-entities\", false);\n        trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-external-dtd\",\n                false);\n        trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-dtd-grammar\",\n                false);\n        trySetXercesSecurityManager(factory);\n        return factory;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.DocumentBuilderFactory": [
+      "newInstance()",
+      "setNamespaceAware(boolean)",
+      "setValidating(boolean)",
+      "setExpandEntityReferences(boolean)"
+    ],
+    "org.slf4j.Logger": [
+      "debug(String, Object)",
+      "isDebugEnabled()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "trySetXercesSecurityManager(DocumentBuilderFactory)",
+      "trySetSAXFeature(DocumentBuilderFactory, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the DOM builder factory specified in this parsing context.\n * If a factory is not explicitly specified, then a default factory\n * instance is created and returned. The default factory instance is\n * configured to be namespace-aware and to apply reasonable security\n * features.\n *\n * @return DOM parser factory\n * @since Apache Tika 1.13\n */\npublic static DocumentBuilderFactory getDocumentBuilderFactory() {\n    // borrowed from Apache POI\n    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();\n    if (LOG.isDebugEnabled()) {\n        LOG.debug(\"DocumentBuilderFactory class {}\", factory.getClass());\n    }\n    factory.setExpandEntityReferences(false);\n    factory.setNamespaceAware(true);\n    factory.setValidating(false);\n    trySetSAXFeature(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);\n    trySetSAXFeature(factory, \"http://xml.org/sax/features/external-general-entities\", false);\n    trySetSAXFeature(factory, \"http://xml.org/sax/features/external-parameter-entities\", false);\n    trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-external-dtd\", false);\n    trySetSAXFeature(factory, \"http://apache.org/xml/features/nonvalidating/load-dtd-grammar\", false);\n    trySetXercesSecurityManager(factory);\n    return factory;\n}",
+  "method_comment": "\n     * Returns the DOM builder factory specified in this parsing context.\n     * If a factory is not explicitly specified, then a default factory\n     * instance is created and returned. The default factory instance is\n     * configured to be namespace-aware and to apply reasonable security\n     * features.\n     *\n     * @return DOM parser factory\n     * @since Apache Tika 1.13\n     ",
+  "method_annotation": ""
+}

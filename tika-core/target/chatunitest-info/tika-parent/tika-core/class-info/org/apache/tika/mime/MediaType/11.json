@@ -1,0 +1,26 @@
+{
+  "className": "MediaType",
+  "methodName": "union",
+  "brief": "private static Map<String, String> union(Map<String, String> a, Map<String, String> b){}",
+  "methodSignature": "union(Map, Map)",
+  "sourceCode": "private static Map<String, String> union(Map<String, String> a, Map<String, String> b) {\n        if (a.isEmpty()) {\n            return b;\n        } else if (b.isEmpty()) {\n            return a;\n        } else {\n            Map<String, String> union = new HashMap<>();\n            union.putAll(a);\n            union.putAll(b);\n            return union;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<String,String>",
+    "Map<String,String>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "isEmpty()",
+      "putAll(Map<? extends K, ? extends V>)"
+    ]
+  },
+  "full_method_info": "private static Map<String, String> union(Map<String, String> a, Map<String, String> b) {\n    if (a.isEmpty()) {\n        return b;\n    } else if (b.isEmpty()) {\n        return a;\n    } else {\n        Map<String, String> union = new HashMap<>();\n        union.putAll(a);\n        union.putAll(b);\n        return union;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

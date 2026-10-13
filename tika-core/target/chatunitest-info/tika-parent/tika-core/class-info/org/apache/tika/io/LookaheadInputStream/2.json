@@ -1,0 +1,22 @@
+{
+  "className": "LookaheadInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n    public int read() throws IOException{}",
+  "methodSignature": "read()",
+  "sourceCode": "@Override\n    public int read() throws IOException {\n        fill();\n        if (buffered > position) {\n            return 0xff & buffer[position++];\n        } else {\n            return -1;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.LookaheadInputStream": [
+      "fill()"
+    ]
+  },
+  "full_method_info": "@Override\npublic int read() throws IOException {\n    fill();\n    if (buffered > position) {\n        return 0xff & buffer[position++];\n    } else {\n        return -1;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

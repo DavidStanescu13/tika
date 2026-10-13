@@ -1,0 +1,28 @@
+{
+  "className": "StreamCache",
+  "methodName": "ensureMemoryCapacity",
+  "brief": "private void ensureMemoryCapacity(int needed){}",
+  "methodSignature": "ensureMemoryCapacity(int)",
+  "sourceCode": "private void ensureMemoryCapacity(int needed) {\n        if (needed <= memoryBuffer.length) {\n            return;\n        }\n        int newSize = Math.min(memoryThreshold, Math.max(memoryBuffer.length * 2, needed));\n        byte[] newBuffer = new byte[newSize];\n        System.arraycopy(memoryBuffer, 0, newBuffer, 0, memorySize);\n        memoryBuffer = newBuffer;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(int, int)",
+      "max(int, int)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "private void ensureMemoryCapacity(int needed) {\n    if (needed <= memoryBuffer.length) {\n        return;\n    }\n    int newSize = Math.min(memoryThreshold, Math.max(memoryBuffer.length * 2, needed));\n    byte[] newBuffer = new byte[newSize];\n    System.arraycopy(memoryBuffer, 0, newBuffer, 0, memorySize);\n    memoryBuffer = newBuffer;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

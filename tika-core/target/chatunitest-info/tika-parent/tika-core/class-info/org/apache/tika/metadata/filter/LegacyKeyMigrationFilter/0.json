@@ -1,0 +1,39 @@
+{
+  "className": "LegacyKeyMigrationFilter",
+  "methodName": "filter",
+  "brief": "@Override\r\n    protected void filter(Metadata metadata){}",
+  "methodSignature": "filter(Metadata)",
+  "sourceCode": "@Override\n    protected void filter(Metadata metadata) {\n        for (String name : metadata.names()) {          // names() returns a snapshot copy\n            if (drops.contains(name)) {\n                metadata.remove(name);\n                continue;\n            }\n            String mapped = renames.get(name);\n            if (mapped == null) {\n                for (UnaryOperator<String> rule : prefixRules) {\n                    String r = rule.apply(name);\n                    if (r != null) {\n                        mapped = r;\n                        break;\n                    }\n                }\n            }\n            if (mapped != null && !mapped.equals(name)) {\n                String[] values = metadata.getValues(name);\n                metadata.remove(name);\n                for (String v : values) {\n                    metadata.addTrusted(mapped, v);     // targets may be reserved (tk:/X-TIKA:)\n                }\n            }\n            // unmapped -> pass through unchanged\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "names()",
+      "addTrusted(String, String)",
+      "getValues(String)",
+      "remove(String)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void filter(Metadata metadata) {\n    for (String name : metadata.names()) {\n        // names() returns a snapshot copy\n        if (drops.contains(name)) {\n            metadata.remove(name);\n            continue;\n        }\n        String mapped = renames.get(name);\n        if (mapped == null) {\n            for (UnaryOperator<String> rule : prefixRules) {\n                String r = rule.apply(name);\n                if (r != null) {\n                    mapped = r;\n                    break;\n                }\n            }\n        }\n        if (mapped != null && !mapped.equals(name)) {\n            String[] values = metadata.getValues(name);\n            metadata.remove(name);\n            for (String v : values) {\n                // targets may be reserved (tk:/X-TIKA:)\n                metadata.addTrusted(mapped, v);\n            }\n        }\n        // unmapped -> pass through unchanged\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

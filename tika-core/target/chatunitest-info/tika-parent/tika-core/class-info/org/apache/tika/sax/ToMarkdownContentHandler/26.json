@@ -1,0 +1,23 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "value",
+  "brief": "private static String value(Attributes atts, String name){}",
+  "methodSignature": "value(Attributes, String)",
+  "sourceCode": "private static String value(Attributes atts, String name) {\n        String v = atts.getValue(name);\n        return v != null ? v : \"\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Attributes",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "private static String value(Attributes atts, String name) {\n    String v = atts.getValue(name);\n    return v != null ? v : \"\";\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

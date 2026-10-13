@@ -1,0 +1,78 @@
+{
+  "fullClassName": "org.apache.tika.sax.TargetElement",
+  "className": "TargetElement",
+  "index": 285,
+  "modifier": "[public , static ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public static class TargetElement",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Map;",
+    "import javax.xml.namespace.QName;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.AttributesImpl;"
+  ],
+  "fields": [
+    "private final QName mappedTagName;",
+    "private final Map<QName, QName> attributesMapping;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getMappedTagName()": "0",
+    "getAttributesMapping()": "1",
+    "mapAttributes(Attributes)": "2",
+    "TargetElement(QName, Map)": "3",
+    "TargetElement(String, String, Map)": "4",
+    "TargetElement(QName)": "5",
+    "TargetElement(String, String)": "6"
+  },
+  "methodsBrief": [
+    "public QName getMappedTagName(){}",
+    "public Map<QName, QName> getAttributesMapping(){}",
+    "public Attributes mapAttributes(final Attributes atts){}",
+    "public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping){}",
+    "public TargetElement(String mappedTagURI, String mappedTagLocalName,\r\n                             Map<QName, QName> attributesMapping){}",
+    "public TargetElement(QName mappedTagName){}",
+    "public TargetElement(String mappedTagURI, String mappedTagLocalName){}"
+  ],
+  "constructorSigs": [
+    "TargetElement(QName, Map)",
+    "TargetElement(String, String, Map)",
+    "TargetElement(QName)",
+    "TargetElement(String, String)"
+  ],
+  "constructorBrief": [
+    "public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping){}",
+    "public TargetElement(String mappedTagURI, String mappedTagLocalName,\r\n                             Map<QName, QName> attributesMapping){}",
+    "public TargetElement(QName mappedTagName){}",
+    "public TargetElement(String mappedTagURI, String mappedTagLocalName){}"
+  ],
+  "getterSetterSigs": [
+    "getMappedTagName()",
+    "getAttributesMapping()"
+  ],
+  "getterSetterBrief": [
+    "public QName getMappedTagName(){}",
+    "public Map<QName, QName> getAttributesMapping(){}"
+  ],
+  "constructorDeps": {
+    "javax.xml.namespace.QName": [],
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "emptyMap()"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.Collections;\nimport java.util.Map;\nimport javax.xml.namespace.QName;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.AttributesImpl;\n\n/**\n * Content handler decorator that maps element <code>QName</code>s using\n * a <code>Map</code>. Not mappable elements are not forwarded.\n * Attributes may also be mapped (for each element different using\n * a <code>Map</code> for attributes), not mappable attributes are not\n * forwarded. The default is to not map any attributes and therefore do\n * not forward any of them.\n */\npublic class ElementMappingContentHandler extends ContentHandlerDecorator {\n\n    private final Map<QName, TargetElement> mappings;\n\n    public ElementMappingContentHandler(ContentHandler handler, Map<QName, TargetElement> mappings) {\n        super(handler);\n        this.mappings = mappings;\n    }\n\n    protected static final String getQNameAsString(QName qname) {\n        String prefix = qname.getPrefix();\n        if (prefix.length() > 0) {\n            return prefix + \":\" + qname.getLocalPart();\n        } else {\n            return qname.getLocalPart();\n        }\n    }\n\n    @Override\n    public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {\n        TargetElement mapping = mappings.get(new QName(namespaceURI, localName));\n        if (mapping != null) {\n            QName tag = mapping.getMappedTagName();\n            super.startElement(tag.getNamespaceURI(), tag.getLocalPart(), getQNameAsString(tag), mapping.mapAttributes(atts));\n        }\n    }\n\n    @Override\n    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {\n        TargetElement mapping = mappings.get(new QName(namespaceURI, localName));\n        if (mapping != null) {\n            QName tag = mapping.getMappedTagName();\n            super.endElement(tag.getNamespaceURI(), tag.getLocalPart(), getQNameAsString(tag));\n        }\n    }\n\n    public static class TargetElement {\n\n        private final QName mappedTagName;\n\n        private final Map<QName, QName> attributesMapping;\n\n        public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping) {\n            this.mappedTagName = mappedTagName;\n            this.attributesMapping = attributesMapping;\n        }\n\n        public TargetElement(String mappedTagURI, String mappedTagLocalName, Map<QName, QName> attributesMapping) {\n            this(new QName(mappedTagURI, mappedTagLocalName), attributesMapping);\n        }\n\n        public TargetElement(QName mappedTagName) {\n            this(mappedTagName, Collections.emptyMap());\n        }\n\n        public TargetElement(String mappedTagURI, String mappedTagLocalName) {\n            this(mappedTagURI, mappedTagLocalName, Collections.emptyMap());\n        }\n\n        public QName getMappedTagName() {\n            return mappedTagName;\n        }\n\n        public Map<QName, QName> getAttributesMapping() {\n            return attributesMapping;\n        }\n\n        public Attributes mapAttributes(final Attributes atts) {\n            AttributesImpl natts = new AttributesImpl();\n            for (int i = 0; i < atts.getLength(); i++) {\n                QName name = attributesMapping.get(new QName(atts.getURI(i), atts.getLocalName(i)));\n                if (name != null) {\n                    natts.addAttribute(name.getNamespaceURI(), name.getLocalPart(), getQNameAsString(name), atts.getType(i), atts.getValue(i));\n                }\n            }\n            return natts;\n        }\n    }\n}\n",
+  "classDeclarationCode": "public static class TargetElement {\n\n    private final QName mappedTagName;\n\n    private final Map<QName, QName> attributesMapping;\n\n    public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping) {\n        this.mappedTagName = mappedTagName;\n        this.attributesMapping = attributesMapping;\n    }\n\n    public TargetElement(String mappedTagURI, String mappedTagLocalName, Map<QName, QName> attributesMapping) {\n        this(new QName(mappedTagURI, mappedTagLocalName), attributesMapping);\n    }\n\n    public TargetElement(QName mappedTagName) {\n        this(mappedTagName, Collections.emptyMap());\n    }\n\n    public TargetElement(String mappedTagURI, String mappedTagLocalName) {\n        this(mappedTagURI, mappedTagLocalName, Collections.emptyMap());\n    }\n\n    public QName getMappedTagName() {\n        return mappedTagName;\n    }\n\n    public Map<QName, QName> getAttributesMapping() {\n        return attributesMapping;\n    }\n\n    public Attributes mapAttributes(final Attributes atts) {\n        AttributesImpl natts = new AttributesImpl();\n        for (int i = 0; i < atts.getLength(); i++) {\n            QName name = attributesMapping.get(new QName(atts.getURI(i), atts.getLocalName(i)));\n            if (name != null) {\n                natts.addAttribute(name.getNamespaceURI(), name.getLocalPart(), getQNameAsString(name), atts.getType(i), atts.getValue(i));\n            }\n        }\n        return natts;\n    }\n}",
+  "subClasses": []
+}

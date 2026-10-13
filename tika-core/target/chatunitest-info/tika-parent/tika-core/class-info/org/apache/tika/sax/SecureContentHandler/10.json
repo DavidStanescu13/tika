@@ -1,0 +1,24 @@
+{
+  "className": "SecureContentHandler",
+  "methodName": "getByteCount",
+  "brief": "private long getByteCount() throws SAXException{}",
+  "methodSignature": "getByteCount()",
+  "sourceCode": "private long getByteCount() throws SAXException {\n        try {\n            if (stream.hasLength()) {\n                return stream.getLength();\n            } else {\n                return stream.getPosition();\n            }\n        } catch (IOException e) {\n            throw new SAXException(\"Unable to get stream length\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "getPosition()",
+      "getLength()",
+      "hasLength()"
+    ]
+  },
+  "full_method_info": "private long getByteCount() throws SAXException {\n    try {\n        if (stream.hasLength()) {\n            return stream.getLength();\n        } else {\n            return stream.getPosition();\n        }\n    } catch (IOException e) {\n        throw new SAXException(\"Unable to get stream length\", e);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

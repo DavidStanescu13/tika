@@ -1,0 +1,27 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "popToBlockHost",
+  "brief": "private void popToBlockHost(){}",
+  "methodSignature": "popToBlockHost()",
+  "sourceCode": "private void popToBlockHost() {\n        while (stack.size() > 1 && !canHostBlocks(stack.peek())) {\n            Node popped = stack.pop();\n            if (popped == implicitParagraph) {\n                implicitParagraph = null;\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Deque": [
+      "peek()",
+      "pop()",
+      "size()"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "canHostBlocks(Node)"
+    ]
+  },
+  "full_method_info": "/**\n * Pop open nodes until the top can host block children (Document/blockquote/list item).\n */\nprivate void popToBlockHost() {\n    while (stack.size() > 1 && !canHostBlocks(stack.peek())) {\n        Node popped = stack.pop();\n        if (popped == implicitParagraph) {\n            implicitParagraph = null;\n        }\n    }\n}",
+  "method_comment": " Pop open nodes until the top can host block children (Document/blockquote/list item). ",
+  "method_annotation": ""
+}

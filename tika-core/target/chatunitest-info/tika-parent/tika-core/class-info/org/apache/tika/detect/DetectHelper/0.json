@@ -1,0 +1,42 @@
+{
+  "className": "DetectHelper",
+  "methodName": "getStreamForDetectionOnly",
+  "brief": "public static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength,\r\n                                                             Metadata metadata) throws IOException{}",
+  "methodSignature": "getStreamForDetectionOnly(InputStream, int, Metadata)",
+  "sourceCode": "public static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength,\n                                                             Metadata metadata) throws IOException {\n        BoundedInputStream bounded = new BoundedInputStream(maxLength + 1, stream);\n\n        ByteArrayOutputStream baos = new ByteArrayOutputStream(Math.min(maxLength, 8192));\n        byte[] buffer = new byte[4096];\n        int bytesRead;\n        int totalRead = 0;\n\n        while (totalRead < maxLength && (bytesRead = bounded.read(buffer, 0,\n                Math.min(buffer.length, maxLength - totalRead))) != -1) {\n            baos.write(buffer, 0, bytesRead);\n            totalRead += bytesRead;\n        }\n\n        // Check if there's more data available (meaning we truncated)\n        boolean truncated = bounded.read() != -1;\n\n        byte[] bytes = baos.toByteArray();\n        metadata.set(TikaCoreProperties.DETECTION_CONTENT_LENGTH, bytes.length);\n\n        if (truncated) {\n            metadata.set(TikaCoreProperties.TRUNCATED_CONTENT_FOR_DETECTION, true);\n        }\n\n        return TikaInputStream.get(bytes);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "int",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, boolean)",
+      "set(Property, int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "org.apache.tika.io.BoundedInputStream": [
+      "read(byte[], int, int)",
+      "read()"
+    ],
+    "java.io.ByteArrayOutputStream": [
+      "write(byte[], int, int)",
+      "toByteArray()"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(byte[])"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a TikaInputStream suitable for detection-only purposes by reading\n * up to {@code maxLength} bytes from the input stream into a byte array.\n * <p>\n * If the input stream contains more bytes than {@code maxLength}, the resulting\n * metadata will have {@link TikaCoreProperties#TRUNCATED_CONTENT_FOR_DETECTION}\n * set to {@code true}, signaling to detectors that they are working with\n * truncated content and should adjust their behavior accordingly.\n * <p>\n * This is useful when you want to perform detection on a limited portion of\n * a large file without spooling the entire file to disk.\n * <p>\n * <b>NOTE</b>The downside is that you may lose precision in detection!\n * This should only be used if you are performing detection only with no parsing.\n *\n * @param stream    the input stream to read from (will NOT be closed)\n * @param maxLength the maximum number of bytes to read\n * @param metadata  the metadata object where truncation flag will be set if applicable\n * @return a TikaInputStream backed by the buffered bytes\n * @throws IOException if an I/O error occurs\n */\npublic static TikaInputStream getStreamForDetectionOnly(InputStream stream, int maxLength, Metadata metadata) throws IOException {\n    BoundedInputStream bounded = new BoundedInputStream(maxLength + 1, stream);\n    ByteArrayOutputStream baos = new ByteArrayOutputStream(Math.min(maxLength, 8192));\n    byte[] buffer = new byte[4096];\n    int bytesRead;\n    int totalRead = 0;\n    while (totalRead < maxLength && (bytesRead = bounded.read(buffer, 0, Math.min(buffer.length, maxLength - totalRead))) != -1) {\n        baos.write(buffer, 0, bytesRead);\n        totalRead += bytesRead;\n    }\n    // Check if there's more data available (meaning we truncated)\n    boolean truncated = bounded.read() != -1;\n    byte[] bytes = baos.toByteArray();\n    metadata.set(TikaCoreProperties.DETECTION_CONTENT_LENGTH, bytes.length);\n    if (truncated) {\n        metadata.set(TikaCoreProperties.TRUNCATED_CONTENT_FOR_DETECTION, true);\n    }\n    return TikaInputStream.get(bytes);\n}",
+  "method_comment": "\n     * Creates a TikaInputStream suitable for detection-only purposes by reading\n     * up to {@code maxLength} bytes from the input stream into a byte array.\n     * <p>\n     * If the input stream contains more bytes than {@code maxLength}, the resulting\n     * metadata will have {@link TikaCoreProperties#TRUNCATED_CONTENT_FOR_DETECTION}\n     * set to {@code true}, signaling to detectors that they are working with\n     * truncated content and should adjust their behavior accordingly.\n     * <p>\n     * This is useful when you want to perform detection on a limited portion of\n     * a large file without spooling the entire file to disk.\n     * <p>\n     * <b>NOTE</b>The downside is that you may lose precision in detection!\n     * This should only be used if you are performing detection only with no parsing.\n     *\n     * @param stream    the input stream to read from (will NOT be closed)\n     * @param maxLength the maximum number of bytes to read\n     * @param metadata  the metadata object where truncation flag will be set if applicable\n     * @return a TikaInputStream backed by the buffered bytes\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": ""
+}

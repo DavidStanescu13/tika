@@ -1,0 +1,25 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "checkHasFile",
+  "brief": "public static boolean checkHasFile(String fileCommandPath){}",
+  "methodSignature": "checkHasFile(String)",
+  "sourceCode": "public static boolean checkHasFile(String fileCommandPath) {\n        String[] commandline = new String[]{fileCommandPath, \"-v\"};\n        return ProcessUtils.checkCommand(commandline);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.ProcessUtils": [
+      "checkCommand(String[], int[])"
+    ]
+  },
+  "full_method_info": "public static boolean checkHasFile(String fileCommandPath) {\n    String[] commandline = new String[] { fileCommandPath, \"-v\" };\n    return ProcessUtils.checkCommand(commandline);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

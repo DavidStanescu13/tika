@@ -1,0 +1,18 @@
+{
+  "className": "OutputLimits",
+  "methodName": "getWriteLimit",
+  "brief": "public int getWriteLimit(){}",
+  "methodSignature": "getWriteLimit()",
+  "sourceCode": "public int getWriteLimit() {\n        return writeLimit;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum characters to write.\n *\n * @return maximum characters, or -1 for unlimited\n */\npublic int getWriteLimit() {\n    return writeLimit;\n}",
+  "method_comment": "\n     * Gets the maximum characters to write.\n     *\n     * @return maximum characters, or -1 for unlimited\n     ",
+  "method_annotation": ""
+}

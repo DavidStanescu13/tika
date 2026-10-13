@@ -1,0 +1,71 @@
+{
+  "fullClassName": "org.apache.tika.sax.LinkBuilder",
+  "className": "LinkBuilder",
+  "index": 290,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "class LinkBuilder",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final String type;",
+    "private final StringBuilder text = new StringBuilder();",
+    "private String uri = \"\";",
+    "private String title = \"\";",
+    "private String rel = \"\";"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getType()": "0",
+    "setURI(String)": "1",
+    "setTitle(String)": "2",
+    "setRel(String)": "3",
+    "characters(char[], int, int)": "4",
+    "getLink()": "5",
+    "getLink(boolean)": "6",
+    "LinkBuilder(String)": "7"
+  },
+  "methodsBrief": [
+    "public String getType(){}",
+    "public void setURI(String uri){}",
+    "public void setTitle(String title){}",
+    "public void setRel(String rel){}",
+    "public void characters(char[] ch, int offset, int length){}",
+    "public Link getLink(){}",
+    "public Link getLink(boolean collapseWhitespace){}",
+    "public LinkBuilder(String type){}"
+  ],
+  "constructorSigs": [
+    "LinkBuilder(String)"
+  ],
+  "constructorBrief": [
+    "public LinkBuilder(String type){}"
+  ],
+  "getterSetterSigs": [
+    "getType()",
+    "setURI(String)",
+    "setTitle(String)",
+    "setRel(String)",
+    "getLink()"
+  ],
+  "getterSetterBrief": [
+    "public String getType(){}",
+    "public void setURI(String uri){}",
+    "public void setTitle(String title){}",
+    "public void setRel(String rel){}",
+    "public Link getLink(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nclass LinkBuilder {\n\n    private final String type;\n\n    private final StringBuilder text = new StringBuilder();\n\n    private String uri = \"\";\n\n    private String title = \"\";\n\n    private String rel = \"\";\n\n    public LinkBuilder(String type) {\n        this.type = type;\n    }\n\n    public String getType() {\n        return this.type;\n    }\n\n    public void setURI(String uri) {\n        if (uri != null) {\n            this.uri = uri;\n        } else {\n            this.uri = \"\";\n        }\n    }\n\n    public void setTitle(String title) {\n        if (title != null) {\n            this.title = title;\n        } else {\n            this.title = \"\";\n        }\n    }\n\n    public void setRel(String rel) {\n        if (rel != null) {\n            this.rel = rel;\n        } else {\n            this.rel = \"\";\n        }\n    }\n\n    public void characters(char[] ch, int offset, int length) {\n        text.append(ch, offset, length);\n    }\n\n    public Link getLink() {\n        return getLink(false);\n    }\n\n    public Link getLink(boolean collapseWhitespace) {\n        String anchor = text.toString();\n        if (collapseWhitespace) {\n            anchor = anchor.replaceAll(\"\\\\s+\", \" \").trim();\n        }\n        return new Link(type, uri, title, anchor, rel);\n    }\n}\n",
+  "classDeclarationCode": "class LinkBuilder {\n\n    private final String type;\n\n    private final StringBuilder text = new StringBuilder();\n\n    private String uri = \"\";\n\n    private String title = \"\";\n\n    private String rel = \"\";\n\n    public LinkBuilder(String type) {\n        this.type = type;\n    }\n\n    public String getType() {\n        return this.type;\n    }\n\n    public void setURI(String uri) {\n        if (uri != null) {\n            this.uri = uri;\n        } else {\n            this.uri = \"\";\n        }\n    }\n\n    public void setTitle(String title) {\n        if (title != null) {\n            this.title = title;\n        } else {\n            this.title = \"\";\n        }\n    }\n\n    public void setRel(String rel) {\n        if (rel != null) {\n            this.rel = rel;\n        } else {\n            this.rel = \"\";\n        }\n    }\n\n    public void characters(char[] ch, int offset, int length) {\n        text.append(ch, offset, length);\n    }\n\n    public Link getLink() {\n        return getLink(false);\n    }\n\n    public Link getLink(boolean collapseWhitespace) {\n        String anchor = text.toString();\n        if (collapseWhitespace) {\n            anchor = anchor.replaceAll(\"\\\\s+\", \" \").trim();\n        }\n        return new Link(type, uri, title, anchor, rel);\n    }\n}",
+  "subClasses": []
+}

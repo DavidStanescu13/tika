@@ -1,0 +1,78 @@
+{
+  "fullClassName": "org.apache.tika.detect.NNExampleModelDetector",
+  "className": "NNExampleModelDetector",
+  "index": 38,
+  "modifier": "[public ]",
+  "extend": "[TrainedModelDetector]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class NNExampleModelDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import static java.nio.charset.StandardCharsets.UTF_8;",
+    "import java.io.BufferedReader;",
+    "import java.io.File;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.io.InputStreamReader;",
+    "import java.net.URL;",
+    "import java.nio.file.Path;",
+    "import java.util.Objects;",
+    "import org.slf4j.Logger;",
+    "import org.slf4j.LoggerFactory;",
+    "import org.apache.tika.mime.MediaType;"
+  ],
+  "fields": [
+    "private static final String EXAMPLE_NNMODEL_FILE = \"tika-example.nnmodel\";",
+    "private static final long serialVersionUID = 1L;",
+    "private static final Logger LOG = LoggerFactory.getLogger(NNExampleModelDetector.class);"
+  ],
+  "superClasses": [
+    "TrainedModelDetector"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "loadDefaultModels(InputStream)": "0",
+    "loadDefaultModels(ClassLoader)": "1",
+    "readDescription(NNTrainedModelBuilder, String)": "2",
+    "readNNParams(NNTrainedModelBuilder, String)": "3",
+    "NNExampleModelDetector()": "4",
+    "NNExampleModelDetector(Path)": "5",
+    "NNExampleModelDetector(File)": "6"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void loadDefaultModels(InputStream modelStream){}",
+    "@Override\r\n    public void loadDefaultModels(ClassLoader classLoader){}",
+    "private void readDescription(final NNTrainedModelBuilder builder, final String line){}",
+    "private void readNNParams(final NNTrainedModelBuilder builder, final String line){}",
+    "public NNExampleModelDetector(){}",
+    "public NNExampleModelDetector(final Path modelFile){}",
+    "public NNExampleModelDetector(final File modelFile){}"
+  ],
+  "constructorSigs": [
+    "NNExampleModelDetector()",
+    "NNExampleModelDetector(Path)",
+    "NNExampleModelDetector(File)"
+  ],
+  "constructorBrief": [
+    "public NNExampleModelDetector(){}",
+    "public NNExampleModelDetector(final Path modelFile){}",
+    "public NNExampleModelDetector(final File modelFile){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.nio.file.Path": [],
+    "org.apache.tika.detect.TrainedModelDetector": [
+      "loadDefaultModels(Path)"
+    ],
+    "java.io.File": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport static java.nio.charset.StandardCharsets.UTF_8;\nimport java.io.BufferedReader;\nimport java.io.File;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.InputStreamReader;\nimport java.net.URL;\nimport java.nio.file.Path;\nimport java.util.Objects;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.apache.tika.mime.MediaType;\n\npublic class NNExampleModelDetector extends TrainedModelDetector {\n\n    private static final String EXAMPLE_NNMODEL_FILE = \"tika-example.nnmodel\";\n\n    private static final long serialVersionUID = 1L;\n\n    private static final Logger LOG = LoggerFactory.getLogger(NNExampleModelDetector.class);\n\n    public NNExampleModelDetector() {\n        super();\n    }\n\n    public NNExampleModelDetector(final Path modelFile) {\n        loadDefaultModels(modelFile);\n    }\n\n    public NNExampleModelDetector(final File modelFile) {\n        loadDefaultModels(modelFile);\n    }\n\n    @Override\n    public void loadDefaultModels(InputStream modelStream) {\n        BufferedReader bReader = new BufferedReader(new InputStreamReader(modelStream, UTF_8));\n        NNTrainedModelBuilder nnBuilder = new NNTrainedModelBuilder();\n        String line;\n        try {\n            while ((line = bReader.readLine()) != null) {\n                line = line.trim();\n                if (line.startsWith(\"#\")) {\n                    readDescription(nnBuilder, line);\n                } else {\n                    readNNParams(nnBuilder, line);\n                    // add this model into map of trained models.\n                    super.registerModels(nnBuilder.getType(), nnBuilder.build());\n                }\n            }\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    /**\n     * this method gets overwritten to register load neural network models\n     */\n    @Override\n    public void loadDefaultModels(ClassLoader classLoader) {\n        if (classLoader == null) {\n            classLoader = TrainedModelDetector.class.getClassLoader();\n        }\n        // This allows us to replicate class.getResource() when using\n        // the classloader directly\n        String classPrefix = TrainedModelDetector.class.getPackage().getName().replace('.', '/') + \"/\";\n        // Get the core URL, and all the extensions URLs\n        URL modelURL = classLoader.getResource(classPrefix + EXAMPLE_NNMODEL_FILE);\n        Objects.requireNonNull(modelURL, \"required resource \" + classPrefix + EXAMPLE_NNMODEL_FILE + \" not found\");\n        try (InputStream stream = modelURL.openStream()) {\n            loadDefaultModels(stream);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    /**\n     * read the comments where the model configuration is written, e.g the\n     * number of inputs, hiddens and output please ensure the first char in the\n     * given string is # In this example grb model file, there are 4 elements 1)\n     * type 2) number of input units 3) number of hidden units. 4) number of\n     * output units.\n     */\n    private void readDescription(final NNTrainedModelBuilder builder, final String line) {\n        int numInputs;\n        int numHidden;\n        int numOutputs;\n        String[] sarr = line.split(\"\\t\");\n        try {\n            MediaType type = MediaType.parse(sarr[1]);\n            numInputs = Integer.parseInt(sarr[2]);\n            numHidden = Integer.parseInt(sarr[3]);\n            numOutputs = Integer.parseInt(sarr[4]);\n            builder.setNumOfInputs(numInputs);\n            builder.setNumOfHidden(numHidden);\n            builder.setNumOfOutputs(numOutputs);\n            builder.setType(type);\n        } catch (Exception e) {\n            LOG.warn(\"Unable to parse the model configuration\", e);\n            throw new RuntimeException(\"Unable to parse the model configuration\", e);\n        }\n    }\n\n    /**\n     * Read the next line for the model parameters and populate the build which\n     * later will be used to instantiate the instance of TrainedModel\n     *\n     * @param builder\n     * @param line\n     */\n    private void readNNParams(final NNTrainedModelBuilder builder, final String line) {\n        String[] sarr = line.split(\"\\t\");\n        int n = sarr.length;\n        float[] params = new float[n];\n        try {\n            int i = 0;\n            for (String fstr : sarr) {\n                params[i] = Float.parseFloat(fstr);\n                i++;\n            }\n            builder.setParams(params);\n        } catch (Exception e) {\n            LOG.warn(\"Unable to parse the model configuration\", e);\n            throw new RuntimeException(\"Unable to parse the model configuration\", e);\n        }\n    }\n}\n",
+  "classDeclarationCode": "public class NNExampleModelDetector extends TrainedModelDetector {\n\n    private static final String EXAMPLE_NNMODEL_FILE = \"tika-example.nnmodel\";\n\n    private static final long serialVersionUID = 1L;\n\n    private static final Logger LOG = LoggerFactory.getLogger(NNExampleModelDetector.class);\n\n    public NNExampleModelDetector() {\n        super();\n    }\n\n    public NNExampleModelDetector(final Path modelFile) {\n        loadDefaultModels(modelFile);\n    }\n\n    public NNExampleModelDetector(final File modelFile) {\n        loadDefaultModels(modelFile);\n    }\n\n    @Override\n    public void loadDefaultModels(InputStream modelStream) {\n        BufferedReader bReader = new BufferedReader(new InputStreamReader(modelStream, UTF_8));\n        NNTrainedModelBuilder nnBuilder = new NNTrainedModelBuilder();\n        String line;\n        try {\n            while ((line = bReader.readLine()) != null) {\n                line = line.trim();\n                if (line.startsWith(\"#\")) {\n                    readDescription(nnBuilder, line);\n                } else {\n                    readNNParams(nnBuilder, line);\n                    // add this model into map of trained models.\n                    super.registerModels(nnBuilder.getType(), nnBuilder.build());\n                }\n            }\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    /**\n     * this method gets overwritten to register load neural network models\n     */\n    @Override\n    public void loadDefaultModels(ClassLoader classLoader) {\n        if (classLoader == null) {\n            classLoader = TrainedModelDetector.class.getClassLoader();\n        }\n        // This allows us to replicate class.getResource() when using\n        // the classloader directly\n        String classPrefix = TrainedModelDetector.class.getPackage().getName().replace('.', '/') + \"/\";\n        // Get the core URL, and all the extensions URLs\n        URL modelURL = classLoader.getResource(classPrefix + EXAMPLE_NNMODEL_FILE);\n        Objects.requireNonNull(modelURL, \"required resource \" + classPrefix + EXAMPLE_NNMODEL_FILE + \" not found\");\n        try (InputStream stream = modelURL.openStream()) {\n            loadDefaultModels(stream);\n        } catch (IOException e) {\n            throw new RuntimeException(\"Unable to read the default media type registry\", e);\n        }\n    }\n\n    /**\n     * read the comments where the model configuration is written, e.g the\n     * number of inputs, hiddens and output please ensure the first char in the\n     * given string is # In this example grb model file, there are 4 elements 1)\n     * type 2) number of input units 3) number of hidden units. 4) number of\n     * output units.\n     */\n    private void readDescription(final NNTrainedModelBuilder builder, final String line) {\n        int numInputs;\n        int numHidden;\n        int numOutputs;\n        String[] sarr = line.split(\"\\t\");\n        try {\n            MediaType type = MediaType.parse(sarr[1]);\n            numInputs = Integer.parseInt(sarr[2]);\n            numHidden = Integer.parseInt(sarr[3]);\n            numOutputs = Integer.parseInt(sarr[4]);\n            builder.setNumOfInputs(numInputs);\n            builder.setNumOfHidden(numHidden);\n            builder.setNumOfOutputs(numOutputs);\n            builder.setType(type);\n        } catch (Exception e) {\n            LOG.warn(\"Unable to parse the model configuration\", e);\n            throw new RuntimeException(\"Unable to parse the model configuration\", e);\n        }\n    }\n\n    /**\n     * Read the next line for the model parameters and populate the build which\n     * later will be used to instantiate the instance of TrainedModel\n     *\n     * @param builder\n     * @param line\n     */\n    private void readNNParams(final NNTrainedModelBuilder builder, final String line) {\n        String[] sarr = line.split(\"\\t\");\n        int n = sarr.length;\n        float[] params = new float[n];\n        try {\n            int i = 0;\n            for (String fstr : sarr) {\n                params[i] = Float.parseFloat(fstr);\n                i++;\n            }\n            builder.setParams(params);\n        } catch (Exception e) {\n            LOG.warn(\"Unable to parse the model configuration\", e);\n            throw new RuntimeException(\"Unable to parse the model configuration\", e);\n        }\n    }\n}",
+  "subClasses": []
+}

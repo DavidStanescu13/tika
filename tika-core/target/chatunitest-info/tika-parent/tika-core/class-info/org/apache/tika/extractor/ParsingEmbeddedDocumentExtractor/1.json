@@ -1,0 +1,32 @@
+{
+  "className": "ParsingEmbeddedDocumentExtractor",
+  "methodName": "checkEmbeddedLimits",
+  "brief": "protected boolean checkEmbeddedLimits(ParseRecord parseRecord){}",
+  "methodSignature": "checkEmbeddedLimits(ParseRecord)",
+  "sourceCode": "protected boolean checkEmbeddedLimits(ParseRecord parseRecord) {\n        // Count limit is a hard stop - once we've hit max, no more embedded parsing\n        if (parseRecord.isEmbeddedCountLimitReached()) {\n            return false;\n        }\n        int maxCount = parseRecord.getMaxEmbeddedCount();\n        if (maxCount >= 0 && parseRecord.getEmbeddedCount() >= maxCount) {\n            parseRecord.setEmbeddedCountLimitReached(true);\n            if (parseRecord.isThrowOnMaxCount()) {\n                throw new EmbeddedLimitReachedException(\n                        EmbeddedLimitReachedException.LimitType.MAX_COUNT, maxCount);\n            }\n            return false;\n        }\n\n        // Depth limit only applies to current depth - siblings at shallower levels\n        // can still be parsed. The flag is set for reporting purposes.\n        // depth is 1-indexed (main doc is depth 1), so embedded depth limit of N\n        // means we allow parsing up to depth N+1\n        int maxDepth = parseRecord.getMaxEmbeddedDepth();\n        if (maxDepth >= 0 && parseRecord.getDepth() > maxDepth + 1) {\n            parseRecord.setEmbeddedDepthLimitReached(true);\n            if (parseRecord.isThrowOnMaxDepth()) {\n                throw new EmbeddedLimitReachedException(\n                        EmbeddedLimitReachedException.LimitType.MAX_DEPTH, maxDepth);\n            }\n            return false;\n        }\n        return true;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseRecord"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseRecord": [
+      "setEmbeddedCountLimitReached(boolean)",
+      "isThrowOnMaxDepth()",
+      "getDepth()",
+      "getMaxEmbeddedDepth()",
+      "setEmbeddedDepthLimitReached(boolean)",
+      "getMaxEmbeddedCount()",
+      "getEmbeddedCount()",
+      "isEmbeddedCountLimitReached()",
+      "isThrowOnMaxCount()"
+    ]
+  },
+  "full_method_info": "/**\n * Checks embedded document limits from ParseRecord.\n * <p>\n * If throwOnMaxDepth or throwOnMaxCount is configured and the respective limit is hit,\n * an EmbeddedLimitReachedException is thrown. Otherwise, returns false and sets the\n * appropriate limit flag on the ParseRecord.\n * <p>\n * Note: The count limit is a hard stop (once hit, no more embedded docs are parsed).\n * The depth limit only affects documents at that depth - sibling documents at\n * shallower depths will still be parsed.\n * <p>\n * Subclasses that override parseEmbedded() should call this method to enforce limits.\n *\n * @param parseRecord the parse record to check\n * @return true if the embedded document should be parsed, false if limits are exceeded\n * @throws EmbeddedLimitReachedException if a limit is exceeded and throwing is configured\n */\nprotected boolean checkEmbeddedLimits(ParseRecord parseRecord) {\n    // Count limit is a hard stop - once we've hit max, no more embedded parsing\n    if (parseRecord.isEmbeddedCountLimitReached()) {\n        return false;\n    }\n    int maxCount = parseRecord.getMaxEmbeddedCount();\n    if (maxCount >= 0 && parseRecord.getEmbeddedCount() >= maxCount) {\n        parseRecord.setEmbeddedCountLimitReached(true);\n        if (parseRecord.isThrowOnMaxCount()) {\n            throw new EmbeddedLimitReachedException(EmbeddedLimitReachedException.LimitType.MAX_COUNT, maxCount);\n        }\n        return false;\n    }\n    // Depth limit only applies to current depth - siblings at shallower levels\n    // can still be parsed. The flag is set for reporting purposes.\n    // depth is 1-indexed (main doc is depth 1), so embedded depth limit of N\n    // means we allow parsing up to depth N+1\n    int maxDepth = parseRecord.getMaxEmbeddedDepth();\n    if (maxDepth >= 0 && parseRecord.getDepth() > maxDepth + 1) {\n        parseRecord.setEmbeddedDepthLimitReached(true);\n        if (parseRecord.isThrowOnMaxDepth()) {\n            throw new EmbeddedLimitReachedException(EmbeddedLimitReachedException.LimitType.MAX_DEPTH, maxDepth);\n        }\n        return false;\n    }\n    return true;\n}",
+  "method_comment": "\n     * Checks embedded document limits from ParseRecord.\n     * <p>\n     * If throwOnMaxDepth or throwOnMaxCount is configured and the respective limit is hit,\n     * an EmbeddedLimitReachedException is thrown. Otherwise, returns false and sets the\n     * appropriate limit flag on the ParseRecord.\n     * <p>\n     * Note: The count limit is a hard stop (once hit, no more embedded docs are parsed).\n     * The depth limit only affects documents at that depth - sibling documents at\n     * shallower depths will still be parsed.\n     * <p>\n     * Subclasses that override parseEmbedded() should call this method to enforce limits.\n     *\n     * @param parseRecord the parse record to check\n     * @return true if the embedded document should be parsed, false if limits are exceeded\n     * @throws EmbeddedLimitReachedException if a limit is exceeded and throwing is configured\n     ",
+  "method_annotation": ""
+}

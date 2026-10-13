@@ -1,0 +1,32 @@
+{
+  "className": "MetadataCharsetDetector",
+  "methodName": "charsetFromMediaType",
+  "brief": "private static Charset charsetFromMediaType(String contentType){}",
+  "methodSignature": "charsetFromMediaType(String)",
+  "sourceCode": "private static Charset charsetFromMediaType(String contentType) {\n        if (contentType == null) {\n            return null;\n        }\n        MediaType mediaType = MediaType.parse(contentType);\n        if (mediaType == null) {\n            return null;\n        }\n        return parseCharset(mediaType.getParameters().get(\"charset\"));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.mime.MediaType": [
+      "getParameters()",
+      "parse(String)"
+    ],
+    "org.apache.tika.detect.MetadataCharsetDetector": [
+      "parseCharset(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "private static Charset charsetFromMediaType(String contentType) {\n    if (contentType == null) {\n        return null;\n    }\n    MediaType mediaType = MediaType.parse(contentType);\n    if (mediaType == null) {\n        return null;\n    }\n    return parseCharset(mediaType.getParameters().get(\"charset\"));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "MimeFilteringDecorator",
+  "methodName": "getIncludeTypes",
+  "brief": "public Set<MediaType> getIncludeTypes(){}",
+  "methodSignature": "getIncludeTypes()",
+  "sourceCode": "public Set<MediaType> getIncludeTypes() {\n            return includeTypes;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return the included mime types, or empty set if no include filter\n */\npublic Set<MediaType> getIncludeTypes() {\n    return includeTypes;\n}",
+  "method_comment": "\n         * @return the included mime types, or empty set if no include filter\n         ",
+  "method_annotation": ""
+}

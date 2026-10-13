@@ -1,0 +1,28 @@
+{
+  "className": "ElementInfo",
+  "methodName": "getQName",
+  "brief": "public String getQName(String uri, String localName) throws SAXException{}",
+  "methodSignature": "getQName(String, String)",
+  "sourceCode": "public String getQName(String uri, String localName) throws SAXException {\n            String prefix = getPrefix(uri);\n            if (prefix.length() > 0) {\n                return prefix + \":\" + localName;\n            } else {\n                return localName;\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.tika.sax.ToXMLContentHandler.ElementInfo": [
+      "getPrefix(String)"
+    ]
+  },
+  "full_method_info": "public String getQName(String uri, String localName) throws SAXException {\n    String prefix = getPrefix(uri);\n    if (prefix.length() > 0) {\n        return prefix + \":\" + localName;\n    } else {\n        return localName;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

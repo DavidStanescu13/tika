@@ -1,0 +1,22 @@
+{
+  "className": "MimeType",
+  "methodName": "getName",
+  "brief": "public String getName(){}",
+  "methodSignature": "getName()",
+  "sourceCode": "public String getName() {\n        return type.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaType": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the name of this media type.\n *\n * @return media type name (lower case)\n */\npublic String getName() {\n    return type.toString();\n}",
+  "method_comment": "\n     * Returns the name of this media type.\n     *\n     * @return media type name (lower case)\n     ",
+  "method_annotation": ""
+}

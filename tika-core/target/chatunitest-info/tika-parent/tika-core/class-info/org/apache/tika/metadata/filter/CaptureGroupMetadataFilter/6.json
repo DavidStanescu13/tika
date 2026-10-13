@@ -1,0 +1,18 @@
+{
+  "className": "CaptureGroupMetadataFilter",
+  "methodName": "getTargetField",
+  "brief": "public String getTargetField(){}",
+  "methodSignature": "getTargetField()",
+  "sourceCode": "public String getTargetField() {\n        return targetField;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public String getTargetField() {\n    return targetField;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

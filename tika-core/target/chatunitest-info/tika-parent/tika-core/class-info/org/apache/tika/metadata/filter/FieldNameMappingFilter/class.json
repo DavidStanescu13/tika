@@ -1,0 +1,81 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.FieldNameMappingFilter",
+  "className": "FieldNameMappingFilter",
+  "index": 139,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class FieldNameMappingFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.LinkedHashMap;",
+    "import java.util.Map;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "Map<String, String> mappings = new LinkedHashMap<>();",
+    "boolean excludeUnmapped = true;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "setExcludeUnmapped(boolean)": "1",
+    "setMappings(Map)": "2",
+    "getMappins()": "3",
+    "toString()": "4",
+    "FieldNameMappingFilter()": "5",
+    "FieldNameMappingFilter(Config)": "6",
+    "FieldNameMappingFilter(JsonConfig)": "7"
+  },
+  "methodsBrief": [
+    "@Override\r\n    protected void filter(Metadata metadata){}",
+    "public void setExcludeUnmapped(boolean excludeUnmapped){}",
+    "public void setMappings(Map<String, String> mappings){}",
+    "public Map<String, String> getMappins(){}",
+    "@Override\r\n    public String toString(){}",
+    "public FieldNameMappingFilter(){}",
+    "public FieldNameMappingFilter(Config config){}",
+    "public FieldNameMappingFilter(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "FieldNameMappingFilter()",
+    "FieldNameMappingFilter(Config)",
+    "FieldNameMappingFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public FieldNameMappingFilter(){}",
+    "public FieldNameMappingFilter(Config config){}",
+    "public FieldNameMappingFilter(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "setExcludeUnmapped(boolean)",
+    "setMappings(Map)",
+    "getMappins()"
+  ],
+  "getterSetterBrief": [
+    "public void setExcludeUnmapped(boolean excludeUnmapped){}",
+    "public void setMappings(Map<String, String> mappings){}",
+    "public Map<String, String> getMappins(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.FieldNameMappingFilter.Config": [],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.LinkedHashMap;\nimport java.util.Map;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.metadata.Metadata;\n\n@TikaComponent\npublic class FieldNameMappingFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public Map<String, String> mappings = new LinkedHashMap<>();\n\n        public boolean excludeUnmapped = true;\n    }\n\n    Map<String, String> mappings = new LinkedHashMap<>();\n\n    boolean excludeUnmapped = true;\n\n    public FieldNameMappingFilter() {\n    }\n\n    public FieldNameMappingFilter(Config config) {\n        this.mappings = new LinkedHashMap<>(config.mappings);\n        this.excludeUnmapped = config.excludeUnmapped;\n    }\n\n    public FieldNameMappingFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        if (excludeUnmapped) {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        // target field name is operator-configured; may legitimately be a reserved key\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                } else {\n                    metadata.remove(n);\n                }\n            }\n        } else {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                }\n            }\n        }\n    }\n\n    /**\n     * If this is <code>true</code> (default), this means that only the fields that\n     * have a \"from\" value in the mapper will be passed through.  Otherwise,\n     * this will pass through all keys/values and mutate the keys\n     * that exist in the mappings.\n     *\n     * @param excludeUnmapped\n     */\n    public void setExcludeUnmapped(boolean excludeUnmapped) {\n        this.excludeUnmapped = excludeUnmapped;\n    }\n\n    public void setMappings(Map<String, String> mappings) {\n        for (Map.Entry<String, String> e : mappings.entrySet()) {\n            this.mappings.put(e.getKey(), e.getValue());\n        }\n    }\n\n    public Map<String, String> getMappins() {\n        return mappings;\n    }\n\n    @Override\n    public String toString() {\n        return \"FieldNameMappingFilter{\" + \"mappings=\" + mappings + \", excludeUnmapped=\" + excludeUnmapped + '}';\n    }\n}\n",
+  "classDeclarationCode": "@TikaComponent\npublic class FieldNameMappingFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public Map<String, String> mappings = new LinkedHashMap<>();\n\n        public boolean excludeUnmapped = true;\n    }\n\n    Map<String, String> mappings = new LinkedHashMap<>();\n\n    boolean excludeUnmapped = true;\n\n    public FieldNameMappingFilter() {\n    }\n\n    public FieldNameMappingFilter(Config config) {\n        this.mappings = new LinkedHashMap<>(config.mappings);\n        this.excludeUnmapped = config.excludeUnmapped;\n    }\n\n    public FieldNameMappingFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    @Override\n    protected void filter(Metadata metadata) {\n        if (excludeUnmapped) {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        // target field name is operator-configured; may legitimately be a reserved key\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                } else {\n                    metadata.remove(n);\n                }\n            }\n        } else {\n            for (String n : metadata.names()) {\n                if (mappings.containsKey(n)) {\n                    String[] vals = metadata.getValues(n);\n                    metadata.remove(n);\n                    for (String val : vals) {\n                        metadata.addTrusted(mappings.get(n), val);\n                    }\n                }\n            }\n        }\n    }\n\n    /**\n     * If this is <code>true</code> (default), this means that only the fields that\n     * have a \"from\" value in the mapper will be passed through.  Otherwise,\n     * this will pass through all keys/values and mutate the keys\n     * that exist in the mappings.\n     *\n     * @param excludeUnmapped\n     */\n    public void setExcludeUnmapped(boolean excludeUnmapped) {\n        this.excludeUnmapped = excludeUnmapped;\n    }\n\n    public void setMappings(Map<String, String> mappings) {\n        for (Map.Entry<String, String> e : mappings.entrySet()) {\n            this.mappings.put(e.getKey(), e.getValue());\n        }\n    }\n\n    public Map<String, String> getMappins() {\n        return mappings;\n    }\n\n    @Override\n    public String toString() {\n        return \"FieldNameMappingFilter{\" + \"mappings=\" + mappings + \", excludeUnmapped=\" + excludeUnmapped + '}';\n    }\n}",
+  "subClasses": []
+}

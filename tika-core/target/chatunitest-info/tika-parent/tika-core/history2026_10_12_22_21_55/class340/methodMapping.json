@@ -1,0 +1,26 @@
+{
+  "method0": {
+    "methodName": "initCommonCharsets",
+    "signature": "initCommonCharsets(String[])",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method1": {
+    "methodName": "isSupported",
+    "signature": "isSupported(String)",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method2": {
+    "methodName": "clean",
+    "signature": "clean(String)",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method3": {
+    "methodName": "forName",
+    "signature": "forName(String)",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils"
+  }
+}

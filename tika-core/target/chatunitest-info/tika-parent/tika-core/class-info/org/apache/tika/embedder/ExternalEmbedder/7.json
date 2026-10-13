@@ -1,0 +1,22 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "setCommand",
+  "brief": "public void setCommand(String... command){}",
+  "methodSignature": "setCommand(String[])",
+  "sourceCode": "public void setCommand(String... command) {\n        this.command = command;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String...": []
+  },
+  "full_method_info": "/**\n * Sets the command to be run. This can include either of\n * {@link ExternalParser#INPUT_FILE_TOKEN} or\n * {@link ExternalParser#OUTPUT_FILE_TOKEN} if the command\n * needs filenames.\n *\n * @see Runtime#exec(String[])\n */\npublic void setCommand(String... command) {\n    this.command = command;\n}",
+  "method_comment": "\n     * Sets the command to be run. This can include either of\n     * {@link ExternalParser#INPUT_FILE_TOKEN} or\n     * {@link ExternalParser#OUTPUT_FILE_TOKEN} if the command\n     * needs filenames.\n     *\n     * @see Runtime#exec(String[])\n     ",
+  "method_annotation": ""
+}

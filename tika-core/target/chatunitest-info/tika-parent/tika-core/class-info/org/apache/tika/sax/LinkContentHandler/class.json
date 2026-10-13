@@ -1,0 +1,68 @@
+{
+  "fullClassName": "org.apache.tika.sax.LinkContentHandler",
+  "className": "LinkContentHandler",
+  "index": 291,
+  "modifier": "[public ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class LinkContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import static org.apache.tika.sax.XHTMLContentHandler.XHTML;",
+    "import java.util.ArrayList;",
+    "import java.util.LinkedList;",
+    "import java.util.List;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.helpers.DefaultHandler;"
+  ],
+  "fields": [
+    "private final LinkedList<LinkBuilder> builderStack = new LinkedList<>();",
+    "private final List<Link> links = new ArrayList<>();",
+    "private final boolean collapseWhitespaceInAnchor;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getLinks()": "0",
+    "startElement(String, String, String, Attributes)": "1",
+    "characters(char[], int, int)": "2",
+    "ignorableWhitespace(char[], int, int)": "3",
+    "endElement(String, String, String)": "4",
+    "LinkContentHandler()": "5",
+    "LinkContentHandler(boolean)": "6"
+  },
+  "methodsBrief": [
+    "public List<Link> getLinks(){}",
+    "@Override\r\n    public void startElement(String uri, String local, String name, Attributes attributes){}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length){}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length){}",
+    "@Override\r\n    public void endElement(String uri, String local, String name){}",
+    "public LinkContentHandler(){}",
+    "public LinkContentHandler(boolean collapseWhitespaceInAnchor){}"
+  ],
+  "constructorSigs": [
+    "LinkContentHandler()",
+    "LinkContentHandler(boolean)"
+  ],
+  "constructorBrief": [
+    "public LinkContentHandler(){}",
+    "public LinkContentHandler(boolean collapseWhitespaceInAnchor){}"
+  ],
+  "getterSetterSigs": [
+    "getLinks()"
+  ],
+  "getterSetterBrief": [
+    "public List<Link> getLinks(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport static org.apache.tika.sax.XHTMLContentHandler.XHTML;\nimport java.util.ArrayList;\nimport java.util.LinkedList;\nimport java.util.List;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.helpers.DefaultHandler;\n\n/**\n * Content handler that collects links from an XHTML document.\n */\npublic class LinkContentHandler extends DefaultHandler {\n\n    /**\n     * Stack of link builders, one for each level of nested links currently\n     * being processed. A usual case of a nested link would be a hyperlinked\n     * image (<code>&a href=\"...\"&gt;&lt;img src=\"...\"&gt;&lt;&gt;</code>),\n     * but it's possible (though unlikely) for also other kinds of nesting\n     * to occur.\n     */\n    private final LinkedList<LinkBuilder> builderStack = new LinkedList<>();\n\n    /**\n     * Collected links\n     */\n    private final List<Link> links = new ArrayList<>();\n\n    /**\n     * Whether to collapse whitespace in anchor text\n     */\n    private final boolean collapseWhitespaceInAnchor;\n\n    public LinkContentHandler() {\n        this(false);\n    }\n\n    public LinkContentHandler(boolean collapseWhitespaceInAnchor) {\n        super();\n        this.collapseWhitespaceInAnchor = collapseWhitespaceInAnchor;\n    }\n\n    /**\n     * Returns the list of collected links.\n     *\n     * @return collected links\n     */\n    public List<Link> getLinks() {\n        return links;\n    }\n\n    // -------------------------------------------------------< ContentHandler>\n    @Override\n    public void startElement(String uri, String local, String name, Attributes attributes) {\n        if (XHTML.equals(uri)) {\n            if (\"a\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"a\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"link\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"link\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"script\".equals(local)) {\n                if (attributes.getValue(\"\", \"src\") != null) {\n                    LinkBuilder builder = new LinkBuilder(\"script\");\n                    builder.setURI(attributes.getValue(\"\", \"src\"));\n                    builderStack.addFirst(builder);\n                }\n            } else if (\"iframe\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"iframe\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builderStack.addFirst(builder);\n            } else if (\"img\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"img\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n                String alt = attributes.getValue(\"\", \"alt\");\n                if (alt != null) {\n                    char[] ch = alt.toCharArray();\n                    characters(ch, 0, ch.length);\n                }\n            }\n        }\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) {\n        for (LinkBuilder builder : builderStack) {\n            builder.characters(ch, start, length);\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) {\n        characters(ch, start, length);\n    }\n\n    @Override\n    public void endElement(String uri, String local, String name) {\n        if (!builderStack.isEmpty() && XHTML.equals(uri)) {\n            if (\"a\".equals(local) || \"img\".equals(local) || \"link\".equals(local) || \"script\".equals(local) || \"iframe\".equals(local)) {\n                // ensure this is the correct builder. not all </script> tags correspond\n                // to a LinkBuilder, e.g. for embedded scripts\n                if (builderStack.getFirst().getType().equals(local)) {\n                    LinkBuilder builder = builderStack.removeFirst();\n                    links.add(builder.getLink(collapseWhitespaceInAnchor));\n                }\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content handler that collects links from an XHTML document.\n */\npublic class LinkContentHandler extends DefaultHandler {\n\n    /**\n     * Stack of link builders, one for each level of nested links currently\n     * being processed. A usual case of a nested link would be a hyperlinked\n     * image (<code>&a href=\"...\"&gt;&lt;img src=\"...\"&gt;&lt;&gt;</code>),\n     * but it's possible (though unlikely) for also other kinds of nesting\n     * to occur.\n     */\n    private final LinkedList<LinkBuilder> builderStack = new LinkedList<>();\n\n    /**\n     * Collected links\n     */\n    private final List<Link> links = new ArrayList<>();\n\n    /**\n     * Whether to collapse whitespace in anchor text\n     */\n    private final boolean collapseWhitespaceInAnchor;\n\n    public LinkContentHandler() {\n        this(false);\n    }\n\n    public LinkContentHandler(boolean collapseWhitespaceInAnchor) {\n        super();\n        this.collapseWhitespaceInAnchor = collapseWhitespaceInAnchor;\n    }\n\n    /**\n     * Returns the list of collected links.\n     *\n     * @return collected links\n     */\n    public List<Link> getLinks() {\n        return links;\n    }\n\n    // -------------------------------------------------------< ContentHandler>\n    @Override\n    public void startElement(String uri, String local, String name, Attributes attributes) {\n        if (XHTML.equals(uri)) {\n            if (\"a\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"a\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"link\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"link\");\n                builder.setURI(attributes.getValue(\"\", \"href\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n            } else if (\"script\".equals(local)) {\n                if (attributes.getValue(\"\", \"src\") != null) {\n                    LinkBuilder builder = new LinkBuilder(\"script\");\n                    builder.setURI(attributes.getValue(\"\", \"src\"));\n                    builderStack.addFirst(builder);\n                }\n            } else if (\"iframe\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"iframe\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builderStack.addFirst(builder);\n            } else if (\"img\".equals(local)) {\n                LinkBuilder builder = new LinkBuilder(\"img\");\n                builder.setURI(attributes.getValue(\"\", \"src\"));\n                builder.setTitle(attributes.getValue(\"\", \"title\"));\n                builder.setRel(attributes.getValue(\"\", \"rel\"));\n                builderStack.addFirst(builder);\n                String alt = attributes.getValue(\"\", \"alt\");\n                if (alt != null) {\n                    char[] ch = alt.toCharArray();\n                    characters(ch, 0, ch.length);\n                }\n            }\n        }\n    }\n\n    @Override\n    public void characters(char[] ch, int start, int length) {\n        for (LinkBuilder builder : builderStack) {\n            builder.characters(ch, start, length);\n        }\n    }\n\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) {\n        characters(ch, start, length);\n    }\n\n    @Override\n    public void endElement(String uri, String local, String name) {\n        if (!builderStack.isEmpty() && XHTML.equals(uri)) {\n            if (\"a\".equals(local) || \"img\".equals(local) || \"link\".equals(local) || \"script\".equals(local) || \"iframe\".equals(local)) {\n                // ensure this is the correct builder. not all </script> tags correspond\n                // to a LinkBuilder, e.g. for embedded scripts\n                if (builderStack.getFirst().getType().equals(local)) {\n                    LinkBuilder builder = builderStack.removeFirst();\n                    links.add(builder.getLink(collapseWhitespaceInAnchor));\n                }\n            }\n        }\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,25 @@
+{
+  "className": "CompositeParser",
+  "methodName": "assignableFrom",
+  "brief": "private boolean assignableFrom(Collection<Class<? extends Parser>> excludeParsers,\r\n                                   Class<? extends Parser> p){}",
+  "methodSignature": "assignableFrom(Collection, Class)",
+  "sourceCode": "private boolean assignableFrom(Collection<Class<? extends Parser>> excludeParsers,\n                                   Class<? extends Parser> p) {\n        for (Class<? extends Parser> e : excludeParsers) {\n            if (e.isAssignableFrom(p)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<Class<? extends Parser>>",
+    "Class<? extends Parser>"
+  ],
+  "dependentMethods": {
+    "java.lang.Class": [
+      "isAssignableFrom(Object>)"
+    ]
+  },
+  "full_method_info": "private boolean assignableFrom(Collection<Class<? extends Parser>> excludeParsers, Class<? extends Parser> p) {\n    for (Class<? extends Parser> e : excludeParsers) {\n        if (e.isAssignableFrom(p)) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "BasicContentHandlerFactory",
+  "methodName": "newInstance",
+  "brief": "public static BasicContentHandlerFactory newInstance(HANDLER_TYPE type, ParseContext context){}",
+  "methodSignature": "newInstance(HANDLER_TYPE, ParseContext)",
+  "sourceCode": "public static BasicContentHandlerFactory newInstance(HANDLER_TYPE type, ParseContext context) {\n        OutputLimits limits = OutputLimits.get(context);\n        return new BasicContentHandlerFactory(type, limits.getWriteLimit(),\n                limits.isThrowOnWriteLimit(), context);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "HANDLER_TYPE",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.BasicContentHandlerFactory.HANDLER_TYPE": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.config.OutputLimits": [
+      "get(ParseContext)",
+      "isThrowOnWriteLimit()",
+      "getWriteLimit()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new BasicContentHandlerFactory configured from OutputLimits in the ParseContext.\n * <p>\n * If OutputLimits is present in the context, the factory will be configured with those\n * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used.\n *\n * @param type the handler type\n * @param context the ParseContext (required if throwOnWriteLimit is false)\n * @return a configured BasicContentHandlerFactory\n */\npublic static BasicContentHandlerFactory newInstance(HANDLER_TYPE type, ParseContext context) {\n    OutputLimits limits = OutputLimits.get(context);\n    return new BasicContentHandlerFactory(type, limits.getWriteLimit(), limits.isThrowOnWriteLimit(), context);\n}",
+  "method_comment": "\n     * Creates a new BasicContentHandlerFactory configured from OutputLimits in the ParseContext.\n     * <p>\n     * If OutputLimits is present in the context, the factory will be configured with those\n     * limits (writeLimit, throwOnWriteLimit). Otherwise, default values are used.\n     *\n     * @param type the handler type\n     * @param context the ParseContext (required if throwOnWriteLimit is false)\n     * @return a configured BasicContentHandlerFactory\n     ",
+  "method_annotation": ""
+}

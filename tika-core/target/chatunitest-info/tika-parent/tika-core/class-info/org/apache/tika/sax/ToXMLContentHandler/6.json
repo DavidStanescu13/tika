@@ -1,0 +1,24 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "write",
+  "brief": "protected void write(char ch) throws SAXException{}",
+  "methodSignature": "write(char)",
+  "sourceCode": "protected void write(char ch) throws SAXException {\n        super.characters(new char[]{ch}, 0, 1);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.ToTextContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given character as-is.\n *\n * @param ch character to be written\n * @throws SAXException if the character could not be written\n */\nprotected void write(char ch) throws SAXException {\n    super.characters(new char[] { ch }, 0, 1);\n}",
+  "method_comment": "\n     * Writes the given character as-is.\n     *\n     * @param ch character to be written\n     * @throws SAXException if the character could not be written\n     ",
+  "method_annotation": ""
+}

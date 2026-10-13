@@ -1,0 +1,26 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "parseEmbedded",
+  "brief": "public void parseEmbedded(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                              boolean outputHtml) throws IOException, SAXException{}",
+  "methodSignature": "parseEmbedded(TikaInputStream, ContentHandler, Metadata, boolean)",
+  "sourceCode": "public void parseEmbedded(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                              boolean outputHtml) throws IOException, SAXException {\n        embeddedDocumentExtractor.parseEmbedded(tis, handler, metadata, context, outputHtml);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "public void parseEmbedded(TikaInputStream tis, ContentHandler handler, Metadata metadata, boolean outputHtml) throws IOException, SAXException {\n    embeddedDocumentExtractor.parseEmbedded(tis, handler, metadata, context, outputHtml);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

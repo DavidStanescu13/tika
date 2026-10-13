@@ -1,0 +1,22 @@
+{
+  "className": "Embedder",
+  "methodName": "getSupportedEmbedTypes",
+  "brief": "Set<MediaType> getSupportedEmbedTypes(ParseContext context);",
+  "methodSignature": "getSupportedEmbedTypes(ParseContext)",
+  "sourceCode": "Set<MediaType> getSupportedEmbedTypes(ParseContext context);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Returns the set of media types supported by this embedder when used with\n * the given parse context.\n * <p>\n * The name differs from the precedence of {@link Parser#getSupportedTypes(ParseContext)}\n * so that parser implementations may also choose to implement this interface.\n *\n * @param context parse context\n * @return immutable set of media types\n */\nSet<MediaType> getSupportedEmbedTypes(ParseContext context);",
+  "method_comment": "\n     * Returns the set of media types supported by this embedder when used with\n     * the given parse context.\n     * <p>\n     * The name differs from the precedence of {@link Parser#getSupportedTypes(ParseContext)}\n     * so that parser implementations may also choose to implement this interface.\n     *\n     * @param context parse context\n     * @return immutable set of media types\n     ",
+  "method_annotation": ""
+}

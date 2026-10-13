@@ -1,0 +1,29 @@
+{
+  "className": "ToXMLContentHandler",
+  "methodName": "writeCharsAndEntity",
+  "brief": "private int writeCharsAndEntity(char[] ch, int from, int to, String entity)\r\n            throws SAXException{}",
+  "methodSignature": "writeCharsAndEntity(char[], int, int, String)",
+  "sourceCode": "private int writeCharsAndEntity(char[] ch, int from, int to, String entity)\n            throws SAXException {\n        super.characters(ch, from, to - from);\n        write('&');\n        write(entity);\n        write(';');\n        return to + 1;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.lang.String": [],
+    "org.apache.tika.sax.ToTextContentHandler": [
+      "characters(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given characters as-is followed by the given entity.\n *\n * @param ch     character array\n * @param from   start position in the array\n * @param to     end position in the array\n * @param entity entity code\n * @return next position in the array,\n * after the characters plus one entity\n * @throws SAXException if the characters could not be written\n */\nprivate int writeCharsAndEntity(char[] ch, int from, int to, String entity) throws SAXException {\n    super.characters(ch, from, to - from);\n    write('&');\n    write(entity);\n    write(';');\n    return to + 1;\n}",
+  "method_comment": "\n     * Writes the given characters as-is followed by the given entity.\n     *\n     * @param ch     character array\n     * @param from   start position in the array\n     * @param to     end position in the array\n     * @param entity entity code\n     * @return next position in the array,\n     * after the characters plus one entity\n     * @throws SAXException if the characters could not be written\n     ",
+  "method_annotation": ""
+}

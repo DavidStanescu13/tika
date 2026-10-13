@@ -1,0 +1,22 @@
+{
+  "className": "CachingInputStream",
+  "methodName": "closeCacheOnly",
+  "brief": "void closeCacheOnly() throws IOException{}",
+  "methodSignature": "closeCacheOnly()",
+  "sourceCode": "void closeCacheOnly() throws IOException {\n        cache.close();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "close()"
+    ]
+  },
+  "full_method_info": "/**\n * Close only the cache, not the underlying source stream.\n * Used when TikaInputStream spills to file - the source stream\n * (e.g., an archive stream) may need to remain open.\n */\nvoid closeCacheOnly() throws IOException {\n    cache.close();\n}",
+  "method_comment": "\n     * Close only the cache, not the underlying source stream.\n     * Used when TikaInputStream spills to file - the source stream\n     * (e.g., an archive stream) may need to remain open.\n     ",
+  "method_annotation": ""
+}

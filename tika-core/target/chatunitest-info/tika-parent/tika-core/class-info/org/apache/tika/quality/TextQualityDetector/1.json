@@ -1,0 +1,25 @@
+{
+  "className": "TextQualityDetector",
+  "methodName": "compare",
+  "brief": "TextQualityComparison compare(String labelA, String candidateA,\r\n                                  String labelB, String candidateB);",
+  "methodSignature": "compare(String, String, String, String)",
+  "sourceCode": "TextQualityComparison compare(String labelA, String candidateA,\n                                  String labelB, String candidateB);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Compares two candidate strings and returns which is higher-quality (cleaner text).\n *\n * <p>A common use case is charset-decoding arbitration: given raw bytes decoded\n * via two different charsets, pass each decoded string here with a human-readable\n * label (e.g. the charset name) and the detector will pick the one that looks\n * more like natural language.\n *\n * @param labelA     human-readable label for candidate A (e.g. {@code \"cp1252\"})\n * @param candidateA first candidate string\n * @param labelB     human-readable label for candidate B (e.g. {@code \"cp1251\"})\n * @param candidateB second candidate string\n * @return a {@link TextQualityComparison} with the winning label and confidence delta\n */\nTextQualityComparison compare(String labelA, String candidateA, String labelB, String candidateB);",
+  "method_comment": "\n     * Compares two candidate strings and returns which is higher-quality (cleaner text).\n     *\n     * <p>A common use case is charset-decoding arbitration: given raw bytes decoded\n     * via two different charsets, pass each decoded string here with a human-readable\n     * label (e.g. the charset name) and the detector will pick the one that looks\n     * more like natural language.\n     *\n     * @param labelA     human-readable label for candidate A (e.g. {@code \"cp1252\"})\n     * @param candidateA first candidate string\n     * @param labelB     human-readable label for candidate B (e.g. {@code \"cp1251\"})\n     * @param candidateB second candidate string\n     * @return a {@link TextQualityComparison} with the winning label and confidence delta\n     ",
+  "method_annotation": ""
+}

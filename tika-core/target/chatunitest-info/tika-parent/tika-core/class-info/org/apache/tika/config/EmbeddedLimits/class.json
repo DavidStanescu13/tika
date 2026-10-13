@@ -1,0 +1,92 @@
+{
+  "fullClassName": "org.apache.tika.config.EmbeddedLimits",
+  "className": "EmbeddedLimits",
+  "index": 4,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.tika.config",
+  "packageDeclaration": "package org.apache.tika.config;",
+  "classSignature": "@TikaComponent(name = \"embedded-limits\", spi = false)\r\npublic class EmbeddedLimits",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "public static final int UNLIMITED = -1;",
+    "private int maxDepth = UNLIMITED;",
+    "private boolean throwOnMaxDepth = false;",
+    "private int maxCount = UNLIMITED;",
+    "private boolean throwOnMaxCount = false;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "getMaxDepth()": "0",
+    "setMaxDepth(int)": "1",
+    "isThrowOnMaxDepth()": "2",
+    "setThrowOnMaxDepth(boolean)": "3",
+    "getMaxCount()": "4",
+    "setMaxCount(int)": "5",
+    "isThrowOnMaxCount()": "6",
+    "setThrowOnMaxCount(boolean)": "7",
+    "get(ParseContext)": "8",
+    "toString()": "9",
+    "equals(Object)": "10",
+    "hashCode()": "11",
+    "EmbeddedLimits()": "12",
+    "EmbeddedLimits(int, boolean, int, boolean)": "13"
+  },
+  "methodsBrief": [
+    "public int getMaxDepth(){}",
+    "public void setMaxDepth(int maxDepth){}",
+    "public boolean isThrowOnMaxDepth(){}",
+    "public void setThrowOnMaxDepth(boolean throwOnMaxDepth){}",
+    "public int getMaxCount(){}",
+    "public void setMaxCount(int maxCount){}",
+    "public boolean isThrowOnMaxCount(){}",
+    "public void setThrowOnMaxCount(boolean throwOnMaxCount){}",
+    "public static EmbeddedLimits get(ParseContext context){}",
+    "@Override\r\n    public String toString(){}",
+    "@Override\r\n    public boolean equals(Object o){}",
+    "@Override\r\n    public int hashCode(){}",
+    "public EmbeddedLimits(){}",
+    "public EmbeddedLimits(int maxDepth, boolean throwOnMaxDepth, int maxCount, boolean throwOnMaxCount){}"
+  ],
+  "constructorSigs": [
+    "EmbeddedLimits()",
+    "EmbeddedLimits(int, boolean, int, boolean)"
+  ],
+  "constructorBrief": [
+    "public EmbeddedLimits(){}",
+    "public EmbeddedLimits(int maxDepth, boolean throwOnMaxDepth, int maxCount, boolean throwOnMaxCount){}"
+  ],
+  "getterSetterSigs": [
+    "getMaxDepth()",
+    "setMaxDepth(int)",
+    "setThrowOnMaxDepth(boolean)",
+    "getMaxCount()",
+    "setMaxCount(int)",
+    "setThrowOnMaxCount(boolean)"
+  ],
+  "getterSetterBrief": [
+    "public int getMaxDepth(){}",
+    "public void setMaxDepth(int maxDepth){}",
+    "public void setThrowOnMaxDepth(boolean throwOnMaxDepth){}",
+    "public int getMaxCount(){}",
+    "public void setMaxCount(int maxCount){}",
+    "public void setThrowOnMaxCount(boolean throwOnMaxCount){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.config;\n\nimport java.io.Serializable;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Configuration for limits on embedded document processing.\n * <p>\n * This controls how deep and how many embedded documents are processed:\n * <ul>\n *   <li>{@code maxDepth} - maximum nesting depth for embedded documents (-1 = unlimited)</li>\n *   <li>{@code throwOnMaxDepth} - whether to throw an exception when maxDepth is reached</li>\n *   <li>{@code maxCount} - maximum number of embedded documents to process (-1 = unlimited)</li>\n *   <li>{@code throwOnMaxCount} - whether to throw an exception when maxCount is reached</li>\n * </ul>\n * <p>\n * <b>maxDepth behavior:</b> When the depth limit is reached, recursion stops but siblings at the\n * current level continue to be processed. For example, with maxDepth=1:\n * <pre>\n * container.zip (depth 0)\n * ├── doc1.docx (depth 1) ✓ PARSED\n * │   ├── image1.png (depth 2) ✗ NOT PARSED (exceeds maxDepth)\n * │   └── embed.xlsx (depth 2) ✗ NOT PARSED (exceeds maxDepth)\n * ├── doc2.pdf (depth 1) ✓ PARSED (sibling at same level)\n * └── doc3.txt (depth 1) ✓ PARSED (sibling at same level)\n * </pre>\n * <p>\n * <b>maxCount behavior:</b> When the count limit is reached, processing stops immediately.\n * No more embedded documents are processed, including siblings.\n * <p>\n * When a limit is hit and throwing is disabled:\n * <ul>\n *   <li>{@code X-TIKA-maxDepthReached=true} is set when maxDepth is hit</li>\n *   <li>{@code X-TIKA-maxEmbeddedCountReached=true} is set when maxCount is hit</li>\n * </ul>\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"embedded-limits\": {\n *       \"maxDepth\": 10,\n *       \"throwOnMaxDepth\": false,\n *       \"maxCount\": 1000,\n *       \"throwOnMaxCount\": false\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(name = \"embedded-limits\", spi = false)\npublic class EmbeddedLimits implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    public static final int UNLIMITED = -1;\n\n    private int maxDepth = UNLIMITED;\n\n    private boolean throwOnMaxDepth = false;\n\n    private int maxCount = UNLIMITED;\n\n    private boolean throwOnMaxCount = false;\n\n    public EmbeddedLimits() {\n    }\n\n    public EmbeddedLimits(int maxDepth, boolean throwOnMaxDepth, int maxCount, boolean throwOnMaxCount) {\n        this.maxDepth = maxDepth;\n        this.throwOnMaxDepth = throwOnMaxDepth;\n        this.maxCount = maxCount;\n        this.throwOnMaxCount = throwOnMaxCount;\n    }\n\n    /**\n     * Gets the maximum nesting depth for embedded documents.\n     *\n     * @return maximum depth, or -1 for unlimited\n     */\n    public int getMaxDepth() {\n        return maxDepth;\n    }\n\n    /**\n     * Sets the maximum nesting depth for embedded documents.\n     *\n     * @param maxDepth maximum depth, or -1 for unlimited\n     */\n    public void setMaxDepth(int maxDepth) {\n        this.maxDepth = maxDepth;\n    }\n\n    /**\n     * Gets whether to throw an exception when maxDepth is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnMaxDepth() {\n        return throwOnMaxDepth;\n    }\n\n    /**\n     * Sets whether to throw an exception when maxDepth is reached.\n     *\n     * @param throwOnMaxDepth true to throw an exception\n     */\n    public void setThrowOnMaxDepth(boolean throwOnMaxDepth) {\n        this.throwOnMaxDepth = throwOnMaxDepth;\n    }\n\n    /**\n     * Gets the maximum number of embedded documents to process.\n     *\n     * @return maximum count, or -1 for unlimited\n     */\n    public int getMaxCount() {\n        return maxCount;\n    }\n\n    /**\n     * Sets the maximum number of embedded documents to process.\n     *\n     * @param maxCount maximum count, or -1 for unlimited\n     */\n    public void setMaxCount(int maxCount) {\n        this.maxCount = maxCount;\n    }\n\n    /**\n     * Gets whether to throw an exception when maxCount is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnMaxCount() {\n        return throwOnMaxCount;\n    }\n\n    /**\n     * Sets whether to throw an exception when maxCount is reached.\n     *\n     * @param throwOnMaxCount true to throw an exception\n     */\n    public void setThrowOnMaxCount(boolean throwOnMaxCount) {\n        this.throwOnMaxCount = throwOnMaxCount;\n    }\n\n    /**\n     * Helper method to get EmbeddedLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the EmbeddedLimits from context, or a new instance with defaults if not found\n     */\n    public static EmbeddedLimits get(ParseContext context) {\n        if (context == null) {\n            return new EmbeddedLimits();\n        }\n        EmbeddedLimits limits = context.get(EmbeddedLimits.class);\n        return limits != null ? limits : new EmbeddedLimits();\n    }\n\n    @Override\n    public String toString() {\n        return \"EmbeddedLimits{\" + \"maxDepth=\" + maxDepth + \", throwOnMaxDepth=\" + throwOnMaxDepth + \", maxCount=\" + maxCount + \", throwOnMaxCount=\" + throwOnMaxCount + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        EmbeddedLimits that = (EmbeddedLimits) o;\n        return maxDepth == that.maxDepth && throwOnMaxDepth == that.throwOnMaxDepth && maxCount == that.maxCount && throwOnMaxCount == that.throwOnMaxCount;\n    }\n\n    @Override\n    public int hashCode() {\n        int result = maxDepth;\n        result = 31 * result + (throwOnMaxDepth ? 1 : 0);\n        result = 31 * result + maxCount;\n        result = 31 * result + (throwOnMaxCount ? 1 : 0);\n        return result;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for limits on embedded document processing.\n * <p>\n * This controls how deep and how many embedded documents are processed:\n * <ul>\n *   <li>{@code maxDepth} - maximum nesting depth for embedded documents (-1 = unlimited)</li>\n *   <li>{@code throwOnMaxDepth} - whether to throw an exception when maxDepth is reached</li>\n *   <li>{@code maxCount} - maximum number of embedded documents to process (-1 = unlimited)</li>\n *   <li>{@code throwOnMaxCount} - whether to throw an exception when maxCount is reached</li>\n * </ul>\n * <p>\n * <b>maxDepth behavior:</b> When the depth limit is reached, recursion stops but siblings at the\n * current level continue to be processed. For example, with maxDepth=1:\n * <pre>\n * container.zip (depth 0)\n * ├── doc1.docx (depth 1) ✓ PARSED\n * │   ├── image1.png (depth 2) ✗ NOT PARSED (exceeds maxDepth)\n * │   └── embed.xlsx (depth 2) ✗ NOT PARSED (exceeds maxDepth)\n * ├── doc2.pdf (depth 1) ✓ PARSED (sibling at same level)\n * └── doc3.txt (depth 1) ✓ PARSED (sibling at same level)\n * </pre>\n * <p>\n * <b>maxCount behavior:</b> When the count limit is reached, processing stops immediately.\n * No more embedded documents are processed, including siblings.\n * <p>\n * When a limit is hit and throwing is disabled:\n * <ul>\n *   <li>{@code X-TIKA-maxDepthReached=true} is set when maxDepth is hit</li>\n *   <li>{@code X-TIKA-maxEmbeddedCountReached=true} is set when maxCount is hit</li>\n * </ul>\n * <p>\n * Example configuration:\n * <pre>\n * {\n *   \"parse-context\": {\n *     \"embedded-limits\": {\n *       \"maxDepth\": 10,\n *       \"throwOnMaxDepth\": false,\n *       \"maxCount\": 1000,\n *       \"throwOnMaxCount\": false\n *     }\n *   }\n * }\n * </pre>\n *\n * @since Apache Tika 4.0\n */\n@TikaComponent(name = \"embedded-limits\", spi = false)\npublic class EmbeddedLimits implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    public static final int UNLIMITED = -1;\n\n    private int maxDepth = UNLIMITED;\n\n    private boolean throwOnMaxDepth = false;\n\n    private int maxCount = UNLIMITED;\n\n    private boolean throwOnMaxCount = false;\n\n    public EmbeddedLimits() {\n    }\n\n    public EmbeddedLimits(int maxDepth, boolean throwOnMaxDepth, int maxCount, boolean throwOnMaxCount) {\n        this.maxDepth = maxDepth;\n        this.throwOnMaxDepth = throwOnMaxDepth;\n        this.maxCount = maxCount;\n        this.throwOnMaxCount = throwOnMaxCount;\n    }\n\n    /**\n     * Gets the maximum nesting depth for embedded documents.\n     *\n     * @return maximum depth, or -1 for unlimited\n     */\n    public int getMaxDepth() {\n        return maxDepth;\n    }\n\n    /**\n     * Sets the maximum nesting depth for embedded documents.\n     *\n     * @param maxDepth maximum depth, or -1 for unlimited\n     */\n    public void setMaxDepth(int maxDepth) {\n        this.maxDepth = maxDepth;\n    }\n\n    /**\n     * Gets whether to throw an exception when maxDepth is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnMaxDepth() {\n        return throwOnMaxDepth;\n    }\n\n    /**\n     * Sets whether to throw an exception when maxDepth is reached.\n     *\n     * @param throwOnMaxDepth true to throw an exception\n     */\n    public void setThrowOnMaxDepth(boolean throwOnMaxDepth) {\n        this.throwOnMaxDepth = throwOnMaxDepth;\n    }\n\n    /**\n     * Gets the maximum number of embedded documents to process.\n     *\n     * @return maximum count, or -1 for unlimited\n     */\n    public int getMaxCount() {\n        return maxCount;\n    }\n\n    /**\n     * Sets the maximum number of embedded documents to process.\n     *\n     * @param maxCount maximum count, or -1 for unlimited\n     */\n    public void setMaxCount(int maxCount) {\n        this.maxCount = maxCount;\n    }\n\n    /**\n     * Gets whether to throw an exception when maxCount is reached.\n     *\n     * @return true if an exception should be thrown\n     */\n    public boolean isThrowOnMaxCount() {\n        return throwOnMaxCount;\n    }\n\n    /**\n     * Sets whether to throw an exception when maxCount is reached.\n     *\n     * @param throwOnMaxCount true to throw an exception\n     */\n    public void setThrowOnMaxCount(boolean throwOnMaxCount) {\n        this.throwOnMaxCount = throwOnMaxCount;\n    }\n\n    /**\n     * Helper method to get EmbeddedLimits from ParseContext with defaults.\n     *\n     * @param context the ParseContext (may be null)\n     * @return the EmbeddedLimits from context, or a new instance with defaults if not found\n     */\n    public static EmbeddedLimits get(ParseContext context) {\n        if (context == null) {\n            return new EmbeddedLimits();\n        }\n        EmbeddedLimits limits = context.get(EmbeddedLimits.class);\n        return limits != null ? limits : new EmbeddedLimits();\n    }\n\n    @Override\n    public String toString() {\n        return \"EmbeddedLimits{\" + \"maxDepth=\" + maxDepth + \", throwOnMaxDepth=\" + throwOnMaxDepth + \", maxCount=\" + maxCount + \", throwOnMaxCount=\" + throwOnMaxCount + '}';\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        EmbeddedLimits that = (EmbeddedLimits) o;\n        return maxDepth == that.maxDepth && throwOnMaxDepth == that.throwOnMaxDepth && maxCount == that.maxCount && throwOnMaxCount == that.throwOnMaxCount;\n    }\n\n    @Override\n    public int hashCode() {\n        int result = maxDepth;\n        result = 31 * result + (throwOnMaxDepth ? 1 : 0);\n        result = 31 * result + maxCount;\n        result = 31 * result + (throwOnMaxCount ? 1 : 0);\n        return result;\n    }\n}",
+  "subClasses": []
+}

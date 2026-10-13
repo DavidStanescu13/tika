@@ -1,0 +1,26 @@
+{
+  "className": "MetadataFilterBase",
+  "methodName": "doFilter",
+  "brief": "@Override\r\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException{}",
+  "methodSignature": "doFilter(List, ParseContext)",
+  "sourceCode": "@Override\n    protected void doFilter(List<Metadata> metadataList, ParseContext parseContext)\n            throws TikaException {\n        for (Metadata m : metadataList) {\n            filter(m);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Metadata>",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.metadata.filter.MetadataFilterBase": [
+      "filter(Metadata)"
+    ]
+  },
+  "full_method_info": "@Override\nprotected void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException {\n    for (Metadata m : metadataList) {\n        filter(m);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

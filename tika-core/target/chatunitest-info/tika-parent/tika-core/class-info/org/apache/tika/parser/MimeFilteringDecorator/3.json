@@ -1,0 +1,18 @@
+{
+  "className": "MimeFilteringDecorator",
+  "methodName": "getExcludeTypes",
+  "brief": "public Set<MediaType> getExcludeTypes(){}",
+  "methodSignature": "getExcludeTypes()",
+  "sourceCode": "public Set<MediaType> getExcludeTypes() {\n            return excludeTypes;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @return the excluded mime types, or empty set if no exclude filter\n */\npublic Set<MediaType> getExcludeTypes() {\n    return excludeTypes;\n}",
+  "method_comment": "\n         * @return the excluded mime types, or empty set if no exclude filter\n         ",
+  "method_annotation": ""
+}

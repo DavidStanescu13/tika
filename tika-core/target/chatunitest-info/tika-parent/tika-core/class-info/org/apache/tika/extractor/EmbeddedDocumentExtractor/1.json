@@ -1,0 +1,28 @@
+{
+  "className": "EmbeddedDocumentExtractor",
+  "methodName": "parseEmbedded",
+  "brief": "void parseEmbedded(TikaInputStream stream, ContentHandler handler, Metadata metadata, ParseContext parseContext,\r\n                       boolean outputHtml) throws SAXException, IOException;",
+  "methodSignature": "parseEmbedded(TikaInputStream, ContentHandler, Metadata, ParseContext, boolean)",
+  "sourceCode": "void parseEmbedded(TikaInputStream stream, ContentHandler handler, Metadata metadata, ParseContext parseContext,\n                       boolean outputHtml) throws SAXException, IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Processes the supplied embedded resource, calling the delegating\n * parser with the appropriate details.\n *\n * @param stream       The embedded resource\n * @param handler      The handler to use\n * @param metadata     The metadata for the embedded resource\n * @param parseContext The parse context\n * @param outputHtml   Should we output HTML for this resource, or has the parser already done so?\n * @throws org.xml.sax.SAXException\n * @throws java.io.IOException\n */\nvoid parseEmbedded(TikaInputStream stream, ContentHandler handler, Metadata metadata, ParseContext parseContext, boolean outputHtml) throws SAXException, IOException;",
+  "method_comment": "\n     * Processes the supplied embedded resource, calling the delegating\n     * parser with the appropriate details.\n     *\n     * @param stream       The embedded resource\n     * @param handler      The handler to use\n     * @param metadata     The metadata for the embedded resource\n     * @param parseContext The parse context\n     * @param outputHtml   Should we output HTML for this resource, or has the parser already done so?\n     * @throws org.xml.sax.SAXException\n     * @throws java.io.IOException\n     ",
+  "method_annotation": ""
+}

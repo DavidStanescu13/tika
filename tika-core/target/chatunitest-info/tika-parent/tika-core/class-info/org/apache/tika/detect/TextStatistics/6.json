@@ -1,0 +1,23 @@
+{
+  "className": "TextStatistics",
+  "methodName": "countSafeAscii",
+  "brief": "public int countSafeAscii(){}",
+  "methodSignature": "countSafeAscii()",
+  "sourceCode": "public int countSafeAscii() {\n        return count(0x20, 128) + countSafeControl();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.detect.TextStatistics": [
+      "count(int, int)",
+      "countSafeControl()"
+    ]
+  },
+  "full_method_info": "/**\n * Counts \"safe\" (i.e. seven-bit non-control) ASCII characters.\n *\n * @return count of safe ASCII characters\n * @see #countControl()\n */\npublic int countSafeAscii() {\n    return count(0x20, 128) + countSafeControl();\n}",
+  "method_comment": "\n     * Counts \"safe\" (i.e. seven-bit non-control) ASCII characters.\n     *\n     * @return count of safe ASCII characters\n     * @see #countControl()\n     ",
+  "method_annotation": ""
+}

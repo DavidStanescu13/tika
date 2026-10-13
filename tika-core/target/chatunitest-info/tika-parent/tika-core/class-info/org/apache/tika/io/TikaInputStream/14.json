@@ -1,0 +1,40 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(URI uri, Metadata metadata) throws IOException{}",
+  "methodSignature": "get(URI, Metadata)",
+  "sourceCode": "public static TikaInputStream get(URI uri, Metadata metadata) throws IOException {\n        if (\"file\".equalsIgnoreCase(uri.getScheme())) {\n            Path path = Paths.get(uri);\n            if (Files.isRegularFile(path)) {\n                return get(path, metadata);\n            }\n        }\n        return get(uri.toURL(), metadata);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URI",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "java.net.URI": [
+      "toURL()",
+      "getScheme()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "java.lang.String": [
+      "equalsIgnoreCase(String)"
+    ],
+    "java.nio.file.Paths": [
+      "get(URI)"
+    ],
+    "java.nio.file.Files": [
+      "isRegularFile(Path, LinkOption[])"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(URL, Metadata)",
+      "get(Path, Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(URI uri, Metadata metadata) throws IOException {\n    if (\"file\".equalsIgnoreCase(uri.getScheme())) {\n        Path path = Paths.get(uri);\n        if (Files.isRegularFile(path)) {\n            return get(path, metadata);\n        }\n    }\n    return get(uri.toURL(), metadata);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

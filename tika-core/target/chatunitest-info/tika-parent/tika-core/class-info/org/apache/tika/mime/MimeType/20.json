@@ -1,0 +1,18 @@
+{
+  "className": "MimeType",
+  "methodName": "isInterpreted",
+  "brief": "boolean isInterpreted(){}",
+  "methodSignature": "isInterpreted()",
+  "sourceCode": "boolean isInterpreted() {\n        return isInterpreted;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * whether the type is used as a server-side scripting technology\n */\nboolean isInterpreted() {\n    return isInterpreted;\n}",
+  "method_comment": "\n     * whether the type is used as a server-side scripting technology\n     ",
+  "method_annotation": ""
+}

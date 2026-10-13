@@ -1,0 +1,29 @@
+{
+  "className": "MimeType",
+  "methodName": "matchesMagic",
+  "brief": "public boolean matchesMagic(byte[] data){}",
+  "methodSignature": "matchesMagic(byte[])",
+  "sourceCode": "public boolean matchesMagic(byte[] data) {\n        for (int i = 0; magics != null && i < magics.size(); i++) {\n            Magic magic = magics.get(i);\n            if (magic.eval(data)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.util.List": [
+      "get(int)",
+      "size()"
+    ],
+    "org.apache.tika.mime.Magic": [
+      "eval(byte[])"
+    ]
+  },
+  "full_method_info": "public boolean matchesMagic(byte[] data) {\n    for (int i = 0; magics != null && i < magics.size(); i++) {\n        Magic magic = magics.get(i);\n        if (magic.eval(data)) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

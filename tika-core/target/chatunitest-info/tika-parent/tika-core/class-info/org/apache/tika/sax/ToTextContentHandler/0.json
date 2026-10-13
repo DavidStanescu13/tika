@@ -1,0 +1,27 @@
+{
+  "className": "ToTextContentHandler",
+  "methodName": "characters",
+  "brief": "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+  "methodSignature": "characters(char[], int, int)",
+  "sourceCode": "@Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n\n        if (styleDepth + scriptDepth != 0) {\n            return;\n        }\n\n        try {\n            writer.write(ch, start, length);\n        } catch (IOException e) {\n            throw new SAXException(\"Error writing: \" + new String(ch, start, length), e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "char": [],
+    "java.io.Writer": [
+      "write(char[], int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Writes the given characters to the given character stream.\n */\n@Override\npublic void characters(char[] ch, int start, int length) throws SAXException {\n    if (styleDepth + scriptDepth != 0) {\n        return;\n    }\n    try {\n        writer.write(ch, start, length);\n    } catch (IOException e) {\n        throw new SAXException(\"Error writing: \" + new String(ch, start, length), e);\n    }\n}",
+  "method_comment": "\n     * Writes the given characters to the given character stream.\n     ",
+  "method_annotation": "@Override\n"
+}

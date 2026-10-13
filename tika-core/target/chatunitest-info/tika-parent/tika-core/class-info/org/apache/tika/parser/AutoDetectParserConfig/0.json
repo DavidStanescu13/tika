@@ -1,0 +1,22 @@
+{
+  "className": "AutoDetectParserConfig",
+  "methodName": "setContentHandlerDecoratorFactory",
+  "brief": "public void setContentHandlerDecoratorFactory(\r\n            ContentHandlerDecoratorFactory contentHandlerDecoratorFactory){}",
+  "methodSignature": "setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory)",
+  "sourceCode": "public void setContentHandlerDecoratorFactory(\n            ContentHandlerDecoratorFactory contentHandlerDecoratorFactory) {\n        this.contentHandlerDecoratorFactory = contentHandlerDecoratorFactory;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandlerDecoratorFactory"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecoratorFactory": []
+  },
+  "full_method_info": "public void setContentHandlerDecoratorFactory(ContentHandlerDecoratorFactory contentHandlerDecoratorFactory) {\n    this.contentHandlerDecoratorFactory = contentHandlerDecoratorFactory;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getXMLReader",
+  "brief": "public static XMLReader getXMLReader() throws TikaException{}",
+  "methodSignature": "getXMLReader()",
+  "sourceCode": "public static XMLReader getXMLReader() throws TikaException {\n        XMLReader reader;\n        try {\n            reader = getSAXParser().getXMLReader();\n        } catch (SAXException e) {\n            throw new TikaException(\"Unable to create an XMLReader\", e);\n        }\n        reader.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n        return reader;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "javax.xml.parsers.SAXParser": [
+      "getXMLReader()"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getSAXParser()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the XMLReader specified in this parsing context. If a reader\n * is not explicitly specified, then one is created using the specified\n * or the default SAX parser.\n *\n * @return XMLReader\n * @throws TikaException\n * @see #getSAXParser()\n * @since Apache Tika 1.13\n */\npublic static XMLReader getXMLReader() throws TikaException {\n    XMLReader reader;\n    try {\n        reader = getSAXParser().getXMLReader();\n    } catch (SAXException e) {\n        throw new TikaException(\"Unable to create an XMLReader\", e);\n    }\n    reader.setEntityResolver(IGNORING_SAX_ENTITY_RESOLVER);\n    return reader;\n}",
+  "method_comment": "\n     * Returns the XMLReader specified in this parsing context. If a reader\n     * is not explicitly specified, then one is created using the specified\n     * or the default SAX parser.\n     *\n     * @return XMLReader\n     * @throws TikaException\n     * @see #getSAXParser()\n     * @since Apache Tika 1.13\n     ",
+  "method_annotation": ""
+}

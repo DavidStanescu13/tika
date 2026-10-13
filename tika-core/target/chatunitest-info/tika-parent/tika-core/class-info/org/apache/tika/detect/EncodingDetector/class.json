@@ -1,0 +1,46 @@
+{
+  "fullClassName": "org.apache.tika.detect.EncodingDetector",
+  "className": "EncodingDetector",
+  "index": 27,
+  "modifier": "[public ]",
+  "extend": "[Serializable, SelfConfiguring]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public interface EncodingDetector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.Serializable;",
+    "import java.util.List;",
+    "import org.apache.tika.config.SelfConfiguring;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Serializable",
+    "SelfConfiguring"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0"
+  },
+  "methodsBrief": [
+    "List<EncodingResult> detect(TikaInputStream tis, Metadata metadata,\r\n                                ParseContext parseContext) throws IOException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.io.Serializable;\nimport java.util.List;\nimport org.apache.tika.config.SelfConfiguring;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Character encoding detector. Implementations use various heuristics to\n * detect the character encoding of a text document based on given input\n * metadata or the first few bytes of the document stream.\n *\n * <p>Detectors return a ranked list of {@link EncodingResult}s in descending\n * confidence order. An empty list means no opinion. Results carry a\n * {@link EncodingResult.ResultType} indicating the nature of the evidence:\n * {@code DECLARATIVE} (BOM, HTML meta charset), {@code STRUCTURAL} (byte-grammar\n * proof), or {@code STATISTICAL} (probabilistic model). A\n * {@link MetaEncodingDetector} uses these types to arbitrate when detectors\n * disagree.</p>\n *\n * @since Apache Tika 0.4\n */\npublic interface EncodingDetector extends Serializable, SelfConfiguring {\n\n    /**\n     * Detects the character encoding of the given text document.\n     *\n     * <p>Returns an empty list if the encoding cannot be determined.\n     * Returns a ranked list of candidates in descending confidence order\n     * otherwise. The first entry is always the best guess.</p>\n     *\n     * <p>If the document input stream is not available, then the first\n     * argument may be {@code null}. Otherwise the detector may read bytes\n     * from the start of the stream to help in encoding detection.\n     * The given stream is guaranteed to support the\n     * {@link TikaInputStream#markSupported() mark feature} and the detector\n     * is expected to {@link TikaInputStream#mark(int) mark} the stream before\n     * reading any bytes from it, and to {@link TikaInputStream#reset() reset}\n     * the stream before returning. The stream must not be closed by the\n     * detector.</p>\n     *\n     * <p>The given input metadata is only read, not modified, by the detector.</p>\n     *\n     * @param tis          text document input stream, or {@code null}\n     * @param metadata     input metadata for the document\n     * @param parseContext the parse context\n     * @return ranked list of encoding results, empty if unknown; never {@code null}\n     * @throws IOException if the document input stream could not be read\n     */\n    List<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;\n}\n",
+  "classDeclarationCode": "/**\n * Character encoding detector. Implementations use various heuristics to\n * detect the character encoding of a text document based on given input\n * metadata or the first few bytes of the document stream.\n *\n * <p>Detectors return a ranked list of {@link EncodingResult}s in descending\n * confidence order. An empty list means no opinion. Results carry a\n * {@link EncodingResult.ResultType} indicating the nature of the evidence:\n * {@code DECLARATIVE} (BOM, HTML meta charset), {@code STRUCTURAL} (byte-grammar\n * proof), or {@code STATISTICAL} (probabilistic model). A\n * {@link MetaEncodingDetector} uses these types to arbitrate when detectors\n * disagree.</p>\n *\n * @since Apache Tika 0.4\n */\npublic interface EncodingDetector extends Serializable, SelfConfiguring {\n\n    /**\n     * Detects the character encoding of the given text document.\n     *\n     * <p>Returns an empty list if the encoding cannot be determined.\n     * Returns a ranked list of candidates in descending confidence order\n     * otherwise. The first entry is always the best guess.</p>\n     *\n     * <p>If the document input stream is not available, then the first\n     * argument may be {@code null}. Otherwise the detector may read bytes\n     * from the start of the stream to help in encoding detection.\n     * The given stream is guaranteed to support the\n     * {@link TikaInputStream#markSupported() mark feature} and the detector\n     * is expected to {@link TikaInputStream#mark(int) mark} the stream before\n     * reading any bytes from it, and to {@link TikaInputStream#reset() reset}\n     * the stream before returning. The stream must not be closed by the\n     * detector.</p>\n     *\n     * <p>The given input metadata is only read, not modified, by the detector.</p>\n     *\n     * @param tis          text document input stream, or {@code null}\n     * @param metadata     input metadata for the document\n     * @param parseContext the parse context\n     * @return ranked list of encoding results, empty if unknown; never {@code null}\n     * @throws IOException if the document input stream could not be read\n     */\n    List<EncodingResult> detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException;\n}",
+  "subClasses": [
+    "org.apache.tika.detect.MetaEncodingDetector"
+  ]
+}

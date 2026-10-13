@@ -1,0 +1,52 @@
+{
+  "fullClassName": "org.apache.tika.detect.XmlRootExtractor",
+  "className": "XmlRootExtractor",
+  "index": 49,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class XmlRootExtractor",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.CharConversionException;",
+    "import java.io.IOException;",
+    "import java.io.InputStream;",
+    "import java.util.Arrays;",
+    "import javax.xml.namespace.QName;",
+    "import org.apache.commons.io.input.CloseShieldInputStream;",
+    "import org.apache.commons.io.input.UnsynchronizedByteArrayInputStream;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.parser.ParseContext;",
+    "import org.apache.tika.utils.XMLReaderUtils;"
+  ],
+  "fields": [
+    "private static final ParseContext EMPTY_CONTEXT = new ParseContext();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "extractRootElement(byte[])": "0",
+    "extractRootElement(InputStream)": "1",
+    "extractRootElement(InputStream, boolean)": "2"
+  },
+  "methodsBrief": [
+    "public QName extractRootElement(byte[] data){}",
+    "public QName extractRootElement(InputStream stream){}",
+    "private QName extractRootElement(InputStream stream, boolean throwMalformed){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.CharConversionException;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.util.Arrays;\nimport javax.xml.namespace.QName;\nimport org.apache.commons.io.input.CloseShieldInputStream;\nimport org.apache.commons.io.input.UnsynchronizedByteArrayInputStream;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.parser.ParseContext;\nimport org.apache.tika.utils.XMLReaderUtils;\n\n/**\n * Utility class that uses a {@link javax.xml.parsers.SAXParser} to determine\n * the namespace URI and local name of the root element of an XML file.\n *\n * @since Apache Tika 0.4\n */\npublic class XmlRootExtractor {\n\n    private static final ParseContext EMPTY_CONTEXT = new ParseContext();\n\n    public QName extractRootElement(byte[] data) {\n        // this loop should be very rare\n        while (true) {\n            try {\n                UnsynchronizedByteArrayInputStream is = UnsynchronizedByteArrayInputStream.builder().setByteArray(data).get();\n                return extractRootElement(is, true);\n            } catch (IOException e) {\n                // doesn't happen, the implementation of get() doesn't throw an IOException.\n            } catch (MalformedCharException e) {\n                // see TIKA-3596, try to handle truncated/bad encoded XML files\n                int newLen = data.length / 2;\n                if (newLen % 2 == 1) {\n                    newLen--;\n                }\n                if (newLen > 0) {\n                    data = Arrays.copyOf(data, newLen);\n                } else {\n                    break;\n                }\n            }\n        }\n        return null;\n    }\n\n    /**\n     * @since Apache Tika 0.9\n     */\n    public QName extractRootElement(InputStream stream) {\n        return extractRootElement(stream, false);\n    }\n\n    private QName extractRootElement(InputStream stream, boolean throwMalformed) {\n        ExtractorHandler handler = new ExtractorHandler();\n        try {\n            XMLReaderUtils.parseSAX(CloseShieldInputStream.wrap(stream), handler, EMPTY_CONTEXT);\n        } catch (SecurityException e) {\n            throw e;\n        } catch (Exception e) {\n            if (throwMalformed && (e instanceof CharConversionException || e.getCause() instanceof CharConversionException)) {\n                throw new MalformedCharException(e);\n            }\n        }\n        return handler.rootElement;\n    }\n\n    private static class ExtractorHandler extends DefaultHandler {\n\n        private QName rootElement = null;\n\n        @Override\n        public void startElement(String uri, String local, String name, Attributes attributes) throws SAXException {\n            this.rootElement = new QName(uri, local);\n            throw new SAXException(\"Aborting: root element received\");\n        }\n    }\n\n    private static class MalformedCharException extends RuntimeException {\n\n        public MalformedCharException(Exception e) {\n            super(e);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Utility class that uses a {@link javax.xml.parsers.SAXParser} to determine\n * the namespace URI and local name of the root element of an XML file.\n *\n * @since Apache Tika 0.4\n */\npublic class XmlRootExtractor {\n\n    private static final ParseContext EMPTY_CONTEXT = new ParseContext();\n\n    public QName extractRootElement(byte[] data) {\n        // this loop should be very rare\n        while (true) {\n            try {\n                UnsynchronizedByteArrayInputStream is = UnsynchronizedByteArrayInputStream.builder().setByteArray(data).get();\n                return extractRootElement(is, true);\n            } catch (IOException e) {\n                // doesn't happen, the implementation of get() doesn't throw an IOException.\n            } catch (MalformedCharException e) {\n                // see TIKA-3596, try to handle truncated/bad encoded XML files\n                int newLen = data.length / 2;\n                if (newLen % 2 == 1) {\n                    newLen--;\n                }\n                if (newLen > 0) {\n                    data = Arrays.copyOf(data, newLen);\n                } else {\n                    break;\n                }\n            }\n        }\n        return null;\n    }\n\n    /**\n     * @since Apache Tika 0.9\n     */\n    public QName extractRootElement(InputStream stream) {\n        return extractRootElement(stream, false);\n    }\n\n    private QName extractRootElement(InputStream stream, boolean throwMalformed) {\n        ExtractorHandler handler = new ExtractorHandler();\n        try {\n            XMLReaderUtils.parseSAX(CloseShieldInputStream.wrap(stream), handler, EMPTY_CONTEXT);\n        } catch (SecurityException e) {\n            throw e;\n        } catch (Exception e) {\n            if (throwMalformed && (e instanceof CharConversionException || e.getCause() instanceof CharConversionException)) {\n                throw new MalformedCharException(e);\n            }\n        }\n        return handler.rootElement;\n    }\n\n    private static class ExtractorHandler extends DefaultHandler {\n\n        private QName rootElement = null;\n\n        @Override\n        public void startElement(String uri, String local, String name, Attributes attributes) throws SAXException {\n            this.rootElement = new QName(uri, local);\n            throw new SAXException(\"Aborting: root element received\");\n        }\n    }\n\n    private static class MalformedCharException extends RuntimeException {\n\n        public MalformedCharException(Exception e) {\n            super(e);\n        }\n    }\n}",
+  "subClasses": []
+}

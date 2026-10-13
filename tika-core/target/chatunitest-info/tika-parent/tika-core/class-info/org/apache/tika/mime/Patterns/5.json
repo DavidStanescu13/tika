@@ -1,0 +1,40 @@
+{
+  "className": "Patterns",
+  "methodName": "matches",
+  "brief": "public MimeType matches(String name){}",
+  "methodSignature": "matches(String)",
+  "sourceCode": "public MimeType matches(String name) {\n        if (name == null) {\n            throw new IllegalArgumentException(\"Name is missing\");\n        }\n\n        // First, try exact match of the provided resource name\n        if (names.containsKey(name)) {\n            return names.get(name);\n        }\n\n        // Then try \"extension\" (*.xxx) matching\n        int maxLength = Math.min(maxExtensionLength, name.length());\n        for (int n = maxLength; n >= minExtensionLength; n--) {\n            String extension = name.substring(name.length() - n);\n            if (extensions.containsKey(extension)) {\n                return extensions.get(extension);\n            }\n        }\n\n        // And finally, try complex regexp matching\n        for (Map.Entry<String, MimeType> entry : globs.entrySet()) {\n            if (name.matches(entry.getKey())) {\n                return entry.getValue();\n            }\n        }\n\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "matches(String)",
+      "length()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "containsKey(Object)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.util.SortedMap": [
+      "entrySet()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "/**\n * Find the MimeType corresponding to a resource name.\n * <p>\n * It applies the recommendations detailed in FreeDesktop Shared MIME-info\n * Database for guessing MimeType from a resource name: It first tries a\n * case-sensitive match, then try again with the resource name converted to\n * lower-case if that fails. If several patterns match then the longest\n * pattern is used. In particular, files with multiple extensions (such as\n * Data.tar.gz) match the longest sequence of extensions (eg '*.tar.gz' in\n * preference to '*.gz'). Literal patterns (eg, 'Makefile') are matched\n * before all others. Patterns beginning with `*.' and containing no other\n * special characters (`*?[') are matched before other wildcarded patterns\n * (since this covers the majority of the patterns).\n */\npublic MimeType matches(String name) {\n    if (name == null) {\n        throw new IllegalArgumentException(\"Name is missing\");\n    }\n    // First, try exact match of the provided resource name\n    if (names.containsKey(name)) {\n        return names.get(name);\n    }\n    // Then try \"extension\" (*.xxx) matching\n    int maxLength = Math.min(maxExtensionLength, name.length());\n    for (int n = maxLength; n >= minExtensionLength; n--) {\n        String extension = name.substring(name.length() - n);\n        if (extensions.containsKey(extension)) {\n            return extensions.get(extension);\n        }\n    }\n    // And finally, try complex regexp matching\n    for (Map.Entry<String, MimeType> entry : globs.entrySet()) {\n        if (name.matches(entry.getKey())) {\n            return entry.getValue();\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * Find the MimeType corresponding to a resource name.\n     * <p>\n     * It applies the recommendations detailed in FreeDesktop Shared MIME-info\n     * Database for guessing MimeType from a resource name: It first tries a\n     * case-sensitive match, then try again with the resource name converted to\n     * lower-case if that fails. If several patterns match then the longest\n     * pattern is used. In particular, files with multiple extensions (such as\n     * Data.tar.gz) match the longest sequence of extensions (eg '*.tar.gz' in\n     * preference to '*.gz'). Literal patterns (eg, 'Makefile') are matched\n     * before all others. Patterns beginning with `*.' and containing no other\n     * special characters (`*?[') are matched before other wildcarded patterns\n     * (since this covers the majority of the patterns).\n     ",
+  "method_annotation": ""
+}

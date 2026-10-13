@@ -1,0 +1,20 @@
+{
+  "className": "ContentHandlerDecorator",
+  "methodName": "warning",
+  "brief": "@Override\r\n    public void warning (SAXParseException exception) throws SAXException{}",
+  "methodSignature": "warning(SAXParseException)",
+  "sourceCode": "@Override\n    public void warning (SAXParseException exception) throws SAXException {\n        if (handler instanceof ErrorHandler) {\n            ((ErrorHandler)handler).warning(exception);\n        } else {\n            super.warning(exception);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SAXParseException"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic void warning(SAXParseException exception) throws SAXException {\n    if (handler instanceof ErrorHandler) {\n        ((ErrorHandler) handler).warning(exception);\n    } else {\n        super.warning(exception);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,24 @@
+{
+  "className": "EncodingProbeCache",
+  "methodName": "put",
+  "brief": "public void put(byte[] probe, int contentTarget, int rawCap){}",
+  "methodSignature": "put(byte[], int, int)",
+  "sourceCode": "public void put(byte[] probe, int contentTarget, int rawCap) {\n        this.probe = probe;\n        this.contentTarget = contentTarget;\n        this.rawCap = rawCap;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Stores the probe bytes read with the given parameters.\n */\npublic void put(byte[] probe, int contentTarget, int rawCap) {\n    this.probe = probe;\n    this.contentTarget = contentTarget;\n    this.rawCap = rawCap;\n}",
+  "method_comment": "\n     * Stores the probe bytes read with the given parameters.\n     ",
+  "method_annotation": ""
+}

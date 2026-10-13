@@ -1,0 +1,58 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.DefaultMetadataFilter",
+  "className": "DefaultMetadataFilter",
+  "index": 136,
+  "modifier": "[public ]",
+  "extend": "[CompositeMetadataFilter]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "public class DefaultMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.List;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "CompositeMetadataFilter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDefaultFilters(ServiceLoader)": "0",
+    "DefaultMetadataFilter(ServiceLoader)": "1",
+    "DefaultMetadataFilter(List)": "2",
+    "DefaultMetadataFilter()": "3"
+  },
+  "methodsBrief": [
+    "private static List<MetadataFilter> getDefaultFilters(ServiceLoader loader){}",
+    "public DefaultMetadataFilter(ServiceLoader serviceLoader){}",
+    "public DefaultMetadataFilter(List<MetadataFilter> metadataFilters){}",
+    "public DefaultMetadataFilter(){}"
+  ],
+  "constructorSigs": [
+    "DefaultMetadataFilter(ServiceLoader)",
+    "DefaultMetadataFilter(List)",
+    "DefaultMetadataFilter()"
+  ],
+  "constructorBrief": [
+    "public DefaultMetadataFilter(ServiceLoader serviceLoader){}",
+    "public DefaultMetadataFilter(List<MetadataFilter> metadataFilters){}",
+    "public DefaultMetadataFilter(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.metadata.filter.DefaultMetadataFilter": [
+      "getDefaultFilters(ServiceLoader)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.util.List;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\npublic class DefaultMetadataFilter extends CompositeMetadataFilter {\n\n    public DefaultMetadataFilter(ServiceLoader serviceLoader) {\n        super(getDefaultFilters(serviceLoader));\n    }\n\n    public DefaultMetadataFilter(List<MetadataFilter> metadataFilters) {\n        super(metadataFilters);\n    }\n\n    public DefaultMetadataFilter() {\n        this(new ServiceLoader());\n    }\n\n    private static List<MetadataFilter> getDefaultFilters(ServiceLoader loader) {\n        List<MetadataFilter> metadataFilters = loader.loadStaticServiceProviders(MetadataFilter.class);\n        ServiceLoaderUtils.sortLoadedClasses(metadataFilters);\n        return metadataFilters;\n    }\n}\n",
+  "classDeclarationCode": "public class DefaultMetadataFilter extends CompositeMetadataFilter {\n\n    public DefaultMetadataFilter(ServiceLoader serviceLoader) {\n        super(getDefaultFilters(serviceLoader));\n    }\n\n    public DefaultMetadataFilter(List<MetadataFilter> metadataFilters) {\n        super(metadataFilters);\n    }\n\n    public DefaultMetadataFilter() {\n        this(new ServiceLoader());\n    }\n\n    private static List<MetadataFilter> getDefaultFilters(ServiceLoader loader) {\n        List<MetadataFilter> metadataFilters = loader.loadStaticServiceProviders(MetadataFilter.class);\n        ServiceLoaderUtils.sortLoadedClasses(metadataFilters);\n        return metadataFilters;\n    }\n}",
+  "subClasses": []
+}

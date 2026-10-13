@@ -1,0 +1,36 @@
+{
+  "className": "DefaultParser",
+  "methodName": "setRenderer",
+  "brief": "private static void setRenderer(Parser p, Renderer renderer){}",
+  "methodSignature": "setRenderer(Parser, Renderer)",
+  "sourceCode": "private static void setRenderer(Parser p, Renderer renderer) {\n        if (p instanceof RenderingParser) {\n            ((RenderingParser) p).setRenderer(renderer);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setRenderer(child, renderer);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setRenderer(((ParserDecorator) p).getWrappedParser(), renderer);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Renderer"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.renderer.Renderer": [],
+    "org.apache.tika.parser.RenderingParser": [
+      "setRenderer(Renderer)"
+    ],
+    "org.apache.tika.parser.CompositeParser": [
+      "getAllComponentParsers()"
+    ],
+    "org.apache.tika.parser.DefaultParser": [
+      "setRenderer(Parser, Renderer)"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ]
+  },
+  "full_method_info": "private static void setRenderer(Parser p, Renderer renderer) {\n    if (p instanceof RenderingParser) {\n        ((RenderingParser) p).setRenderer(renderer);\n    } else if (p instanceof CompositeParser) {\n        for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n            setRenderer(child, renderer);\n        }\n    } else if (p instanceof ParserDecorator) {\n        setRenderer(((ParserDecorator) p).getWrappedParser(), renderer);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

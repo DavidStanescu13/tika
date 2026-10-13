@@ -1,0 +1,32 @@
+{
+  "className": "RemoveByMimeMetadataFilter",
+  "methodName": "shouldRemove",
+  "brief": "private boolean shouldRemove(Metadata metadata){}",
+  "methodSignature": "shouldRemove(Metadata)",
+  "sourceCode": "private boolean shouldRemove(Metadata metadata) {\n        String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n        if (mimeString == null) {\n            return false;\n        }\n        MediaType mt = MediaType.parse(mimeString);\n        if (mt == null) {\n            return false;\n        }\n        mimeString = mt.getBaseType().toString();\n\n        return mimes.contains(mimeString);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "get(Property)"
+    ],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)",
+      "toString()",
+      "getBaseType()"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "private boolean shouldRemove(Metadata metadata) {\n    String mimeString = metadata.get(Metadata.CONTENT_TYPE);\n    if (mimeString == null) {\n        return false;\n    }\n    MediaType mt = MediaType.parse(mimeString);\n    if (mt == null) {\n        return false;\n    }\n    mimeString = mt.getBaseType().toString();\n    return mimes.contains(mimeString);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

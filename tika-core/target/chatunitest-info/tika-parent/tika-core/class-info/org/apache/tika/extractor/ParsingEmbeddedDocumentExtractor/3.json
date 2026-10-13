@@ -1,0 +1,29 @@
+{
+  "className": "ParsingEmbeddedDocumentExtractor",
+  "methodName": "recordException",
+  "brief": "protected void recordException(Exception e, ParseContext context){}",
+  "methodSignature": "recordException(Exception, ParseContext)",
+  "sourceCode": "protected void recordException(Exception e, ParseContext context) {\n        ParseRecord record = context.get(ParseRecord.class);\n        if (record == null) {\n            return;\n        }\n        record.addException(e);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Exception",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.lang.Exception": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.ParseRecord": [
+      "addException(Exception)"
+    ]
+  },
+  "full_method_info": "protected void recordException(Exception e, ParseContext context) {\n    ParseRecord record = context.get(ParseRecord.class);\n    if (record == null) {\n        return;\n    }\n    record.addException(e);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

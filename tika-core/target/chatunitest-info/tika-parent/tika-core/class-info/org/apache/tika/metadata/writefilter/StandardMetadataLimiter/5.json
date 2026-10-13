@@ -1,0 +1,26 @@
+{
+  "className": "StandardMetadataLimiter",
+  "methodName": "appendValue",
+  "brief": "private String[] appendValue(String[] values, final String value){}",
+  "methodSignature": "appendValue(String[], String)",
+  "sourceCode": "private String[] appendValue(String[] values, final String value) {\n        if (value == null) {\n            return values;\n        }\n        String[] newValues = new String[values.length + 1];\n        System.arraycopy(values, 0, newValues, 0, values.length);\n        newValues[newValues.length - 1] = value;\n        return newValues;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String[]",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "private String[] appendValue(String[] values, final String value) {\n    if (value == null) {\n        return values;\n    }\n    String[] newValues = new String[values.length + 1];\n    System.arraycopy(values, 0, newValues, 0, values.length);\n    newValues[newValues.length - 1] = value;\n    return newValues;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

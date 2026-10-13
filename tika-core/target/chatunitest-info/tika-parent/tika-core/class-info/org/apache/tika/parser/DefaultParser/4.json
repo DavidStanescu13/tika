@@ -1,0 +1,28 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getAllComponentParsers",
+  "brief": "@Override\r\n    public List<Parser> getAllComponentParsers(){}",
+  "methodSignature": "getAllComponentParsers()",
+  "sourceCode": "@Override\n    public List<Parser> getAllComponentParsers() {\n        List<Parser> parsers = super.getAllComponentParsers();\n        if (loader != null) {\n            parsers = new ArrayList<>(parsers);\n            parsers.addAll(loader.loadDynamicServiceProviders(Parser.class));\n        }\n        return parsers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.parser.CompositeParser": [
+      "getAllComponentParsers()"
+    ],
+    "java.util.List": [
+      "addAll(Collection<? extends E>)"
+    ],
+    "org.apache.tika.config.ServiceLoader": [
+      "loadDynamicServiceProviders(Class<T>)"
+    ]
+  },
+  "full_method_info": "@Override\npublic List<Parser> getAllComponentParsers() {\n    List<Parser> parsers = super.getAllComponentParsers();\n    if (loader != null) {\n        parsers = new ArrayList<>(parsers);\n        parsers.addAll(loader.loadDynamicServiceProviders(Parser.class));\n    }\n    return parsers;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

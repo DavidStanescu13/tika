@@ -1,0 +1,18 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "getWrappedParser",
+  "brief": "public Parser getWrappedParser(){}",
+  "methodSignature": "getWrappedParser()",
+  "sourceCode": "public Parser getWrappedParser() {\n        return this.parser;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the parser wrapped by this ParserDecorator\n *\n * @return the parser wrapped by this ParserDecorator\n */\npublic Parser getWrappedParser() {\n    return this.parser;\n}",
+  "method_comment": "\n     * Gets the parser wrapped by this ParserDecorator\n     *\n     * @return the parser wrapped by this ParserDecorator\n     ",
+  "method_annotation": ""
+}

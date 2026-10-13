@@ -1,0 +1,29 @@
+{
+  "className": "ExceptionUtils",
+  "methodName": "trimMessage",
+  "brief": "public static String trimMessage(String trace){}",
+  "methodSignature": "trimMessage(String)",
+  "sourceCode": "public static String trimMessage(String trace) {\n        Matcher msgMatcher = MSG_PATTERN.matcher(trace);\n        if (msgMatcher.find()) {\n            return msgMatcher.replaceFirst(\"\");\n        }\n        return trace;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.util.regex.Matcher": [
+      "replaceFirst(String)",
+      "find()"
+    ]
+  },
+  "full_method_info": "/**\n * Utility method to trim the message from a stack trace\n * string.\n * <p>\n * E.g. <code>java.lang.IllegalStateException: Potential loop detected </code>\n * will be trimmed to <code>java.lang.IllegalStateException</code>\n *\n * @param trace string view of stack trace\n * @return trimmed stack trace\n */\npublic static String trimMessage(String trace) {\n    Matcher msgMatcher = MSG_PATTERN.matcher(trace);\n    if (msgMatcher.find()) {\n        return msgMatcher.replaceFirst(\"\");\n    }\n    return trace;\n}",
+  "method_comment": "\n     * Utility method to trim the message from a stack trace\n     * string.\n     * <p>\n     * E.g. <code>java.lang.IllegalStateException: Potential loop detected </code>\n     * will be trimmed to <code>java.lang.IllegalStateException</code>\n     *\n     * @param trace string view of stack trace\n     * @return trimmed stack trace\n     ",
+  "method_annotation": ""
+}

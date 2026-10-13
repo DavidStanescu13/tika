@@ -1,0 +1,33 @@
+{
+  "className": "EmbeddedDocumentUtil",
+  "methodName": "setGeneratedResourceName",
+  "brief": "public static void setGeneratedResourceName(Metadata metadata, EmbeddedResourcePrefix type,\r\n                                                 int count, String mediaType){}",
+  "methodSignature": "setGeneratedResourceName(Metadata, EmbeddedResourcePrefix, int, String)",
+  "sourceCode": "public static void setGeneratedResourceName(Metadata metadata, EmbeddedResourcePrefix type,\n                                                 int count, String mediaType) {\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY,\n                generateResourceName(type, count, mediaType));\n        metadata.set(TikaCoreProperties.RESOURCE_NAME_EXTENSION_INFERRED, true);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata",
+    "EmbeddedResourcePrefix",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)",
+      "set(Property, boolean)"
+    ],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil.EmbeddedResourcePrefix": [],
+    "java.lang.String": [],
+    "org.apache.tika.extractor.EmbeddedDocumentUtil": [
+      "generateResourceName(EmbeddedResourcePrefix, int, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets a generated resource name on the metadata and marks the extension as inferred.\n *\n * @param metadata  the metadata to update\n * @param type      the embedded resource type\n * @param count     the counter value\n * @param mediaType the media type string, or null if unknown\n */\npublic static void setGeneratedResourceName(Metadata metadata, EmbeddedResourcePrefix type, int count, String mediaType) {\n    metadata.set(TikaCoreProperties.RESOURCE_NAME_KEY, generateResourceName(type, count, mediaType));\n    metadata.set(TikaCoreProperties.RESOURCE_NAME_EXTENSION_INFERRED, true);\n}",
+  "method_comment": "\n     * Sets a generated resource name on the metadata and marks the extension as inferred.\n     *\n     * @param metadata  the metadata to update\n     * @param type      the embedded resource type\n     * @param count     the counter value\n     * @param mediaType the media type string, or null if unknown\n     ",
+  "method_annotation": ""
+}

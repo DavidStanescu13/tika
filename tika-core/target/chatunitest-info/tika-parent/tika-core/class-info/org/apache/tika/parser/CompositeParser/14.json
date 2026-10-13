@@ -1,0 +1,51 @@
+{
+  "className": "CompositeParser",
+  "methodName": "parse",
+  "brief": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+  "methodSignature": "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\n                      ParseContext context) throws IOException, SAXException, TikaException {\n        Parser parser = getParser(metadata, context);\n        ParseRecord parserRecord = context.get(ParseRecord.class);\n        if (parserRecord == null) {\n            parserRecord = ParseRecord.newInstance(context);\n            context.set(ParseRecord.class, parserRecord);\n        }\n        try {\n            TaggedContentHandler taggedHandler =\n                    handler != null ? new TaggedContentHandler(handler) : null;\n            String parserClassname = ParserUtils.getParserClassname(parser);\n            parserRecord.addParserClass(parserClassname);\n            ParserUtils.recordParserDetails(parserClassname, metadata);\n            parserRecord.beforeParse();\n            try {\n                parser.parse(tis, taggedHandler, metadata, context);\n            } catch (SecurityException e) {\n                //rethrow security exceptions\n                throw e;\n            } catch (IOException e) {\n                tis.throwIfCauseOf(e);\n                throw new TikaException(\"TIKA-198: Illegal IOException from \" + parser, e);\n            } catch (SAXException e) {\n                WriteLimitReachedException.throwIfWriteLimitReached(e);\n                if (taggedHandler != null) {\n                    taggedHandler.throwIfCauseOf(e);\n                }\n                throw new TikaException(\"TIKA-237: Illegal SAXException from \" + parser, e);\n            } catch (RuntimeException e) {\n                throw new TikaException(\"Unexpected RuntimeException from \" + parser, e);\n            }\n        } finally {\n            parserRecord.afterParse();\n            if (parserRecord.getDepth() == 0) {\n                metadata.set(TikaCoreProperties.TIKA_PARSED_BY_FULL_SET, parserRecord.getParsers());\n                recordEmbeddedMetadata(metadata, context);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String[])"
+    ],
+    "org.apache.tika.parser.ParseContext": [
+      "set(Class<T>, T)",
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.parser.CompositeParser": [
+      "recordEmbeddedMetadata(Metadata, ParseContext)",
+      "getParser(Metadata, ParseContext)"
+    ],
+    "org.apache.tika.parser.ParseRecord": [
+      "getParsers()",
+      "afterParse()",
+      "getDepth()",
+      "newInstance(ParseContext)",
+      "addParserClass(String)",
+      "beforeParse()"
+    ],
+    "org.apache.tika.utils.ParserUtils": [
+      "getParserClassname(Parser)",
+      "recordParserDetails(String, Metadata)"
+    ],
+    "org.apache.commons.io.input.TaggedInputStream": [
+      "throwIfCauseOf(Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Delegates the call to the matching component parser.\n * <p>\n * Potential {@link RuntimeException}s, {@link IOException}s and\n * {@link SAXException}s unrelated to the given input stream and content\n * handler are automatically wrapped into {@link TikaException}s to better\n * honor the {@link Parser} contract.\n */\npublic void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n    Parser parser = getParser(metadata, context);\n    ParseRecord parserRecord = context.get(ParseRecord.class);\n    if (parserRecord == null) {\n        parserRecord = ParseRecord.newInstance(context);\n        context.set(ParseRecord.class, parserRecord);\n    }\n    try {\n        TaggedContentHandler taggedHandler = handler != null ? new TaggedContentHandler(handler) : null;\n        String parserClassname = ParserUtils.getParserClassname(parser);\n        parserRecord.addParserClass(parserClassname);\n        ParserUtils.recordParserDetails(parserClassname, metadata);\n        parserRecord.beforeParse();\n        try {\n            parser.parse(tis, taggedHandler, metadata, context);\n        } catch (SecurityException e) {\n            // rethrow security exceptions\n            throw e;\n        } catch (IOException e) {\n            tis.throwIfCauseOf(e);\n            throw new TikaException(\"TIKA-198: Illegal IOException from \" + parser, e);\n        } catch (SAXException e) {\n            WriteLimitReachedException.throwIfWriteLimitReached(e);\n            if (taggedHandler != null) {\n                taggedHandler.throwIfCauseOf(e);\n            }\n            throw new TikaException(\"TIKA-237: Illegal SAXException from \" + parser, e);\n        } catch (RuntimeException e) {\n            throw new TikaException(\"Unexpected RuntimeException from \" + parser, e);\n        }\n    } finally {\n        parserRecord.afterParse();\n        if (parserRecord.getDepth() == 0) {\n            metadata.set(TikaCoreProperties.TIKA_PARSED_BY_FULL_SET, parserRecord.getParsers());\n            recordEmbeddedMetadata(metadata, context);\n        }\n    }\n}",
+  "method_comment": "\n     * Delegates the call to the matching component parser.\n     * <p>\n     * Potential {@link RuntimeException}s, {@link IOException}s and\n     * {@link SAXException}s unrelated to the given input stream and content\n     * handler are automatically wrapped into {@link TikaException}s to better\n     * honor the {@link Parser} contract.\n     ",
+  "method_annotation": ""
+}

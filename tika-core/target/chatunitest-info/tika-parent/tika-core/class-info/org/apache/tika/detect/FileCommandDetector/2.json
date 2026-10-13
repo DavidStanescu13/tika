@@ -1,0 +1,35 @@
+{
+  "className": "FileCommandDetector",
+  "methodName": "detect",
+  "brief": "@Override\r\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException{}",
+  "methodSignature": "detect(TikaInputStream, Metadata, ParseContext)",
+  "sourceCode": "@Override\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n        if (hasFileCommand == null) {\n            hasFileCommand = checkHasFile(this.fileCommandPath);\n        }\n        if (!hasFileCommand) {\n            if (!HAS_WARNED) {\n                LOGGER.warn(\"'file' command isn't working: '\" + fileCommandPath + \"'\");\n                HAS_WARNED = true;\n            }\n            return MediaType.OCTET_STREAM;\n        }\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n        //spool the full file to disk, if there is no underlying file\n        return detectOnPath(tis.getPath(), metadata);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TikaInputStream",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "getPath()"
+    ],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.detect.FileCommandDetector": [
+      "checkHasFile(String)",
+      "detectOnPath(Path, Metadata)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ]
+  },
+  "full_method_info": "/**\n * @param tis      document input stream, or <code>null</code>\n * @param metadata input metadata for the document\n * @param parseContext the parse context\n * @return mime as identified by the file command or application/octet-stream otherwise\n * @throws IOException\n */\n@Override\npublic MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext parseContext) throws IOException {\n    if (hasFileCommand == null) {\n        hasFileCommand = checkHasFile(this.fileCommandPath);\n    }\n    if (!hasFileCommand) {\n        if (!HAS_WARNED) {\n            LOGGER.warn(\"'file' command isn't working: '\" + fileCommandPath + \"'\");\n            HAS_WARNED = true;\n        }\n        return MediaType.OCTET_STREAM;\n    }\n    if (tis == null) {\n        return MediaType.OCTET_STREAM;\n    }\n    // spool the full file to disk, if there is no underlying file\n    return detectOnPath(tis.getPath(), metadata);\n}",
+  "method_comment": "\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata input metadata for the document\n     * @param parseContext the parse context\n     * @return mime as identified by the file command or application/octet-stream otherwise\n     * @throws IOException\n     ",
+  "method_annotation": "@Override\n"
+}

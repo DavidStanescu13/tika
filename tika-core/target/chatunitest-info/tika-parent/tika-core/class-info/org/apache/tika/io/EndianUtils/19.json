@@ -1,0 +1,23 @@
+{
+  "className": "EndianUtils",
+  "methodName": "getUShortBE",
+  "brief": "public static int getUShortBE(byte[] data, int offset){}",
+  "methodSignature": "getUShortBE(byte[], int)",
+  "sourceCode": "public static int getUShortBE(byte[] data, int offset) {\n        int b0 = data[offset] & 0xFF;\n        int b1 = data[offset + 1] & 0xFF;\n        return (b0 << 8) + (b1);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Get a BE unsigned short value from a byte array\n *\n * @param data   the byte array\n * @param offset a starting offset into the byte array\n * @return the unsigned short (16-bit) value in an integer\n */\npublic static int getUShortBE(byte[] data, int offset) {\n    int b0 = data[offset] & 0xFF;\n    int b1 = data[offset + 1] & 0xFF;\n    return (b0 << 8) + (b1);\n}",
+  "method_comment": "\n     * Get a BE unsigned short value from a byte array\n     *\n     * @param data   the byte array\n     * @param offset a starting offset into the byte array\n     * @return the unsigned short (16-bit) value in an integer\n     ",
+  "method_annotation": ""
+}

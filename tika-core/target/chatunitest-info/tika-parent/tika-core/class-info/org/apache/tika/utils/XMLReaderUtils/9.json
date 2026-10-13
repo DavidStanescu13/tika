@@ -1,0 +1,30 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "trySetSAXFeature",
+  "brief": "private static void trySetSAXFeature(DocumentBuilderFactory documentBuilderFactory,\r\n                                         String feature, boolean enabled){}",
+  "methodSignature": "trySetSAXFeature(DocumentBuilderFactory, String, boolean)",
+  "sourceCode": "private static void trySetSAXFeature(DocumentBuilderFactory documentBuilderFactory,\n                                         String feature, boolean enabled) {\n        try {\n            documentBuilderFactory.setFeature(feature, enabled);\n        } catch (Exception e) {\n            LOG.warn(\"SAX Feature unsupported: {}\", feature, e);\n        } catch (AbstractMethodError ame) {\n            LOG.warn(\"Cannot set SAX feature because outdated XML parser in classpath: {}\", feature,\n                    ame);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "DocumentBuilderFactory",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "javax.xml.parsers.DocumentBuilderFactory": [
+      "setFeature(String, boolean)"
+    ],
+    "java.lang.String": [],
+    "org.slf4j.Logger": [
+      "warn(String, Object, Object)"
+    ]
+  },
+  "full_method_info": "private static void trySetSAXFeature(DocumentBuilderFactory documentBuilderFactory, String feature, boolean enabled) {\n    try {\n        documentBuilderFactory.setFeature(feature, enabled);\n    } catch (Exception e) {\n        LOG.warn(\"SAX Feature unsupported: {}\", feature, e);\n    } catch (AbstractMethodError ame) {\n        LOG.warn(\"Cannot set SAX feature because outdated XML parser in classpath: {}\", feature, ame);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

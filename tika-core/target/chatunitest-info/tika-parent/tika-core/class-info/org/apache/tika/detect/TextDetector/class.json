@@ -1,0 +1,57 @@
+{
+  "fullClassName": "org.apache.tika.detect.TextDetector",
+  "className": "TextDetector",
+  "index": 44,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Detector]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public class TextDetector",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.Arrays;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.parser.ParseContext;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 4774601079503507765L;",
+    "private static final int DEFAULT_NUMBER_OF_BYTES_TO_TEST = 512;",
+    "private static final boolean[] IS_CONTROL_BYTE = new boolean[0x20];",
+    "private final int bytesToTest;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Detector"
+  ],
+  "methodSigs": {
+    "detect(TikaInputStream, Metadata, ParseContext)": "0",
+    "TextDetector()": "1",
+    "TextDetector(int)": "2"
+  },
+  "methodsBrief": [
+    "public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException{}",
+    "public TextDetector(){}",
+    "public TextDetector(int bytesToTest){}"
+  ],
+  "constructorSigs": [
+    "TextDetector()",
+    "TextDetector(int)"
+  ],
+  "constructorBrief": [
+    "public TextDetector(){}",
+    "public TextDetector(int bytesToTest){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\nimport java.io.IOException;\nimport java.util.Arrays;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.parser.ParseContext;\n\n/**\n * Content type detection of plain text documents. This detector looks at the\n * beginning of the document input stream and considers the document to be\n * a text document if no ASCII (ISO-Latin-1, UTF-8, etc.) control bytes are\n * found. As a special case some control bytes (up to 2% of all characters)\n * are also allowed in a text document if it also contains no or just a few\n * (less than 10%) characters above the 7-bit ASCII range.\n * <p>\n * Note that text documents with a character encoding like UTF-16 are better\n * detected with {@link MagicDetector} and an appropriate magic byte pattern.\n *\n * @since Apache Tika 0.3\n */\npublic class TextDetector implements Detector {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 4774601079503507765L;\n\n    /**\n     * The number of bytes from the beginning of the document stream\n     * to test for control bytes.\n     */\n    private static final int DEFAULT_NUMBER_OF_BYTES_TO_TEST = 512;\n\n    /**\n     * Lookup table for all the ASCII/ISO-Latin/UTF-8/etc. control bytes\n     * in the range below 0x20 (the space character). If an entry in this\n     * table is <code>true</code> then that byte is very unlikely to occur\n     * in a plain text document.\n     * <p>\n     * The contents of this lookup table are based on the following definition\n     * from section 4 of the \"Content-Type Processing Model\" Internet-draft\n     * (<a href=\"http://webblaze.cs.berkeley.edu/2009/mime-sniff/mime-sniff.txt\"\n     * >draft-abarth-mime-sniff-01</a>).\n     * <pre>\n     * +-------------------------+\n     * | Binary data byte ranges |\n     * +-------------------------+\n     * | 0x00 -- 0x08            |\n     * | 0x0B                    |\n     * | 0x0E -- 0x1A            |\n     * | 0x1C -- 0x1F            |\n     * +-------------------------+\n     * </pre>\n     *\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-154\">TIKA-154</a>\n     */\n    private static final boolean[] IS_CONTROL_BYTE = new boolean[0x20];\n\n    static {\n        Arrays.fill(IS_CONTROL_BYTE, true);\n        // tabulator\n        IS_CONTROL_BYTE[0x09] = false;\n        // new line\n        IS_CONTROL_BYTE[0x0A] = false;\n        // new page\n        IS_CONTROL_BYTE[0x0C] = false;\n        // carriage return\n        IS_CONTROL_BYTE[0x0D] = false;\n        // escape\n        IS_CONTROL_BYTE[0x1B] = false;\n    }\n\n    private final int bytesToTest;\n\n    public TextDetector() {\n        this(DEFAULT_NUMBER_OF_BYTES_TO_TEST);\n    }\n\n    public TextDetector(int bytesToTest) {\n        this.bytesToTest = bytesToTest;\n    }\n\n    /**\n     * Looks at the beginning of the document input stream to determine\n     * whether the document is text or not.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata ignored\n     * @param context the parse context\n     * @return \"text/plain\" if the input stream suggest a text document,\n     * \"application/octet-stream\" otherwise\n     */\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n        tis.mark(bytesToTest);\n        try {\n            TextStatistics stats = new TextStatistics();\n            byte[] buffer = new byte[1024];\n            int n = 0;\n            int m = tis.read(buffer, 0, Math.min(bytesToTest, buffer.length));\n            while (m != -1 && n < bytesToTest) {\n                stats.addData(buffer, 0, m);\n                n += m;\n                m = tis.read(buffer, 0, Math.min(bytesToTest - n, buffer.length));\n            }\n            if (stats.isMostlyAscii() || stats.looksLikeUTF8()) {\n                return MediaType.TEXT_PLAIN;\n            } else {\n                return MediaType.OCTET_STREAM;\n            }\n        } finally {\n            tis.reset();\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Content type detection of plain text documents. This detector looks at the\n * beginning of the document input stream and considers the document to be\n * a text document if no ASCII (ISO-Latin-1, UTF-8, etc.) control bytes are\n * found. As a special case some control bytes (up to 2% of all characters)\n * are also allowed in a text document if it also contains no or just a few\n * (less than 10%) characters above the 7-bit ASCII range.\n * <p>\n * Note that text documents with a character encoding like UTF-16 are better\n * detected with {@link MagicDetector} and an appropriate magic byte pattern.\n *\n * @since Apache Tika 0.3\n */\npublic class TextDetector implements Detector {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 4774601079503507765L;\n\n    /**\n     * The number of bytes from the beginning of the document stream\n     * to test for control bytes.\n     */\n    private static final int DEFAULT_NUMBER_OF_BYTES_TO_TEST = 512;\n\n    /**\n     * Lookup table for all the ASCII/ISO-Latin/UTF-8/etc. control bytes\n     * in the range below 0x20 (the space character). If an entry in this\n     * table is <code>true</code> then that byte is very unlikely to occur\n     * in a plain text document.\n     * <p>\n     * The contents of this lookup table are based on the following definition\n     * from section 4 of the \"Content-Type Processing Model\" Internet-draft\n     * (<a href=\"http://webblaze.cs.berkeley.edu/2009/mime-sniff/mime-sniff.txt\"\n     * >draft-abarth-mime-sniff-01</a>).\n     * <pre>\n     * +-------------------------+\n     * | Binary data byte ranges |\n     * +-------------------------+\n     * | 0x00 -- 0x08            |\n     * | 0x0B                    |\n     * | 0x0E -- 0x1A            |\n     * | 0x1C -- 0x1F            |\n     * +-------------------------+\n     * </pre>\n     *\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-154\">TIKA-154</a>\n     */\n    private static final boolean[] IS_CONTROL_BYTE = new boolean[0x20];\n\n    static {\n        Arrays.fill(IS_CONTROL_BYTE, true);\n        // tabulator\n        IS_CONTROL_BYTE[0x09] = false;\n        // new line\n        IS_CONTROL_BYTE[0x0A] = false;\n        // new page\n        IS_CONTROL_BYTE[0x0C] = false;\n        // carriage return\n        IS_CONTROL_BYTE[0x0D] = false;\n        // escape\n        IS_CONTROL_BYTE[0x1B] = false;\n    }\n\n    private final int bytesToTest;\n\n    public TextDetector() {\n        this(DEFAULT_NUMBER_OF_BYTES_TO_TEST);\n    }\n\n    public TextDetector(int bytesToTest) {\n        this.bytesToTest = bytesToTest;\n    }\n\n    /**\n     * Looks at the beginning of the document input stream to determine\n     * whether the document is text or not.\n     *\n     * @param tis      document input stream, or <code>null</code>\n     * @param metadata ignored\n     * @param context the parse context\n     * @return \"text/plain\" if the input stream suggest a text document,\n     * \"application/octet-stream\" otherwise\n     */\n    public MediaType detect(TikaInputStream tis, Metadata metadata, ParseContext context) throws IOException {\n        if (tis == null) {\n            return MediaType.OCTET_STREAM;\n        }\n        tis.mark(bytesToTest);\n        try {\n            TextStatistics stats = new TextStatistics();\n            byte[] buffer = new byte[1024];\n            int n = 0;\n            int m = tis.read(buffer, 0, Math.min(bytesToTest, buffer.length));\n            while (m != -1 && n < bytesToTest) {\n                stats.addData(buffer, 0, m);\n                n += m;\n                m = tis.read(buffer, 0, Math.min(bytesToTest - n, buffer.length));\n            }\n            if (stats.isMostlyAscii() || stats.looksLikeUTF8()) {\n                return MediaType.TEXT_PLAIN;\n            } else {\n                return MediaType.OCTET_STREAM;\n            }\n        } finally {\n            tis.reset();\n        }\n    }\n}",
+  "subClasses": []
+}

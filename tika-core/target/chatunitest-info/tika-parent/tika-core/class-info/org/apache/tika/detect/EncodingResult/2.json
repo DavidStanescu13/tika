@@ -1,0 +1,18 @@
+{
+  "className": "EncodingResult",
+  "methodName": "getConfidence",
+  "brief": "public float getConfidence(){}",
+  "methodSignature": "getConfidence()",
+  "sourceCode": "public float getConfidence() {\n        return confidence;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Detection confidence in {@code [0.0, 1.0]}.  Meaningful for ranking\n * among {@link ResultType#STATISTICAL} candidates.  For\n * {@link ResultType#DECLARATIVE} and {@link ResultType#STRUCTURAL} results\n * the value is conventionally {@code 1.0} but carries no additional\n * information beyond the type itself.\n */\npublic float getConfidence() {\n    return confidence;\n}",
+  "method_comment": "\n     * Detection confidence in {@code [0.0, 1.0]}.  Meaningful for ranking\n     * among {@link ResultType#STATISTICAL} candidates.  For\n     * {@link ResultType#DECLARATIVE} and {@link ResultType#STRUCTURAL} results\n     * the value is conventionally {@code 1.0} but carries no additional\n     * information beyond the type itself.\n     ",
+  "method_annotation": ""
+}

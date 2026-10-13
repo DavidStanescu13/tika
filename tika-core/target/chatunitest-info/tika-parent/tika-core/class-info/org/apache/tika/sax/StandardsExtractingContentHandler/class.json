@@ -1,0 +1,76 @@
+{
+  "fullClassName": "org.apache.tika.sax.StandardsExtractingContentHandler",
+  "className": "StandardsExtractingContentHandler",
+  "index": 305,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class StandardsExtractingContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import java.util.List;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;",
+    "import org.apache.tika.metadata.Metadata;"
+  ],
+  "fields": [
+    "public static final String STANDARD_REFERENCES = \"standard_references\";",
+    "private final Metadata metadata;",
+    "private final StringBuilder stringBuilder;",
+    "private int maxBufferLength = 100000;",
+    "private double threshold = 0;"
+  ],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getThreshold()": "0",
+    "setThreshold(double)": "1",
+    "characters(char[], int, int)": "2",
+    "endDocument()": "3",
+    "setMaxBufferLength(int)": "4",
+    "StandardsExtractingContentHandler(ContentHandler, Metadata)": "5",
+    "StandardsExtractingContentHandler()": "6"
+  },
+  "methodsBrief": [
+    "public double getThreshold(){}",
+    "public void setThreshold(double score){}",
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "public void setMaxBufferLength(int maxBufferLength){}",
+    "public StandardsExtractingContentHandler(ContentHandler handler, Metadata metadata){}",
+    "protected StandardsExtractingContentHandler(){}"
+  ],
+  "constructorSigs": [
+    "StandardsExtractingContentHandler(ContentHandler, Metadata)",
+    "StandardsExtractingContentHandler()"
+  ],
+  "constructorBrief": [
+    "public StandardsExtractingContentHandler(ContentHandler handler, Metadata metadata){}",
+    "protected StandardsExtractingContentHandler(){}"
+  ],
+  "getterSetterSigs": [
+    "getThreshold()",
+    "setThreshold(double)",
+    "setMaxBufferLength(int)"
+  ],
+  "getterSetterBrief": [
+    "public double getThreshold(){}",
+    "public void setThreshold(double score){}",
+    "public void setMaxBufferLength(int maxBufferLength){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.util.Arrays;\nimport java.util.List;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\nimport org.apache.tika.metadata.Metadata;\n\n/**\n * StandardsExtractingContentHandler is a Content Handler used to extract\n * standard references while parsing.\n * <p>\n * This handler relies on complex regular expressions which can be slow on some types of\n * input data.\n */\npublic class StandardsExtractingContentHandler extends ContentHandlerDecorator {\n\n    public static final String STANDARD_REFERENCES = \"standard_references\";\n\n    private final Metadata metadata;\n\n    private final StringBuilder stringBuilder;\n\n    private int maxBufferLength = 100000;\n\n    private double threshold = 0;\n\n    public StandardsExtractingContentHandler(ContentHandler handler, Metadata metadata) {\n        super(handler);\n        this.metadata = metadata;\n        this.stringBuilder = new StringBuilder();\n    }\n\n    protected StandardsExtractingContentHandler() {\n        this(new DefaultHandler(), new Metadata());\n    }\n\n    /**\n     * Gets the threshold to be used for selecting the standard references found\n     * within the text based on their score.\n     *\n     * @return the threshold to be used for selecting the standard references\n     * found within the text based on their score.\n     */\n    public double getThreshold() {\n        return threshold;\n    }\n\n    /**\n     * Sets the score to be used as threshold.\n     *\n     * @param score the score to be used as threshold.\n     */\n    public void setThreshold(double score) {\n        this.threshold = score;\n    }\n\n    /**\n     * The characters method is called whenever a Parser wants to pass raw\n     * characters to the ContentHandler. However, standard references are often\n     * split across different calls to characters, depending on the specific\n     * Parser used. Therefore, we simply add all characters to a StringBuilder\n     * and analyze it once the document is finished.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            if (maxBufferLength > -1) {\n                int remaining = maxBufferLength - stringBuilder.length();\n                length = remaining > length ? length : remaining;\n            }\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    /**\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any standard references.\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<StandardReference> standards = StandardsText.extractStandardReferences(stringBuilder.toString(), threshold);\n        for (StandardReference standardReference : standards) {\n            metadata.add(STANDARD_REFERENCES, standardReference.toString());\n        }\n    }\n\n    /**\n     * The number of characters to store in memory for checking for standards.\n     *\n     * If this is unbounded, the complex regular expressions can take a long time\n     * to process some types of data.  Only increase this limit with great caution.\n     */\n    public void setMaxBufferLength(int maxBufferLength) {\n        this.maxBufferLength = maxBufferLength;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * StandardsExtractingContentHandler is a Content Handler used to extract\n * standard references while parsing.\n * <p>\n * This handler relies on complex regular expressions which can be slow on some types of\n * input data.\n */\npublic class StandardsExtractingContentHandler extends ContentHandlerDecorator {\n\n    public static final String STANDARD_REFERENCES = \"standard_references\";\n\n    private final Metadata metadata;\n\n    private final StringBuilder stringBuilder;\n\n    private int maxBufferLength = 100000;\n\n    private double threshold = 0;\n\n    public StandardsExtractingContentHandler(ContentHandler handler, Metadata metadata) {\n        super(handler);\n        this.metadata = metadata;\n        this.stringBuilder = new StringBuilder();\n    }\n\n    protected StandardsExtractingContentHandler() {\n        this(new DefaultHandler(), new Metadata());\n    }\n\n    /**\n     * Gets the threshold to be used for selecting the standard references found\n     * within the text based on their score.\n     *\n     * @return the threshold to be used for selecting the standard references\n     * found within the text based on their score.\n     */\n    public double getThreshold() {\n        return threshold;\n    }\n\n    /**\n     * Sets the score to be used as threshold.\n     *\n     * @param score the score to be used as threshold.\n     */\n    public void setThreshold(double score) {\n        this.threshold = score;\n    }\n\n    /**\n     * The characters method is called whenever a Parser wants to pass raw\n     * characters to the ContentHandler. However, standard references are often\n     * split across different calls to characters, depending on the specific\n     * Parser used. Therefore, we simply add all characters to a StringBuilder\n     * and analyze it once the document is finished.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        try {\n            if (maxBufferLength > -1) {\n                int remaining = maxBufferLength - stringBuilder.length();\n                length = remaining > length ? length : remaining;\n            }\n            String text = new String(Arrays.copyOfRange(ch, start, start + length));\n            stringBuilder.append(text);\n            super.characters(ch, start, length);\n        } catch (SAXException e) {\n            handleException(e);\n        }\n    }\n\n    /**\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any standard references.\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<StandardReference> standards = StandardsText.extractStandardReferences(stringBuilder.toString(), threshold);\n        for (StandardReference standardReference : standards) {\n            metadata.add(STANDARD_REFERENCES, standardReference.toString());\n        }\n    }\n\n    /**\n     * The number of characters to store in memory for checking for standards.\n     *\n     * If this is unbounded, the complex regular expressions can take a long time\n     * to process some types of data.  Only increase this limit with great caution.\n     */\n    public void setMaxBufferLength(int maxBufferLength) {\n        this.maxBufferLength = maxBufferLength;\n    }\n}",
+  "subClasses": []
+}

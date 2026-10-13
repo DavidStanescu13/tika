@@ -1,0 +1,30 @@
+{
+  "className": "FilenameUtils",
+  "methodName": "getName",
+  "brief": "public static String getName(final String path){}",
+  "methodSignature": "getName(String)",
+  "sourceCode": "public static String getName(final String path) {\n\n        if (path == null || path.isEmpty()) {\n            return StringUtils.EMPTY;\n        }\n        int unix = path.lastIndexOf(\"/\");\n        int windows = path.lastIndexOf(\"\\\\\");\n        //some macintosh file names are stored with : as the delimiter\n        //also necessary to properly handle C:somefilename\n        int colon = path.lastIndexOf(\":\");\n        String cand = path.substring(Math.max(colon, Math.max(unix, windows)) + 1);\n        if (cand.equals(\"..\") || cand.equals(\".\")) {\n            return StringUtils.EMPTY;\n        }\n        return cand;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "lastIndexOf(String)",
+      "equals(Object)",
+      "isEmpty()",
+      "substring(int)"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * This is a duplication of the algorithm and functionality\n * available in commons io FilenameUtils.  If Java's File were\n * able handle Windows file paths correctly in linux,\n * we wouldn't need this.\n * <p>\n * The goal of this is to get a filename from a path.\n * The package parsers and some other embedded doc\n * extractors could put anything into TikaCoreProperties.RESOURCE_NAME_KEY.\n * <p>\n * If a careless client used that filename as if it were a\n * filename and not a path when writing embedded files,\n * bad things could happen.  Consider: \"../../../my_ppt.ppt\".\n * <p>\n * Consider using this in combination with {@link #normalize(String)}.\n *\n * @param path path to strip\n * @return empty string or a filename, never null\n */\npublic static String getName(final String path) {\n    if (path == null || path.isEmpty()) {\n        return StringUtils.EMPTY;\n    }\n    int unix = path.lastIndexOf(\"/\");\n    int windows = path.lastIndexOf(\"\\\\\");\n    // some macintosh file names are stored with : as the delimiter\n    // also necessary to properly handle C:somefilename\n    int colon = path.lastIndexOf(\":\");\n    String cand = path.substring(Math.max(colon, Math.max(unix, windows)) + 1);\n    if (cand.equals(\"..\") || cand.equals(\".\")) {\n        return StringUtils.EMPTY;\n    }\n    return cand;\n}",
+  "method_comment": "\n     * This is a duplication of the algorithm and functionality\n     * available in commons io FilenameUtils.  If Java's File were\n     * able handle Windows file paths correctly in linux,\n     * we wouldn't need this.\n     * <p>\n     * The goal of this is to get a filename from a path.\n     * The package parsers and some other embedded doc\n     * extractors could put anything into TikaCoreProperties.RESOURCE_NAME_KEY.\n     * <p>\n     * If a careless client used that filename as if it were a\n     * filename and not a path when writing embedded files,\n     * bad things could happen.  Consider: \"../../../my_ppt.ppt\".\n     * <p>\n     * Consider using this in combination with {@link #normalize(String)}.\n     *\n     * @param path path to strip\n     * @return empty string or a filename, never null\n     ",
+  "method_annotation": ""
+}

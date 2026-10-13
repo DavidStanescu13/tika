@@ -1,0 +1,41 @@
+{
+  "className": "ServiceLoader",
+  "methodName": "collectServiceClassNames",
+  "brief": "private void collectServiceClassNames(URL resource, Collection<String> names)\r\n            throws IOException{}",
+  "methodSignature": "collectServiceClassNames(URL, Collection)",
+  "sourceCode": "private void collectServiceClassNames(URL resource, Collection<String> names)\n            throws IOException {\n        try (InputStream stream = resource.openStream();\n                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, UTF_8))) {\n            String line = reader.readLine();\n            while (line != null) {\n                line = COMMENT.matcher(line).replaceFirst(\"\");\n                line = WHITESPACE.matcher(line).replaceAll(\"\");\n                if (line.length() > 0) {\n                    names.add(line);\n                }\n                line = reader.readLine();\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "URL",
+    "Collection<String>"
+  ],
+  "dependentMethods": {
+    "java.net.URL": [
+      "openStream()"
+    ],
+    "java.io.BufferedReader": [
+      "readLine()"
+    ],
+    "java.util.regex.Matcher": [
+      "replaceFirst(String)",
+      "replaceAll(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.lang.String": [
+      "length()"
+    ],
+    "java.util.Collection": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private void collectServiceClassNames(URL resource, Collection<String> names) throws IOException {\n    try (InputStream stream = resource.openStream();\n        BufferedReader reader = new BufferedReader(new InputStreamReader(stream, UTF_8))) {\n        String line = reader.readLine();\n        while (line != null) {\n            line = COMMENT.matcher(line).replaceFirst(\"\");\n            line = WHITESPACE.matcher(line).replaceAll(\"\");\n            if (line.length() > 0) {\n                names.add(line);\n            }\n            line = reader.readLine();\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

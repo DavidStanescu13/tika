@@ -1,0 +1,38 @@
+{
+  "className": "Patterns",
+  "methodName": "add",
+  "brief": "public void add(String pattern, boolean isJavaRegex, MimeType type) throws MimeTypeException{}",
+  "methodSignature": "add(String, boolean, MimeType)",
+  "sourceCode": "public void add(String pattern, boolean isJavaRegex, MimeType type) throws MimeTypeException {\n        if (pattern == null || type == null) {\n            throw new IllegalArgumentException(\"Pattern and/or mime type is missing\");\n        }\n\n        if (isJavaRegex) {\n            // in this case, we don't need to build a regex pattern\n            // it's already there for us, so just add the pattern as is\n            addGlob(pattern, type);\n        } else {\n\n            if (pattern.indexOf('*') == -1 && pattern.indexOf('?') == -1 &&\n                    pattern.indexOf('[') == -1) {\n                addName(pattern, type);\n            } else if (pattern.startsWith(\"*\") && pattern.indexOf('*', 1) == -1 &&\n                    pattern.indexOf('?') == -1 && pattern.indexOf('[') == -1) {\n                String extension = pattern.substring(1);\n                addExtension(extension, type);\n                type.addExtension(extension);\n            } else {\n                addGlob(compile(pattern), type);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean",
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "indexOf(int)",
+      "indexOf(int, int)"
+    ],
+    "org.apache.tika.mime.MimeType": [
+      "addExtension(String)"
+    ],
+    "org.apache.tika.mime.Patterns": [
+      "addName(String, MimeType)",
+      "addExtension(String, MimeType)",
+      "addGlob(String, MimeType)",
+      "compile(String)"
+    ]
+  },
+  "full_method_info": "public void add(String pattern, boolean isJavaRegex, MimeType type) throws MimeTypeException {\n    if (pattern == null || type == null) {\n        throw new IllegalArgumentException(\"Pattern and/or mime type is missing\");\n    }\n    if (isJavaRegex) {\n        // in this case, we don't need to build a regex pattern\n        // it's already there for us, so just add the pattern as is\n        addGlob(pattern, type);\n    } else {\n        if (pattern.indexOf('*') == -1 && pattern.indexOf('?') == -1 && pattern.indexOf('[') == -1) {\n            addName(pattern, type);\n        } else if (pattern.startsWith(\"*\") && pattern.indexOf('*', 1) == -1 && pattern.indexOf('?') == -1 && pattern.indexOf('[') == -1) {\n            String extension = pattern.substring(1);\n            addExtension(extension, type);\n            type.addExtension(extension);\n        } else {\n            addGlob(compile(pattern), type);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

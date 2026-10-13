@@ -1,0 +1,64 @@
+{
+  "fullClassName": "org.apache.tika.io.SpoolingStrategy",
+  "className": "SpoolingStrategy",
+  "index": 104,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.io",
+  "packageDeclaration": "package org.apache.tika.io;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class SpoolingStrategy",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.HashSet;",
+    "import java.util.Set;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.mime.MediaTypeRegistry;"
+  ],
+  "fields": [
+    "private static final Set<MediaType> DEFAULT_SPOOL_TYPES;",
+    "private Set<MediaType> spoolTypes = new HashSet<>(DEFAULT_SPOOL_TYPES);",
+    "private MediaTypeRegistry mediaTypeRegistry;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "shouldSpool(TikaInputStream, Metadata, MediaType)": "0",
+    "matchesSpoolType(MediaType)": "1",
+    "setSpoolTypes(Set)": "2",
+    "getSpoolTypes()": "3",
+    "setMediaTypeRegistry(MediaTypeRegistry)": "4",
+    "getMediaTypeRegistry()": "5"
+  },
+  "methodsBrief": [
+    "public boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType){}",
+    "private boolean matchesSpoolType(MediaType type){}",
+    "public void setSpoolTypes(Set<MediaType> spoolTypes){}",
+    "public Set<MediaType> getSpoolTypes(){}",
+    "public void setMediaTypeRegistry(MediaTypeRegistry registry){}",
+    "public MediaTypeRegistry getMediaTypeRegistry(){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "setSpoolTypes(Set)",
+    "getSpoolTypes()",
+    "setMediaTypeRegistry(MediaTypeRegistry)",
+    "getMediaTypeRegistry()"
+  ],
+  "getterSetterBrief": [
+    "public void setSpoolTypes(Set<MediaType> spoolTypes){}",
+    "public Set<MediaType> getSpoolTypes(){}",
+    "public void setMediaTypeRegistry(MediaTypeRegistry registry){}",
+    "public MediaTypeRegistry getMediaTypeRegistry(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.io;\n\nimport java.util.HashSet;\nimport java.util.Set;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.mime.MediaTypeRegistry;\n\n/**\n * Strategy for determining when to spool a TikaInputStream to disk.\n * <p>\n * Components (detectors, parsers) can check this strategy before calling\n * {@link TikaInputStream#getFile()} to determine if spooling is appropriate\n * for the given media type.\n * <p>\n * Default behavior (when no strategy is in ParseContext): components spool when needed.\n * A strategy allows fine-grained control over spooling decisions.\n * <p>\n * Configure via JSON:\n * <pre>\n * {\n *   \"spooling-strategy\": {\n *     \"spoolTypes\": [\"application/zip\", \"application/x-tika-msoffice\", \"application/pdf\"]\n *   }\n * }\n * </pre>\n */\n@TikaComponent(spi = false)\npublic class SpoolingStrategy {\n\n    private static final Set<MediaType> DEFAULT_SPOOL_TYPES;\n\n    static {\n        Set<MediaType> types = new HashSet<>();\n        types.add(MediaType.application(\"zip\"));\n        types.add(MediaType.application(\"x-tika-msoffice\"));\n        types.add(MediaType.application(\"x-bplist\"));\n        types.add(MediaType.application(\"pdf\"));\n        DEFAULT_SPOOL_TYPES = Set.copyOf(types);\n    }\n\n    private Set<MediaType> spoolTypes = new HashSet<>(DEFAULT_SPOOL_TYPES);\n\n    private MediaTypeRegistry mediaTypeRegistry;\n\n    /**\n     * Determines whether the stream should be spooled to disk.\n     *\n     * @param tis       the TikaInputStream (can check hasFile(), getLength())\n     * @param metadata  metadata (can check content-type hints, filename)\n     * @param mediaType the detected or declared media type\n     * @return true if the stream should be spooled to disk\n     */\n    public boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType) {\n        // Already has file? No need to spool\n        if (tis != null && tis.hasFile()) {\n            return false;\n        }\n        // Check type against spoolTypes\n        return matchesSpoolType(mediaType);\n    }\n\n    private boolean matchesSpoolType(MediaType type) {\n        if (type == null) {\n            return false;\n        }\n        // Exact match\n        if (spoolTypes.contains(type)) {\n            return true;\n        }\n        // Base type match (without parameters)\n        MediaType baseType = type.getBaseType();\n        if (spoolTypes.contains(baseType)) {\n            return true;\n        }\n        // Check if type is a specialization of any spool type\n        if (mediaTypeRegistry != null) {\n            for (MediaType spoolType : spoolTypes) {\n                if (mediaTypeRegistry.isSpecializationOf(type, spoolType)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    /**\n     * Sets the media types that should be spooled to disk.\n     * Specializations of these types are also included.\n     *\n     * @param spoolTypes set of media types to spool\n     */\n    public void setSpoolTypes(Set<MediaType> spoolTypes) {\n        this.spoolTypes = spoolTypes != null ? new HashSet<>(spoolTypes) : new HashSet<>();\n    }\n\n    /**\n     * Returns the media types that should be spooled to disk.\n     *\n     * @return set of media types to spool\n     */\n    public Set<MediaType> getSpoolTypes() {\n        return spoolTypes;\n    }\n\n    /**\n     * Sets the media type registry used for checking type specializations.\n     *\n     * @param registry the media type registry\n     */\n    public void setMediaTypeRegistry(MediaTypeRegistry registry) {\n        this.mediaTypeRegistry = registry;\n    }\n\n    /**\n     * Returns the media type registry.\n     *\n     * @return the media type registry, or null if not set\n     */\n    public MediaTypeRegistry getMediaTypeRegistry() {\n        return mediaTypeRegistry;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Strategy for determining when to spool a TikaInputStream to disk.\n * <p>\n * Components (detectors, parsers) can check this strategy before calling\n * {@link TikaInputStream#getFile()} to determine if spooling is appropriate\n * for the given media type.\n * <p>\n * Default behavior (when no strategy is in ParseContext): components spool when needed.\n * A strategy allows fine-grained control over spooling decisions.\n * <p>\n * Configure via JSON:\n * <pre>\n * {\n *   \"spooling-strategy\": {\n *     \"spoolTypes\": [\"application/zip\", \"application/x-tika-msoffice\", \"application/pdf\"]\n *   }\n * }\n * </pre>\n */\n@TikaComponent(spi = false)\npublic class SpoolingStrategy {\n\n    private static final Set<MediaType> DEFAULT_SPOOL_TYPES;\n\n    static {\n        Set<MediaType> types = new HashSet<>();\n        types.add(MediaType.application(\"zip\"));\n        types.add(MediaType.application(\"x-tika-msoffice\"));\n        types.add(MediaType.application(\"x-bplist\"));\n        types.add(MediaType.application(\"pdf\"));\n        DEFAULT_SPOOL_TYPES = Set.copyOf(types);\n    }\n\n    private Set<MediaType> spoolTypes = new HashSet<>(DEFAULT_SPOOL_TYPES);\n\n    private MediaTypeRegistry mediaTypeRegistry;\n\n    /**\n     * Determines whether the stream should be spooled to disk.\n     *\n     * @param tis       the TikaInputStream (can check hasFile(), getLength())\n     * @param metadata  metadata (can check content-type hints, filename)\n     * @param mediaType the detected or declared media type\n     * @return true if the stream should be spooled to disk\n     */\n    public boolean shouldSpool(TikaInputStream tis, Metadata metadata, MediaType mediaType) {\n        // Already has file? No need to spool\n        if (tis != null && tis.hasFile()) {\n            return false;\n        }\n        // Check type against spoolTypes\n        return matchesSpoolType(mediaType);\n    }\n\n    private boolean matchesSpoolType(MediaType type) {\n        if (type == null) {\n            return false;\n        }\n        // Exact match\n        if (spoolTypes.contains(type)) {\n            return true;\n        }\n        // Base type match (without parameters)\n        MediaType baseType = type.getBaseType();\n        if (spoolTypes.contains(baseType)) {\n            return true;\n        }\n        // Check if type is a specialization of any spool type\n        if (mediaTypeRegistry != null) {\n            for (MediaType spoolType : spoolTypes) {\n                if (mediaTypeRegistry.isSpecializationOf(type, spoolType)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    /**\n     * Sets the media types that should be spooled to disk.\n     * Specializations of these types are also included.\n     *\n     * @param spoolTypes set of media types to spool\n     */\n    public void setSpoolTypes(Set<MediaType> spoolTypes) {\n        this.spoolTypes = spoolTypes != null ? new HashSet<>(spoolTypes) : new HashSet<>();\n    }\n\n    /**\n     * Returns the media types that should be spooled to disk.\n     *\n     * @return set of media types to spool\n     */\n    public Set<MediaType> getSpoolTypes() {\n        return spoolTypes;\n    }\n\n    /**\n     * Sets the media type registry used for checking type specializations.\n     *\n     * @param registry the media type registry\n     */\n    public void setMediaTypeRegistry(MediaTypeRegistry registry) {\n        this.mediaTypeRegistry = registry;\n    }\n\n    /**\n     * Returns the media type registry.\n     *\n     * @return the media type registry, or null if not set\n     */\n    public MediaTypeRegistry getMediaTypeRegistry() {\n        return mediaTypeRegistry;\n    }\n}",
+  "subClasses": []
+}

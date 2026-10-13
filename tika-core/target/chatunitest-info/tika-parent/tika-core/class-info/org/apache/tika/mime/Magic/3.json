@@ -1,0 +1,22 @@
+{
+  "className": "Magic",
+  "methodName": "size",
+  "brief": "public int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "public int size() {\n        return clause.size();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.mime.Clause": [
+      "size()"
+    ]
+  },
+  "full_method_info": "public int size() {\n    return clause.size();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

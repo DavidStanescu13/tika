@@ -1,0 +1,29 @@
+{
+  "className": "FallbackParser",
+  "methodName": "parserCompleted",
+  "brief": "@Override\r\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler,\r\n                                      ParseContext context, Exception exception){}",
+  "methodSignature": "parserCompleted(Parser, Metadata, ContentHandler, ParseContext, Exception)",
+  "sourceCode": "@Override\n    protected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler,\n                                      ParseContext context, Exception exception) {\n        // If there was no exception, abort further parsers\n        return exception != null;\n\n        // Have the next parser tried\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Metadata",
+    "ContentHandler",
+    "ParseContext",
+    "Exception"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [],
+    "java.lang.Exception": []
+  },
+  "full_method_info": "@Override\nprotected boolean parserCompleted(Parser parser, Metadata metadata, ContentHandler handler, ParseContext context, Exception exception) {\n    // If there was no exception, abort further parsers\n    return exception != null;\n    // Have the next parser tried\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

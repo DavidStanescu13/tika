@@ -1,0 +1,50 @@
+{
+  "fullClassName": "org.apache.tika.sax.xpath.Matcher",
+  "className": "Matcher",
+  "index": 331,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax.xpath",
+  "packageDeclaration": "package org.apache.tika.sax.xpath;",
+  "classSignature": "public class Matcher",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "public static final Matcher FAIL = new Matcher();"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "descend(String, String)": "0",
+    "matchesElement()": "1",
+    "matchesAttribute(String, String)": "2",
+    "matchesText()": "3"
+  },
+  "methodsBrief": [
+    "public Matcher descend(String namespace, String name){}",
+    "public boolean matchesElement(){}",
+    "public boolean matchesAttribute(String namespace, String name){}",
+    "public boolean matchesText(){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax.xpath;\n\n/**\n * XPath element matcher. A matcher instance encapsulates a specific\n * state in XPath evaluation.\n */\npublic class Matcher {\n\n    /**\n     * State of a failed XPath evaluation, where nothing is matched.\n     * This matcher instance is used as a sentinel object whenever an\n     * XPath evaluation branch fails.\n     */\n    public static final Matcher FAIL = new Matcher();\n\n    /**\n     * Returns the XPath evaluation state that results from descending\n     * to a child element with the given name.\n     *\n     * @param namespace element namespace or <code>null</code>\n     * @param name      element name\n     * @return next XPath evaluation state\n     */\n    public Matcher descend(String namespace, String name) {\n        return FAIL;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches\n     * the element associated with this evaluation state.\n     *\n     * @return XPath evaluation state for this element\n     */\n    public boolean matchesElement() {\n        return false;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches the named\n     * attribute of the element associated with this evaluation state.\n     *\n     * @param namespace attribute namespace or <code>null</code>\n     * @param name      attribute name\n     * @return XPath evaluation state for named attribute of this element\n     */\n    public boolean matchesAttribute(String namespace, String name) {\n        return false;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches all text\n     * nodes whose parent is the element associated with this evaluation\n     * state.\n     *\n     * @return XPath evaluation state for text children of this element\n     */\n    public boolean matchesText() {\n        return false;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * XPath element matcher. A matcher instance encapsulates a specific\n * state in XPath evaluation.\n */\npublic class Matcher {\n\n    /**\n     * State of a failed XPath evaluation, where nothing is matched.\n     * This matcher instance is used as a sentinel object whenever an\n     * XPath evaluation branch fails.\n     */\n    public static final Matcher FAIL = new Matcher();\n\n    /**\n     * Returns the XPath evaluation state that results from descending\n     * to a child element with the given name.\n     *\n     * @param namespace element namespace or <code>null</code>\n     * @param name      element name\n     * @return next XPath evaluation state\n     */\n    public Matcher descend(String namespace, String name) {\n        return FAIL;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches\n     * the element associated with this evaluation state.\n     *\n     * @return XPath evaluation state for this element\n     */\n    public boolean matchesElement() {\n        return false;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches the named\n     * attribute of the element associated with this evaluation state.\n     *\n     * @param namespace attribute namespace or <code>null</code>\n     * @param name      attribute name\n     * @return XPath evaluation state for named attribute of this element\n     */\n    public boolean matchesAttribute(String namespace, String name) {\n        return false;\n    }\n\n    /**\n     * Returns <code>true</code> if the XPath expression matches all text\n     * nodes whose parent is the element associated with this evaluation\n     * state.\n     *\n     * @return XPath evaluation state for text children of this element\n     */\n    public boolean matchesText() {\n        return false;\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.xpath.AttributeMatcher",
+    "org.apache.tika.sax.xpath.ChildMatcher",
+    "org.apache.tika.sax.xpath.CompositeMatcher",
+    "org.apache.tika.sax.xpath.ElementMatcher",
+    "org.apache.tika.sax.xpath.NamedAttributeMatcher",
+    "org.apache.tika.sax.xpath.NodeMatcher",
+    "org.apache.tika.sax.xpath.SubtreeMatcher",
+    "org.apache.tika.sax.xpath.TextMatcher"
+  ]
+}

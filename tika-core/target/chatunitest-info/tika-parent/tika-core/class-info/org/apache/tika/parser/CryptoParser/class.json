@@ -1,0 +1,72 @@
+{
+  "fullClassName": "org.apache.tika.parser.CryptoParser",
+  "className": "CryptoParser",
+  "index": 229,
+  "modifier": "[public , abstract ]",
+  "extend": "[DelegatingParser]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "public abstract class CryptoParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.security.AlgorithmParameters;",
+    "import java.security.GeneralSecurityException;",
+    "import java.security.Key;",
+    "import java.security.Provider;",
+    "import java.security.SecureRandom;",
+    "import java.util.Set;",
+    "import javax.crypto.Cipher;",
+    "import javax.crypto.CipherInputStream;",
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;",
+    "import org.apache.tika.exception.EncryptedDocumentException;",
+    "import org.apache.tika.exception.TikaException;",
+    "import org.apache.tika.io.TikaInputStream;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.mime.MediaType;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = -3507995752666557731L;",
+    "private final String transformation;",
+    "private final Provider provider;",
+    "private final Set<MediaType> types;"
+  ],
+  "superClasses": [
+    "DelegatingParser"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getSupportedTypes(ParseContext)": "0",
+    "parse(TikaInputStream, ContentHandler, Metadata, ParseContext)": "1",
+    "CryptoParser(String, Provider, Set)": "2",
+    "CryptoParser(String, Set)": "3"
+  },
+  "methodsBrief": [
+    "public Set<MediaType> getSupportedTypes(ParseContext context){}",
+    "public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,\r\n                      ParseContext context) throws IOException, SAXException, TikaException{}",
+    "public CryptoParser(String transformation, Provider provider, Set<MediaType> types){}",
+    "public CryptoParser(String transformation, Set<MediaType> types){}"
+  ],
+  "constructorSigs": [
+    "CryptoParser(String, Provider, Set)",
+    "CryptoParser(String, Set)"
+  ],
+  "constructorBrief": [
+    "public CryptoParser(String transformation, Provider provider, Set<MediaType> types){}",
+    "public CryptoParser(String transformation, Set<MediaType> types){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "java.security.Provider": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.io.IOException;\nimport java.security.AlgorithmParameters;\nimport java.security.GeneralSecurityException;\nimport java.security.Key;\nimport java.security.Provider;\nimport java.security.SecureRandom;\nimport java.util.Set;\nimport javax.crypto.Cipher;\nimport javax.crypto.CipherInputStream;\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\nimport org.apache.tika.exception.EncryptedDocumentException;\nimport org.apache.tika.exception.TikaException;\nimport org.apache.tika.io.TikaInputStream;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.mime.MediaType;\n\n/**\n * Decrypts the incoming document stream and delegates further parsing to\n * another parser instance. The decryption key and other settings as well\n * as the delegate parser are taken from the parsing context.\n *\n * @since Apache Tika 0.10\n */\npublic abstract class CryptoParser extends DelegatingParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = -3507995752666557731L;\n\n    private final String transformation;\n\n    private final Provider provider;\n\n    private final Set<MediaType> types;\n\n    public CryptoParser(String transformation, Provider provider, Set<MediaType> types) {\n        this.transformation = transformation;\n        this.provider = provider;\n        this.types = types;\n    }\n\n    public CryptoParser(String transformation, Set<MediaType> types) {\n        this(transformation, null, types);\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return types;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try {\n            Cipher cipher;\n            if (provider != null) {\n                cipher = Cipher.getInstance(transformation, provider);\n            } else {\n                cipher = Cipher.getInstance(transformation);\n            }\n            Key key = context.get(Key.class);\n            if (key == null) {\n                throw new EncryptedDocumentException(\"No decryption key provided\");\n            }\n            AlgorithmParameters params = context.get(AlgorithmParameters.class);\n            SecureRandom random = context.get(SecureRandom.class);\n            if (params != null && random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params, random);\n            } else if (params != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params);\n            } else if (random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, random);\n            } else {\n                cipher.init(Cipher.DECRYPT_MODE, key);\n            }\n            try (TikaInputStream decrypted = TikaInputStream.get(new CipherInputStream(tis, cipher))) {\n                super.parse(decrypted, handler, metadata, context);\n            }\n        } catch (GeneralSecurityException e) {\n            throw new TikaException(\"Unable to decrypt document stream\", e);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Decrypts the incoming document stream and delegates further parsing to\n * another parser instance. The decryption key and other settings as well\n * as the delegate parser are taken from the parsing context.\n *\n * @since Apache Tika 0.10\n */\npublic abstract class CryptoParser extends DelegatingParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = -3507995752666557731L;\n\n    private final String transformation;\n\n    private final Provider provider;\n\n    private final Set<MediaType> types;\n\n    public CryptoParser(String transformation, Provider provider, Set<MediaType> types) {\n        this.transformation = transformation;\n        this.provider = provider;\n        this.types = types;\n    }\n\n    public CryptoParser(String transformation, Set<MediaType> types) {\n        this(transformation, null, types);\n    }\n\n    public Set<MediaType> getSupportedTypes(ParseContext context) {\n        return types;\n    }\n\n    public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata, ParseContext context) throws IOException, SAXException, TikaException {\n        try {\n            Cipher cipher;\n            if (provider != null) {\n                cipher = Cipher.getInstance(transformation, provider);\n            } else {\n                cipher = Cipher.getInstance(transformation);\n            }\n            Key key = context.get(Key.class);\n            if (key == null) {\n                throw new EncryptedDocumentException(\"No decryption key provided\");\n            }\n            AlgorithmParameters params = context.get(AlgorithmParameters.class);\n            SecureRandom random = context.get(SecureRandom.class);\n            if (params != null && random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params, random);\n            } else if (params != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, params);\n            } else if (random != null) {\n                cipher.init(Cipher.DECRYPT_MODE, key, random);\n            } else {\n                cipher.init(Cipher.DECRYPT_MODE, key);\n            }\n            try (TikaInputStream decrypted = TikaInputStream.get(new CipherInputStream(tis, cipher))) {\n                super.parse(decrypted, handler, metadata, context);\n            }\n        } catch (GeneralSecurityException e) {\n            throw new TikaException(\"Unable to decrypt document stream\", e);\n        }\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,73 @@
+{
+  "fullClassName": "org.apache.tika.digest.DigestDef",
+  "className": "DigestDef",
+  "index": 54,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.digest",
+  "packageDeclaration": "package org.apache.tika.digest;",
+  "classSignature": "public class DigestDef",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.apache.tika.metadata.TikaCoreProperties;"
+  ],
+  "fields": [
+    "private Algorithm algorithm;",
+    "private Encoding encoding = Encoding.HEX;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getAlgorithm()": "0",
+    "setAlgorithm(Algorithm)": "1",
+    "getEncoding()": "2",
+    "setEncoding(Encoding)": "3",
+    "metadataKey()": "4",
+    "DigestDef()": "5",
+    "DigestDef(Algorithm)": "6",
+    "DigestDef(Algorithm, Encoding)": "7"
+  },
+  "methodsBrief": [
+    "public Algorithm getAlgorithm(){}",
+    "public void setAlgorithm(Algorithm algorithm){}",
+    "public Encoding getEncoding(){}",
+    "public void setEncoding(Encoding encoding){}",
+    "public String metadataKey(){}",
+    "public DigestDef(){}",
+    "public DigestDef(Algorithm algorithm){}",
+    "public DigestDef(Algorithm algorithm, Encoding encoding){}"
+  ],
+  "constructorSigs": [
+    "DigestDef()",
+    "DigestDef(Algorithm)",
+    "DigestDef(Algorithm, Encoding)"
+  ],
+  "constructorBrief": [
+    "public DigestDef(){}",
+    "public DigestDef(Algorithm algorithm){}",
+    "public DigestDef(Algorithm algorithm, Encoding encoding){}"
+  ],
+  "getterSetterSigs": [
+    "getAlgorithm()",
+    "setAlgorithm(Algorithm)",
+    "getEncoding()",
+    "setEncoding(Encoding)"
+  ],
+  "getterSetterBrief": [
+    "public Algorithm getAlgorithm(){}",
+    "public void setAlgorithm(Algorithm algorithm){}",
+    "public Encoding getEncoding(){}",
+    "public void setEncoding(Encoding encoding){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.digest.DigestDef.Algorithm": [],
+    "org.apache.tika.digest.DigestDef.Encoding": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.digest;\n\nimport org.apache.tika.metadata.TikaCoreProperties;\n\n/**\n * Defines a digest algorithm with its output encoding.\n * <p>\n * Example JSON configuration:\n * <pre>\n * {\n *   \"digests\": [\n *     { \"algorithm\": \"MD5\" },\n *     { \"algorithm\": \"SHA256\", \"encoding\": \"BASE32\" }\n *   ]\n * }\n * </pre>\n * <p>\n * The metadata key format is:\n * <ul>\n *   <li>{@code tk:digest:MD5} - for HEX encoding (default)</li>\n *   <li>{@code tk:digest:SHA256:BASE32} - for non-default encodings</li>\n * </ul>\n */\npublic class DigestDef {\n\n    /**\n     * Supported digest algorithms.\n     * <p>\n     * Note: SHA3 algorithms require BouncyCastle provider (use BouncyCastleDigester).\n     * CommonsDigester only supports MD2, MD5, SHA1, SHA256, SHA384, SHA512.\n     */\n    public enum Algorithm {\n\n        MD2(\"MD2\"),\n        MD5(\"MD5\"),\n        SHA1(\"SHA-1\"),\n        SHA256(\"SHA-256\"),\n        SHA384(\"SHA-384\"),\n        SHA512(\"SHA-512\"),\n        SHA3_256(\"SHA3-256\"),\n        SHA3_384(\"SHA3-384\"),\n        SHA3_512(\"SHA3-512\");\n\n        private final String javaName;\n\n        Algorithm(String javaName) {\n            this.javaName = javaName;\n        }\n\n        /**\n         * Returns the Java Security name for this algorithm\n         * (for use with MessageDigest.getInstance()).\n         */\n        public String getJavaName() {\n            return javaName;\n        }\n    }\n\n    /**\n     * Supported digest output encodings.\n     */\n    public enum Encoding {\n\n        HEX, BASE32, BASE64\n    }\n\n    private Algorithm algorithm;\n\n    private Encoding encoding = Encoding.HEX;\n\n    public DigestDef() {\n    }\n\n    public DigestDef(Algorithm algorithm) {\n        this.algorithm = algorithm;\n    }\n\n    public DigestDef(Algorithm algorithm, Encoding encoding) {\n        this.algorithm = algorithm;\n        this.encoding = encoding;\n    }\n\n    public Algorithm getAlgorithm() {\n        return algorithm;\n    }\n\n    public void setAlgorithm(Algorithm algorithm) {\n        this.algorithm = algorithm;\n    }\n\n    public Encoding getEncoding() {\n        return encoding;\n    }\n\n    public void setEncoding(Encoding encoding) {\n        this.encoding = encoding;\n    }\n\n    /**\n     * Returns the metadata key for storing this digest value.\n     * <p>\n     * For HEX encoding (the default), returns {@code tk:digest:ALGORITHM}.\n     * For other encodings, returns {@code tk:digest:ALGORITHM:ENCODING}.\n     *\n     * @return the metadata key\n     */\n    public String metadataKey() {\n        StringBuilder sb = new StringBuilder();\n        sb.append(TikaCoreProperties.TIKA_META_PREFIX);\n        sb.append(\"digest\");\n        sb.append(TikaCoreProperties.NAMESPACE_PREFIX_DELIMITER);\n        sb.append(algorithm.getJavaName());\n        if (encoding != Encoding.HEX) {\n            sb.append(\":\");\n            sb.append(encoding.name());\n        }\n        return sb.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Defines a digest algorithm with its output encoding.\n * <p>\n * Example JSON configuration:\n * <pre>\n * {\n *   \"digests\": [\n *     { \"algorithm\": \"MD5\" },\n *     { \"algorithm\": \"SHA256\", \"encoding\": \"BASE32\" }\n *   ]\n * }\n * </pre>\n * <p>\n * The metadata key format is:\n * <ul>\n *   <li>{@code tk:digest:MD5} - for HEX encoding (default)</li>\n *   <li>{@code tk:digest:SHA256:BASE32} - for non-default encodings</li>\n * </ul>\n */\npublic class DigestDef {\n\n    /**\n     * Supported digest algorithms.\n     * <p>\n     * Note: SHA3 algorithms require BouncyCastle provider (use BouncyCastleDigester).\n     * CommonsDigester only supports MD2, MD5, SHA1, SHA256, SHA384, SHA512.\n     */\n    public enum Algorithm {\n\n        MD2(\"MD2\"),\n        MD5(\"MD5\"),\n        SHA1(\"SHA-1\"),\n        SHA256(\"SHA-256\"),\n        SHA384(\"SHA-384\"),\n        SHA512(\"SHA-512\"),\n        SHA3_256(\"SHA3-256\"),\n        SHA3_384(\"SHA3-384\"),\n        SHA3_512(\"SHA3-512\");\n\n        private final String javaName;\n\n        Algorithm(String javaName) {\n            this.javaName = javaName;\n        }\n\n        /**\n         * Returns the Java Security name for this algorithm\n         * (for use with MessageDigest.getInstance()).\n         */\n        public String getJavaName() {\n            return javaName;\n        }\n    }\n\n    /**\n     * Supported digest output encodings.\n     */\n    public enum Encoding {\n\n        HEX, BASE32, BASE64\n    }\n\n    private Algorithm algorithm;\n\n    private Encoding encoding = Encoding.HEX;\n\n    public DigestDef() {\n    }\n\n    public DigestDef(Algorithm algorithm) {\n        this.algorithm = algorithm;\n    }\n\n    public DigestDef(Algorithm algorithm, Encoding encoding) {\n        this.algorithm = algorithm;\n        this.encoding = encoding;\n    }\n\n    public Algorithm getAlgorithm() {\n        return algorithm;\n    }\n\n    public void setAlgorithm(Algorithm algorithm) {\n        this.algorithm = algorithm;\n    }\n\n    public Encoding getEncoding() {\n        return encoding;\n    }\n\n    public void setEncoding(Encoding encoding) {\n        this.encoding = encoding;\n    }\n\n    /**\n     * Returns the metadata key for storing this digest value.\n     * <p>\n     * For HEX encoding (the default), returns {@code tk:digest:ALGORITHM}.\n     * For other encodings, returns {@code tk:digest:ALGORITHM:ENCODING}.\n     *\n     * @return the metadata key\n     */\n    public String metadataKey() {\n        StringBuilder sb = new StringBuilder();\n        sb.append(TikaCoreProperties.TIKA_META_PREFIX);\n        sb.append(\"digest\");\n        sb.append(TikaCoreProperties.NAMESPACE_PREFIX_DELIMITER);\n        sb.append(algorithm.getJavaName());\n        if (encoding != Encoding.HEX) {\n            sb.append(\":\");\n            sb.append(encoding.name());\n        }\n        return sb.toString();\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,62 @@
+{
+  "fullClassName": "org.apache.tika.renderer.RenderResults",
+  "className": "RenderResults",
+  "index": 274,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Closeable]",
+  "packageName": "org.apache.tika.renderer",
+  "packageDeclaration": "package org.apache.tika.renderer;",
+  "classSignature": "public class RenderResults",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Closeable;",
+    "import java.io.IOException;",
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "import org.apache.tika.io.TemporaryResources;"
+  ],
+  "fields": [
+    "private List<RenderResult> results = new ArrayList<>();",
+    "private final TemporaryResources tmp;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Closeable"
+  ],
+  "methodSigs": {
+    "add(RenderResult)": "0",
+    "getResults()": "1",
+    "close()": "2",
+    "RenderResults(TemporaryResources)": "3"
+  },
+  "methodsBrief": [
+    "public void add(RenderResult result){}",
+    "public List<RenderResult> getResults(){}",
+    "@Override\r\n    public void close() throws IOException{}",
+    "public RenderResults(TemporaryResources tmp){}"
+  ],
+  "constructorSigs": [
+    "RenderResults(TemporaryResources)"
+  ],
+  "constructorBrief": [
+    "public RenderResults(TemporaryResources tmp){}"
+  ],
+  "getterSetterSigs": [
+    "getResults()"
+  ],
+  "getterSetterBrief": [
+    "public List<RenderResult> getResults(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.io.TemporaryResources": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.renderer;\n\nimport java.io.Closeable;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.List;\nimport org.apache.tika.io.TemporaryResources;\n\npublic class RenderResults implements Closeable {\n\n    private List<RenderResult> results = new ArrayList<>();\n\n    private final TemporaryResources tmp;\n\n    public RenderResults(TemporaryResources tmp) {\n        this.tmp = tmp;\n    }\n\n    public void add(RenderResult result) {\n        tmp.addResource(result);\n        results.add(result);\n    }\n\n    public List<RenderResult> getResults() {\n        return results;\n    }\n\n    @Override\n    public void close() throws IOException {\n        tmp.close();\n    }\n}\n",
+  "classDeclarationCode": "public class RenderResults implements Closeable {\n\n    private List<RenderResult> results = new ArrayList<>();\n\n    private final TemporaryResources tmp;\n\n    public RenderResults(TemporaryResources tmp) {\n        this.tmp = tmp;\n    }\n\n    public void add(RenderResult result) {\n        tmp.addResource(result);\n        results.add(result);\n    }\n\n    public List<RenderResult> getResults() {\n        return results;\n    }\n\n    @Override\n    public void close() throws IOException {\n        tmp.close();\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.renderer.PageBasedRenderResults"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Property",
+  "methodName": "internalRational",
+  "brief": "public static Property internalRational(String name){}",
+  "methodSignature": "internalRational(String)",
+  "sourceCode": "public static Property internalRational(String name) {\n        return new Property(name, true, ValueType.RATIONAL);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static Property internalRational(String name) {\n    return new Property(name, true, ValueType.RATIONAL);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

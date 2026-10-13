@@ -1,0 +1,37 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "buildDOM",
+  "brief": "public static Document buildDOM(InputStream is, ParseContext context)\r\n            throws TikaException, IOException, SAXException{}",
+  "methodSignature": "buildDOM(InputStream, ParseContext)",
+  "sourceCode": "public static Document buildDOM(InputStream is, ParseContext context)\n            throws TikaException, IOException, SAXException {\n        DocumentBuilder builder = context.get(DocumentBuilder.class);\n        PoolDOMBuilder poolBuilder = null;\n        if (builder == null) {\n            if (POOL_SIZE == 0) {\n                builder = getDocumentBuilder();\n            } else {\n                poolBuilder = acquireDOMBuilder();\n                if (poolBuilder != null) {\n                    builder = poolBuilder.getDocumentBuilder();\n                } else {\n                    builder = getDocumentBuilder();\n                }\n            }\n        }\n\n        try {\n            return builder.parse(is);\n        } finally {\n            releaseDOMBuilder(poolBuilder);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilder()",
+      "acquireDOMBuilder()",
+      "releaseDOMBuilder(PoolDOMBuilder)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils.PoolDOMBuilder": [
+      "getDocumentBuilder()"
+    ],
+    "javax.xml.parsers.DocumentBuilder": [
+      "parse(InputStream)"
+    ]
+  },
+  "full_method_info": "/**\n * This checks context for a user specified {@link DocumentBuilder}.\n * If one is not found, this reuses a DocumentBuilder from the pool.\n *\n * @param is      InputStream to parse\n * @param context context to use\n * @return a document\n * @throws TikaException\n * @throws IOException\n * @throws SAXException\n * @since Apache Tika 1.19\n */\npublic static Document buildDOM(InputStream is, ParseContext context) throws TikaException, IOException, SAXException {\n    DocumentBuilder builder = context.get(DocumentBuilder.class);\n    PoolDOMBuilder poolBuilder = null;\n    if (builder == null) {\n        if (POOL_SIZE == 0) {\n            builder = getDocumentBuilder();\n        } else {\n            poolBuilder = acquireDOMBuilder();\n            if (poolBuilder != null) {\n                builder = poolBuilder.getDocumentBuilder();\n            } else {\n                builder = getDocumentBuilder();\n            }\n        }\n    }\n    try {\n        return builder.parse(is);\n    } finally {\n        releaseDOMBuilder(poolBuilder);\n    }\n}",
+  "method_comment": "\n     * This checks context for a user specified {@link DocumentBuilder}.\n     * If one is not found, this reuses a DocumentBuilder from the pool.\n     *\n     * @param is      InputStream to parse\n     * @param context context to use\n     * @return a document\n     * @throws TikaException\n     * @throws IOException\n     * @throws SAXException\n     * @since Apache Tika 1.19\n     ",
+  "method_annotation": ""
+}

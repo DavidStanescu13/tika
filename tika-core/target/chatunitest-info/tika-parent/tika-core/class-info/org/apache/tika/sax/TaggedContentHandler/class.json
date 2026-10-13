@@ -1,0 +1,48 @@
+{
+  "fullClassName": "org.apache.tika.sax.TaggedContentHandler",
+  "className": "TaggedContentHandler",
+  "index": 311,
+  "modifier": "[public ]",
+  "extend": "[ContentHandlerDecorator]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class TaggedContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import org.xml.sax.ContentHandler;",
+    "import org.xml.sax.SAXException;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "ContentHandlerDecorator"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "isCauseOf(SAXException)": "0",
+    "throwIfCauseOf(Exception)": "1",
+    "handleException(SAXException)": "2",
+    "TaggedContentHandler(ContentHandler)": "3"
+  },
+  "methodsBrief": [
+    "public boolean isCauseOf(SAXException exception){}",
+    "public void throwIfCauseOf(Exception exception) throws SAXException{}",
+    "@Override\r\n    protected void handleException(SAXException e) throws SAXException{}",
+    "public TaggedContentHandler(ContentHandler proxy){}"
+  ],
+  "constructorSigs": [
+    "TaggedContentHandler(ContentHandler)"
+  ],
+  "constructorBrief": [
+    "public TaggedContentHandler(ContentHandler proxy){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport org.xml.sax.ContentHandler;\nimport org.xml.sax.SAXException;\n\n/**\n * A content handler decorator that tags potential exceptions so that the\n * handler that caused the exception can easily be identified. This is\n * done by using the {@link TaggedSAXException} class to wrap all thrown\n * {@link SAXException}s. See below for an example of using this class.\n * <pre>\n * TaggedContentHandler handler = new TaggedContentHandler(...);\n * try {\n *     // Processing that may throw an SAXException either from this handler\n *     // or from some other XML parsing activity\n *     processXML(handler);\n * } catch (SAXException e) {\n *     if (handler.isCauseOf(e)) {\n *         // The exception was caused by this handler.\n *         // Use e.getCause() to get the original exception.\n *     } else {\n *         // The exception was caused by something else.\n *     }\n * }\n * </pre>\n * <p>\n * Alternatively, the {@link #throwIfCauseOf(Exception)} method can be\n * used to let higher levels of code handle the exception caused by this\n * stream while other processing errors are being taken care of at this\n * lower level.\n * <pre>\n * TaggedContentHandler handler = new TaggedContentHandler(...);\n * try {\n *     processXML(handler);\n * } catch (SAXException e) {\n *     stream.throwIfCauseOf(e);\n *     // ... or process the exception that was caused by something else\n * }\n * </pre>\n *\n * @see TaggedSAXException\n */\npublic class TaggedContentHandler extends ContentHandlerDecorator {\n\n    public TaggedContentHandler(ContentHandler proxy) {\n        super(proxy);\n    }\n\n    /**\n     * Tests if the given exception was caused by this handler.\n     *\n     * @param exception an exception\n     * @return <code>true</code> if the exception was thrown by this handler,\n     * <code>false</code> otherwise\n     */\n    public boolean isCauseOf(SAXException exception) {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            return this == tagged.getTag();\n        } else {\n            return false;\n        }\n    }\n\n    /**\n     * Re-throws the original exception thrown by this handler. This method\n     * first checks whether the given exception is a {@link TaggedSAXException}\n     * wrapper created by this decorator, and then unwraps and throws the\n     * original wrapped exception. Returns normally if the exception was\n     * not thrown by this handler.\n     *\n     * @param exception an exception\n     * @throws SAXException original exception, if any, thrown by this handler\n     */\n    public void throwIfCauseOf(Exception exception) throws SAXException {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            if (this == tagged.getTag()) {\n                throw tagged.getCause();\n            }\n        }\n    }\n\n    /**\n     * Tags any {@link SAXException}s thrown, wrapping and re-throwing.\n     *\n     * @param e The SAXException thrown\n     * @throws SAXException if an XML error occurs\n     */\n    @Override\n    protected void handleException(SAXException e) throws SAXException {\n        throw new TaggedSAXException(e, this);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A content handler decorator that tags potential exceptions so that the\n * handler that caused the exception can easily be identified. This is\n * done by using the {@link TaggedSAXException} class to wrap all thrown\n * {@link SAXException}s. See below for an example of using this class.\n * <pre>\n * TaggedContentHandler handler = new TaggedContentHandler(...);\n * try {\n *     // Processing that may throw an SAXException either from this handler\n *     // or from some other XML parsing activity\n *     processXML(handler);\n * } catch (SAXException e) {\n *     if (handler.isCauseOf(e)) {\n *         // The exception was caused by this handler.\n *         // Use e.getCause() to get the original exception.\n *     } else {\n *         // The exception was caused by something else.\n *     }\n * }\n * </pre>\n * <p>\n * Alternatively, the {@link #throwIfCauseOf(Exception)} method can be\n * used to let higher levels of code handle the exception caused by this\n * stream while other processing errors are being taken care of at this\n * lower level.\n * <pre>\n * TaggedContentHandler handler = new TaggedContentHandler(...);\n * try {\n *     processXML(handler);\n * } catch (SAXException e) {\n *     stream.throwIfCauseOf(e);\n *     // ... or process the exception that was caused by something else\n * }\n * </pre>\n *\n * @see TaggedSAXException\n */\npublic class TaggedContentHandler extends ContentHandlerDecorator {\n\n    public TaggedContentHandler(ContentHandler proxy) {\n        super(proxy);\n    }\n\n    /**\n     * Tests if the given exception was caused by this handler.\n     *\n     * @param exception an exception\n     * @return <code>true</code> if the exception was thrown by this handler,\n     * <code>false</code> otherwise\n     */\n    public boolean isCauseOf(SAXException exception) {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            return this == tagged.getTag();\n        } else {\n            return false;\n        }\n    }\n\n    /**\n     * Re-throws the original exception thrown by this handler. This method\n     * first checks whether the given exception is a {@link TaggedSAXException}\n     * wrapper created by this decorator, and then unwraps and throws the\n     * original wrapped exception. Returns normally if the exception was\n     * not thrown by this handler.\n     *\n     * @param exception an exception\n     * @throws SAXException original exception, if any, thrown by this handler\n     */\n    public void throwIfCauseOf(Exception exception) throws SAXException {\n        if (exception instanceof TaggedSAXException) {\n            TaggedSAXException tagged = (TaggedSAXException) exception;\n            if (this == tagged.getTag()) {\n                throw tagged.getCause();\n            }\n        }\n    }\n\n    /**\n     * Tags any {@link SAXException}s thrown, wrapping and re-throwing.\n     *\n     * @param e The SAXException thrown\n     * @throws SAXException if an XML error occurs\n     */\n    @Override\n    protected void handleException(SAXException e) throws SAXException {\n        throw new TaggedSAXException(e, this);\n    }\n}",
+  "subClasses": []
+}

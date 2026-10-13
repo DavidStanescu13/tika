@@ -1,0 +1,89 @@
+{
+  "fullClassName": "org.apache.tika.metadata.filter.DateNormalizingMetadataFilter",
+  "className": "DateNormalizingMetadataFilter",
+  "index": 134,
+  "modifier": "[public ]",
+  "extend": "[MetadataFilterBase]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.metadata.filter",
+  "packageDeclaration": "package org.apache.tika.metadata.filter;",
+  "classSignature": "@TikaComponent\r\npublic class DateNormalizingMetadataFilter",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.text.ParseException;",
+    "import java.text.SimpleDateFormat;",
+    "import java.time.ZoneId;",
+    "import java.util.Date;",
+    "import java.util.Locale;",
+    "import java.util.TimeZone;",
+    "import org.slf4j.Logger;",
+    "import org.slf4j.LoggerFactory;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ConfigDeserializer;",
+    "import org.apache.tika.config.JsonConfig;",
+    "import org.apache.tika.metadata.Metadata;",
+    "import org.apache.tika.metadata.Property;"
+  ],
+  "fields": [
+    "private static TimeZone UTC = TimeZone.getTimeZone(\"UTC\");",
+    "private static final Logger LOGGER = LoggerFactory.getLogger(DateNormalizingMetadataFilter.class);",
+    "private TimeZone defaultTimeZone = UTC;"
+  ],
+  "superClasses": [
+    "MetadataFilterBase"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "filter(Metadata)": "0",
+    "setDefaultTimeZone(String)": "1",
+    "getDefaultTimeZone()": "2",
+    "DateNormalizingMetadataFilter()": "3",
+    "DateNormalizingMetadataFilter(Config)": "4",
+    "DateNormalizingMetadataFilter(JsonConfig)": "5"
+  },
+  "methodsBrief": [
+    "protected void filter(Metadata metadata){}",
+    "public void setDefaultTimeZone(String timeZoneId){}",
+    "public String getDefaultTimeZone(){}",
+    "public DateNormalizingMetadataFilter(){}",
+    "public DateNormalizingMetadataFilter(Config config){}",
+    "public DateNormalizingMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "constructorSigs": [
+    "DateNormalizingMetadataFilter()",
+    "DateNormalizingMetadataFilter(Config)",
+    "DateNormalizingMetadataFilter(JsonConfig)"
+  ],
+  "constructorBrief": [
+    "public DateNormalizingMetadataFilter(){}",
+    "public DateNormalizingMetadataFilter(Config config){}",
+    "public DateNormalizingMetadataFilter(JsonConfig jsonConfig){}"
+  ],
+  "getterSetterSigs": [
+    "setDefaultTimeZone(String)",
+    "getDefaultTimeZone()"
+  ],
+  "getterSetterBrief": [
+    "public void setDefaultTimeZone(String timeZoneId){}",
+    "public String getDefaultTimeZone(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.metadata.filter.DateNormalizingMetadataFilter.Config": [],
+    "java.util.TimeZone": [
+      "getTimeZone(ZoneId)"
+    ],
+    "java.time.ZoneId": [
+      "of(String)"
+    ],
+    "org.apache.tika.config.JsonConfig": [],
+    "org.apache.tika.config.ConfigDeserializer": [
+      "buildConfig(JsonConfig, Class<T>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.metadata.filter;\n\nimport java.text.ParseException;\nimport java.text.SimpleDateFormat;\nimport java.time.ZoneId;\nimport java.util.Date;\nimport java.util.Locale;\nimport java.util.TimeZone;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ConfigDeserializer;\nimport org.apache.tika.config.JsonConfig;\nimport org.apache.tika.metadata.Metadata;\nimport org.apache.tika.metadata.Property;\n\n/**\n * Some dates in some file formats do not have a timezone.\n * Tika correctly stores these without a timezone, e.g. 'yyyy-MM-dd'T'HH:mm:ss'\n * This can be a problem if end points expect a 'Z' timezone.\n * This filter makes the assumption that dates without timezones are UTC\n * and always modifies the date to: \"yyyy-MM-dd'T'HH:mm:ss'Z'\"\n *\n * Users can specify an alternate defaultTimeZone with\n * {@link DateNormalizingMetadataFilter#setDefaultTimeZone(String)} to apply\n * if the file format does not specify a timezone.\n */\n@TikaComponent\npublic class DateNormalizingMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String defaultTimeZone = \"UTC\";\n    }\n\n    private static TimeZone UTC = TimeZone.getTimeZone(\"UTC\");\n\n    private static final Logger LOGGER = LoggerFactory.getLogger(DateNormalizingMetadataFilter.class);\n\n    private TimeZone defaultTimeZone = UTC;\n\n    public DateNormalizingMetadataFilter() {\n    }\n\n    public DateNormalizingMetadataFilter(Config config) {\n        this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(config.defaultTimeZone));\n    }\n\n    public DateNormalizingMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    protected void filter(Metadata metadata) {\n        SimpleDateFormat dateFormatter = null;\n        SimpleDateFormat utcFormatter = null;\n        for (String n : metadata.names()) {\n            Property property = Property.get(n);\n            if (property != null) {\n                if (property.getValueType().equals(Property.ValueType.DATE)) {\n                    String dateString = metadata.get(property);\n                    if (dateString.endsWith(\"Z\")) {\n                        continue;\n                    }\n                    if (dateFormatter == null) {\n                        dateFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss\", Locale.US);\n                        dateFormatter.setTimeZone(defaultTimeZone);\n                        utcFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\", Locale.US);\n                        utcFormatter.setTimeZone(UTC);\n                    }\n                    Date d = null;\n                    try {\n                        d = dateFormatter.parse(dateString);\n                        metadata.set(property, utcFormatter.format(d));\n                    } catch (ParseException e) {\n                        LOGGER.warn(\"Couldn't convert date to default time zone: >\" + dateString + \"<\");\n                    }\n                }\n            }\n        }\n    }\n\n    public void setDefaultTimeZone(String timeZoneId) {\n        this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(timeZoneId));\n    }\n\n    public String getDefaultTimeZone() {\n        return this.defaultTimeZone.toZoneId().toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Some dates in some file formats do not have a timezone.\n * Tika correctly stores these without a timezone, e.g. 'yyyy-MM-dd'T'HH:mm:ss'\n * This can be a problem if end points expect a 'Z' timezone.\n * This filter makes the assumption that dates without timezones are UTC\n * and always modifies the date to: \"yyyy-MM-dd'T'HH:mm:ss'Z'\"\n *\n * Users can specify an alternate defaultTimeZone with\n * {@link DateNormalizingMetadataFilter#setDefaultTimeZone(String)} to apply\n * if the file format does not specify a timezone.\n */\n@TikaComponent\npublic class DateNormalizingMetadataFilter extends MetadataFilterBase {\n\n    /**\n     * Configuration class for JSON deserialization.\n     */\n    public static class Config {\n\n        public String defaultTimeZone = \"UTC\";\n    }\n\n    private static TimeZone UTC = TimeZone.getTimeZone(\"UTC\");\n\n    private static final Logger LOGGER = LoggerFactory.getLogger(DateNormalizingMetadataFilter.class);\n\n    private TimeZone defaultTimeZone = UTC;\n\n    public DateNormalizingMetadataFilter() {\n    }\n\n    public DateNormalizingMetadataFilter(Config config) {\n        this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(config.defaultTimeZone));\n    }\n\n    public DateNormalizingMetadataFilter(JsonConfig jsonConfig) {\n        this(ConfigDeserializer.buildConfig(jsonConfig, Config.class));\n    }\n\n    protected void filter(Metadata metadata) {\n        SimpleDateFormat dateFormatter = null;\n        SimpleDateFormat utcFormatter = null;\n        for (String n : metadata.names()) {\n            Property property = Property.get(n);\n            if (property != null) {\n                if (property.getValueType().equals(Property.ValueType.DATE)) {\n                    String dateString = metadata.get(property);\n                    if (dateString.endsWith(\"Z\")) {\n                        continue;\n                    }\n                    if (dateFormatter == null) {\n                        dateFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss\", Locale.US);\n                        dateFormatter.setTimeZone(defaultTimeZone);\n                        utcFormatter = new SimpleDateFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\", Locale.US);\n                        utcFormatter.setTimeZone(UTC);\n                    }\n                    Date d = null;\n                    try {\n                        d = dateFormatter.parse(dateString);\n                        metadata.set(property, utcFormatter.format(d));\n                    } catch (ParseException e) {\n                        LOGGER.warn(\"Couldn't convert date to default time zone: >\" + dateString + \"<\");\n                    }\n                }\n            }\n        }\n    }\n\n    public void setDefaultTimeZone(String timeZoneId) {\n        this.defaultTimeZone = TimeZone.getTimeZone(ZoneId.of(timeZoneId));\n    }\n\n    public String getDefaultTimeZone() {\n        return this.defaultTimeZone.toZoneId().toString();\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,30 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "addBlockLeaf",
+  "brief": "private void addBlockLeaf(Node block){}",
+  "methodSignature": "addBlockLeaf(Node)",
+  "sourceCode": "private void addBlockLeaf(Node block) {\n        popToBlockHost();\n        stack.peek().appendChild(block);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Node"
+  ],
+  "dependentMethods": {
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "popToBlockHost()"
+    ],
+    "java.util.Deque": [
+      "peek()"
+    ]
+  },
+  "full_method_info": "/**\n * Append a block-level leaf (hr, code block, table) without descending.\n */\nprivate void addBlockLeaf(Node block) {\n    popToBlockHost();\n    stack.peek().appendChild(block);\n}",
+  "method_comment": " Append a block-level leaf (hr, code block, table) without descending. ",
+  "method_annotation": ""
+}

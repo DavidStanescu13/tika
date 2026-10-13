@@ -1,0 +1,121 @@
+{
+  "fullClassName": "org.apache.tika.parser.DefaultParser",
+  "className": "DefaultParser",
+  "index": 230,
+  "modifier": "[public ]",
+  "extend": "[CompositeParser]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.parser",
+  "packageDeclaration": "package org.apache.tika.parser;",
+  "classSignature": "@TikaComponent(spi = false)\r\npublic class DefaultParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayList;",
+    "import java.util.Collection;",
+    "import java.util.Collections;",
+    "import java.util.List;",
+    "import java.util.Map;",
+    "import org.apache.tika.annotation.TikaComponent;",
+    "import org.apache.tika.config.ServiceLoader;",
+    "import org.apache.tika.detect.DefaultEncodingDetector;",
+    "import org.apache.tika.detect.EncodingDetector;",
+    "import org.apache.tika.mime.MediaType;",
+    "import org.apache.tika.mime.MediaTypeRegistry;",
+    "import org.apache.tika.renderer.CompositeRenderer;",
+    "import org.apache.tika.renderer.Renderer;",
+    "import org.apache.tika.utils.ServiceLoaderUtils;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 3612324825403757520L;",
+    "private transient final ServiceLoader loader;",
+    "private final Collection<Class<? extends Parser>> excludedClasses;"
+  ],
+  "superClasses": [
+    "CompositeParser"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getDefaultParsers(ServiceLoader, EncodingDetector, Renderer, Collection)": "0",
+    "setEncodingDetector(Parser, EncodingDetector)": "1",
+    "setRenderer(Parser, Renderer)": "2",
+    "getParsers(ParseContext)": "3",
+    "getAllComponentParsers()": "4",
+    "getExcludedClasses()": "5",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, Collection, EncodingDetector, Renderer)": "6",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, Collection)": "7",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, EncodingDetector, Renderer)": "8",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader)": "9",
+    "DefaultParser(MediaTypeRegistry, ClassLoader)": "10",
+    "DefaultParser(ClassLoader)": "11",
+    "DefaultParser(MediaTypeRegistry)": "12",
+    "DefaultParser()": "13"
+  },
+  "methodsBrief": [
+    "private static List<Parser> getDefaultParsers(ServiceLoader loader,\r\n                                                  EncodingDetector encodingDetector,\r\n                                                  Renderer renderer,\r\n                                                  Collection<Class<? extends Parser>>\r\n                                                          excludeParsers){}",
+    "private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector){}",
+    "private static void setRenderer(Parser p, Renderer renderer){}",
+    "@Override\r\n    public Map<MediaType, Parser> getParsers(ParseContext context){}",
+    "@Override\r\n    public List<Parser> getAllComponentParsers(){}",
+    "public Collection<Class<? extends Parser>> getExcludedClasses(){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         Collection<Class<? extends Parser>> excludeParsers,\r\n                         EncodingDetector encodingDetector, Renderer renderer){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         Collection<Class<? extends Parser>> excludeParsers){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         EncodingDetector encodingDetector, Renderer renderer){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader){}",
+    "public DefaultParser(MediaTypeRegistry registry, ClassLoader loader){}",
+    "public DefaultParser(ClassLoader loader){}",
+    "public DefaultParser(MediaTypeRegistry registry){}",
+    "public DefaultParser(){}"
+  ],
+  "constructorSigs": [
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, Collection, EncodingDetector, Renderer)",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, Collection)",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader, EncodingDetector, Renderer)",
+    "DefaultParser(MediaTypeRegistry, ServiceLoader)",
+    "DefaultParser(MediaTypeRegistry, ClassLoader)",
+    "DefaultParser(ClassLoader)",
+    "DefaultParser(MediaTypeRegistry)",
+    "DefaultParser()"
+  ],
+  "constructorBrief": [
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         Collection<Class<? extends Parser>> excludeParsers,\r\n                         EncodingDetector encodingDetector, Renderer renderer){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         Collection<Class<? extends Parser>> excludeParsers){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader,\r\n                         EncodingDetector encodingDetector, Renderer renderer){}",
+    "public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader){}",
+    "public DefaultParser(MediaTypeRegistry registry, ClassLoader loader){}",
+    "public DefaultParser(ClassLoader loader){}",
+    "public DefaultParser(MediaTypeRegistry registry){}",
+    "public DefaultParser(){}"
+  ],
+  "getterSetterSigs": [
+    "setEncodingDetector(Parser, EncodingDetector)",
+    "setRenderer(Parser, Renderer)",
+    "getAllComponentParsers()",
+    "getExcludedClasses()"
+  ],
+  "getterSetterBrief": [
+    "private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector){}",
+    "private static void setRenderer(Parser p, Renderer renderer){}",
+    "@Override\r\n    public List<Parser> getAllComponentParsers(){}",
+    "public Collection<Class<? extends Parser>> getExcludedClasses(){}"
+  ],
+  "constructorDeps": {
+    "org.apache.tika.mime.MediaTypeRegistry": [],
+    "org.apache.tika.config.ServiceLoader": [],
+    "org.apache.tika.detect.EncodingDetector": [],
+    "org.apache.tika.renderer.Renderer": [],
+    "org.apache.tika.parser.DefaultParser": [
+      "getDefaultParsers(ServiceLoader, EncodingDetector, Renderer, Parser>>)"
+    ],
+    "java.util.Collections": [
+      "emptySet()",
+      "unmodifiableCollection(Collection<? extends T>)"
+    ],
+    "java.lang.ClassLoader": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.parser;\n\nimport java.util.ArrayList;\nimport java.util.Collection;\nimport java.util.Collections;\nimport java.util.List;\nimport java.util.Map;\nimport org.apache.tika.annotation.TikaComponent;\nimport org.apache.tika.config.ServiceLoader;\nimport org.apache.tika.detect.DefaultEncodingDetector;\nimport org.apache.tika.detect.EncodingDetector;\nimport org.apache.tika.mime.MediaType;\nimport org.apache.tika.mime.MediaTypeRegistry;\nimport org.apache.tika.renderer.CompositeRenderer;\nimport org.apache.tika.renderer.Renderer;\nimport org.apache.tika.utils.ServiceLoaderUtils;\n\n/**\n * A composite parser based on all the {@link Parser} implementations\n * available through the\n * {@link javax.imageio.spi.ServiceRegistry service provider mechanism}.\n *\n * @since Apache Tika 0.8\n */\n@TikaComponent(spi = false)\npublic class DefaultParser extends CompositeParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 3612324825403757520L;\n\n    private transient final ServiceLoader loader;\n\n    private final Collection<Class<? extends Parser>> excludedClasses;\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, Collection<Class<? extends Parser>> excludeParsers, EncodingDetector encodingDetector, Renderer renderer) {\n        super(registry, getDefaultParsers(loader, encodingDetector, renderer, excludeParsers));\n        this.loader = loader;\n        this.excludedClasses = excludeParsers != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeParsers)) : Collections.emptySet();\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, Collection<Class<? extends Parser>> excludeParsers) {\n        super(registry, getDefaultParsers(loader, new DefaultEncodingDetector(loader), new CompositeRenderer(loader), excludeParsers));\n        this.loader = loader;\n        this.excludedClasses = excludeParsers != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeParsers)) : Collections.emptySet();\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, EncodingDetector encodingDetector, Renderer renderer) {\n        this(registry, loader, Collections.EMPTY_SET, encodingDetector, renderer);\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader) {\n        this(registry, loader, Collections.EMPTY_SET, new DefaultEncodingDetector(loader), new CompositeRenderer(loader));\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ClassLoader loader) {\n        this(registry, new ServiceLoader(loader));\n    }\n\n    public DefaultParser(ClassLoader loader) {\n        this(MediaTypeRegistry.getDefaultRegistry(), new ServiceLoader(loader));\n    }\n\n    public DefaultParser(MediaTypeRegistry registry) {\n        this(registry, new ServiceLoader());\n    }\n\n    public DefaultParser() {\n        this(MediaTypeRegistry.getDefaultRegistry());\n    }\n\n    /**\n     * Finds all statically loadable parsers and sort the list by name,\n     * rather than discovery order. CompositeParser takes the last\n     * parser for any given media type, so put the Tika parsers first\n     * so that non-Tika (user supplied) parsers can take precedence.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable parsers\n     */\n    private static List<Parser> getDefaultParsers(ServiceLoader loader, EncodingDetector encodingDetector, Renderer renderer, Collection<Class<? extends Parser>> excludeParsers) {\n        List<Parser> parsers = loader.loadStaticServiceProviders(Parser.class, excludeParsers);\n        if (encodingDetector != null) {\n            for (Parser p : parsers) {\n                setEncodingDetector(p, encodingDetector);\n            }\n        }\n        if (renderer != null) {\n            for (Parser p : parsers) {\n                setRenderer(p, renderer);\n            }\n        }\n        ServiceLoaderUtils.sortLoadedClasses(parsers);\n        // reverse the order of parsers so that custom ones come last\n        // this will prevent them from being overwritten in getParsers(ParseContext ..)\n        Collections.reverse(parsers);\n        return parsers;\n    }\n\n    // recursively go through the parsers and set the encoding detector\n    // as configured in the config file\n    private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector) {\n        if (p instanceof AbstractEncodingDetectorParser) {\n            ((AbstractEncodingDetectorParser) p).setEncodingDetector(encodingDetector);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setEncodingDetector(child, encodingDetector);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setEncodingDetector(((ParserDecorator) p).getWrappedParser(), encodingDetector);\n        }\n    }\n\n    private static void setRenderer(Parser p, Renderer renderer) {\n        if (p instanceof RenderingParser) {\n            ((RenderingParser) p).setRenderer(renderer);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setRenderer(child, renderer);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setRenderer(((ParserDecorator) p).getWrappedParser(), renderer);\n        }\n    }\n\n    @Override\n    public Map<MediaType, Parser> getParsers(ParseContext context) {\n        Map<MediaType, Parser> map = super.getParsers(context);\n        if (loader != null) {\n            // Add dynamic parser service (they always override static ones)\n            MediaTypeRegistry registry = getMediaTypeRegistry();\n            List<Parser> parsers = loader.loadDynamicServiceProviders(Parser.class);\n            // best parser last\n            Collections.reverse(parsers);\n            for (Parser parser : parsers) {\n                for (MediaType type : parser.getSupportedTypes(context)) {\n                    map.put(registry.normalize(type), parser);\n                }\n            }\n        }\n        return map;\n    }\n\n    @Override\n    public List<Parser> getAllComponentParsers() {\n        List<Parser> parsers = super.getAllComponentParsers();\n        if (loader != null) {\n            parsers = new ArrayList<>(parsers);\n            parsers.addAll(loader.loadDynamicServiceProviders(Parser.class));\n        }\n        return parsers;\n    }\n\n    /**\n     * Returns the classes that were explicitly excluded when constructing this parser.\n     * Used for round-trip serialization to preserve exclusion configuration.\n     *\n     * @return unmodifiable collection of excluded parser classes, never null\n     */\n    public Collection<Class<? extends Parser>> getExcludedClasses() {\n        return excludedClasses;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A composite parser based on all the {@link Parser} implementations\n * available through the\n * {@link javax.imageio.spi.ServiceRegistry service provider mechanism}.\n *\n * @since Apache Tika 0.8\n */\n@TikaComponent(spi = false)\npublic class DefaultParser extends CompositeParser {\n\n    /**\n     * Serial version UID\n     */\n    private static final long serialVersionUID = 3612324825403757520L;\n\n    private transient final ServiceLoader loader;\n\n    private final Collection<Class<? extends Parser>> excludedClasses;\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, Collection<Class<? extends Parser>> excludeParsers, EncodingDetector encodingDetector, Renderer renderer) {\n        super(registry, getDefaultParsers(loader, encodingDetector, renderer, excludeParsers));\n        this.loader = loader;\n        this.excludedClasses = excludeParsers != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeParsers)) : Collections.emptySet();\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, Collection<Class<? extends Parser>> excludeParsers) {\n        super(registry, getDefaultParsers(loader, new DefaultEncodingDetector(loader), new CompositeRenderer(loader), excludeParsers));\n        this.loader = loader;\n        this.excludedClasses = excludeParsers != null ? Collections.unmodifiableCollection(new ArrayList<>(excludeParsers)) : Collections.emptySet();\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader, EncodingDetector encodingDetector, Renderer renderer) {\n        this(registry, loader, Collections.EMPTY_SET, encodingDetector, renderer);\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ServiceLoader loader) {\n        this(registry, loader, Collections.EMPTY_SET, new DefaultEncodingDetector(loader), new CompositeRenderer(loader));\n    }\n\n    public DefaultParser(MediaTypeRegistry registry, ClassLoader loader) {\n        this(registry, new ServiceLoader(loader));\n    }\n\n    public DefaultParser(ClassLoader loader) {\n        this(MediaTypeRegistry.getDefaultRegistry(), new ServiceLoader(loader));\n    }\n\n    public DefaultParser(MediaTypeRegistry registry) {\n        this(registry, new ServiceLoader());\n    }\n\n    public DefaultParser() {\n        this(MediaTypeRegistry.getDefaultRegistry());\n    }\n\n    /**\n     * Finds all statically loadable parsers and sort the list by name,\n     * rather than discovery order. CompositeParser takes the last\n     * parser for any given media type, so put the Tika parsers first\n     * so that non-Tika (user supplied) parsers can take precedence.\n     *\n     * @param loader service loader\n     * @return ordered list of statically loadable parsers\n     */\n    private static List<Parser> getDefaultParsers(ServiceLoader loader, EncodingDetector encodingDetector, Renderer renderer, Collection<Class<? extends Parser>> excludeParsers) {\n        List<Parser> parsers = loader.loadStaticServiceProviders(Parser.class, excludeParsers);\n        if (encodingDetector != null) {\n            for (Parser p : parsers) {\n                setEncodingDetector(p, encodingDetector);\n            }\n        }\n        if (renderer != null) {\n            for (Parser p : parsers) {\n                setRenderer(p, renderer);\n            }\n        }\n        ServiceLoaderUtils.sortLoadedClasses(parsers);\n        // reverse the order of parsers so that custom ones come last\n        // this will prevent them from being overwritten in getParsers(ParseContext ..)\n        Collections.reverse(parsers);\n        return parsers;\n    }\n\n    // recursively go through the parsers and set the encoding detector\n    // as configured in the config file\n    private static void setEncodingDetector(Parser p, EncodingDetector encodingDetector) {\n        if (p instanceof AbstractEncodingDetectorParser) {\n            ((AbstractEncodingDetectorParser) p).setEncodingDetector(encodingDetector);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setEncodingDetector(child, encodingDetector);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setEncodingDetector(((ParserDecorator) p).getWrappedParser(), encodingDetector);\n        }\n    }\n\n    private static void setRenderer(Parser p, Renderer renderer) {\n        if (p instanceof RenderingParser) {\n            ((RenderingParser) p).setRenderer(renderer);\n        } else if (p instanceof CompositeParser) {\n            for (Parser child : ((CompositeParser) p).getAllComponentParsers()) {\n                setRenderer(child, renderer);\n            }\n        } else if (p instanceof ParserDecorator) {\n            setRenderer(((ParserDecorator) p).getWrappedParser(), renderer);\n        }\n    }\n\n    @Override\n    public Map<MediaType, Parser> getParsers(ParseContext context) {\n        Map<MediaType, Parser> map = super.getParsers(context);\n        if (loader != null) {\n            // Add dynamic parser service (they always override static ones)\n            MediaTypeRegistry registry = getMediaTypeRegistry();\n            List<Parser> parsers = loader.loadDynamicServiceProviders(Parser.class);\n            // best parser last\n            Collections.reverse(parsers);\n            for (Parser parser : parsers) {\n                for (MediaType type : parser.getSupportedTypes(context)) {\n                    map.put(registry.normalize(type), parser);\n                }\n            }\n        }\n        return map;\n    }\n\n    @Override\n    public List<Parser> getAllComponentParsers() {\n        List<Parser> parsers = super.getAllComponentParsers();\n        if (loader != null) {\n            parsers = new ArrayList<>(parsers);\n            parsers.addAll(loader.loadDynamicServiceProviders(Parser.class));\n        }\n        return parsers;\n    }\n\n    /**\n     * Returns the classes that were explicitly excluded when constructing this parser.\n     * Used for round-trip serialization to preserve exclusion configuration.\n     *\n     * @return unmodifiable collection of excluded parser classes, never null\n     */\n    public Collection<Class<? extends Parser>> getExcludedClasses() {\n        return excludedClasses;\n    }\n}",
+  "subClasses": []
+}

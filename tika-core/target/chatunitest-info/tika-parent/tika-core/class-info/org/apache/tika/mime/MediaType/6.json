@@ -1,0 +1,31 @@
+{
+  "className": "MediaType",
+  "methodName": "set",
+  "brief": "public static Set<MediaType> set(String... types){}",
+  "methodSignature": "set(String[])",
+  "sourceCode": "public static Set<MediaType> set(String... types) {\n        Set<MediaType> set = new HashSet<>();\n        for (String type : types) {\n            MediaType mt = parse(type);\n            if (mt != null) {\n                set.add(mt);\n            }\n        }\n        return Collections.unmodifiableSet(set);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String...": [],
+    "org.apache.tika.mime.MediaType": [
+      "parse(String)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Convenience method that parses the given media type strings and\n * returns an unmodifiable set that contains all the parsed types.\n *\n * @param types media type strings\n * @return unmodifiable set of the parsed types\n * @since Apache Tika 1.2\n */\npublic static Set<MediaType> set(String... types) {\n    Set<MediaType> set = new HashSet<>();\n    for (String type : types) {\n        MediaType mt = parse(type);\n        if (mt != null) {\n            set.add(mt);\n        }\n    }\n    return Collections.unmodifiableSet(set);\n}",
+  "method_comment": "\n     * Convenience method that parses the given media type strings and\n     * returns an unmodifiable set that contains all the parsed types.\n     *\n     * @param types media type strings\n     * @return unmodifiable set of the parsed types\n     * @since Apache Tika 1.2\n     ",
+  "method_annotation": ""
+}

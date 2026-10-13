@@ -1,0 +1,34 @@
+{
+  "className": "StandardsText",
+  "methodName": "findHeaders",
+  "brief": "private static Map<Integer, String> findHeaders(String text){}",
+  "methodSignature": "findHeaders(String)",
+  "sourceCode": "private static Map<Integer, String> findHeaders(String text) {\n        Map<Integer, String> headers = new TreeMap<>();\n\n        Pattern pattern = Pattern.compile(REGEX_HEADER);\n        Matcher matcher = pattern.matcher(text);\n\n        while (matcher.find()) {\n            headers.put(matcher.start(), matcher.group());\n        }\n\n        return headers;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)",
+      "compile(String)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "start()",
+      "group()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * This method helps to find the headers within the given text.\n *\n * @param text the text from which the headers are extracted.\n * @return the list of headers found within the given text.\n */\nprivate static Map<Integer, String> findHeaders(String text) {\n    Map<Integer, String> headers = new TreeMap<>();\n    Pattern pattern = Pattern.compile(REGEX_HEADER);\n    Matcher matcher = pattern.matcher(text);\n    while (matcher.find()) {\n        headers.put(matcher.start(), matcher.group());\n    }\n    return headers;\n}",
+  "method_comment": "\n     * This method helps to find the headers within the given text.\n     *\n     * @param text the text from which the headers are extracted.\n     * @return the list of headers found within the given text.\n     ",
+  "method_annotation": ""
+}

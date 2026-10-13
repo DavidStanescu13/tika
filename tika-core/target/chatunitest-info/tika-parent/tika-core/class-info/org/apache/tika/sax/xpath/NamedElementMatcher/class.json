@@ -1,0 +1,49 @@
+{
+  "fullClassName": "org.apache.tika.sax.xpath.NamedElementMatcher",
+  "className": "NamedElementMatcher",
+  "index": 334,
+  "modifier": "[public ]",
+  "extend": "[ChildMatcher]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax.xpath",
+  "packageDeclaration": "package org.apache.tika.sax.xpath;",
+  "classSignature": "public class NamedElementMatcher",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Objects;"
+  ],
+  "fields": [
+    "private final String namespace;",
+    "private final String name;"
+  ],
+  "superClasses": [
+    "ChildMatcher"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "descend(String, String)": "0",
+    "NamedElementMatcher(String, String, Matcher)": "1"
+  },
+  "methodsBrief": [
+    "public Matcher descend(String namespace, String name){}",
+    "protected NamedElementMatcher(String namespace, String name, Matcher then){}"
+  ],
+  "constructorSigs": [
+    "NamedElementMatcher(String, String, Matcher)"
+  ],
+  "constructorBrief": [
+    "protected NamedElementMatcher(String namespace, String name, Matcher then){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.tika.sax.xpath.Matcher": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax.xpath;\n\nimport java.util.Objects;\n\n/**\n * Intermediate evaluation state of a <code>.../name...</code> XPath\n * expression. Matches nothing, but specifies the evaluation state\n * for the child elements with the given name.\n */\npublic class NamedElementMatcher extends ChildMatcher {\n\n    private final String namespace;\n\n    private final String name;\n\n    protected NamedElementMatcher(String namespace, String name, Matcher then) {\n        super(then);\n        this.namespace = namespace;\n        this.name = name;\n    }\n\n    public Matcher descend(String namespace, String name) {\n        if (Objects.equals(namespace, this.namespace) && name.equals(this.name)) {\n            return super.descend(namespace, name);\n        } else {\n            return FAIL;\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Intermediate evaluation state of a <code>.../name...</code> XPath\n * expression. Matches nothing, but specifies the evaluation state\n * for the child elements with the given name.\n */\npublic class NamedElementMatcher extends ChildMatcher {\n\n    private final String namespace;\n\n    private final String name;\n\n    protected NamedElementMatcher(String namespace, String name, Matcher then) {\n        super(then);\n        this.namespace = namespace;\n        this.name = name;\n    }\n\n    public Matcher descend(String namespace, String name) {\n        if (Objects.equals(namespace, this.namespace) && name.equals(this.name)) {\n            return super.descend(namespace, name);\n        } else {\n            return FAIL;\n        }\n    }\n}",
+  "subClasses": []
+}

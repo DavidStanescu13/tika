@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "add",
+  "brief": "public void add(final String name, final String value){}",
+  "methodSignature": "add(String, String)",
+  "sourceCode": "public void add(final String name, final String value) {\n        if (blockReservedKeyWrite(name)) {\n            return;\n        }\n        addTrusted(name, value);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "blockReservedKeyWrite(String)",
+      "addTrusted(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a metadata name/value mapping. Add the specified value to the list of\n * values associated to the specified metadata name.\n *\n * @param name  the metadata name.\n * @param value the metadata value.\n */\npublic void add(final String name, final String value) {\n    if (blockReservedKeyWrite(name)) {\n        return;\n    }\n    addTrusted(name, value);\n}",
+  "method_comment": "\n     * Add a metadata name/value mapping. Add the specified value to the list of\n     * values associated to the specified metadata name.\n     *\n     * @param name  the metadata name.\n     * @param value the metadata value.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "Tika",
+  "methodName": "detect",
+  "brief": "public String detect(byte[] prefix, String name){}",
+  "methodSignature": "detect(byte[], String)",
+  "sourceCode": "public String detect(byte[] prefix, String name) {\n        try {\n            try (InputStream stream = TikaInputStream.get(prefix)) {\n                return detect(stream, name);\n            }\n        } catch (IOException e) {\n            throw new IllegalStateException(\"Unexpected IOException\", e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "String"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.String": [],
+    "org.apache.tika.io.TikaInputStream": [
+      "get(byte[])"
+    ],
+    "org.apache.tika.Tika": [
+      "detect(InputStream, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Detects the media type of the given document. The type detection is\n * based on the first few bytes of a document and the document name.\n * <p>\n * For best results at least a few kilobytes of the document data\n * are needed. See also the other detect() methods for better\n * alternatives when you have more than just the document prefix\n * available for type detection.\n *\n * @param prefix first few bytes of the document\n * @param name   document name\n * @return detected media type\n * @since Apache Tika 0.9\n */\npublic String detect(byte[] prefix, String name) {\n    try {\n        try (InputStream stream = TikaInputStream.get(prefix)) {\n            return detect(stream, name);\n        }\n    } catch (IOException e) {\n        throw new IllegalStateException(\"Unexpected IOException\", e);\n    }\n}",
+  "method_comment": "\n     * Detects the media type of the given document. The type detection is\n     * based on the first few bytes of a document and the document name.\n     * <p>\n     * For best results at least a few kilobytes of the document data\n     * are needed. See also the other detect() methods for better\n     * alternatives when you have more than just the document prefix\n     * available for type detection.\n     *\n     * @param prefix first few bytes of the document\n     * @param name   document name\n     * @return detected media type\n     * @since Apache Tika 0.9\n     ",
+  "method_annotation": ""
+}

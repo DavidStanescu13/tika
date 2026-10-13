@@ -1,0 +1,23 @@
+{
+  "className": "TeeContentHandler",
+  "methodName": "processingInstruction",
+  "brief": "@Override\r\n    public void processingInstruction(String target, String data) throws SAXException{}",
+  "methodSignature": "processingInstruction(String, String)",
+  "sourceCode": "@Override\n    public void processingInstruction(String target, String data) throws SAXException {\n        for (ContentHandler handler : handlers) {\n            handler.processingInstruction(target, data);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void processingInstruction(String target, String data) throws SAXException {\n    for (ContentHandler handler : handlers) {\n        handler.processingInstruction(target, data);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

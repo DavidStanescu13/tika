@@ -1,0 +1,42 @@
+{
+  "className": "TemporaryResources",
+  "methodName": "createTempFile",
+  "brief": "public Path createTempFile(String suffix) throws IOException{}",
+  "methodSignature": "createTempFile(String)",
+  "sourceCode": "public Path createTempFile(String suffix) throws IOException {\n        String actualSuffix = StringUtils.isBlank(suffix) ? \".tmp\" : suffix;\n\n        final Path path = tempFileDir == null ? Files.createTempFile(\"apache-tika-\", actualSuffix) :\n                Files.createTempFile(tempFileDir, \"apache-tika-\", actualSuffix);\n        addResource(() -> {\n            try {\n                Files.delete(path);\n            } catch (IOException e) {\n                // delete when exit if current delete fail\n                LOG.warn(\"delete tmp file fail, will delete it on exit\");\n                path.toFile().deleteOnExit();\n            }\n        });\n        return path;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.utils.StringUtils": [
+      "isBlank(String)"
+    ],
+    "java.nio.file.Files": [
+      "createTempFile(String, String, Object>[])",
+      "createTempFile(Path, String, String, Object>[])",
+      "delete(Path)"
+    ],
+    "org.apache.tika.io.TemporaryResources": [
+      "addResource(Closeable)"
+    ],
+    "org.slf4j.Logger": [
+      "warn(String)"
+    ],
+    "java.io.File": [
+      "deleteOnExit()"
+    ],
+    "java.nio.file.Path": [
+      "toFile()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a temporary file that will automatically be deleted when\n * the {@link #close()} method is called, returning its path.\n * @param suffix -- the suffix of the file if known, starting with \".\" as in \".pdf\"\n * @return Path to created temporary file that will be deleted after closing\n * @throws IOException\n */\npublic Path createTempFile(String suffix) throws IOException {\n    String actualSuffix = StringUtils.isBlank(suffix) ? \".tmp\" : suffix;\n    final Path path = tempFileDir == null ? Files.createTempFile(\"apache-tika-\", actualSuffix) : Files.createTempFile(tempFileDir, \"apache-tika-\", actualSuffix);\n    addResource(() -> {\n        try {\n            Files.delete(path);\n        } catch (IOException e) {\n            // delete when exit if current delete fail\n            LOG.warn(\"delete tmp file fail, will delete it on exit\");\n            path.toFile().deleteOnExit();\n        }\n    });\n    return path;\n}",
+  "method_comment": "\n     * Creates a temporary file that will automatically be deleted when\n     * the {@link #close()} method is called, returning its path.\n     * @param suffix -- the suffix of the file if known, starting with \".\" as in \".pdf\"\n     * @return Path to created temporary file that will be deleted after closing\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

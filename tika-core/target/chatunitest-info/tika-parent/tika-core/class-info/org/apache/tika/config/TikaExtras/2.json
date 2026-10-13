@@ -1,0 +1,41 @@
+{
+  "className": "TikaExtras",
+  "methodName": "appendJarsToClasspath",
+  "brief": "public static String appendJarsToClasspath(String classpath){}",
+  "methodSignature": "appendJarsToClasspath(String)",
+  "sourceCode": "public static String appendJarsToClasspath(String classpath) {\n        List<Path> jars = extraJars();\n        if (jars.isEmpty()) {\n            return classpath;\n        }\n        String separator = File.pathSeparator;\n        StringBuilder sb = new StringBuilder();\n        if (classpath != null && !classpath.isEmpty()) {\n            sb.append(classpath);\n        }\n        for (Path jar : jars) {\n            if (sb.length() > 0) {\n                sb.append(separator);\n            }\n            sb.append(jar.toAbsolutePath());\n        }\n        return sb.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "org.apache.tika.config.TikaExtras": [
+      "extraJars()"
+    ],
+    "java.util.List": [
+      "isEmpty()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(Object)",
+      "append(String)"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.nio.file.Path": [
+      "toAbsolutePath()"
+    ]
+  },
+  "full_method_info": "/**\n * Appends the {@link #extraJars()} (as absolute paths, joined with the\n * platform path separator) to the given classpath string — for extending a\n * forked process's {@code -cp} with the extras jars.  Returns {@code classpath}\n * unchanged when the feature is off or the directory has no jars.\n *\n * @param classpath the base classpath to extend\n * @return the classpath with any extras jars appended\n */\npublic static String appendJarsToClasspath(String classpath) {\n    List<Path> jars = extraJars();\n    if (jars.isEmpty()) {\n        return classpath;\n    }\n    String separator = File.pathSeparator;\n    StringBuilder sb = new StringBuilder();\n    if (classpath != null && !classpath.isEmpty()) {\n        sb.append(classpath);\n    }\n    for (Path jar : jars) {\n        if (sb.length() > 0) {\n            sb.append(separator);\n        }\n        sb.append(jar.toAbsolutePath());\n    }\n    return sb.toString();\n}",
+  "method_comment": "\n     * Appends the {@link #extraJars()} (as absolute paths, joined with the\n     * platform path separator) to the given classpath string — for extending a\n     * forked process's {@code -cp} with the extras jars.  Returns {@code classpath}\n     * unchanged when the feature is off or the directory has no jars.\n     *\n     * @param classpath the base classpath to extend\n     * @return the classpath with any extras jars appended\n     ",
+  "method_annotation": ""
+}

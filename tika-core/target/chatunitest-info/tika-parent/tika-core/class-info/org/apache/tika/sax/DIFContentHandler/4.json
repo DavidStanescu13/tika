@@ -1,0 +1,44 @@
+{
+  "className": "DIFContentHandler",
+  "methodName": "endElement",
+  "brief": "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+  "methodSignature": "endElement(String, String, String)",
+  "sourceCode": "@Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        if (localName.equals(\"Spatial_Coverage\")) {\n            this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n            this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n            this.delegate.endElement(\"\", \"table\", \"table\");\n        }\n        if (this.isLeaf) {\n            Stack<String> tempStack = (Stack<String>) this.treeStack.clone();\n            StringBuilder key = new StringBuilder();\n            while (!tempStack.isEmpty()) {\n                if (key.isEmpty()) {\n                    key = new StringBuilder(tempStack.pop());\n                } else {\n                    key.insert(0, tempStack.pop() + \"-\");\n                }\n            }\n            String value = this.dataStack.peek();\n            this.metadata.add(key.toString(), value);\n            this.isLeaf = false;\n        }\n        this.treeStack.pop();\n        this.dataStack.pop();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "java.util.Vector": [
+      "isEmpty()",
+      "clone()"
+    ],
+    "java.lang.CharSequence": [
+      "isEmpty()"
+    ],
+    "java.util.Stack": [
+      "peek()",
+      "pop()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "insert(int, String)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(String, String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void endElement(String uri, String localName, String qName) throws SAXException {\n    if (localName.equals(\"Spatial_Coverage\")) {\n        this.delegate.characters(NEWLINE, 0, NEWLINE.length);\n        this.delegate.characters(TABSPACE, 0, TABSPACE.length);\n        this.delegate.endElement(\"\", \"table\", \"table\");\n    }\n    if (this.isLeaf) {\n        Stack<String> tempStack = (Stack<String>) this.treeStack.clone();\n        StringBuilder key = new StringBuilder();\n        while (!tempStack.isEmpty()) {\n            if (key.isEmpty()) {\n                key = new StringBuilder(tempStack.pop());\n            } else {\n                key.insert(0, tempStack.pop() + \"-\");\n            }\n        }\n        String value = this.dataStack.peek();\n        this.metadata.add(key.toString(), value);\n        this.isLeaf = false;\n    }\n    this.treeStack.pop();\n    this.dataStack.pop();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,18 @@
+{
+  "className": "LanguageWriter",
+  "methodName": "getDetector",
+  "brief": "public LanguageDetector getDetector(){}",
+  "methodSignature": "getDetector()",
+  "sourceCode": "public LanguageDetector getDetector() {\n        return detector;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the language detector used by this writer. Note that\n * the returned language detector gets updated whenever new characters\n * are written.\n *\n * @return language detector\n */\npublic LanguageDetector getDetector() {\n    return detector;\n}",
+  "method_comment": "\n     * Returns the language detector used by this writer. Note that\n     * the returned language detector gets updated whenever new characters\n     * are written.\n     *\n     * @return language detector\n     ",
+  "method_annotation": ""
+}

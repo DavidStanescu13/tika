@@ -1,0 +1,24 @@
+{
+  "className": "ServiceLoaderUtils",
+  "methodName": "sortLoadedClasses",
+  "brief": "public static <T> void sortLoadedClasses(List<T> loaded){}",
+  "methodSignature": "sortLoadedClasses(List)",
+  "sourceCode": "public static <T> void sortLoadedClasses(List<T> loaded) {\n        loaded.sort(CompareUtils::compareClassName);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<T>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "sort(Comparator<? super E>)"
+    ]
+  },
+  "full_method_info": "/**\n * Sorts a list of loaded classes, so that non-Tika ones come\n * before Tika ones, and otherwise in reverse alphabetical order\n */\npublic static <T> void sortLoadedClasses(List<T> loaded) {\n    loaded.sort(CompareUtils::compareClassName);\n}",
+  "method_comment": "\n     * Sorts a list of loaded classes, so that non-Tika ones come\n     * before Tika ones, and otherwise in reverse alphabetical order\n     ",
+  "method_annotation": ""
+}

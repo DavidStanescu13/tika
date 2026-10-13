@@ -1,0 +1,41 @@
+{
+  "className": "LegacyKeyMigrationFilter",
+  "methodName": "loadTable",
+  "brief": "private static Map<String, String> loadTable(String resource){}",
+  "methodSignature": "loadTable(String)",
+  "sourceCode": "private static Map<String, String> loadTable(String resource) {\n        Map<String, String> table = new HashMap<>();\n        try (InputStream in = LegacyKeyMigrationFilter.class.getResourceAsStream(resource)) {\n            if (in == null) {\n                return table;   // not bundled yet -> no-op bridge\n            }\n            Matcher m = ROW.matcher(new String(in.readAllBytes(), StandardCharsets.UTF_8));\n            while (m.find()) {\n                table.put(unescape(m.group(1)), unescape(m.group(2)));\n            }\n        } catch (Exception e) {\n            throw new IllegalStateException(\"could not read migration table \" + resource, e);\n        }\n        return table;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.Class": [
+      "getResourceAsStream(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)"
+    ],
+    "java.io.InputStream": [
+      "readAllBytes()"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "group(int)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "org.apache.tika.metadata.filter.LegacyKeyMigrationFilter": [
+      "unescape(String)"
+    ]
+  },
+  "full_method_info": "private static Map<String, String> loadTable(String resource) {\n    Map<String, String> table = new HashMap<>();\n    try (InputStream in = LegacyKeyMigrationFilter.class.getResourceAsStream(resource)) {\n        if (in == null) {\n            // not bundled yet -> no-op bridge\n            return table;\n        }\n        Matcher m = ROW.matcher(new String(in.readAllBytes(), StandardCharsets.UTF_8));\n        while (m.find()) {\n            table.put(unescape(m.group(1)), unescape(m.group(2)));\n        }\n    } catch (Exception e) {\n        throw new IllegalStateException(\"could not read migration table \" + resource, e);\n    }\n    return table;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

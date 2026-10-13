@@ -1,0 +1,26 @@
+{
+  "className": "MimeTypesReader",
+  "methodName": "resolveEntity",
+  "brief": "@Override\r\n    public InputSource resolveEntity(String publicId, String systemId){}",
+  "methodSignature": "resolveEntity(String, String)",
+  "sourceCode": "@Override\n    public InputSource resolveEntity(String publicId, String systemId) {\n        return new InputSource(UnsynchronizedByteArrayInputStream.nullInputStream());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.io.InputStream": [
+      "nullInputStream()"
+    ]
+  },
+  "full_method_info": "@Override\npublic InputSource resolveEntity(String publicId, String systemId) {\n    return new InputSource(UnsynchronizedByteArrayInputStream.nullInputStream());\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

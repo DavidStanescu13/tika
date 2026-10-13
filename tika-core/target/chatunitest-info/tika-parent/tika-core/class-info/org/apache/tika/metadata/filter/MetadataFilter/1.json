@@ -1,0 +1,23 @@
+{
+  "className": "MetadataFilter",
+  "methodName": "doFilter",
+  "brief": "protected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext)\r\n            throws TikaException;",
+  "methodSignature": "doFilter(List, ParseContext)",
+  "sourceCode": "protected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext)\n            throws TikaException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "List<Metadata>",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": []
+  },
+  "full_method_info": "/**\n * Applies the filter in place. A filter that needs to write a reserved Tika-native\n * ({@code tk:}) key by name (rather than via its {@link org.apache.tika.metadata.Property})\n * should call {@link Metadata#addTrusted} / {@link Metadata#setTrusted} explicitly at that\n * write.\n *\n * @param metadataList the list to filter (must be mutable)\n * @param parseContext per-request context\n * @throws TikaException if filtering fails\n */\nprotected abstract void doFilter(List<Metadata> metadataList, ParseContext parseContext) throws TikaException;",
+  "method_comment": "\n     * Applies the filter in place. A filter that needs to write a reserved Tika-native\n     * ({@code tk:}) key by name (rather than via its {@link org.apache.tika.metadata.Property})\n     * should call {@link Metadata#addTrusted} / {@link Metadata#setTrusted} explicitly at that\n     * write.\n     *\n     * @param metadataList the list to filter (must be mutable)\n     * @param parseContext per-request context\n     * @throws TikaException if filtering fails\n     ",
+  "method_annotation": ""
+}

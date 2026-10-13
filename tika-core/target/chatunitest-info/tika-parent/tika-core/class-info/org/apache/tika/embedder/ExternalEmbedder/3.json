@@ -1,0 +1,25 @@
+{
+  "className": "ExternalEmbedder",
+  "methodName": "getSupportedEmbedTypes",
+  "brief": "@Override\r\n    public Set<MediaType> getSupportedEmbedTypes(ParseContext context){}",
+  "methodSignature": "getSupportedEmbedTypes(ParseContext)",
+  "sourceCode": "@Override\n    public Set<MediaType> getSupportedEmbedTypes(ParseContext context) {\n        return getSupportedEmbedTypes();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [],
+    "org.apache.tika.embedder.ExternalEmbedder": [
+      "getSupportedEmbedTypes()"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<MediaType> getSupportedEmbedTypes(ParseContext context) {\n    return getSupportedEmbedTypes();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

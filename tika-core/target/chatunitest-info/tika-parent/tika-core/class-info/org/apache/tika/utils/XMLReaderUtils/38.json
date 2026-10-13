@@ -1,0 +1,27 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getDocumentBuilder",
+  "brief": "public static DocumentBuilder getDocumentBuilder(ParseContext context) throws TikaException{}",
+  "methodSignature": "getDocumentBuilder(ParseContext)",
+  "sourceCode": "public static DocumentBuilder getDocumentBuilder(ParseContext context) throws TikaException {\n        DocumentBuilder documentBuilder = context.get(DocumentBuilder.class);\n        if (documentBuilder != null) {\n            return documentBuilder;\n        } else {\n            return XMLReaderUtils.getDocumentBuilder();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.utils.XMLReaderUtils": [
+      "getDocumentBuilder()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the DOM builder specified in this parsing context.\n * If a builder is not explicitly specified, then a builder\n * instance is created and returned. The builder instance is\n * configured to apply an {@link XMLReaderUtils#IGNORING_SAX_ENTITY_RESOLVER},\n * and it sets the ErrorHandler to <code>null</code>.\n * Consider using {@link XMLReaderUtils#buildDOM(InputStream, ParseContext)}\n * instead for more efficient reuse of document builders.\n *\n * @return DOM Builder\n */\npublic static DocumentBuilder getDocumentBuilder(ParseContext context) throws TikaException {\n    DocumentBuilder documentBuilder = context.get(DocumentBuilder.class);\n    if (documentBuilder != null) {\n        return documentBuilder;\n    } else {\n        return XMLReaderUtils.getDocumentBuilder();\n    }\n}",
+  "method_comment": "\n     * Returns the DOM builder specified in this parsing context.\n     * If a builder is not explicitly specified, then a builder\n     * instance is created and returned. The builder instance is\n     * configured to apply an {@link XMLReaderUtils#IGNORING_SAX_ENTITY_RESOLVER},\n     * and it sets the ErrorHandler to <code>null</code>.\n     * Consider using {@link XMLReaderUtils#buildDOM(InputStream, ParseContext)}\n     * instead for more efficient reuse of document builders.\n     *\n     * @return DOM Builder\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,58 @@
+{
+  "className": "StandardsText",
+  "methodName": "findStandards",
+  "brief": "private static ArrayList<StandardReference> findStandards(String text,\r\n                                                              Map<Integer, String> headers,\r\n                                                              double threshold){}",
+  "methodSignature": "findStandards(String, Map, double)",
+  "sourceCode": "private static ArrayList<StandardReference> findStandards(String text,\n                                                              Map<Integer, String> headers,\n                                                              double threshold) {\n        ArrayList<StandardReference> standards = new ArrayList<>();\n        double score = 0;\n\n        Pattern pattern = Pattern.compile(REGEX_FALLBACK);\n        Matcher matcher = pattern.matcher(text);\n\n        while (matcher.find()) {\n            StandardReferenceBuilder builder = new StandardReference.StandardReferenceBuilder(\n                    matcher.group(\"mainOrganization\"), matcher.group(\"identifier\"))\n                    .setSecondOrganization(matcher.group(\"separator\"),\n                            matcher.group(\"secondOrganization\"));\n            score = 0.25;\n\n            // increases by 0.25 the score of references which include the name of a known\n            // standard organization\n            if (matcher.group().matches(REGEX_STANDARD)) {\n                score += 0.25;\n            }\n\n            // increases by 0.25 the score of references which include the word \"Publication\" or\n            // \"Standard\"\n            if (matcher.group().matches(\".*\" + REGEX_STANDARD_TYPE + \".*\")) {\n                score += 0.25;\n            }\n\n            int startHeader = 0;\n            int endHeader = 0;\n            boolean headerFound = false;\n            Iterator<Entry<Integer, String>> iterator = headers.entrySet().iterator();\n            while (iterator.hasNext() && !headerFound) {\n                startHeader = endHeader;\n                endHeader = iterator.next().getKey();\n                if (endHeader > matcher.start()) {\n                    headerFound = true;\n                }\n            }\n\n            String header = headers.get(startHeader);\n\n            // increases by 0.25 the score of references which have been found within \"Applicable\n            // Documents\" and equivalent sections\n            if (header != null && headers.get(startHeader).matches(REGEX_APPLICABLE_DOCUMENTS)) {\n                score += 0.25;\n            }\n\n            builder.setScore(score);\n\n            if (score >= threshold) {\n                standards.add(builder.build());\n            }\n        }\n\n        return standards;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Map<Integer,String>",
+    "double"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "matches(String)"
+    ],
+    "java.util.regex.Pattern": [
+      "matcher(CharSequence)",
+      "compile(String)"
+    ],
+    "java.util.regex.Matcher": [
+      "find()",
+      "group(String)",
+      "start()",
+      "group()"
+    ],
+    "org.apache.tika.sax.StandardReference.StandardReferenceBuilder": [
+      "setSecondOrganization(String, String)",
+      "setScore(double)",
+      "build()"
+    ],
+    "java.util.Set": [
+      "iterator()"
+    ],
+    "java.util.Map": [
+      "get(Object)",
+      "entrySet()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.Map.Entry": [
+      "getKey()"
+    ],
+    "java.util.ArrayList": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * This method helps to find the standard references within the given text.\n *\n * @param text      the text from which the standards references are extracted.\n * @param headers   the list of headers found within the given text.\n * @param threshold the lower bound limit to be used in order to select only the\n *                  standard references with score greater than or equal to the\n *                  threshold.\n * @return the list of standard references extracted from the given text.\n */\nprivate static ArrayList<StandardReference> findStandards(String text, Map<Integer, String> headers, double threshold) {\n    ArrayList<StandardReference> standards = new ArrayList<>();\n    double score = 0;\n    Pattern pattern = Pattern.compile(REGEX_FALLBACK);\n    Matcher matcher = pattern.matcher(text);\n    while (matcher.find()) {\n        StandardReferenceBuilder builder = new StandardReference.StandardReferenceBuilder(matcher.group(\"mainOrganization\"), matcher.group(\"identifier\")).setSecondOrganization(matcher.group(\"separator\"), matcher.group(\"secondOrganization\"));\n        score = 0.25;\n        // increases by 0.25 the score of references which include the name of a known\n        // standard organization\n        if (matcher.group().matches(REGEX_STANDARD)) {\n            score += 0.25;\n        }\n        // increases by 0.25 the score of references which include the word \"Publication\" or\n        // \"Standard\"\n        if (matcher.group().matches(\".*\" + REGEX_STANDARD_TYPE + \".*\")) {\n            score += 0.25;\n        }\n        int startHeader = 0;\n        int endHeader = 0;\n        boolean headerFound = false;\n        Iterator<Entry<Integer, String>> iterator = headers.entrySet().iterator();\n        while (iterator.hasNext() && !headerFound) {\n            startHeader = endHeader;\n            endHeader = iterator.next().getKey();\n            if (endHeader > matcher.start()) {\n                headerFound = true;\n            }\n        }\n        String header = headers.get(startHeader);\n        // increases by 0.25 the score of references which have been found within \"Applicable\n        // Documents\" and equivalent sections\n        if (header != null && headers.get(startHeader).matches(REGEX_APPLICABLE_DOCUMENTS)) {\n            score += 0.25;\n        }\n        builder.setScore(score);\n        if (score >= threshold) {\n            standards.add(builder.build());\n        }\n    }\n    return standards;\n}",
+  "method_comment": "\n     * This method helps to find the standard references within the given text.\n     *\n     * @param text      the text from which the standards references are extracted.\n     * @param headers   the list of headers found within the given text.\n     * @param threshold the lower bound limit to be used in order to select only the\n     *                  standard references with score greater than or equal to the\n     *                  threshold.\n     * @return the list of standard references extracted from the given text.\n     ",
+  "method_annotation": ""
+}

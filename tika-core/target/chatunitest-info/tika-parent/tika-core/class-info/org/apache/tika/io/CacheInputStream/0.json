@@ -1,0 +1,22 @@
+{
+  "className": "CacheInputStream",
+  "methodName": "read",
+  "brief": "@Override\r\n        public int read() throws IOException{}",
+  "methodSignature": "read()",
+  "sourceCode": "@Override\n        public int read() throws IOException {\n            if (position >= totalSize) {\n                return -1;\n            }\n            int b = readAt(position);\n            if (b != -1) {\n                position++;\n            }\n            return b;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.StreamCache": [
+      "readAt(long)"
+    ]
+  },
+  "full_method_info": "@Override\npublic int read() throws IOException {\n    if (position >= totalSize) {\n        return -1;\n    }\n    int b = readAt(position);\n    if (b != -1) {\n        position++;\n    }\n    return b;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

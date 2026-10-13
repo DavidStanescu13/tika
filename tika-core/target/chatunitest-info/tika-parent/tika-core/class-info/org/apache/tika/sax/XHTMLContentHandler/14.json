@@ -1,0 +1,25 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "element",
+  "brief": "public void element(String name, String value) throws SAXException{}",
+  "methodSignature": "element(String, String)",
+  "sourceCode": "public void element(String name, String value) throws SAXException {\n        if (value != null && value.length() > 0) {\n            startElement(name);\n            characters(value);\n            endElement(name);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Emits an XHTML element with the given text content. If the given\n * text value is null or empty, then the element is not written.\n *\n * @param name  XHTML element name\n * @param value element value, possibly <code>null</code>\n * @throws SAXException if the content element could not be written\n */\npublic void element(String name, String value) throws SAXException {\n    if (value != null && value.length() > 0) {\n        startElement(name);\n        characters(value);\n        endElement(name);\n    }\n}",
+  "method_comment": "\n     * Emits an XHTML element with the given text content. If the given\n     * text value is null or empty, then the element is not written.\n     *\n     * @param name  XHTML element name\n     * @param value element value, possibly <code>null</code>\n     * @throws SAXException if the content element could not be written\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,34 @@
+{
+  "className": "ParserUtils",
+  "methodName": "recordParserFailure",
+  "brief": "public static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata){}",
+  "methodSignature": "recordParserFailure(Parser, Throwable, Metadata)",
+  "sourceCode": "public static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata) {\n        String trace = ExceptionUtils.getStackTrace(failure);\n        metadata.add(EMBEDDED_EXCEPTION, trace);\n        metadata.add(EMBEDDED_PARSER, getParserClassname(parser));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser",
+    "Throwable",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.lang.Throwable": [],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)"
+    ],
+    "org.apache.tika.utils.ExceptionUtils": [
+      "getStackTrace(Throwable)"
+    ],
+    "org.apache.tika.utils.ParserUtils": [
+      "getParserClassname(Parser)"
+    ]
+  },
+  "full_method_info": "/**\n * Records details of a {@link Parser}'s failure to the\n * {@link Metadata}, so you can check what went wrong even if the\n * {@link Exception} wasn't immediately thrown (eg when several different\n * Parsers are used)\n */\npublic static void recordParserFailure(Parser parser, Throwable failure, Metadata metadata) {\n    String trace = ExceptionUtils.getStackTrace(failure);\n    metadata.add(EMBEDDED_EXCEPTION, trace);\n    metadata.add(EMBEDDED_PARSER, getParserClassname(parser));\n}",
+  "method_comment": "\n     * Records details of a {@link Parser}'s failure to the\n     * {@link Metadata}, so you can check what went wrong even if the\n     * {@link Exception} wasn't immediately thrown (eg when several different\n     * Parsers are used)\n     ",
+  "method_annotation": ""
+}

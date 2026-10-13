@@ -1,0 +1,32 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "get",
+  "brief": "public static TikaInputStream get(byte[] data, Metadata metadata) throws IOException{}",
+  "methodSignature": "get(byte[], Metadata)",
+  "sourceCode": "public static TikaInputStream get(byte[] data, Metadata metadata) throws IOException {\n        metadata.set(Metadata.CONTENT_LENGTH, Integer.toString(data.length));\n        String ext = getExtension(metadata);\n        TemporaryResources tmp = new TemporaryResources();\n        TikaInputSource inputSource = new ByteArraySource(data, tmp);\n        return new TikaInputStream(inputSource, tmp, ext);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "org.apache.tika.metadata.Metadata": [
+      "set(Property, String)"
+    ],
+    "java.lang.Integer": [
+      "toString(int)"
+    ],
+    "org.apache.tika.io.TikaInputStream": [
+      "getExtension(Metadata)"
+    ]
+  },
+  "full_method_info": "public static TikaInputStream get(byte[] data, Metadata metadata) throws IOException {\n    metadata.set(Metadata.CONTENT_LENGTH, Integer.toString(data.length));\n    String ext = getExtension(metadata);\n    TemporaryResources tmp = new TemporaryResources();\n    TikaInputSource inputSource = new ByteArraySource(data, tmp);\n    return new TikaInputStream(inputSource, tmp, ext);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

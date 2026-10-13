@@ -1,0 +1,25 @@
+{
+  "className": "MimeType",
+  "methodName": "compareTo",
+  "brief": "public int compareTo(MimeType mime){}",
+  "methodSignature": "compareTo(MimeType)",
+  "sourceCode": "public int compareTo(MimeType mime) {\n        return type.compareTo(mime.type);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MimeType"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MimeType": [],
+    "org.apache.tika.mime.MediaType": [
+      "compareTo(MediaType)"
+    ]
+  },
+  "full_method_info": "public int compareTo(MimeType mime) {\n    return type.compareTo(mime.type);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

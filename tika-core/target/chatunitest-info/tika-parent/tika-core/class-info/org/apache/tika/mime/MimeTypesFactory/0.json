@@ -1,0 +1,18 @@
+{
+  "className": "MimeTypesFactory",
+  "methodName": "create",
+  "brief": "public static MimeTypes create(){}",
+  "methodSignature": "create()",
+  "sourceCode": "public static MimeTypes create() {\n        return new MimeTypes();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Creates an empty instance; same as calling new MimeTypes().\n *\n * @return an empty instance\n */\npublic static MimeTypes create() {\n    return new MimeTypes();\n}",
+  "method_comment": "\n     * Creates an empty instance; same as calling new MimeTypes().\n     *\n     * @return an empty instance\n     ",
+  "method_annotation": ""
+}

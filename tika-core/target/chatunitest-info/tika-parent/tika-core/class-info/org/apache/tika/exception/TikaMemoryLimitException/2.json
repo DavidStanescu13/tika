@@ -1,0 +1,25 @@
+{
+  "className": "TikaMemoryLimitException",
+  "methodName": "TikaMemoryLimitException",
+  "brief": "public TikaMemoryLimitException(long triedToAllocate, long maxAllowable){}",
+  "methodSignature": "TikaMemoryLimitException(long, long)",
+  "sourceCode": "public TikaMemoryLimitException(long triedToAllocate, long maxAllowable) {\n        super(msg(triedToAllocate, maxAllowable));\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long",
+    "long"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.exception.TikaMemoryLimitException": [
+      "msg(long, long)"
+    ]
+  },
+  "full_method_info": "public TikaMemoryLimitException(long triedToAllocate, long maxAllowable) {\n    super(msg(triedToAllocate, maxAllowable));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

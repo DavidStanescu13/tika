@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "priorMagicFileType",
+  "brief": "public synchronized Builder priorMagicFileType(final float prior){}",
+  "methodSignature": "priorMagicFileType(float)",
+  "sourceCode": "public synchronized Builder priorMagicFileType(final float prior) {\n            this.priorMagicFileType = prior;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public synchronized Builder priorMagicFileType(final float prior) {\n    this.priorMagicFileType = prior;\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

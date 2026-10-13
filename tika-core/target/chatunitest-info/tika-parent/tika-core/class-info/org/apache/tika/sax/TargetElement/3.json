@@ -1,0 +1,23 @@
+{
+  "className": "TargetElement",
+  "methodName": "TargetElement",
+  "brief": "public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping){}",
+  "methodSignature": "TargetElement(QName, Map)",
+  "sourceCode": "public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping) {\n            this.mappedTagName = mappedTagName;\n            this.attributesMapping = attributesMapping;\n        }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "QName",
+    "Map<QName,QName>"
+  ],
+  "dependentMethods": {
+    "javax.xml.namespace.QName": []
+  },
+  "full_method_info": "public TargetElement(QName mappedTagName, Map<QName, QName> attributesMapping) {\n    this.mappedTagName = mappedTagName;\n    this.attributesMapping = attributesMapping;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

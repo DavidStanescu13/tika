@@ -1,0 +1,26 @@
+{
+  "className": "ParseContext",
+  "methodName": "get",
+  "brief": "public <T> T get(Class<T> key, T defaultValue){}",
+  "methodSignature": "get(Class, T)",
+  "sourceCode": "public <T> T get(Class<T> key, T defaultValue) {\n        T value = get(key);\n        if (value != null) {\n            return value;\n        } else {\n            return defaultValue;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>",
+    "T"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the object in this context that implements the given interface,\n * or the given default value if such an object is not found.\n *\n * @param key          the interface implemented by the requested object\n * @param defaultValue value to return if the requested object is not found\n * @return the object that implements the given interface,\n * or the given default value if not found\n */\npublic <T> T get(Class<T> key, T defaultValue) {\n    T value = get(key);\n    if (value != null) {\n        return value;\n    } else {\n        return defaultValue;\n    }\n}",
+  "method_comment": "\n     * Returns the object in this context that implements the given interface,\n     * or the given default value if such an object is not found.\n     *\n     * @param key          the interface implemented by the requested object\n     * @param defaultValue value to return if the requested object is not found\n     * @return the object that implements the given interface,\n     * or the given default value if not found\n     ",
+  "method_annotation": ""
+}

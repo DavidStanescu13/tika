@@ -1,0 +1,22 @@
+{
+  "className": "MediaType",
+  "methodName": "getSubtype",
+  "brief": "public String getSubtype(){}",
+  "methodSignature": "getSubtype()",
+  "sourceCode": "public String getSubtype() {\n        return string.substring(slash + 1, semicolon);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Return the Sub-Type of the MediaType,\n * such as \"plain\" for \"text/plain\"\n */\npublic String getSubtype() {\n    return string.substring(slash + 1, semicolon);\n}",
+  "method_comment": "\n     * Return the Sub-Type of the MediaType,\n     * such as \"plain\" for \"text/plain\"\n     ",
+  "method_annotation": ""
+}

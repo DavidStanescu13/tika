@@ -1,0 +1,22 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "isUnknown",
+  "brief": "public boolean isUnknown(){}",
+  "methodSignature": "isUnknown()",
+  "sourceCode": "public boolean isUnknown() {\n        return Float.isNaN(zScore);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Float": [
+      "isNaN(float)"
+    ]
+  },
+  "full_method_info": "/**\n * True if scoring could not be performed (e.g. empty or unsupported-script input).\n */\npublic boolean isUnknown() {\n    return Float.isNaN(zScore);\n}",
+  "method_comment": " True if scoring could not be performed (e.g. empty or unsupported-script input). ",
+  "method_annotation": ""
+}

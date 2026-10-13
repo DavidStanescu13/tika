@@ -1,0 +1,25 @@
+{
+  "className": "LanguageDetector",
+  "methodName": "detect",
+  "brief": "public LanguageResult detect(){}",
+  "methodSignature": "detect()",
+  "sourceCode": "public LanguageResult detect() {\n        List<LanguageResult> results = detectAll();\n        return results.get(0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.language.detect.LanguageDetector": [
+      "detectAll()"
+    ],
+    "java.util.List": [
+      "get(int)"
+    ]
+  },
+  "full_method_info": "public LanguageResult detect() {\n    List<LanguageResult> results = detectAll();\n    return results.get(0);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

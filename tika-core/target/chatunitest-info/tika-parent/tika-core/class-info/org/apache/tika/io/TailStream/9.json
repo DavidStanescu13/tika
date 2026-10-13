@@ -1,0 +1,27 @@
+{
+  "className": "TailStream",
+  "methodName": "replaceTailBuffer",
+  "brief": "private void replaceTailBuffer(byte[] buf, int ofs, int length){}",
+  "methodSignature": "replaceTailBuffer(byte[], int, int)",
+  "sourceCode": "private void replaceTailBuffer(byte[] buf, int ofs, int length) {\n        System.arraycopy(buf, ofs + length - tailSize, tailBuffer, 0, tailSize);\n        currentIndex = 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Replaces the content of the internal tail buffer by the last portion of\n * the given buffer. This method is called if a buffer was read from the\n * underlying stream whose length is larger than the tail buffer.\n *\n * @param buf    the buffer\n * @param ofs    the start offset in the buffer\n * @param length the number of bytes to be copied\n */\nprivate void replaceTailBuffer(byte[] buf, int ofs, int length) {\n    System.arraycopy(buf, ofs + length - tailSize, tailBuffer, 0, tailSize);\n    currentIndex = 0;\n}",
+  "method_comment": "\n     * Replaces the content of the internal tail buffer by the last portion of\n     * the given buffer. This method is called if a buffer was read from the\n     * underlying stream whose length is larger than the tail buffer.\n     *\n     * @param buf    the buffer\n     * @param ofs    the start offset in the buffer\n     * @param length the number of bytes to be copied\n     ",
+  "method_annotation": ""
+}

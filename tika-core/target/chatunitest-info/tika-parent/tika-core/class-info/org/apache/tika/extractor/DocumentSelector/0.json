@@ -1,0 +1,22 @@
+{
+  "className": "DocumentSelector",
+  "methodName": "select",
+  "brief": "boolean select(Metadata metadata);",
+  "methodSignature": "select(Metadata)",
+  "sourceCode": "boolean select(Metadata metadata);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Metadata"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": []
+  },
+  "full_method_info": "/**\n * Checks if a document with the given metadata matches the specified\n * selection criteria.\n *\n * @param metadata document metadata\n * @return <code>true</code> if the document matches the selection criteria,\n * <code>false</code> otherwise\n */\nboolean select(Metadata metadata);",
+  "method_comment": "\n     * Checks if a document with the given metadata matches the specified\n     * selection criteria.\n     *\n     * @param metadata document metadata\n     * @return <code>true</code> if the document matches the selection criteria,\n     * <code>false</code> otherwise\n     ",
+  "method_annotation": ""
+}

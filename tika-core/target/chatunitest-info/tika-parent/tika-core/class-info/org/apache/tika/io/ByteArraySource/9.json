@@ -1,0 +1,20 @@
+{
+  "className": "ByteArraySource",
+  "methodName": "mark",
+  "brief": "@Override\r\n    public synchronized void mark(int readlimit){}",
+  "methodSignature": "mark(int)",
+  "sourceCode": "@Override\n    public synchronized void mark(int readlimit) {\n        markPosition = position;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic synchronized void mark(int readlimit) {\n    markPosition = position;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

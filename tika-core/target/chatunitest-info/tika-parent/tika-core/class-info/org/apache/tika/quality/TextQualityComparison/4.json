@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityComparison",
+  "methodName": "labelA",
+  "brief": "public String labelA(){}",
+  "methodSignature": "labelA()",
+  "sourceCode": "public String labelA() {\n        return labelA;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Label supplied for candidate A (e.g. a charset name or encoding description).\n */\npublic String labelA() {\n    return labelA;\n}",
+  "method_comment": " Label supplied for candidate A (e.g. a charset name or encoding description). ",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "ChildMatcher",
+  "methodName": "descend",
+  "brief": "public Matcher descend(String namespace, String name){}",
+  "methodSignature": "descend(String, String)",
+  "sourceCode": "public Matcher descend(String namespace, String name) {\n        return then;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public Matcher descend(String namespace, String name) {\n    return then;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

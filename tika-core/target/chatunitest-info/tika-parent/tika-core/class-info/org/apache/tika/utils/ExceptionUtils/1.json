@@ -1,0 +1,35 @@
+{
+  "className": "ExceptionUtils",
+  "methodName": "getStackTrace",
+  "brief": "public static String getStackTrace(Throwable t){}",
+  "methodSignature": "getStackTrace(Throwable)",
+  "sourceCode": "public static String getStackTrace(Throwable t) {\n        Writer result = new StringWriter();\n        PrintWriter writer = new PrintWriter(result);\n        t.printStackTrace(writer);\n        try {\n            writer.flush();\n            result.flush();\n            writer.close();\n            result.close();\n        } catch (IOException e) {\n            //swallow\n        }\n        return result.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Throwable"
+  ],
+  "dependentMethods": {
+    "java.lang.Throwable": [
+      "printStackTrace(PrintWriter)"
+    ],
+    "java.io.PrintWriter": [
+      "flush()",
+      "close()"
+    ],
+    "java.io.Writer": [
+      "flush()",
+      "close()"
+    ],
+    "java.lang.Object": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Get the full stacktrace as a string\n *\n * @param t\n * @return\n */\npublic static String getStackTrace(Throwable t) {\n    Writer result = new StringWriter();\n    PrintWriter writer = new PrintWriter(result);\n    t.printStackTrace(writer);\n    try {\n        writer.flush();\n        result.flush();\n        writer.close();\n        result.close();\n    } catch (IOException e) {\n        // swallow\n    }\n    return result.toString();\n}",
+  "method_comment": "\n     * Get the full stacktrace as a string\n     *\n     * @param t\n     * @return\n     ",
+  "method_annotation": ""
+}

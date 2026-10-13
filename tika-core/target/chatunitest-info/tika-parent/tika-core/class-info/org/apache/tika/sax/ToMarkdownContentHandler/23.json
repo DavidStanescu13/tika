@@ -1,0 +1,22 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "isStructuralOnly",
+  "brief": "private static boolean isStructuralOnly(Node n){}",
+  "methodSignature": "isStructuralOnly(Node)",
+  "sourceCode": "private static boolean isStructuralOnly(Node n) {\n        return n instanceof ListBlock || n instanceof TableBlock || n instanceof TableHead\n                || n instanceof TableBody || n instanceof TableRow;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Node"
+  ],
+  "dependentMethods": {
+    "org.commonmark.node.Node": []
+  },
+  "full_method_info": "private static boolean isStructuralOnly(Node n) {\n    return n instanceof ListBlock || n instanceof TableBlock || n instanceof TableHead || n instanceof TableBody || n instanceof TableRow;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "RegexCaptureParserConfig",
+  "methodName": "getMatchMap",
+  "brief": "public Map<String, String> getMatchMap(){}",
+  "methodSignature": "getMatchMap()",
+  "sourceCode": "public Map<String, String> getMatchMap() {\n        return matchMap;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Map<String, String> getMatchMap() {\n    return matchMap;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

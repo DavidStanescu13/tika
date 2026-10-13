@@ -1,0 +1,24 @@
+{
+  "className": "IncludeFieldMetadataFilter",
+  "methodName": "setInclude",
+  "brief": "public void setInclude(List<String> include){}",
+  "methodSignature": "setInclude(List)",
+  "sourceCode": "public void setInclude(List<String> include) {\n        includeSet.addAll(include);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "addAll(Collection<? extends E>)"
+    ]
+  },
+  "full_method_info": "/**\n * @param include comma-delimited list of fields to include\n */\npublic void setInclude(List<String> include) {\n    includeSet.addAll(include);\n}",
+  "method_comment": "\n     * @param include comma-delimited list of fields to include\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "StreamCache",
+  "methodName": "size",
+  "brief": "long size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "long size() {\n        return totalSize;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Number of bytes currently cached.\n */\nlong size() {\n    return totalSize;\n}",
+  "method_comment": "\n     * Number of bytes currently cached.\n     ",
+  "method_annotation": ""
+}

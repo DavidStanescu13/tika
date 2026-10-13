@@ -1,0 +1,31 @@
+{
+  "className": "XHTMLContentHandler",
+  "methodName": "XHTMLContentHandler",
+  "brief": "public XHTMLContentHandler(ContentHandler handler, Metadata metadata,\r\n                               ParseContext parseContext){}",
+  "methodSignature": "XHTMLContentHandler(ContentHandler, Metadata, ParseContext)",
+  "sourceCode": "public XHTMLContentHandler(ContentHandler handler, Metadata metadata,\n                               ParseContext parseContext) {\n        super(handler);\n        this.metadata = metadata;\n        SAXOutputConfig config = parseContext != null\n                ? parseContext.get(SAXOutputConfig.class)\n                : null;\n        if (config != null) {\n            this.writeMetadataToHead = config.isWriteMetadataToHead();\n            this.includeTitle = config.isIncludeTitle();\n        } else {\n            this.writeMetadataToHead = true;\n            this.includeTitle = true;\n        }\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ContentHandler",
+    "Metadata",
+    "ParseContext"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Metadata": [],
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.sax.SAXOutputConfig": [
+      "isWriteMetadataToHead()",
+      "isIncludeTitle()"
+    ]
+  },
+  "full_method_info": "public XHTMLContentHandler(ContentHandler handler, Metadata metadata, ParseContext parseContext) {\n    super(handler);\n    this.metadata = metadata;\n    SAXOutputConfig config = parseContext != null ? parseContext.get(SAXOutputConfig.class) : null;\n    if (config != null) {\n        this.writeMetadataToHead = config.isWriteMetadataToHead();\n        this.includeTitle = config.isIncludeTitle();\n    } else {\n        this.writeMetadataToHead = true;\n        this.includeTitle = true;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "ProcessUtils",
+  "methodName": "unescapeCommandLine",
+  "brief": "public static String unescapeCommandLine(String arg){}",
+  "methodSignature": "unescapeCommandLine(String)",
+  "sourceCode": "public static String unescapeCommandLine(String arg) {\n        if (arg.contains(\" \") && SystemUtils.IS_OS_WINDOWS &&\n                (arg.startsWith(\"\\\"\") && arg.endsWith(\"\\\"\"))) {\n            arg = arg.substring(1, arg.length() - 1);\n        }\n        return arg;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int, int)",
+      "contains(CharSequence)",
+      "length()",
+      "endsWith(String)"
+    ]
+  },
+  "full_method_info": "public static String unescapeCommandLine(String arg) {\n    if (arg.contains(\" \") && SystemUtils.IS_OS_WINDOWS && (arg.startsWith(\"\\\"\") && arg.endsWith(\"\\\"\"))) {\n        arg = arg.substring(1, arg.length() - 1);\n    }\n    return arg;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

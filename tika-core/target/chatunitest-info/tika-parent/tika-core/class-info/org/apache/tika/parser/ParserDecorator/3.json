@@ -1,0 +1,31 @@
+{
+  "className": "ParserDecorator",
+  "methodName": "withFallbacks",
+  "brief": "@Deprecated\r\n    public static final Parser withFallbacks(final Collection<? extends Parser> parsers,\r\n                                             final Set<MediaType> types){}",
+  "methodSignature": "withFallbacks(Collection, Set)",
+  "sourceCode": "@Deprecated\n    public static final Parser withFallbacks(final Collection<? extends Parser> parsers,\n                                             final Set<MediaType> types) {\n        // Delegate to the new FallbackParser for now, until people upgrade\n        // Keep old behaviour on metadata, which was to preseve all\n        MediaTypeRegistry registry = MediaTypeRegistry.getDefaultRegistry();\n        Parser p = new FallbackParser(registry, MetadataPolicy.KEEP_ALL, parsers);\n\n        if (types == null || types.isEmpty()) {\n            return p;\n        }\n        return withTypes(p, types);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Collection<? extends Parser>",
+    "Set<MediaType>"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.mime.MediaTypeRegistry": [
+      "getDefaultRegistry()"
+    ],
+    "java.util.Set": [
+      "isEmpty()"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "withTypes(Parser, MediaType>)"
+    ]
+  },
+  "full_method_info": "/**\n * Decorates the given parsers into a virtual parser, where they'll\n * be tried in preference order until one works without error.\n *\n * @deprecated This has been replaced by {@link FallbackParser}\n */\n@Deprecated\npublic static final Parser withFallbacks(final Collection<? extends Parser> parsers, final Set<MediaType> types) {\n    // Delegate to the new FallbackParser for now, until people upgrade\n    // Keep old behaviour on metadata, which was to preseve all\n    MediaTypeRegistry registry = MediaTypeRegistry.getDefaultRegistry();\n    Parser p = new FallbackParser(registry, MetadataPolicy.KEEP_ALL, parsers);\n    if (types == null || types.isEmpty()) {\n        return p;\n    }\n    return withTypes(p, types);\n}",
+  "method_comment": "\n     * Decorates the given parsers into a virtual parser, where they'll\n     * be tried in preference order until one works without error.\n     *\n     * @deprecated This has been replaced by {@link FallbackParser}\n     ",
+  "method_annotation": "@Deprecated\n"
+}

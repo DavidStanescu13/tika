@@ -1,0 +1,31 @@
+{
+  "className": "PhoneExtractingContentHandler",
+  "methodName": "endDocument",
+  "brief": "@Override\r\n    public void endDocument() throws SAXException{}",
+  "methodSignature": "endDocument()",
+  "sourceCode": "@Override\n    public void endDocument() throws SAXException {\n        super.endDocument();\n        List<String> numbers = CleanPhoneText.extractPhoneNumbers(stringBuilder.toString());\n        for (String number : numbers) {\n            metadata.add(PHONE_NUMBERS, number);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.sax.ContentHandlerDecorator": [
+      "endDocument()"
+    ],
+    "org.apache.tika.sax.CleanPhoneText": [
+      "extractPhoneNumbers(String)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * This method is called whenever the Parser is done parsing the file. So,\n * we check the output for any phone numbers.\n */\n@Override\npublic void endDocument() throws SAXException {\n    super.endDocument();\n    List<String> numbers = CleanPhoneText.extractPhoneNumbers(stringBuilder.toString());\n    for (String number : numbers) {\n        metadata.add(PHONE_NUMBERS, number);\n    }\n}",
+  "method_comment": "\n     * This method is called whenever the Parser is done parsing the file. So,\n     * we check the output for any phone numbers.\n     ",
+  "method_annotation": "@Override\n"
+}

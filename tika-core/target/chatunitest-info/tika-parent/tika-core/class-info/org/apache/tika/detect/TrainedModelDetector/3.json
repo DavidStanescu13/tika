@@ -1,0 +1,31 @@
+{
+  "className": "TrainedModelDetector",
+  "methodName": "writeHisto",
+  "brief": "private void writeHisto(final float[] histogram) throws IOException{}",
+  "methodSignature": "writeHisto(float[])",
+  "sourceCode": "private void writeHisto(final float[] histogram) throws IOException {\n        Path histPath = new TemporaryResources().createTempFile();\n        try (Writer writer = Files.newBufferedWriter(histPath, UTF_8)) {\n            for (float bin : histogram) {\n                writer.write(bin + \"\\t\");\n                // writer.write(i + \"\\t\");\n            }\n            writer.write(\"\\r\\n\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "float[]"
+  ],
+  "dependentMethods": {
+    "float": [],
+    "org.apache.tika.io.TemporaryResources": [
+      "createTempFile()"
+    ],
+    "java.nio.file.Files": [
+      "newBufferedWriter(Path, Charset, OpenOption[])"
+    ],
+    "java.io.Writer": [
+      "write(String)"
+    ]
+  },
+  "full_method_info": "/**\n * for testing purposes; this method write the histogram vector to a file.\n *\n * @param histogram\n * @throws IOException\n */\nprivate void writeHisto(final float[] histogram) throws IOException {\n    Path histPath = new TemporaryResources().createTempFile();\n    try (Writer writer = Files.newBufferedWriter(histPath, UTF_8)) {\n        for (float bin : histogram) {\n            writer.write(bin + \"\\t\");\n            // writer.write(i + \"\\t\");\n        }\n        writer.write(\"\\r\\n\");\n    }\n}",
+  "method_comment": "\n     * for testing purposes; this method write the histogram vector to a file.\n     *\n     * @param histogram\n     * @throws IOException\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "XMLReaderUtils",
+  "methodName": "getAttrValue",
+  "brief": "public static String getAttrValue(String localName, Attributes atts){}",
+  "methodSignature": "getAttrValue(String, Attributes)",
+  "sourceCode": "public static String getAttrValue(String localName, Attributes atts) {\n        for (int i = 0; i < atts.getLength(); i++) {\n            if (localName.equals(atts.getLocalName(i))) {\n                return atts.getValue(i);\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * @param localName\n * @param atts\n * @return attribute value with that local name or <code>null</code> if not found\n */\npublic static String getAttrValue(String localName, Attributes atts) {\n    for (int i = 0; i < atts.getLength(); i++) {\n        if (localName.equals(atts.getLocalName(i))) {\n            return atts.getValue(i);\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * @param localName\n     * @param atts\n     * @return attribute value with that local name or <code>null</code> if not found\n     ",
+  "method_annotation": ""
+}

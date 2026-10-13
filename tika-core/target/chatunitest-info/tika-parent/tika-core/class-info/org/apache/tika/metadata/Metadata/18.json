@@ -1,0 +1,38 @@
+{
+  "className": "Metadata",
+  "methodName": "add",
+  "brief": "public void add(final Property property, final String value){}",
+  "methodSignature": "add(Property, String)",
+  "sourceCode": "public void add(final Property property, final String value) {\n\n        if (property == null) {\n            throw new NullPointerException(\"property must not be null\");\n        }\n        if (property.getPropertyType() == PropertyType.COMPOSITE) {\n            add(property.getPrimaryProperty(), value);\n            if (property.getSecondaryExtractProperties() != null) {\n                for (Property secondaryExtractProperty : property.getSecondaryExtractProperties()) {\n                    add(secondaryExtractProperty, value);\n                }\n            }\n        } else {\n            String[] values = metadata.get(property.getName());\n\n            if (values == null) {\n                set(property, value);\n            } else {\n                if (property.isMultiValuePermitted()) {\n                    addTrusted(property.getName(), value);\n                } else {\n                    throw new PropertyTypeException(\n                            property.getName() + \" : \" + property.getPropertyType());\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Property",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.metadata.Property": [
+      "isMultiValuePermitted()",
+      "getPrimaryProperty()",
+      "getName()",
+      "getPropertyType()",
+      "getSecondaryExtractProperties()"
+    ],
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "set(Property, String)",
+      "addTrusted(String, String)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a metadata property/value mapping. Add the specified value to the list of\n * values associated to the specified metadata property.\n *\n * @param property the metadata property.\n * @param value    the metadata value.\n */\npublic void add(final Property property, final String value) {\n    if (property == null) {\n        throw new NullPointerException(\"property must not be null\");\n    }\n    if (property.getPropertyType() == PropertyType.COMPOSITE) {\n        add(property.getPrimaryProperty(), value);\n        if (property.getSecondaryExtractProperties() != null) {\n            for (Property secondaryExtractProperty : property.getSecondaryExtractProperties()) {\n                add(secondaryExtractProperty, value);\n            }\n        }\n    } else {\n        String[] values = metadata.get(property.getName());\n        if (values == null) {\n            set(property, value);\n        } else {\n            if (property.isMultiValuePermitted()) {\n                addTrusted(property.getName(), value);\n            } else {\n                throw new PropertyTypeException(property.getName() + \" : \" + property.getPropertyType());\n            }\n        }\n    }\n}",
+  "method_comment": "\n     * Add a metadata property/value mapping. Add the specified value to the list of\n     * values associated to the specified metadata property.\n     *\n     * @param property the metadata property.\n     * @param value    the metadata value.\n     ",
+  "method_annotation": ""
+}

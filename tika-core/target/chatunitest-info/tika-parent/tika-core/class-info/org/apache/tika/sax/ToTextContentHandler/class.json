@@ -1,0 +1,82 @@
+{
+  "fullClassName": "org.apache.tika.sax.ToTextContentHandler",
+  "className": "ToTextContentHandler",
+  "index": 318,
+  "modifier": "[public ]",
+  "extend": "[DefaultHandler]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.sax",
+  "packageDeclaration": "package org.apache.tika.sax;",
+  "classSignature": "public class ToTextContentHandler",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.io.OutputStream;",
+    "import java.io.OutputStreamWriter;",
+    "import java.io.StringWriter;",
+    "import java.io.UnsupportedEncodingException;",
+    "import java.io.Writer;",
+    "import java.util.Locale;",
+    "import org.xml.sax.Attributes;",
+    "import org.xml.sax.SAXException;",
+    "import org.xml.sax.helpers.DefaultHandler;"
+  ],
+  "fields": [
+    "private static final String STYLE = \"STYLE\";",
+    "private static final String SCRIPT = \"SCRIPT\";",
+    "private final Writer writer;",
+    "private int styleDepth = 0;",
+    "private int scriptDepth = 0;"
+  ],
+  "superClasses": [
+    "DefaultHandler"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "characters(char[], int, int)": "0",
+    "ignorableWhitespace(char[], int, int)": "1",
+    "endDocument()": "2",
+    "startElement(String, String, String, Attributes)": "3",
+    "endElement(String, String, String)": "4",
+    "toString()": "5",
+    "ToTextContentHandler(Writer)": "6",
+    "ToTextContentHandler(OutputStream, String)": "7",
+    "ToTextContentHandler()": "8"
+  },
+  "methodsBrief": [
+    "@Override\r\n    public void characters(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException{}",
+    "@Override\r\n    public void endDocument() throws SAXException{}",
+    "@Override\r\n    public void startElement(String uri, String localName, String qName, Attributes atts)\r\n            throws SAXException{}",
+    "@Override\r\n    public void endElement(String uri, String localName, String qName) throws SAXException{}",
+    "@Override\r\n    public String toString(){}",
+    "public ToTextContentHandler(Writer writer){}",
+    "public ToTextContentHandler(OutputStream stream, String encoding)\r\n            throws UnsupportedEncodingException{}",
+    "public ToTextContentHandler(){}"
+  ],
+  "constructorSigs": [
+    "ToTextContentHandler(Writer)",
+    "ToTextContentHandler(OutputStream, String)",
+    "ToTextContentHandler()"
+  ],
+  "constructorBrief": [
+    "public ToTextContentHandler(Writer writer){}",
+    "public ToTextContentHandler(OutputStream stream, String encoding)\r\n            throws UnsupportedEncodingException{}",
+    "public ToTextContentHandler(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.io.Writer": [],
+    "java.io.OutputStream": [],
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.sax;\n\nimport java.io.IOException;\nimport java.io.OutputStream;\nimport java.io.OutputStreamWriter;\nimport java.io.StringWriter;\nimport java.io.UnsupportedEncodingException;\nimport java.io.Writer;\nimport java.util.Locale;\nimport org.xml.sax.Attributes;\nimport org.xml.sax.SAXException;\nimport org.xml.sax.helpers.DefaultHandler;\n\n/**\n * SAX event handler that writes all character content out to a character\n * stream. No escaping or other transformations are made on the character\n * content.\n * <p>\n * As of Tika 1.20, this handler ignores content within &lt;script&gt; and\n * &lt;style&gt; tags.\n * </p>\n *\n * @since Apache Tika 0.10\n */\npublic class ToTextContentHandler extends DefaultHandler {\n\n    private static final String STYLE = \"STYLE\";\n\n    private static final String SCRIPT = \"SCRIPT\";\n\n    /**\n     * The character stream.\n     */\n    private final Writer writer;\n\n    private int styleDepth = 0;\n\n    private int scriptDepth = 0;\n\n    public ToTextContentHandler(Writer writer) {\n        this.writer = writer;\n    }\n\n    public ToTextContentHandler(OutputStream stream, String encoding) throws UnsupportedEncodingException {\n        this(new OutputStreamWriter(stream, encoding));\n    }\n\n    public ToTextContentHandler() {\n        this(new StringWriter());\n    }\n\n    /**\n     * Writes the given characters to the given character stream.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (styleDepth + scriptDepth != 0) {\n            return;\n        }\n        try {\n            writer.write(ch, start, length);\n        } catch (IOException e) {\n            throw new SAXException(\"Error writing: \" + new String(ch, start, length), e);\n        }\n    }\n\n    /**\n     * Writes the given ignorable characters to the given character stream.\n     * The default implementation simply forwards the call to the\n     * {@link #characters(char[], int, int)} method.\n     */\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        characters(ch, start, length);\n    }\n\n    /**\n     * Flushes the character stream so that no characters are forgotten\n     * in internal buffers.\n     *\n     * @throws SAXException if the stream can not be flushed\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-179\">TIKA-179</a>\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        try {\n            writer.flush();\n        } catch (IOException e) {\n            throw new SAXException(\"Error flushing character output\", e);\n        }\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n        String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n        if (uc.equals(STYLE)) {\n            styleDepth++;\n        }\n        if (uc.equals(SCRIPT)) {\n            scriptDepth++;\n        }\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n        if (uc.equals(STYLE)) {\n            styleDepth--;\n        }\n        if (uc.equals(SCRIPT)) {\n            scriptDepth--;\n        }\n    }\n\n    /**\n     * Returns the contents of the internal string buffer where\n     * all the received characters have been collected. Only works\n     * when this object was constructed using the empty default\n     * constructor or by passing a {@link StringWriter} to the\n     * other constructor.\n     */\n    @Override\n    public String toString() {\n        return writer.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * SAX event handler that writes all character content out to a character\n * stream. No escaping or other transformations are made on the character\n * content.\n * <p>\n * As of Tika 1.20, this handler ignores content within &lt;script&gt; and\n * &lt;style&gt; tags.\n * </p>\n *\n * @since Apache Tika 0.10\n */\npublic class ToTextContentHandler extends DefaultHandler {\n\n    private static final String STYLE = \"STYLE\";\n\n    private static final String SCRIPT = \"SCRIPT\";\n\n    /**\n     * The character stream.\n     */\n    private final Writer writer;\n\n    private int styleDepth = 0;\n\n    private int scriptDepth = 0;\n\n    public ToTextContentHandler(Writer writer) {\n        this.writer = writer;\n    }\n\n    public ToTextContentHandler(OutputStream stream, String encoding) throws UnsupportedEncodingException {\n        this(new OutputStreamWriter(stream, encoding));\n    }\n\n    public ToTextContentHandler() {\n        this(new StringWriter());\n    }\n\n    /**\n     * Writes the given characters to the given character stream.\n     */\n    @Override\n    public void characters(char[] ch, int start, int length) throws SAXException {\n        if (styleDepth + scriptDepth != 0) {\n            return;\n        }\n        try {\n            writer.write(ch, start, length);\n        } catch (IOException e) {\n            throw new SAXException(\"Error writing: \" + new String(ch, start, length), e);\n        }\n    }\n\n    /**\n     * Writes the given ignorable characters to the given character stream.\n     * The default implementation simply forwards the call to the\n     * {@link #characters(char[], int, int)} method.\n     */\n    @Override\n    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {\n        characters(ch, start, length);\n    }\n\n    /**\n     * Flushes the character stream so that no characters are forgotten\n     * in internal buffers.\n     *\n     * @throws SAXException if the stream can not be flushed\n     * @see <a href=\"https://issues.apache.org/jira/browse/TIKA-179\">TIKA-179</a>\n     */\n    @Override\n    public void endDocument() throws SAXException {\n        try {\n            writer.flush();\n        } catch (IOException e) {\n            throw new SAXException(\"Error flushing character output\", e);\n        }\n    }\n\n    @Override\n    public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {\n        String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n        if (uc.equals(STYLE)) {\n            styleDepth++;\n        }\n        if (uc.equals(SCRIPT)) {\n            scriptDepth++;\n        }\n    }\n\n    @Override\n    public void endElement(String uri, String localName, String qName) throws SAXException {\n        String uc = (qName == null) ? \"\" : qName.toUpperCase(Locale.ENGLISH);\n        if (uc.equals(STYLE)) {\n            styleDepth--;\n        }\n        if (uc.equals(SCRIPT)) {\n            scriptDepth--;\n        }\n    }\n\n    /**\n     * Returns the contents of the internal string buffer where\n     * all the received characters have been collected. Only works\n     * when this object was constructed using the empty default\n     * constructor or by passing a {@link StringWriter} to the\n     * other constructor.\n     */\n    @Override\n    public String toString() {\n        return writer.toString();\n    }\n}",
+  "subClasses": [
+    "org.apache.tika.sax.ToXMLContentHandler"
+  ]
+}

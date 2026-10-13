@@ -1,0 +1,25 @@
+{
+  "className": "ParsingEmbeddedDocumentExtractor",
+  "methodName": "isWriteFileNameToContent",
+  "brief": "public boolean isWriteFileNameToContent(){}",
+  "methodSignature": "isWriteFileNameToContent()",
+  "sourceCode": "public boolean isWriteFileNameToContent() {\n        SAXOutputConfig config = context.get(SAXOutputConfig.class);\n        return config == null || config.isWriteFileNameToContent();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.parser.ParseContext": [
+      "get(Class<T>)"
+    ],
+    "org.apache.tika.sax.SAXOutputConfig": [
+      "isWriteFileNameToContent()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns whether to write file names to content based on {@link SAXOutputConfig}\n * in the ParseContext. Defaults to {@code true} if no config is present.\n *\n * @return true if file names should be written to content\n */\npublic boolean isWriteFileNameToContent() {\n    SAXOutputConfig config = context.get(SAXOutputConfig.class);\n    return config == null || config.isWriteFileNameToContent();\n}",
+  "method_comment": "\n     * Returns whether to write file names to content based on {@link SAXOutputConfig}\n     * in the ParseContext. Defaults to {@code true} if no config is present.\n     *\n     * @return true if file names should be written to content\n     ",
+  "method_annotation": ""
+}

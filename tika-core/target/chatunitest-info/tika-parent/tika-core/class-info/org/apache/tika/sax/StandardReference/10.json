@@ -1,0 +1,22 @@
+{
+  "className": "StandardReference",
+  "methodName": "toString",
+  "brief": "@Override\r\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        String standardReference = mainOrganization;\n\n        if (separator != null && !separator.isEmpty()) {\n            standardReference += separator + secondOrganization;\n        }\n\n        standardReference += \" \" + identifier;\n\n        return standardReference;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    String standardReference = mainOrganization;\n    if (separator != null && !separator.isEmpty()) {\n        standardReference += separator + secondOrganization;\n    }\n    standardReference += \" \" + identifier;\n    return standardReference;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

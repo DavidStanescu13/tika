@@ -1,0 +1,30 @@
+{
+  "className": "ToMarkdownContentHandler",
+  "methodName": "openListItem",
+  "brief": "private void openListItem(){}",
+  "methodSignature": "openListItem()",
+  "sourceCode": "private void openListItem() {\n        if (!(stack.peek() instanceof ListBlock)) {\n            popToBlockHost();\n            BulletList implicit = newBulletList();\n            stack.peek().appendChild(implicit);\n            stack.push(implicit);\n        }\n        ListItem li = new ListItem();\n        stack.peek().appendChild(li);\n        stack.push(li);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Deque": [
+      "peek()",
+      "push(E)"
+    ],
+    "org.apache.tika.sax.ToMarkdownContentHandler": [
+      "newBulletList()",
+      "popToBlockHost()"
+    ],
+    "org.commonmark.node.Node": [
+      "appendChild(Node)"
+    ]
+  },
+  "full_method_info": "/**\n * A list item is only valid inside a list. If the current point isn't a\n * list (a stray {@code <li>} or misnested markup), recover by opening an\n * implicit bullet list so the model stays renderable.\n */\nprivate void openListItem() {\n    if (!(stack.peek() instanceof ListBlock)) {\n        popToBlockHost();\n        BulletList implicit = newBulletList();\n        stack.peek().appendChild(implicit);\n        stack.push(implicit);\n    }\n    ListItem li = new ListItem();\n    stack.peek().appendChild(li);\n    stack.push(li);\n}",
+  "method_comment": "\n     * A list item is only valid inside a list. If the current point isn't a\n     * list (a stray {@code <li>} or misnested markup), recover by opening an\n     * implicit bullet list so the model stays renderable.\n     ",
+  "method_annotation": ""
+}

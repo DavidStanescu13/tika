@@ -1,0 +1,25 @@
+{
+  "className": "TikaInputStream",
+  "methodName": "enableRewind",
+  "brief": "public void enableRewind(){}",
+  "methodSignature": "enableRewind()",
+  "sourceCode": "public void enableRewind() {\n        TikaInputSource source = inputSource();\n        if (source != null) {\n            source.enableRewind();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.tika.io.TikaInputStream": [
+      "inputSource()"
+    ],
+    "org.apache.tika.io.TikaInputSource": [
+      "enableRewind()"
+    ]
+  },
+  "full_method_info": "/**\n * Enables full rewind capability for this stream.\n * <p>\n * For streams backed by byte arrays or files, this is a no-op since they\n * are inherently rewindable. For streams backed by raw InputStreams, this\n * switches from passthrough mode to caching mode, enabling subsequent\n * {@link #rewind()}, {@link #mark(int)}/{@link #reset()}, and random access.\n * <p>\n * Must be called when position is 0 (before any reading), otherwise\n * throws IllegalStateException.\n * <p>\n * Use this method when you know you'll need to rewind the stream later\n * (e.g., for detection followed by parsing, or digest calculation).\n * For streaming-only operations (e.g., HTML parsing), skip this call\n * to avoid unnecessary caching overhead.\n *\n * @throws IllegalStateException if position is not 0\n */\npublic void enableRewind() {\n    TikaInputSource source = inputSource();\n    if (source != null) {\n        source.enableRewind();\n    }\n}",
+  "method_comment": "\n     * Enables full rewind capability for this stream.\n     * <p>\n     * For streams backed by byte arrays or files, this is a no-op since they\n     * are inherently rewindable. For streams backed by raw InputStreams, this\n     * switches from passthrough mode to caching mode, enabling subsequent\n     * {@link #rewind()}, {@link #mark(int)}/{@link #reset()}, and random access.\n     * <p>\n     * Must be called when position is 0 (before any reading), otherwise\n     * throws IllegalStateException.\n     * <p>\n     * Use this method when you know you'll need to rewind the stream later\n     * (e.g., for detection followed by parsing, or digest calculation).\n     * For streaming-only operations (e.g., HTML parsing), skip this call\n     * to avoid unnecessary caching overhead.\n     *\n     * @throws IllegalStateException if position is not 0\n     ",
+  "method_annotation": ""
+}

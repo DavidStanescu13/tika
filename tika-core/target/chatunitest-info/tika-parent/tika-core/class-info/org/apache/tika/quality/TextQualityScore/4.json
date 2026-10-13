@@ -1,0 +1,18 @@
+{
+  "className": "TextQualityScore",
+  "methodName": "getDominantScript",
+  "brief": "public String getDominantScript(){}",
+  "methodSignature": "getDominantScript()",
+  "sourceCode": "public String getDominantScript() {\n        return dominantScript;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Name of the dominant Unicode script detected, e.g. \"LATIN\", \"CYRILLIC\", \"ARABIC\".\n */\npublic String getDominantScript() {\n    return dominantScript;\n}",
+  "method_comment": " Name of the dominant Unicode script detected, e.g. \"LATIN\", \"CYRILLIC\", \"ARABIC\". ",
+  "method_annotation": ""
+}

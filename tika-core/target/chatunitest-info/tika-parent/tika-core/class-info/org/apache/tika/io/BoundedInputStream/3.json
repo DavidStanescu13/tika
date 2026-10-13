@@ -1,0 +1,27 @@
+{
+  "className": "BoundedInputStream",
+  "methodName": "skip",
+  "brief": "@Override\r\n    public long skip(final long n) throws IOException{}",
+  "methodSignature": "skip(long)",
+  "sourceCode": "@Override\n    public long skip(final long n) throws IOException {\n        final long toSkip = max >= 0 ? Math.min(n, max - pos) : n;\n        final long skippedBytes = in.skip(toSkip);\n        pos += skippedBytes;\n        return skippedBytes;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {
+    "java.lang.Math": [
+      "min(long, long)"
+    ],
+    "java.io.InputStream": [
+      "skip(long)"
+    ]
+  },
+  "full_method_info": "/**\n * Invokes the delegate's <code>skip(long)</code> method.\n * As with InputStream generally, this does not guarantee reading n bytes.\n * Use IOUtils' skipFully for that functionality.\n *\n * @param n the number of bytes to skip\n * @return the actual number of bytes skipped\n * @throws IOException if an I/O error occurs\n */\n@Override\npublic long skip(final long n) throws IOException {\n    final long toSkip = max >= 0 ? Math.min(n, max - pos) : n;\n    final long skippedBytes = in.skip(toSkip);\n    pos += skippedBytes;\n    return skippedBytes;\n}",
+  "method_comment": "\n     * Invokes the delegate's <code>skip(long)</code> method.\n     * As with InputStream generally, this does not guarantee reading n bytes.\n     * Use IOUtils' skipFully for that functionality.\n     *\n     * @param n the number of bytes to skip\n     * @return the actual number of bytes skipped\n     * @throws IOException if an I/O error occurs\n     ",
+  "method_annotation": "@Override\n"
+}

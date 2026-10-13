@@ -1,0 +1,31 @@
+{
+  "className": "ParserUtils",
+  "methodName": "getParserClassname",
+  "brief": "public static String getParserClassname(Parser parser){}",
+  "methodSignature": "getParserClassname(Parser)",
+  "sourceCode": "public static String getParserClassname(Parser parser) {\n        if (parser instanceof ParserDecorator) {\n            return ((ParserDecorator) parser).getWrappedParser().getClass().getName();\n        } else {\n            return parser.getClass().getName();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Parser"
+  ],
+  "dependentMethods": {
+    "org.apache.tika.parser.Parser": [],
+    "java.lang.Class": [
+      "getName()"
+    ],
+    "java.lang.Object": [
+      "getClass()"
+    ],
+    "org.apache.tika.parser.ParserDecorator": [
+      "getWrappedParser()"
+    ]
+  },
+  "full_method_info": "/**\n * Identifies the real class name of the {@link Parser}, unwrapping\n * any {@link ParserDecorator} decorations on top of it.\n */\npublic static String getParserClassname(Parser parser) {\n    if (parser instanceof ParserDecorator) {\n        return ((ParserDecorator) parser).getWrappedParser().getClass().getName();\n    } else {\n        return parser.getClass().getName();\n    }\n}",
+  "method_comment": "\n     * Identifies the real class name of the {@link Parser}, unwrapping\n     * any {@link ParserDecorator} decorations on top of it.\n     ",
+  "method_annotation": ""
+}

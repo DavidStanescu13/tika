@@ -1,0 +1,18 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "getTotalTaskTimeoutMillis",
+  "brief": "public long getTotalTaskTimeoutMillis(){}",
+  "methodSignature": "getTotalTaskTimeoutMillis()",
+  "sourceCode": "public long getTotalTaskTimeoutMillis() {\n        return totalTaskTimeoutMillis;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the maximum wall-clock time in milliseconds for a parse task.\n *\n * @return total task timeout in milliseconds\n */\npublic long getTotalTaskTimeoutMillis() {\n    return totalTaskTimeoutMillis;\n}",
+  "method_comment": "\n     * Gets the maximum wall-clock time in milliseconds for a parse task.\n     *\n     * @return total task timeout in milliseconds\n     ",
+  "method_annotation": ""
+}

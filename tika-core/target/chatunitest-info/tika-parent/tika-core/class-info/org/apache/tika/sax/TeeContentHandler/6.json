@@ -1,0 +1,25 @@
+{
+  "className": "TeeContentHandler",
+  "methodName": "startElement",
+  "brief": "@Override\r\n    public void startElement(String uri, String localName, String name, Attributes atts)\r\n            throws SAXException{}",
+  "methodSignature": "startElement(String, String, String, Attributes)",
+  "sourceCode": "@Override\n    public void startElement(String uri, String localName, String name, Attributes atts)\n            throws SAXException {\n        for (ContentHandler handler : handlers) {\n            handler.startElement(uri, localName, name, atts);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "String",
+    "Attributes"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "@Override\npublic void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {\n    for (ContentHandler handler : handlers) {\n        handler.startElement(uri, localName, name, atts);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

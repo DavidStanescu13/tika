@@ -1,0 +1,38 @@
+{
+  "className": "Metadata",
+  "methodName": "reconstruct",
+  "brief": "public void reconstruct(String name, String value, boolean append){}",
+  "methodSignature": "reconstruct(String, String, boolean)",
+  "sourceCode": "public void reconstruct(String name, String value, boolean append) {\n        if (ReservedNamespaces.isTikaNative(name)) {\n            Property property = Property.get(name);\n            if (property != null) {\n                if (append) {\n                    add(property, value);\n                } else {\n                    set(property, value);\n                }\n            } else if (append) {\n                addTrusted(name, value);\n            } else {\n                setTrusted(name, value);\n            }\n            return;\n        }\n        if (append) {\n            add(name, value);\n        } else {\n            set(name, value);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.ReservedNamespaces": [
+      "isTikaNative(String)"
+    ],
+    "org.apache.tika.metadata.Property": [
+      "get(String)"
+    ],
+    "org.apache.tika.metadata.Metadata": [
+      "add(Property, String)",
+      "set(String, String)",
+      "set(Property, String)",
+      "addTrusted(String, String)",
+      "setTrusted(String, String)",
+      "add(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Trusted write for clone/merge/deserialize; reserved keys go via their Property.\n *\n * @param append add rather than set\n */\npublic void reconstruct(String name, String value, boolean append) {\n    if (ReservedNamespaces.isTikaNative(name)) {\n        Property property = Property.get(name);\n        if (property != null) {\n            if (append) {\n                add(property, value);\n            } else {\n                set(property, value);\n            }\n        } else if (append) {\n            addTrusted(name, value);\n        } else {\n            setTrusted(name, value);\n        }\n        return;\n    }\n    if (append) {\n        add(name, value);\n    } else {\n        set(name, value);\n    }\n}",
+  "method_comment": "\n     * Trusted write for clone/merge/deserialize; reserved keys go via their Property.\n     *\n     * @param append add rather than set\n     ",
+  "method_annotation": ""
+}

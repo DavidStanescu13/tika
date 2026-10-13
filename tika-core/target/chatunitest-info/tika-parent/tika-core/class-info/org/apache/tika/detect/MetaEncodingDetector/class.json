@@ -1,0 +1,31 @@
+{
+  "fullClassName": "org.apache.tika.detect.MetaEncodingDetector",
+  "className": "MetaEncodingDetector",
+  "index": 36,
+  "modifier": "[public ]",
+  "extend": "[EncodingDetector]",
+  "implement": "[]",
+  "packageName": "org.apache.tika.detect",
+  "packageDeclaration": "package org.apache.tika.detect;",
+  "classSignature": "public interface MetaEncodingDetector",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "EncodingDetector"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {},
+  "methodsBrief": [],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n * Licensed to the Apache Software Foundation (ASF) under one or more\n * contributor license agreements.  See the NOTICE file distributed with\n * this work for additional information regarding copyright ownership.\n * The ASF licenses this file to You under the Apache License, Version 2.0\n * (the \"License\"); you may not use this file except in compliance with\n * the License.  You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.apache.tika.detect;\n\n/**\n * Marker interface for encoding detectors that arbitrate among\n * candidates collected by base detectors rather than detecting\n * encoding directly from the stream.\n *\n * <p>When a {@code MetaEncodingDetector} is present in a\n * {@link CompositeEncodingDetector}, the composite switches from\n * first-match-wins to collect-all mode: all base detectors run\n * first and their results are collected in an\n * {@link EncodingDetectorContext}, then the meta detector's\n * {@link #detect} method is called to pick the winner.</p>\n *\n * <p>The {@link EncodingDetectorContext} is placed in the\n * {@link org.apache.tika.parser.ParseContext} before the meta\n * detector is invoked, so implementations can retrieve it via\n * {@code parseContext.get(EncodingDetectorContext.class)}.</p>\n *\n * @since Apache Tika 3.2\n */\npublic interface MetaEncodingDetector extends EncodingDetector {\n}\n",
+  "classDeclarationCode": "/**\n * Marker interface for encoding detectors that arbitrate among\n * candidates collected by base detectors rather than detecting\n * encoding directly from the stream.\n *\n * <p>When a {@code MetaEncodingDetector} is present in a\n * {@link CompositeEncodingDetector}, the composite switches from\n * first-match-wins to collect-all mode: all base detectors run\n * first and their results are collected in an\n * {@link EncodingDetectorContext}, then the meta detector's\n * {@link #detect} method is called to pick the winner.</p>\n *\n * <p>The {@link EncodingDetectorContext} is placed in the\n * {@link org.apache.tika.parser.ParseContext} before the meta\n * detector is invoked, so implementations can retrieve it via\n * {@code parseContext.get(EncodingDetectorContext.class)}.</p>\n *\n * @since Apache Tika 3.2\n */\npublic interface MetaEncodingDetector extends EncodingDetector {\n}",
+  "subClasses": []
+}

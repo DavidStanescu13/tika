@@ -1,0 +1,20 @@
+{
+  "className": "TimeoutLimits",
+  "methodName": "setProgressTimeoutMillis",
+  "brief": "public void setProgressTimeoutMillis(long progressTimeoutMillis){}",
+  "methodSignature": "setProgressTimeoutMillis(long)",
+  "sourceCode": "public void setProgressTimeoutMillis(long progressTimeoutMillis) {\n        this.progressTimeoutMillis = progressTimeoutMillis;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the maximum time in milliseconds between progress updates before\n * the task is considered stalled.\n *\n * @param progressTimeoutMillis progress timeout in milliseconds\n */\npublic void setProgressTimeoutMillis(long progressTimeoutMillis) {\n    this.progressTimeoutMillis = progressTimeoutMillis;\n}",
+  "method_comment": "\n     * Sets the maximum time in milliseconds between progress updates before\n     * the task is considered stalled.\n     *\n     * @param progressTimeoutMillis progress timeout in milliseconds\n     ",
+  "method_annotation": ""
+}

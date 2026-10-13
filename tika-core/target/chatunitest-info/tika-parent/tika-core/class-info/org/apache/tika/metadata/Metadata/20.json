@@ -1,0 +1,27 @@
+{
+  "className": "Metadata",
+  "methodName": "set",
+  "brief": "public void set(String name, String value){}",
+  "methodSignature": "set(String, String)",
+  "sourceCode": "public void set(String name, String value) {\n        if (blockReservedKeyWrite(name)) {\n            return;\n        }\n        setTrusted(name, value);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.tika.metadata.Metadata": [
+      "blockReservedKeyWrite(String)",
+      "setTrusted(String, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Set metadata name/value. Associate the specified value to the specified\n * metadata name. If some previous values were associated to this name,\n * they are removed. If the given value is <code>null</code>, then the\n * metadata entry is removed.\n *\n * @param name  the metadata name.\n * @param value the metadata value, or <code>null</code>\n */\npublic void set(String name, String value) {\n    if (blockReservedKeyWrite(name)) {\n        return;\n    }\n    setTrusted(name, value);\n}",
+  "method_comment": "\n     * Set metadata name/value. Associate the specified value to the specified\n     * metadata name. If some previous values were associated to this name,\n     * they are removed. If the given value is <code>null</code>, then the\n     * metadata entry is removed.\n     *\n     * @param name  the metadata name.\n     * @param value the metadata value, or <code>null</code>\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "PassthroughPrefix",
+  "methodName": "key",
+  "brief": "public String key(String suffix){}",
+  "methodSignature": "key(String)",
+  "sourceCode": "public String key(String suffix) {\n        return prefix + suffix;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * The full key for a source-derived {@code suffix}.\n */\npublic String key(String suffix) {\n    return prefix + suffix;\n}",
+  "method_comment": " The full key for a source-derived {@code suffix}. ",
+  "method_annotation": ""
+}
