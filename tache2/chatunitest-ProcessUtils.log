@@ -51,13 +51,7 @@
 
 [INFO] 
 ==========================
-[CHATUNITEST] Parsing class info ...
-[INFO] 
-Parsed classes: 361
-Parsed methods: 1617
-[INFO] 
-==========================
-[CHATUNITEST] Parse finished
+[CHATUNITEST] Parse output already exists, skip parsing!
 [INFO] 
 ==========================
 [CHATUNITEST] Generating tests for class < org.apache.tika.utils.ProcessUtils > ...
@@ -68,71 +62,108 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < escapeCommandLine > number 0...
 
 [INFO] Generating test for method < escapeCommandLine > round 0 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < escapeCommandLine > round 1 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < escapeCommandLine > round 2 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < escapeCommandLine > round 3 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < escapeCommandLine > round 4 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+Test run finished after 984 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         6 tests found           ]
+[         0 tests skipped         ]
+[         6 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         1 tests failed          ]
+
+[INFO] Test for method < escapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < escapeCommandLine > number 1...
 
 [INFO] Generating test for method < escapeCommandLine > round 0 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < escapeCommandLine > round 1 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < escapeCommandLine > round 2 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < escapeCommandLine > round 3 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < escapeCommandLine > round 4 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+Test run finished after 774 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         9 tests found           ]
+[         0 tests skipped         ]
+[         9 tests started         ]
+[         0 tests aborted         ]
+[         7 tests successful      ]
+[         2 tests failed          ]
+
+[INFO] Test for method < escapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < escapeCommandLine > number 2...
 
 [INFO] Generating test for method < escapeCommandLine > round 0 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < escapeCommandLine > round 1 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < escapeCommandLine > round 2 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < escapeCommandLine > round 3 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < escapeCommandLine > round 4 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 4
+
+Test run finished after 5 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         7 tests found           ]
+[         0 tests skipped         ]
+[         7 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         2 tests failed          ]
+
+[INFO] Test for method < escapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < escapeCommandLine > number 3...
 
 [INFO] Generating test for method < escapeCommandLine > round 0 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < escapeCommandLine > round 1 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < escapeCommandLine > round 2 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < escapeCommandLine > round 3 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < escapeCommandLine > round 4 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 4
+
+Test run finished after 5 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         6 tests found           ]
+[         0 tests skipped         ]
+[         6 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         1 tests failed          ]
+
+[INFO] Test for method < escapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < escapeCommandLine > number 4...
 
 [INFO] Generating test for method < escapeCommandLine > round 0 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < escapeCommandLine > round 1 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < escapeCommandLine > round 2 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < escapeCommandLine > round 3 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < escapeCommandLine > round 4 ...
-[INFO] Test for method < escapeCommandLine > compilation failed round 4
+
+Test run finished after 316 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         7 tests found           ]
+[         0 tests skipped         ]
+[         7 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         7 tests failed          ]
+
+[INFO] Test for method < escapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 1 /  0]
@@ -141,15 +172,22 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < unescapeCommandLine > number 0...
 
 [INFO] Generating test for method < unescapeCommandLine > round 0 ...
-[INFO] Test for method < unescapeCommandLine > extract code failed
-[INFO] Fixing test for method < unescapeCommandLine > round 1 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < unescapeCommandLine > round 2 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < unescapeCommandLine > round 3 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < unescapeCommandLine > round 4 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 4
+
+Test run finished after 324 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         1 tests failed          ]
+
+[INFO] Test for method < unescapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < unescapeCommandLine > number 1...
@@ -169,29 +207,43 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < unescapeCommandLine > number 2...
 
 [INFO] Generating test for method < unescapeCommandLine > round 0 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < unescapeCommandLine > round 1 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < unescapeCommandLine > round 2 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < unescapeCommandLine > round 3 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < unescapeCommandLine > round 4 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 4
+
+Test run finished after 335 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         3 tests found           ]
+[         0 tests skipped         ]
+[         3 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         3 tests failed          ]
+
+[INFO] Test for method < unescapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < unescapeCommandLine > number 3...
 
 [INFO] Generating test for method < unescapeCommandLine > round 0 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 0
-[INFO] Fixing test for method < unescapeCommandLine > round 1 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 1
-[INFO] Fixing test for method < unescapeCommandLine > round 2 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 2
-[INFO] Fixing test for method < unescapeCommandLine > round 3 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 3
-[INFO] Fixing test for method < unescapeCommandLine > round 4 ...
-[INFO] Test for method < unescapeCommandLine > compilation failed round 4
+
+Test run finished after 308 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         1 tests failed          ]
+
+[INFO] Test for method < unescapeCommandLine > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < unescapeCommandLine > number 4...
@@ -272,13 +324,22 @@ Parsed methods: 1617
 [INFO] Generating test for method < execute > round 0 ...
 [INFO] Test for method < execute > compilation failed round 0
 [INFO] Fixing test for method < execute > round 1 ...
-[INFO] Test for method < execute > compilation failed round 1
-[INFO] Fixing test for method < execute > round 2 ...
-[INFO] Test for method < execute > compilation failed round 2
-[INFO] Fixing test for method < execute > round 3 ...
-[INFO] Test for method < execute > compilation failed round 3
-[INFO] Fixing test for method < execute > round 4 ...
-[INFO] Test for method < execute > compilation failed round 4
+
+Test run finished after 324 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         4 tests found           ]
+[         0 tests skipped         ]
+[         4 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         4 tests failed          ]
+
+[INFO] Test for method < execute > compile and execute successfully round 1
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 3 /  0]
@@ -289,23 +350,32 @@ Parsed methods: 1617
 [INFO] Generating test for method < execute > round 0 ...
 [INFO] Test for method < execute > compilation failed round 0
 [INFO] Fixing test for method < execute > round 1 ...
-[INFO] Test for method < execute > compilation failed round 1
-[INFO] Fixing test for method < execute > round 2 ...
-[INFO] Test for method < execute > compilation failed round 2
-[INFO] Fixing test for method < execute > round 3 ...
-[INFO] Test for method < execute > compilation failed round 3
-[INFO] Fixing test for method < execute > round 4 ...
-[INFO] Test for method < execute > compilation failed round 4
+
+Test run finished after 348 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         4 tests found           ]
+[         0 tests skipped         ]
+[         4 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         4 tests failed          ]
+
+[INFO] Test for method < execute > compile and execute successfully round 1
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < execute > number 1...
 
 [INFO] Generating test for method < execute > round 0 ...
-[INFO] Test for method < execute > compilation failed round 0
+[INFO] Test for method < execute > extract code failed
 [INFO] Fixing test for method < execute > round 1 ...
-[INFO] Test for method < execute > compilation failed round 1
+[INFO] Test for method < execute > extract code failed
 [INFO] Fixing test for method < execute > round 2 ...
-[INFO] Test for method < execute > compilation failed round 2
+[INFO] Test for method < execute > extract code failed
 [INFO] Fixing test for method < execute > round 3 ...
 [INFO] Test for method < execute > compilation failed round 3
 [INFO] Fixing test for method < execute > round 4 ...
@@ -329,15 +399,26 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < execute > number 3...
 
 [INFO] Generating test for method < execute > round 0 ...
-[INFO] Test for method < execute > compilation failed round 0
+[INFO] Test for method < execute > extract code failed
 [INFO] Fixing test for method < execute > round 1 ...
 [INFO] Test for method < execute > compilation failed round 1
 [INFO] Fixing test for method < execute > round 2 ...
-[INFO] Test for method < execute > compilation failed round 2
-[INFO] Fixing test for method < execute > round 3 ...
-[INFO] Test for method < execute > compilation failed round 3
-[INFO] Fixing test for method < execute > round 4 ...
-[INFO] Test for method < execute > compilation failed round 4
+
+Test run finished after 318 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         4 tests found           ]
+[         0 tests skipped         ]
+[         4 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         4 tests failed          ]
+
+[INFO] Test for method < execute > compile and execute successfully round 2
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < execute > number 4...
@@ -374,15 +455,22 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < checkCommand > number 1...
 
 [INFO] Generating test for method < checkCommand > round 0 ...
-[INFO] Test for method < checkCommand > compilation failed round 0
-[INFO] Fixing test for method < checkCommand > round 1 ...
-[INFO] Test for method < checkCommand > compilation failed round 1
-[INFO] Fixing test for method < checkCommand > round 2 ...
-[INFO] Test for method < checkCommand > compilation failed round 2
-[INFO] Fixing test for method < checkCommand > round 3 ...
-[INFO] Test for method < checkCommand > compilation failed round 3
-[INFO] Fixing test for method < checkCommand > round 4 ...
-[INFO] Test for method < checkCommand > compilation failed round 4
+
+Test run finished after 313 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         7 tests found           ]
+[         0 tests skipped         ]
+[         7 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         7 tests failed          ]
+
+[INFO] Test for method < checkCommand > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < checkCommand > number 2...
@@ -416,15 +504,22 @@ Parsed methods: 1617
 [CHATUNITEST] Generating test for method < checkCommand > number 4...
 
 [INFO] Generating test for method < checkCommand > round 0 ...
-[INFO] Test for method < checkCommand > compilation failed round 0
-[INFO] Fixing test for method < checkCommand > round 1 ...
-[INFO] Test for method < checkCommand > compilation failed round 1
-[INFO] Fixing test for method < checkCommand > round 2 ...
-[INFO] Test for method < checkCommand > compilation failed round 2
-[INFO] Fixing test for method < checkCommand > round 3 ...
-[INFO] Test for method < checkCommand > compilation failed round 3
-[INFO] Fixing test for method < checkCommand > round 4 ...
-[INFO] Test for method < checkCommand > compilation failed round 4
+
+Test run finished after 384 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         8 tests found           ]
+[         0 tests skipped         ]
+[         8 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         8 tests failed          ]
+
+[INFO] Test for method < checkCommand > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 5 /  0]
@@ -510,6 +605,6 @@ Parsed methods: 1617
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  38:50 min
-[INFO] Finished at: 2026-10-12T22:21:50-04:00
+[INFO] Total time:  28:01 min
+[INFO] Finished at: 2026-10-13T02:52:43-04:00
 [INFO] ------------------------------------------------------------------------

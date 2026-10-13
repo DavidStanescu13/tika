@@ -61,43 +61,90 @@
 [CHATUNITEST] Generating test for method < isSupported > number 0...
 
 [INFO] Generating test for method < isSupported > round 0 ...
-[INFO] Test for method < isSupported > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 0
 [INFO] Fixing test for method < isSupported > round 1 ...
-[INFO] Test for method < isSupported > compilation failed round 1
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 1
 [INFO] Fixing test for method < isSupported > round 2 ...
-[INFO] Test for method < isSupported > compilation failed round 2
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 2
 [INFO] Fixing test for method < isSupported > round 3 ...
-[INFO] Test for method < isSupported > compilation failed round 3
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 3
 [INFO] Fixing test for method < isSupported > round 4 ...
-[INFO] Test for method < isSupported > compilation failed round 4
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < isSupported > number 1...
 
 [INFO] Generating test for method < isSupported > round 0 ...
-[INFO] Test for method < isSupported > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 0
 [INFO] Fixing test for method < isSupported > round 1 ...
-[INFO] Test for method < isSupported > compilation failed round 1
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 1
 [INFO] Fixing test for method < isSupported > round 2 ...
-[INFO] Test for method < isSupported > compilation failed round 2
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 2
 [INFO] Fixing test for method < isSupported > round 3 ...
-[INFO] Test for method < isSupported > compilation failed round 3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 3
 [INFO] Fixing test for method < isSupported > round 4 ...
-[INFO] Test for method < isSupported > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < isSupported > number 2...
 
 [INFO] Generating test for method < isSupported > round 0 ...
-[INFO] Test for method < isSupported > compilation failed round 0
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 0
 [INFO] Fixing test for method < isSupported > round 1 ...
-[INFO] Test for method < isSupported > compilation failed round 1
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 1
 [INFO] Fixing test for method < isSupported > round 2 ...
-[INFO] Test for method < isSupported > compilation failed round 2
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 2
 [INFO] Fixing test for method < isSupported > round 3 ...
-[INFO] Test for method < isSupported > compilation failed round 3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 3
 [INFO] Fixing test for method < isSupported > round 4 ...
-[INFO] Test for method < isSupported > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < isSupported > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < isSupported > number 3...
@@ -117,15 +164,7 @@
 [CHATUNITEST] Generating test for method < isSupported > number 4...
 
 [INFO] Generating test for method < isSupported > round 0 ...
-[INFO] Test for method < isSupported > compilation failed round 0
-[INFO] Fixing test for method < isSupported > round 1 ...
-[INFO] Test for method < isSupported > compilation failed round 1
-[INFO] Fixing test for method < isSupported > round 2 ...
-[INFO] Test for method < isSupported > compilation failed round 2
-[INFO] Fixing test for method < isSupported > round 3 ...
-[INFO] Test for method < isSupported > compilation failed round 3
-[INFO] Fixing test for method < isSupported > round 4 ...
-[INFO] Test for method < isSupported > compilation failed round 4
+[INFO] Processed test for method < isSupported > generated successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 1 /  0]
@@ -134,71 +173,146 @@
 [CHATUNITEST] Generating test for method < clean > number 0...
 
 [INFO] Generating test for method < clean > round 0 ...
-[INFO] Test for method < clean > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 0
 [INFO] Fixing test for method < clean > round 1 ...
-[INFO] Test for method < clean > compilation failed round 1
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 1
 [INFO] Fixing test for method < clean > round 2 ...
-[INFO] Test for method < clean > compilation failed round 2
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 2
 [INFO] Fixing test for method < clean > round 3 ...
-[INFO] Test for method < clean > compilation failed round 3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 3
 [INFO] Fixing test for method < clean > round 4 ...
-[INFO] Test for method < clean > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < clean > number 1...
 
 [INFO] Generating test for method < clean > round 0 ...
-[INFO] Test for method < clean > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 0
 [INFO] Fixing test for method < clean > round 1 ...
-[INFO] Test for method < clean > compilation failed round 1
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 1
 [INFO] Fixing test for method < clean > round 2 ...
-[INFO] Test for method < clean > compilation failed round 2
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 2
 [INFO] Fixing test for method < clean > round 3 ...
-[INFO] Test for method < clean > compilation failed round 3
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 3
 [INFO] Fixing test for method < clean > round 4 ...
-[INFO] Test for method < clean > compilation failed round 4
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < clean > number 2...
 
 [INFO] Generating test for method < clean > round 0 ...
-[INFO] Test for method < clean > compilation failed round 0
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 0
 [INFO] Fixing test for method < clean > round 1 ...
-[INFO] Test for method < clean > compilation failed round 1
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 1
 [INFO] Fixing test for method < clean > round 2 ...
-[INFO] Test for method < clean > compilation failed round 2
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 2
 [INFO] Fixing test for method < clean > round 3 ...
-[INFO] Test for method < clean > compilation failed round 3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 3
 [INFO] Fixing test for method < clean > round 4 ...
-[INFO] Test for method < clean > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < clean > number 3...
 
 [INFO] Generating test for method < clean > round 0 ...
-[INFO] Test for method < clean > compilation failed round 0
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 0
 [INFO] Fixing test for method < clean > round 1 ...
-[INFO] Test for method < clean > compilation failed round 1
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 1
 [INFO] Fixing test for method < clean > round 2 ...
-[INFO] Test for method < clean > compilation failed round 2
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 2
 [INFO] Fixing test for method < clean > round 3 ...
-[INFO] Test for method < clean > compilation failed round 3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 3
 [INFO] Fixing test for method < clean > round 4 ...
-[INFO] Test for method < clean > compilation failed round 4
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < clean > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < clean > number 4...
 
 [INFO] Generating test for method < clean > round 0 ...
-[INFO] Test for method < clean > compilation failed round 0
-[INFO] Fixing test for method < clean > round 1 ...
-[INFO] Test for method < clean > compilation failed round 1
-[INFO] Fixing test for method < clean > round 2 ...
-[INFO] Test for method < clean > compilation failed round 2
-[INFO] Fixing test for method < clean > round 3 ...
-[INFO] Test for method < clean > compilation failed round 3
-[INFO] Fixing test for method < clean > round 4 ...
-[INFO] Test for method < clean > compilation failed round 4
+
+Test run finished after 49 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[        19 tests found           ]
+[         0 tests skipped         ]
+[        19 tests started         ]
+[         0 tests aborted         ]
+[        12 tests successful      ]
+[         7 tests failed          ]
+
+[INFO] Test for method < clean > compile and execute successfully round 0
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 2 /  0]
@@ -221,15 +335,25 @@
 [CHATUNITEST] Generating test for method < forName > number 1...
 
 [INFO] Generating test for method < forName > round 0 ...
-[INFO] Test for method < forName > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 0
 [INFO] Fixing test for method < forName > round 1 ...
-[INFO] Test for method < forName > compilation failed round 1
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 1
 [INFO] Fixing test for method < forName > round 2 ...
-[INFO] Test for method < forName > compilation failed round 2
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 2
 [INFO] Fixing test for method < forName > round 3 ...
-[INFO] Test for method < forName > compilation failed round 3
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 3
 [INFO] Fixing test for method < forName > round 4 ...
-[INFO] Test for method < forName > compilation failed round 4
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < forName > number 2...
@@ -249,29 +373,50 @@
 [CHATUNITEST] Generating test for method < forName > number 3...
 
 [INFO] Generating test for method < forName > round 0 ...
-[INFO] Test for method < forName > compilation failed round 0
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 0
 [INFO] Fixing test for method < forName > round 1 ...
-[INFO] Test for method < forName > compilation failed round 1
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 1
 [INFO] Fixing test for method < forName > round 2 ...
-[INFO] Test for method < forName > compilation failed round 2
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 2
 [INFO] Fixing test for method < forName > round 3 ...
-[INFO] Test for method < forName > compilation failed round 3
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 3
 [INFO] Fixing test for method < forName > round 4 ...
-[INFO] Test for method < forName > compilation failed round 4
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Generating test for method < forName > number 4...
 
 [INFO] Generating test for method < forName > round 0 ...
-[INFO] Test for method < forName > compilation failed round 0
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 0
 [INFO] Fixing test for method < forName > round 1 ...
-[INFO] Test for method < forName > compilation failed round 1
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 1
 [INFO] Fixing test for method < forName > round 2 ...
-[INFO] Test for method < forName > compilation failed round 2
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 2
 [INFO] Fixing test for method < forName > round 3 ...
-[INFO] Test for method < forName > compilation failed round 3
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 3
 [INFO] Fixing test for method < forName > round 4 ...
-[INFO] Test for method < forName > compilation failed round 4
+In TestProcessor.removeCorrectTest: No test case left
+In TestProcessor.removeCorrectTest: No test case left
+[INFO] Test for method < forName > execution failed round 4
 [INFO] 
 ==========================
 [CHATUNITEST] Completed Method Jobs:   [ 3 /  0]
@@ -284,6 +429,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  18:20 min
-[INFO] Finished at: 2026-10-12T22:40:13-04:00
+[INFO] Total time:  21:59 min
+[INFO] Finished at: 2026-10-13T03:14:45-04:00
 [INFO] ------------------------------------------------------------------------

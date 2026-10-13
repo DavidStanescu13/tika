@@ -19,83 +19,96 @@ import java.util.regex.Pattern;
 
 public class CharsetUtils_forName_3_0_Test {
 
-    private static Method forNameMethod;
+    private CharsetUtils charsetUtils;
 
-    private static Method getCharsetICUMethod;
+    private Method getCharsetICU;
 
-    private static Method isSupportedICUMethod;
+    private Method isSupportedICU;
 
-    @BeforeAll
-    public static void setUp() throws NoSuchMethodException {
-        CharsetUtilsTest.class.getDeclaredMethod("forName", String.class);
-        getCharsetICUMethod = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
-        isSupportedICUMethod = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        charsetUtils = new CharsetUtils();
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
     }
 
     @Test
-    public void testForNameWithNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            forNameMethod.invoke(null, null);
-        });
+    public void testForName_withNullName() {
+        assertThrows(IllegalArgumentException.class, () -> charsetUtils.forName(null));
     }
 
     @Test
-    public void testForNameWithInvalidName() {
-        assertThrows(IllegalCharsetNameException.class, () -> {
-            forNameMethod.invoke(null, "invalid");
-        });
+    public void testForName_withInvalidName() {
+        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("invalid"));
     }
 
     @Test
-    public void testForNameWithValidName() throws Exception {
+    public void testForName_withValidName() {
         Map<String, Charset> commonCharsets = new HashMap<>();
         commonCharsets.put("utf-8", Charset.forName("UTF-8"));
         CharsetUtils.COMMON_CHARSETS = commonCharsets;
-        Charset charset = (Charset) forNameMethod.invoke(null, "utf-8");
+        Charset charset = charsetUtils.forName("UTF-8");
         assertEquals(Charset.forName("UTF-8"), charset);
     }
 
     @Test
-    public void testForNameWithISOName() throws Exception {
+    public void testForName_withISOName() {
         Map<String, Charset> commonCharsets = new HashMap<>();
         commonCharsets.put("iso-8859-1", Charset.forName("ISO-8859-1"));
         CharsetUtils.COMMON_CHARSETS = commonCharsets;
-        Charset charset = (Charset) forNameMethod.invoke(null, "iso 8859-1");
+        Charset charset = charsetUtils.forName("iso 8859-1");
         assertEquals(Charset.forName("ISO-8859-1"), charset);
     }
 
     @Test
-    public void testForNameWithCPName() throws Exception {
+    public void testForName_withCPName() {
         Map<String, Charset> commonCharsets = new HashMap<>();
         commonCharsets.put("cp1252", Charset.forName("CP1252"));
         CharsetUtils.COMMON_CHARSETS = commonCharsets;
-        Charset charset = (Charset) forNameMethod.invoke(null, "cp-1252");
+        Charset charset = charsetUtils.forName("cp-1252");
         assertEquals(Charset.forName("CP1252"), charset);
     }
 
     @Test
-    public void testForNameWithWinName() throws Exception {
+    public void testForName_withWinName() {
         Map<String, Charset> commonCharsets = new HashMap<>();
-        commonCharsets.put("windows-1252", Charset.forName("Windows-1252"));
+        commonCharsets.put("windows-1252", Charset.forName("WINDOWS-1252"));
         CharsetUtils.COMMON_CHARSETS = commonCharsets;
-        Charset charset = (Charset) forNameMethod.invoke(null, "win-1252");
-        assertEquals(Charset.forName("Windows-1252"), charset);
+        Charset charset = charsetUtils.forName("win-1252");
+        assertEquals(Charset.forName("WINDOWS-1252"), charset);
     }
 
     @Test
-    public void testForNameWithICU() throws Exception {
+    public void testForName_withICUCharset() throws Exception {
         Map<String, Charset> commonCharsets = new HashMap<>();
         commonCharsets.put("utf-8", Charset.forName("UTF-8"));
         CharsetUtils.COMMON_CHARSETS = commonCharsets;
         Method getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
         getCharsetICU.setAccessible(true);
-        when(getCharsetICU.invoke(null)).thenReturn(null);
-        Charset charset = (Charset) forNameMethod.invoke(null, "utf-8");
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(Charset.forName("UTF-8"));
+        Charset charset = charsetUtils.forName("UTF-8");
+        assertEquals(Charset.forName("UTF-8"), charset);
+    }
+
+    @Test
+    public void testForName_withUnsupportedICUCharset() throws Exception {
+        Map<String, Charset> commonCharsets = new HashMap<>();
+        commonCharsets.put("utf-8", Charset.forName("UTF-8"));
+        CharsetUtils.COMMON_CHARSETS = commonCharsets;
+        Method getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        getCharsetICU.setAccessible(true);
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(null);
+        Charset charset = charsetUtils.forName("UTF-8");
         assertEquals(Charset.forName("UTF-8"), charset);
     }
 }
 
 --------------------------------------------
-Error in CharsetUtils_forName_3_0_Test: line 9 : package org.mockito does not exist
-Error in CharsetUtils_forName_3_0_Test: line 12 : package org.mockito.junit.jupiter does not exist
-Error in CharsetUtils_forName_3_0_Test: line 7 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_0_Test: line 51 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_0_Test: line 60 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_0_Test: line 69 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_0_Test: line 78 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_0_Test: line 87 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_0_Test: line 99 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils

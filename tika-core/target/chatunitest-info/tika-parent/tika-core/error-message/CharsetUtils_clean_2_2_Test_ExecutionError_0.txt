@@ -1,0 +1,126 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_clean_2_2_Test {
+
+    @Mock
+    private Method getCharsetICU;
+
+    @Mock
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        Class<?> clazz = CharsetUtils.class;
+        getCharsetICU = clazz.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = clazz.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testCleanValidCharset() throws Exception {
+        String charsetName = "UTF-8";
+        Charset expectedCharset = Charset.forName(charsetName);
+        when(Charset.forName(charsetName)).thenReturn(expectedCharset);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(expectedCharset.name(), result);
+        verify(Charset.class, times(1)).forName(charsetName);
+        verify(getCharsetICU, never()).invoke(any(), any());
+    }
+
+    @Test
+    public void testCleanInvalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        String result = CharsetUtils.clean(charsetName);
+        assertNull(result);
+        verify(Charset.class, times(1)).forName(charsetName);
+        verify(getCharsetICU, never()).invoke(any(), any());
+    }
+
+    @Test
+    public void testCleanWithISONamePattern() throws Exception {
+        String charsetName = "iso 8859-1";
+        String expectedName = "iso-8859-1";
+        Charset expectedCharset = Charset.forName(expectedName);
+        when(Charset.forName(expectedName)).thenReturn(expectedCharset);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(expectedCharset.name(), result);
+        verify(Charset.class, times(1)).forName(expectedName);
+        verify(getCharsetICU, never()).invoke(any(), any());
+    }
+
+    @Test
+    public void testCleanWithCPNamePattern() throws Exception {
+        String charsetName = "cp-1252";
+        String expectedName = "cp1252";
+        Charset expectedCharset = Charset.forName(expectedName);
+        when(Charset.forName(expectedName)).thenReturn(expectedCharset);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(expectedCharset.name(), result);
+        verify(Charset.class, times(1)).forName(expectedName);
+        verify(getCharsetICU, never()).invoke(any(), any());
+    }
+
+    @Test
+    public void testCleanWithWINNamePattern() throws Exception {
+        String charsetName = "win-1252";
+        String expectedName = "windows-1252";
+        Charset expectedCharset = Charset.forName(expectedName);
+        when(Charset.forName(expectedName)).thenReturn(expectedCharset);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(expectedCharset.name(), result);
+        verify(Charset.class, times(1)).forName(expectedName);
+        verify(getCharsetICU, never()).invoke(any(), any());
+    }
+
+    @Test
+    public void testCleanWithICU() throws Exception {
+        String charsetName = "UTF-8";
+        Charset expectedCharset = Charset.forName(charsetName);
+        when(Charset.forName(charsetName)).thenReturn(expectedCharset);
+        when(getCharsetICU.invoke(null, charsetName)).thenReturn(expectedCharset);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(expectedCharset.name(), result);
+        verify(Charset.class, times(1)).forName(charsetName);
+        verify(getCharsetICU, times(1)).invoke(null, charsetName);
+    }
+
+    @Test
+    public void testCleanWithICUException() throws Exception {
+        String charsetName = "INVALID";
+        when(Charset.forName(charsetName)).thenThrow(new IllegalCharsetNameException(charsetName));
+        when(getCharsetICU.invoke(null, charsetName)).thenThrow(new InvocationTargetException(new Exception()));
+        String result = CharsetUtils.clean(charsetName);
+        assertNull(result);
+        verify(Charset.class, times(1)).forName(charsetName);
+        verify(getCharsetICU, times(1)).invoke(null, charsetName);
+    }
+}
+
+--------------------------------------------
+Error in testCleanWithISONamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithWINNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithCPNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICUException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanInvalidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICU(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanValidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

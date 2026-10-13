@@ -1,16 +1,17 @@
 package org.apache.tika.utils;
 
+import org.apache.tika.utils.ProcessUtils;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.IOException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
@@ -22,111 +23,96 @@ public class ProcessUtils_checkCommand_6_3_Test {
     @Mock
     private Process mockProcess;
 
-    @Mock
-    private StreamGobbler mockOutGobbler;
-
-    @Mock
-    private StreamGobbler mockErrGobbler;
-
     @BeforeEach
     public void setUp() {
-        ConcurrentHashMap<String, Process> processMap = new ConcurrentHashMap<>();
-        ProcessUtils.PROCESS_MAP = processMap;
+        when(mockProcess.waitFor()).thenReturn(0);
+        when(mockProcess.exitValue()).thenReturn(0);
     }
 
     @Test
-    public void testCheckCommandWithNoErrorValues() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
-        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
-        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
+    public void testCheckCommandWithNoErrorValue() throws IOException, InterruptedException, TimeoutException {
         when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
         when(mockProcess.exitValue()).thenReturn(0);
-        boolean result = ProcessUtils.checkCommand(checkCmd);
+        boolean result = ProcessUtils.checkCommand("testCmd", mockProcess);
         assertTrue(result);
-        verify(mockProcess).destroyForcibly();
     }
 
     @Test
-    public void testCheckCommandWithErrorValues() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        int[] errorValue = { 127 };
-        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
-        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
-        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
+    public void testCheckCommandWithErrorValue() throws IOException, InterruptedException, TimeoutException {
         when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
         when(mockProcess.exitValue()).thenReturn(127);
-        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        boolean result = ProcessUtils.checkCommand("testCmd", new int[] { 127 }, mockProcess);
         assertFalse(result);
-        verify(mockProcess).destroyForcibly();
     }
 
     @Test
     public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
-        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
-        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
         when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
-        boolean result = ProcessUtils.checkCommand(checkCmd);
+        boolean result = ProcessUtils.checkCommand("testCmd", mockProcess);
         assertFalse(result);
-        verify(mockProcess).destroyForcibly();
     }
 
     @Test
     public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        when(Runtime.getRuntime().exec(checkCmd)).thenThrow(new IOException("IO Exception"));
-        boolean result = ProcessUtils.checkCommand(checkCmd);
+        when(mockProcess.waitFor()).thenThrow(new IOException());
+        boolean result = ProcessUtils.checkCommand("testCmd", mockProcess);
         assertFalse(result);
     }
 
     @Test
     public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
-        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
-        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
-        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException("Interrupted Exception"));
-        boolean result = ProcessUtils.checkCommand(checkCmd);
+        when(mockProcess.waitFor()).thenThrow(new InterruptedException());
+        boolean result = ProcessUtils.checkCommand("testCmd", mockProcess);
         assertFalse(result);
-        verify(mockProcess).destroyForcibly();
     }
 
     @Test
     public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        when(Runtime.getRuntime().exec(checkCmd)).thenThrow(new SecurityException("Security Exception"));
-        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand(checkCmd));
+        when(mockProcess.waitFor()).thenThrow(new SecurityException());
+        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand("testCmd", mockProcess));
     }
 
     @Test
-    public void testCheckCommandWithErrorInErrorValue() throws IOException, InterruptedException, TimeoutException {
-        String[] checkCmd = { "ls", "-l" };
-        int[] errorValue = { 0 };
-        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
-        when(mockProcess.getInputStream()).thenReturn(mockOutGobbler);
-        when(mockProcess.getErrorStream()).thenReturn(mockErrGobbler);
-        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
-        when(mockProcess.exitValue()).thenReturn(0);
-        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+    public void testCheckCommandWithErrorException() throws IOException, InterruptedException, TimeoutException {
+        when(mockProcess.waitFor()).thenThrow(new Error());
+        boolean result = ProcessUtils.checkCommand("testCmd", mockProcess);
         assertFalse(result);
-        verify(mockProcess).destroyForcibly();
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_checkCommand_6_3_Test: line 4 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_checkCommand_6_3_Test: line 16 : package org.mockito does not exist
-Error in ProcessUtils_checkCommand_6_3_Test: line 14 : package org.mockito does not exist
-Error in ProcessUtils_checkCommand_6_3_Test: line 19 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_checkCommand_6_3_Test: line 22 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_3_Test
-Error in ProcessUtils_checkCommand_6_3_Test: line 25 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_3_Test
-Error in ProcessUtils_checkCommand_6_3_Test: line 28 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_3_Test
+Error in ProcessUtils_checkCommand_6_3_Test: line 36 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 44 : no suitable method found for checkCommand(java.lang.String,int[],java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; int[] cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 51 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 58 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 65 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 72 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])
+Error in ProcessUtils_checkCommand_6_3_Test: line 78 : no suitable method found for checkCommand(java.lang.String,java.lang.Process)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String,int...) is not applicable
+      (varargs mismatch; java.lang.Process cannot be converted to int)
+    method org.apache.tika.utils.ProcessUtils.checkCommand(java.lang.String[],int...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.String[])

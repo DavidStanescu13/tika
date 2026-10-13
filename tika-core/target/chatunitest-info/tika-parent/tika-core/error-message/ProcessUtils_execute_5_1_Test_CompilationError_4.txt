@@ -6,13 +6,12 @@ import org.apache.tika.utils.StreamGobbler;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
@@ -26,89 +25,64 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProcessUtils_execute_5_1_Test {
 
     @Mock
-    private StreamGobbler errGobbler;
+    private ProcessBuilder processBuilder;
 
     @Mock
     private Process process;
+
+    @Mock
+    private StreamGobbler streamGobbler;
 
     @InjectMocks
     private ProcessUtils processUtils;
 
     private Path stdoutRedirect;
 
-    private ProcessBuilder pb;
-
-    private long timeoutMillis;
-
-    private int maxStdErrBuffer;
+    private ConcurrentHashMap<String, Process> processMap;
 
     @BeforeEach
     public void setUp() throws IOException {
-        stdoutRedirect = Files.createTempFile("stdout", ".txt");
-        pb = new ProcessBuilder("echo", "Hello, World!");
-        timeoutMillis = 1000;
-        maxStdErrBuffer = 1024;
+        stdoutRedirect = Files.createTempFile("test", ".txt");
+        processMap = new ConcurrentHashMap<>();
+        when(processBuilder.start()).thenReturn(process);
+        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("output".getBytes()));
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
     }
 
     @Test
     public void testExecute_Success() throws IOException, InterruptedException {
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(true);
-        when(process.exitValue()).thenReturn(0);
-        when(errGobbler.getStreamLength()).thenReturn(13L);
-        when(errGobbler.getIsTruncated()).thenReturn(false);
-        when(errGobbler.getLines()).thenReturn(List.of("Hello, World!"));
-        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
-        assertEquals(13L, result.stderrLength);
-        assertEquals(13L, result.stdoutLength);
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(5, result.stderrLength);
+        assertEquals(6, result.stdoutLength);
         assertFalse(result.isTimeout);
         assertEquals(0, result.exitValue);
-        assertEquals("Hello, World!\n", result.stderr);
-        assertFalse(result.stderrTruncated);
+        assertEquals("output", result.stdout);
+        assertEquals("error", result.stderr);
     }
 
     @Test
     public void testExecute_Timeout() throws IOException, InterruptedException {
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(false);
-        when(process.exitValue()).thenReturn(-1);
-        when(errGobbler.getStreamLength()).thenReturn(0L);
-        when(errGobbler.getIsTruncated()).thenReturn(false);
-        when(errGobbler.getLines()).thenReturn(List.of());
-        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
         assertTrue(result.isTimeout);
-        assertEquals(-1, result.exitValue);
-        assertEquals(0L, result.stderrLength);
-        assertEquals(0L, result.stdoutLength);
-        assertEquals("", result.stderr);
-        assertFalse(result.stderrTruncated);
     }
 
     @Test
     public void testExecute_IOException() throws IOException {
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenThrow(new IOException("Test IOException"));
-        assertThrows(IOException.class, () -> processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer));
+        when(processBuilder.start()).thenThrow(new IOException("Test exception"));
+        assertThrows(IOException.class, () -> processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000));
     }
 
     @Test
     public void testExecute_InterruptedException() throws IOException, InterruptedException {
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException("Test InterruptedException"));
-        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException("Test exception"));
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
         assertEquals(-1000, result.exitValue);
-        assertTrue(result.isTimeout);
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_execute_5_1_Test: line 7 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_execute_5_1_Test: line 22 : package org.mockito does not exist
-Error in ProcessUtils_execute_5_1_Test: line 20 : package org.mockito does not exist
-Error in ProcessUtils_execute_5_1_Test: line 25 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_execute_5_1_Test: line 28 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_1_Test
-Error in ProcessUtils_execute_5_1_Test: line 31 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_1_Test
-Error in ProcessUtils_execute_5_1_Test: line 34 : cannot find symbol
-  symbol:   class InjectMocks
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_1_Test
+Error in ProcessUtils_execute_5_1_Test: line 50 : unreported exception java.lang.InterruptedException; must be caught or declared to be thrown

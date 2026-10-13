@@ -1,0 +1,95 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_clean_2_2_Test {
+
+    @Mock
+    private Method getCharsetICU;
+
+    @Mock
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        Class<?> clazz = CharsetUtils.class;
+        getCharsetICU = clazz.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = clazz.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testCleanWithISONamePattern() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName("ISO-8859-1"));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertEquals("ISO-8859-1", CharsetUtils.clean("ISO-8859-1"));
+    }
+
+    @Test
+    public void testCleanWithWINNamePattern() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName("Windows-1252"));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertEquals("Windows-1252", CharsetUtils.clean("Windows-1252"));
+    }
+
+    @Test
+    public void testCleanWithCPNamePattern() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName("CP1252"));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertEquals("CP1252", CharsetUtils.clean("CP1252"));
+    }
+
+    @Test
+    public void testCleanWithICUException() throws Exception {
+        when(getCharsetICU.invoke(any())).thenThrow(new InvocationTargetException(new Exception()));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertNull(CharsetUtils.clean("InvalidCharset"));
+    }
+
+    @Test
+    public void testCleanInvalidCharset() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertNull(CharsetUtils.clean("InvalidCharset"));
+    }
+
+    @Test
+    public void testCleanWithICU() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName("UTF-8"));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertEquals("UTF-8", CharsetUtils.clean("UTF-8"));
+    }
+
+    @Test
+    public void testCleanValidCharset() throws Exception {
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName("UTF-8"));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        assertEquals("UTF-8", CharsetUtils.clean("UTF-8"));
+    }
+}
+
+--------------------------------------------
+Error in testCleanWithISONamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithWINNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithCPNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICUException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanInvalidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICU(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanValidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

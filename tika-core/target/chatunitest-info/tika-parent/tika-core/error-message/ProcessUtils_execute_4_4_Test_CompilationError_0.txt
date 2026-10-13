@@ -5,18 +5,17 @@ import org.apache.tika.utils.ProcessUtils;
 import org.apache.tika.utils.StreamGobbler;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-import static org.mockito.ArgumentMatchers.any;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
@@ -25,129 +24,110 @@ import org.slf4j.LoggerFactory;
 @ExtendWith(MockitoExtension.class)
 public class ProcessUtils_execute_4_4_Test {
 
-    @InjectMocks
-    private ProcessUtils processUtils;
-
-    @Mock
-    private ProcessBuilder processBuilder;
-
-    @Mock
-    private Process process;
-
     @Mock
     private StreamGobbler outGobbler;
 
     @Mock
     private StreamGobbler errGobbler;
 
-    @Mock
-    private Thread outThread;
+    @InjectMocks
+    private ProcessUtils processUtils;
 
-    @Mock
-    private Thread errThread;
+    @BeforeEach
+    public void setUp() {
+        when(outGobbler.getLines()).thenReturn(new ArrayList<>());
+        when(outGobbler.getStreamLength()).thenReturn(0L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(new ArrayList<>());
+        when(errGobbler.getStreamLength()).thenReturn(0L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+    }
 
     @Test
-    public void testExecute() throws IOException, InterruptedException, TimeoutException {
-        // Arrange
-        long timeoutMillis = 1000;
-        int maxStdoutBuffer = 1024;
-        int maxStdErrBuffer = 1024;
-        when(processBuilder.start()).thenReturn(process);
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(true);
-        when(process.exitValue()).thenReturn(0);
-        when(process.getInputStream()).thenReturn(mock(InputStream.class));
-        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
-        when(outGobbler.getStreamLength()).thenReturn(100L);
-        when(errGobbler.getStreamLength()).thenReturn(50L);
-        when(outGobbler.getIsTruncated()).thenReturn(false);
-        when(errGobbler.getIsTruncated()).thenReturn(false);
-        // Act
-        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
-        // Assert
+    public void testExecute_Success() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
         assertEquals(1000, result.processTimeMillis);
-        assertEquals(50L, result.stderrLength);
-        assertEquals(100L, result.stdoutLength);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
         assertFalse(result.isTimeout);
         assertEquals(0, result.exitValue);
-        assertTrue(result.stdoutTruncated);
-        assertTrue(result.stderrTruncated);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 
     @Test
-    public void testExecuteWithTimeout() throws IOException, InterruptedException, TimeoutException {
-        // Arrange
-        long timeoutMillis = 1000;
-        int maxStdoutBuffer = 1024;
-        int maxStdErrBuffer = 1024;
-        when(processBuilder.start()).thenReturn(process);
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenReturn(false);
-        when(process.destroyForcibly()).thenReturn(null);
+    public void testExecute_Timeout() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
         when(process.exitValue()).thenReturn(1);
-        when(process.getInputStream()).thenReturn(mock(InputStream.class));
-        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
-        when(outGobbler.getStreamLength()).thenReturn(100L);
-        when(errGobbler.getStreamLength()).thenReturn(50L);
-        when(outGobbler.getIsTruncated()).thenReturn(false);
-        when(errGobbler.getIsTruncated()).thenReturn(false);
-        // Act
-        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
-        // Assert
-        assertEquals(1000, result.processTimeMillis);
-        assertEquals(50L, result.stderrLength);
-        assertEquals(100L, result.stdoutLength);
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
         assertTrue(result.isTimeout);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
         assertEquals(1, result.exitValue);
-        assertTrue(result.stdoutTruncated);
-        assertTrue(result.stderrTruncated);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 
     @Test
-    public void testExecuteWithException() throws IOException, InterruptedException, TimeoutException {
-        // Arrange
-        long timeoutMillis = 1000;
-        int maxStdoutBuffer = 1024;
-        int maxStdErrBuffer = 1024;
-        when(processBuilder.start()).thenReturn(process);
-        when(process.waitFor(timeoutMillis, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
-        when(process.destroyForcibly()).thenReturn(null);
-        when(process.exitValue()).thenReturn(1);
-        when(process.getInputStream()).thenReturn(mock(InputStream.class));
-        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
-        when(outGobbler.getStreamLength()).thenReturn(100L);
-        when(errGobbler.getStreamLength()).thenReturn(50L);
-        when(outGobbler.getIsTruncated()).thenReturn(false);
-        when(errGobbler.getIsTruncated()).thenReturn(false);
-        // Act
-        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, maxStdoutBuffer, maxStdErrBuffer);
+    public void testExecute_InterruptedException() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(-1000, result.exitValue);
+        assertTrue(result.stdout.isEmpty());
+        assertTrue(result.stderr.isEmpty());
+    }
+
+    @Test
+    public void testExecute_StreamGobbler() throws IOException, InterruptedException {
+        ProcessBuilder pb = mock(ProcessBuilder.class);
+        when(pb.start()).thenReturn(mock(Process.class));
+        Process process = mock(Process.class);
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        InputStream inputStream = new ByteArrayInputStream("stdout".getBytes(StandardCharsets.UTF_8));
+        InputStream errorStream = new ByteArrayInputStream("stderr".getBytes(StandardCharsets.UTF_8));
+        when(process.getInputStream()).thenReturn(inputStream);
+        when(process.getErrorStream()).thenReturn(errorStream);
+        FileProcessResult result = processUtils.execute(pb, 1000, 1000, 1000);
+        assertNotNull(result);
+        assertEquals(0, result.processTimeMillis);
+        assertEquals(5, result.stderrLength);
+        assertEquals(6, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("stdout", result.stdout);
+        assertEquals("stderr", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_execute_4_4_Test: line 7 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_execute_4_4_Test: line 15 : package org.mockito does not exist
-Error in ProcessUtils_execute_4_4_Test: line 15 : static import only from classes and interfaces
-Error in ProcessUtils_execute_4_4_Test: line 18 : package org.mockito does not exist
-Error in ProcessUtils_execute_4_4_Test: line 16 : package org.mockito does not exist
-Error in ProcessUtils_execute_4_4_Test: line 25 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_execute_4_4_Test: line 28 : cannot find symbol
-  symbol:   class InjectMocks
+Error in ProcessUtils_execute_4_4_Test: line 38 : cannot find symbol
+  symbol:   class ArrayList
   location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 31 : cannot find symbol
-  symbol:   class Mock
+Error in ProcessUtils_execute_4_4_Test: line 41 : cannot find symbol
+  symbol:   class ArrayList
   location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 34 : cannot find symbol
-  symbol:   class Mock
+Error in ProcessUtils_execute_4_4_Test: line 103 : cannot find symbol
+  symbol:   variable StandardCharsets
   location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 37 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 40 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 43 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
-Error in ProcessUtils_execute_4_4_Test: line 46 : cannot find symbol
-  symbol:   class Mock
+Error in ProcessUtils_execute_4_4_Test: line 104 : cannot find symbol
+  symbol:   variable StandardCharsets
   location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test

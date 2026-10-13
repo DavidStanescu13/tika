@@ -1,0 +1,116 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CharsetUtils_clean_2_1_Test {
+
+    private CharsetUtils charsetUtils;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        Method getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        getCharsetICU.setAccessible(true);
+        when(getCharsetICU.invoke(null)).thenReturn(null);
+        Method isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        isSupportedICU.setAccessible(true);
+        when(isSupportedICU.invoke(null)).thenReturn(false);
+    }
+
+    @Test
+    public void testClean_validCharset() throws Exception {
+        String charsetName = "UTF-8";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_invalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withWhitespace() throws Exception {
+        String charsetName = "  UTF-8  ";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withTrailingComma() throws Exception {
+        String charsetName = "UTF-8,";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withLeadingComma() throws Exception {
+        String charsetName = ",UTF-8";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testClean_withISO8859() throws Exception {
+        String charsetName = "ISO 8859-1";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("ISO-8859-1", result);
+    }
+
+    @Test
+    public void testClean_withCP() throws Exception {
+        String charsetName = "CP1252";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("CP1252", result);
+    }
+
+    @Test
+    public void testClean_withWIN() throws Exception {
+        String charsetName = "WIN1252";
+        String result = charsetUtils.clean(charsetName);
+        assertEquals("Windows-1252", result);
+    }
+
+    @Test
+    public void testClean_withNone() throws Exception {
+        String charsetName = "none";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testClean_withNo() throws Exception {
+        String charsetName = "no";
+        String result = charsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+}
+
+--------------------------------------------
+Error in testClean_withLeadingComma(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withISO8859(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withCP(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withNo(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withWhitespace(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withWIN(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withTrailingComma(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_withNone(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_validCharset(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testClean_invalidCharset(): line 27 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

@@ -1,0 +1,87 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CharsetUtils_isSupported_1_1_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Method getCharsetICU;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        charsetUtils = new CharsetUtils();
+        // Mocking the private methods
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU", String.class);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testIsSupportedWithSupportedCharset() throws Exception {
+        // Mocking the isSupportedICU method to return true
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
+        assertTrue(charsetUtils.isSupported("UTF-8"));
+    }
+
+    @Test
+    public void testIsSupportedWithUnsupportedCharset() throws Exception {
+        // Mocking the isSupportedICU method to return false
+        when(isSupportedICU.invoke(null, "INVALID_CHARSET")).thenReturn(false);
+        assertFalse(charsetUtils.isSupported("INVALID_CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalCharsetNameException() throws Exception {
+        // Mocking the isSupportedICU method to throw IllegalCharsetNameException
+        when(isSupportedICU.invoke(null, "INVALID_CHARSET")).thenThrow(new IllegalCharsetNameException("INVALID_CHARSET"));
+        assertFalse(charsetUtils.isSupported("INVALID_CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalArgumentException() throws Exception {
+        // Mocking the isSupportedICU method to throw IllegalArgumentException
+        when(isSupportedICU.invoke(null, null)).thenThrow(new IllegalArgumentException("null"));
+        assertFalse(charsetUtils.isSupported(null));
+    }
+
+    @Test
+    public void testIsSupportedWithUnexpectedException() throws Exception {
+        // Mocking the isSupportedICU method to throw an unexpected exception
+        when(isSupportedICU.invoke(null, "INVALID_CHARSET")).thenThrow(new RuntimeException("Unexpected exception"));
+        assertFalse(charsetUtils.isSupported("INVALID_CHARSET"));
+    }
+
+    @Test
+    public void testIsSupportedWithNullCharset() throws Exception {
+        // Mocking the isSupportedICU method to return false
+        when(isSupportedICU.invoke(null, null)).thenReturn(false);
+        assertFalse(charsetUtils.isSupported(null));
+    }
+}
+
+--------------------------------------------
+Error in testIsSupportedWithUnexpectedException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithSupportedCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithNullCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithIllegalArgumentException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithIllegalCharsetNameException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithUnsupportedCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

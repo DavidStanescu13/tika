@@ -1,0 +1,50 @@
+{
+  "method0": {
+    "methodName": "register",
+    "signature": "register(Process)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method1": {
+    "methodName": "release",
+    "signature": "release(String)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method2": {
+    "methodName": "escapeCommandLine",
+    "signature": "escapeCommandLine(String)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method3": {
+    "methodName": "unescapeCommandLine",
+    "signature": "unescapeCommandLine(String)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method4": {
+    "methodName": "execute",
+    "signature": "execute(ProcessBuilder, long, int, int)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method5": {
+    "methodName": "execute",
+    "signature": "execute(ProcessBuilder, long, Path, int)",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method6": {
+    "methodName": "checkCommand",
+    "signature": "checkCommand(String, int[])",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  },
+  "method7": {
+    "methodName": "checkCommand",
+    "signature": "checkCommand(String[], int[])",
+    "className": "ProcessUtils",
+    "packageName": "org.apache.tika.utils"
+  }
+}

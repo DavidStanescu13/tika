@@ -6,19 +6,16 @@ import org.apache.tika.utils.StreamGobbler;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
@@ -26,6 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ProcessUtils_execute_4_2_Test {
+
+    @InjectMocks
+    private ProcessUtils processUtils;
 
     @Mock
     private ProcessBuilder processBuilder;
@@ -39,25 +39,21 @@ public class ProcessUtils_execute_4_2_Test {
     @Mock
     private StreamGobbler errGobbler;
 
-    @InjectMocks
-    private ProcessUtils processUtils;
-
     @BeforeEach
     public void setUp() {
         when(processBuilder.start()).thenReturn(process);
-        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("stdout".getBytes(StandardCharsets.UTF_8)));
-        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("stderr".getBytes(StandardCharsets.UTF_8)));
+        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("stdout".getBytes()));
+        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("stderr".getBytes()));
         when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
         when(process.exitValue()).thenReturn(0);
     }
 
     @Test
-    public void testExecute() throws IOException, InterruptedException {
+    public void testExecute_Success() throws IOException, InterruptedException {
         FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
-        assertNotNull(result);
         assertEquals(1000, result.processTimeMillis);
         assertEquals(4, result.stderrLength);
-        assertEquals(4, result.stdoutLength);
+        assertEquals(5, result.stdoutLength);
         assertFalse(result.isTimeout);
         assertEquals(0, result.exitValue);
         assertEquals("stdout", result.stdout);
@@ -67,42 +63,48 @@ public class ProcessUtils_execute_4_2_Test {
     }
 
     @Test
-    public void testExecuteTimeout() throws IOException, InterruptedException {
+    public void testExecute_Timeout() throws IOException, InterruptedException {
         when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
-        when(process.exitValue()).thenReturn(1);
+        when(process.destroyForcibly()).thenReturn(true);
+        when(process.waitFor(500, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
         FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
-        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(5, result.stdoutLength);
         assertTrue(result.isTimeout);
-        assertEquals(1, result.exitValue);
+        assertEquals(0, result.exitValue);
+        assertEquals("stdout", result.stdout);
+        assertEquals("stderr", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 
     @Test
-    public void testExecuteException() throws IOException, InterruptedException {
+    public void testExecute_InterruptedException() throws IOException, InterruptedException {
         when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        when(process.destroyForcibly()).thenReturn(true);
         FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
-        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(5, result.stdoutLength);
+        assertFalse(result.isTimeout);
         assertEquals(-1000, result.exitValue);
+        assertEquals("stdout", result.stdout);
+        assertEquals("stderr", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_execute_4_2_Test: line 7 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_execute_4_2_Test: line 24 : package org.mockito does not exist
-Error in ProcessUtils_execute_4_2_Test: line 22 : package org.mockito does not exist
-Error in ProcessUtils_execute_4_2_Test: line 27 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_execute_4_2_Test: line 30 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
-Error in ProcessUtils_execute_4_2_Test: line 33 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
-Error in ProcessUtils_execute_4_2_Test: line 36 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
-Error in ProcessUtils_execute_4_2_Test: line 39 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
-Error in ProcessUtils_execute_4_2_Test: line 42 : cannot find symbol
-  symbol:   class InjectMocks
-  location: class org.apache.tika.utils.ProcessUtils_execute_4_2_Test
+Error in ProcessUtils_execute_4_2_Test: line 68 : no suitable method found for thenReturn(boolean)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Process) is not applicable
+      (argument mismatch; boolean cannot be converted to java.lang.Process)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Process,java.lang.Process...) is not applicable
+      (argument mismatch; boolean cannot be converted to java.lang.Process)
+Error in ProcessUtils_execute_4_2_Test: line 86 : no suitable method found for thenReturn(boolean)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Process) is not applicable
+      (argument mismatch; boolean cannot be converted to java.lang.Process)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Process,java.lang.Process...) is not applicable
+      (argument mismatch; boolean cannot be converted to java.lang.Process)

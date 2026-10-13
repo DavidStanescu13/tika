@@ -1,12 +1,10 @@
 package org.apache.tika.utils;
 
+import org.junit.jupiter.api.function.Executable;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
@@ -16,60 +14,76 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static java.util.Locale.ENGLISH;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.IllegalCharsetNameException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CharsetUtils_isSupported_1_3_Test {
 
-    private CharsetUtils charsetUtils;
+    private static Method isSupportedMethod;
 
-    private Method isSupportedICU;
+    private static Method getCharsetICU;
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        charsetUtils = new CharsetUtils();
-        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU", String.class);
-        isSupportedICU.setAccessible(true);
+    private static Method isSupportedICU;
+
+    @BeforeAll
+    public static void setUp() throws NoSuchMethodException {
+        isSupportedMethod = CharsetUtils.class.getDeclaredMethod("isSupported", String.class);
+        isSupportedMethod.setAccessible(true);
+        getCharsetICU = CharsetUtils.class.getDeclaredField("getCharsetICU").get(null);
+        isSupportedICU = CharsetUtils.class.getDeclaredField("isSupportedICU").get(null);
     }
 
     @Test
-    public void testIsSupportedICUNotNullAndTrue() throws Exception {
+    public void testIsSupportedWithSupportedCharset() throws Exception {
+        when(getCharsetICU.invoke(null, "UTF-8")).thenReturn(Charset.forName("UTF-8"));
         when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
-        assertTrue(charsetUtils.isSupported("UTF-8"));
+        boolean result = (boolean) isSupportedMethod.invoke(null, "UTF-8");
+        assertTrue(result);
     }
 
     @Test
-    public void testIsSupportedICUNotNullAndFalse() throws Exception {
-        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(false);
-        assertFalse(charsetUtils.isSupported("UTF-8"));
+    public void testIsSupportedWithUnsupportedCharset() throws Exception {
+        when(getCharsetICU.invoke(null, "INVALID-CHARSET")).thenReturn(null);
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenReturn(false);
+        boolean result = (boolean) isSupportedMethod.invoke(null, "INVALID-CHARSET");
+        assertFalse(result);
     }
 
     @Test
-    public void testIsSupportedICUNull() throws Exception {
-        isSupportedICU = null;
-        assertTrue(charsetUtils.isSupported("UTF-8"));
+    public void testIsSupportedWithIllegalCharsetNameException() throws Exception {
+        when(getCharsetICU.invoke(null, "INVALID-CHARSET")).thenReturn(null);
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new IllegalCharsetNameException("INVALID-CHARSET"));
+        boolean result = (boolean) isSupportedMethod.invoke(null, "INVALID-CHARSET");
+        assertFalse(result);
     }
 
     @Test
-    public void testIsSupportedIllegalCharsetNameException() {
-        assertThrows(IllegalCharsetNameException.class, () -> {
-            charsetUtils.isSupported("Invalid-Charset-Name");
-        });
+    public void testIsSupportedWithIllegalArgumentException() throws Exception {
+        when(getCharsetICU.invoke(null, null)).thenReturn(null);
+        when(isSupportedICU.invoke(null, null)).thenReturn(false);
+        boolean result = (boolean) isSupportedMethod.invoke(null, null);
+        assertFalse(result);
     }
 
     @Test
-    public void testIsSupportedIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            charsetUtils.isSupported(null);
-        });
-    }
-
-    @Test
-    public void testIsSupportedUnexpectedException() throws Exception {
-        when(isSupportedICU.invoke(null, "UTF-8")).thenThrow(new Exception());
-        assertFalse(charsetUtils.isSupported("UTF-8"));
+    public void testIsSupportedWithUnexpectedException() throws Exception {
+        when(getCharsetICU.invoke(null, "INVALID-CHARSET")).thenReturn(null);
+        when(isSupportedICU.invoke(null, "INVALID-CHARSET")).thenThrow(new RuntimeException("Unexpected exception"));
+        boolean result = (boolean) isSupportedMethod.invoke(null, "INVALID-CHARSET");
+        assertFalse(result);
     }
 }
 
 --------------------------------------------
-Error in CharsetUtils_isSupported_1_3_Test: line 12 : package org.mockito does not exist
-Error in CharsetUtils_isSupported_1_3_Test: line 15 : package org.mockito.junit.jupiter does not exist
-Error in CharsetUtils_isSupported_1_3_Test: line 10 : package org.mockito does not exist
+Error in CharsetUtils_isSupported_1_3_Test: line 33 : incompatible types: java.lang.Object cannot be converted to java.lang.reflect.Method
+Error in CharsetUtils_isSupported_1_3_Test: line 34 : incompatible types: java.lang.Object cannot be converted to java.lang.reflect.Method
+Error in CharsetUtils_isSupported_1_3_Test: line 63 : non-varargs call of varargs method with inexact argument type for last parameter;
+  cast to java.lang.Object for a varargs call
+  cast to java.lang.Object[] for a non-varargs call and to suppress this warning
+Error in CharsetUtils_isSupported_1_3_Test: line 64 : non-varargs call of varargs method with inexact argument type for last parameter;
+  cast to java.lang.Object for a varargs call
+  cast to java.lang.Object[] for a non-varargs call and to suppress this warning
+Error in CharsetUtils_isSupported_1_3_Test: line 65 : non-varargs call of varargs method with inexact argument type for last parameter;
+  cast to java.lang.Object for a varargs call
+  cast to java.lang.Object[] for a non-varargs call and to suppress this warning

@@ -1,18 +1,20 @@
 package org.apache.tika.utils;
 
-import org.apache.tika.utils.FileProcessResult;
-import org.apache.tika.utils.ProcessUtils;
-import org.apache.tika.utils.StreamGobbler;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.apache.tika.utils.StringUtils;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,51 +33,80 @@ public class ProcessUtils_execute_5_2_Test {
     private Process process;
 
     @Mock
-    private StreamGobbler streamGobbler;
+    private StreamGobbler errGobbler;
 
     @InjectMocks
     private ProcessUtils processUtils;
 
+    private Path stdoutRedirect;
+
+    private ConcurrentHashMap<String, Process> processMap;
+
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void setUp() throws IOException {
+        stdoutRedirect = Files.createTempFile("test", ".txt");
+        processMap = new ConcurrentHashMap<>();
+        when(processBuilder.start()).thenReturn(process);
+        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        when(process.getInputStream()).thenReturn(new ByteArrayInputStream("output".getBytes()));
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        when(process.isAlive()).thenReturn(false);
+        when(errGobbler.getStreamLength()).thenReturn(5L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(java.util.Arrays.asList("error"));
+        Field processMapField = ProcessUtils.class.getDeclaredField("PROCESS_MAP");
+        processMapField.setAccessible(true);
+        processMapField.set(null, processMap);
     }
 
     @Test
-    public void testExecute_Success() throws IOException, InterruptedException {
-        Path stdoutRedirect = Files.createTempFile("test", ".txt");
-        when(processBuilder.start()).thenReturn(process);
-        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
-        when(process.exitValue()).thenReturn(0);
-        when(process.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
-        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1024);
+    public void testExecute() throws IOException, InterruptedException {
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
         assertEquals(1000, result.processTimeMillis);
         assertEquals(5, result.stderrLength);
-        assertEquals(0, result.stdoutLength);
+        assertEquals(5, result.stdoutLength);
         assertFalse(result.isTimeout);
         assertEquals(0, result.exitValue);
-        assertEquals("", result.stdout);
         assertEquals("error", result.stderr);
         assertFalse(result.stdoutTruncated);
-        assertTrue(result.stderrTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException {
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(false);
+        when(process.isAlive()).thenReturn(true);
+        FileProcessResult result = processUtils.execute(processBuilder, 100, stdoutRedirect, 1000);
+        assertTrue(result.isTimeout);
+        assertEquals(-1, result.exitValue);
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException {
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertEquals(-1000, result.exitValue);
+    }
+
+    @Test
+    public void testExecuteWithNonExistentParentDirectory() throws IOException, InterruptedException {
+        Path nonExistentParent = Paths.get("/non/existent/parent");
+        when(stdoutRedirect.getParent()).thenReturn(nonExistentParent);
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertTrue(Files.exists(nonExistentParent));
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(5, result.stderrLength);
+        assertEquals(5, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("error", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_execute_5_2_Test: line 7 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_execute_5_2_Test: line 21 : package org.mockito does not exist
-Error in ProcessUtils_execute_5_2_Test: line 19 : package org.mockito does not exist
-Error in ProcessUtils_execute_5_2_Test: line 24 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_execute_5_2_Test: line 27 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_2_Test
-Error in ProcessUtils_execute_5_2_Test: line 30 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_2_Test
-Error in ProcessUtils_execute_5_2_Test: line 33 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_execute_5_2_Test
-Error in ProcessUtils_execute_5_2_Test: line 36 : cannot find symbol
-  symbol:   class InjectMocks
+Error in ProcessUtils_execute_5_2_Test: line 58 : cannot find symbol
+  symbol:   class Field
   location: class org.apache.tika.utils.ProcessUtils_execute_5_2_Test

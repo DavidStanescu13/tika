@@ -32,41 +32,35 @@ public class ProcessUtils_unescapeCommandLine_3_4_Test {
     }
 
     @Test
-    public void testUnescapeCommandLine_WithQuotesAndWindowsOS() {
-        String input = "\"example arg\"";
-        String expectedOutput = "example arg";
+    public void testUnescapeCommandLine_WithQuotesAndWindows() {
+        String input = "\"example command\"";
+        String expectedOutput = "example command";
         String actualOutput = ProcessUtils.unescapeCommandLine(input);
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testUnescapeCommandLine_NoQuotesAndWindowsOS() {
-        String input = "example arg";
-        String expectedOutput = "example arg";
+    public void testUnescapeCommandLine_NoQuotesAndWindows() {
+        String input = "example command";
+        String expectedOutput = "example command";
         String actualOutput = ProcessUtils.unescapeCommandLine(input);
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testUnescapeCommandLine_WithQuotesAndNonWindowsOS() {
+    public void testUnescapeCommandLine_WithQuotesAndNotWindows() {
         try {
             when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(false);
-            String input = "\"example arg\"";
-            String expectedOutput = "\"example arg\"";
-            String actualOutput = ProcessUtils.unescapeCommandLine(input);
-            assertEquals(expectedOutput, actualOutput);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String input = "\"example command\"";
+        String expectedOutput = "\"example command\"";
+        String actualOutput = ProcessUtils.unescapeCommandLine(input);
+        assertEquals(expectedOutput, actualOutput);
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 4 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 16 : package org.mockito does not exist
-Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 14 : package org.mockito does not exist
-Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 19 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 22 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test
+Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 29 : exception java.io.IOException is never thrown in body of corresponding try statement
+Error in ProcessUtils_unescapeCommandLine_3_4_Test: line 54 : exception java.io.IOException is never thrown in body of corresponding try statement

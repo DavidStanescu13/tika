@@ -1,0 +1,109 @@
+package org.apache.tika.utils;
+
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CharsetUtils_clean_2_2_Test {
+
+    @Mock
+    private Method getCharsetICU;
+
+    @Mock
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        Class<?> clazz = CharsetUtils.class;
+        getCharsetICU = clazz.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = clazz.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testCleanWithISONamePattern() throws Exception {
+        String charsetName = "ISO-8859-1";
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals("ISO-8859-1", result);
+    }
+
+    @Test
+    public void testCleanWithWINNamePattern() throws Exception {
+        String charsetName = "WIN1252";
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals("Windows-1252", result);
+    }
+
+    @Test
+    public void testCleanWithCPNamePattern() throws Exception {
+        String charsetName = "CP1252";
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals("Windows-1252", result);
+    }
+
+    @Test
+    public void testCleanWithICUException() throws Exception {
+        String charsetName = "UTF-8";
+        when(getCharsetICU.invoke(any())).thenThrow(new InvocationTargetException(new Exception()));
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals("UTF-8", result);
+    }
+
+    @Test
+    public void testCleanInvalidCharset() throws Exception {
+        String charsetName = "INVALID";
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertNull(result);
+    }
+
+    @Test
+    public void testCleanWithICU() throws Exception {
+        String charsetName = "UTF-8";
+        when(getCharsetICU.invoke(any())).thenReturn(Charset.forName(charsetName));
+        when(isSupportedICU.invoke(any())).thenReturn(true);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(charsetName, result);
+    }
+
+    @Test
+    public void testCleanValidCharset() throws Exception {
+        String charsetName = "UTF-8";
+        when(getCharsetICU.invoke(any())).thenReturn(null);
+        when(isSupportedICU.invoke(any())).thenReturn(false);
+        String result = CharsetUtils.clean(charsetName);
+        assertEquals(charsetName, result);
+    }
+}
+
+--------------------------------------------
+Error in testCleanWithISONamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithWINNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithCPNamePattern(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICUException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanInvalidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanWithICU(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testCleanValidCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

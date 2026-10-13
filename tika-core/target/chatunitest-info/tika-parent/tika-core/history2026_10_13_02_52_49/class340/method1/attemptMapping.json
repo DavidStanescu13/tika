@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "CharsetUtils_isSupported_1_0_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_isSupported_1_0_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_isSupported_1_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "isSupported",
+    "methodSig": "isSupported(String)"
+  },
+  "attempt1": {
+    "testClassName": "CharsetUtils_isSupported_1_1_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_isSupported_1_1_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_isSupported_1_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "isSupported",
+    "methodSig": "isSupported(String)"
+  },
+  "attempt2": {
+    "testClassName": "CharsetUtils_isSupported_1_2_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_isSupported_1_2_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_isSupported_1_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "isSupported",
+    "methodSig": "isSupported(String)"
+  },
+  "attempt3": {
+    "testClassName": "CharsetUtils_isSupported_1_3_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_isSupported_1_3_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_isSupported_1_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "isSupported",
+    "methodSig": "isSupported(String)"
+  },
+  "attempt4": {
+    "testClassName": "CharsetUtils_isSupported_1_4_Test",
+    "fullName": "org.apache.tika.utils.CharsetUtils_isSupported_1_4_Test",
+    "path": "C:\\Users\\david\\tika\\tika-core\\chatunitest\\tika-parent\\tika-core\\org\\apache\\tika\\utils\\CharsetUtils_isSupported_1_0_Test.java",
+    "className": "CharsetUtils",
+    "packageName": "org.apache.tika.utils",
+    "methodName": "isSupported",
+    "methodSig": "isSupported(String)"
+  }
+}

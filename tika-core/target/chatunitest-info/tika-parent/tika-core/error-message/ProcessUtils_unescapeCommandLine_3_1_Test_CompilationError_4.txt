@@ -20,87 +20,47 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProcessUtils_unescapeCommandLine_3_1_Test {
 
     @Mock
-    private SystemUtils systemUtilsMock;
+    private SystemUtils systemUtils;
+
+    @BeforeEach
+    public void setUp() {
+        try {
+            when(systemUtils.IS_OS_WINDOWS).thenReturn(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
-    public void testUnescapeCommandLine_WithQuotesAndWindowsOS() throws Exception {
-        // Arrange
+    public void testUnescapeCommandLine_WithQuotesAndWindowsOS() {
         String input = "\"example command\"";
         String expectedOutput = "example command";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(true);
-        // Act
         String actualOutput = ProcessUtils.unescapeCommandLine(input);
-        // Assert
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testUnescapeCommandLine_WithoutQuotesAndWindowsOS() throws Exception {
-        // Arrange
+    public void testUnescapeCommandLine_NoQuotesAndWindowsOS() {
         String input = "example command";
         String expectedOutput = "example command";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(true);
-        // Act
         String actualOutput = ProcessUtils.unescapeCommandLine(input);
-        // Assert
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testUnescapeCommandLine_WithQuotesAndNonWindowsOS() throws Exception {
-        // Arrange
-        String input = "\"example command\"";
-        String expectedOutput = "\"example command\"";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(false);
-        // Act
-        String actualOutput = ProcessUtils.unescapeCommandLine(input);
-        // Assert
-        assertEquals(expectedOutput, actualOutput);
-    }
-
-    @Test
-    public void testUnescapeCommandLine_WithQuotesAndWindowsOS_WithReflection() throws Exception {
-        // Arrange
-        String input = "\"example command\"";
-        String expectedOutput = "example command";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(true);
-        // Act
-        String actualOutput = (String) ProcessUtils.class.getMethod("unescapeCommandLine", String.class).invoke(null, input);
-        // Assert
-        assertEquals(expectedOutput, actualOutput);
-    }
-
-    @Test
-    public void testUnescapeCommandLine_WithoutQuotesAndWindowsOS_WithReflection() throws Exception {
-        // Arrange
-        String input = "example command";
-        String expectedOutput = "example command";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(true);
-        // Act
-        String actualOutput = (String) ProcessUtils.class.getMethod("unescapeCommandLine", String.class).invoke(null, input);
-        // Assert
-        assertEquals(expectedOutput, actualOutput);
-    }
-
-    @Test
-    public void testUnescapeCommandLine_WithQuotesAndNonWindowsOS_WithReflection() throws Exception {
-        // Arrange
-        String input = "\"example command\"";
-        String expectedOutput = "\"example command\"";
-        Mockito.when(systemUtilsMock.IS_OS_WINDOWS).thenReturn(false);
-        // Act
-        String actualOutput = (String) ProcessUtils.class.getMethod("unescapeCommandLine", String.class).invoke(null, input);
-        // Assert
-        assertEquals(expectedOutput, actualOutput);
+    public void testUnescapeCommandLine_WithQuotesAndNonWindowsOS() {
+        try {
+            when(systemUtils.IS_OS_WINDOWS).thenReturn(false);
+            String input = "\"example command\"";
+            String expectedOutput = "\"example command\"";
+            String actualOutput = ProcessUtils.unescapeCommandLine(input);
+            assertEquals(expectedOutput, actualOutput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
 --------------------------------------------
-Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 4 : package org.mockito.junit.jupiter does not exist
-Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 16 : package org.mockito does not exist
-Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 14 : package org.mockito does not exist
-Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 19 : cannot find symbol
-  symbol: class MockitoExtension
-Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 22 : cannot find symbol
-  symbol:   class Mock
-  location: class org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test
+Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 29 : exception java.io.IOException is never thrown in body of corresponding try statement
+Error in ProcessUtils_unescapeCommandLine_3_1_Test: line 58 : exception java.io.IOException is never thrown in body of corresponding try statement

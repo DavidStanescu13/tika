@@ -1,0 +1,122 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.CharsetUtils;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static java.util.Locale.ENGLISH;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CharsetUtils_isSupported_1_0_Test {
+
+    private CharsetUtils charsetUtils;
+
+    private Method getCharsetICU;
+
+    private Method isSupportedICU;
+
+    @BeforeEach
+    public void setUp() throws NoSuchMethodException {
+        charsetUtils = new CharsetUtils();
+        getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
+        isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
+        getCharsetICU.setAccessible(true);
+        isSupportedICU.setAccessible(true);
+    }
+
+    @Test
+    public void testIsSupportedWithUnexpectedException() throws Exception {
+        // Mock the isSupportedICU method to throw an unexpected exception
+        when(isSupportedICU.invoke(null, "UTF-8")).thenThrow(new RuntimeException("Unexpected exception"));
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("UTF-8");
+        // Verify the result
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupportAndUnsupportedCharset() throws Exception {
+        // Mock the isSupportedICU method to return false
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(false);
+        // Mock the Charset.isSupported method to return false
+        when(Charset.isSupported("UTF-8")).thenReturn(false);
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("UTF-8");
+        // Verify the result
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsSupportedWithSupportedCharset() throws Exception {
+        // Mock the isSupportedICU method to return true
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(true);
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("UTF-8");
+        // Verify the result
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalArgumentException() throws Exception {
+        // Mock the isSupportedICU method to throw an IllegalArgumentException
+        when(isSupportedICU.invoke(null, null)).thenThrow(new IllegalArgumentException("Null charset name"));
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported(null);
+        // Verify the result
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsSupportedWithIllegalCharsetNameException() throws Exception {
+        // Mock the isSupportedICU method to throw an IllegalCharsetNameException
+        when(isSupportedICU.invoke(null, "Invalid-Charset")).thenThrow(new IllegalCharsetNameException("Invalid-Charset"));
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("Invalid-Charset");
+        // Verify the result
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsSupportedWithUnsupportedCharset() throws Exception {
+        // Mock the isSupportedICU method to return false
+        when(isSupportedICU.invoke(null, "Unsupported-Charset")).thenReturn(false);
+        // Mock the Charset.isSupported method to return false
+        when(Charset.isSupported("Unsupported-Charset")).thenReturn(false);
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("Unsupported-Charset");
+        // Verify the result
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsSupportedWithNoICUSupport() throws Exception {
+        // Mock the isSupportedICU method to return null
+        when(isSupportedICU.invoke(null, "UTF-8")).thenReturn(null);
+        // Mock the Charset.isSupported method to return true
+        when(Charset.isSupported("UTF-8")).thenReturn(true);
+        // Call the isSupported method
+        boolean result = charsetUtils.isSupported("UTF-8");
+        // Verify the result
+        assertTrue(result);
+    }
+}
+
+--------------------------------------------
+Error in testIsSupportedWithUnexpectedException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithNoICUSupportAndUnsupportedCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithSupportedCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithIllegalArgumentException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithIllegalCharsetNameException(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithUnsupportedCharset(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()
+Error in testIsSupportedWithNoICUSupport(): line 32 : java.lang.NoSuchMethodException: org.apache.tika.utils.CharsetUtils.getCharsetICU()

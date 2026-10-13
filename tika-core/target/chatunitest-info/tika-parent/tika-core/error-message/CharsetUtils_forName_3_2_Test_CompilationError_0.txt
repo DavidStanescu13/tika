@@ -2,8 +2,8 @@ package org.apache.tika.utils;
 
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
-import java.nio.charset.IllegalCharsetNameException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import org.mockito.*;
 import org.junit.jupiter.api.*;
@@ -13,15 +13,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static java.util.Locale.ENGLISH;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CharsetUtils_forName_3_2_Test {
 
     private CharsetUtils charsetUtils;
-
-    private Map<String, Charset> commonCharsets;
 
     private Method getCharsetICU;
 
@@ -30,72 +28,84 @@ public class CharsetUtils_forName_3_2_Test {
     @BeforeEach
     public void setUp() throws Exception {
         charsetUtils = new CharsetUtils();
-        commonCharsets = new HashMap<>();
-        commonCharsets.put("utf-8", Charset.forName("UTF-8"));
-        commonCharsets.put("iso-8859-1", Charset.forName("ISO-8859-1"));
-        commonCharsets.put("cp1252", Charset.forName("CP1252"));
-        commonCharsets.put("windows-1252", Charset.forName("Windows-1252"));
         getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
-        getCharsetICU.setAccessible(true);
         isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
-        isSupportedICU.setAccessible(true);
-    }
-
-    @Test
-    public void testForNameWithNullName() {
-        assertThrows(IllegalArgumentException.class, () -> charsetUtils.forName(null));
-    }
-
-    @Test
-    public void testForNameWithInvalidName() {
-        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("invalid"));
-    }
-
-    @Test
-    public void testForNameWithValidName() {
-        assertEquals(Charset.forName("UTF-8"), charsetUtils.forName("utf-8"));
-        assertEquals(Charset.forName("ISO-8859-1"), charsetUtils.forName("iso-8859-1"));
-        assertEquals(Charset.forName("CP1252"), charsetUtils.forName("cp1252"));
-        assertEquals(Charset.forName("Windows-1252"), charsetUtils.forName("windows-1252"));
-    }
-
-    @Test
-    public void testForNameWithISO8859Pattern() {
-        assertEquals(Charset.forName("ISO-8859-1"), charsetUtils.forName("iso 8859-1"));
-        assertEquals(Charset.forName("ISO-8859-2"), charsetUtils.forName("iso 8859-2"));
-    }
-
-    @Test
-    public void testForNameWithCPNamePattern() {
-        assertEquals(Charset.forName("CP1252"), charsetUtils.forName("cp-1252"));
-        assertEquals(Charset.forName("CP1251"), charsetUtils.forName("cp-1251"));
-    }
-
-    @Test
-    public void testForNameWithWINNamePattern() {
-        assertEquals(Charset.forName("Windows-1252"), charsetUtils.forName("win1252"));
-        assertEquals(Charset.forName("Windows-1251"), charsetUtils.forName("win-1251"));
-    }
-
-    @Test
-    public void testForNameWithNone() {
-        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("none"));
-        assertThrows(IllegalCharsetNameException.class, () -> charsetUtils.forName("no"));
-    }
-
-    @Test
-    public void testForNameWithICU() throws Exception {
-        Method getCharsetICU = CharsetUtils.class.getDeclaredMethod("getCharsetICU");
         getCharsetICU.setAccessible(true);
-        Method isSupportedICU = CharsetUtils.class.getDeclaredMethod("isSupportedICU");
         isSupportedICU.setAccessible(true);
-        when(getCharsetICU.invoke(null, "utf-8")).thenReturn(Charset.forName("UTF-8"));
-        when(isSupportedICU.invoke(null)).thenReturn(true);
-        assertEquals(Charset.forName("UTF-8"), charsetUtils.forName("utf-8"));
+    }
+
+    @Test
+    public void testForName_withNullName() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            charsetUtils.forName(null);
+        });
+    }
+
+    @Test
+    public void testForName_withInvalidName() {
+        assertThrows(IllegalCharsetNameException.class, () -> {
+            charsetUtils.forName("invalid");
+        });
+    }
+
+    @Test
+    public void testForName_withValidName() {
+        Charset mockCharset = mock(Charset.class);
+        Map<String, Charset> mockCommonCharsets = new HashMap<>();
+        mockCommonCharsets.put("utf-8", mockCharset);
+        when(CharsetUtils.COMMON_CHARSETS.get("utf-8")).thenReturn(mockCharset);
+        Charset result = charsetUtils.forName("utf-8");
+        assertEquals(mockCharset, result);
+    }
+
+    @Test
+    public void testForName_withISOName() {
+        Charset mockCharset = mock(Charset.class);
+        Map<String, Charset> mockCommonCharsets = new HashMap<>();
+        mockCommonCharsets.put("iso-8859-1", mockCharset);
+        when(CharsetUtils.COMMON_CHARSETS.get("iso-8859-1")).thenReturn(mockCharset);
+        Charset result = charsetUtils.forName("iso 8859-1");
+        assertEquals(mockCharset, result);
+    }
+
+    @Test
+    public void testForName_withCPName() {
+        Charset mockCharset = mock(Charset.class);
+        Map<String, Charset> mockCommonCharsets = new HashMap<>();
+        mockCommonCharsets.put("cp1252", mockCharset);
+        when(CharsetUtils.COMMON_CHARSETS.get("cp1252")).thenReturn(mockCharset);
+        Charset result = charsetUtils.forName("cp-1252");
+        assertEquals(mockCharset, result);
+    }
+
+    @Test
+    public void testForName_withWinName() {
+        Charset mockCharset = mock(Charset.class);
+        Map<String, Charset> mockCommonCharsets = new HashMap<>();
+        mockCommonCharsets.put("windows-1252", mockCharset);
+        when(CharsetUtils.COMMON_CHARSETS.get("windows-1252")).thenReturn(mockCharset);
+        Charset result = charsetUtils.forName("win-1252");
+        assertEquals(mockCharset, result);
+    }
+
+    @Test
+    public void testForName_withICUCharset() throws Exception {
+        Charset mockCharset = mock(Charset.class);
+        when(getCharsetICU.invoke(null, "utf-8")).thenReturn(mockCharset);
+        Charset result = charsetUtils.forName("utf-8");
+        assertEquals(mockCharset, result);
+    }
+
+    @Test
+    public void testForName_withUnsupportedICUCharset() throws Exception {
+        when(getCharsetICU.invoke(null, "utf-8")).thenReturn(null);
+        Charset result = charsetUtils.forName("utf-8");
+        assertEquals(Charset.forName("utf-8"), result);
     }
 }
 
 --------------------------------------------
-Error in CharsetUtils_forName_3_2_Test: line 10 : package org.mockito does not exist
-Error in CharsetUtils_forName_3_2_Test: line 13 : package org.mockito.junit.jupiter does not exist
-Error in CharsetUtils_forName_3_2_Test: line 8 : package org.mockito does not exist
+Error in CharsetUtils_forName_3_2_Test: line 56 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_2_Test: line 66 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_2_Test: line 76 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
+Error in CharsetUtils_forName_3_2_Test: line 86 : COMMON_CHARSETS has private access in org.apache.tika.utils.CharsetUtils
