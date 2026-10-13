@@ -8,7 +8,7 @@
 - Dépôt de la tâche : https://github.com/DavidStanescu13/tika (fork de [umontreal-diro/tika](https://github.com/umontreal-diro/tika)), module **`tika-core`**
 - Ce README : https://github.com/DavidStanescu13/tika/blob/main/README.md
 - Workflow GitHub Actions : https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml
-- Rapports complets (JaCoCo HTML, PIT HTML/XML/CSV, Surefire) : branches [`tache2-reports`](https://github.com/DavidStanescu13/tika/tree/tache2-reports) (Linux) et [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows), régénérées à chaque exécution du workflow
+- Rapports complets (JaCoCo HTML, PIT HTML/XML/CSV, Surefire) : artefacts `tache2-reports` (Linux) et `tache2-reports-windows` (Windows) téléchargeables depuis chaque exécution du workflow (onglet *Artifacts*), régénérés à chaque exécution
 
 > Le README original de Tika a été déplacé dans [`README-tika.md`](README-tika.md).
 
@@ -613,7 +613,7 @@ Sous macOS et Linux, 47 est donc le maximum atteignable (47 sur les 56 mutants n
 
 | Catégorie | Lignes | Explication |
 |---|---|---|
-| Propres à Windows | 67 (×2), 68 (×2), 75 (×2), 76 (×2), 77 | `arg.contains(" ") && SystemUtils.IS_OS_WINDOWS && …` : sous Linux `IS_OS_WINDOWS` est faux, les sous-conditions suivantes ne sont jamais évaluées (`NO_COVERAGE`) et forcer les deux premières à faux ne change rien (équivalents **sur Linux**). **Tous les 9 sont tués sous Windows** par `testEscapeCommandLineOnWindows` (job `tache2-windows`, rapports sur la branche [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows)). |
+| Propres à Windows | 67 (×2), 68 (×2), 75 (×2), 76 (×2), 77 | `arg.contains(" ") && SystemUtils.IS_OS_WINDOWS && …` : sous Linux `IS_OS_WINDOWS` est faux, les sous-conditions suivantes ne sont jamais évaluées (`NO_COVERAGE`) et forcer les deux premières à faux ne change rien (équivalents **sur Linux**). **Tous les 9 sont tués sous Windows** par `testEscapeCommandLineOnWindows` (job `tache2-windows` du workflow). |
 | Branche `catch (Error err)` de `checkCommand` | 283 (×2), 284, 286 (×2) | n'est atteinte que si `Runtime.exec` lève une `Error` dont le message contient `posix_spawn` ou `UNIXProcess` (bug JDK historique TIKA-1526) ; impossible avec un vrai JDK, mais `mockStatic(Runtime)` permet de la lever (§8.2, tests 20-23). **Tués (sauf 286 « → false », équivalent) dans la suite fusionnée.** |
 | Mutants équivalents par construction | 273 (`return false` → `false`), 276 (`return true` → `true`), 279 (`return false` → `false`) | PIT remplace une valeur de retour par la même valeur : aucun test ne peut les distinguer. |
 | `if (p != null) p.destroyForcibly()` dans les blocs `finally` | 151, 217, 290 | quand on arrive au `finally` le processus est soit terminé soit déjà détruit ; supprimer ce second `destroyForcibly` n'a pas d'effet observable (équivalent). |
@@ -646,9 +646,9 @@ Le workflow [`tache2.yml`](.github/workflows/tache2.yml) se déclenche à chaque
 5. **PIT scénario B** (originaux + générés) → `pit-generated/`.
 6. **PIT scénario C₁** (originaux + manuels) → `pit-manual/`.
 7. **PIT scénario C₂** (originaux + générés + manuels) → `pit-new/`.
-8. Résumé Markdown dans l'onglet *Summary* de l'exécution, archivage en artefact, publication de tous les rapports sur la branche [`tache2-reports`](https://github.com/DavidStanescu13/tika/tree/tache2-reports).
+8. Résumé Markdown dans l'onglet *Summary* de l'exécution et archivage de tous les rapports dans l'artefact `tache2-reports` de l'exécution.
 
-**`tache2-windows` (windows-latest, JDK 17)** : mêmes nouveaux tests, puis PIT A, B, C₁ et C₂, rapports sur la branche [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows). Ce job existe parce que `ProcessUtils` a des branches propres à Windows.
+**`tache2-windows` (windows-latest, JDK 17)** : mêmes nouveaux tests, puis PIT A, B, C₁ et C₂, rapports dans l'artefact `tache2-reports-windows` de l'exécution. Ce job existe parce que `ProcessUtils` a des branches propres à Windows.
 
 Historique des exécutions (les deux jobs verts sur la dernière) : https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml.
 
