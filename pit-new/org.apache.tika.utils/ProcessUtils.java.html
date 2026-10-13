@@ -1,0 +1,4922 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>ProcessUtils.java</h1>
+
+<table class="src">
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Licensed to the Apache Software Foundation (ASF) under one or more</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * contributor license agreements.  See the NOTICE file distributed with</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * this work for additional information regarding copyright ownership.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The ASF licenses this file to You under the Apache License, Version 2.0</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * (the &#34;License&#34;); you may not use this file except in compliance with</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * the License.  You may obtain a copy of the License at</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *     http://www.apache.org/licenses/LICENSE-2.0</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Unless required by applicable law or agreed to in writing, software</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * distributed under the License is distributed on an &#34;AS IS&#34; BASIS,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * See the License for the specific language governing permissions and</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * limitations under the License.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.apache.tika.utils;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.nio.file.Files;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.nio.file.Path;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.UUID;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.concurrent.ConcurrentHashMap;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.concurrent.TimeUnit;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.concurrent.TimeoutException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.slf4j.Logger;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.slf4j.LoggerFactory;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class ProcessUtils {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final Logger LOG = LoggerFactory.getLogger(ProcessUtils.class);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final ConcurrentHashMap&#60;String, Process&#62; PROCESS_MAP = new ConcurrentHashMap&#60;&#62;();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Runtime.getRuntime().addShutdownHook(new Thread(() -&#62; {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            PROCESS_MAP.forEachValue(1, Process::destroyForcibly);</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        }));</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static String register(Process p) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String id = UUID.randomUUID().toString();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        PROCESS_MAP.put(id, p);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_46'>1</a>
+<span>
+1. register : replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::register &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return id;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static Process release(String id) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_50'/>
+50
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_50'>1</a>
+<span>
+1. release : replaced return value with null for org/apache/tika/utils/ProcessUtils::release &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return PROCESS_MAP.remove(id);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * This should correctly put double-quotes around an argument if</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * ProcessBuilder doesn&#39;t seem to work (as it doesn&#39;t</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * on paths with spaces on Windows)</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param arg</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String escapeCommandLine(String arg) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_62'>1</a>
+<span>
+1. escapeCommandLine : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (arg == null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_63'/>
+63
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_63'>1</a>
+<span>
+1. escapeCommandLine : replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::escapeCommandLine &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return arg;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        //need to test for &#34; &#34; on windows, can&#39;t just add double quotes</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        //across platforms.</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_67'/>
+67
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_67'>2</a>
+<span>
+1. escapeCommandLine : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. escapeCommandLine : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (arg.contains(&#34; &#34;) &#38;&#38; SystemUtils.IS_OS_WINDOWS &#38;&#38;</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_68'/>
+68
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_68'>2</a>
+<span>
+1. escapeCommandLine : removed conditional - replaced equality check with false &rarr; NO_COVERAGE<br/>
+2. escapeCommandLine : removed conditional - replaced equality check with false &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                (!arg.startsWith(&#34;\&#34;&#34;) &#38;&#38; !arg.endsWith(&#34;\&#34;&#34;))) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            arg = &#34;\&#34;&#34; + arg + &#34;\&#34;&#34;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_71'/>
+71
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_71'>1</a>
+<span>
+1. escapeCommandLine : replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::escapeCommandLine &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return arg;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String unescapeCommandLine(String arg) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_75'/>
+75
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_75'>2</a>
+<span>
+1. unescapeCommandLine : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. unescapeCommandLine : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (arg.contains(&#34; &#34;) &#38;&#38; SystemUtils.IS_OS_WINDOWS &#38;&#38;</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_76'/>
+76
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_76'>2</a>
+<span>
+1. unescapeCommandLine : removed conditional - replaced equality check with false &rarr; NO_COVERAGE<br/>
+2. unescapeCommandLine : removed conditional - replaced equality check with false &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                (arg.startsWith(&#34;\&#34;&#34;) &#38;&#38; arg.endsWith(&#34;\&#34;&#34;))) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_77'/>
+77
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_77'>1</a>
+<span>
+1. unescapeCommandLine : Replaced integer subtraction with addition &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            arg = arg.substring(1, arg.length() - 1);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_79'>1</a>
+<span>
+1. unescapeCommandLine : replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::unescapeCommandLine &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return arg;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * This writes stdout and stderr to the FileProcessResult.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param pb</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param timeoutMillis</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxStdoutBuffer</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxStdErrBuffer</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws IOException</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static FileProcessResult execute(ProcessBuilder pb,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                                            long timeoutMillis,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                                            int maxStdoutBuffer, int maxStdErrBuffer)</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            throws IOException {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Process p = null;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String id = null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            p = pb.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            id = register(p);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            long elapsed = -1;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            long start = System.currentTimeMillis();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            StreamGobbler outGobbler = new StreamGobbler(p.getInputStream(), maxStdoutBuffer);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Thread outThread = new Thread(outGobbler);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_107'/>
+107
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_107'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::start &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            outThread.start();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Thread errThread = new Thread(errGobbler);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_110'/>
+110
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_110'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::start &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            errThread.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            int exitValue = -1;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            boolean complete = false;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_115'/>
+115
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_115'>1</a>
+<span>
+1. execute : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                elapsed = System.currentTimeMillis() - start;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_116'/>
+116
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_116'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (complete) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    exitValue = p.exitValue();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_118'/>
+118
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_118'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    outThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_119'/>
+119
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_119'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    errThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                } else {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    p.destroyForcibly();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_122'/>
+122
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_122'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    outThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_123'/>
+123
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_123'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    errThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    boolean completed = p.waitFor(500, TimeUnit.MILLISECONDS);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_125'/>
+125
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_125'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    if (completed) {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                            exitValue = p.exitValue();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                        } catch (IllegalThreadStateException e) {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                            //not finished!</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            } catch (InterruptedException e) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                exitValue = -1000;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } finally {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_136'/>
+136
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_136'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::interrupt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                outThread.interrupt();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_137'/>
+137
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_137'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::interrupt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                errThread.interrupt();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            FileProcessResult result = new FileProcessResult();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.processTimeMillis = elapsed;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_141'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderrLength = errGobbler.getStreamLength();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_142'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdoutLength = outGobbler.getStreamLength();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_143'/>
+143
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_143'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            result.isTimeout = ! complete;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.exitValue = exitValue;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_145'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdout = StringUtils.joinWith(&#34;\n&#34;, outGobbler.getLines());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderr = StringUtils.joinWith(&#34;\n&#34;, errGobbler.getLines());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdoutTruncated = outGobbler.getIsTruncated();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_148'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderrTruncated = errGobbler.getIsTruncated();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_149'/>
+149
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_149'>1</a>
+<span>
+1. execute : replaced return value with null for org/apache/tika/utils/ProcessUtils::execute &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return result;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        } finally {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_151'/>
+151
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_151'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (p != null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_152'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                p.destroyForcibly();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_154'/>
+154
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_154'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (id != null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_155'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                release(id);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_156'/>
+156
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_156'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_157'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_161'/>
+161
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_161'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * This redirects stdout to stdoutRedirect path.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_162'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_163'/>
+163
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_163'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param pb</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_164'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param timeoutMillis</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_165'/>
+165
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_165'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param stdoutRedirect</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_166'/>
+166
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_166'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxStdErrBuffer</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_167'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_168'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws IOException</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_169'/>
+169
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_169'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_170'/>
+170
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_170'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static FileProcessResult execute(ProcessBuilder pb,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_171'/>
+171
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_171'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                                            long timeoutMillis,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_172'/>
+172
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_172'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                                            Path stdoutRedirect, int maxStdErrBuffer) throws IOException {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_173'/>
+173
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_173'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_174'/>
+174
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_174'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!Files.isDirectory(stdoutRedirect.getParent())) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_175'/>
+175
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_175'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Files.createDirectories(stdoutRedirect.getParent());</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_176'/>
+176
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_176'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_177'/>
+177
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_177'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_178'/>
+178
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_178'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        pb.redirectOutput(stdoutRedirect.toFile());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_179'/>
+179
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_179'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Process p = null;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_180'/>
+180
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_180'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String id = null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_181'/>
+181
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_181'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_182'/>
+182
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_182'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            p = pb.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_183'/>
+183
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_183'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            id = register(p);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_184'/>
+184
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_184'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            long elapsed = -1;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_185'/>
+185
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_185'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            long start = System.currentTimeMillis();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_186'/>
+186
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_186'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            StreamGobbler errGobbler = new StreamGobbler(p.getErrorStream(), maxStdErrBuffer);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_187'/>
+187
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_187'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_188'/>
+188
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_188'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Thread errThread = new Thread(errGobbler);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_189'/>
+189
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_189'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::start &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            errThread.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_190'/>
+190
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_190'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            int exitValue = -1;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_191'/>
+191
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_191'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            boolean complete = false;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_192'/>
+192
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_192'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_193'/>
+193
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_193'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                complete = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_194'/>
+194
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_194'>1</a>
+<span>
+1. execute : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                elapsed = System.currentTimeMillis() - start;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_195'/>
+195
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_195'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (complete) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_196'/>
+196
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_196'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    exitValue = p.exitValue();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_197'/>
+197
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_197'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    errThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_198'/>
+198
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_198'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                } else {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_199'/>
+199
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_199'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    p.destroyForcibly();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_200'/>
+200
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_200'>1</a>
+<span>
+1. execute : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    errThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_201'/>
+201
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_201'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_202'/>
+202
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_202'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            } catch (InterruptedException e) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_203'/>
+203
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_203'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                exitValue = -1000;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_204'/>
+204
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_204'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_205'/>
+205
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_205'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            FileProcessResult result = new FileProcessResult();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_206'/>
+206
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_206'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.processTimeMillis = elapsed;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_207'/>
+207
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_207'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderrLength = errGobbler.getStreamLength();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_208'/>
+208
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_208'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdoutLength = Files.size(stdoutRedirect);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_209'/>
+209
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_209'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            result.isTimeout = !complete;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_210'/>
+210
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_210'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.exitValue = exitValue;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_211'/>
+211
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_211'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdout = &#34;&#34;;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_212'/>
+212
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_212'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderr = StringUtils.joinWith(&#34;\n&#34;, errGobbler.getLines());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_213'/>
+213
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_213'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stdoutTruncated = false;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_214'/>
+214
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_214'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            result.stderrTruncated = errGobbler.getIsTruncated();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_215'/>
+215
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_215'>1</a>
+<span>
+1. execute : replaced return value with null for org/apache/tika/utils/ProcessUtils::execute &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return result;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_216'/>
+216
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_216'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        } finally {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_217'/>
+217
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_217'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (p != null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_218'/>
+218
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_218'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                p.destroyForcibly();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_219'/>
+219
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_219'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_220'/>
+220
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_220'>1</a>
+<span>
+1. execute : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (id != null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_221'/>
+221
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_221'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                release(id);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_222'/>
+222
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_222'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_223'/>
+223
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_223'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_224'/>
+224
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_224'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_225'/>
+225
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_225'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_226'/>
+226
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_226'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_227'/>
+227
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_227'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_228'/>
+228
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_228'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Checks to see if the command can be run. Typically used with</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_229'/>
+229
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_229'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * something like &#34;myapp --version&#34; to check to see if &#34;myapp&#34;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_230'/>
+230
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_230'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * is installed and on the path.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_231'/>
+231
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_231'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_232'/>
+232
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_232'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param checkCmd   The check command to run</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_233'/>
+233
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_233'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param errorValue What is considered an error value? Default is 127 (command not found).</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_234'/>
+234
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_234'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return true if the command ran successfully (exit code not in errorValue list)</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_235'/>
+235
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_235'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_236'/>
+236
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_236'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean checkCommand(String checkCmd, int... errorValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_237'/>
+237
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_237'>2</a>
+<span>
+1. checkCommand : replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+2. checkCommand : replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return checkCommand(new String[]{checkCmd}, errorValue);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_238'/>
+238
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_238'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_239'/>
+239
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_239'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_240'/>
+240
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_240'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_241'/>
+241
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_241'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Checks to see if the command can be run. Typically used with</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_242'/>
+242
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_242'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * something like {@code new String[]{&#34;myapp&#34;, &#34;--version&#34;}} to check to see if &#34;myapp&#34;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_243'/>
+243
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_243'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * is installed and on the path.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_244'/>
+244
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_244'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_245'/>
+245
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_245'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param checkCmd   The check command to run</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_246'/>
+246
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_246'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param errorValue What is considered an error value? Default is 127 (command not found).</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_247'/>
+247
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_247'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return true if the command ran successfully (exit code not in errorValue list)</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_248'/>
+248
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_248'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_249'/>
+249
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_249'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean checkCommand(String[] checkCmd, int... errorValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_250'/>
+250
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_250'>1</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (errorValue.length == 0) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_251'/>
+251
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_251'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            errorValue = new int[]{127};</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_252'/>
+252
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_252'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_253'/>
+253
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_253'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_254'/>
+254
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_254'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Process process = null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_255'/>
+255
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_255'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_256'/>
+256
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_256'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            process = Runtime.getRuntime().exec(checkCmd);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_257'/>
+257
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_257'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            StreamGobbler outGobbler = new StreamGobbler(process.getInputStream(), 0);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_258'/>
+258
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_258'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            StreamGobbler errGobbler = new StreamGobbler(process.getErrorStream(), 0);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_259'/>
+259
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_259'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Thread outThread = new Thread(outGobbler);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_260'/>
+260
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_260'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Thread errThread = new Thread(errGobbler);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_261'/>
+261
+</td>
+<td class='uncertain'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_261'>1</a>
+<span>
+1. checkCommand : removed call to java/lang/Thread::start &rarr; TIMED_OUT<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='uncertain'>            outThread.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_262'/>
+262
+</td>
+<td class='uncertain'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_262'>1</a>
+<span>
+1. checkCommand : removed call to java/lang/Thread::start &rarr; TIMED_OUT<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='uncertain'>            errThread.start();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_263'/>
+263
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_263'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            boolean finished = process.waitFor(60000, TimeUnit.MILLISECONDS);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_264'/>
+264
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_264'>1</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (!finished) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_265'/>
+265
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_265'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                throw new TimeoutException();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_266'/>
+266
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_266'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_267'/>
+267
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_267'>1</a>
+<span>
+1. checkCommand : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            outThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_268'/>
+268
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_268'>1</a>
+<span>
+1. checkCommand : removed call to java/lang/Thread::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            errThread.join(1000);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_269'/>
+269
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_269'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            int result = process.exitValue();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_270'/>
+270
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_270'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            LOG.debug(&#34;exit value for {}: {}&#34;, checkCmd[0], result);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_271'/>
+271
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_271'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            for (int err : errorValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_272'/>
+272
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_272'>1</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (result == err) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_273'/>
+273
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_273'>2</a>
+<span>
+1. checkCommand : replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED<br/>
+2. checkCommand : replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                    return false;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_274'/>
+274
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_274'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_275'/>
+275
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_275'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_276'/>
+276
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_276'>2</a>
+<span>
+1. checkCommand : replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED<br/>
+2. checkCommand : replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            return true;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_277'/>
+277
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_277'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (IOException | InterruptedException | TimeoutException e) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_278'/>
+278
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_278'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            LOG.debug(&#34;exception trying to run &#34; + checkCmd[0], e);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_279'/>
+279
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_279'>2</a>
+<span>
+1. checkCommand : replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED<br/>
+2. checkCommand : replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            return false;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_280'/>
+280
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_280'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (SecurityException se) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_281'/>
+281
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_281'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw se;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_282'/>
+282
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_282'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (Error err) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_283'/>
+283
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_283'>2</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (err.getMessage() != null &#38;&#38; (err.getMessage().contains(&#34;posix_spawn&#34;) ||</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_284'/>
+284
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_284'>1</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    err.getMessage().contains(&#34;UNIXProcess&#34;))) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_285'/>
+285
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_285'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                LOG.debug(&#34;(TIKA-1526): exception trying to run: &#34; + checkCmd[0], err);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_286'/>
+286
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_286'>2</a>
+<span>
+1. checkCommand : replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED<br/>
+2. checkCommand : replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                return false;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_287'/>
+287
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_287'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_288'/>
+288
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_288'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw err;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_289'/>
+289
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_289'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        } finally {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_290'/>
+290
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_290'>1</a>
+<span>
+1. checkCommand : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (process != null) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_291'/>
+291
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_291'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                process.destroyForcibly();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_292'/>
+292
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_292'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_293'/>
+293
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_293'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_294'/>
+294
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_294'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_295'/>
+295
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_295'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5834298c_296'/>
+296
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_296'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>register<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDestroysProcessAndForgetsItWhenInterrupted()]</span></span> replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::register &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_50'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>release<br/><b>Killed by : </b>none</span></span> replaced return value with null for org/apache/tika/utils/ProcessUtils::release &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=release,-methodDesc=(Ljava/lang/String;)Ljava/lang/Process;],-indexes=[7],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=release,-methodDesc=(Ljava/lang/String;)Ljava/lang/Process;],-indexes=[7],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=release,-methodDesc=(Ljava/lang/String;)Ljava/lang/Process;],-indexes=[7],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeReportsInterruption()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectReportsInterruption(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDestroysProcessAndForgetsItWhenInterrupted()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeTruncatesStdoutAndStderrAtTheirOwnLimits()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeCapturesStdoutStderrAndExitValue()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeKeepsMinusOneWhenKilledProcessDoesNotStopInTime()]</li> <li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectTruncatesStderrOnly(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWithExistingDirectoryAndNonZeroExit(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDoesNotLeakProcessesInTheInternalMap()]</li> <li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDoesNotLeakProcessesInTheInternalMap(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDestroysProcessAndForgetsItWhenInterrupted(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeKeepsMinusOneWhenKilledProcessStillReportsRunning()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWritesStdoutToFileAndCreatesMissingDirectories(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:concurrentExecutionsAreRegisteredUnderDistinctIds()]</li> <li>org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderAfterKillingProcessOnTimeout(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderOfAFinishedProcess(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderOfAFinishedProcess()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderAfterKillingProcessOnTimeout()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderAfterKillingProcessOnTimeout()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderOfAFinishedProcess()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStdoutReaderThatIsStillBlocked()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStderrReaderThatIsStillBlocked()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectTimeoutLeavesExitValueUnset(java.nio.file.Path)]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeKeepsOutputProducedBeforeTimeout()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeKillsProcessThatExceedsTimeout()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NullInput()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_63'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()]</span></span> replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::escapeCommandLine &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_67'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[17],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[17],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[17],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=escapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]</li> <li>org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_68'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_71'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>escapeCommandLine<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]</span></span> replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::escapeCommandLine &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_75'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]</li> <li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=unescapeCommandLine,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]</li> <li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotes()]</li> <li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotesNonWindows()]</li> <li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_76'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_77'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>none</span></span> Replaced integer subtraction with addition &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unescapeCommandLine<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()]</span></span> replaced return value with &#34;&#34; for org/apache/tika/utils/ProcessUtils::unescapeCommandLine &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_107'>107</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_107'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeTruncatesStdoutAndStderrAtTheirOwnLimits()]</span></span> removed call to java/lang/Thread::start &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_110'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeTruncatesStdoutAndStderrAtTheirOwnLimits()]</span></span> removed call to java/lang/Thread::start &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_115'>115</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_115'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeCapturesStdoutStderrAndExitValue()]</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_116'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeCapturesStdoutStderrAndExitValue()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_118'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderOfAFinishedProcess()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_119'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderOfAFinishedProcess()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_122'>122</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_122'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderAfterKillingProcessOnTimeout()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_123'>123</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_123'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderAfterKillingProcessOnTimeout()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_125'>125</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_125'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderAfterKillingProcessOnTimeout()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_136'>136</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_136'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStdoutReaderThatIsStillBlocked()]</span></span> removed call to java/lang/Thread::interrupt &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_137'>137</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_137'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStderrReaderThatIsStillBlocked()]</span></span> removed call to java/lang/Thread::interrupt &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_143'>143</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_143'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeReportsInterruption()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_149'>149</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_149'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeReportsInterruption()]</span></span> replaced return value with null for org/apache/tika/utils/ProcessUtils::execute &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_151'>151</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_151'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDestroysProcessAndForgetsItWhenInterrupted()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_154'>154</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_154'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDestroysProcessAndForgetsItWhenInterrupted()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_174'>174</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_174'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWritesStdoutToFileAndCreatesMissingDirectories(java.nio.file.Path)]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_189'>189</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_189'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectTruncatesStderrOnly(java.nio.file.Path)]</span></span> removed call to java/lang/Thread::start &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_194'>194</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_194'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWritesStdoutToFileAndCreatesMissingDirectories(java.nio.file.Path)]</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_195'>195</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_195'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWithExistingDirectoryAndNonZeroExit(java.nio.file.Path)]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_197'>197</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_197'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderOfAFinishedProcess(java.nio.file.Path)]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_200'>200</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_200'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderAfterKillingProcessOnTimeout(java.nio.file.Path)]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_209'>209</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_209'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectReportsInterruption(java.nio.file.Path)]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_215'>215</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_215'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectReportsInterruption(java.nio.file.Path)]</span></span> replaced return value with null for org/apache/tika/utils/ProcessUtils::execute &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_217'>217</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_217'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDestroysProcessAndForgetsItWhenInterrupted(java.nio.file.Path)]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_220'>220</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_220'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDoesNotLeakProcessesInTheInternalMap(java.nio.file.Path)]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_237'>237</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_237'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsTrueWhenCommandSucceeds()]</span></span> replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsFalseWhenCommandCannotBeStarted()]</span></span> replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_250'>250</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_250'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_261'>261</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_261'/> 
+
+<p class='TIMED_OUT'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Thread::start &rarr; TIMED_OUT</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_262'>262</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_262'/> 
+
+<p class='TIMED_OUT'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Thread::start &rarr; TIMED_OUT</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_264'>264</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_264'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseAndKillsProcessWhenItNeverFinishes()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_267'>267</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_267'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStdoutReaderToFinish()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_268'>268</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_268'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStderrReaderToFinish()]</span></span> removed call to java/lang/Thread::join &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_272'>272</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_272'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_273'>273</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_273'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[149],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[149],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[149],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandUsesGivenErrorValuesInsteadOfTheDefault()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandUsesExitValueOfTheFinishedProcess()]</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()]</span></span> replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_276'>276</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_276'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsTrueWhenCommandSucceeds()]</span></span> replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[173],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[173],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[173],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsTrueWhenCommandSucceeds()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandDrainsLargeStderrSoTheProcessCanFinish()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandUsesGivenErrorValuesInsteadOfTheDefault()]</li> <li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandDrainsLargeStdoutSoTheProcessCanFinish()]</li> <li>org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStdoutReaderToFinish()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStderrReaderToFinish()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandUsesExitValueOfTheFinishedProcess()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_279'>279</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_279'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsFalseWhenCommandCannotBeStarted()]</span></span> replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[204],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[204],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[204],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsFalseWhenCommandCannotBeStarted()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseWhenInterrupted()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseAndKillsProcessWhenItNeverFinishes()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_283'>283</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_283'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnPosixSpawnError()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandRethrowsUnrelatedErrors()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_284'>284</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_284'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnUnixProcessError()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_286'>286</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_286'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnPosixSpawnError()]</span></span> replaced boolean return with true for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>none</span></span> replaced boolean return with false for org/apache/tika/utils/ProcessUtils::checkCommand &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[261],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[261],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.tika.utils.ProcessUtils,-method=checkCommand,-methodDesc=([Ljava/lang/String;[I)Z],-indexes=[261],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnPosixSpawnError()]</li> <li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnUnixProcessError()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5834298c_290'>290</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5834298c_290'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>checkCommand<br/><b>Killed by : </b>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseWhenInterrupted()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandOnlyTreats127AsErrorByDefault()] (3 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandUsesGivenErrorValuesInsteadOfTheDefault()] (7 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandUsesExitValueOfTheFinishedProcess()] (494 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectReportsInterruption(java.nio.file.Path)] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectTruncatesStderrOnly(java.nio.file.Path)] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWithExistingDirectoryAndNonZeroExit(java.nio.file.Path)] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDestroysProcessAndForgetsItWhenInterrupted(java.nio.file.Path)] (2 ms)</li><li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()] (2 ms)</li><li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectDoesNotLeakProcessesInTheInternalMap(java.nio.file.Path)] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectWritesStdoutToFileAndCreatesMissingDirectories(java.nio.file.Path)] (2 ms)</li><li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()] (5 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderAfterKillingProcessOnTimeout(java.nio.file.Path)] (302 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeRedirectWaitsForStderrReaderOfAFinishedProcess(java.nio.file.Path)] (302 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeRedirectTimeoutLeavesExitValueUnset(java.nio.file.Path)] (1302 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeReportsInterruption()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDestroysProcessAndForgetsItWhenInterrupted()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDoesNotLeakProcessesInTheInternalMap()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeTruncatesStdoutAndStderrAtTheirOwnLimits()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeCapturesStdoutStderrAndExitValue()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeKeepsMinusOneWhenKilledProcessDoesNotStopInTime()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeKeepsMinusOneWhenKilledProcessStillReportsRunning()] (2 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:concurrentExecutionsAreRegisteredUnderDistinctIds()] (12 ms)</li><li>org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()] (50 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderOfAFinishedProcess()] (501 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderAfterKillingProcessOnTimeout()] (501 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStdoutReaderAfterKillingProcessOnTimeout()] (501 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeWaitsForSlowStderrReaderOfAFinishedProcess()] (535 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStderrReaderThatIsStillBlocked()] (1001 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeInterruptsStdoutReaderThatIsStillBlocked()] (1001 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeKeepsOutputProducedBeforeTimeout()] (2301 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:executeKillsProcessThatExceedsTimeout()] (2303 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsTrueWhenCommandSucceeds()] (2 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandDrainsLargeStderrSoTheProcessCanFinish()] (6 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandDrainsLargeStdoutSoTheProcessCanFinish()] (13 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStdoutReaderToFinish()] (401 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandWaitsForStderrReaderToFinish()] (402 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NullInput()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NullInput()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NullInput()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test]/[method:testEscapeCommandLine_NullInput()] (21 ms)</li><li>org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()] (5 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()] (7 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnPosixSpawnError()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandRethrowsErrorsWithoutMessage()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsManualTest]/[method:checkCommandReturnsFalseWhenCommandCannotBeStarted()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandRethrowsSecurityException()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandRethrowsUnrelatedErrors()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseWhenInterrupted()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseOnUnixProcessError()] (2 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:checkCommandReturnsFalseAndKillsProcessWhenItNeverFinishes()] (2 ms)</li><li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtilsMockedManualTest.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtilsMockedManualTest]/[method:executeDoesNotRegisterOrLeakAProcessThatCannotStart()] (1 ms)</li><li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotes()] (0 ms)</li><li>org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotesNonWindows()] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.25.9 <a href='https://github.com/sponsors/hcoles'>support</a>
+
+</body>
+</html>

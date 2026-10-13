@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='28'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='35'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='27'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='26'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='13'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='12'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='15'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='14'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='17'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='16'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='release(Ljava/lang/String;)Ljava/lang/Process;' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='release(Ljava/lang/String;)Ljava/lang/Process;' number='1'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='5'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='4'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='7'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='6'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='9'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='8'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='11'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='10'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='53'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='52'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='45'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='1'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='44'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='2'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='47'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='3'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='46'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='4'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='49'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='48'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='51'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='50'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='37'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='36'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='38'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='41'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='40'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='43'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='42'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='17'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='18'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='1'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='19'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='2'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='20'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='3'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='13'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='4'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;clinit&gt;()V' number='5'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='16'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='9'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='10'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='11'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='12'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='5'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='6'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='7'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='8'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='29'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='30'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='31'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='32'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='28'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='21'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='22'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='checkCommand([Ljava/lang/String;[I)Z' number='23'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='1'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='3'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JII)Lorg/apache/tika/utils/FileProcessResult;' number='2'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='3'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='register(Ljava/lang/Process;)Ljava/lang/String;' number='3'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='register(Ljava/lang/Process;)Ljava/lang/String;' number='2'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='register(Ljava/lang/Process;)Ljava/lang/String;' number='1'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='register(Ljava/lang/Process;)Ljava/lang/String;' number='0'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='2'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='10'><tests>
+<test name='org.apache.tika.detect.FileCommandDetectorTest.[engine:junit-jupiter]/[class:org.apache.tika.detect.FileCommandDetectorTest]/[method:testBasic()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NoSpaces()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='4'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_WithSpaces_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_NoWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_WithSpaces_Quotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='escapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='1'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_1_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_2_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;init&gt;()V' number='1'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='&lt;init&gt;()V' number='0'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_3_Test]/[method:testEscapeCommandLine_WithSpaces_NotWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NoSpaces_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_NullInput()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithQuotes_Windows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_4_Test]/[method:testEscapeCommandLine_WithSpaces_NonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='44'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='47'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='8'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='41'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='6'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='7'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='0'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='1'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='2'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_IOException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='40'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='12'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='13'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='14'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='15'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='9'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='10'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='11'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='28'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='29'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='31'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='24'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='25'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='26'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='27'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='36'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='37'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='38'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='39'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='32'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='33'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='34'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='35'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_InterruptedException()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='20'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='23'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='16'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='17'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='18'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='19'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='30'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Success()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='21'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='execute(Ljava/lang/ProcessBuilder;JLjava/nio/file/Path;I)Lorg/apache/tika/utils/FileProcessResult;' number='22'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_execute_5_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_execute_5_4_Test]/[method:testExecute_Timeout()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='unescapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='10'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotes()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='unescapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='1'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotes()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='unescapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='0'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotes()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_NoQuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_1_Test]/[method:testUnescapeCommandLine_QuotesNonWindows()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]'/>
+</tests>
+</block>
+<block classname='org.apache.tika.utils.ProcessUtils' method='unescapeCommandLine(Ljava/lang/String;)Ljava/lang/String;' number='2'><tests>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_2_Test]/[method:testUnescapeCommandLine()]'/>
+<test name='org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test.[engine:junit-jupiter]/[class:org.apache.tika.utils.ProcessUtils_unescapeCommandLine_3_4_Test]/[method:testUnescapeCommandLine()]'/>
+</tests>
+</block>
+</coverage>

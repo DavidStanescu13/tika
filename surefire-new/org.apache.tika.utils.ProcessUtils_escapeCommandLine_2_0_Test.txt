@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.010 s -- in org.apache.tika.utils.ProcessUtils_escapeCommandLine_2_0_Test
