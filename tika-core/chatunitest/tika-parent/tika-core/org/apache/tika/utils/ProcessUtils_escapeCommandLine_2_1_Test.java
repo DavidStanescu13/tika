@@ -19,68 +19,51 @@ import org.slf4j.LoggerFactory;
 @ExtendWith(MockitoExtension.class)
 public class ProcessUtils_escapeCommandLine_2_1_Test {
 
-    @InjectMocks
-    private ProcessUtils processUtils;
-
     @Test
     public void testEscapeCommandLine_NullInput() {
-        String result = processUtils.escapeCommandLine(null);
+        String result = ProcessUtils.escapeCommandLine(null);
         assertEquals(null, result);
     }
 
     @Test
-    public void testEscapeCommandLine_NoSpaces_Windows() {
-        String result = processUtils.escapeCommandLine("test");
-        assertEquals("test", result);
+    public void testEscapeCommandLine_NoSpaces() {
+        String input = "test";
+        String result = ProcessUtils.escapeCommandLine(input);
+        assertEquals(input, result);
     }
 
     @Test
     public void testEscapeCommandLine_WithSpaces_Windows() {
-        String result = processUtils.escapeCommandLine("test arg");
+        String input = "test arg";
+        String result = ProcessUtils.escapeCommandLine(input);
         assertEquals("\"test arg\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithQuotes_Windows() {
-        String result = processUtils.escapeCommandLine("\"test arg\"");
+    public void testEscapeCommandLine_WithSpaces_NoQuotes_Windows() {
+        String input = "test arg";
+        String result = ProcessUtils.escapeCommandLine(input);
         assertEquals("\"test arg\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithQuotesAndSpaces_Windows() {
-        String result = processUtils.escapeCommandLine("\"test arg\" with spaces");
-        assertEquals("\"\"test arg\" with spaces\"", result);
-    }
-
-    @Test
-    public void testEscapeCommandLine_NoSpaces_NotWindows() {
-        System.setProperty("os.name", "Linux");
-        String result = processUtils.escapeCommandLine("test");
-        assertEquals("test", result);
-        System.clearProperty("os.name");
-    }
-
-    @Test
-    public void testEscapeCommandLine_WithSpaces_NotWindows() {
-        System.setProperty("os.name", "Linux");
-        String result = processUtils.escapeCommandLine("test arg");
-        assertEquals("test arg", result);
-        System.clearProperty("os.name");
-    }
-
-    @Test
-    public void testEscapeCommandLine_WithQuotes_NotWindows() {
-        System.setProperty("os.name", "Linux");
-        String result = processUtils.escapeCommandLine("\"test arg\"");
+    public void testEscapeCommandLine_WithSpaces_Quotes_Windows() {
+        String input = "\"test arg\"";
+        String result = ProcessUtils.escapeCommandLine(input);
         assertEquals("\"test arg\"", result);
-        System.clearProperty("os.name");
     }
 
     @Test
-    public void testEscapeCommandLine_WithQuotesAndSpaces_NotWindows() {
-        System.setProperty("os.name", "Linux");
-        String result = processUtils.escapeCommandLine("\"test arg\" with spaces");
-        assertEquals("\"test arg\" with spaces", result);
-        System.clearProperty("os.name");
+    public void testEscapeCommandLine_WithSpaces_NoQuotes_NoWindows() {
+        String input = "test arg";
+        String result = ProcessUtils.escapeCommandLine(input);
+        assertEquals(input, result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_Quotes_NoWindows() {
+        String input = "\"test arg\"";
+        String result = ProcessUtils.escapeCommandLine(input);
+        assertEquals(input, result);
     }
 }

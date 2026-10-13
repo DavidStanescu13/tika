@@ -24,7 +24,7 @@ env:
   MAVEN_ARGS: -B -ntp -Drat.skip=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
   NEW_TESTS: org.apache.tika.utils.ProcessUtils*Test,org.apache.tika.utils.CharsetUtils*Test
   GENERATED_TESTS: org.apache.tika.utils.ProcessUtils_*Test,org.apache.tika.utils.CharsetUtils_*Test
-  MANUAL_TESTS: org.apache.tika.utils.ProcessUtilsManualTest,org.apache.tika.utils.CharsetUtilsManualTest
+  MANUAL_TESTS: org.apache.tika.utils.ProcessUtils*ManualTest,org.apache.tika.utils.CharsetUtilsManualTest
   ORIGINAL_TESTS: org.apache.tika.detect.FileCommandDetectorTest,org.apache.tika.utils.CharsetUtilsTest
 
 jobs:
@@ -199,6 +199,14 @@ jobs:
             -DreportsDirectory=target/pit-original
           mkdir -p reports/pit-original
           cp -r tika-core/target/pit-original/* reports/pit-original/
+
+      - name: PIT - tests originaux + manuels (Windows)
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
+            -DtargetTests="$ORIGINAL_TESTS,$MANUAL_TESTS" \
+            -DreportsDirectory=target/pit-manual
+          mkdir -p reports/pit-manual
+          cp -r tika-core/target/pit-manual/* reports/pit-manual/
 
       - name: PIT - tests originaux + generes (Windows)
         run: |

@@ -1,6 +1,5 @@
 package org.apache.tika.utils;
 
-import org.apache.tika.utils.ProcessUtils;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.*;
@@ -28,36 +27,38 @@ public class ProcessUtils_escapeCommandLine_2_0_Test {
 
     @Test
     public void testEscapeCommandLine_NoSpaces() {
-        String input = "example";
+        String input = "test";
         String result = ProcessUtils.escapeCommandLine(input);
         assertEquals(input, result);
     }
 
     @Test
     public void testEscapeCommandLine_WithSpaces_Windows() {
-        String input = "example with spaces";
+        String input = "test command";
         String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
+        assertEquals("\"test command\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_Windows_Quoted() {
-        String input = "\"example with spaces\"";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
-    }
-
-    @Test
-    public void testEscapeCommandLine_WithSpaces_NonWindows() {
-        String input = "example with spaces";
+    public void testEscapeCommandLine_WithSpaces_NoWindows() {
+        String input = "test command";
+        System.setProperty("os.name", "Linux");
         String result = ProcessUtils.escapeCommandLine(input);
         assertEquals(input, result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_NonWindows_Quoted() {
-        String input = "\"example with spaces\"";
+    public void testEscapeCommandLine_WithQuotes_Windows() {
+        String input = "\"test command\"";
         String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
+        assertEquals("\"test command\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_NoWindows() {
+        String input = "\"test command\"";
+        System.setProperty("os.name", "Linux");
+        String result = ProcessUtils.escapeCommandLine(input);
+        assertEquals(input, result);
     }
 }

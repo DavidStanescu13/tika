@@ -1,0 +1,120 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.ProcessUtils;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_6_4_Test {
+
+    @Mock
+    private Process mockProcess;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        ConcurrentHashMap<String, Process> processMap = new ConcurrentHashMap<>();
+        Field field = ProcessUtils.class.getDeclaredField("PROCESS_MAP");
+        field.setAccessible(true);
+        field.set(null, processMap);
+    }
+
+    @Test
+    public void testCheckCommandWithError() throws Exception {
+        when(mockProcess.waitFor()).thenReturn(1);
+        when(mockProcess.exitValue()).thenReturn(1);
+        when(mockProcess.getInputStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        when(mockProcess.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        boolean result = ProcessUtils.checkCommand("checkCmd", 1);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommandWithNoErrorValue() throws Exception {
+        when(mockProcess.waitFor()).thenReturn(0);
+        when(mockProcess.exitValue()).thenReturn(0);
+        when(mockProcess.getInputStream()).thenReturn(new ByteArrayInputStream("output".getBytes()));
+        when(mockProcess.getErrorStream()).thenReturn(new ByteArrayInputStream("".getBytes()));
+        boolean result = ProcessUtils.checkCommand("checkCmd");
+        assertTrue(result);
+    }
+
+    @Test
+    public void testCheckCommandWithTimeoutException() throws Exception {
+        when(mockProcess.waitFor()).thenThrow(new TimeoutException());
+        boolean result = ProcessUtils.checkCommand("checkCmd", 0);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommandWithIOException() throws Exception {
+        when(mockProcess.waitFor()).thenThrow(new IOException());
+        boolean result = ProcessUtils.checkCommand("checkCmd", 0);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommandWithSecurityException() throws Exception {
+        when(mockProcess.waitFor()).thenThrow(new SecurityException());
+        boolean result = ProcessUtils.checkCommand("checkCmd", 0);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommandWithErrorValue() throws Exception {
+        when(mockProcess.waitFor()).thenReturn(1);
+        when(mockProcess.exitValue()).thenReturn(1);
+        when(mockProcess.getInputStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        when(mockProcess.getErrorStream()).thenReturn(new ByteArrayInputStream("error".getBytes()));
+        boolean result = ProcessUtils.checkCommand("checkCmd", 1);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckCommandWithInterruptedException() throws Exception {
+        when(mockProcess.waitFor()).thenThrow(new InterruptedException());
+        boolean result = ProcessUtils.checkCommand("checkCmd", 0);
+        assertFalse(result);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_checkCommand_6_4_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_checkCommand_6_4_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_checkCommand_6_4_Test: line 39 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test
+Error in ProcessUtils_checkCommand_6_4_Test: line 40 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test
+Error in ProcessUtils_checkCommand_6_4_Test: line 49 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test
+Error in ProcessUtils_checkCommand_6_4_Test: line 50 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test
+Error in ProcessUtils_checkCommand_6_4_Test: line 80 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test
+Error in ProcessUtils_checkCommand_6_4_Test: line 81 : cannot find symbol
+  symbol:   class ByteArrayInputStream
+  location: class org.apache.tika.utils.ProcessUtils_checkCommand_6_4_Test

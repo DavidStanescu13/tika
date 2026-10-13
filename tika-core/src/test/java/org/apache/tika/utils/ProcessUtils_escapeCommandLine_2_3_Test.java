@@ -1,71 +1,100 @@
-// IFT3913 - tache 2 : fichier genere par ChatUniTest (qwen2.5-coder:7b via Ollama), conserve tel quel.
-// Seules modifications : 2 test(s) marque(s) @Disabled ou conditionne(s) a la plateforme
-// apres execution dans GitHub Actions (Linux + Windows). Voir README, section 4.
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.tika.utils;
 
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import org.apache.tika.utils.ProcessUtils;
-import org.mockito.*;
-import org.junit.jupiter.api.*;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
 public class ProcessUtils_escapeCommandLine_2_3_Test {
+
+    @Mock
+    private SystemUtils systemUtils;
 
     @Test
     public void testEscapeCommandLine_NullInput() {
-        String result = ProcessUtils.escapeCommandLine(null);
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine(null);
         assertNull(result);
     }
 
     @Test
-    public void testEscapeCommandLine_NoSpaces() {
-        String input = "example";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals(input, result);
+    public void testEscapeCommandLine_NoSpaces_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("test");
+        assertEquals("test", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_Windows() {
-
-        assumeTrue(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
-        String input = "example with spaces";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
+    @EnabledOnOs(OS.WINDOWS)
+    public void testEscapeCommandLine_WithSpaces_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("test arg");
+        assertEquals("\"test arg\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_Windows_Quoted() {
-        String input = "\"example with spaces\"";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
+    public void testEscapeCommandLine_WithQuotes_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("\"test arg\"");
+        assertEquals("\"test arg\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_NonWindows() {
-
-        assumeFalse(SystemUtils.IS_OS_WINDOWS); // IFT3913 : test conditionne a la plateforme apres echec en CI
-        String input = "example with spaces";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals(input, result);
+    public void testEscapeCommandLine_WithQuotes_NoSpaces_Windows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("\"test\"");
+        assertEquals("\"test\"", result);
     }
 
     @Test
-    public void testEscapeCommandLine_WithSpaces_NonWindows_Quoted() {
-        String input = "\"example with spaces\"";
-        String result = ProcessUtils.escapeCommandLine(input);
-        assertEquals("\"example with spaces\"", result);
+    public void testEscapeCommandLine_NoSpaces_NotWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("test");
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithSpaces_NotWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("test arg");
+        assertEquals("test arg", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_NotWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("\"test arg\"");
+        assertEquals("\"test arg\"", result);
+    }
+
+    @Test
+    public void testEscapeCommandLine_WithQuotes_NoSpaces_NotWindows() throws IOException {
+        ProcessUtils processUtils = new ProcessUtils();
+        String result = processUtils.escapeCommandLine("\"test\"");
+        assertEquals("\"test\"", result);
     }
 }

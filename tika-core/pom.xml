@@ -428,6 +428,23 @@
 
     <profile>
       <id>chatunitest</id>
+      <!-- Le plugin construit son classpath de compilation avec getCompileClasspathElements()
+           (portees compile/provided/system) : Mockito, en portee test, peut lui etre invisible et
+           chaque test genere qui l'importe echoue alors a la compilation (observe lors de la
+           campagne macOS). On le redeclare donc en portee provided, uniquement dans ce profil. -->
+      <dependencies>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-junit-jupiter</artifactId>
+          <version>${mockito-junit-jupiter.version}</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <properties>
         <!-- Point de terminaison OpenAI-compatible d'Ollama (local) -->
         <chatunitest.url>http://localhost:11434/v1/chat/completions</chatunitest.url>

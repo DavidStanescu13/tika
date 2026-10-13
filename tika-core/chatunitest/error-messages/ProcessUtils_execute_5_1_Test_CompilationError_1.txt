@@ -1,0 +1,115 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_5_1_Test {
+
+    @Mock
+    private ProcessBuilder processBuilder;
+
+    @Mock
+    private Process process;
+
+    @Mock
+    private StreamGobbler streamGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @BeforeEach
+    public void setUp() {
+        when(processBuilder.start()).thenReturn(process);
+        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
+        when(process.getInputStream()).thenReturn(mock(InputStream.class));
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+    }
+
+    @Test
+    public void testExecute() throws IOException {
+        Path stdoutRedirect = Paths.get("test.txt");
+        long timeoutMillis = 1000;
+        int maxStdErrBuffer = 1024;
+        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertNotNull(result);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("", result.stdout);
+        assertEquals("", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException {
+        Path stdoutRedirect = Paths.get("test.txt");
+        long timeoutMillis = 1;
+        int maxStdErrBuffer = 1024;
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(false);
+        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertNotNull(result);
+        assertTrue(result.isTimeout);
+        assertEquals(1, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertEquals(-1, result.exitValue);
+        assertEquals("", result.stdout);
+        assertEquals("", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException {
+        Path stdoutRedirect = Paths.get("test.txt");
+        long timeoutMillis = 1000;
+        int maxStdErrBuffer = 1024;
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(processBuilder, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertNotNull(result);
+        assertTrue(result.isTimeout);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(0, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertEquals(-1000, result.exitValue);
+        assertEquals("", result.stdout);
+        assertEquals("", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_5_1_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_execute_5_1_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_execute_5_1_Test: line 41 : unreported exception java.io.IOException; must be caught or declared to be thrown
+Error in ProcessUtils_execute_5_1_Test: line 44 : unreported exception java.lang.InterruptedException; must be caught or declared to be thrown

@@ -1,0 +1,139 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.TimeoutException;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_5_3_Test {
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    private Path stdoutRedirect;
+
+    private ProcessBuilder pb;
+
+    private long timeoutMillis;
+
+    private int maxStdErrBuffer;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        stdoutRedirect = Files.createTempFile("test", ".txt");
+        pb = new ProcessBuilder("echo", "test");
+        timeoutMillis = 1000;
+        maxStdErrBuffer = 1024;
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException, TimeoutException {
+        when(errGobbler.getStreamLength()).thenReturn(4L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(java.util.Arrays.asList("test"));
+        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(4, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("test", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException, TimeoutException {
+        when(errGobbler.getStreamLength()).thenReturn(4L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(java.util.Arrays.asList("test"));
+        Process mockProcess = mock(Process.class);
+        when(mockProcess.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        when(mockProcess.exitValue()).thenReturn(1);
+        when(mockProcess.getErrorStream()).thenReturn(new ByteArrayInputStream("test".getBytes()));
+        when(mockProcess.getInputStream()).thenReturn(new ByteArrayInputStream("test".getBytes()));
+        when(processUtils.register(mockProcess)).thenReturn("mockId");
+        when(processUtils.release("mockId")).thenReturn(mockProcess);
+        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(4, result.stdoutLength);
+        assertTrue(result.isTimeout);
+        assertEquals(-1, result.exitValue);
+        assertEquals("test", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException, TimeoutException {
+        when(errGobbler.getStreamLength()).thenReturn(4L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(java.util.Arrays.asList("test"));
+        Process mockProcess = mock(Process.class);
+        when(mockProcess.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        when(mockProcess.exitValue()).thenReturn(1);
+        when(mockProcess.getErrorStream()).thenReturn(new ByteArrayInputStream("test".getBytes()));
+        when(mockProcess.getInputStream()).thenReturn(new ByteArrayInputStream("test".getBytes()));
+        when(processUtils.register(mockProcess)).thenReturn("mockId");
+        when(processUtils.release("mockId")).thenReturn(mockProcess);
+        FileProcessResult result = processUtils.execute(pb, timeoutMillis, stdoutRedirect, maxStdErrBuffer);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(4, result.stderrLength);
+        assertEquals(4, result.stdoutLength);
+        assertTrue(result.isTimeout);
+        assertEquals(-1000, result.exitValue);
+        assertEquals("test", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecutePrivateMethods() throws Exception {
+        Process mockProcess = mock(Process.class);
+        String mockId = UUID.randomUUID().toString();
+        when(processUtils.register(mockProcess)).thenReturn(mockId);
+        when(processUtils.release(mockId)).thenReturn(mockProcess);
+        ReflectionTestUtils.invokeMethod(processUtils, "register", mockProcess);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_5_3_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_execute_5_3_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_execute_5_3_Test: line 76 : register(java.lang.Process) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 77 : release(java.lang.String) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 99 : register(java.lang.Process) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 100 : release(java.lang.String) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 116 : register(java.lang.Process) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 117 : release(java.lang.String) has private access in org.apache.tika.utils.ProcessUtils
+Error in ProcessUtils_execute_5_3_Test: line 118 : cannot find symbol
+  symbol:   variable ReflectionTestUtils
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_3_Test
