@@ -34,17 +34,20 @@ Tout le travail porte sur le module **`tika-core`** (un des modules autorisés).
 | Fichier | Rôle |
 |---|---|
 | [`tika-core/pom.xml`](tika-core/pom.xml) | ajout de deux profils Maven : `pitest` (plugin `pitest-maven` + `pitest-junit5-plugin`) et `chatunitest` (plugin `chatunitest-maven-plugin` configuré pour Ollama) |
-| [`tika-core/src/test/java/org/apache/tika/utils/ProcessUtilsChatUniTest.java`](tika-core/src/test/java/org/apache/tika/utils/) | tests **générés** par ChatUniTest pour `ProcessUtils` _(voir §4)_ |
-| [`tika-core/src/test/java/org/apache/tika/utils/CharsetUtilsChatUniTest.java`](tika-core/src/test/java/org/apache/tika/utils/) | tests **générés** par ChatUniTest pour `CharsetUtils` _(voir §4)_ |
+| [`tika-core/pom.xml`](tika-core/pom.xml) (suite) | ajout de Mockito en dépendance de test (exigé par les tests générés) ; exclusion des fichiers générés de `checkstyle`/`forbiddenapis` |
+| [`tika-core/src/test/java/org/apache/tika/utils/ProcessUtils_*_Test.java`](tika-core/src/test/java/org/apache/tika/utils/) (13 fichiers) | tests **générés** par ChatUniTest pour `ProcessUtils`, copiés tels quels (+ annotations `@Disabled` / `assume*`, voir §4.2) |
+| [`tika-core/src/test/java/org/apache/tika/utils/CharsetUtils_*_Test.java`](tika-core/src/test/java/org/apache/tika/utils/) (2 fichiers) | tests **générés** par ChatUniTest pour `CharsetUtils` |
+| [`tika-core/chatunitest/`](tika-core/chatunitest/tika-parent/tika-core/org/apache/tika/utils) | sortie brute de ChatUniTest (fichiers d'origine, non modifiés) |
+| [`tika-core/target/chatunitest-info/`](tika-core/target/chatunitest-info/tika-parent/tika-core) | traces de ChatUniTest : prompts, réponses du modèle, erreurs de compilation/exécution de chaque tentative (versionné volontairement) |
 | [`tika-core/src/test/java/org/apache/tika/utils/ProcessUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/utils/ProcessUtilsManualTest.java) | tests **écrits à la main** pour `ProcessUtils` (§7) |
 | [`tika-core/src/test/java/org/apache/tika/utils/CharsetUtilsManualTest.java`](tika-core/src/test/java/org/apache/tika/utils/CharsetUtilsManualTest.java) | tests **écrits à la main** pour `CharsetUtils` (§7) |
-| [`tache2/run-chatunitest.sh`](tache2/run-chatunitest.sh) | script qui lance ChatUniTest + Ollama et copie la suite fusionnée dans le dossier de test |
-| [`tache2/chatunitest-*.log`](tache2/) | journaux bruts de la génération |
-| [`.github/workflows/tache2.yml`](.github/workflows/tache2.yml) | workflow GitHub Actions : tests originaux + JaCoCo, nouveaux tests, PIT avant/après, publication des rapports |
+| [`tache2/run-chatunitest.sh`](tache2/run-chatunitest.sh) | script qui lance ChatUniTest + Ollama (choix du JDK, alias du modèle, Maven Wrapper) et copie les tests retenus dans le dossier de test |
+| [`tache2/chatunitest-*.log`](tache2/) | journaux Maven de la génération (seconde campagne) |
+| [`.github/workflows/tache2.yml`](.github/workflows/tache2.yml) | workflow GitHub Actions (Linux + Windows) : tests originaux + JaCoCo, nouveaux tests, PIT en quatre scénarios, publication des rapports |
 | [`.github/scripts/tache2_summary.py`](.github/scripts/tache2_summary.py) | produit le résumé Markdown affiché dans l'onglet *Summary* de chaque exécution |
 | `.github/workflows/main-*.yml`, `docker-snapshot.yml`, `split-packages.yml` | workflows amont de Tika passés en déclenchement manuel (`workflow_dispatch`) pour ne pas recompiler tout Tika à chaque push |
 
-Commandes locales (Java 17+, Maven 3.9+) :
+Commandes locales (Java 17+ ; Maven 3.9+ ou le wrapper `./mvnw` fourni) :
 
 ```bash
 # compiler tika-parent + tika-core
@@ -56,7 +59,8 @@ mvn -pl tika-core test -Drat.skip=true
 # PIT avec les tests originaux seulement (tika-core/target/pit-reports/index.html)
 mvn -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage -Drat.skip=true
 
-# PIT avec tests originaux + générés + manuels
+# PIT avec tests originaux + générés + manuels (C2) ; remplacer ProcessUtils*Test par ProcessUtils_*Test pour B,
+# ou par ProcessUtilsManualTest pour C1
 mvn -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage -Drat.skip=true \
   -DtargetTests='org.apache.tika.detect.FileCommandDetectorTest,org.apache.tika.utils.CharsetUtilsTest,org.apache.tika.utils.ProcessUtils*Test,org.apache.tika.utils.CharsetUtils*Test'
 
@@ -106,7 +110,8 @@ Méthodes/branches non couvertes qui motivent le choix :
   <id>chatunitest</id>
   <properties>
     <chatunitest.url>http://localhost:11434/v1/chat/completions</chatunitest.url>
-    <chatunitest.model>qwen2.5-coder:7b</chatunitest.model>
+    <!-- nom accepté par ChatUniTest ; alias Ollama de qwen2.5-coder:7b (voir §4.0) -->
+    <chatunitest.model>codeqwen:v1.5-chat</chatunitest.model>
   </properties>
   <build><plugins>
     <plugin>
@@ -130,7 +135,7 @@ Méthodes/branches non couvertes qui motivent le choix :
 </profile>
 ```
 
-Le modèle de langage est **ouvert et exécuté localement** avec [Ollama](https://ollama.com) (`ollama pull qwen2.5-coder:7b`), qui expose une API compatible OpenAI sur `localhost:11434` ; ChatUniTest est pointé dessus via `url`. Commande de génération pour une classe :
+Le modèle de langage est **ouvert et exécuté localement** avec [Ollama](https://ollama.com) (`ollama pull qwen2.5-coder:7b`, puis `ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat` pour le nom exigé par le plugin), qui expose une API compatible OpenAI sur `localhost:11434` ; ChatUniTest est pointé dessus via `url`. Matériel utilisé : PC Windows 11 du binôme, JDK 17 (Temurin) pour le plugin. Commande de génération pour une classe :
 
 ```bash
 mvn -f tika-core/pom.xml -Pchatunitest -Drat.skip=true \
@@ -138,7 +143,7 @@ mvn -f tika-core/pom.xml -Pchatunitest -Drat.skip=true \
     -DselectClass=org.apache.tika.utils.ProcessUtils
 ```
 
-Le script [`tache2/run-chatunitest.sh`](tache2/run-chatunitest.sh) enchaîne : vérification qu'Ollama répond, `mvn install` de `tika-core` (requis par le plugin pour résoudre les dépendances), génération pour `ProcessUtils` puis `CharsetUtils`, et copie de la suite fusionnée produite par le plugin (`tika-core/chatunitest/…`) vers `tika-core/src/test/java/org/apache/tika/utils/<Classe>ChatUniTest.java` afin qu'elle soit exécutée par Surefire et par PIT comme n'importe quel test du projet.
+Le script [`tache2/run-chatunitest.sh`](tache2/run-chatunitest.sh) enchaîne : choix d'un JDK 17/21 si le JDK par défaut est plus récent, vérification qu'Ollama répond avec le modèle, `mvn install` de `tika-core` (requis par le plugin pour résoudre les dépendances), génération pour `ProcessUtils` puis `CharsetUtils`, et copie des tests retenus par le plugin (`tika-core/chatunitest/…/<Classe>_<méthode>_<i>_<j>_Test.java`) vers `tika-core/src/test/java/org/apache/tika/utils/` afin qu'ils soient exécutés par Surefire et par PIT comme n'importe quel test du projet.
 
 ## 4. Tests générés : résultats et critique
 
@@ -205,8 +210,8 @@ Bilan : **0 test généré n'était utilisable sans intervention** à la premiè
 
 - Sur une fonction pure et bien documentée (`escapeCommandLine`), les cas sont pertinents et proches de ce qu'un humain écrirait : `null`, sans espace, avec espace, déjà entre guillemets, guillemet d'un seul côté. `ProcessUtils_escapeCommandLine_2_1_Test.testEscapeCommandLine_WithQuotesAndSpaces_Windows` teste même l'entrée `"test arg" with spaces` (guillemet au début mais pas à la fin), un cas que nous n'avions pas pensé à écrire – avec toutefois un oracle faux (il attend un second échappement que le code ne fait jamais).
 - Les oracles sont **spécifiques** (`assertEquals` sur la valeur exacte, `assertNull`) plutôt que de simples `assertNotNull` ; on ne trouve pas de test « ça ne plante pas ».
-- `CharsetUtils_clean_2_4_Test` couvre systématiquement le nettoyage HTTP (espaces, virgules, casse) et les mots réservés `none`/`no`, avec 11 oracles corrects sur 19.
-- La couverture visée est la couverture de branches : pour `checkCommand`, le modèle a bien identifié les quatre issues (succès, code d'erreur, `TimeoutException`, `IOException`, `SecurityException`, `Error`) – c'est la mise en œuvre qui échoue, pas l'intention.
+- `CharsetUtils_clean_2_4_Test` couvre systématiquement le nettoyage HTTP (espaces, virgules, casse) et les mots réservés `none`/`no`, avec 12 oracles corrects sur 19.
+- La couverture visée est la couverture de branches : pour `checkCommand`, le modèle a bien identifié toutes les issues (succès, code d'erreur, `TimeoutException`, `IOException`, `SecurityException`, `Error`) – c'est la mise en œuvre qui échoue, pas l'intention.
 
 **Ce qui ne va pas.**
 
@@ -359,16 +364,22 @@ Les tests manuels sont dans `ProcessUtilsManualTest` (18 tests) et `CharsetUtils
 
 ## 9. Exécution dans GitHub Actions
 
-Le workflow [`tache2.yml`](.github/workflows/tache2.yml) se déclenche à chaque push sur `main` (et manuellement). Étapes :
+Le workflow [`tache2.yml`](.github/workflows/tache2.yml) se déclenche à chaque push sur `main` (et manuellement). Deux jobs :
+
+**`tache2` (ubuntu-latest, JDK 17)**
 
 1. `mvn -pl tika-core -am install -DskipTests` – compilation de `tika-parent` et `tika-core`.
 2. **Tests originaux** : toute la suite de `tika-core` (nouveaux tests exclus) + rapport JaCoCo → `jacoco-original/`.
-3. **Nouveaux tests** : `ProcessUtils*Test`, `CharsetUtilsChatUniTest*`, `CharsetUtilsManualTest` – l'étape échoue si l'un d'eux échoue (critère « exécution ») → `surefire-new/`, `jacoco-new/`.
+3. **Nouveaux tests** : `ProcessUtils*Test`, `CharsetUtils_*Test`, `CharsetUtilsManualTest` (15 fichiers générés + 2 manuels, 116 tests dont 47 `@Disabled`/conditionnés) – l'étape échoue si l'un d'eux échoue (critère « exécution ») → `surefire-new/`, `jacoco-new/`.
 4. **PIT scénario A** (tests originaux) → `pit-original/`.
-5. **PIT scénario C** (originaux + générés + manuels) → `pit-new/`.
-6. Résumé Markdown dans l'onglet *Summary* de l'exécution, archivage en artefact, et publication de tous les rapports sur la branche `tache2-reports`.
+5. **PIT scénario B** (originaux + générés) → `pit-generated/`.
+6. **PIT scénario C₁** (originaux + manuels) → `pit-manual/`.
+7. **PIT scénario C₂** (originaux + générés + manuels) → `pit-new/`.
+8. Résumé Markdown dans l'onglet *Summary* de l'exécution, archivage en artefact, publication de tous les rapports sur la branche [`tache2-reports`](https://github.com/DavidStanescu13/tika/tree/tache2-reports).
 
-Dernière exécution réussie : voir https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml.
+**`tache2-windows` (windows-latest, JDK 17)** : mêmes nouveaux tests, puis PIT A, B et C₂, rapports sur la branche [`tache2-reports-windows`](https://github.com/DavidStanescu13/tika/tree/tache2-reports-windows). Ce job existe parce que `ProcessUtils` a des branches propres à Windows.
+
+Dernière exécution réussie (les deux jobs verts) : [#20](https://github.com/DavidStanescu13/tika/actions/runs/38395274095) ; historique : https://github.com/DavidStanescu13/tika/actions/workflows/tache2.yml.
 
 ## 10. Observations sur le code de Tika
 
