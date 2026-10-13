@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -78,6 +79,7 @@ public class ProcessUtils_escapeCommandLine_2_3_Test {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS) // IFT3913 : comportement non-Windows, ajoute apres echec du job Windows
     public void testEscapeCommandLine_WithSpaces_NotWindows() throws IOException {
         ProcessUtils processUtils = new ProcessUtils();
         String result = processUtils.escapeCommandLine("test arg");

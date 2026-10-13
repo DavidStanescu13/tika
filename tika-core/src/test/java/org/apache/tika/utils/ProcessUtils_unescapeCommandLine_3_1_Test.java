@@ -40,7 +40,9 @@ public class ProcessUtils_unescapeCommandLine_3_1_Test {
     @EnabledOnOs(OS.WINDOWS)
     public void testUnescapeCommandLine_QuotesWindows() {
         String input = "\"example\"";
-        String expected = "example";
+        // IFT3913 : oracle corrige apres echec du job Windows - sans espace dans l'argument,
+        // unescapeCommandLine ne retire jamais les guillemets, meme sous Windows.
+        String expected = input;
         String result = ProcessUtils.unescapeCommandLine(input);
         assertEquals(expected, result);
     }

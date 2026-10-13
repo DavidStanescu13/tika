@@ -19,6 +19,7 @@ package org.apache.tika.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -68,6 +69,7 @@ public class ProcessUtils_escapeCommandLine_2_4_Test {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS) // IFT3913 : comportement non-Windows, ajoute apres echec du job Windows
     public void testEscapeCommandLine_WithSpaces_NonWindows() {
         ProcessUtils processUtils = new ProcessUtils();
         String result = processUtils.escapeCommandLine("test arg");
