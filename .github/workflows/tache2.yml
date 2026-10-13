@@ -3,14 +3,15 @@
 #    1. tests originaux de tika-core + couverture JaCoCo (classes choisies)
 #    2. nouveaux tests (ChatUniTest + manuels) : doivent passer
 #    3. PIT (mutation) avec les tests originaux seulement
-#    4. PIT (mutation) avec tests originaux + generes + manuels
+#    4. PIT (mutation) avec tests originaux + generes (ChatUniTest)
+#    5. PIT (mutation) avec tests originaux + generes + manuels
 #  Les rapports sont publies sur la branche `tache2-reports` et resumes
 #  dans la page "Summary" de l'execution.
 name: IFT3913 Tache 2
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, 'tache2-**' ]
   workflow_dispatch:
 
 permissions:
@@ -22,8 +23,11 @@ concurrency:
 
 env:
   MAVEN_ARGS: -B -ntp -Drat.skip=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-  NEW_TESTS: org.apache.tika.utils.ProcessUtils*Test,org.apache.tika.utils.CharsetUtils*Test
-  ORIGINAL_TESTS: org.apache.tika.detect.FileCommandDetectorTest,org.apache.tika.utils.CharsetUtilsTest
+  # Tests de tika-core pris en compte par PIT : toute la suite originale + les nouveaux tests
+  PIT_TESTS: org.apache.tika.*
+  # Nouveaux tests = ChatUniTest (ProcessUtils_*_Test) + manuels (ProcessUtils*ManualTest)
+  NEW_TESTS_GLOB: org.apache.tika.utils.ProcessUtils*Test
+  MANUAL_TESTS_GLOB: org.apache.tika.utils.ProcessUtils*ManualTest
 
 jobs:
   tache2:
@@ -48,7 +52,7 @@ jobs:
       - name: Tests originaux de tika-core + couverture JaCoCo
         run: |
           mvn $MAVEN_ARGS -pl tika-core test \
-            -Dtest='!ProcessUtils*Test,!CharsetUtilsChatUniTest*,!CharsetUtilsManualTest' \
+            -Dtest='!ProcessUtils*Test' \
             -Dsurefire.failIfNoSpecifiedTests=false
           mkdir -p reports/jacoco-original
           cp -r tika-core/target/site/jacoco/* reports/jacoco-original/
@@ -60,7 +64,7 @@ jobs:
       - name: Nouveaux tests (ChatUniTest + manuels)
         run: |
           mvn $MAVEN_ARGS -pl tika-core test \
-            -Dtest='ProcessUtils*Test,CharsetUtilsChatUniTest*,CharsetUtilsManualTest' \
+            -Dtest='ProcessUtils*Test' \
             -Dsurefire.failIfNoSpecifiedTests=false
           mkdir -p reports/jacoco-new reports/surefire-new
           cp -r tika-core/target/site/jacoco/* reports/jacoco-new/ || true
@@ -72,18 +76,31 @@ jobs:
       - name: PIT - tests originaux
         run: |
           mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
-            -DtargetTests="$ORIGINAL_TESTS" \
+            -DtargetTests="$PIT_TESTS" \
+            -DexcludedTestClasses="$NEW_TESTS_GLOB" \
             -DreportsDirectory=target/pit-original
           mkdir -p reports/pit-original
           cp -r tika-core/target/pit-original/* reports/pit-original/
 
       # ------------------------------------------------------------------
-      # 4. PIT avec tests ORIGINAUX + GENERES + MANUELS
+      # 4. PIT avec tests ORIGINAUX + GENERES (ChatUniTest) seulement
+      # ------------------------------------------------------------------
+      - name: PIT - tests originaux + generes
+        run: |
+          mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
+            -DtargetTests="$PIT_TESTS" \
+            -DexcludedTestClasses="$MANUAL_TESTS_GLOB" \
+            -DreportsDirectory=target/pit-generated
+          mkdir -p reports/pit-generated
+          cp -r tika-core/target/pit-generated/* reports/pit-generated/
+
+      # ------------------------------------------------------------------
+      # 5. PIT avec tests ORIGINAUX + GENERES + MANUELS
       # ------------------------------------------------------------------
       - name: PIT - tests originaux + generes + manuels
         run: |
           mvn $MAVEN_ARGS -pl tika-core -Ppitest test-compile org.pitest:pitest-maven:mutationCoverage \
-            -DtargetTests="$ORIGINAL_TESTS,$NEW_TESTS" \
+            -DtargetTests="$PIT_TESTS" \
             -DreportsDirectory=target/pit-new
           mkdir -p reports/pit-new
           cp -r tika-core/target/pit-new/* reports/pit-new/
