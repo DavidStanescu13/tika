@@ -32,12 +32,21 @@ if [ ${#CLASSES[@]} -eq 0 ]; then
   CLASSES=(ProcessUtils CharsetUtils)
 fi
 
-echo ">> Verification d'Ollama ($URL) avec le modele $MODEL"
-if ! curl -sf -X POST "$URL" -H 'Content-Type: application/json' \
-     -d "{\"model\":\"$MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}],\"max_tokens\":1}" >/dev/null; then
-  echo "!! Ollama ne repond pas sur $URL ou le modele $MODEL n'est pas disponible (ollama pull $MODEL)"
+echo ">> Verification d'Ollama ($URL) avec le modele $MODEL (le premier appel charge le modele : jusqu'a 1-2 min)"
+CURL=curl
+command -v curl.exe >/dev/null 2>&1 && CURL=curl.exe   # sous Git Bash, preferer le curl de Windows
+set +e
+RESP=$("$CURL" -sS --max-time 300 -X POST "$URL" -H 'Content-Type: application/json' \
+     -d "{\"model\":\"$MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}],\"max_tokens\":1}" 2>&1)
+CURL_STATUS=$?
+set -e
+if [ $CURL_STATUS -ne 0 ] || ! echo "$RESP" | grep -q '"choices"'; then
+  echo "!! Ollama ne repond pas correctement sur $URL (code curl $CURL_STATUS). Reponse :"
+  echo "$RESP" | head -c 600; echo
+  echo "   -> Ollama est-il lance ? Le modele est-il telecharge ? (ollama list / ollama pull $MODEL)"
   exit 1
 fi
+echo ">> Ollama OK"
 
 echo ">> Installation locale de tika-parent et tika-core (sans tests) - ChatUniTest en a besoin"
 "$MVN" -B -ntp -q -f "$ROOT/pom.xml" -pl tika-core -am install -DskipTests -Drat.skip=true
