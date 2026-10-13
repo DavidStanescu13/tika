@@ -50,7 +50,7 @@ Classes testées : **`org.apache.tika.utils.ProcessUtils`** (choisie et traitée
 
 ## 1. Organisation du dépôt
 
-Tout le travail porte sur le module **`tika-core`** (un des modules autorisés). Fichiers ajoutés ou modifiés par rapport au dépôt amont :
+Tout le travail porte sur le module **`tika-core`**. Fichiers ajoutés ou modifiés par rapport au dépôt amont :
 
 | Fichier | Rôle |
 |---|---|
