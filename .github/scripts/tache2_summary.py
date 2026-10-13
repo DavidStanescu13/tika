@@ -102,6 +102,7 @@ def main():
     out += jacoco_table("Couverture JaCoCo - nouveaux tests seuls (ChatUniTest + manuels)", os.path.join(base, "jacoco-new", "jacoco.csv"))
     out += pit_table("PIT - tests originaux", os.path.join(base, "pit-original", "mutations.csv"))
     out += pit_table("PIT - tests originaux + generes (ChatUniTest)", os.path.join(base, "pit-generated", "mutations.csv"))
+    out += pit_table("PIT - tests originaux + manuels", os.path.join(base, "pit-manual", "mutations.csv"))
     out += pit_table("PIT - tests originaux + generes + manuels", os.path.join(base, "pit-new", "mutations.csv"))
     print("\n".join(out))
 
