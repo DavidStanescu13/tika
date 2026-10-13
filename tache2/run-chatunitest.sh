@@ -25,6 +25,31 @@ else
   MVN="$ROOT/mvnw"
   echo ">> mvn introuvable : utilisation du Maven Wrapper $MVN"
 fi
+# ChatUniTest 2.1.1 ne sait pas analyser les numeros de version Java recents ("Invalid Java version
+# format: 26") : il faut un JDK 17 ou 21. Si JAVA_HOME ne pointe pas dessus, on cherche un JDK 17/21
+# aux emplacements habituels (Adoptium/Temurin, Oracle, Microsoft) et on l'utilise pour ce script.
+JAVA_MAJOR=$("${JAVA_HOME:+$JAVA_HOME/bin/}java" -version 2>&1 | sed -n 's/.*version "\([0-9]*\).*/\1/p' | head -1)
+if [ -n "$JAVA_MAJOR" ] && [ "$JAVA_MAJOR" -gt 21 ]; then
+  echo ">> Java $JAVA_MAJOR detecte : ChatUniTest exige un JDK 17 ou 21, recherche..."
+  for d in "/c/Program Files/Eclipse Adoptium"/jdk-17* "/c/Program Files/Eclipse Adoptium"/jdk-21* \
+           "/c/Program Files/Java"/jdk-17* "/c/Program Files/Java"/jdk-21* \
+           "/c/Program Files/Microsoft"/jdk-17* "/c/Program Files/Microsoft"/jdk-21* \
+           /usr/lib/jvm/java-17* /usr/lib/jvm/java-21* /usr/lib/jvm/temurin-17* /usr/lib/jvm/temurin-21* \
+           /Library/Java/JavaVirtualMachines/temurin-17*/Contents/Home /Library/Java/JavaVirtualMachines/temurin-21*/Contents/Home; do
+    if [ -x "$d/bin/java" ]; then
+      export JAVA_HOME="$d"; export PATH="$d/bin:$PATH"
+      echo ">> JAVA_HOME=$JAVA_HOME"; break
+    fi
+  done
+  JAVA_MAJOR=$(java -version 2>&1 | sed -n 's/.*version "\([0-9]*\).*/\1/p' | head -1)
+  if [ "$JAVA_MAJOR" -gt 21 ]; then
+    echo "!! Aucun JDK 17/21 trouve. Installez-en un (ex. PowerShell : winget install EclipseAdoptium.Temurin.17.JDK)"
+    echo "   ou lancez : JAVA_HOME=/chemin/vers/jdk-17 bash tache2/run-chatunitest.sh"
+    exit 1
+  fi
+fi
+java -version 2>&1 | head -1
+
 MODEL="${MODEL:-qwen2.5-coder:7b}"
 URL="${URL:-http://localhost:11434/v1/chat/completions}"
 CLASSES=("$@")
