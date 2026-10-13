@@ -2,7 +2,7 @@
 # IFT3913 - Tache 2 : generation de tests avec ChatUniTest + Ollama (modele local)
 #
 # Prerequis :
-#   - Java 17+ et Maven 3.9+
+#   - Java 17+ (Maven est optionnel : le wrapper ./mvnw de Tika est utilise sinon)
 #   - Ollama installe et lance (https://ollama.com), avec un modele telecharge :
 #         ollama pull qwen2.5-coder:7b        (ou qwen2.5-coder:1.5b sur une machine modeste)
 #
@@ -17,6 +17,14 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+# Maven : on utilise `mvn` s'il est installe, sinon le Maven Wrapper fourni par Tika (./mvnw),
+# qui telecharge Maven tout seul (seul Java 17+ est requis).
+if command -v mvn >/dev/null 2>&1; then
+  MVN=mvn
+else
+  MVN="$ROOT/mvnw"
+  echo ">> mvn introuvable : utilisation du Maven Wrapper $MVN"
+fi
 MODEL="${MODEL:-qwen2.5-coder:7b}"
 URL="${URL:-http://localhost:11434/v1/chat/completions}"
 CLASSES=("$@")
@@ -32,11 +40,11 @@ if ! curl -sf -X POST "$URL" -H 'Content-Type: application/json' \
 fi
 
 echo ">> Installation locale de tika-parent et tika-core (sans tests) - ChatUniTest en a besoin"
-mvn -B -ntp -q -f "$ROOT/pom.xml" -pl tika-core -am install -DskipTests -Drat.skip=true
+"$MVN" -B -ntp -q -f "$ROOT/pom.xml" -pl tika-core -am install -DskipTests -Drat.skip=true
 
 for CLASS in "${CLASSES[@]}"; do
   echo ">> Generation des tests pour org.apache.tika.utils.$CLASS"
-  mvn -B -ntp -f "$ROOT/tika-core/pom.xml" -Pchatunitest -Drat.skip=true \
+  "$MVN" -B -ntp -f "$ROOT/tika-core/pom.xml" -Pchatunitest -Drat.skip=true \
       -Dchatunitest.model="$MODEL" -Dchatunitest.url="$URL" \
       io.github.zju-aces-ise:chatunitest-maven-plugin:2.1.1:class \
       -DselectClass="org.apache.tika.utils.$CLASS" \
@@ -56,6 +64,6 @@ for CLASS in "${CLASSES[@]}"; do
 done
 
 echo ">> Termine. Etapes suivantes :"
-echo "   1. mvn -B -f tika-core/pom.xml test -Dtest='*ChatUniTest' -Drat.skip=true   # verifier compilation/execution"
+echo "   1. $MVN -B -f tika-core/pom.xml test -Dtest='*ChatUniTest' -Drat.skip=true   # verifier compilation/execution"
 echo "   2. git add tika-core/src/test/java/org/apache/tika/utils/*ChatUniTest.java tika-core/chatunitest tache2/*.log"
 echo "   3. git commit && git push   # le workflow GitHub relance JaCoCo + PIT"
