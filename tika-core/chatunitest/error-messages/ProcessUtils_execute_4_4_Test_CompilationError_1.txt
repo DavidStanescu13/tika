@@ -1,0 +1,134 @@
+package org.apache.tika.utils;
+
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.nio.file.Files;
+import java.util.UUID;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_4_4_Test {
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @Mock
+    private ProcessBuilder processBuilder;
+
+    @Mock
+    private Process process;
+
+    @Mock
+    private StreamGobbler outGobbler;
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @Mock
+    private Thread outThread;
+
+    @Mock
+    private Thread errThread;
+
+    @BeforeEach
+    public void setUp() {
+        when(processBuilder.start()).thenReturn(process);
+        when(process.getInputStream()).thenReturn(mock(InputStream.class));
+        when(process.getErrorStream()).thenReturn(mock(InputStream.class));
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException {
+        when(outGobbler.getStreamLength()).thenReturn(100L);
+        when(errGobbler.getStreamLength()).thenReturn(50L);
+        when(outGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(outGobbler.getLines()).thenReturn(List.of("stdout line 1", "stdout line 2"));
+        when(errGobbler.getLines()).thenReturn(List.of("stderr line 1", "stderr line 2"));
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(50L, result.stderrLength);
+        assertEquals(100L, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("stdout line 1\nstdout line 2", result.stdout);
+        assertEquals("stderr line 1\nstderr line 2", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+        verify(process, times(1)).start();
+        verify(process, times(1)).waitFor(1000, TimeUnit.MILLISECONDS);
+        verify(process, times(1)).exitValue();
+        verify(outGobbler, times(1)).getStreamLength();
+        verify(errGobbler, times(1)).getStreamLength();
+        verify(outGobbler, times(1)).getIsTruncated();
+        verify(errGobbler, times(1)).getIsTruncated();
+        verify(outGobbler, times(1)).getLines();
+        verify(errGobbler, times(1)).getLines();
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException {
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertTrue(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        verify(process, times(1)).start();
+        verify(process, times(1)).waitFor(1000, TimeUnit.MILLISECONDS);
+        verify(process, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException {
+        when(process.waitFor(1000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException());
+        FileProcessResult result = processUtils.execute(processBuilder, 1000, 1000, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertTrue(result.isTimeout);
+        assertEquals(-1000, result.exitValue);
+        verify(process, times(1)).start();
+        verify(process, times(1)).waitFor(1000, TimeUnit.MILLISECONDS);
+        verify(process, times(1)).destroyForcibly();
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_4_4_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_execute_4_4_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_execute_4_4_Test: line 63 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
+Error in ProcessUtils_execute_4_4_Test: line 64 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_4_4_Test
+Error in ProcessUtils_execute_4_4_Test: line 75 : cannot find symbol
+  symbol:   method start()
+  location: class java.lang.Process
+Error in ProcessUtils_execute_4_4_Test: line 93 : cannot find symbol
+  symbol:   method start()
+  location: class java.lang.Process
+Error in ProcessUtils_execute_4_4_Test: line 105 : cannot find symbol
+  symbol:   method start()
+  location: class java.lang.Process

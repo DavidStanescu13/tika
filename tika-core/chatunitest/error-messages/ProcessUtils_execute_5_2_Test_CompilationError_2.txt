@@ -1,0 +1,116 @@
+package org.apache.tika.utils;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.apache.tika.utils.FileProcessResult;
+import org.apache.tika.utils.ProcessUtils;
+import org.apache.tika.utils.StreamGobbler;
+import org.apache.tika.utils.StringUtils;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_execute_5_2_Test {
+
+    @Mock
+    private ProcessBuilder processBuilder;
+
+    @Mock
+    private Process process;
+
+    @Mock
+    private StreamGobbler errGobbler;
+
+    @Mock
+    private Path stdoutRedirect;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        when(processBuilder.start()).thenReturn(process);
+        when(stdoutRedirect.getParent()).thenReturn(Paths.get("/tmp"));
+        when(stdoutRedirect.toFile()).thenReturn(stdoutRedirect.toFile());
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(true);
+        when(process.exitValue()).thenReturn(0);
+        when(process.getErrorStream()).thenReturn(mock(java.io.InputStream.class));
+        when(process.getInputStream()).thenReturn(mock(java.io.InputStream.class));
+        when(process.getOutputStream()).thenReturn(mock(java.io.InputStream.class));
+        when(errGobbler.getStreamLength()).thenReturn(100L);
+        when(errGobbler.getIsTruncated()).thenReturn(false);
+        when(errGobbler.getLines()).thenReturn(List.of("line1", "line2"));
+    }
+
+    @Test
+    public void testExecute() throws IOException, InterruptedException, TimeoutException {
+        FileProcessResult result = ProcessUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(100, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(0, result.exitValue);
+        assertEquals("line1\nline2", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithTimeout() throws IOException, InterruptedException, TimeoutException {
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenReturn(false);
+        FileProcessResult result = ProcessUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(100, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertTrue(result.isTimeout);
+        assertEquals(-1, result.exitValue);
+        assertEquals("", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+
+    @Test
+    public void testExecuteWithException() throws IOException, InterruptedException, TimeoutException {
+        when(process.waitFor(anyLong(), any(TimeUnit.class))).thenThrow(new InterruptedException());
+        FileProcessResult result = ProcessUtils.execute(processBuilder, 1000, stdoutRedirect, 1000);
+        assertEquals(1000, result.processTimeMillis);
+        assertEquals(100, result.stderrLength);
+        assertEquals(0, result.stdoutLength);
+        assertFalse(result.isTimeout);
+        assertEquals(-1000, result.exitValue);
+        assertEquals("", result.stderr);
+        assertFalse(result.stdoutTruncated);
+        assertFalse(result.stderrTruncated);
+    }
+}
+
+--------------------------------------------
+Error in ProcessUtils_execute_5_2_Test: line -1 : Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+Error in ProcessUtils_execute_5_2_Test: line -1 : Supported source version 'RELEASE_17' from annotation processor 'org.apache.tika.annotation.TikaComponentProcessor' less than -source '21'
+Error in ProcessUtils_execute_5_2_Test: line 48 : no suitable method found for thenReturn(java.io.InputStream)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.OutputStream) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.io.InputStream
+          upper bounds: java.io.OutputStream,java.lang.Object)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.io.OutputStream,java.io.OutputStream...) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.io.InputStream
+          upper bounds: java.io.OutputStream,java.lang.Object)
+Error in ProcessUtils_execute_5_2_Test: line 51 : cannot find symbol
+  symbol:   variable List
+  location: class org.apache.tika.utils.ProcessUtils_execute_5_2_Test

@@ -1,0 +1,115 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_6_3_Test {
+
+    @InjectMocks
+    private ProcessUtils processUtils;
+
+    @Mock
+    private Process mockProcess;
+
+    @Test
+    public void testCheckCommandWithNoErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+        boolean result = processUtils.checkCommand(checkCmd);
+        assertTrue(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+        verify(mockProcess, times(1)).exitValue();
+    }
+
+    @Test
+    public void testCheckCommandWithErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 1 };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(1);
+        boolean result = processUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+        verify(mockProcess, times(1)).exitValue();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        boolean result = processUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+    }
+
+    @Test
+    public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        doThrow(new IOException()).when(mockProcess).waitFor(60000, TimeUnit.MILLISECONDS);
+        boolean result = processUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+    }
+
+    @Test
+    public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        doThrow(new InterruptedException()).when(mockProcess).waitFor(60000, TimeUnit.MILLISECONDS);
+        boolean result = processUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+    }
+
+    @Test
+    public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        doThrow(new SecurityException()).when(mockProcess).waitFor(60000, TimeUnit.MILLISECONDS);
+        assertThrows(SecurityException.class, () -> processUtils.checkCommand(checkCmd));
+    }
+
+    @Test
+    public void testCheckCommandWithErrorInErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 0 };
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+        boolean result = processUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+        verify(mockProcess, times(1)).waitFor(60000, TimeUnit.MILLISECONDS);
+        verify(mockProcess, times(1)).exitValue();
+    }
+}
+
+--------------------------------------------
+Error in testCheckCommandWithNoErrorValue(): line 35 : Wanted but not invoked:
+mockProcess.waitFor(60000L, MILLISECONDS);
+-> at java.base/java.lang.Process.waitFor(Process.java:460)
+Actually, there were zero interactions with this mock.
+
+Error in testCheckCommandWithTimeoutException(): line 56 : org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+Error in testCheckCommandWithIOException(): line 63 : org.mockito.exceptions.base.MockitoException: 
+Checked exception is invalid for this method!
+Invalid: java.io.IOException
+Error in testCheckCommandWithSecurityException(): line 82 : org.opentest4j.AssertionFailedError: Expected java.lang.SecurityException to be thrown, but nothing was thrown.
+Error in testCheckCommandWithErrorInErrorValue(): line 93 : Wanted but not invoked:
+mockProcess.waitFor(60000L, MILLISECONDS);
+-> at java.base/java.lang.Process.waitFor(Process.java:460)
+Actually, there were zero interactions with this mock.
+
+Error in testCheckCommandWithErrorValue(): line 46 : org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+Error in testCheckCommandWithInterruptedException(): line 74 : org.opentest4j.AssertionFailedError: expected: <false> but was: <true>

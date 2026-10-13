@@ -1,0 +1,177 @@
+package org.apache.tika.utils;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(MockitoExtension.class)
+public class ProcessUtils_checkCommand_6_1_Test {
+
+    @Mock
+    private Process mockProcess;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testCheckCommandWithNoErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(0);
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertTrue(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithErrorValue() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        int[] errorValue = { 127 };
+        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(127);
+        boolean result = ProcessUtils.checkCommand(checkCmd, errorValue);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithTimeoutException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(false);
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithIOException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenThrow(new IOException("Test IOException"));
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(0)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithInterruptedException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenThrow(new InterruptedException("Test InterruptedException"));
+        boolean result = ProcessUtils.checkCommand(checkCmd);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+
+    @Test
+    public void testCheckCommandWithSecurityException() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenThrow(new SecurityException("Test SecurityException"));
+        assertThrows(SecurityException.class, () -> ProcessUtils.checkCommand(checkCmd));
+    }
+
+    @Test
+    public void testCheckCommandWithError() throws IOException, InterruptedException, TimeoutException {
+        String[] checkCmd = { "ls", "-l" };
+        when(Runtime.getRuntime().exec(checkCmd)).thenReturn(mockProcess);
+        when(mockProcess.waitFor(60000, TimeUnit.MILLISECONDS)).thenReturn(true);
+        when(mockProcess.exitValue()).thenReturn(1);
+        boolean result = ProcessUtils.checkCommand(checkCmd, 1);
+        assertFalse(result);
+        verify(mockProcess, times(1)).destroyForcibly();
+    }
+}
+
+--------------------------------------------
+Error in testCheckCommandWithError(): line 92 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithNoErrorValue(): line 33 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithTimeoutException(): line 56 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithIOException(): line 66 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithSecurityException(): line 85 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithErrorValue(): line 45 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+Error in testCheckCommandWithInterruptedException(): line 75 : org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/native/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
