@@ -119,6 +119,18 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- IFT3913 tache 2 : les tests generes par ChatUniTest utilisent Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito-junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -356,9 +368,10 @@
         <!-- Les parametres ci-dessous sont lus par pitest-maven via leurs proprietes
              et peuvent etre surcharges en ligne de commande (-DtargetTests=..., etc.) -->
         <!-- Classes analysees -->
-        <targetClasses>org.apache.tika.utils.ProcessUtils,org.apache.tika.utils.CharsetUtils</targetClasses>
-        <!-- Tests ORIGINAUX utilises pour tuer les mutants (scenario de reference) -->
-        <targetTests>org.apache.tika.detect.FileCommandDetectorTest,org.apache.tika.utils.CharsetUtilsTest</targetTests>
+        <targetClasses>org.apache.tika.utils.ProcessUtils</targetClasses>
+        <!-- Toute la suite de tika-core. Pour le scenario de reference (tests originaux seulement),
+             exclure les nouveaux tests : -DexcludedTestClasses=org.apache.tika.utils.ProcessUtils*Test -->
+        <targetTests>org.apache.tika.*</targetTests>
         <reportsDirectory>${project.build.directory}/pit-reports</reportsDirectory>
       </properties>
       <build>
@@ -399,10 +412,32 @@
 
     <profile>
       <id>chatunitest</id>
+      <!-- Le plugin construit son classpath de compilation avec getCompileClasspathElements()
+           (portees compile/provided/system) : Mockito, en portee test, lui est invisible et
+           chaque test genere qui l'importe echoue a la compilation. On le redeclare donc en
+           portee provided, uniquement dans ce profil. -->
+      <dependencies>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-junit-jupiter</artifactId>
+          <version>${mockito-junit-jupiter.version}</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
       <properties>
         <!-- Point de terminaison OpenAI-compatible d'Ollama (local) -->
         <chatunitest.url>http://localhost:11434/v1/chat/completions</chatunitest.url>
-        <chatunitest.model>qwen2.5-coder:7b</chatunitest.model>
+        <!-- Le plugin n'accepte que gpt-*, code-llama et codeqwen:v1.5-chat. Ce nom est un ALIAS
+             Ollama qui pointe vers qwen2.5-coder:7b :
+               ollama pull qwen2.5-coder:7b && ollama cp qwen2.5-coder:7b codeqwen:v1.5-chat
+             Le modele qui genere reellement les tests est donc qwen2.5-coder:7b.
+             Le plugin exige aussi un JDK <= 21 (il echoue sur "Invalid Java version format: 25"). -->
+        <chatunitest.model>codeqwen:v1.5-chat</chatunitest.model>
       </properties>
       <build>
         <plugins>
