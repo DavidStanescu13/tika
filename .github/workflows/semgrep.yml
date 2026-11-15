@@ -1,0 +1,89 @@
+name: IFT3913 Tache 3 Semgrep
+
+# PR vers main/tache3 : bloque la fusion d'une nouvelle vulnerabilite.
+# push sur tache3/tache3-** : retour rapide sur nos branches de travail.
+on:
+  pull_request:
+    branches: [ main, tache3 ]
+  push:
+    branches: [ tache3, 'tache3-**' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: semgrep-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SEMGREP_RULES: p/java
+  SEMGREP_SEND_METRICS: "off"
+  SCAN_PATHS: >-
+    tika-core
+    tika-serialization
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-ocr-module
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # fetch-depth 0 : le commit de reference doit exister dans le runner
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installer Semgrep
+        run: |
+          pip install semgrep
+          semgrep --version
+
+      - name: Determiner le commit de reference
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+          elif [ "${{ github.event_name }}" = "push" ] \
+               && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            BASE="${{ github.event.before }}"
+          else
+            BASE="$(git rev-parse HEAD^)"
+          fi
+          echo "BASE_COMMIT=$BASE" >> "$GITHUB_ENV"
+          echo "Commit de reference : $BASE"
+
+      # --baseline-commit : seulement les nouvelles trouvailles ; --error : echec s'il y en a
+      - name: Semgrep (nouvelles trouvailles seulement)
+        run: |
+          mkdir -p reports
+          semgrep scan \
+            --config "$SEMGREP_RULES" \
+            --baseline-commit "$BASE_COMMIT" \
+            --json -o reports/semgrep-new.json \
+            --error \
+            $SCAN_PATHS
+
+      - name: Resume
+        if: always()
+        run: |
+          [ -f reports/semgrep-new.json ] || exit 0
+          python3 - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          r = json.load(open("reports/semgrep-new.json"))["results"]
+          print(f"## Semgrep : {len(r)} nouvelle(s) trouvaille(s)")
+          for x in r:
+              print(f"- `{x['path']}:{x['start']['line']}` {x['check_id'].split('.')[-1]}")
+          EOF
+
+      - name: Archiver le rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-reports
+          path: reports/
