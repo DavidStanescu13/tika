@@ -1,0 +1,28 @@
+name: Rapport d'echec des tests
+description: Signale l'echec des tests dans le resume du run et en commentaire de PR.
+
+inputs:
+  video-id:
+    description: Identifiant de la video YouTube
+    default: EE-xtCF3T94
+
+runs:
+  using: composite
+  steps:
+    - name: Signaler l'echec
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        VIDEO_ID: ${{ inputs.video-id }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+      run: |
+        BODY=$(cat <<MSG
+        ## Les tests ont echoue
+
+        [![Clique ici pour voir l'erreur](https://img.youtube.com/vi/$VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=$VIDEO_ID)
+        MSG
+        )
+        echo "$BODY" >> "$GITHUB_STEP_SUMMARY"
+        if [ -n "$PR_NUMBER" ]; then
+          gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+        fi
