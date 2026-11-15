@@ -1,0 +1,57 @@
+name: IFT3913 Tache 3 Tests
+
+on:
+  pull_request:
+    branches: [ tache3 ]
+  push:
+    branches: [ 'tache3-**' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: tache3-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAVEN_ARGS: -B -ntp -Drat.skip=true
+  MODULES: >-
+    tika-core,
+    tika-serialization,
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-ocr-module,
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module,
+    tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Build des modules (sans tests)
+        run: mvn $MAVEN_ARGS -q -pl "${MODULES// /}" -am install -DskipTests
+
+      - name: Tests des modules du cas d'etude
+        id: tests
+        run: mvn $MAVEN_ARGS -pl "${MODULES// /}" test
+
+      - name: Archiver les rapports de tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: '**/target/surefire-reports/*.txt'
+          if-no-files-found: ignore
+
+      - name: Signaler l'echec des tests
+        if: failure() && steps.tests.outcome == 'failure'
+        uses: ./.github/actions/test-failure-report
