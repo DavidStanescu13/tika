@@ -17,9 +17,11 @@ runs:
         PR_NUMBER: ${{ github.event.pull_request.number }}
       run: |
         BODY=$(cat <<MSG
-        ## Les tests ont echoue
+        ## Qui est ce test ?
 
-        [![Clique ici pour voir l'erreur](https://img.youtube.com/vi/$VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=$VIDEO_ID)
+        Un test a échoué. **Clique sur l'image pour découvrir lequel.**
+
+        [![Qui est ce test ?](https://img.youtube.com/vi/$VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=$VIDEO_ID)
         MSG
         )
         echo "$BODY" >> "$GITHUB_STEP_SUMMARY"
