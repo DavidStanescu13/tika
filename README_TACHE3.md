@@ -2,7 +2,9 @@
 
 Binôme : David STANESCU (`DavidStanescu13`) et Aness Lakhdar AZZOUZ (`ans1008`).
 
-Cas d'étude : cinq modules de Tika (`tika-core`, `tika-serialization`, `tika-parser-ocr-module`, `tika-parser-pdf-module`, `tika-parser-microsoft-module`). Tout le travail est sur la branche `tache3`.
+Cas d'étude : cinq modules de Tika (`tika-core`, `tika-serialization`, `tika-parser-ocr-module`, `tika-parser-pdf-module`, `tika-parser-microsoft-module`).
+
+Le workflow, le rapport de base et ce README sont sur la branche `tache3`. Les 7 vulnérabilités sont sur la branche `tache3-vulns` (une par-dessus l'autre à partir de `tache3`), proposées à la fusion par la [PR #2](https://github.com/DavidStanescu13/tika/pull/2).
 
 ## Table des matières
 
@@ -36,9 +38,9 @@ Fichier : [`.github/workflows/semgrep.yml`](.github/workflows/semgrep.yml).
 | Cas | Attendu | Résultat | Preuve |
 |---|---|---|---|
 | Commit sans changement Java | build vert | vert (0 fichier analysé, 0 détection) | run `43754809935` |
-| Commit qui ajoute une vulnérabilité | build rouge | TODO | TODO |
-| PR propre vers `tache3` | build vert | TODO | TODO |
-| PR avec vulnérabilité vers `tache3` | build rouge | TODO | TODO |
+| Commit qui ajoute une vulnérabilité | build rouge | rouge (3 nouvelles détections) | run `44004471064` (push des vulnérabilités 5 à 7 sur `tache3-vulns`) |
+| PR propre vers `tache3` | build vert | vert | run `43766511781` (PR #1 : ajout d'un test, aucune détection Semgrep) |
+| PR avec vulnérabilité vers `tache3` | build rouge | rouge (7 détections) | run `44006559348` (PR #2) |
 
 ## 2. Rapport de base
 
@@ -54,19 +56,54 @@ Il contient 3 détections, toutes déjà présentes dans Tika :
 
 ## 3. Les 7 vulnérabilités introduites
 
-TODO : une sous-section par vulnérabilité, avec le fichier choisi et pourquoi, le type (CWE), pourquoi le code est vulnérable, la règle Semgrep et le résultat.
+Chaque vulnérabilité est ajoutée dans une méthode nouvelle ou un chemin de repli, pour ne pas casser le code existant (les tests du cas d'étude passent toujours, section 1.2). Les lignes citées sont celles de `tache3-vulns`.
+
+### 3.1 Désérialisation Jackson — CWE-502
+Fichier : `tika-serialization/.../serialization/JsonMetadata.java`, nouvelle méthode `fromJsonAsMap`. Elle lit des métadonnées libres dans une `Map` et, pour conserver le type Java des valeurs, appelle `enableDefaultTyping()` avant `readValue`. Avec le *default typing*, c'est le JSON qui nomme la classe à instancier : un document piégé fait instancier une classe arbitraire. Règle : `jackson-unsafe-deserialization`.
+
+### 3.2 Injection SQL — CWE-89
+Fichier : `tika-core/.../io/TikaInputStream.java`, nouvelle surcharge `get(Connection, table, documentId, metadata)`. La requête est bâtie par concaténation (`"... WHERE id = '" + documentId + "'"`). Un identifiant comme `x' OR '1'='1` change le sens de la requête. Règle : `formatted-sql-string`.
+
+### 3.3 IV statique en CBC — CWE-329
+Fichier : `tika-core/.../parser/CryptoParser.java`, constante `DEFAULT_IV`. Quand le contexte ne fournit pas de paramètres, le déchiffrement CBC retombe sur cet IV fixe codé en dur. Un IV constant rend le chiffrement déterministe (même clair → même chiffré). Règle : `no-static-initialization-vector`.
+
+### 3.4 Contexte TLS faible — CWE-326
+Fichier : `tika-core/.../parser/NetworkParser.java`, schéma `telnets` (méthode `openSecureSocket`). Le socket est ouvert avec `SSLContext.getInstance("TLSv1")`. TLS 1.0 est obsolète et considéré comme faible. Règle : `weak-ssl-context`.
+
+### 3.5 Repli sur MD5 — CWE-328
+Fichier : `tika-core/.../digest/InputStreamDigester.java`. Si l'algorithme demandé est absent de la JVM, le code retombe sur `MessageDigest.getInstance("MD5")`. MD5 est cassé (collisions) et ne convient pas pour l'intégrité. Règle : `use-of-md5`.
+
+### 3.6 XXE — CWE-611
+Fichier : `tika-core/.../utils/XMLReaderUtils.java`, nouvelle méthode `buildDOMWithEntities`. Contrairement aux fabriques durcies du reste du fichier, elle crée une `DocumentBuilderFactory` qui développe les entités et ne désactive pas le DOCTYPE. Une entité externe permet alors la lecture de fichiers locaux / SSRF. Règle : `documentbuilderfactory-disallow-doctype-decl-missing`.
+
+### 3.7 Mode de chiffrement ECB — CWE-327
+Fichier : `tika-core/.../parser/CryptoParser.java`, constante `DEFAULT_TRANSFORMATION = "AES/ECB/PKCS5Padding"`. Quand aucune transformation n'est fournie, le parseur utilise AES en mode ECB, qui chiffre chaque bloc indépendamment et laisse apparaître les motifs du clair. Règle : `use-of-aes-ecb`.
 
 ## 4. Comparaison des rapports avant et après
 
-TODO : `semgrep/baseline.json` (3 détections) contre `semgrep/after.json` (10 attendues), avec la liste des 7 nouvelles.
+Le rapport de base ([`semgrep/baseline.json`](semgrep/baseline.json), commit `b3d595c`) contient 3 détections, toutes préexistantes (section 2).
+
+En analysant `tache3-vulns` en mode diff contre cette base (`--baseline-commit b3d595c`), Semgrep signale exactement 7 nouvelles détections, une par vulnérabilité :
+
+| Fichier | Règle | CWE |
+|---|---|---|
+| `JsonMetadata.java` | `jackson-unsafe-deserialization` | 502 |
+| `TikaInputStream.java` | `formatted-sql-string` | 89 |
+| `CryptoParser.java` | `no-static-initialization-vector` | 329 |
+| `CryptoParser.java` | `use-of-aes-ecb` | 327 |
+| `NetworkParser.java` | `weak-ssl-context` | 326 |
+| `InputStreamDigester.java` | `use-of-md5` | 328 |
+| `XMLReaderUtils.java` | `documentbuilderfactory-disallow-doctype-decl-missing` | 611 |
+
+C'est ce que confirme le run Semgrep de la [PR #2](https://github.com/DavidStanescu13/tika/pull/2) : « 7 findings (7 blocking) », build rouge (run `44006559348`). Les 3 détections de base ne sont pas recomptées, car le mode diff ne retient que ce que les commits ajoutent.
 
 ## 5. Humour : rickroll dans le CI
 
-TODO.
+Quand un test du cas d'étude échoue, le workflow [`tache3-tests.yml`](.github/workflows/tache3-tests.yml) invoque l'action locale [`.github/actions/test-failure-report`](.github/actions/test-failure-report/action.yml), qui publie dans le résumé du run (et en commentaire de PR) une vignette YouTube cliquable menant à un rickroll. La branche `tache3-test-failure` ajoute un test qui échoue exprès pour le démontrer.
 
 ## 6. Déclaration d'usage de l'intelligence artificielle
 
-TODO : outil utilisé, pour quelles parties, comment le résultat a été vérifié.
+_À compléter._
 
 ## 7. Reproduire les résultats
 
