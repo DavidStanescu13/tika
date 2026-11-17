@@ -24,8 +24,10 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.Set;
+import javax.net.ssl.SSLContext;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.CloseShieldInputStream;
@@ -73,6 +75,15 @@ public class NetworkParser implements Parser {
                     }
                 }).parse(socket.getInputStream(), handler, metadata, context);
             }
+        } else if ("telnets".equals(uri.getScheme())) {
+            try (Socket socket = openSecureSocket()) {
+                new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {
+                    @Override
+                    public void close() throws IOException {
+                        socket.shutdownOutput();
+                    }
+                }).parse(socket.getInputStream(), handler, metadata, context);
+            }
         } else {
             URL url = uri.toURL();
             URLConnection connection = url.openConnection();
@@ -84,6 +95,23 @@ public class NetworkParser implements Parser {
             }
         }
 
+    }
+
+    /**
+     * Opens an encrypted connection to the remote parser for the
+     * <code>telnets</code> scheme.
+     *
+     * @return a connected TLS socket
+     * @throws IOException if the secure connection cannot be established
+     */
+    private Socket openSecureSocket() throws IOException {
+        try {
+            SSLContext sslContext = SSLContext.getInstance("TLSv1");
+            sslContext.init(null, null, null);
+            return sslContext.getSocketFactory().createSocket(uri.getHost(), uri.getPort());
+        } catch (GeneralSecurityException e) {
+            throw new IOException("Unable to open a secure connection to " + uri, e);
+        }
     }
 
     private static class ParsingTask implements Runnable {

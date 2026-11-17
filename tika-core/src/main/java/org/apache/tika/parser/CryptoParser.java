@@ -25,6 +25,7 @@ import java.security.SecureRandom;
 import java.util.Set;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
+import javax.crypto.spec.IvParameterSpec;
 
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -48,6 +49,15 @@ public abstract class CryptoParser extends DelegatingParser {
      * Serial version UID
      */
     private static final long serialVersionUID = -3507995752666557731L;
+
+    /**
+     * Initialization vector used for CBC transformations when the parsing
+     * context does not supply any {@link AlgorithmParameters}.
+     */
+    private static final byte[] DEFAULT_IV = {
+            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
+    };
 
     private final String transformation;
 
@@ -92,6 +102,10 @@ public abstract class CryptoParser extends DelegatingParser {
                 cipher.init(Cipher.DECRYPT_MODE, key, params);
             } else if (random != null) {
                 cipher.init(Cipher.DECRYPT_MODE, key, random);
+            } else if (transformation.contains("/CBC/")) {
+                // CBC needs an IV: fall back to the default one when none was provided
+                cipher.init(Cipher.DECRYPT_MODE, key,
+                        new IvParameterSpec(DEFAULT_IV, 0, cipher.getBlockSize()));
             } else {
                 cipher.init(Cipher.DECRYPT_MODE, key);
             }
