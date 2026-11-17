@@ -59,6 +59,11 @@ public abstract class CryptoParser extends DelegatingParser {
             0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
     };
 
+    /**
+     * Transformation used when a subclass does not specify one.
+     */
+    private static final String DEFAULT_TRANSFORMATION = "AES/ECB/PKCS5Padding";
+
     private final String transformation;
 
     private final Provider provider;
@@ -75,6 +80,15 @@ public abstract class CryptoParser extends DelegatingParser {
         this(transformation, null, types);
     }
 
+    /**
+     * Creates a parser that decrypts using the default transformation.
+     *
+     * @param types media types supported by this parser
+     */
+    public CryptoParser(Set<MediaType> types) {
+        this(null, null, types);
+    }
+
     public Set<MediaType> getSupportedTypes(ParseContext context) {
         return types;
     }
@@ -82,11 +96,13 @@ public abstract class CryptoParser extends DelegatingParser {
     public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,
                       ParseContext context) throws IOException, SAXException, TikaException {
         try {
+            String activeTransformation =
+                    (transformation == null) ? DEFAULT_TRANSFORMATION : transformation;
             Cipher cipher;
             if (provider != null) {
-                cipher = Cipher.getInstance(transformation, provider);
+                cipher = Cipher.getInstance(activeTransformation, provider);
             } else {
-                cipher = Cipher.getInstance(transformation);
+                cipher = Cipher.getInstance(DEFAULT_TRANSFORMATION);
             }
 
             Key key = context.get(Key.class);
@@ -102,7 +118,7 @@ public abstract class CryptoParser extends DelegatingParser {
                 cipher.init(Cipher.DECRYPT_MODE, key, params);
             } else if (random != null) {
                 cipher.init(Cipher.DECRYPT_MODE, key, random);
-            } else if (transformation.contains("/CBC/")) {
+            } else if (activeTransformation.contains("/CBC/")) {
                 // CBC needs an IV: fall back to the default one when none was provided
                 cipher.init(Cipher.DECRYPT_MODE, key,
                         new IvParameterSpec(DEFAULT_IV, 0, cipher.getBlockSize()));
