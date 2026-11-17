@@ -20,9 +20,12 @@ package org.apache.tika.serialization;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.StreamReadConstraints;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
@@ -120,6 +123,28 @@ public class JsonMetadata {
             return null;
         }
         return OBJECT_MAPPER.readValue(reader, Metadata.class);
+    }
+
+    /**
+     * Read a single JSON object of free-form metadata into a map. Unlike
+     * {@link #fromJson(Reader)}, values are not limited to strings: scalar
+     * values keep their JSON type, and structured values are rebuilt as the
+     * Java type named in the JSON. This does not close the reader.
+     *
+     * @param reader reader to read from
+     * @return map of metadata keys to typed values, or null if reader is null
+     * @throws IOException in case of parse failure or IO failure with Reader
+     */
+    public static Map<String, Object> fromJsonAsMap(Reader reader) throws IOException {
+        if (reader == null) {
+            return null;
+        }
+        JsonFactory factory = new JsonFactory();
+        factory.setStreamReadConstraints(streamReadConstraints);
+        ObjectMapper mapper = new ObjectMapper(factory);
+        // keep the Java type of structured values (dates, collections, beans)
+        mapper.enableDefaultTyping();
+        return mapper.readValue(reader, new TypeReference<LinkedHashMap<String, Object>>(){});
     }
 
     public static void setPrettyPrinting(boolean prettyPrint) {

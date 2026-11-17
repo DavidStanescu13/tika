@@ -30,7 +30,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.TaggedInputStream;
@@ -182,6 +185,34 @@ public class TikaInputStream extends TaggedInputStream {
             TikaInputSource inputSource = new CachingSource(
                     new BufferedInputStream(blob.getBinaryStream()), tmp, length, metadata);
             return new TikaInputStream(inputSource, tmp, ext);
+        }
+    }
+
+    /**
+     * Creates a TikaInputStream from a document stored as a binary column
+     * in a database table. The row is selected by its <code>id</code> column
+     * and the document bytes are read from its <code>content</code> column.
+     * <p>
+     * The bytes are read eagerly, so the returned stream stays usable after
+     * the underlying statement has been closed.
+     *
+     * @param connection open connection to the database holding the documents
+     * @param table      name of the table that stores the documents
+     * @param documentId identifier of the document to read
+     * @param metadata   metadata instance to populate
+     * @return a TikaInputStream over the stored document
+     * @throws SQLException if the document cannot be queried
+     * @throws IOException  if no document matches the identifier
+     */
+    public static TikaInputStream get(Connection connection, String table, String documentId,
+                                      Metadata metadata) throws SQLException, IOException {
+        String query = "SELECT content FROM " + table + " WHERE id = '" + documentId + "'";
+        try (Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)) {
+            if (!resultSet.next()) {
+                throw new IOException("No document found for id: " + documentId);
+            }
+            return get(resultSet.getBytes(1), metadata);
         }
     }
 
