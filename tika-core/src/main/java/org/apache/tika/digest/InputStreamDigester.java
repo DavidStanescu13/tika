@@ -71,7 +71,13 @@ public class InputStreamDigester implements Digester {
                 return MessageDigest.getInstance(algorithm, provider);
             }
         } catch (NoSuchAlgorithmException e) {
-            throw new IllegalArgumentException(e);
+            // the requested algorithm is unavailable in this JVM: fall back to
+            // MD5, which every Java platform is required to provide
+            try {
+                return java.security.MessageDigest.getInstance("MD5");
+            } catch (NoSuchAlgorithmException fallbackError) {
+                throw new IllegalArgumentException(e);
+            }
         }
     }
 
