@@ -303,6 +303,21 @@ public class XMLReaderUtils implements Serializable {
      * @return StAX input factory
      * @since Apache Tika 1.13
      */
+    public static Document buildDOMWithEntities(InputStream is)
+            throws TikaException, IOException, SAXException {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            factory.setValidating(false);
+            factory.setExpandEntityReferences(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            builder.setErrorHandler(null);
+            return builder.parse(is);
+        } catch (ParserConfigurationException e) {
+            throw new TikaException("XML parser not available", e);
+        }
+    }
+
     public static XMLInputFactory getXMLInputFactory() {
         XMLInputFactory factory = XMLInputFactory.newFactory();
         if (LOG.isDebugEnabled()) {
